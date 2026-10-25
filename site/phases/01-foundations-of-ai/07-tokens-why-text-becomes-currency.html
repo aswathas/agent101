@@ -4,273 +4,255 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tokens — why text becomes currency — Harnessing Claude Code</title>
-<meta name="description" content="You can look at a bill, a limit, or a "full" warning and read the actual">
+<meta name="description" content="You can look at a bill, a limit, or a &quot;full&quot; warning and read the actual">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Tokens — why text becomes currency</h1>
-  <p class="lesson-motto">You can look at a bill, a limit, or a "full" warning and read the actual</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li class="on"><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 6, What a Language Model Is</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 01 · LESSON 7</p>
+      <h1>Tokens — why text becomes currency</h1>
+      <p class="lesson-motto">You can look at a bill, a limit, or a &quot;full&quot; warning and read the actual</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 6, What a Language Model Is</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- Estimate how many tokens a piece of text costs, within a factor of two
-- Predict which of two versions of a prompt is more expensive before running it
-- Explain why a token count is not a character count
-- Find out how many tokens a session has used, from inside the session
-
----
-
-## The Problem
-
-Two sessions, same task, same repo, wildly different bills. One agent read six
-files and edited two. The other read six files, edited two, and re-read the same
-four files three times each because a search came back with too many candidates.
-
-Nothing was different in difficulty. Nothing was different in outcome. The
-second session just sent more text. And nobody in the loop could see that,
-because nothing on screen said "that file cost you 14,000 of your 200,000."
-
-Text feels weightless. You can scroll past a thousand lines without a sensation
-of expense. But the model does not read — it counts, and everything is priced in
-the same unit.
-
----
-
-## The Concept
-
-The model cannot work with characters. It was trained on **tokens**: the
-sub-pieces of text produced by a tokenizer, a small trained program that splits
-input into units. Roughly, a token is about four characters of English or about
-three-quarters of an English word.
-
-The important part is not the ratio. It is that a token can be *part of a word*:
-
-| Text | Tokens (roughly) | Why |
-|---|---|---|
-| ` ind | 1 | rare, so the tokenizer keeps it whole |
-| `indentation` | 2–3 | common prefix, split to save space |
-| ` authenticate` | 3–4 | leading space merges with the word |
-| `supercalifragilistic` | 6+ | rare enough to shatter |
-
-So token count is not characters, not words, and not anything you can eyeball
-from character length alone. It is a property of the tokenizer, and every model
-family has its own. That is why a token count from one model is not a valid
-prediction for another.
-
-```mermaid
-flowchart TD
-    A["You type: fix the auth bug"] --&gt; B[Tokenizer splits into tokens]
-    B --&gt; C["~6 tokens here"]
-    C --&gt; D["Everything else already in the conversation"]
-    D --&gt; E["Model reads ALL of it, every single turn"]
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Estimate how many tokens a piece of text costs, within a factor of two</li><li>Predict which of two versions of a prompt is more expensive before running it</li><li>Explain why a token count is not a character count</li><li>Find out how many tokens a session has used, from inside the session</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>Two sessions, same task, same repo, wildly different bills. One agent read six files and edited two. The other read six files, edited two, and re-read the same four files three times each because a search came back with too many candidates.</p>
+<p>Nothing was different in difficulty. Nothing was different in outcome. The second session just sent more text. And nobody in the loop could see that, because nothing on screen said &quot;that file cost you 14,000 of your 200,000.&quot;</p>
+<p>Text feels weightless. You can scroll past a thousand lines without a sensation of expense. But the model does not read — it counts, and everything is priced in the same unit.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>The model cannot work with characters. It was trained on <strong>tokens</strong>: the sub-pieces of text produced by a tokenizer, a small trained program that splits input into units. Roughly, a token is about four characters of English or about three-quarters of an English word.</p>
+<p>The important part is not the ratio. It is that a token can be <em>part of a word</em>:</p>
+<div class="table-wrap"><table><thead><tr><th>Text</th><th>Tokens (roughly)</th><th>Why</th></tr></thead><tbody><tr><td>` ind</td><td>1</td><td>rare, so the tokenizer keeps it whole</td></tr><tr><td><code>indentation</code></td><td>2–3</td><td>common prefix, split to save space</td></tr><tr><td><code> authenticate</code></td><td>3–4</td><td>leading space merges with the word</td></tr><tr><td><code>supercalifragilistic</code></td><td>6+</td><td>rare enough to shatter</td></tr></tbody></table></div>
+<p>So token count is not characters, not words, and not anything you can eyeball from character length alone. It is a property of the tokenizer, and every model family has its own. That is why a token count from one model is not a valid prediction for another.</p>
+<figure class="diagram"><pre>flowchart TD
+    A[&quot;You type: fix the auth bug&quot;] --&gt; B[Tokenizer splits into tokens]
+    B --&gt; C[&quot;~6 tokens here&quot;]
+    C --&gt; D[&quot;Everything else already in the conversation&quot;]
+    D --&gt; E[&quot;Model reads ALL of it, every single turn&quot;]
     E --&gt; F[New response]
     F --&gt; G[Response joins the conversation permanently]
-    G --&gt; D
-```
+    G --&gt; D</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>That loop is the whole economics. <strong>Every turn re-sends the entire conversation.</strong> Tokens are not spent once; they are spent again on every subsequent request. A long session does not cost more because it did more work — it costs more because each of its turns is more expensive than the last.</p>
+<blockquote><p><strong>The reframe:</strong> tokens are the only unit that matters, and the conversation</p><p>re-pays for itself on every single turn — so a long session is a tax on every</p><p>message you send, not a record of work already done.</p></blockquote>
+<h3 id="where-the-tokens-actually-go">Where the tokens actually go</h3>
+<p>In a Claude Code session, the conversation is only part of it. Also in there, from the start:</p>
+<ul><li>instructions the harness sets for itself</li><li>your <code>CLAUDE.md</code> and any memory files</li><li>the tool definitions the agent can call</li><li>environment details — working directory, platform, shell</li></ul>
+<p>And accumulating as you work:</p>
+<ul><li>every file read, at full length</li><li>every command's output</li><li>the agent's own responses</li></ul>
+<p>One <code>cat</code> of a large log file can cost more than an hour of conversation. This is why &quot;just read the whole thing to be safe&quot; is the most expensive thing an agent can do.</p>
+<h3 id="the-number-you-can-actually-see">The number you can actually see</h3>
+<p>Inside a Claude Code session:</p>
+<pre class="code"><code>/context</code></pre>
+<p>It draws the current window as a coloured grid, broken down by category, with suggestions for what to cut. That grid is the honest answer to &quot;where are my tokens going&quot; — better than any estimate, because it reads the real thing.</p>
+<p>Token prices, context sizes, and every command named here move. Check <a href="https://code.claude.com/docs/llms.txt" target="_blank" rel="noopener">code.claude.com/docs</a> and <code>claude --version</code> rather than trusting a number in this lesson.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-get-a-real-count-for-a-file">1. Get a real count for a file</h3>
+<pre class="code" data-lang="bash"><code>wc -c COURSE-CONTEXT.md      # bytes</code></pre>
+<p>Characters ÷ 4 is a rough English estimate. Good enough to compare two files. Not good enough to quote as a price.</p>
+<p>✅ You pass when you have a character count and a stated estimate, and you know the estimate is approximate.</p>
+<h3 id="2-measure-the-thing-that-surprised-you">2. Measure the thing that surprised you</h3>
+<p>Find the largest file the agent read during a recent session, and the largest command output. Compare them to the total conversation so far:</p>
+<pre class="code" data-lang="bash"><code>ls -S | head -5</code></pre>
+<p>If one read dwarfs the conversation, you have found why a session cost what it cost.</p>
+<p>✅ You pass when you can name the single largest token source in a real session and its rough size.</p>
+<h3 id="3-predict-before-you-run">3. Predict before you run</h3>
+<p>You are about to ask for a broad sweep: &quot;find every place that calls <code>auth()</code> and report each one with its surrounding function.&quot;</p>
+<p>Predict: many file reads, each landing in context permanently. Write the prediction down.</p>
+<p>Now run it. Then open <code>/context</code> and see what it actually cost.</p>
+<p>✅ You pass when your written prediction and the measured result agree on which category grew most.</p>
+<h3 id="4-halve-it-on-purpose">4. Halve it on purpose</h3>
+<p>Take the same sweep and constrain it:</p>
+<pre class="code" data-lang="text"><code>Find every place that calls `auth()`. Only report the file path and line number.
+Do not read surrounding code — just locate the call sites.</code></pre>
+<p>Compare <code>/context</code> before and after. Narrowing what comes <em>back</em> is as effective as narrowing what goes <em>out</em>.</p>
+<p>✅ You pass when the second sweep measurably grew context less than the first.</p>
+<h3 id="5-catch-the-re-read">5. Catch the re-read</h3>
+<p>The classic waste: an agent searches, gets twenty candidates, reads all twenty, finds the answer in the third. Nineteen reads, one result, all twenty still in context.</p>
+<p>Watch it happen in <code>/context</code>. Then note what a better ask looks like: give the search enough to be narrow, and say what evidence you need back.</p>
+<p>✅ You pass when you have identified one real session where most of the cost was reads that turned out to be unnecessary.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>/context</code></td><td>Any time you want to know where the tokens went</td></tr><tr><td>chars ÷ 4</td><td>Comparing two files, before asking for either</td></tr><tr><td>Predict-then-measure</td><td>Before any broad read or sweep</td></tr><tr><td>Narrow the output, not just the input</td><td>Cutting cost without cutting the answer</td></tr><tr><td>Repeated broad searches</td><td>Recognising the most common silent waste</td></tr><tr><td>Longer session = pricier turn</td><td>Explaining a bill that surprised you</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take any file in this repo over 2,000 lines. Estimate its token count from character length, then have the agent report the actual count it saw in context. Record both. ✅ You pass when both numbers are in your notes and you can state the error of your estimate as a percentage.</li></ol>
+<ol><li class="criterion">Run one broad sweep and one narrowed sweep of the same task. Record <code>/context</code> growth for each. ✅ You pass when the second cost measurably less and you can name the single phrase that did it.</li></ol>
+<ol><li class="criterion">Find the highest-token command output you have ever pasted into a session. Count it. Write down what you should have asked for instead. ✅ You pass when your replacement request is three lines or fewer and returns strictly what you needed.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>token</td><td>&quot;a word&quot;</td><td>A sub-word unit from a trained tokenizer. Roughly four English characters, but a split point inside a word, so length in characters does not predict it reliably.</td></tr><tr><td>tokenizer</td><td>&quot;the splitter&quot;</td><td>The trained program producing those units. Each model family has its own, which is why token counts are not portable across models.</td></tr><tr><td>input tokens</td><td>&quot;the prompt&quot;</td><td>Everything sent, including conversation history, file contents, tool definitions, and system instructions — not just what you typed.</td></tr><tr><td>output tokens</td><td>&quot;the reply&quot;</td><td>What the model generated, including thinking where extended thinking is on.</td></tr><tr><td>context</td><td>&quot;the chat&quot;</td><td>The full body of text the model sees on the next turn. Grows with every message, read, and tool result.</td></tr><tr><td>re-send</td><td>&quot;it remembers&quot;</td><td>The entire conversation is transmitted again on every request. Long sessions tax each new message.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Exact pricing and per-model rates.</strong> They change, and quoting them here would be stale within weeks. Read them from <a href="https://code.claude.com/docs/en/costs" target="_blank" rel="noopener">the costs page</a> at the time you need them.</p>
+<p><strong>The context window as a budget.</strong> Tokens are counted here; what the window <em>is</em>, what fills it, and what happens when it fills — that is Lesson 8, and it depends on this lesson.</p>
+<p><strong>Prompt caching.</strong> Reading a file the same way twice can be cheaper the second time. It is real, it is measured in the <code>/usage</code> output, and it changes how you reason about repeated reads — but explaining it properly needs the context window, so it lands after Lesson 8.</p>
+<p><strong>Token counting APIs and libraries.</strong> Exact counting is a one-line call in most SDKs. Useful, not foundational, and not needed for anything in this course.</p>
+<p><strong>Thinking tokens.</strong> Billed as output. Arrives properly with model selection in Phase 03.</p>
+      </div>
 
-That loop is the whole economics. **Every turn re-sends the entire
-conversation.** Tokens are not spent once; they are spent again on every
-subsequent request. A long session does not cost more because it did more work
-— it costs more because each of its turns is more expensive than the last.
-
-&gt; **The reframe:** tokens are the only unit that matters, and the conversation
-&gt; re-pays for itself on every single turn — so a long session is a tax on every
-&gt; message you send, not a record of work already done.
-
-### Where the tokens actually go
-
-In a Claude Code session, the conversation is only part of it. Also in there, from
-the start:
-
-- instructions the harness sets for itself
-- your `CLAUDE.md` and any memory files
-- the tool definitions the agent can call
-- environment details — working directory, platform, shell
-
-And accumulating as you work:
-
-- every file read, at full length
-- every command's output
-- the agent's own responses
-
-One `cat` of a large log file can cost more than an hour of conversation. This is
-why "just read the whole thing to be safe" is the most expensive thing an agent
-can do.
-
-### The number you can actually see
-
-Inside a Claude Code session:
-
-```
-/context
-```
-
-It draws the current window as a coloured grid, broken down by category, with
-suggestions for what to cut. That grid is the honest answer to "where are my
-tokens going" — better than any estimate, because it reads the real thing.
-
-Token prices, context sizes, and every command named here move. Check
-[code.claude.com/docs](https://code.claude.com/docs/llms.txt) and
-`claude --version` rather than trusting a number in this lesson.
-
----
-
-## Build It
-
-### 1. Get a real count for a file
-
-```bash
-wc -c COURSE-CONTEXT.md      # bytes
-```
-
-Characters ÷ 4 is a rough English estimate. Good enough to compare two files.
-Not good enough to quote as a price.
-
-✅ You pass when you have a character count and a stated estimate, and you know
-the estimate is approximate.
-
-### 2. Measure the thing that surprised you
-
-Find the largest file the agent read during a recent session, and the largest
-command output. Compare them to the total conversation so far:
-
-```bash
-ls -S | head -5
-```
-
-If one read dwarfs the conversation, you have found why a session cost what it
-cost.
-
-✅ You pass when you can name the single largest token source in a real session
-and its rough size.
-
-### 3. Predict before you run
-
-You are about to ask for a broad sweep: "find every place that calls `auth()` and
-report each one with its surrounding function."
-
-Predict: many file reads, each landing in context permanently. Write the
-prediction down.
-
-Now run it. Then open `/context` and see what it actually cost.
-
-✅ You pass when your written prediction and the measured result agree on which
-category grew most.
-
-### 4. Halve it on purpose
-
-Take the same sweep and constrain it:
-
-```text
-Find every place that calls `auth()`. Only report the file path and line number.
-Do not read surrounding code — just locate the call sites.
-```
-
-Compare `/context` before and after. Narrowing what comes *back* is as effective
-as narrowing what goes *out*.
-
-✅ You pass when the second sweep measurably grew context less than the first.
-
-### 5. Catch the re-read
-
-The classic waste: an agent searches, gets twenty candidates, reads all twenty,
-finds the answer in the third. Nineteen reads, one result, all twenty still in
-context.
-
-Watch it happen in `/context`. Then note what a better ask looks like: give the
-search enough to be narrow, and say what evidence you need back.
-
-✅ You pass when you have identified one real session where most of the cost was
-reads that turned out to be unnecessary.
-
----
-
-## Use It
-
-| Concept | When you reach for it |
-|---|---|
-| `/context` | Any time you want to know where the tokens went |
-| chars ÷ 4 | Comparing two files, before asking for either |
-| Predict-then-measure | Before any broad read or sweep |
-| Narrow the output, not just the input | Cutting cost without cutting the answer |
-| Repeated broad searches | Recognising the most common silent waste |
-| Longer session = pricier turn | Explaining a bill that surprised you |
-
----
-
-## Exercises
-
-1. Take any file in this repo over 2,000 lines. Estimate its token count from
-   character length, then have the agent report the actual count it saw in
-   context. Record both.
-   ✅ You pass when both numbers are in your notes and you can state the error of
-   your estimate as a percentage.
-
-2. Run one broad sweep and one narrowed sweep of the same task. Record
-   `/context` growth for each.
-   ✅ You pass when the second cost measurably less and you can name the single
-   phrase that did it.
-
-3. Find the highest-token command output you have ever pasted into a session.
-   Count it. Write down what you should have asked for instead.
-   ✅ You pass when your replacement request is three lines or fewer and returns
-   strictly what you needed.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| token | "a word" | A sub-word unit from a trained tokenizer. Roughly four English characters, but a split point inside a word, so length in characters does not predict it reliably. |
-| tokenizer | "the splitter" | The trained program producing those units. Each model family has its own, which is why token counts are not portable across models. |
-| input tokens | "the prompt" | Everything sent, including conversation history, file contents, tool definitions, and system instructions — not just what you typed. |
-| output tokens | "the reply" | What the model generated, including thinking where extended thinking is on. |
-| context | "the chat" | The full body of text the model sees on the next turn. Grows with every message, read, and tool result. |
-| re-send | "it remembers" | The entire conversation is transmitted again on every request. Long sessions tax each new message. |
-
----
-
-## What this lesson skipped
-
-**Exact pricing and per-model rates.** They change, and quoting them here would
-be stale within weeks. Read them from
-[the costs page](https://code.claude.com/docs/en/costs) at the time you need
-them.
-
-**The context window as a budget.** Tokens are counted here; what the window
-*is*, what fills it, and what happens when it fills — that is Lesson 8, and it
-depends on this lesson.
-
-**Prompt caching.** Reading a file the same way twice can be cheaper the second
-time. It is real, it is measured in the `/usage` output, and it changes how you
-reason about repeated reads — but explaining it properly needs the context
-window, so it lands after Lesson 8.
-
-**Token counting APIs and libraries.** Exact counting is a one-line call in most
-SDKs. Useful, not foundational, and not needed for anything in this course.
-
-**Thinking tokens.** Billed as output. Arrives properly with model selection in
-Phase 03.</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A session has been open for three hours. You ask one more short question and the reported cost jumps. Why is the short question not cheap?</p>
+        <ol class="options" type="A">
+          <li>Short prompts are billed at a higher per-token rate to discourage them</li>
+          <li>The whole conversation is sent again on every request, so the short question carries the whole session with it</li>
+          <li>Three hours of wall-clock time accrues a background charge each time you send anything</li>
+          <li>The rate limit from Lesson 11 adds a surcharge per request</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The whole conversation is sent again on every request, so the short question carries the whole session with it</p>
+          <p class="why">There is no per-request premium and no time-based surcharge — the cost is a direct function of tokens sent, and every request re-sends the accumulated conversation plus files read plus tool output. Option C gestures at background requests, which exist but are tiny and would not explain a jump that scales with session length. Option D reaches forward to a lesson not yet taught and describes a limit, not a price.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You must locate every caller of <code>parseConfig()</code>. Which ask is most likely to keep tokens down without losing the answer?</p>
+        <ol class="options" type="A">
+          <li>Find every place parseConfig is used and paste each match with 40 lines of surrounding context</li>
+          <li>Search the whole repo for parseConfig and explain each hit</li>
+          <li>List the file path and line number of every call site of parseConfig. Do not read surrounding code.</li>
+          <li>Understand how configuration parsing works in this codebase, including every usage of parseConfig</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> List the file path and line number of every call site of parseConfig. Do not read surrounding code.</p>
+          <p class="why">Cost is driven by what comes back into context, and file reads plus surrounding context are permanent. Asking for path and line only returns the evidence you need. Option A looks narrower than B but the 40 lines of context multiply the read count. Option D is a comprehension task disguised as a locate task, which drags in far more files than the question requires.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You estimate a file's cost at characters divided by four, then the real count comes back noticeably lower. What is the most likely reason?</p>
+        <ol class="options" type="A">
+          <li>The /4 rule only applies to prose, and code has a different average density</li>
+          <li>You counted the wrong file's characters</li>
+          <li>Common words are split into fewer tokens than the rule assumes, so the rule over-estimates</li>
+          <li>Some of the file was served from cache and not billed</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> Common words are split into fewer tokens than the rule assumes, so the rule over-estimates</p>
+          <p class="why">The /4 rule assumes roughly four characters per token. High-frequency English collapses into single tokens shorter than that average, which pushes the real count below the estimate. Option A is wrong because code is usually less compressible than prose, so it skews the other way. Option D is a real mechanism but it changes latency, not the token count you are comparing against.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span>Previous</span>6. What a Language Model Is</a>
+    <a class="next" href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span>Next</span>8. The Context Window — the only budget that matters</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

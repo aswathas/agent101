@@ -4,94 +4,256 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Install a Skill — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can install a skill at the right scope, prove it loaded, and recover it">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Install a Skill</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li class="on"><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 42, The Invocation Matrix — Who Can Trigger It</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 05 · LESSON 43</p>
+      <h1>Install a Skill</h1>
+      <p class="lesson-motto">You can install a skill at the right scope, prove it loaded, and recover it</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 42, The Invocation Matrix</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Install a skill at personal, project, or nested scope and say who gets it</li><li>Verify a skill loaded, and identify whether the problem is discovery, YAML, or the name</li><li>Check a skills directory for unparseable frontmatter in one command</li><li>Recover personal skills that were moved to <code>.trash/</code></li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>A week ago you had eleven personal skills in <code>~/.claude/skills/</code>. Today you have none. The folders are gone from where they were.</p>
+<p>They are not gone. They are in <code>~/.claude/skills/.trash/</code>, moved there silently by a file named <code>manifest.json</code> that you — or a tool — dropped into the skills directory. Before Claude Code v2.1.280, that filename made the harness sweep every skill folder the file listed into a timestamped trash folder. Those skills stopped loading. No error. The menu simply had fewer entries.</p>
+<p>They stay there for 30 days by default, then a retention sweep deletes them.</p>
+<p>Two lessons: personal skills are a directory, not a database, so the failure mode is file placement — and &quot;it just vanished&quot; is a real reported shape, not an exaggeration.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Installing a skill means putting a folder in one of the documented locations. There is no install command for the local case. That is the whole of it, and that is why it can go wrong silently.</p>
+<div class="table-wrap"><table><thead><tr><th>Scope</th><th>Where</th><th>Who gets it</th></tr></thead><tbody><tr><td>Enterprise</td><td>managed settings directory</td><td>Everyone, policy-managed</td></tr><tr><td>Personal</td><td><code>~/.claude/skills/&lt;name&gt;/SKILL.md</code></td><td>You, every project on this machine</td></tr><tr><td>Project</td><td><code>.claude/skills/&lt;name&gt;/SKILL.md</code></td><td>Anyone who clones the repo — <strong>commit it</strong></td></tr><tr><td>Nested / monorepo</td><td><code>&lt;subdir&gt;/.claude/skills/&lt;name&gt;/SKILL.md</code></td><td>Loads when working under that subdir</td></tr><tr><td>Extra directory</td><td><code>.claude/skills/</code> under an <code>--add-dir</code> path</td><td>Whoever granted that directory</td></tr><tr><td>Plugin</td><td><code>&lt;plugin&gt;/skills/&lt;name&gt;/SKILL.md</code></td><td>Anyone who installs the plugin</td></tr><tr><td>Synced from claude.ai</td><td><code>~/.claude/skills/synced/</code></td><td>Downloaded, separate subfolder</td></tr><tr><td>Legacy command</td><td><code>.claude/commands/&lt;name&gt;.md</code></td><td>Same as its containing scope</td></tr></tbody></table></div>
+<p>Personal skills load across projects on your machine but <strong>not</strong> in cloud sessions. Project skills load from the starting directory and its parents up to the repository root; skills <em>below</em> the starting directory load after Claude first reads or edits a file there.</p>
+<h3 id="which-scope">Which scope</h3>
+<div class="table-wrap"><table><thead><tr><th>Use</th><th>Scope</th></tr></thead><tbody><tr><td>Your own workflow, every repo</td><td>Personal</td></tr><tr><td>Your team's workflow, versioned</td><td>Project — commit it</td></tr><tr><td>One package of a monorepo</td><td>Nested</td></tr><tr><td>Anything you want to hand to a colleague</td><td>Project or plugin, never personal</td></tr></tbody></table></div>
+<p>If a skill only works on your machine, personal is right. If someone else needs it, personal is the wrong scope by definition — they will not see it.</p>
+<figure class="diagram"><pre>flowchart TD
+    I[&quot;You have a skill folder&quot;] --&gt; D{&quot;Where should it live?&quot;}
+    D --&gt;|Just me, many repos| P[&quot;~/.claude/skills/&quot;]
+    D --&gt;|The team needs it| J[&quot;.claude/skills/ and commit&quot;]
+    D --&gt;|One package| N[&quot;subdir/.claude/skills/&quot;]
+    P --&gt; V{&quot;Verify&quot;}
+    J --&gt; V
+    N --&gt; V
+    V --&gt; V1[&quot;/skills lists it?&quot;]
+    V1 --&gt;|No| F1[&quot;claude --debug → grep names&quot;]
+    V1 --&gt;|Yes| V2{&quot;/name works?&quot;}
+    V2 --&gt;|No| F2[&quot;claude plugin validate the directory&quot;]
+    V2 --&gt;|Yes| V3{&quot;Does it auto-fire?&quot;}
+    V3 --&gt;|No| F3[&quot;It's the description, or you are in cell 2/3&quot;]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="verifying-in-the-right-order">Verifying, in the right order</h3>
+<p>Ask these in sequence. Each rules out one failure and hands you to the next.</p>
+<div class="table-wrap"><table><thead><tr><th>Step</th><th>Command</th><th>Tells you</th></tr></thead><tbody><tr><td>1</td><td><code>/skills</code></td><td>Is it discovered at all</td></tr><tr><td>2</td><td>Ask &quot;What skills are available?&quot;</td><td>Is the description present to the model</td></tr><tr><td>3</td><td><code>/name</code></td><td>Does it load and run</td></tr><tr><td>4</td><td><code>claude plugin validate &lt;dir&gt;</code></td><td>Do any <code>SKILL.md</code> files have unparseable frontmatter</td></tr><tr><td>5</td><td><code>claude --debug</code>, grep for <code>[names]</code></td><td>Was a name refused</td></tr></tbody></table></div>
+<p>Step 4 needs Claude Code v2.1.233 or later. If yours is older, skip to step 5 and read the debug log by eye — which is the situation most people are in without knowing it.</p>
+<p>After a rename or a <code>name:</code> edit, <strong>restart the session</strong> unless the file sits in a directory Claude Code watches for changes. <code>/reload-skills</code> is in the command menu; try it, and if your build doesn't do what you expect, restart.</p>
+<h3 id="the-trash">The trash</h3>
+<p><code>~/.claude/skills/.trash/</code> is where swept skills land, in a timestamped folder. Recovery is a move:</p>
+<pre class="code" data-lang="text"><code>~/.claude/skills/.trash/2026-10-08T14-22-11/my-skill/
+  → ~/.claude/skills/my-skill/</code></pre>
+<p>Do it before 30 days pass. After that the retention sweep takes them.</p>
+<blockquote><p><strong>The reframe:</strong> installing a skill is placing a folder, so every failure</p><p>here is a placement failure — discovered by asking three questions in order,</p><p>not by reading a stack trace that never comes.</p></blockquote>
+<p>Verified against <a href="https://code.claude.com/docs/en/skills" target="_blank" rel="noopener">the skills page</a> on 2026-10-15. The trash incident and the <code>claude plugin validate</code> minimum version are both version-gated; re-read the troubleshooting section before repeating either as fact.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-install-at-both-scopes-on-purpose">1. Install at both scopes, on purpose</h3>
+<p>Put the same skill in <code>~/.claude/skills/</code> and in <code>.claude/skills/</code> of a scratch project.</p>
+<p>✅ You pass when you can say which one your teammates would receive and which one you would, from the scope table rather than from a guess.</p>
+<h3 id="2-verify-in-order-not-in-one-jump">2. Verify in order, not in one jump</h3>
+<p>Run <code>/skills</code>, then ask &quot;What skills are available?&quot;, then <code>/name</code>. Stop at the first failure and record which step failed.</p>
+<p>✅ You pass when you have a named step that failed and the command that proved it — not just &quot;it didn't work&quot;.</p>
+<h3 id="3-break-the-yaml-and-find-the-right-command">3. Break the YAML and find the right command</h3>
+<p>Insert a malformed line into the frontmatter. Run <code>/name</code> (still works) and then a natural request (doesn't fire). Run <code>claude plugin validate</code> on the directory.</p>
+<p>✅ You pass when the validator names the file and you can explain why <code>/name</code> still worked anyway.</p>
+<h3 id="4-break-the-name">4. Break the name</h3>
+<p>Rename a skill folder so its name holds a character Claude Code refuses — a zero-width space or a <code>&lt;</code>. Look in the menu, then in <code>claude --debug</code> for <code>[names]</code>.</p>
+<p>✅ You pass when the debug log names the refused character and you can say why the skill vanished entirely rather than merely failing to fire.</p>
+<h3 id="5-simulate-the-trash">5. Simulate the trash</h3>
+<p>Create <code>~/.claude/skills/.trash/2026-10-08T14-22-11/</code>, move a skill into it, and confirm the skill is gone from the menu. Move it back and confirm it returns.</p>
+<p>✅ You pass when you have the before and after <code>/skills</code> output for the move and the move-back.</p>
+<h3 id="6-restart-vs-reload">6. Restart vs reload</h3>
+<p>Edit a <code>description</code> in place and run <code>/reload-skills</code>. If nothing changes, restart the session and check again.</p>
+<p>✅ You pass when you can say which mechanism actually re-read the file on your install, and your answer is observed rather than assumed.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Thing</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>~/.claude/skills/</code></td><td>Personal, machine-wide, never committed</td></tr><tr><td><code>.claude/skills/</code></td><td>Team-facing — commit it</td></tr><tr><td><code>&lt;subdir&gt;/.claude/skills/</code></td><td>One package of a monorepo</td></tr><tr><td><code>/skills</code></td><td>First question when a skill &quot;isn't there&quot;</td></tr><tr><td><code>claude plugin validate &lt;dir&gt;</code></td><td>Frontmatter you suspect is malformed</td></tr><tr><td><code>claude --debug</code> + <code>[names]</code></td><td>A skill missing from the menu entirely</td></tr><tr><td><code>/doctor</code></td><td>Listing too expensive, or a suspected sync problem</td></tr><tr><td><code>~/.claude/skills/.trash/</code></td><td>A skill folder that vanished</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Install one skill at project scope in a real repo, commit it, and hand the path to a colleague or a fresh clone. ✅ You pass when the clone loads it and you can state the one line of the install that makes the difference.</li></ol>
+<ol><li class="criterion">Take every skill you own and check its scope. Move at least one to a different scope. ✅ You pass when you can say which scope was wrong and what specifically broke because of it — a teammate not seeing it, or a stale global skill.</li></ol>
+<ol><li class="criterion">Break a skill four ways — wrong folder, bad YAML, refused name, missing directory — and record which command diagnosed each. ✅ You pass when you have a table of four failures with the command that named each one, and none of them say &quot;restart and hope&quot;.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>install</td><td>&quot;adding a plugin&quot;</td><td>Copying a folder to a documented path. No install step.</td></tr><tr><td>personal scope</td><td>&quot;global&quot;</td><td><code>~/.claude/skills/</code>. This machine, this user. Not cloud.</td></tr><tr><td>project scope</td><td>&quot;repo&quot;</td><td><code>.claude/skills/</code>, committed. What teammates get.</td></tr><tr><td>&quot;it's not showing up&quot;</td><td>&quot;the install failed&quot;</td><td>Four different causes, four different commands. Ask <code>/skills</code> first.</td></tr><tr><td><code>.trash/</code></td><td>&quot;it deleted my skills&quot;</td><td>Swept to a timestamped subfolder, recoverable until the retention sweep.</td></tr><tr><td><code>claude plugin validate</code></td><td>&quot;the linter&quot;</td><td>Finds <code>SKILL.md</code> files whose frontmatter doesn't parse. v2.1.233+.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Marketplace installation.</strong> <code>/plugin marketplace add</code> and friends. The plugin is the packaging layer and Phase 09 owns it.</p>
+<p><strong>Synced skills from claude.ai.</strong> They land in <code>~/.claude/skills/synced/</code>, are prefixed <code>anthropic-skills:</code>, and have their own behaviour. Real, and Phase 09 again.</p>
+<p><strong>Enterprise and managed-settings scope.</strong> Policy-managed, not yours to place.</p>
+<p><strong>Settings-level overrides</strong> (<code>skillOverrides</code>, <code>&quot;name-only&quot;</code> entries) and the listing budget. Phase 13.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You wrote a release workflow skill for yourself and left it in ~/.claude/skills/. A teammate says they don't have it and asks you to send it over. What is actually wrong?</p>
+        <ol class="options" type="A">
+          <li>Personal skills are machine-local by definition — a teammate will never see them, and the fix is project scope, committed to the repo</li>
+          <li>The install failed silently; re-copy the folder to ~/.claude/skills/ on their machine</li>
+          <li>They need to run claude plugin validate before personal skills appear</li>
+          <li>The skill's name is refused because it isn't lowercase</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Personal skills are machine-local by definition — a teammate will never see them, and the fix is project scope, committed to the repo</p>
+          <p class="why">Scope is the whole mechanism here: personal skills load on this user, this machine, and nowhere else — so a teammate not having one is correct behaviour, not a failed install. The fix is to move it to .claude/skills/ and commit it. Option B asks a teammate to copy a file into a machine-local location that will diverge immediately. Option C is unrelated — validate checks frontmatter parsing on a skills directory, not who can see it. Option D invents a naming rule; names are rejected for specific characters, not case.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A skill you installed runs fine as /my-skill but never fires on a natural request. The description looks correct. What is the diagnostic order?</p>
+        <ol class="options" type="A">
+          <li>Re-read the description out loud and rewrite it more emphatically</li>
+          <li>Check /skills first to confirm discovery, then claude plugin validate the directory for unparseable frontmatter</li>
+          <li>Delete and reinstall the skill</li>
+          <li>Check ~/.claude/skills/.trash/ in case a sweep moved it</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Check /skills first to confirm discovery, then claude plugin validate the directory for unparseable frontmatter</p>
+          <p class="why">The symptom has two causes that look identical from outside — a description that doesn't match human phrasing, and frontmatter that fails to parse so the body loads with empty metadata — and only a parse check separates them. /skills first establishes that discovery is even the problem; validate then names the file. Option A tests a hypothesis you said you'd already ruled out. Option C destroys the evidence that would have told you which cause it was. Option D is a real failure mode but it removes the skill from the menu entirely, which is not the symptom described.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A colleague's eleven personal skills vanished between sessions with no error, and their folders are gone from ~/.claude/skills/. Where do they actually go?</p>
+        <ol class="options" type="A">
+          <li>They are deleted permanently the moment they stop loading</li>
+          <li>They are moved into a timestamped folder under ~/.claude/skills/.trash/, recoverable until the retention sweep — historically triggered by a stray manifest.json in the skills directory</li>
+          <li>They moved into ~/.claude/skills/synced/, which is where downloaded skills live</li>
+          <li>They were overridden by a plugin with the same names</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> They are moved into a timestamped folder under ~/.claude/skills/.trash/, recoverable until the retention sweep — historically triggered by a stray manifest.json in the skills directory</p>
+          <p class="why">This is a reported failure shape, not a hypothetical: a file named manifest.json in the skills directory used to make Claude Code sweep the listed skill folders into ~/.claude/skills/.trash/ under a timestamped subfolder, and those skills stopped loading — with a 30-day retention sweep afterwards. So recovery is a move, and it is time-limited. Option A is the panic response and it's wrong. Option C confuses two different things — synced skills are downloaded, not swept. Option D would change what commands exist, not remove files.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span>Previous</span>42. The Invocation Matrix — Who Can Trigger It</a>
+    <a class="next" href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span>Next</span>44. Author a Skill From Scratch</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

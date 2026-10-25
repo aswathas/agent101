@@ -2,26 +2,52 @@
   "lesson": "05-commands-and-skills/44-author-a-skill",
   "title": "Author a Skill From Scratch",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Author a Skill From Scratch that needs a new situation, not recall.",
+      "prompt": "Your skill's body says \"Run the test suite.\" It fires, Claude runs the tests, and by turn twenty it is editing files without testing. What is the actual defect?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The skill body is too long and got compacted away",
+        "The instruction is written as a one-time step, and the content is never re-read on later turns — it needs to be standing guidance",
+        "disable-model-invocation is unset, so Claude is choosing when to follow it",
+        "The body needs an arguments field so the step re-runs on each invocation"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The skill's rendered content enters once and stays; the file is not re-read on later turns. So \"run the test suite\" reads as a task that is now complete, and \"run the tests after every edit\" is the phrasing that still applies on turn twenty. Option A guesses at compaction when the content was never dropped — you would see it in /context. Option C is unrelated: automatic invocation is about who triggers the skill, not whether the model keeps following what it said. Option D invents a mechanism — arguments substitute values, they don't re-trigger steps.",
+      "concept": "standing-vs-one-time"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A skill body asserts \"the current branch is main and the working tree is clean.\" Six months later that sentence is wrong and Claude still says it confidently. Which mechanism fixes it?",
+      "options": [
+        "Add a references/ file describing the branch and point the body at it",
+        "Use a dynamic context block so the git state is fetched fresh at invoke time",
+        "Set disable-model-invocation: true so only you can run it",
+        "Move the assertion to the top of the body, next to the strongest rule"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A body is a frozen prompt — anything it asserts about the present was true when you wrote it. A dynamic context block runs the command at invoke time and its output enters the conversation then, which is the difference between a command file and a skill. Option A makes it worse: the stale sentence stays and a reference adds a second place for it to be stale. Option C changes who may trigger the skill and says nothing about the content being out of date. Option D survives compaction better while still being wrong.",
+      "concept": "dynamic-context"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Your skill tells Claude to never commit directly to main. Claude follows it for a while, then commits anyway, with no error. What is the honest answer?",
+      "options": [
+        "Sharpen the description so the rule matches more requests",
+        "Repeat the rule at the bottom of the body as well as the top",
+        "A prompt is a request, not an enforcement mechanism — a rule that must hold every time needs a hook",
+        "Add paths so the skill only activates on main"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "This is the documented limit of the skills layer: if a rule must hold every time, prose is the wrong tool, and a hook is the right one because it runs on the event whether or not Claude is following the skill. Option A changes how often the skill is chosen, not whether its instruction is obeyed. Option B adds repetition, which is a louder request rather than a guarantee. Option D scopes when the skill loads and has no bearing on compliance.",
+      "concept": "prompt-is-not-enforcement"
     }
   ]
 }

@@ -4,94 +4,335 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Completion-Order Gotcha — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="A fan-out hands back results in the order you asked for them. It tells you">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>The Completion-Order Gotcha</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li class="on"><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 79, parallel() vs pipeline()</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 12 · LESSON 80</p>
+      <h1>The Completion-Order Gotcha</h1>
+      <p class="lesson-motto">A fan-out hands back results in the order you asked for them. It tells you</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 79 (`parallel()` vs `pipeline()`)</dd></div>
+        <div><dt>Time</dt><dd>~40 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Name the two orders in a fan-out and say which one the returned array uses</li><li>Spot the side channels that silently record arrival order instead</li><li>Keep a failed agent's slot aligned with its input instead of filtering it away</li><li>Predict which agents rerun after a stop, and what reordering a script does to a relaunch</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>This repo ran a parallel authoring pass: one agent per phase, each in its own worktree, merged in catalog order. Then the test suite came back red.</p>
+<p>The obvious reading was that the agents had broken something. Three agents had written into three separate checkouts, so a red suite looked like three workers each failing in the same way — which is a strange-enough coincidence that it reads as a real signal about the <em>work</em>.</p>
+<p>It wasn't. The suite was red because of a wrong glob in <code>package.json</code>. The runner was misconfigured. The work was fine.</p>
+<p>Here is the part worth the lesson. Nothing about the failure was caused by running things in parallel. But parallelism was what made the <em>misattribution</em> feel obvious — many workers, one red result, so a worker must have done it. The evidence arrived in one order; the cause lived somewhere else.</p>
+<p>The completion-order gotcha is the same shape, one level down. You get a set of results back, and the array does not carry the thing you assume it carries. Read the wrong field as the identity of a result and every downstream conclusion is attached to the wrong piece of work — plausibly, and with good evidence.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>A fan-out has <strong>two orders</strong>, and only one of them is data.</p>
+<p><strong>Declared order</strong> is the order you wrote the tasks in. It is what the returned array follows.</p>
+<p><strong>Finish order</strong> is when each agent actually stopped. It is real, and you can watch it happen in <code>/workflows</code> — one agent's row goes green while three others are still running. It is <em>not</em> attached to any result you receive.</p>
+<figure class="diagram"><pre>flowchart LR
+    subgraph D[&quot;Declared order (in the array)&quot;]
+      direction LR
+      D1[&quot;slot 0: file A&quot;] --&gt; D2[&quot;slot 1: file B&quot;] --&gt; D3[&quot;slot 2: file C&quot;]
+    end
+    subgraph F[&quot;Finish order (in the progress view)&quot;]
+      direction LR
+      F1[&quot;B finishes&quot;] --&gt; F2[&quot;C finishes&quot;] --&gt; F3[&quot;A finishes&quot;]
+    end
+    D -. &quot;no mapping between these&quot; .- F</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>That gap is fine as long as nothing else in your run records order. The moment something does, you have two orderings and one of them is a lie.</p>
+<h3 id="the-side-channels-that-record-arrival-order">The side channels that record arrival order</h3>
+<p>Every one of these is a thing you will reach for naturally, and every one of them is finish order:</p>
+<ul><li>An array you <code>.push()</code> to from inside the job instead of writing to a slot</li><li>A log line, or a counter you increment as each result lands</li><li>A file each agent appends a line to</li><li>Your own reading of <code>/workflows</code> while the run is going</li><li>A <code>sort()</code> you apply because the results &quot;looked jumbled&quot;</li></ul>
+<p>None of them is wrong. They are simply a different axis from the one the return value uses. If you have both, you now have to join them, and the join is the whole problem.</p>
+<h3 id="the-slot-is-the-only-identity">The slot is the only identity</h3>
+<p>A fan-out result has one nameable property: its position. That is why <code>null</code> sits <em>in the slot</em> rather than being dropped — a lost agent leaves a hole where it was, so the file at index 41 is still reported at index 41.</p>
+<p>The positional rule is documented directly for <code>pipeline()</code>, whose results array keeps each <code>null</code> in place. For <code>parallel()</code>, both that it runs a set of tasks at once and that it waits for all of them are documented; the array's exact ordering is the part worth confirming in your own build rather than taking on faith. What does not depend on the reading: what you are handed is not completion order, and a hole must not be closed.</p>
+<p>Which means this line is destructive:</p>
+<pre class="code" data-lang="javascript"><code>return audits.filter(Boolean)</code></pre>
+<p>The docs' own example ends that way, and for a run that has no failures it is harmless. After one <code>null</code>, everything after it shifts down by one. Slot 41 no longer belongs to file 41. Nothing errors. The list is shorter and every label in it is now wrong for at least one later entry.</p>
+<p>The safe forms are the boring ones:</p>
+<pre class="code" data-lang="javascript"><code>// Keep the slot, keep the meaning.
+return list.map((file, i) =&gt; ({ file, verdict: audits[i] ?? null }))
 
----
+// Drop the holes, but bind them first.
+return list
+  .map((file, i) =&gt; ({ file, verdict: audits[i] ?? null }))
+  .filter((row) =&gt; row.verdict !== null)</code></pre>
+<p>Both keep the file name attached to the verdict. That is the whole difference.</p>
+<h3 id="absence-is-not-emptiness">Absence is not emptiness</h3>
+<p><code>null</code> means <strong>lost</strong> — stopped, stalled out past every attempt, or an unrecoverable error. An empty result means <strong>the agent ran and found nothing.</strong></p>
+<p>If your workflow can legitimately produce nothing, you need both to survive, or &quot;no findings&quot; becomes indistinguishable from &quot;no answer&quot;. A <code>schema</code> on the <code>agent()</code> call is how you make the empty case well-formed; checking for <code>null</code> is how you detect the missing case.</p>
+<h3 id="then-there-is-resume-where-order-is-load-bearing-in-a-second-way">Then there is resume, where order is load-bearing in a second way</h3>
+<p>A run is not a set of agents. It is a <strong>sequence</strong> of agent calls, and a relaunch compares that sequence against the last one:</p>
+<ul><li>An agent whose call matches the previous run returns its <strong>saved result</strong></li><li>The <em>first</em> agent whose prompt differs runs again — and so does <strong>every agent after it</strong>, including ones that had completed</li><li>An agent that was still running when you stopped the run <strong>starts over</strong></li><li>A failed agent runs again, and everything after it runs again too</li></ul>
+<p>Read the second bullet again. A failure in the middle of a fan-out reruns work that already finished. If a script started A, B, C, D and B failed, a relaunch returns A from the saved results and runs B, C, and D again.</p>
+<p>And the sequence — not the individual prompt — is what is compared. If you edit the script so it starts A, C, B, D, then the second call is now C where it used to be B. The first divergence is at position 1, so A comes back saved and C, B, and D all run again.</p>
+<blockquote><p><strong>The reframe:</strong> a fan-out returns results in the order you <em>asked</em>, never in</p><p>the order they <em>arrived</em> — so anything you build that keys a result by when it</p><p>came back has renamed every result, and resume keys a run by where each call</p><p>sits in the sequence.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>This is the shape the phase's practice module asks for. Build it here first.</p>
+<h3 id="1-write-a-propose-verify-workflow">1. Write a propose → verify workflow</h3>
+<p>Five proposals for one problem, and one independent verifier per proposal. The point of the pattern is that the verifier does not share the proposer's context, so a weak idea does not get a friendly review.</p>
+<p>Give each proposal a marker that a verifier can echo:</p>
+<pre class="code"><code>use a workflow to propose five different approaches to rate-limiting our API,
+then have an independent verifier critique each proposal. Each proposal must
+carry a unique marker like PROPOSAL-3, and each verifier must return which
+marker it verified.</code></pre>
+<p>✅ You pass when the script contains one fan-out for the proposals and a second fan-out for the verifiers, and you can point at the line that passes a proposal into its verifier.</p>
+<h3 id="2-join-the-two-badly-on-purpose">2. Join the two badly, on purpose</h3>
+<p>Make the join use arrival order. Do it the way it actually happens: filter, then zip.</p>
+<pre class="code" data-lang="javascript"><code>const proposals = await pipeline(promptList, p =&gt; agent(p, { label: p }))
+const verdicts  = await pipeline(
+  proposals.filter(Boolean),
+  p =&gt; agent(`Critique this approach: ${p}`, { label: 'verify' }),
+)
 
-## The Problem
+return verdicts.map((v, i) =&gt; `${proposals[i]} → ${v}`)</code></pre>
+<p>There is a real defect in there and it is not the filter alone. <code>proposals[i]</code> is being used as the identity of <code>verdicts[i]</code> while <code>verdicts</code> was built from a <em>shortened</em> list.</p>
+<p>✅ You pass when you can say, without running it, exactly what happens to the pairing after the first <code>null</code>.</p>
+<h3 id="3-make-it-fail-for-real">3. Make it fail for real</h3>
+<p>Run it, then stop one of the middle verifiers in <code>/workflows</code> by selecting it and pressing <code>x</code>. Let the run finish.</p>
+<p>If nothing was lost, stop a <em>proposer</em> instead and re-run. Keep going until the output contains a <code>null</code> somewhere in the middle of a fan-out.</p>
+<p>✅ You pass when you have printed at least one line where the proposal name and the verdict disagree — a verdict about PROPOSAL-4 printed next to PROPOSAL-2 — and you can point at the array index where the misalignment began.</p>
+<h3 id="4-fix-it-by-binding-before-you-drop">4. Fix it by binding before you drop</h3>
+<p>Rewrite the join so the file name is attached <em>before</em> anything is filtered:</p>
+<pre class="code" data-lang="javascript"><code>const rows = proposalList.map((p, i) =&gt; ({ proposal: p, result: proposals[i] ?? null }))
+const verified = await pipeline(rows, ({ proposal, result }) =&gt;
+  result === null
+    ? null
+    : agent(`Critique this approach: ${result}`, { label: proposal }),
+)
+return rows.map((r, i) =&gt; `${r.proposal} → ${verified[i] ?? 'MISSING'}`)</code></pre>
+<p>Rerun, stop a middle agent again, and read the output.</p>
+<p>✅ You pass when every printed verdict names the proposal it actually critiqued, or prints <code>MISSING</code> against the one that was lost — with no line pairing a verdict with the wrong proposal.</p>
+<h3 id="5-prove-absence-is-not-emptiness">5. Prove absence is not emptiness</h3>
+<p>Add a proposal that is deliberately vacuous — &quot;take no action&quot; — and a verifier instructed to return an empty finding when a proposal is unobjectionable.</p>
+<p>✅ You pass when your output distinguishes three states: a verdict, an empty verdict, and <code>MISSING</code>, and you can say which one a <code>null</code> slot means.</p>
+<h3 id="6-feel-resume-in-the-sequence">6. Feel resume, in the sequence</h3>
+<p>This is the experiment that makes the last section of the Concept land. You need a fan-out long enough that it does not finish instantly.</p>
+<ol><li>Run the workflow. Let the middle fan-out run, then stop the <strong>whole run</strong>.</li><li>Ask Claude to relaunch it with the same script. Watch which agents return instantly and which start again. Write down what you saw.</li><li>Open the script and swap two adjacent entries in the list you iterate over. Relaunch.</li><li>Write down how many agents returned a saved result the second time.</li></ol>
+<p>✅ You pass when you can name the first position at which the two sequences diverged, and say how many agents reran <em>because</em> of a one-line reorder.</p>
+<blockquote><p>Do not trust the narrative here over your own observation. The replay rules are</p><p>documented behaviour and they are version-gated; you just falsified or confirmed</p><p>them on your machine. Verified against</p><p><a href="https://code.claude.com/docs/en/workflows" target="_blank" rel="noopener">the workflows page</a> on 2026-10-15,</p><p>and Lesson 81 covers the retries and stall windows that decide <em>when</em> an agent</p><p>gets re-run at all.</p></blockquote>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>You are about to…</th><th>Stop, and instead</th></tr></thead><tbody><tr><td><code>.filter(Boolean)</code> a fan-out result</td><td>Map to <code>{ input, result }</code> first, then filter</td></tr><tr><td><code>.push()</code> a result from inside a job</td><td>Write into the slot for that input</td></tr><tr><td>Read <code>/workflows</code> to learn the result order</td><td>Read the returned array. The view is finish order</td></tr><tr><td><code>sort()</code> the results into a sensible order</td><td>You have already lost the join; sort the <em>inputs</em> and fan out again</td></tr><tr><td>Match a verdict to a proposal by index</td><td>Match by a marker the verifier echoed</td></tr><tr><td>Treat <code>null</code> and empty as the same</td><td><code>null</code> is a lost agent; empty is a finding of nothing</td></tr><tr><td>Add an agent in the middle of a long run</td><td>Expect everything after it to rerun on the next relaunch</td></tr><tr><td>Blame a worker for a bad aggregate result</td><td>Check the runner. This repo's was a wrong glob in <code>package.json</code></td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take a workflow you already wrote and find every place a result is ordered by anything other than its position in the input list. ✅ You pass when you can name each one and say what would print if a result in the middle were lost.</li></ol>
+<ol><li class="criterion">Write the same join twice — once with a marker echoed by the verifier, once by index. Break both with a stopped agent. ✅ You pass when you can say which one failed silently and which failed visibly, and which you would rather debug at 2am.</li></ol>
+<ol><li class="criterion">A fan-out starts A, B, C, D. B fails. You relaunch. Write down which agents reuse a saved result before you run it. Then run it and compare. ✅ You pass when your prediction matches, or your note explains exactly which rule you had backwards.</li></ol>
+<ol><li class="criterion">Find a claim in this lesson you have not personally verified, and design the smallest experiment that would settle it. ✅ You pass when the experiment has an observable outcome you could write down, rather than a feeling about whether it worked.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>declared order</td><td>&quot;the order it ran in&quot;</td><td>The order you wrote the task list. The order the returned array follows</td></tr><tr><td>finish order</td><td>&quot;the order it finished&quot;</td><td>When each agent stopped. Visible in <code>/workflows</code>; attached to no result you receive</td></tr><tr><td>slot</td><td>&quot;an entry&quot;</td><td>A position in the returned array. The only identity a result has without a label</td></tr><tr><td><code>null</code> in a slot</td><td>&quot;it failed&quot;</td><td>A lost agent. Stopped, stalled past every attempt, or unrecoverable. Kept in place</td></tr><tr><td><code>.filter(Boolean)</code></td><td>&quot;cleaning up the errors&quot;</td><td>Removes the holes <em>and</em> shifts every later slot, silently rewiring the join</td></tr><tr><td>saved result</td><td>&quot;it's cached&quot;</td><td>What a relaunch returns for an agent whose call matches the previous run</td></tr><tr><td>first divergence</td><td>&quot;the change&quot;</td><td>The earliest position where the new run's sequence of calls differs. Everything from there reruns</td></tr><tr><td>absence vs emptiness</td><td>&quot;nothing came back&quot;</td><td>A lost agent versus an agent that ran and found nothing. Different facts, different handling</td></tr><tr><td>misattribution</td><td>&quot;the agents broke it&quot;</td><td>Reading a failure's evidence as attached to the work instead of the runner</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>The runtime's numbers.</strong> How many agents run at once, how many a call may hold, how many stall restarts an agent gets before it is declared lost. All of that decides <em>when</em> a slot becomes <code>null</code>, and all of it is Lesson 81.</p>
+<p><strong>Prompt caching between fan-out members.</strong> Agents sharing a prefix read each other's cache, which is why the runtime staggers a fan-out's first requests by up to five seconds by default. It is a cost mechanism, not an ordering one, and it matters when a run is expensive rather than when it is wrong.</p>
+<p><strong>Deterministic replay in detail.</strong> Why <code>Date.now()</code> and <code>Math.random()</code> throw inside a script, and what <code>args</code> is for, is Lesson 78's rule and this lesson's consequence.</p>
+<p><strong>Joins that span runs.</strong> Nothing here covers merging results from two separate runs. If you need it, the second run's sequence starts from zero and the first divergence rule applies from the top — try it on a small list before you trust a big one.</p>
+      </div>
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">6 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A <code>pipeline()</code> over a list of 412 file paths returns 412 entries, and 16 of them are <code>null</code>. The verdict for the file at input index 41 is at which position?</p>
+        <ol class="options" type="A">
+          <li>Index 41 — a lost agent leaves its slot in place, so positions still line up with the input list</li>
+          <li>Index 25 — 16 entries ahead of it were lost, so the real results shift forward</li>
+          <li>Wherever it finished relative to the other results</li>
+          <li>It cannot be determined from the array alone</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Index 41 — a lost agent leaves its slot in place, so positions still line up with the input list</p>
+          <p class="why">The runtime substitutes <code>null</code> <em>in place of</em> the agent's result, so the array keeps one entry per input and the index still identifies the file. The shifted-index answer is the tempting one because it describes what a filtered array looks like — and that is precisely the bug this lesson is about. Finishing order is not attached to the array at all, and the mapping is determinable; assuming it is not is what forces people into a costly re-run.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q"><code>results.filter(Boolean)</code> is used, then zipped positionally with the input list. One agent in the middle was lost. What goes wrong?</p>
+        <ol class="options" type="A">
+          <li>Nothing throws, and every entry after the dropped one is paired with the wrong input</li>
+          <li>The runtime raises an error, because the two arrays now have different lengths</li>
+          <li>The zip throws, but only if more than one entry was dropped</li>
+          <li>Nothing goes wrong positionally, though legitimate empty results also get dropped</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Nothing throws, and every entry after the dropped one is paired with the wrong input</p>
+          <p class="why"><code>filter</code> removes the hole and closes the gap, so the result list is now one shorter than the input list from that point on — and every later pairing is off by one or more, silently. The 'empty results also get dropped' answer is half right and therefore the most dangerous: yes, empty strings are removed too, but the pairing absolutely does break, which is the part that matters. JavaScript's zip has no length check here, so nothing throws, and a single dropped entry is enough to misalign everything after it.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">One verifier's slot is <code>null</code>. Another verifier returned <code>&quot;&quot;</code> because the proposal had no issues. What is the difference?</p>
+        <ol class="options" type="A">
+          <li><code>null</code> means the agent was lost and never returned; <code>&quot;&quot;</code> means it ran and found nothing</li>
+          <li>Both mean the same thing — no verdict was produced</li>
+          <li><code>null</code> means the verifier disagreed; <code>&quot;&quot;</code> means it timed out</li>
+          <li><code>null</code> is an empty result the runtime normalised; <code>&quot;&quot;</code> is an agent that was stopped</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> <code>null</code> means the agent was lost and never returned; <code>&quot;&quot;</code> means it ran and found nothing</p>
+          <p class="why">A <code>null</code> slot is the runtime's placeholder for an agent that was stopped, stalled past every attempt, or hit an unrecoverable error — the work was not done. An empty result is a verdict with nothing in it: the work was done and the answer is nothing. Collapsing the two is the failure mode from the opening story, because 'no findings' and 'no answer' then look identical in the report. The remaining options swap the two meanings or invent a normalisation the runtime does not perform.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A workflow's script starts agents A, B, C, D in that order. On the last run, B failed and C and D completed. You relaunch with the unchanged script. What runs again?</p>
+        <ol class="options" type="A">
+          <li>B, C and D — the first divergence is at B, and everything after it reruns</li>
+          <li>Only B, since C and D have saved results</li>
+          <li>All four, because any failure invalidates the run</li>
+          <li>Nothing — the runtime resumes from the failure point and only B is retried</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> B, C and D — the first divergence is at B, and everything after it reruns</p>
+          <p class="why">A relaunch returns saved results up to the first agent whose call differs from the previous run, then runs everything from there on. A failed agent counts as that divergence, so the completed work <em>after</em> it is thrown away and repeated. The 'only B' answer is the intuition almost everyone has — that a retry is local — and the docs are explicit that it is not. 'Nothing' inverts the rule, and 'all four' overstates it: A came back from the saved results, so the divergence was not at the start.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Six agent calls all completed on the last run. You append a seventh call at the <em>end</em> of the script and relaunch. What happens?</p>
+        <ol class="options" type="A">
+          <li>The first six return saved results and only the new seventh runs</li>
+          <li>All seven run again, because the script changed</li>
+          <li>The runtime refuses the relaunch, since the script no longer matches the saved run</li>
+          <li>The seventh runs first, then the six replay in their original order</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> The first six return saved results and only the new seventh runs</p>
+          <p class="why">Replay compares the sequence of calls and stops matching at the first position where it differs — and appending at the end means the first six positions are unchanged. Contrast that with inserting a call in the <em>middle</em> or reordering the list: the divergence moves earlier, and every agent from there on reruns even though it had completed. The reject answer is the tempting wrong one because there is a real refusal nearby — a relaunch fails with a 'nothing to resume' error when the saved results cannot be found at all — but a changed script is not that case.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">While a <code>pipeline()</code> fan-out runs, <code>/workflows</code> shows B finishing first, then C, then A. When the run finishes, which order does its results array use?</p>
+        <ol class="options" type="A">
+          <li>The order the tasks were written in — the progress view's completion order is not the array's order</li>
+          <li>B, C, A — the same order the view showed them finishing</li>
+          <li>Sorted by duration, longest first</li>
+          <li>The runtime does not define an order, so it can vary between runs</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> The order the tasks were written in — the progress view's completion order is not the array's order</p>
+          <p class="why">A <code>pipeline()</code> returns one entry per item in the order of the list you passed, and completion order exists only in the view. The B, C, A answer is exactly the mistake this lesson is named for, and it is a reasonable inference from watching the run — which is why the view is a trap rather than a tool here. There is no duration sort, and the order is not undefined: it is the input list's order.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span>Previous</span>79. `parallel()` vs `pipeline()`</a>
+    <a class="next" href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span>Next</span>81. Workflow Runtime Caps</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

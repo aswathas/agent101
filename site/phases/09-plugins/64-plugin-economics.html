@@ -4,94 +4,267 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Plugin Economics — What Every Enabled Plugin Costs — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can read what each installed plugin is charging you right now, name which">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Plugin Economics — What Every Enabled Plugin Costs</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li class="on"><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 63, Install from Marketplace, and Author One</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 09 · LESSON 64</p>
+      <h1>Plugin Economics — What Every Enabled Plugin Costs</h1>
+      <p class="lesson-motto">You can read what each installed plugin is charging you right now, name which</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 63, Install and Author One; and Lesson 8, The Context</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Explain why an enabled plugin is present in sessions that never use it</li><li>Read <code>claude plugin details</code> and separate always-on cost from on-invoke cost</li><li>Rank your installed plugins by what they charge versus what you use them for</li><li>Decide, for one plugin, whether to keep it, split it, or disable it</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You installed four plugins in March. By July you had used two of them once each. All four are enabled, so all four are in every session: their skill and agent names and descriptions sit in your context on every turn, their MCP servers have started as background processes in every session you've opened since March, and their hooks are matched on every event you trigger.</p>
+<p>None of that is visible while you work. It shows up as a window that fills faster than the work justifies, and <code>/context</code> where <code>MCP tools</code> is a row you have learned not to look at.</p>
+<p>The failure is not that a plugin is expensive. A plugin that does its job is worth any price. The failure is that <strong>you cannot tell which of your plugins are doing a job.</strong> Four enabled, two used, no list. That is the same shape as the setup-drift problem from Lesson 61, moved from your files to your startup.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>An enabled plugin is part of <strong>every</strong> session, not only the sessions where you use it. Three charges follow from that, and they are different currencies.</p>
+<figure class="diagram"><pre>flowchart TD
+    P[Plugin enabled] --&gt; S[Every session starts]
+    S --&gt; C1[&quot;1. Context charge&lt;br/&gt;name + description of every&lt;br/&gt;skill, agent, command&quot;]
+    S --&gt; C2[&quot;2. Process charge&lt;br/&gt;MCP servers start;&lt;br/&gt;hooks arm themselves&quot;]
+    S --&gt; C3[&quot;3. Authority charge&lt;br/&gt;what it runs, it runs as you&quot;]
+    C1 --&gt; W[Smaller window, every turn]
+    C2 --&gt; P2[Startup time and background processes]
+    C3 --&gt; R[Trust review, once, before install]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="1-the-context-charge">1. The context charge</h3>
+<p>For each skill, agent, and command Claude can invoke on its own, the <strong>name and description</strong> are in context on every turn. The model's job is to know those things exist so it can match a request to them — so it has to know they exist <em>before</em> any request.</p>
+<p>The full body loads only when the component actually runs. So a plugin's cost splits cleanly:</p>
+<div class="table-wrap"><table><thead><tr><th></th><th>What it is</th><th>When you pay</th></tr></thead><tbody><tr><td><strong>Always-on</strong></td><td>Name + <code>description</code> + <code>when_to_use</code> for each skill, agent, command</td><td>Every turn, in every session, whether or not anything runs</td></tr><tr><td><strong>On-invoke</strong></td><td>The body, once it loads</td><td>Each time the skill or agent fires</td></tr></tbody></table></div>
+<p>Always-on is the number that matters. It is what a plugin you never touch still charges you.</p>
+<p><code>claude plugin details &lt;name&gt;</code> prints it, with a per-component breakdown so you can see which description is the expensive one:</p>
+<pre class="code"><code>Always-on:   ~146 tok   added to every session
 
----
+Per-component (rounded)
+  component       always-on  on-invoke
+  format-code           ~40        ~30
+  style-reviewer        ~40        ~40</code></pre>
+<h3 id="what-is-not-charged-to-context">What is <em>not</em> charged to context</h3>
+<p><strong>Hooks are free of model context.</strong> <code>claude plugin details</code> says so explicitly and gives hooks no per-component row. A <code>PostToolUse</code> formatter costs process time and nothing in your window. That makes hooks the cheapest kind of plugin component to enable and the easiest to justify.</p>
+<p><strong>MCP tool schemas aren't in that estimate either.</strong> They resolve at runtime and get counted against the <code>MCP tools</code> category in <code>/context</code>. So the true cost of a plugin that ships a server is: <code>details</code> undercounts it, <code>/context</code> is the place to see it.</p>
+<h3 id="2-the-process-charge">2. The process charge</h3>
+<p>MCP servers the plugin defines run alongside each session where it's enabled. A plugin with four servers is four more processes, every session, whether or not you talk to any of them. This is a wall-clock and memory cost, not a token cost, and <code>/context</code> will not show it to you.</p>
+<h3 id="3-the-authority-charge">3. The authority charge</h3>
+<p>A plugin's hooks and MCP servers run as <strong>you</strong>, with your credentials and your filesystem access. There is no sandbox between &quot;something you installed&quot; and &quot;something acting on your behalf&quot;. This is why the install step shows you what a plugin will install, and why a marketplace's tier matters:</p>
+<div class="table-wrap"><table><thead><tr><th>Tier</th><th>What it means</th></tr></thead><tbody><tr><td>Official</td><td>Published by Anthropic under a known marketplace name</td></tr><tr><td>Community</td><td>Anthropic-hosted community name</td></tr><tr><td>Third-party</td><td>Everything else — including a marketplace your coworker published</td></tr></tbody></table></div>
+<p>Being third-party is not an accusation. It means the trust decision is yours, once, before install — and it should be a decision, not a reflex.</p>
+<h3 id="auditing-what-you-have">Auditing what you have</h3>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>Answers</th></tr></thead><tbody><tr><td><code>claude plugin details &lt;name&gt;</code></td><td>What does this one cost, and which component pays it</td></tr><tr><td><code>claude plugin list</code></td><td>What's enabled, from where, at what scope</td></tr><tr><td><code>/context</code></td><td>What MCP tools are in the window right now</td></tr><tr><td><code>/plugin</code> → Installed → Not used recently</td><td>What you've been carrying for nothing</td></tr><tr><td><code>/skill-doctor</code></td><td>Which skills have never run, and what they cost</td></tr><tr><td><code>/doctor</code></td><td>Same idea, plugins included</td></tr><tr><td><code>/usage</code></td><td>Usage attributed across skills, agents, plugins, servers — where your plan supports it</td></tr></tbody></table></div>
+<p>A plugin unused for 14 days and 10 sessions moves under <strong>Not used recently</strong> in <code>/plugin</code>. That threshold is a prompt to look, not a verdict — a plugin used seasonally will show up there and deserve to stay.</p>
+<h3 id="lowering-the-number-if-you-maintain-the-plugin">Lowering the number, if you maintain the plugin</h3>
+<p>Always-on is driven by each component's <code>description</code> and <code>when_to_use</code>. Shorter descriptions lower it directly. The catch, and it is real: <strong>the description is what Claude matches a request against.</strong> Trim it too far and the skill stops triggering. If you maintain a plugin, trim descriptions and then check triggering — that's what <code>claude plugin eval</code> is for, and it's a Phase 18 topic, not this lesson.</p>
+<p>The other lever is structural: split the plugin so users install only what they need.</p>
+<blockquote><p><strong>The reframe:</strong> an enabled plugin is not a tool sitting in a drawer waiting</p><p>for you to reach in — it is a standing charge on every session you will ever</p><p>start, and you pay it whether or not anything from it ever runs.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-get-the-list">1. Get the list</h3>
+<pre class="code"><code>claude plugin list</code></pre>
+<p>Count what's enabled. Then, in a session, open <code>/plugin</code> → <strong>Installed</strong> and note which ones are under <strong>Not used recently</strong>.</p>
+<p>✅ You pass when you can say how many are enabled and how many you have actually used in the last month.</p>
+<h3 id="2-price-one-plugin">2. Price one plugin</h3>
+<pre class="code"><code>claude plugin details &lt;some-plugin&gt;</code></pre>
+<p>Read the <code>Always-on</code> line, then find the largest per-component always-on row.</p>
+<p>✅ You pass when you can name one component responsible for most of the plugin's charge, and say which file that number comes from.</p>
+<h3 id="3-check-the-part-details-won-t-tell-you">3. Check the part <code>details</code> won't tell you</h3>
+<p>In a session with your plugins enabled:</p>
+<pre class="code"><code>/context</code></pre>
+<p>Look at the <code>MCP tools</code> row.</p>
+<p>✅ You pass when you can say whether MCP tools are a material share of your window, and which plugin contributes them.</p>
+<h3 id="4-turn-one-off-and-measure">4. Turn one off and measure</h3>
+<p>Pick a plugin you have not used. <code>/plugin</code> → Installed → Space to disable. Then <code>/reload-plugins</code> if prompted, and run <code>/context</code> again. Compare the <code>Skills</code>/<code>Agents</code> and <code>MCP tools</code> rows.</p>
+<p>✅ You pass when you have a before-and-after number, and can say what the plugin cost you per session in tokens.</p>
+<h3 id="5-price-your-own-plugin">5. Price your own plugin</h3>
+<p>You built one in Lesson 63. From its directory:</p>
+<pre class="code"><code>claude --plugin-dir ./guardrail-kit plugin details guardrail-kit</code></pre>
+<p>Note that the hook has no cost row at all.</p>
+<p>✅ You pass when you can say which of your three components costs the most, and that it isn't the hook.</p>
+<h3 id="6-read-a-details-pane-before-you-would-install">6. Read a details pane before you would install</h3>
+<p>Open a plugin's details in <code>/plugin</code> and find its <strong>Context cost</strong> section: <strong>Every turn</strong> and <strong>When invoked</strong>. Official-marketplace plugins show these before install; your own marketplace's entries do not.</p>
+<p>✅ You pass when you can state which line you'd compare two candidate plugins on before choosing one, and say which marketplace won't show you that number.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>claude plugin details &lt;name&gt;</code></td><td>Before installing anything; before keeping anything</td></tr><tr><td>Always-on tokens</td><td>The charge you pay whether or not the plugin is used</td></tr><tr><td>On-invoke tokens</td><td>What it costs when it actually runs</td></tr><tr><td><code>claude plugin list</code></td><td>What is enabled, from where</td></tr><tr><td><code>/context</code> → <code>MCP tools</code></td><td>The cost <code>details</code> doesn't count</td></tr><tr><td><code>/plugin</code> → Not used recently</td><td>Your audit list, every few weeks</td></tr><tr><td><code>/skill-doctor</code></td><td>Skills that never run, with their cost</td></tr><tr><td>Hooks: no context cost</td><td>Why a hook-heavy plugin is cheap to enable</td></tr><tr><td>Marketplace tier</td><td>How much review you owe before install</td></tr><tr><td>Disable before uninstall</td><td>Stop the charge without losing the install</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Make a table: one row per installed plugin, columns for always-on tokens, what it ships (skills / agents / hooks / MCP servers), when you last used it, and keep or disable. Do not guess the last column — check <code>Last used:</code> in the details pane. ✅ You pass when every row has a keep-or-disable decision with a reason, and you can name the plugin whose removal frees the most window.</li></ol>
+<ol><li class="criterion">Take the plugin you built in Lesson 63. Double the length of one skill's <code>description</code> without changing what the skill does, and re-run <code>plugin details</code>. Then shorten a different description by half. ✅ You pass when you have both numbers and can say which edit moved the always-on figure and why the body length was never part of it.</li></ol>
+<ol><li class="criterion">Find a plugin with an MCP server. Price it with <code>plugin details</code>, then find its actual contribution in <code>/context</code>. Write one sentence on why the two numbers differ. ✅ You pass when your sentence names runtime resolution as the reason the <code>details</code> estimate excludes it.</li></ol>
+<ol><li class="criterion">Argue for turning one of your plugins <strong>off</strong> permanently, not just disabling it — including what you would lose and how you'd get it back. ✅ You pass when you can name the actual capability you'd give up, and can say how long reinstalling would take.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>always-on cost</td><td>&quot;the startup cost&quot;</td><td>Tokens a plugin's skill and agent names and descriptions add to every session it's enabled in, whether or not anything runs.</td></tr><tr><td>on-invoke cost</td><td>&quot;what it costs to use&quot;</td><td>The body, paid each time the component fires. Zero times if it never fires.</td></tr><tr><td>hook context cost</td><td>&quot;hooks are free&quot;</td><td>Hooks add <strong>no</strong> model context. They cost process time. <code>details</code> gives them no row.</td></tr><tr><td>MCP tools</td><td>&quot;the tool definitions&quot;</td><td>Counted in <code>/context</code> under <code>MCP tools</code>, not in a plugin's <code>details</code> estimate, because schemas resolve at runtime.</td></tr><tr><td>process charge</td><td>&quot;the overhead&quot;</td><td>MCP servers start every session the plugin is enabled. Wall-clock and memory, invisible to <code>/context</code>.</td></tr><tr><td>authority charge</td><td>&quot;the risk&quot;</td><td>Plugin hooks and servers run as you. There is no sandbox.</td></tr><tr><td>Not used recently</td><td>&quot;unused&quot;</td><td>14 days and 10 sessions without use. A prompt to look, not a verdict.</td></tr><tr><td>disable vs uninstall</td><td>&quot;turn it off&quot;</td><td>Disable stops the charge and keeps the install. Uninstall also removes it from disk.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Evaluating whether a plugin changes behaviour.</strong> <code>claude plugin eval</code> runs test cases with and without the plugin and scores the difference — the real test of a plugin that steers the model rather than one that runs a script. It is a Phase 18 concern.</p>
+<p><strong>Prompt-cache invalidation.</strong> Enabling or disabling a plugin mid-session can invalidate the cache, which is why <code>/reload-plugins</code> sometimes declines and asks for <code>--force</code>. A Phase 03 cost concern; the word is here so the message isn't a mystery later.</p>
+<p><strong>Fleet-level measurement.</strong> OpenTelemetry events and the Analytics API give an organization plugin usage across every machine. Overkill for one person, and administrative rather than educational.</p>
+<p><strong><code>userConfig</code> values as a cost.</strong> Whether a value you were prompted for is masked and stored in a credential store rather than <code>settings.json</code>. A security property, not an economic one — come back when a plugin asks you for a token.</p>
+      </div>
 
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You enabled a plugin in March for one project. You have not used it since April. It ships three skills and one MCP server. Which statements are true of what you are paying now?</p>
+        <ol class="options" type="A">
+          <li>Nothing — cost is only incurred when a component actually runs, and none of them have</li>
+          <li>The three skills' names and descriptions on every turn, plus the server process running in every session you open</li>
+          <li>Only the MCP server, because a plugin's skills are namespaced and namespaced content is not counted</li>
+          <li>The full body of all three skills plus the server, because enabling a plugin loads its components</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The three skills' names and descriptions on every turn, plus the server process running in every session you open</p>
+          <p class="why">An enabled plugin is part of every session: each skill and agent's name and description must be in context so the model can match a request to it, and the MCP server starts alongside the session whether or not you speak to it. Bodies load only on use (D is the model people carry from install-type systems), namespacing is a naming scheme and not an exemption (C), and 'cost only on use' (A) is exactly the assumption this lesson exists to break.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You maintain a plugin with four skills. <code>claude plugin details</code> reports ~180 always-on tokens, and one skill's <code>description</code> is a 400-character paragraph. Users report the skill 'never triggers' when they ask for the obvious thing. What is the real trade-off?</p>
+        <ol class="options" type="A">
+          <li>Shorten the description to cut the always-on cost — a smaller description can only improve matching</li>
+          <li>Shorten it, then verify triggering still works, because the description is both what you're charged for and what Claude matches requests against</li>
+          <li>Split the plugin into four so each user's always-on cost drops, then stop editing descriptions</li>
+          <li>Leave it: the always-on cost is fixed by the component count and description length is not part of it</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Shorten it, then verify triggering still works, because the description is both what you're charged for and what Claude matches requests against</p>
+          <p class="why">The same description text is doing two jobs at once — it is charged to every session's context and it is the text a request is matched against. Shortening it lowers the bill and can break triggering, so the edit has to be verified afterwards (<code>claude plugin eval</code>), which is exactly why this is not a free win. Option A assumes the two jobs don't interfere. Splitting (C) is a real structural lever but does nothing about a description that no longer matches its own skill. And description length plainly is in the always-on figure (D), which is the whole point of the per-component rows.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q"><code>claude plugin details</code> reports a plugin with three skills and two MCP servers at ~150 always-on tokens, and lists no row for either server. You read <code>/context</code> and find the <code>MCP tools</code> category is the third-largest row in your window. Why the discrepancy?</p>
+        <ol class="options" type="A">
+          <li>The servers failed to start, so their tools are showing up as orphaned definitions</li>
+          <li>MCP tool schemas resolve at runtime and are counted in <code>/context</code>, not in the plugin's always-on estimate — the plugin is costing more than <code>details</code> reports</li>
+          <li>The always-on figure counts only the plugin's skills; its servers are billed separately and shown in <code>/usage</code></li>
+          <li><code>/context</code> counts tool schemas across all sources, so this plugin's contribution may be zero and other plugins are responsible</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> MCP tool schemas resolve at runtime and are counted in <code>/context</code>, not in the plugin's always-on estimate — the plugin is costing more than <code>details</code> reports</p>
+          <p class="why"><code>details</code> deliberately excludes MCP schemas because they resolve at runtime rather than being carried as fixed always-on text, so the honest total for a server-shipping plugin is the estimate plus whatever its tools add in <code>/context</code>. Failed servers (A) would show as disconnected in <code>/mcp</code>, not as live tool definitions in your window. The estimate isn't split into a separate bill anywhere (C). And the fact that the row is large is your evidence it is real — you still have to attribute it, but assuming it belongs to someone else's plugin is the wrong default (D).</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span>Previous</span>63. Install from a Marketplace, and Author One</a>
+    <a class="next" href="../../phases/10-memory-and-instructions/65-claude-md.html"><span>Next</span>65. CLAUDE.md — the 200-Line Rule</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

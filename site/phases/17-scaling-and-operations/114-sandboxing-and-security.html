@@ -4,94 +4,247 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sandboxing and Security Model — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can name which boundary stops which action — the trust dialog, the">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Sandboxing and Security Model</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li class="on"><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 113, Channels and Surfaces</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 17 · LESSON 114</p>
+      <h1>Sandboxing and Security Model</h1>
+      <p class="lesson-motto">You can name which boundary stops which action — the trust dialog, the</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 113, Channels and Surfaces</dd></div>
+        <div><dt>Time</dt><dd>~40 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Separate the three boundaries and the action each one actually stops</li><li>Turn on the sandboxed Bash tool and prove a command is inside it</li><li>List what runs <em>outside</em> the sandbox, where a permission rule is the only control</li><li>Close the unsandboxed-retry escape hatch and explain when you would</li><li>Protect a credential from a sandboxed command</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You turned on the sandbox to protect a client repository. You set it to auto-allow so shell commands stop prompting. It felt airtight.</p>
+<p>A build tool failed inside the sandbox — it couldn't reach a host. Claude analysed the failure, retried the command <strong>unsandboxed</strong>, and the retry ran with your full access. It worked, the build passed, and nothing in your day told you the boundary had lifted. The sandbox was real; the escape hatch was just as real, and it was on by default.</p>
+<p>The pain is not that the sandbox is weak. It is that three different things look like &quot;security&quot; — a trust dialog, a permission prompt, and an OS boundary — and they stop three different classes of action. Turn on the wrong one and you have a lock on a door you were not worried about.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Claude Code has three boundaries, from outermost to innermost. Each stops a different thing.</p>
+<figure class="diagram"><pre>flowchart TB
+    A[&quot;Trust dialog&lt;br/&gt;does a repo's own config get to run code?&quot;] --&gt; B[&quot;Permission system&lt;br/&gt;may this tool call run?&quot;]
+    B --&gt; C[&quot;OS sandbox&lt;br/&gt;what can a shell command touch?&quot;]
+    C --&gt; D[&quot;Shell command + children&quot;]
+    E[&quot;File tools, hooks, MCP servers,&lt;br/&gt;LSP, status line&quot;] -.-&gt;|outside the sandbox| B</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<div class="table-wrap"><table><thead><tr><th>Boundary</th><th>Stops</th><th>Enforced by</th><th>Still there when nobody watches?</th></tr></thead><tbody><tr><td><strong>Workspace trust</strong></td><td>A checked-out repo granting itself code execution</td><td>The tool's dialog at launch</td><td>Yes — it is a gate, not a prompt</td></tr><tr><td><strong>Permission system</strong></td><td>A tool call the model initiates</td><td>Rules + prompts, per call</td><td>Only if rules or a mode say so; a prompt needs a person</td></tr><tr><td><strong>OS sandbox</strong></td><td>Where a shell command can read, write, and connect</td><td>The operating system, while the command runs</td><td>Yes — that is why it can skip the prompt</td></tr></tbody></table></div>
+<p>The third one is the new thing here. A permission prompt asks <em>a person</em>. The sandbox asks <em>the kernel</em>, which is why a sandboxed command can be auto-approved: there is a limit behind the approval that a person would not have to enforce.</p>
+<h3 id="what-the-sandbox-covers-and-what-it-doesn-t">What the sandbox covers — and what it doesn't</h3>
+<p>The sandbox wraps <strong>shell commands</strong>: Bash, PowerShell, and Monitor commands, plus the processes they start. It does <strong>not</strong> wrap:</p>
+<ul><li><strong>Built-in file and web tools</strong> — Read, Edit, Write, WebFetch, WebSearch. They follow permission rules. A <code>denyRead</code> entry does not stop the Read tool.</li><li><strong>Command hooks, local MCP servers, plugin monitors, LSP servers, the status line command, and <code>apiKeyHelper</code></strong> — these run with your full access, outside the sandbox.</li></ul>
+<p>That list is the whole point of separating the boundaries. If your threat is a shell command acting on hostile text, the sandbox helps. If your threat is a hook, the sandbox is irrelevant and the permission/trust layer is the control.</p>
+<h3 id="what-the-sandbox-allows-by-default">What the sandbox allows by default</h3>
+<div class="table-wrap"><table><thead><tr><th>Access</th><th>Default</th></tr></thead><tbody><tr><td>Writes</td><td>The working directory, a per-user temp dir, and added directories. <a href="#protected-paths">Protected paths</a> stay denied</td></tr><tr><td>Reads</td><td>Most of the machine — <strong>including <code>~/.ssh</code> and <code>~/.aws/credentials</code></strong></td></tr><tr><td>Network</td><td>No direct route out; connections go through a proxy whose allowed-domain list starts empty</td></tr><tr><td>Environment variables</td><td>Inherited from Claude Code, including any secrets in it</td></tr></tbody></table></div>
+<p>Reads being open by default is the part people get wrong. A sandboxed command can read your credentials unless you deny them.</p>
+<h3 id="protected-paths">Protected paths</h3>
+<p>Inside a writable directory, the sandbox still denies writes to the files that configure Claude Code itself: <code>.claude/</code> settings, skills, agents, commands, hooks, <code>.mcp.json</code>, shell startup files like <code>.bashrc</code>, <code>.gitconfig</code>, and the internals of <code>.git</code> (including the shared <code>.git</code> of a linked worktree, except for what <code>git commit</code> needs). The logic is circular and important: a command that can edit the settings could grant itself permissions or add a hook that runs outside the sandbox. There is no allow rule that lifts this — only turning filesystem isolation off entirely.</p>
+<h3 id="the-escape-hatch-and-closing-it">The escape hatch, and closing it</h3>
+<p>A command that fails inside the sandbox can be <strong>retried unsandboxed</strong> with the <code>dangerouslyDisableSandbox</code> parameter. Who approves the retry depends on your permission mode. The retried command runs with your full access.</p>
+<p>To close it, set <code>&quot;allowUnsandboxedCommands&quot;: false</code> — the <code>/sandbox</code> Overrides tab calls this <strong>Strict sandbox mode</strong>. With the retry disabled, Claude Code ignores the parameter and commands stay sandboxed unless they match an <code>excludedCommands</code> entry.</p>
+<h3 id="platforms">Platforms</h3>
+<p>The sandbox uses the OS: macOS Seatbelt; Linux and WSL2 use <code>bubblewrap</code> and <code>socat</code>. <strong>On native Windows, Claude Code runs commands unsandboxed.</strong> To get a sandbox on a Windows machine, run Claude Code inside a WSL2 distribution. If you are following this course on Windows, that is the single fact to carry: your shell commands are not sandboxed unless you are in WSL2.</p>
+<h3 id="credentials-and-locking-it-down">Credentials, and locking it down</h3>
+<p><code>sandbox.credentials</code> declares files and environment variables to protect. A <code>deny</code> entry blocks a read (or unsets a variable); a <code>mask</code> entry shows a sentinel and lets the proxy substitute the real value on allowed hosts. There is no built-in deny list — only what you list is protected. For deployments that must not run unsandboxed, <code>sandbox.failIfUnavailable</code> makes Claude Code exit at startup instead of silently running without the sandbox. An administrator can lock these settings (Lesson 115).</p>
+<blockquote><p><strong>The reframe:</strong> the permission prompt asks a person and the sandbox asks the</p><p>operating system — and only one of those is still there when nobody is</p><p>watching.</p></blockquote>
+<p><strong>A note on versions.</strong> The sandbox is actively evolving; flags, defaults, and the strict-mode behaviour have changed across releases. Check the <a href="https://code.claude.com/docs/en/sandboxing" target="_blank" rel="noopener">sandboxing docs</a> and the <a href="https://code.claude.com/docs/en/security" target="_blank" rel="noopener">security page</a> before relying on a specific default.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>Run these on a machine that can sandbox (macOS, Linux, or WSL2). If you are on native Windows, note where the sandbox does not apply, because that observation is itself the result.</p>
+<ol><li><strong>Turn it on and pick a mode.</strong> Run <code>/sandbox</code> and open the <strong>Mode</strong> tab. Choose auto-allow or regular permissions. Or set it globally in <code>~/.claude/settings.json</code>:</li></ol>
+<p>``<code>json { &quot;sandbox&quot;: { &quot;enabled&quot;: true } } </code>``</p>
+<ol><li><strong>Prove a command is inside the sandbox.</strong> Ask Claude to run each probe (typing them at the <code>!</code> prompt yourself runs them <em>outside</em>):</li></ol>
+<p>``<code>bash touch ~/sandbox-probe curl --noproxy '*' https://example.com </code>``</p>
+<p>The first fails (<code>Operation not permitted</code> on macOS, <code>Read-only file system</code> on Linux/WSL2); the second fails DNS resolution because there is no route around the proxy. On native Windows, both succeed — you were never sandboxed.</p>
+<ol><li><strong>Close the escape hatch.</strong> Set strict sandbox mode:</li></ol>
+<p>``<code>bash claude --settings '{&quot;sandbox&quot;: {&quot;enabled&quot;: true, &quot;allowUnsandboxedCommands&quot;: false}}' </code>``</p>
+<p>Ask Claude to run a command that the sandbox blocks, then ask it to retry unsandboxed. It cannot.</p>
+<ol><li class="criterion"><strong>Find what lives outside the sandbox.</strong> Ask Claude to read a file with the Read tool that a sandboxed shell command cannot reach, and compare the two results. ✅ You pass when you can point at one action that a sandboxed command was blocked from and the file tool was not.</li></ol>
+<ol><li><strong>Protect a credential.</strong> Add a deny entry and test it:</li></ol>
+<p>``<code>json { &quot;sandbox&quot;: { &quot;enabled&quot;: true, &quot;credentials&quot;: { &quot;files&quot;: [{ &quot;path&quot;: &quot;~/.ssh&quot;, &quot;mode&quot;: &quot;deny&quot; }] } } } </code>``</p>
+<p>Ask Claude to run <code>cat ~/.ssh/id_ed25519</code> in a sandboxed command.</p>
+<ol><li class="criterion"><strong>Make it a gate, not a hope.</strong> Set <code>&quot;failIfUnavailable&quot;: true</code> and start a session on a platform where the sandbox cannot run. ✅ You pass when the session refuses to start rather than running unsandboxed.</li></ol>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Thing</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>/sandbox</code></td><td>Turn the sandbox on and choose auto-allow or regular permissions</td></tr><tr><td><code>sandbox.enabled</code></td><td>Enable it across all your projects in user settings</td></tr><tr><td><code>sandbox.filesystem.allowWrite</code> / <code>denyRead</code></td><td>Grant one path or protect one path</td></tr><tr><td><code>sandbox.network.allowedDomains</code></td><td>Let sandboxed commands reach specific hosts, nothing else</td></tr><tr><td><code>sandbox.credentials</code> (<code>deny</code>/<code>mask</code>)</td><td>Protect a key file or environment variable</td></tr><tr><td><code>allowUnsandboxedCommands: false</code></td><td>Strict mode: forbid the retry that leaves the sandbox</td></tr><tr><td><code>sandbox.failIfUnavailable: true</code></td><td>A deployment where no sandbox means no run</td></tr><tr><td><code>excludedCommands</code></td><td>A trusted tool that cannot work inside the sandbox</td></tr><tr><td><code>CLAUDE_CODE_SUBPROCESS_ENV_SCRUB</code></td><td>Strip secrets from every subprocess, sandboxed or not</td></tr><tr><td>Permission rules</td><td>The control for tools and hooks, which the sandbox does not cover</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion"><strong>Draw the three boundaries for one action.</strong> Pick a real action — say, an agent editing <code>.bashrc</code>. For each of the three boundaries, write whether it applies, and what would stop the edit. ✅ You pass when at least one boundary is named that does <em>not</em> apply, and you can say which one does.</li></ol>
+<ol><li class="criterion"><strong>Reproduce the escape.</strong> With the sandbox on and auto-allow, trigger a command that fails inside it and observe the retry path. ✅ You pass when you have the log line for the retry and can state which permission mode would have prompted you first.</li></ol>
+<ol><li class="criterion"><strong>Close it and prove it closed.</strong> Turn on strict sandbox mode and repeat Exercise 2. ✅ You pass when the command stays blocked and <code>dangerouslyDisableSandbox</code> has no effect.</li></ol>
+<ol><li class="criterion"><strong>Protect the thing you actually have.</strong> List the two credential files on your machine that would matter most if a sandboxed command read them, then deny both and test one. ✅ You pass when the sandboxed read fails and an ordinary Read of your own project still works.</li></ol>
+<ol><li class="criterion"><strong>State the honest gap.</strong> Name one attack your current setup does not stop. ✅ You pass when the gap is specific — a hook, an MCP server, or a file tool — and you name the boundary that would cover it.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>sandbox</td><td>&quot;the security model&quot;</td><td>An OS-enforced limit on <em>shell commands only</em>. Necessary, not sufficient</td></tr><tr><td>permission prompt</td><td>&quot;the security boundary&quot;</td><td>A per-call approval, model-initiated. A convenience layer; it asks a person</td></tr><tr><td>trust dialog</td><td>&quot;just a warning&quot;</td><td>The gate that stops a checked-out repo running its own code. The actual outer boundary</td></tr><tr><td><code>dangerouslyDisableSandbox</code></td><td>&quot;a fallback&quot;</td><td>The parameter that retries a blocked command <em>unsandboxed</em>, with your full access</td></tr><tr><td>strict sandbox mode</td><td>&quot;more sandbox&quot;</td><td><code>allowUnsandboxedCommands: false</code> — it removes the escape hatch</td></tr><tr><td>protected paths</td><td>&quot;the allow list&quot;</td><td>Config files a running command may not write even inside a writable directory</td></tr><tr><td><code>failIfUnavailable</code></td><td>&quot;a setting&quot;</td><td>When the sandbox can't start, exit instead of silently running unsandboxed</td></tr><tr><td>filesystem isolation</td><td>&quot;the sandbox&quot;</td><td>The half that limits read/write; the network half is separate and can stand alone</td></tr><tr><td>runs outside the sandbox</td><td>&quot;safe&quot;</td><td>File tools, hooks, MCP servers, LSP, status line, <code>apiKeyHelper</code> — governed elsewhere</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Containers and VMs.</strong> The sandbox limits shell commands on your machine. To put <em>everything</em> — file tools, hooks, MCP, the process itself — behind one boundary, use a container, VM, or the sandbox runtime. See <a href="https://code.claude.com/docs/en/sandbox-environments" target="_blank" rel="noopener">sandbox environments</a>.</p>
+<p><strong>Network isolation internals.</strong> Proxy variables, TLS termination, and the <code>mask</code>/<code>injectHosts</code> mechanics for credential substitution are reference material in the <a href="https://code.claude.com/docs/en/sandboxing" target="_blank" rel="noopener">sandboxing docs</a>.</p>
+<p><strong>Enterprise enforcement.</strong> The managed keys that lock the sandbox so a developer cannot loosen it are Lesson 115.</p>
+<p><strong>Injection as an attack class.</strong> The threat model for hostile text the model reads is Lesson 53 (Phase 07); this lesson is about the boundaries that decide what an action can do once the model decides to take it.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">The sandbox is on and set to auto-allow. A build tool cannot reach a host inside the sandbox; Claude retries the command unsandboxed and it succeeds. You never saw a prompt. What is the correct fix if you want that command to stay sandboxed?</p>
+        <ol class="options" type="A">
+          <li>Turn off auto-allow, so sandboxed commands prompt again</li>
+          <li>Set <code>allowUnsandboxedCommands: false</code> (strict sandbox mode), which removes the retry escape hatch</li>
+          <li>Add the command to <code>excludedCommands</code> so it stops failing</li>
+          <li>Switch to <code>bypassPermissions</code> so no prompts interrupt the run</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Set <code>allowUnsandboxedCommands: false</code> (strict sandbox mode), which removes the retry escape hatch</p>
+          <p class="why">By default a blocked command may be retried with <code>dangerouslyDisableSandbox</code>, which runs it with full access. <code>allowUnsandboxedCommands: false</code> removes that path: Claude Code ignores the parameter and the command stays sandboxed. A is tempting because auto-allow sounds like the risk, but auto-allow only approves commands that run <em>inside</em> the sandbox — the danger is the command leaving it, which auto-allow does not control. C makes the tool run outside the sandbox <em>by policy</em>, which is the opposite of the goal. D skips even more approvals.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You added <code>sandbox.filesystem.denyRead: [&quot;~/.ssh&quot;]</code> and confirmed a sandboxed shell command cannot read the key. An agent still prints the key's contents using the Read tool. Why?</p>
+        <ol class="options" type="A">
+          <li>The deny path syntax is wrong, so it silently matched nothing</li>
+          <li>The Read tool is a file tool, and file tools run outside the sandbox, so they follow permission rules instead</li>
+          <li>The key was already in the model's context before the sandbox started</li>
+          <li>The sandbox only applies to Claude's own commands, not to Claude's tools</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The Read tool is a file tool, and file tools run outside the sandbox, so they follow permission rules instead</p>
+          <p class="why">The sandbox wraps shell commands. Built-in file and web tools — Read, Edit, Write, WebFetch, WebSearch — run outside it and are governed by the permission system, so a <code>sandbox.filesystem.denyRead</code> entry does not stop the Read tool. To block that path you write a permission deny rule (for example <code>Read(~/.ssh/**)</code>). A is the tempting answer because a mis-typed path really does fail silently, but the shell-command probe passing proves the rule matched. C is possible in principle but the question states the Read tool fetched it. D is the misconception the lesson targets: the sandbox is a shell boundary, not a tool boundary.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A developer on native Windows sets <code>sandbox.enabled: true</code> and expects shell commands to be confined. What actually happens?</p>
+        <ol class="options" type="A">
+          <li>Shell commands are sandboxed by default once the setting is true</li>
+          <li>Commands run unsandboxed, because the sandbox needs macOS, Linux, or WSL2; the developer must run Claude Code inside WSL2 to get it</li>
+          <li>Only network access is blocked; filesystem writes stay open</li>
+          <li>Windows uses a different sandbox that is on by default</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Commands run unsandboxed, because the sandbox needs macOS, Linux, or WSL2; the developer must run Claude Code inside WSL2 to get it</p>
+          <p class="why">The sandbox is implemented with the operating system's facilities — Seatbelt on macOS, <code>bubblewrap</code> and <code>socat</code> on Linux and WSL2 — and on native Windows Claude Code runs commands unsandboxed. The setting has nothing to enforce against. The honest fix is to run Claude Code inside a WSL2 distribution. A is the tempting assumption that a true setting means an active boundary. C describes a real partial configuration (<code>filesystem.disabled</code>) that keeps network isolation, but it is unrelated to Windows. D invents a Windows-specific mechanism that does not exist.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span>Previous</span>113. Channels and Surfaces</a>
+    <a class="next" href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span>Next</span>115. Managing Settings at Scale</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

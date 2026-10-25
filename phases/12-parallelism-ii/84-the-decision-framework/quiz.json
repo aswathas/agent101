@@ -5,23 +5,88 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
+      "id": 1,
       "type": "multiple-choice",
-      "prompt": "Replace with a question about The Decision Framework — Which Mechanism, When that needs a new situation, not recall.",
+      "prompt": "Five independent fixes, all in one repository, and no plan to split the files between them. A colleague proposes agent teams. What is the blocking problem?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Agent teams do not isolate teammates in worktrees, so the five writers collide unless you partition the work by file ownership",
+        "Agent teams cannot share a task list, so nobody knows which fix is in progress",
+        "Agent teams run in the cloud, so they cannot reach files on this machine",
+        "Agent teams are limited to three peers, so five fixes do not fit"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "explanation": "The docs are explicit that agent teams do not isolate teammates in worktrees, which makes partitioning your responsibility — and the schema-less version of this task fails on exactly that. The shared-task-list answer inverts a real feature: a team's task list is one of the two things that makes it a team. Teams run where you enable them rather than in the cloud, and there is no three-peer limit in the material this lesson covers.",
+      "concept": "teams-do-not-isolate"
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "You need the same transformation applied across 400 files, with the results collected and one summary at the end. Who should hold the plan?",
+      "options": [
+        "A script — a dynamic workflow, with intermediates in script variables",
+        "Claude, turn by turn, delegating to subagents",
+        "A lead agent supervising peers",
+        "You, via agent view"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 0,
+      "explanation": "One repeated step across a large list is the case where the plan should be code: the script holds the list and the results, and your conversation holds the final answer. The subagents answer is the one most people reach for because it works — up to the point where the hundredth summary lands in the window and compaction turns the plan into a summary of a plan. A lead agent adds coordination you do not need for one uniform step, and handing 400 items yourself is not a plan.",
+      "concept": "script-for-uniform-scale"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "You have five unrelated tasks and want to hand them off, then check on them from one place without any of them living in your current conversation. Which mechanism?",
+      "options": [
+        "Agent view — dispatch background sessions and watch their state",
+        "Subagents — delegate from the current conversation",
+        "Agent teams — a lead assigns the five tasks to peers",
+        "Dynamic workflows — one script spawns five agents"
+      ],
+      "answer": 0,
+      "explanation": "The 'not in your conversation' clause is the discriminator: agent view exists precisely to dispatch sessions you run and check back on. Subagents are the reflex answer and they fail the clause — their results come back into your window. A team adds a lead and peer messaging you did not ask for, and a workflow's five agents return one result to a script rather than five states you can inspect and steer.",
+      "concept": "handoff-versus-delegation"
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "Which situation actually justifies agent teams rather than a simpler mechanism?",
+      "options": [
+        "Workers need to message each other directly and share a task list of who is doing what",
+        "Workers need to report results back to the conversation that spawned them",
+        "Workers need to be prevented from editing the same file",
+        "Workers need to run on a schedule"
+      ],
+      "answer": 0,
+      "explanation": "Peer-to-peer messaging plus a shared task list is what a team is *for*, and it is the one thing none of the cheaper mechanisms provide. Reporting results upward is the definition of a subagent, so that option argues against a team. Preventing collisions is what worktrees do — and a team will not do it for you, which makes that option doubly wrong. Scheduling is a different family entirely.",
+      "concept": "teams-are-for-peer-coordination"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "Where do loops and hooks belong in a decision about running multiple agents?",
+      "options": [
+        "Outside it — they answer when something runs and what happens on an event, not how work is split",
+        "They are two more ways to run agents in parallel, alongside subagents and workflows",
+        "They are support tools, like worktrees and `/batch`",
+        "They replace the need to choose a mechanism, since a loop can dispatch agents"
+      ],
+      "answer": 0,
+      "explanation": "Loops and hooks are different families: timing and event reaction. Treating them as parallelism mechanisms is how a loop gets used as a scheduler and a hook gets used as a queue. They are not support tools either — worktrees, messaging, and `/batch` exist to serve parallelism, while a loop or a hook is useful with no parallelism anywhere in sight. And a loop that dispatches agents still leaves the 'who holds the plan' question unanswered.",
+      "concept": "families-are-not-mechanisms"
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "You are choosing between a dynamic workflow and agent teams for a job that both could do. Which fact should change your plan today, before any measurement?",
+      "options": [
+        "Agent teams are experimental and disabled by default, and workflows need a paid plan — so availability and stability, not capability, may decide it",
+        "Agent teams are faster because peer messaging avoids the model's context window",
+        "Workflows are limited to ten agents, so a large job rules them out",
+        "Agent teams cannot use worktrees, so a workflow is always the safer choice"
+      ],
+      "answer": 0,
+      "explanation": "Maturity and availability are part of the decision: an experimental feature that is off by default is not a foundation for a team process yet, and workflows require a paid plan with API access. The speed claim invents a performance characteristic the docs do not describe. Workflows scale to hundreds of agents rather than ten, so the third option gets the direction wrong — and the last option over-generalises a true fact (teams do not isolate) into a rule that ignores every other trade-off.",
+      "concept": "maturity-is-part-of-the-choice"
     }
   ]
 }

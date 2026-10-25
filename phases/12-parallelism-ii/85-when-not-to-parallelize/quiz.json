@@ -5,23 +5,88 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
+      "id": 1,
       "type": "multiple-choice",
-      "prompt": "Replace with a question about When NOT to Parallelize that needs a new situation, not recall.",
+      "prompt": "A single-threaded script has a bug: it ignores a filter flag and processes every item. You now fan the same script out across nineteen workers. What is the result?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Nineteen wrong results and nineteen times the tokens — parallelism multiplies whatever the loop already does",
+        "One wrong result, because the workers deduplicate identical outcomes",
+        "The bug is usually masked, since independent workers rarely agree on a wrong output",
+        "The wrong results, but at the same total cost, since the work is the same either way"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "explanation": "Parallelism is an amplifier: it multiplies throughput and the loop's existing defects together, which is exactly the `--phases` incident this repo hit. The deduplication answer invents a safety net — workers running the same deterministic bug produce the same wrong answer N times, not zero times. Cost grows with the number of workers, not with the size of the output.",
+      "concept": "parallelism-is-an-amplifier"
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "Step B needs step A's output before it can start. You want both to happen faster. What is the disciplined move?",
+      "options": [
+        "Keep A and B in one worker, and look for a second independent chain to run alongside",
+        "Run A and B in separate worktrees so they cannot interfere, then merge",
+        "Put A and B in a `pipeline()` so the runtime schedules them",
+        "Run them in parallel and discard whichever output arrives second"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 0,
+      "explanation": "A dependency means the pair is one unit of work; the parallelism has to come from somewhere else — a second independent chain. Worktrees solve file collisions, not ordering, so they do nothing for a B-needs-A dependency. A `pipeline()` iterates one job over a list rather than sequencing two different jobs, and discarding the second result is a description of a race condition rather than a plan.",
+      "concept": "sequential-pairs-are-one-worker"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "Three workers will each consume from a queue and write results into one shared database table. Each has its own worktree. Is that safe?",
+      "options": [
+        "No — worktrees isolate files, not the database. The table is a shared mutable resource and needs partitioning or serialising",
+        "Yes — a separate worktree per worker means the workers cannot see each other's writes",
+        "Yes — the database handles concurrent writes on its own, so no coordination is needed",
+        "Only if the three workers run in the same session rather than in separate ones"
+      ],
+      "answer": 0,
+      "explanation": "Worktrees give each worker its own copy of the checkout; they say nothing about a database, a deployment target, or an account. The shared-each-other's-writes answer confuses files with state: the worktrees are genuinely isolated and the table is still one table. Sensible as concurrency handling often is, it does not tell you the *results* are correct, and session grouping has no bearing on either.",
+      "concept": "worktrees-do-not-isolate-state"
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "Three agents each finish their piece perfectly in their own worktree. Afterwards, all three branches point at the same commit as `main`. What went wrong?",
+      "options": [
+        "Nobody committed, so the isolation bought nothing durable and there is nothing to merge",
+        "The branches should have been pushed to a remote, which would have preserved the work",
+        "Worktrees cannot be committed to, so a different isolation mechanism was needed",
+        "The agents should have shared one worktree instead of three"
+      ],
+      "answer": 0,
+      "explanation": "This is this repo's most expensive scar: isolation without a commit is not a backup. The push answer is the reflexive fix and it is not the mechanism — the commits have to exist locally before a push could carry anything. Worktrees are ordinary git checkouts and commit normally, so the third option invents a limitation, and one shared worktree would have reintroduced exactly the collisions the isolation was for.",
+      "concept": "isolation-without-a-commit"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "A test suite comes back red after a parallel run. What is the correct first move?",
+      "options": [
+        "Check the runner before the workers — the failure's evidence is not automatically attached to the agents' work",
+        "Revert every worker's branch, then re-run the fan-out to see if it happens again",
+        "Assume the worker whose files changed most broke it and inspect that branch first",
+        "Re-run the suite without parallel workers, since parallelism is the likely cause"
+      ],
+      "answer": 0,
+      "explanation": "Ours was a wrong glob in `package.json` — the runner, not the work — and the parallel shape made the misattribution feel obvious. The revert-and-rerun answer spends the most time on the least informative experiment, because a red suite after any change is ambiguous. Guessing the busiest branch is a heuristic with no evidence behind it, and dropping parallelism removes the wrong variable: the question is whether the *result* can be traced to a worker at all.",
+      "concept": "attribution-before-blame"
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "Which of these tasks is the best fit for parallel workers, by the six tests?",
+      "options": [
+        "Rewriting 60 independent data files into a stated format, where each file can be checked on its own and each worker commits its own file",
+        "Having five agents each improve the same API module until it is better",
+        "Three agents consuming one queue and writing into one shared table",
+        "Two agents where the second needs the first's output before it can begin"
+      ],
+      "answer": 0,
+      "explanation": "The first task passes every test: the transformation is understood, each file is an independently verifiable unit, there is no shared mutable state, and the merge is trivial because each worker owns its file. The improve-this-module task fails the verification-boundary test — 'better' has no per-piece check and the pieces overlap. The shared-table task fails the shared-resource test, and the B-needs-A pair fails the sequential test.",
+      "concept": "verification-boundary-picks-the-task"
     }
   ]
 }

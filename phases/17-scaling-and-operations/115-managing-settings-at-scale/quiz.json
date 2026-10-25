@@ -2,26 +2,49 @@
   "lesson": "17-scaling-and-operations/115-managing-settings-at-scale",
   "title": "Managing Settings at Scale",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Managing Settings at Scale that needs a new situation, not recall.",
+      "prompt": "A developer's `managed-settings.json` is at the correct path and is valid JSON, yet the policy is not applying. `/status` shows no `Enterprise managed settings` line. What are the two likely causes?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The file sets no policy key, or a higher-ranked source such as an MDM profile is present and won",
+        "The file is invalid JSON, or the developer lacks admin rights",
+        "The developer edited a project settings file instead, or removed the file",
+        "Claude Code needs a restart, or the model alias is wrong"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "Under `first-wins`, a managed file counts only if it delivers a policy key — any key other than the two control keys. A file of control keys alone is not a source, so the line is absent. The line is also absent when a higher-ranked source (server-managed, or MDM/OS policy) supplies the policy; `/status` then names the selected source, and a `Skipped sources` line names the file. B is tempting because invalid JSON is a real failure mode — but it makes Claude Code *refuse to start*, not run without a policy, so it contradicts the symptom. Admin rights matter for writing the file, not for whether it is read. C and D guess at causes the stated facts already rule out."
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A machine has an MDM/OS policy, a `managed-settings.json`, and an HKCU registry value, each with policy keys. Under the default behaviour, which supplies the policy?",
+      "options": [
+        "The `managed-settings.json`, because files are the canonical source",
+        "The MDM/OS policy, because it outranks the file; and under `merge` the HKCU value still stays out",
+        "The HKCU value, because it is closest to the user",
+        "All three merge automatically, so the question is moot"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The ranking, highest first, is: remote (server-managed), MDM/OS policy, managed files, then the user-writable HKCU registry. Under the default `first-wins`, the highest-ranked source that carries a policy key wins, so the MDM policy supplies the policy and the file is skipped (and named under `Skipped sources`). If you opt into `merge`, every admin source contributes — but the HKCU registry is user-writable and is excluded from merging, so it still does not join. A is tempting because a file feels authoritative, yet files are ranked below device policy. C reverses the ranking. D is the exact misconception: merging is opt-in, and never automatic."
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A manager sets `allowManagedPermissionRulesOnly` in a managed source, but mistypes the value so it cannot be read. What should you expect when the policy is next applied?",
+      "options": [
+        "The key is dropped, so permission rules from user and project files apply again",
+        "The key reads as its restrictive value — permission rules come only from managed settings — until the value is fixed",
+        "Claude Code refuses to start until the value is fixed",
+        "The whole managed source is ignored and the next-ranked source is used"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Restrictive single-value keys like `allowManagedPermissionRulesOnly` fail closed: when present but invalid, they read as the restrictive value, so the policy cannot silently loosen. This is deliberate — a broken restriction should not become an open gate. A is the tempting 'fail open' assumption, and it is wrong for exactly these keys. C is a real behaviour for a managed source that cannot be parsed at all (malformed JSON), but a single invalid value inside a valid source is repaired, not fatal. D misapplies the source ranking: a source that delivers keys is still the selected source."
     }
   ]
 }

@@ -5,298 +5,292 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Remotes, Forks, and the Full Mental Model — Harnessing Claude Code</title>
 <meta name="description" content="You can look at any repo and say which commits exist only on your machine,">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Remotes, Forks, and the Full Mental Model</h1>
-  <p class="lesson-motto">You can look at any repo and say which commits exist only on your machine,</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li class="on"><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Phase 02, Lessons 12–17</p>
-    <p><strong>Time:</strong> ~40 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 02 · LESSON 18</p>
+      <h1>Remotes, Forks, and the Full Mental Model</h1>
+      <p class="lesson-motto">You can look at any repo and say which commits exist only on your machine,</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 02, Lessons 12–17</dd></div>
+        <div><dt>Time</dt><dd>~40 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- Say what `origin/main` is, and when it becomes stale
-- List what you have that nobody else has, before every push
-- Set up fork, `origin`, and `upstream` and know which one you may push to
-- Explain what a pull request is, and what part of it is not git
-
----
-
-## The Problem
-
-You `git push` and it rejects: non-fast-forward. Your colleague pushed first.
-You did not know, because your local `main` looked identical to what you last
-remembered. You now have a choice between force-pushing (which would delete your
-colleague's commit) and something you have to look up.
-
-Then a week later you see `origin/main` and `main` in `git branch -a` and cannot
-say what either one is. You cannot answer "is my work safe?" — which is the only
-question that has ever mattered.
-
-The fix is not a command. It is that git has exactly three categories of commit
-and you have been guessing between them.
-
----
-
-## The Concept
-
-**Remote** — a label pointing at a URL. Not a copy, not a sync. It is just a
-name for somewhere.
-
-```bash
-git remote -v          # what is it called, where does it point
-git remote add upstream https://github.com/someone/their-repo.git
-```
-
-`origin` is the conventional name for the remote you cloned from. `upstream` is
-the conventional name for the original when you cloned a fork. Both are just
-labels.
-
-**Remote-tracking branch** — `origin/main` is your *last-known record* of what
-`main` looked like on the remote at your last fetch. It updates only when you
-fetch. It is a cached snapshot, and it is what makes the rejection message
-meaningful.
-
-```bash
-git fetch origin       # update the record, change nothing else
-git fetch --all --prune  # every remote, and delete records of deleted branches
-```
-
-`fetch` never touches your working tree or your branches. That is the property
-worth internalising: **you can look at what changed without risking anything.**
-
-**Push** — sending commits your remote does not have. Not a sync. If you have
-pushed and then amended or rebased, the remote still has the old commit, and a
-normal push is rejected.
-
-### The three categories
-
-&lt;div class="mermaid"&gt;&lt;pre&gt;flowchart TD
-    R[Your repo] --&amp;gt; L[Local commits&amp;lt;br/&amp;gt;on main or a branch]
-    R --&amp;gt; K[Remote-tracking record&amp;lt;br/&amp;gt;origin/main&amp;lt;br/&amp;gt;what you knew at last fetch]
-    E[Remote&amp;lt;br/&amp;gt;the shared repo] --&amp;gt; K
-    L --&amp;gt;|git push| E
-    E --&amp;gt;|git fetch| K
-    K --&amp;gt;|git merge or rebase| L&lt;/pre&gt;&lt;/div&gt;
-
-| Category | Where it exists | How to see it |
-|---|---|---|
-| Local only | Your machine. Not on the remote. | `git log origin/main..main` |
-| On the remote | Shared with everyone. | `git log main..origin/main` |
-| Nobody has | A local branch nobody pushed | `git branch` with no matching remote |
-
-`git log origin/main..main` — "commits I have that the remote does not" — is the
-single most useful command in this lesson. Before every push on a shared repo,
-run it.
-
-### Fork
-
-A **fork** is your own server-side copy of someone else's repository. You cannot
-push to a repo you do not have write access to. So: fork it, push to your fork,
-open a pull request against theirs.
-
-&lt;div class="mermaid"&gt;&lt;pre&gt;sequenceDiagram
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Say what <code>origin/main</code> is, and when it becomes stale</li><li>List what you have that nobody else has, before every push</li><li>Set up fork, <code>origin</code>, and <code>upstream</code> and know which one you may push to</li><li>Explain what a pull request is, and what part of it is not git</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You <code>git push</code> and it rejects: non-fast-forward. Your colleague pushed first. You did not know, because your local <code>main</code> looked identical to what you last remembered. You now have a choice between force-pushing (which would delete your colleague's commit) and something you have to look up.</p>
+<p>Then a week later you see <code>origin/main</code> and <code>main</code> in <code>git branch -a</code> and cannot say what either one is. You cannot answer &quot;is my work safe?&quot; — which is the only question that has ever mattered.</p>
+<p>The fix is not a command. It is that git has exactly three categories of commit and you have been guessing between them.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p><strong>Remote</strong> — a label pointing at a URL. Not a copy, not a sync. It is just a name for somewhere.</p>
+<pre class="code" data-lang="bash"><code>git remote -v          # what is it called, where does it point
+git remote add upstream https://github.com/someone/their-repo.git</code></pre>
+<p><code>origin</code> is the conventional name for the remote you cloned from. <code>upstream</code> is the conventional name for the original when you cloned a fork. Both are just labels.</p>
+<p><strong>Remote-tracking branch</strong> — <code>origin/main</code> is your <em>last-known record</em> of what <code>main</code> looked like on the remote at your last fetch. It updates only when you fetch. It is a cached snapshot, and it is what makes the rejection message meaningful.</p>
+<pre class="code" data-lang="bash"><code>git fetch origin       # update the record, change nothing else
+git fetch --all --prune  # every remote, and delete records of deleted branches</code></pre>
+<p><code>fetch</code> never touches your working tree or your branches. That is the property worth internalising: <strong>you can look at what changed without risking anything.</strong></p>
+<p><strong>Push</strong> — sending commits your remote does not have. Not a sync. If you have pushed and then amended or rebased, the remote still has the old commit, and a normal push is rejected.</p>
+<h3 id="the-three-categories">The three categories</h3>
+<figure class="diagram"><pre>flowchart TD
+    R[Your repo] --&gt; L[Local commits&lt;br/&gt;on main or a branch]
+    R --&gt; K[Remote-tracking record&lt;br/&gt;origin/main&lt;br/&gt;what you knew at last fetch]
+    E[Remote&lt;br/&gt;the shared repo] --&gt; K
+    L --&gt;|git push| E
+    E --&gt;|git fetch| K
+    K --&gt;|git merge or rebase| L</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<div class="table-wrap"><table><thead><tr><th>Category</th><th>Where it exists</th><th>How to see it</th></tr></thead><tbody><tr><td>Local only</td><td>Your machine. Not on the remote.</td><td><code>git log origin/main..main</code></td></tr><tr><td>On the remote</td><td>Shared with everyone.</td><td><code>git log main..origin/main</code></td></tr><tr><td>Nobody has</td><td>A local branch nobody pushed</td><td><code>git branch</code> with no matching remote</td></tr></tbody></table></div>
+<p><code>git log origin/main..main</code> — &quot;commits I have that the remote does not&quot; — is the single most useful command in this lesson. Before every push on a shared repo, run it.</p>
+<h3 id="fork">Fork</h3>
+<p>A <strong>fork</strong> is your own server-side copy of someone else's repository. You cannot push to a repo you do not have write access to. So: fork it, push to your fork, open a pull request against theirs.</p>
+<figure class="diagram"><pre>sequenceDiagram
     participant U as Upstream repo
     participant F as Your fork
     participant Y as Your machine
     Note over U: the original
     Note over F: your server-side copy
     Note over Y: your clone of F
-    Y-&amp;gt;&amp;gt;F: git remote add upstream + fetch
-    F-&amp;gt;&amp;gt;U: pull request&lt;/pre&gt;&lt;/div&gt;
-
-Two remotes, two roles: `origin` is yours to push to, `upstream` is theirs. You
-fetch from both and push to only one.
-
-**Pull request** is not a git operation at all. It is a request on a hosting
-site, pointing at a branch. Git does the code motion; the platform does the
-review conversation.
-
-### Force-push
-
-```bash
-git push --force-with-lease    # only if the remote is still where you last saw it
-git push --force               # overwrites whatever is there
-```
-
-`--force-with-lease` refuses if someone else pushed since your last fetch. Plain
-`--force` does not check. Use the lease variant every time, or the plain one
-never.
-
-&gt; **The reframe:** a remote is a place, `origin/main` is your *memory* of that
-&gt; place, and `git log origin/main..main` is the question "what is mine that
-&gt; nobody else has?" — which is the only question you need answered before a
-&gt; push.
-
----
-
-## Build It
-
-### 1. Make a remote to push to
-
-A local directory works as a remote — nothing about the mechanism requires a
-hosting site.
-
-```bash
-cd ~/git-drill
+    Y-&gt;&gt;F: git remote add upstream + fetch
+    F-&gt;&gt;U: pull request</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>Two remotes, two roles: <code>origin</code> is yours to push to, <code>upstream</code> is theirs. You fetch from both and push to only one.</p>
+<p><strong>Pull request</strong> is not a git operation at all. It is a request on a hosting site, pointing at a branch. Git does the code motion; the platform does the review conversation.</p>
+<h3 id="force-push">Force-push</h3>
+<pre class="code" data-lang="bash"><code>git push --force-with-lease    # only if the remote is still where you last saw it
+git push --force               # overwrites whatever is there</code></pre>
+<p><code>--force-with-lease</code> refuses if someone else pushed since your last fetch. Plain <code>--force</code> does not check. Use the lease variant every time, or the plain one never.</p>
+<blockquote><p><strong>The reframe:</strong> a remote is a place, <code>origin/main</code> is your <em>memory</em> of that</p><p>place, and <code>git log origin/main..main</code> is the question &quot;what is mine that</p><p>nobody else has?&quot; — which is the only question you need answered before a</p><p>push.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-make-a-remote-to-push-to">1. Make a remote to push to</h3>
+<p>A local directory works as a remote — nothing about the mechanism requires a hosting site.</p>
+<pre class="code" data-lang="bash"><code>cd ~/git-drill
 git init --bare ../remote.git
 git remote add origin ../remote.git
-git remote -v
-```
-
-✅ You pass when `git remote -v` shows `origin` pointing at `../remote.git`.
-
-### 2. Push, then look at the two records
-
-```bash
-git push -u origin main
+git remote -v</code></pre>
+<p>✅ You pass when <code>git remote -v</code> shows <code>origin</code> pointing at <code>../remote.git</code>.</p>
+<h3 id="2-push-then-look-at-the-two-records">2. Push, then look at the two records</h3>
+<pre class="code" data-lang="bash"><code>git push -u origin main
 git branch -a
-git log origin/main..main
-```
-
-`origin/main` now exists. The range is empty — you have nothing the remote
-lacks.
-
-✅ You pass when `git branch -a` lists both `main` and `origin/main`, and the
-`git log origin/main..main` output is empty.
-
-### 3. Simulate a colleague
-
-In the bare repo, clone it elsewhere and push a change:
-
-```bash
-cd ~ &amp;&amp; git clone remote.git colleague &amp;&amp; cd colleague
+git log origin/main..main</code></pre>
+<p><code>origin/main</code> now exists. The range is empty — you have nothing the remote lacks.</p>
+<p>✅ You pass when <code>git branch -a</code> lists both <code>main</code> and <code>origin/main</code>, and the <code>git log origin/main..main</code> output is empty.</p>
+<h3 id="3-simulate-a-colleague">3. Simulate a colleague</h3>
+<p>In the bare repo, clone it elsewhere and push a change:</p>
+<pre class="code" data-lang="bash"><code>cd ~ &amp;&amp; git clone remote.git colleague &amp;&amp; cd colleague
 printf 'colleague change\n' &gt; colleague.txt
-git add colleague.txt &amp;&amp; git commit -m "colleague work"
-git push origin main
-```
-
-Back in `~/git-drill`, run `git fetch origin` and compare.
-
-✅ You pass when `git log main..origin/main` lists the colleague's commit, and
-you pushed nothing to make it appear.
-
-### 4. See the rejection instead of forcing through
-
-```bash
-cd ~/git-drill
-git push origin main
-```
-
-Rejected. Read the message — it is telling you the remote moved.
-
-✅ You pass when the push is rejected, and you can name the two commits that
-diverge, one on each side.
-
-### 5. Resolve it properly
-
-```bash
-git fetch origin
+git add colleague.txt &amp;&amp; git commit -m &quot;colleague work&quot;
+git push origin main</code></pre>
+<p>Back in <code>~/git-drill</code>, run <code>git fetch origin</code> and compare.</p>
+<p>✅ You pass when <code>git log main..origin/main</code> lists the colleague's commit, and you pushed nothing to make it appear.</p>
+<h3 id="4-see-the-rejection-instead-of-forcing-through">4. See the rejection instead of forcing through</h3>
+<pre class="code" data-lang="bash"><code>cd ~/git-drill
+git push origin main</code></pre>
+<p>Rejected. Read the message — it is telling you the remote moved.</p>
+<p>✅ You pass when the push is rejected, and you can name the two commits that diverge, one on each side.</p>
+<h3 id="5-resolve-it-properly">5. Resolve it properly</h3>
+<pre class="code" data-lang="bash"><code>git fetch origin
 git merge origin/main       # or: git rebase origin/main
-git push origin main
-```
-
-✅ You pass when the push succeeds and `git log origin/main..main` is empty
-again.
-
-### 6. Set up a fork relationship
-
-If you have a second remote — upstream:
-
-```bash
-git remote add upstream https://example.com/original.git
+git push origin main</code></pre>
+<p>✅ You pass when the push succeeds and <code>git log origin/main..main</code> is empty again.</p>
+<h3 id="6-set-up-a-fork-relationship">6. Set up a fork relationship</h3>
+<p>If you have a second remote — upstream:</p>
+<pre class="code" data-lang="bash"><code>git remote add upstream https://example.com/original.git
 git fetch upstream
-git branch -r                 # origin/* and upstream/*
-```
+git branch -r                 # origin/* and upstream/*</code></pre>
+<p>✅ You pass when <code>git branch -r</code> shows both sets of remote-tracking branches, and you can say which one you may push to.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>git remote -v</code></td><td>&quot;What is this repo connected to?&quot;</td></tr><tr><td><code>git fetch origin</code></td><td>Update your record of the remote. Changes nothing else. Safe always.</td></tr><tr><td><code>git fetch --all --prune</code></td><td>Update every remote and drop records of deleted branches</td></tr><tr><td><code>git log origin/main..main</code></td><td>What do I have that nobody else has? Run before every push</td></tr><tr><td><code>git push -u origin &lt;branch&gt;</code></td><td>First push of a new branch, tracking it from then on</td></tr><tr><td><code>git push --force-with-lease</code></td><td>After an amend or rebase of pushed work. Refuses if the remote moved</td></tr><tr><td><code>git push --force</code></td><td>Overwrites without checking. Almost never what you want</td></tr><tr><td><code>origin</code> / <code>upstream</code></td><td>Your fork / the original. Just labels</td></tr><tr><td>fork</td><td>Server-side copy of someone else's repo, so you can push to it</td></tr><tr><td>pull request</td><td>A review request on the platform. Not a git operation</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Clone something public. Add a remote called <code>upstream</code> pointing at the original. Fetch from both. ✅ You pass when <code>git branch -r</code> shows two sets, and you can say which remote your push would go to.</li></ol>
+<ol><li class="criterion">Make a local branch, commit to it, and deliberately do not push. Find out, with a command, exactly what is local-only. ✅ You pass when <code>git log origin/main..&lt;branch&gt;</code> lists your commits, and you can say what would make them vanish.</li></ol>
+<ol><li class="criterion">Force-push something on a repo where someone else has pushed, using plain <code>--force</code>. Then recover their work and note the correct command. ✅ You pass when you have their commit back, and you have written down <code>--force-with-lease</code> as the answer to &quot;how could I have known&quot;.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>remote</td><td>&quot;the copy on GitHub&quot;</td><td>A label for a URL. Git does not sync to it automatically.</td></tr><tr><td><code>origin</code></td><td>&quot;the remote&quot;</td><td>The conventional name for the one you cloned from. Renameable.</td></tr><tr><td><code>upstream</code></td><td>&quot;the original&quot;</td><td>The conventional name for the original when you cloned a fork.</td></tr><tr><td><code>origin/main</code></td><td>&quot;main on the server&quot;</td><td>Your cached record of it, from your last fetch. Can be stale.</td></tr><tr><td><code>git fetch</code></td><td>&quot;getting updates&quot;</td><td>Updates the record only. Never touches your tree or branches.</td></tr><tr><td><code>git pull</code></td><td>&quot;getting updates&quot;</td><td><code>fetch</code> + a merge or rebase you did not choose.</td></tr><tr><td>fork</td><td>&quot;a copy I made&quot;</td><td>A server-side copy of someone's repo, so you have push access.</td></tr><tr><td>pull request</td><td>&quot;a git merge&quot;</td><td>A review request on the hosting platform. The merge itself is a git operation.</td></tr><tr><td><code>--force-with-lease</code></td><td>&quot;safe force push&quot;</td><td>Force-push that refuses if the remote moved since your last fetch.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>GitHub-specific workflow</strong> — <code>gh</code> CLI, branch protection, required reviews, CI status checks. Real, and irrelevant to a repo that has no remote.</p>
+<p><strong>Tags, releases, and <code>git describe</code>.</strong> Publishing a version. Comes with operational material later.</p>
+<p><strong>Submodules and subtrees.</strong> Embedding another repository's content. A different mental model from remotes entirely, and not on this course's path.</p>
+<p><strong>Rebasing your fork's branch onto upstream before a PR.</strong> The single most useful habit in real fork workflow, and it is exactly Lesson 14's rebase with an <code>upstream/</code> prefix. Everything needed is already here.</p>
+      </div>
 
-✅ You pass when `git branch -r` shows both sets of remote-tracking branches, and
-you can say which one you may push to.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| `git remote -v` | "What is this repo connected to?" |
-| `git fetch origin` | Update your record of the remote. Changes nothing else. Safe always. |
-| `git fetch --all --prune` | Update every remote and drop records of deleted branches |
-| `git log origin/main..main` | What do I have that nobody else has? Run before every push |
-| `git push -u origin &lt;branch&gt;` | First push of a new branch, tracking it from then on |
-| `git push --force-with-lease` | After an amend or rebase of pushed work. Refuses if the remote moved |
-| `git push --force` | Overwrites without checking. Almost never what you want |
-| `origin` / `upstream` | Your fork / the original. Just labels |
-| fork | Server-side copy of someone else's repo, so you can push to it |
-| pull request | A review request on the platform. Not a git operation |
-
----
-
-## Exercises
-
-1. Clone something public. Add a remote called `upstream` pointing at the
-   original. Fetch from both.
-   ✅ You pass when `git branch -r` shows two sets, and you can say which remote
-   your push would go to.
-
-2. Make a local branch, commit to it, and deliberately do not push. Find out,
-   with a command, exactly what is local-only.
-   ✅ You pass when `git log origin/main..&lt;branch&gt;` lists your commits, and you
-   can say what would make them vanish.
-
-3. Force-push something on a repo where someone else has pushed, using plain
-   `--force`. Then recover their work and note the correct command.
-   ✅ You pass when you have their commit back, and you have written down
-   `--force-with-lease` as the answer to "how could I have known".
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| remote | "the copy on GitHub" | A label for a URL. Git does not sync to it automatically. |
-| `origin` | "the remote" | The conventional name for the one you cloned from. Renameable. |
-| `upstream` | "the original" | The conventional name for the original when you cloned a fork. |
-| `origin/main` | "main on the server" | Your cached record of it, from your last fetch. Can be stale. |
-| `git fetch` | "getting updates" | Updates the record only. Never touches your tree or branches. |
-| `git pull` | "getting updates" | `fetch` + a merge or rebase you did not choose. |
-| fork | "a copy I made" | A server-side copy of someone's repo, so you have push access. |
-| pull request | "a git merge" | A review request on the hosting platform. The merge itself is a git operation. |
-| `--force-with-lease` | "safe force push" | Force-push that refuses if the remote moved since your last fetch. |
-
----
-
-## What this lesson skipped
-
-**GitHub-specific workflow** — `gh` CLI, branch protection, required reviews,
-CI status checks. Real, and irrelevant to a repo that has no remote.
-
-**Tags, releases, and `git describe`.** Publishing a version. Comes with
-operational material later.
-
-**Submodules and subtrees.** Embedding another repository's content. A
-different mental model from remotes entirely, and not on this course's path.
-
-**Rebasing your fork's branch onto upstream before a PR.** The single most
-useful habit in real fork workflow, and it is exactly Lesson 14's rebase with
-an `upstream/` prefix. Everything needed is already here.</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">Your push is rejected as non-fast-forward. A colleague pushed first. What do you do?</p>
+        <ol class="options" type="A">
+          <li>git push --force, so your commit wins</li>
+          <li>git fetch origin, then merge or rebase origin/main, then push again</li>
+          <li>git push --force-with-lease, so your commit wins when the remote has not moved</li>
+          <li>git reset --hard origin/main, discarding your local commits, then push</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> git fetch origin, then merge or rebase origin/main, then push again</p>
+          <p class="why">Non-fast-forward means the remote has commits you do not; the fix is to get them and then combine, in either direction you chose in Lesson 14. Forcing (A) deletes your colleague's commit — the exact failure that flag causes. <code>--force-with-lease</code> (C) still overwrites whenever the remote <em>hasn't</em> moved, which is precisely the case that just failed, so it would reject too. Hard-resetting to origin/main (D) throws away your own work to solve a problem you did not have.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">What does origin/main actually represent?</p>
+        <ol class="options" type="A">
+          <li>The current state of main on the remote, queried live</li>
+          <li>Your local record of what main looked like on the remote at your last fetch, which can be stale</li>
+          <li>A branch on your machine that mirrors the remote automatically</li>
+          <li>A read-only view maintained by the hosting platform</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Your local record of what main looked like on the remote at your last fetch, which can be stale</p>
+          <p class="why">It updates only when you fetch — which is exactly why the non-fast-forward rejection in the sibling question could surprise you: your <code>main</code> matched a memory, not the server. Live state (A) would make that rejection impossible to encounter. It is a local ref (C), not a mirror kept in step. And it is a plain branch ref in your own repository (D), maintained by your fetch, not by the platform.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You have no write access to a repository and want to propose a change. What is the path?</p>
+        <ol class="options" type="A">
+          <li>Request write access from the owner, then push directly to main</li>
+          <li>Fork it to your own account, push to your fork, and open a pull request against the original</li>
+          <li>Push to the original's main and open a pull request from your local machine</li>
+          <li>Email the maintainer a patch file generated from git format-patch</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Fork it to your own account, push to your fork, and open a pull request against the original</p>
+          <p class="why">Push access is the constraint, so the fork exists to give you somewhere you <em>can</em> push — then the pull request asks the original to take your commits. Pushing to the original (C) is rejected by definition. Waiting for write access (A) works but turns a five-minute contribution into a wait. A patch email (D) is a genuine 2005 workflow that no longer matches how anyone reviews code, and it is not what the lesson teaches.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Before pushing a long-running feature branch to a shared repo, which one command tells you what you are about to publish?</p>
+        <ol class="options" type="A">
+          <li>git status</li>
+          <li>git log origin/main..feature</li>
+          <li>git branch -a</li>
+          <li>git diff origin/main</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> git log origin/main..feature</p>
+          <p class="why"><code>origin/main..feature</code> is the set of commits you have that the remote does not — precisely the set a push would publish, and the set you should be able to defend line by line. <code>git status</code> (A) shows uncommitted work, which is a different question. <code>git branch -a</code> (C) lists labels, not commits. And <code>git diff</code> (D) shows the net tree difference, which can look empty or huge while hiding exactly the intermediate commits you did not mean to ship.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span>Previous</span>17. Stashing, and Why Agents Break Things</a>
+    <a class="next" href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span>Next</span>19. Open-Weight vs Frontier</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

@@ -2,26 +2,52 @@
   "lesson": "09-plugins/61-plugins-are-the-packaging-layer",
   "title": "*\"Plugins Are the Packaging Layer\"* — and why",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about *\"Plugins Are the Packaging Layer\"* — and why that needs a new situation, not recall.",
+      "prompt": "You built a skill called `review`, a subagent called `reviewer`, and a force-push hook for yourself only, in one repo. A colleague wants the same setup on their machine. What is the smallest change that actually solves it?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Move all three into a plugin directory with a manifest, so they install and update as one unit",
+        "Send the three files and a README explaining exactly where each one goes",
+        "Copy your whole ~/.claude directory into a zip and tell them to extract it over theirs",
+        "Publish each of the three as a separate plugin, so each can be installed independently"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "A plugin is exactly the container for 'several components that must travel together' — one directory, one install, one update, and the plugin name namespaces the skill and agent so they cannot collide with someone else's `review`. The README (B) is the approach that already failed you: it works once and drifts the moment any one file changes. The zip of ~/.claude (C) overwrites the person's own settings, agents, and skills with yours — it ships your whole environment instead of the three things you promised. Three separate plugins (D) recreates the original problem in a new shape: three things to install, three things to keep current, and no unit to disable.",
+      "concept": "when-a-plugin-is-the-right-answer"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A plugin named `guardrail-kit` ships a skill named `review` and a hook that blocks `git push --force`. You install it into a repo whose `.claude/settings.json` already has a hand-pasted copy of the same block-on-force-push hook. What happens on a force push?",
+      "options": [
+        "The plugin's hook wins and the settings.json copy is ignored, because plugins take precedence",
+        "Both hooks fire, so the block runs twice and the doubled output makes it look broken",
+        "The plugin does not load at all, because its hook conflicts with an existing hook",
+        "Only the settings.json hook fires, because a plugin's hooks are namespaced the same way its skills are"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Hook names and hook precedence do not exist here: skills and agents get a plugin-name prefix, hooks do not, and Claude Code does not choose between two hooks that both match the same event. Both run, and a PreToolUse guardrail that exits non-zero twice produces two rounds of blocking output. No conflict error (C) — hooks from different sources are allowed to coexist; that is exactly the failure. Option D is the misconception this question exists for: 'plugins namespace everything' is false, and hooks are the standing exception.",
+      "concept": "hooks-have-no-namespace-prefix"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You have eleven skills in `~/.claude/skills/` that you wrote for yourself and use every week. You are considering packaging them as a plugin so you can reinstall them on a new laptop. What is the honest assessment?",
+      "options": [
+        "A plugin is the right call — anything reusable should be packaged so it can be reinstalled and updated",
+        "A plugin is optional here: loose files already load in every project on this machine, so packaging adds a layer without solving a problem you have",
+        "Packaging them is required, because loose skills in ~/.claude/skills/ are not versioned and will be lost on a machine reset",
+        "Package them only after you cut them down to five, since the plugin's always-on cost grows with the number of components"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The job a plugin does is share-and-update-for-others; a setup that already loads everywhere on your machine has no gap to close. Making the smallest change that fully solves the stated problem is packaging only if you actually need a portable, updatable unit. 'Anything reusable should be packaged' (A) is the rule that makes people build packaging they don't need. The files are not lost on a machine reset (C) — that is what git is for, and git already existed before plugins. Option D smuggles in a real concern from Lesson 64 but attaches the wrong trigger: component count affects cost, not whether a plugin is justified.",
+      "concept": "packaging-is-not-the-upgrade-path"
     }
   ]
 }

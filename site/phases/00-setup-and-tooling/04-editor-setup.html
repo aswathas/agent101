@@ -5,210 +5,245 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Editor Setup — Harnessing Claude Code</title>
 <meta name="description" content="An editor that fights the agent workflow costs more time than it saves.">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">BUILD</p>
-  <h1>Editor Setup</h1>
-  <p class="lesson-motto">An editor that fights the agent workflow costs more time than it saves.</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section class="on">
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li class="on"><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Build</p>
-    <p><strong>Prerequisites:</strong> Lesson 1 (Dev Environment)</p>
-    <p><strong>Time:</strong> ~25 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">BUILD · PHASE 00 · LESSON 4</p>
+      <h1>Editor Setup</h1>
+      <p class="lesson-motto">An editor that fights the agent workflow costs more time than it saves.</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Build</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 1 (Dev Environment)</dd></div>
+        <div><dt>Time</dt><dd>~25 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- Turn on format-on-save in your editor and pick a formatter that matches the project's language
-- Keep an integrated terminal one keystroke from the code you are reading
-- Run a regex search across the whole project in one keystroke and jump to any hit
-- Bind the project's test command to one key and watch the output stream into an editor panel
-- Tell, in one sentence, why each of those four capabilities matters when an agent is editing your code
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Turn on format-on-save in your editor and pick a formatter that matches the project's language</li><li>Keep an integrated terminal one keystroke from the code you are reading</li><li>Run a regex search across the whole project in one keystroke and jump to any hit</li><li>Bind the project's test command to one key and watch the output stream into an editor panel</li><li>Tell, in one sentence, why each of those four capabilities matters when an agent is editing your code</li></ul>
+<h2 id="the-problem">The Problem</h2>
+<p>You ask an agent to fix a bug. It edits four files. You open the diff. The diff is full of &quot;changes&quot; you did not ask for: tabs instead of spaces, double quotes swapped for single, a trailing newline gone. None of them change behaviour. All of them pollute the diff so you cannot see what actually changed.</p>
+<p>You try to run the tests. You alt-tab to a terminal. You type the command. You alt-tab back. The output is mixed in with shell startup noise. You alt-tab back to read it. Three round-trips for one fact.</p>
+<p>You try to find where the agent introduced a function call. You open the file. You Ctrl-F. You type the name. The first hit is a comment. The second is a string. You repeat. Fifteen seconds, and you have stopped paying attention to what you were looking for.</p>
+<p>The editor is in your way. Each moment costs a few seconds. The few seconds are where you stop paying attention to what the agent actually did. The fix is not a faster brain — it is an editor that does not make you stop and fix what it should have done for you.</p>
+<h2 id="the-concept">The Concept</h2>
+<p>Four capabilities, each of which makes one specific moment in the agent workflow free. They are independent. Pick whichever ones you do not already have.</p>
+<h3 id="1-format-on-save">1. Format-on-save</h3>
+<p>Format-on-save means the editor runs a formatter (Prettier, Black, gofmt, rustfmt, whatever fits the language) every time you save a file. You stop worrying about whitespace, quote style, and trailing commas. The formatter owns them.</p>
+<p>This matters with agents more than without, because the model has an opinion about style that may not match yours. Format-on-save rewrites whatever the agent produced, in your style, silently, on save. The diff stays clean. You review the diff, not the formatter's opinions.</p>
+<p>The opposite — disabling formatting because &quot;the agent got it close enough&quot; — is the start of a codebase where every file is formatted in the dialect of whoever last touched it.</p>
+<h3 id="2-integrated-terminal">2. Integrated terminal</h3>
+<p>An integrated terminal is a shell pane that lives inside the editor window, one keystroke from the code. You do not alt-tab. The shell shares the editor's working directory, so paths and short commands just work.</p>
+<p>The moments it earns its keep:</p>
+<ul><li>You just accepted an agent change. You type <code>git diff --stat</code> to see the shape.</li><li>The agent says &quot;I ran the tests.&quot; You type the test command yourself to verify.</li><li>The agent produced a build error. You run the build again, in the same pane the agent was in, and copy the failing line straight from your terminal scrollback.</li></ul>
+<p>A separate terminal app is fine if you have a fast switch and a shared clipboard. An integrated terminal just removes the switch.</p>
+<h3 id="3-project-wide-search">3. Project-wide search</h3>
+<p>Project-wide search means: in one keystroke, search every file in the project for a regex, show the hits in a list, jump to any hit in one more keystroke. Not a file picker. Not &quot;find in current file.&quot; Across the project, instantly.</p>
+<p>This is the move you reach for when the agent edited something and you want to know where else it is used, or where a name came from, or whether a particular error message appears anywhere in the codebase. The grep-in-terminal fallback works, but a search panel that lists hits and jumps on enter is the difference between &quot;I read every hit&quot; and &quot;I read the first one and gave up.&quot;</p>
+<h3 id="4-a-real-test-runner-bound-to-one-key">4. A real test runner, bound to one key</h3>
+<p>A real test runner means: one keystroke runs the project's test command — whatever the language uses, <code>pytest</code>, <code>npm test</code>, <code>go test</code>, <code>cargo test</code>, or the project's own runner. The output streams into a panel. The failures are clickable. Running it again is the same keystroke.</p>
+<p>This matters because the agent's job does not end at &quot;the code compiles.&quot; The agent's job ends at &quot;the tests pass.&quot; You want to verify that in the same window where you are reading the code. If running the tests is three commands and a context switch, you will skip it. If it is one key, you will not.</p>
+<p><strong>The reframe:</strong> an editor that fights the agent workflow costs more time than it saves; pick one that disappears during the four moments that matter — saving, diffing, searching, testing.</p>
+<figure class="diagram"><pre>flowchart LR
+    A[Agent edits] --&gt; B[Save]
+    B --&gt; C[Format-on-save]
+    C --&gt; D[Diff]
+    D --&gt; E[Search references]
+    E --&gt; F[Run tests]
+    F --&gt; G{Pass?}
+    G --&gt;|yes| H[Approve]
+    G --&gt;|no| A</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h2 id="build-it">Build It</h2>
+<p>Pick whichever editor you already use. Do not switch editors in this lesson. The four capabilities are present in every modern one — VS Code, JetBrains, Sublime, Vim, Neovim, Helix, Zed. Configure the one you have.</p>
+<h3 id="1-turn-on-format-on-save">1. Turn on format-on-save</h3>
+<ul><li>VS Code: <code>Editor: Format On Save</code> setting; install a formatter extension that matches the language (<code>prettier</code>, <code>black</code>, <code>rustfmt</code>, etc.).</li><li>JetBrains: <code>Settings → Tools → Actions on Save → Reformat code</code>.</li><li>Neovim: a <code>BufWritePre</code> autocommand that pipes the buffer through the language's formatter.</li><li>Helix: built in; run <code>format</code> on save with <code>:set auto-format on</code>.</li></ul>
+<p>Verify by saving a file with bad indentation. Pass when the bad indentation disappears without you touching it.</p>
+<h3 id="2-open-the-integrated-terminal">2. Open the integrated terminal</h3>
+<ul><li>VS Code: `<code> Ctrl+</code> `` opens the terminal panel.</li><li>JetBrains: <code>View → Tool Windows → Terminal</code>, or <code>Alt+F12</code>.</li><li>Vim / Neovim: a terminal split (<code>:terminal</code>).</li><li>Helix: `<code> Ctrl+</code> `` to open a terminal.</li></ul>
+<p>Verify by running <code>pwd</code> and confirming it matches the editor's working directory.</p>
+<h3 id="3-bind-project-wide-search-to-one-key">3. Bind project-wide search to one key</h3>
+<ul><li>VS Code: <code>Ctrl+Shift+F</code> for the search panel, <code>Ctrl+Shift+H</code> for replace.</li><li>JetBrains: <code>Ctrl+Shift+F</code> for find-in-path, <code>Ctrl+Shift+R</code> for replace-in-path.</li><li>Sublime: <code>Ctrl+Shift+F</code>.</li><li>Vim / Neovim: <code>rg</code> or <code>:grep</code> behind a leader-key mapping.</li><li>Helix: <code>Space-s</code> for ripgrep search.</li></ul>
+<p>Verify by searching for a name you know appears in five files. Pass when the hits appear in a list and a click or Enter jumps to the location.</p>
+<h3 id="4-bind-the-project-s-test-command-to-one-key">4. Bind the project's test command to one key</h3>
+<p>This is the one that requires you to know the project's test command. Find it once — usually in <code>package.json</code>, <code>pyproject.toml</code>, <code>Makefile</code>, or the README. Bind it.</p>
+<ul><li>VS Code: open <code>keybindings.json</code> and add a binding that runs the command in the integrated terminal, or use an extension like <code>vscode-test-runner</code>.</li><li>JetBrains: most run configs run with the green arrow; for a single binding, <code>Run → Edit Configurations</code>, then a keybinding.</li><li>Vim / Neovim: a leader-key mapping that runs <code>:!pytest</code> (or whatever) and streams the output.</li><li>Helix: <code>:sh pytest</code> or a user keybinding.</li></ul>
+<p>Verify by running the tests once. Pass when the output streams into a panel, a failing line is clickable, and pressing the same key runs the tests again from a clean state.</p>
+<h3 id="5-put-them-together-on-one-agent-change">5. Put them together on one agent change</h3>
+<p>Make a scratch change, or use the agent to make one. Then in one session, without leaving the editor:</p>
+<ol><li>Save the file. Watch the formatter run.</li><li>Read the diff in the integrated terminal with <code>git diff</code>.</li><li>Search for a name the change introduced, using project-wide search.</li><li>Run the tests with your bound key.</li></ol>
+<p>Pass when each step is one keystroke or one click, and you never alt-tabbed.</p>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Moment in the workflow</th><th>Capability you reach for</th></tr></thead><tbody><tr><td>You saved an agent's edit</td><td>Format-on-save (already ran, silently)</td></tr><tr><td>You want the shape of what changed</td><td><code>git diff --stat</code> in the integrated terminal</td></tr><tr><td>You want the content of what changed</td><td><code>git diff</code> in the integrated terminal, or the editor's diff view</td></tr><tr><td>You want to know where a name is used</td><td>Project-wide search</td></tr><tr><td>You want to verify the change actually works</td><td>Bound test-runner key</td></tr><tr><td>The agent's edit broke something</td><td>Bound test-runner key → read failing line in panel → search for the broken symbol</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Don't do this</th><th>Do this instead</th></tr></thead><tbody><tr><td>Read the diff in a separate terminal app</td><td><code>git diff</code> in the integrated terminal</td></tr><tr><td>Type <code>npm test</code> (or its equivalent) every time</td><td>Bound key on the project's actual test command</td></tr><tr><td>Tell the agent &quot;make sure the code is formatted&quot;</td><td>Turn on format-on-save and stop asking</td></tr><tr><td>Open three files to find one reference</td><td>Project-wide search across the whole project</td></tr><tr><td>Read a failing test by alt-tabbing to a terminal</td><td>Click the failing line in the test panel</td></tr></tbody></table></div>
+<h2 id="exercises">Exercises</h2>
+<ol><li><strong>Format-on-save earns its keep.</strong> In any source file, add five lines with deliberately bad indentation. Save. Pass when the file is correctly formatted without you touching the spacing. Pass: the file's whitespace matches the project's style after one save, with no manual edits from you.</li></ol>
+<ol><li><strong>Search five files in one keystroke.</strong> Pick a function name that you know is referenced in five or more files in your project. Run project-wide search for it. Pass when all five references appear in a list and jumping to any one of them is one keystroke. Pass: a hit list with five or more entries, each openable in one keystroke.</li></ol>
+<ol><li><strong>Tests run in one key.</strong> Bind the project's test command to one key. Run the tests. Pass when the output streams into a panel inside the editor (not a separate window) and a failing line is clickable. Pass: one keystroke runs the tests; output is in an editor panel; a failure line opens its file when clicked.</li></ol>
+<ol><li><strong>Verify an agent change without leaving the editor.</strong> Use an agent (or your past self on a scratch branch) to make a small change that touches two files. Without leaving the editor, run the four-step verification from Build It step 5. Pass when each step is one keystroke, and you can name which lines changed without scrolling. Pass: all four steps happen in the editor; you can name the changed lines from memory afterwards.</li></ol>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th><th>Why the misconception matters</th></tr></thead><tbody><tr><td><strong>Format-on-save</strong></td><td>The editor pipes the file through a formatter every time you save</td><td>Some people treat formatting as a manual chore, or as &quot;what the agent should remember.&quot; It is neither. The editor does it, invisibly, every save — and with an agent in the loop, &quot;what the agent should remember&quot; is the worst possible plan.</td></tr><tr><td><strong>Integrated terminal</strong></td><td>A shell pane inside the editor window, sharing its working directory</td><td>People think of terminals as separate apps. With agents, you spend half your time in shell and half reading code. A switch costs attention, not seconds, and attention is what you are trying to spend on the change.</td></tr><tr><td><strong>Project-wide search</strong></td><td>A single-keystroke regex search across every file in the project, with a jumpable hit list</td><td>People confuse it with &quot;find in current file.&quot; Current-file search finds text. Project-wide search finds code — including hits in files you did not know mattered. With agents, you almost always want the latter.</td></tr><tr><td><strong>Test runner</strong></td><td>A program that runs the project's tests and reports pass/fail per file or per case, bound to one key</td><td>People treat tests as something you &quot;remember to run.&quot; A test runner bound to one key is the difference between remembering and not — and between verifying and trusting the agent's word.</td></tr><tr><td><strong>Save</strong></td><td>A signal to the editor that the buffer is ready, plus a trigger for hooks like formatters and linters</td><td>Save is no longer just &quot;write the file to disk.&quot; In an agent workflow, save is the moment the diff stops being dirty, the formatter runs, and you cross from &quot;agent is still typing&quot; to &quot;agent is done, and you can review.&quot;</td></tr></tbody></table></div>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p>No editor recommendation. Use the one you have. Switching editors is its own lesson and its own cost.</p>
+<p>No LSP setup, no language-server configuration, no extension roundup. Most editors wire the language server automatically when you open a file of the right type.</p>
+<p>No theme, no font, no keybinding tutorial beyond the four keys above. Taste is not what this course teaches.</p>
+<p>No AI editor features — inline suggestions, agent sidebars, chat panels. Those are agent-shaped additions layered on top of the four capabilities above. They are worth knowing, but they are not what makes the editor <em>fit</em> the workflow.</p>
+<p>What this lesson assumed: you already have an editor installed, a project open, and the project's test command runnable from a shell. If you do not have those, Lesson 1 (Dev Environment) is where they live.</p>
+      </div>
 
-## The Problem
-
-You ask an agent to fix a bug. It edits four files. You open the diff. The diff is full of "changes" you did not ask for: tabs instead of spaces, double quotes swapped for single, a trailing newline gone. None of them change behaviour. All of them pollute the diff so you cannot see what actually changed.
-
-You try to run the tests. You alt-tab to a terminal. You type the command. You alt-tab back. The output is mixed in with shell startup noise. You alt-tab back to read it. Three round-trips for one fact.
-
-You try to find where the agent introduced a function call. You open the file. You Ctrl-F. You type the name. The first hit is a comment. The second is a string. You repeat. Fifteen seconds, and you have stopped paying attention to what you were looking for.
-
-The editor is in your way. Each moment costs a few seconds. The few seconds are where you stop paying attention to what the agent actually did. The fix is not a faster brain — it is an editor that does not make you stop and fix what it should have done for you.
-
-## The Concept
-
-Four capabilities, each of which makes one specific moment in the agent workflow free. They are independent. Pick whichever ones you do not already have.
-
-### 1. Format-on-save
-
-Format-on-save means the editor runs a formatter (Prettier, Black, gofmt, rustfmt, whatever fits the language) every time you save a file. You stop worrying about whitespace, quote style, and trailing commas. The formatter owns them.
-
-This matters with agents more than without, because the model has an opinion about style that may not match yours. Format-on-save rewrites whatever the agent produced, in your style, silently, on save. The diff stays clean. You review the diff, not the formatter's opinions.
-
-The opposite — disabling formatting because "the agent got it close enough" — is the start of a codebase where every file is formatted in the dialect of whoever last touched it.
-
-### 2. Integrated terminal
-
-An integrated terminal is a shell pane that lives inside the editor window, one keystroke from the code. You do not alt-tab. The shell shares the editor's working directory, so paths and short commands just work.
-
-The moments it earns its keep:
-
-- You just accepted an agent change. You type `git diff --stat` to see the shape.
-- The agent says "I ran the tests." You type the test command yourself to verify.
-- The agent produced a build error. You run the build again, in the same pane the agent was in, and copy the failing line straight from your terminal scrollback.
-
-A separate terminal app is fine if you have a fast switch and a shared clipboard. An integrated terminal just removes the switch.
-
-### 3. Project-wide search
-
-Project-wide search means: in one keystroke, search every file in the project for a regex, show the hits in a list, jump to any hit in one more keystroke. Not a file picker. Not "find in current file." Across the project, instantly.
-
-This is the move you reach for when the agent edited something and you want to know where else it is used, or where a name came from, or whether a particular error message appears anywhere in the codebase. The grep-in-terminal fallback works, but a search panel that lists hits and jumps on enter is the difference between "I read every hit" and "I read the first one and gave up."
-
-### 4. A real test runner, bound to one key
-
-A real test runner means: one keystroke runs the project's test command — whatever the language uses, `pytest`, `npm test`, `go test`, `cargo test`, or the project's own runner. The output streams into a panel. The failures are clickable. Running it again is the same keystroke.
-
-This matters because the agent's job does not end at "the code compiles." The agent's job ends at "the tests pass." You want to verify that in the same window where you are reading the code. If running the tests is three commands and a context switch, you will skip it. If it is one key, you will not.
-
-**The reframe:** an editor that fights the agent workflow costs more time than it saves; pick one that disappears during the four moments that matter — saving, diffing, searching, testing.
-
-&lt;div class="mermaid"&gt;&lt;pre&gt;flowchart LR
-    A[Agent edits] --&amp;gt; B[Save]
-    B --&amp;gt; C[Format-on-save]
-    C --&amp;gt; D[Diff]
-    D --&amp;gt; E[Search references]
-    E --&amp;gt; F[Run tests]
-    F --&amp;gt; G{Pass?}
-    G --&amp;gt;|yes| H[Approve]
-    G --&amp;gt;|no| A&lt;/pre&gt;&lt;/div&gt;
-
-## Build It
-
-Pick whichever editor you already use. Do not switch editors in this lesson. The four capabilities are present in every modern one — VS Code, JetBrains, Sublime, Vim, Neovim, Helix, Zed. Configure the one you have.
-
-### 1. Turn on format-on-save
-
-- VS Code: `Editor: Format On Save` setting; install a formatter extension that matches the language (`prettier`, `black`, `rustfmt`, etc.).
-- JetBrains: `Settings → Tools → Actions on Save → Reformat code`.
-- Neovim: a `BufWritePre` autocommand that pipes the buffer through the language's formatter.
-- Helix: built in; run `format` on save with `:set auto-format on`.
-
-Verify by saving a file with bad indentation. Pass when the bad indentation disappears without you touching it.
-
-### 2. Open the integrated terminal
-
-- VS Code: `` Ctrl+` `` opens the terminal panel.
-- JetBrains: `View → Tool Windows → Terminal`, or `Alt+F12`.
-- Vim / Neovim: a terminal split (`:terminal`).
-- Helix: `` Ctrl+` `` to open a terminal.
-
-Verify by running `pwd` and confirming it matches the editor's working directory.
-
-### 3. Bind project-wide search to one key
-
-- VS Code: `Ctrl+Shift+F` for the search panel, `Ctrl+Shift+H` for replace.
-- JetBrains: `Ctrl+Shift+F` for find-in-path, `Ctrl+Shift+R` for replace-in-path.
-- Sublime: `Ctrl+Shift+F`.
-- Vim / Neovim: `rg` or `:grep` behind a leader-key mapping.
-- Helix: `Space-s` for ripgrep search.
-
-Verify by searching for a name you know appears in five files. Pass when the hits appear in a list and a click or Enter jumps to the location.
-
-### 4. Bind the project's test command to one key
-
-This is the one that requires you to know the project's test command. Find it once — usually in `package.json`, `pyproject.toml`, `Makefile`, or the README. Bind it.
-
-- VS Code: open `keybindings.json` and add a binding that runs the command in the integrated terminal, or use an extension like `vscode-test-runner`.
-- JetBrains: most run configs run with the green arrow; for a single binding, `Run → Edit Configurations`, then a keybinding.
-- Vim / Neovim: a leader-key mapping that runs `:!pytest` (or whatever) and streams the output.
-- Helix: `:sh pytest` or a user keybinding.
-
-Verify by running the tests once. Pass when the output streams into a panel, a failing line is clickable, and pressing the same key runs the tests again from a clean state.
-
-### 5. Put them together on one agent change
-
-Make a scratch change, or use the agent to make one. Then in one session, without leaving the editor:
-
-1. Save the file. Watch the formatter run.
-2. Read the diff in the integrated terminal with `git diff`.
-3. Search for a name the change introduced, using project-wide search.
-4. Run the tests with your bound key.
-
-Pass when each step is one keystroke or one click, and you never alt-tabbed.
-
-## Use It
-
-| Moment in the workflow | Capability you reach for |
-|---|---|
-| You saved an agent's edit | Format-on-save (already ran, silently) |
-| You want the shape of what changed | `git diff --stat` in the integrated terminal |
-| You want the content of what changed | `git diff` in the integrated terminal, or the editor's diff view |
-| You want to know where a name is used | Project-wide search |
-| You want to verify the change actually works | Bound test-runner key |
-| The agent's edit broke something | Bound test-runner key → read failing line in panel → search for the broken symbol |
-
-| Don't do this | Do this instead |
-|---|---|
-| Read the diff in a separate terminal app | `git diff` in the integrated terminal |
-| Type `npm test` (or its equivalent) every time | Bound key on the project's actual test command |
-| Tell the agent "make sure the code is formatted" | Turn on format-on-save and stop asking |
-| Open three files to find one reference | Project-wide search across the whole project |
-| Read a failing test by alt-tabbing to a terminal | Click the failing line in the test panel |
-
-## Exercises
-
-1. **Format-on-save earns its keep.**
-   In any source file, add five lines with deliberately bad indentation. Save. Pass when the file is correctly formatted without you touching the spacing.
-   Pass: the file's whitespace matches the project's style after one save, with no manual edits from you.
-
-2. **Search five files in one keystroke.**
-   Pick a function name that you know is referenced in five or more files in your project. Run project-wide search for it. Pass when all five references appear in a list and jumping to any one of them is one keystroke.
-   Pass: a hit list with five or more entries, each openable in one keystroke.
-
-3. **Tests run in one key.**
-   Bind the project's test command to one key. Run the tests. Pass when the output streams into a panel inside the editor (not a separate window) and a failing line is clickable.
-   Pass: one keystroke runs the tests; output is in an editor panel; a failure line opens its file when clicked.
-
-4. **Verify an agent change without leaving the editor.**
-   Use an agent (or your past self on a scratch branch) to make a small change that touches two files. Without leaving the editor, run the four-step verification from Build It step 5. Pass when each step is one keystroke, and you can name which lines changed without scrolling.
-   Pass: all four steps happen in the editor; you can name the changed lines from memory afterwards.
-
-## Key Terms
-
-| Term | What people say | What it actually means | Why the misconception matters |
-|---|---|---|---|
-| **Format-on-save** | The editor pipes the file through a formatter every time you save | Some people treat formatting as a manual chore, or as "what the agent should remember." It is neither. The editor does it, invisibly, every save — and with an agent in the loop, "what the agent should remember" is the worst possible plan. |
-| **Integrated terminal** | A shell pane inside the editor window, sharing its working directory | People think of terminals as separate apps. With agents, you spend half your time in shell and half reading code. A switch costs attention, not seconds, and attention is what you are trying to spend on the change. |
-| **Project-wide search** | A single-keystroke regex search across every file in the project, with a jumpable hit list | People confuse it with "find in current file." Current-file search finds text. Project-wide search finds code — including hits in files you did not know mattered. With agents, you almost always want the latter. |
-| **Test runner** | A program that runs the project's tests and reports pass/fail per file or per case, bound to one key | People treat tests as something you "remember to run." A test runner bound to one key is the difference between remembering and not — and between verifying and trusting the agent's word. |
-| **Save** | A signal to the editor that the buffer is ready, plus a trigger for hooks like formatters and linters | Save is no longer just "write the file to disk." In an agent workflow, save is the moment the diff stops being dirty, the formatter runs, and you cross from "agent is still typing" to "agent is done, and you can review." |
-
-## What this lesson skipped
-
-No editor recommendation. Use the one you have. Switching editors is its own lesson and its own cost.
-
-No LSP setup, no language-server configuration, no extension roundup. Most editors wire the language server automatically when you open a file of the right type.
-
-No theme, no font, no keybinding tutorial beyond the four keys above. Taste is not what this course teaches.
-
-No AI editor features — inline suggestions, agent sidebars, chat panels. Those are agent-shaped additions layered on top of the four capabilities above. They are worth knowing, but they are not what makes the editor *fit* the workflow.
-
-What this lesson assumed: you already have an editor installed, a project open, and the project's test command runnable from a shell. If you do not have those, Lesson 1 (Dev Environment) is where they live.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">An agent rewrote a function and renamed it in the file, but three other files still call the old name and now fail to build. Which tool is designed for exactly this?</p>
+        <ol class="options" type="A">
+          <li><code>git diff</code> followed by manual edits in each file</li>
+          <li>Rename-everywhere (F2 in VS Code), which updates every reference structurally</li>
+          <li>A global find-and-replace across the project</li>
+          <li><code>git stash pop</code> to undo the rename</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Rename-everywhere (F2 in VS Code), which updates every reference structurally</p>
+          <p class="why">Rename-everywhere understands scope — it changes the declaration and each reference, and it won't touch a same-named string or a different symbol. Find-and-replace changes text, so it will happily corrupt something that merely looks identical.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">An agent's change touches 14 files and you can't tell if 3 of them are wrong. What is the fastest honest way to judge it?</p>
+        <ol class="options" type="A">
+          <li>Open all 14 files and read them in the editor</li>
+          <li><code>git diff --stat</code> first to see the shape, then <code>git diff</code> per suspicious file</li>
+          <li><code>git stash push</code> it and ask the agent to redo it</li>
+          <li><code>git log --oneline</code> to see whether it committed anything</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> <code>git diff --stat</code> first to see the shape, then <code>git diff</code> per suspicious file</p>
+          <p class="why"><code>--stat</code> shows how many lines moved per file in one screen — that tells you where the risk is before you read a single line of content. Then narrow to the files that look wrong. Option A works but scales badly; option D answers a question you didn't ask.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Why does this lesson teach <code>git stash push</code> instead of <code>git checkout -- file</code> for rejecting an agent's bad edit?</p>
+        <ol class="options" type="A">
+          <li><code>checkout</code> deletes the change permanently; the stash keeps it recoverable so you can still read what the agent tried</li>
+          <li><code>stash</code> is faster on large files</li>
+          <li><code>checkout</code> cannot restore a single file in a repo with commits</li>
+          <li><code>stash</code> also commits the change to the branch</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> <code>checkout</code> deletes the change permanently; the stash keeps it recoverable so you can still read what the agent tried</p>
+          <p class="why"><code>git checkout -- file</code> throws the working-tree version away — including the good half of an edit you might want. The stash is a commit off-branch: your file returns to its committed state and nothing is lost. You can read it with <code>git stash show -p stash@{0}</code> and bring it back with <code>git stash pop</code>.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span>Previous</span>3. Terminal and Shell</a>
+    <a class="next" href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span>Next</span>5. Debugging and Profiling</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

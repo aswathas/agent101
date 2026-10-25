@@ -1,3 +1,8 @@
+# What Claude Code Is
+
+> A terminal tool that takes a goal, not a completion — and decides its own next
+> step.
+
 **Type:** Learn
 **Prerequisites:** none — first lesson of Phase 04
 **Time:** ~25 minutes

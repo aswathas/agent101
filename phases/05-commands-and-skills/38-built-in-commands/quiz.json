@@ -1,27 +1,53 @@
 {
   "lesson": "05-commands-and-skills/38-built-in-commands",
-  "title": "Built-in Commands *(renamed from \"slash commands\")*",
+  "title": "Built-in Commands",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Built-in Commands *(renamed from \"slash commands\")* that needs a new situation, not recall.",
+      "prompt": "A command you ran in every repo for a year has suddenly started producing a different, worse result on a task it used to nail. Which distinction tells you where to look?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "It is a prompt-based entry, so the variation comes from the model reading the instructions in a different context — re-read and sharpen them",
+        "It is a fixed built-in, so the output should be identical every time — check the harness version and the --debug log",
+        "It is fixed logic either way, so the cause is your conversation history being too long",
+        "It depends on nothing — commands that behave differently across projects are always a bug in the skill listing budget"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Fixed built-in commands run the same harness code on the same input, so variation across repos means something environmental changed — a version, a setting, or a permission boundary — and --debug is where that shows up. Option A swaps the categories: it is exactly the prompt-based failure mode, and those entries vary because the model varies. Option C assumes history leaks into a deterministic code path, which it cannot. Option D invents a mechanism — the listing budget decides whether a skill is described to the model, not whether a command's output varies.",
+      "concept": "fixed-vs-prompt-based"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You want a one-liner that opens a pull request, and you are fairly sure the name is /pr. What is the right first move?",
+      "options": [
+        "Type /pr and read the error, which lists the closest valid names",
+        "Type /pr and if it fails try /pull-request, /open-pr, /pr-open until one works",
+        "Open the slash menu and check whether any entry does it, then run /help to confirm the exact name and alias",
+        "Skip the built-in one and write your own — the built-ins never cover a workflow as small as this"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "The menu autocompletes on every character, so it answers 'does this exist' in one keystroke, and /help confirms the exact name and its alias. Option A bets on an error message listing near-misses; that is not something the CLI guarantees. Option B is the guessing loop from the lesson's opening problem — four wrong guesses and a paragraph retyped by hand. Option C's error is the last one: reaching for a custom command before checking what ships is how the retyped paragraph happened in the first place.",
+      "concept": "read-the-menu-before-you-guess"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Before adding your own skills to this project, what is the most useful thing to run and why?",
+      "options": [
+        "/clear, so the baseline is measured on an empty window",
+        "/doctor, to confirm no skill is currently installed and charging you for its listing",
+        "/context, so you have a before-grid you can compare against once the listing has a cost",
+        "/compact, to keep the grid small enough to compare later"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "A baseline needs to be comparable to a later reading, and /context is what gives you that reading — the Skills row is where a listing's cost shows up once you have skills. Option A is backwards: clearing mid-session destroys the very history you'd want to compare against, and costs you the work. Option B is close but off-target — /doctor estimates listing cost, which is useful once things exist, and it is not a stored before/after measurement. Option D is destructive for a reason unrelated to measurement.",
+      "concept": "measure-before-adding"
     }
   ]
 }

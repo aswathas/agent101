@@ -3,290 +3,264 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>What "Agentic" Means — Harnessing Claude Code</title>
+<title>What &quot;Agentic&quot; Means — Harnessing Claude Code</title>
 <meta name="description" content="You can tell whether a task belongs in the loop or outside it — and stop">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>What "Agentic" Means</h1>
-  <p class="lesson-motto">You can tell whether a task belongs in the loop or outside it — and stop</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li class="on"><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 9, Prompt, Inference, API</p>
-    <p><strong>Time:</strong> ~35 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 01 · LESSON 10</p>
+      <h1>What &quot;Agentic&quot; Means</h1>
+      <p class="lesson-motto">You can tell whether a task belongs in the loop or outside it — and stop</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 9, Prompt, Inference, API</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- Describe the agentic loop as gather, act, verify — from memory, no diagram
-- Name which of the four links broke when an agent produced a wrong result
-- Spot a verification failure before it costs you, by asking what the check could detect
-- Interrupt and redirect a running loop without discarding work already done
-
----
-
-## The Problem
-
-You asked an agent to fix a bug. It read four files, edited two, ran the tests,
-and reported: fixed, tests pass. The tests passed. The bug was still there —
-the suite had never covered that path, and the agent's fix addressed the
-symptom the tests *did* exercise.
-
-Nothing went wrong in the loop. Every step was reasonable: right files, sensible
-edit, real verification, honest report. The loop was correct. Its input was
-wrong.
-
-That distinction is the whole of this lesson. People say "the agent messed up"
-and mean one of at least four different things — model capability, context
-contents, tool surface, verification target — and the fixes are incompatible.
-Pick the wrong one and you spend an afternoon editing prompts to fix a missing
-test.
-
----
-
-## The Concept
-
-"Agentic" is not a compliment. It is a description of a loop.
-
-Without tools, the model produces text. With tools, it produces **a request for
-an action**, the action happens, the result comes back, and the model decides
-what to do next. That repeat is the agentic loop. Claude Code is the harness
-around it: the thing that holds the tools, manages the window, asks permission,
-and runs the loop.
-
-```mermaid
-flowchart LR
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Describe the agentic loop as gather, act, verify — from memory, no diagram</li><li>Name which of the four links broke when an agent produced a wrong result</li><li>Spot a verification failure before it costs you, by asking what the check could detect</li><li>Interrupt and redirect a running loop without discarding work already done</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You asked an agent to fix a bug. It read four files, edited two, ran the tests, and reported: fixed, tests pass. The tests passed. The bug was still there — the suite had never covered that path, and the agent's fix addressed the symptom the tests <em>did</em> exercise.</p>
+<p>Nothing went wrong in the loop. Every step was reasonable: right files, sensible edit, real verification, honest report. The loop was correct. Its input was wrong.</p>
+<p>That distinction is the whole of this lesson. People say &quot;the agent messed up&quot; and mean one of at least four different things — model capability, context contents, tool surface, verification target — and the fixes are incompatible. Pick the wrong one and you spend an afternoon editing prompts to fix a missing test.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>&quot;Agentic&quot; is not a compliment. It is a description of a loop.</p>
+<p>Without tools, the model produces text. With tools, it produces <strong>a request for an action</strong>, the action happens, the result comes back, and the model decides what to do next. That repeat is the agentic loop. Claude Code is the harness around it: the thing that holds the tools, manages the window, asks permission, and runs the loop.</p>
+<figure class="diagram"><pre>flowchart LR
     P[Your prompt] --&gt; G[Gather context]
     G --&gt; A[Take action]
     A --&gt; V[Verify]
     V --&gt;|not done| G
     V --&gt;|done| R[Report]
     A -. tool call .-&gt; T[(Real machine)]
-    T -. real result .-&gt; G
-```
-
-The phases blend — there is no clean boundary between them in practice — but the
-loop is the point. A question about a codebase may only gather context. A refactor
-cycles through all three many times. The model decides what each step needs,
-based on what the previous step taught it.
-
-### The four things "agentic" can fail at
-
-| Failure | What it looks like | Where the fix goes |
-|---|---|---|
-| **Capability** | The model can't reason its way to the answer | Better instructions, more context, or a different model |
-| **Context** | It lacked the file, the constraint, or the earlier decision | Read the file, write the rule down, point at the folder |
-| **Surface** | It had no tool that could do the thing | A different approach, or a new tool |
-| **Verification** | It ran something that couldn't detect the bug | Name a check that can actually fail |
-
-**Verification is the one that hides.** Capability failures are obvious — the
-agent says it can't. Context failures surface as a confident wrong answer about
-your code. Surface failures look like flailing. Verification failures look like
-*success*, which is why they cost the most.
-
-### The loop is driven by results
-
-Every tool result is new information. That's what makes iteration possible and
-also what makes it go wrong: a tool that returns something unhelpful, or nothing,
-leaves the model reasoning on the same wrong footing. `grep` returning nothing
-because of a wrong path looks identical to "this doesn't exist."
-
-Before blaming the model, ask: *what did the tool actually return?*
-
-### Where you sit in the loop
-
-You are not observing it. You are in it, at every turn:
-
-- **Steering** — interrupt with `Esc`, or type a correction and let it finish the
-  current step.
-- **Narrowing** — say which files, which command, which scope.
-- **Verifying** — give it a check that can fail. A test, a command, a file to
-  diff.
-- **Rewinding** — `Esc` twice restores files to an earlier state.
-
-The last one is a safety net that is separate from git and independent of it.
-Knowing it exists changes how much you let an agent roam.
-
-&gt; **The reframe:** "agentic" is just the model-tool-result-model loop running
-&gt; unattended — so when it goes wrong, name which of the four links broke before
-&gt; you touch anything, because a correct loop on wrong inputs still produces a
-&gt; confident wrong answer.
-
-Every tool named here is stable; the list is not. Check
-[the tools reference](https://code.claude.com/docs/en/tools-reference) for
-today's set.
-
----
-
-## Build It
-
-### 1. Watch one full loop with the phases visible
-
-```
-/clear
-```
-
-```
-Read src/index.ts and tell me what it exports. Do not edit anything.
-```
-
-That is gather-context only. Now extend it:
-
-```
-Now add a named export `version` returning the string "1.0.0", and run the
-existing tests to check nothing broke.
-```
-
-Gather, act, verify — in one turn.
-
-✅ You pass when you can name which phase each request was aimed at and the
-agent's behaviour matched.
-
-### 2. Break the loop on purpose — a tool that returns nothing
-
-```
-Find every call to `handlePayment()` in this repo.
-```
-
-Watch what happens. Either it says none exist, or it invents them. Note which.
-
-Then give it the same request with a hint about where to look. Compare.
-
-✅ You pass when you can point at the step where an empty tool result was
-treated as a fact rather than as a missing fact.
-
-### 3. Prove verification is not proof
-
-This is the exercise that saves afternoons. On purpose:
-
-```
-Change the return value of `sum()` from a+b to a+b+1. Run the tests and report
-the result.
-```
-
-The tests are weak. The agent will report failure, or — worse — success.
-
-Now look at what it actually checked, and ask it: *what would this test have
-caught if the change had been bigger?*
-
-✅ You pass when you can name something the existing tests would not catch and
-say which file holds the missing assertion.
-
-### 4. Give a check that can fail, and watch behaviour change
-
-Same edit, but with a target:
-
-```
-Change sum() to a+b+1. Write a test that sums three numbers and asserts the
-result, run it, and report whether it fails.
-```
-
-Different run. The agent now has a real signal.
-
-✅ You pass when the failure is reported without you having to interpret the
-output for it.
-
-### 5. Steer mid-flight
-
-Start a broad request, then before it finishes type a correction. Watch the next
-step change direction.
-
-Then try `Esc` — the running tool call is cancelled and the agent waits.
-
-✅ You pass when you have steered one run without restarting the session.
-
-### 6. Name the layer on three real failures
-
-Write down three things that went wrong in real sessions. For each, name the link
-that broke: capability, context, surface, or verification.
-
-✅ You pass when all three are named by link, and at least one of them turns out
-to be verification.
-
----
-
-## Use It
-
-| Concept | When you reach for it |
-|---|---|
-| Capability / context / surface / verification | Any "the agent got it wrong" — name the link first |
-| A check that can fail | Every time you accept a claimed fix |
-| What did the tool actually return | Before blaming the model for a wrong conclusion |
-| `Esc` to interrupt | The agent is heading somewhere you don't want |
-| Typed correction without stopping | Redirecting without losing the work done so far |
-| `Esc` twice to rewind | Files changed in a direction you want undone |
-| Naming the files and the scope | When a broad search is dragging |
-
----
-
-## Exercises
-
-1. Take a real task. Write the request so that it names a verification step
-   that could fail. Run it before and after. Record what the check was.
-   ✅ You pass when the check exists, ran, and you can say what result it would
-   have produced if the change were wrong.
-
-2. Deliberately make a check unable to fail. Run a change that the check should
-   catch but does not. Record the false green.
-   ✅ You pass when you have the output that said "pass" and the reason it was
-   lying.
-
-3. Write down four failures you have seen and label each with the broken link.
-   Then fix one of them at its actual layer rather than by rewording the prompt.
-   ✅ You pass when the fix for one of them is *not* a prompt change, and you can
-   say why the prompt change would not have worked.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| agentic | "it's autonomous" / "it's smart" | A loop: model decides, tool executes, result returns, model decides again. No magic adjective. |
-| agentic loop | "the magic" | That repeat. Gather context, take action, verify, repeat until done. |
-| harness | "the CLI" | The layer around the model: tools, context management, permissions, the loop itself. |
-| tool | "the agent's hands" | A named action the model can request. Every tool result becomes the next input. |
-| tool result | "the output" | New information fed back in. An empty or wrong result corrupts every step after it. |
-| verification | "it checked" | Running something capable of detecting the problem. Most self-checks cannot. |
-| surface | "it should have known" | The set of tools available. Missing a tool looks exactly like missing capability. |
-| checkpoint / rewind | "undo" | Harness-level restore of file contents, separate from git. Does not cover actions against remote systems. |
-
----
-
-## What this lesson skipped
-
-**Permissions in depth.** How approval modes and permission rules gate tool
-calls. Real, load-bearing, and its own phase later — the loop makes more sense
-once you have watched it be blocked.
-
-**Subagents and delegation.** One loop today. Isolated windows and delegation
-change the shape of the loop, and that is Phase 06.
-
-**Hooks and MCP** as additions to the tool surface. Both extend what the loop
-can touch, and both get their own phases.
-
-**Multi-agent orchestration.** The next two phases, after git.
-
-**Planning modes and task graphs.** When a loop should stop looping and
-decompose first. Phase 15.
-
-**Checkpointing internals** — what is snapshotted, what is not. Enough to trust
-the rewind and not enough to rely on it for anything outside your working
-folder.</pre>
-</article>
+    T -. real result .-&gt; G</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>The phases blend — there is no clean boundary between them in practice — but the loop is the point. A question about a codebase may only gather context. A refactor cycles through all three many times. The model decides what each step needs, based on what the previous step taught it.</p>
+<h3 id="the-four-things-agentic-can-fail-at">The four things &quot;agentic&quot; can fail at</h3>
+<div class="table-wrap"><table><thead><tr><th>Failure</th><th>What it looks like</th><th>Where the fix goes</th></tr></thead><tbody><tr><td><strong>Capability</strong></td><td>The model can't reason its way to the answer</td><td>Better instructions, more context, or a different model</td></tr><tr><td><strong>Context</strong></td><td>It lacked the file, the constraint, or the earlier decision</td><td>Read the file, write the rule down, point at the folder</td></tr><tr><td><strong>Surface</strong></td><td>It had no tool that could do the thing</td><td>A different approach, or a new tool</td></tr><tr><td><strong>Verification</strong></td><td>It ran something that couldn't detect the bug</td><td>Name a check that can actually fail</td></tr></tbody></table></div>
+<p><strong>Verification is the one that hides.</strong> Capability failures are obvious — the agent says it can't. Context failures surface as a confident wrong answer about your code. Surface failures look like flailing. Verification failures look like <em>success</em>, which is why they cost the most.</p>
+<h3 id="the-loop-is-driven-by-results">The loop is driven by results</h3>
+<p>Every tool result is new information. That's what makes iteration possible and also what makes it go wrong: a tool that returns something unhelpful, or nothing, leaves the model reasoning on the same wrong footing. <code>grep</code> returning nothing because of a wrong path looks identical to &quot;this doesn't exist.&quot;</p>
+<p>Before blaming the model, ask: <em>what did the tool actually return?</em></p>
+<h3 id="where-you-sit-in-the-loop">Where you sit in the loop</h3>
+<p>You are not observing it. You are in it, at every turn:</p>
+<ul><li><strong>Steering</strong> — interrupt with <code>Esc</code>, or type a correction and let it finish the current step.</li><li><strong>Narrowing</strong> — say which files, which command, which scope.</li><li><strong>Verifying</strong> — give it a check that can fail. A test, a command, a file to diff.</li><li><strong>Rewinding</strong> — <code>Esc</code> twice restores files to an earlier state.</li></ul>
+<p>The last one is a safety net that is separate from git and independent of it. Knowing it exists changes how much you let an agent roam.</p>
+<blockquote><p><strong>The reframe:</strong> &quot;agentic&quot; is just the model-tool-result-model loop running</p><p>unattended — so when it goes wrong, name which of the four links broke before</p><p>you touch anything, because a correct loop on wrong inputs still produces a</p><p>confident wrong answer.</p></blockquote>
+<p>Every tool named here is stable; the list is not. Check <a href="https://code.claude.com/docs/en/tools-reference" target="_blank" rel="noopener">the tools reference</a> for today's set.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-watch-one-full-loop-with-the-phases-visible">1. Watch one full loop with the phases visible</h3>
+<pre class="code"><code>/clear</code></pre>
+<pre class="code"><code>Read src/index.ts and tell me what it exports. Do not edit anything.</code></pre>
+<p>That is gather-context only. Now extend it:</p>
+<pre class="code"><code>Now add a named export `version` returning the string &quot;1.0.0&quot;, and run the
+existing tests to check nothing broke.</code></pre>
+<p>Gather, act, verify — in one turn.</p>
+<p>✅ You pass when you can name which phase each request was aimed at and the agent's behaviour matched.</p>
+<h3 id="2-break-the-loop-on-purpose-a-tool-that-returns-nothing">2. Break the loop on purpose — a tool that returns nothing</h3>
+<pre class="code"><code>Find every call to `handlePayment()` in this repo.</code></pre>
+<p>Watch what happens. Either it says none exist, or it invents them. Note which.</p>
+<p>Then give it the same request with a hint about where to look. Compare.</p>
+<p>✅ You pass when you can point at the step where an empty tool result was treated as a fact rather than as a missing fact.</p>
+<h3 id="3-prove-verification-is-not-proof">3. Prove verification is not proof</h3>
+<p>This is the exercise that saves afternoons. On purpose:</p>
+<pre class="code"><code>Change the return value of `sum()` from a+b to a+b+1. Run the tests and report
+the result.</code></pre>
+<p>The tests are weak. The agent will report failure, or — worse — success.</p>
+<p>Now look at what it actually checked, and ask it: <em>what would this test have caught if the change had been bigger?</em></p>
+<p>✅ You pass when you can name something the existing tests would not catch and say which file holds the missing assertion.</p>
+<h3 id="4-give-a-check-that-can-fail-and-watch-behaviour-change">4. Give a check that can fail, and watch behaviour change</h3>
+<p>Same edit, but with a target:</p>
+<pre class="code"><code>Change sum() to a+b+1. Write a test that sums three numbers and asserts the
+result, run it, and report whether it fails.</code></pre>
+<p>Different run. The agent now has a real signal.</p>
+<p>✅ You pass when the failure is reported without you having to interpret the output for it.</p>
+<h3 id="5-steer-mid-flight">5. Steer mid-flight</h3>
+<p>Start a broad request, then before it finishes type a correction. Watch the next step change direction.</p>
+<p>Then try <code>Esc</code> — the running tool call is cancelled and the agent waits.</p>
+<p>✅ You pass when you have steered one run without restarting the session.</p>
+<h3 id="6-name-the-layer-on-three-real-failures">6. Name the layer on three real failures</h3>
+<p>Write down three things that went wrong in real sessions. For each, name the link that broke: capability, context, surface, or verification.</p>
+<p>✅ You pass when all three are named by link, and at least one of them turns out to be verification.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td>Capability / context / surface / verification</td><td>Any &quot;the agent got it wrong&quot; — name the link first</td></tr><tr><td>A check that can fail</td><td>Every time you accept a claimed fix</td></tr><tr><td>What did the tool actually return</td><td>Before blaming the model for a wrong conclusion</td></tr><tr><td><code>Esc</code> to interrupt</td><td>The agent is heading somewhere you don't want</td></tr><tr><td>Typed correction without stopping</td><td>Redirecting without losing the work done so far</td></tr><tr><td><code>Esc</code> twice to rewind</td><td>Files changed in a direction you want undone</td></tr><tr><td>Naming the files and the scope</td><td>When a broad search is dragging</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take a real task. Write the request so that it names a verification step that could fail. Run it before and after. Record what the check was. ✅ You pass when the check exists, ran, and you can say what result it would have produced if the change were wrong.</li></ol>
+<ol><li class="criterion">Deliberately make a check unable to fail. Run a change that the check should catch but does not. Record the false green. ✅ You pass when you have the output that said &quot;pass&quot; and the reason it was lying.</li></ol>
+<ol><li class="criterion">Write down four failures you have seen and label each with the broken link. Then fix one of them at its actual layer rather than by rewording the prompt. ✅ You pass when the fix for one of them is <em>not</em> a prompt change, and you can say why the prompt change would not have worked.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>agentic</td><td>&quot;it's autonomous&quot; / &quot;it's smart&quot;</td><td>A loop: model decides, tool executes, result returns, model decides again. No magic adjective.</td></tr><tr><td>agentic loop</td><td>&quot;the magic&quot;</td><td>That repeat. Gather context, take action, verify, repeat until done.</td></tr><tr><td>harness</td><td>&quot;the CLI&quot;</td><td>The layer around the model: tools, context management, permissions, the loop itself.</td></tr><tr><td>tool</td><td>&quot;the agent's hands&quot;</td><td>A named action the model can request. Every tool result becomes the next input.</td></tr><tr><td>tool result</td><td>&quot;the output&quot;</td><td>New information fed back in. An empty or wrong result corrupts every step after it.</td></tr><tr><td>verification</td><td>&quot;it checked&quot;</td><td>Running something capable of detecting the problem. Most self-checks cannot.</td></tr><tr><td>surface</td><td>&quot;it should have known&quot;</td><td>The set of tools available. Missing a tool looks exactly like missing capability.</td></tr><tr><td>checkpoint / rewind</td><td>&quot;undo&quot;</td><td>Harness-level restore of file contents, separate from git. Does not cover actions against remote systems.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Permissions in depth.</strong> How approval modes and permission rules gate tool calls. Real, load-bearing, and its own phase later — the loop makes more sense once you have watched it be blocked.</p>
+<p><strong>Subagents and delegation.</strong> One loop today. Isolated windows and delegation change the shape of the loop, and that is Phase 06.</p>
+<p><strong>Hooks and MCP</strong> as additions to the tool surface. Both extend what the loop can touch, and both get their own phases.</p>
+<p><strong>Multi-agent orchestration.</strong> The next two phases, after git.</p>
+<p><strong>Planning modes and task graphs.</strong> When a loop should stop looping and decompose first. Phase 15.</p>
+<p><strong>Checkpointing internals</strong> — what is snapshotted, what is not. Enough to trust the rewind and not enough to rely on it for anything outside your working folder.</p>
+      </div>
+
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">An agent fixed the function you asked about, ran the test suite, reported success — and the reported bug is still reproducible. Which link in the loop broke?</p>
+        <ol class="options" type="A">
+          <li>Verification — the checks it ran could not have detected the bug</li>
+          <li>Capability — the model is not strong enough to fix this class of bug</li>
+          <li>Surface — it needed a tool it did not have</li>
+          <li>Context — it never saw the file containing the bug</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Verification — the checks it ran could not have detected the bug</p>
+          <p class="why">The agent read files, made an edit, and reported honestly — the loop ran correctly. What it could not do was detect the failure, so a green suite proved nothing. Option B and C are ruled out by the report itself: a capability gap would have shown as an admission, and a missing tool would have surfaced as flailing. Option D is possible but would usually produce a confident wrong answer about the code rather than a plausible edit plus a green run.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You ask an agent to find every caller of a function in a path it cannot see. It returns a confident list anyway. What actually happened?</p>
+        <ol class="options" type="A">
+          <li>The model retrieved the answer from training data about your project</li>
+          <li>The system prompt overrode your request and sent it to a different model</li>
+          <li>An empty tool result was treated as evidence of absence, so the model generated the callers</li>
+          <li>The context window dropped your request before the search ran</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> An empty tool result was treated as evidence of absence, so the model generated the callers</p>
+          <p class="why">The search returned nothing, and nothing is not 'these do not exist' — it is 'I looked in the wrong place'. Treating it as absence let the model fall back on generation, which is exactly what Lesson 6 describes. Option A is the misconception this phase exists to kill: the model has no access to your repo except through tools. Option D would produce a missing-search symptom, not a confident answer.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">The agent is three steps into a search you know is heading the wrong way. You want to redirect it without losing the work already done. What do you do?</p>
+        <ol class="options" type="A">
+          <li>Press Esc to stop it, then start the session over with better instructions</li>
+          <li>Type the correction and press Enter without stopping</li>
+          <li>Wait for it to finish, then correct it in the next message</li>
+          <li>Run /rewind to restore every file it has changed</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Type the correction and press Enter without stopping</p>
+          <p class="why">A typed correction is queued and picked up as soon as the current tool calls finish, so the redirect happens without discarding the work already done. Option A throws away the work to buy a cleaner start, which is almost never worth it mid-investigation. Option C works but costs the wasted steps. Option D is a file restore, not a conversation steering tool — it undoes edits, not a wrong search.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span>Previous</span>9. Prompt, Inference, API</a>
+    <a class="next" href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span>Next</span>11. Latency, Cost, and Rate Limits</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

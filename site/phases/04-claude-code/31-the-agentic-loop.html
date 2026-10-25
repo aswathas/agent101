@@ -3,34 +3,247 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title> — Harnessing Claude Code</title>
-<meta name="description" content="">
+<title>The Agentic Loop — Harnessing Claude Code</title>
+<meta name="description" content="Read, decide, act, observe — and repeat until done. The one concept everything">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LESSON</p>
-  <h1></h1>
-  
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li class="on"><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> —</p>
-    <p><strong>Prerequisites:</strong> —</p>
-    <p><strong>Time:</strong> —</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 04 · LESSON 31</p>
+      <h1>The Agentic Loop</h1>
+      <p class="lesson-motto">Read, decide, act, observe — and repeat until done. The one concept everything</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 30 (Sessions, /clear, /compact)</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;"></pre>
-</article>
+      <div class="ascii-rule"></div>
+
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this lesson you can:</p>
+<ul><li>name the four steps of the agentic loop</li><li>predict what kind of step the tool is about to take from what you just said</li><li>tell which decisions the tool makes and which you make</li><li>tell the difference between &quot;the model&quot; and &quot;the agent&quot;</li><li>recognize whether the tool is in the &quot;decide&quot; step or the &quot;act&quot; step</li></ul>
+<h2 id="the-problem">The Problem</h2>
+<p>A user sits down. They type something. The tool does something they didn't expect. It read a file they didn't ask about. It ran a command. It asked a question in the middle of a task. They thought they were &quot;talking to AI.&quot;</p>
+<p>The mental model is wrong. The tool isn't a chat partner. It's something with its own internal cycle, and that cycle decides what happens next — including the parts that feel surprising.</p>
+<p>Once the cycle is visible, the surprises stop. When the tool asks, it's because it decided to ask. When it acts, it's because it decided to act. When it stops, it's because it decided it was done. Every behavior the user has seen so far — permission prompts, refusals, slowdowns, summaries — falls out of one picture.</p>
+<p>This lesson is that picture.</p>
+<h2 id="the-concept">The Concept</h2>
+<p>The tool works by repeating a cycle. That cycle is <strong>the agentic loop</strong>. It has four steps.</p>
+<ol><li><strong>Read state.</strong> The tool looks at the conversation so far. Your words, its words, the results of any tool calls. This is what it sees at the start of the turn.</li><li><strong>Decide.</strong> The tool picks the next move. There are four kinds of moves it can pick.</li><li><strong>Act.</strong> It does that one thing. Not several. One.</li><li><strong>Observe.</strong> It sees the result. Then the loop runs again from step 1.</li></ol>
+<p>The four moves the &quot;decide&quot; step can pick:</p>
+<ul><li>read a file</li><li>run a command</li><li>ask you</li><li>stop</li></ul>
+<p>That's the whole menu. Every action the tool ever takes is one of those four.</p>
+<figure class="diagram"><pre>flowchart TD
+    Goal([Goal from you]) --&gt; Read[Read state&lt;br/&gt;what the tool sees]
+    Read --&gt; Decide[Decide&lt;br/&gt;pick the next move]
+    Decide --&gt; Pick{Which move?}
+    Pick --&gt;|read| ActR[Act: read a file]
+    Pick --&gt;|run| ActC[Act: run a command]
+    Pick --&gt;|ask| ActU[Act: ask you]
+    Pick --&gt;|stop| Done([Stop with summary])
+    ActR --&gt; Obs[Observe&lt;br/&gt;see what happened]
+    ActC --&gt; Obs
+    ActU --&gt; Obs
+    Obs --&gt; Read</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>The diagram is a cycle, not a list. The loop runs until the &quot;decide&quot; step picks &quot;stop.&quot; Every turn is one trip around this loop.</p>
+<h3 id="the-reframe">The reframe</h3>
+<p><strong>The reframe: You provide a goal. The tool provides the iteration.</strong> That's the division of labor. The user is not in the loop unless the tool asks. The tool chooses the next step each turn — the next read, the next command, the next question, or the stop.</p>
+<p>This explains everything the user has seen so far:</p>
+<ul><li>A permission prompt — that's the &quot;act&quot; step. The tool decided to act.</li><li>A question in the middle of a task — that's the &quot;decide&quot; step. It picked &quot;ask you.&quot;</li><li>A long pause reading a long file — the &quot;read state&quot; step ran long.</li><li>&quot;Done, here's a summary&quot; — the &quot;decide&quot; step picked &quot;stop.&quot;</li><li>A refusal — the &quot;decide&quot; step decided the goal isn't reachable and picked &quot;stop&quot; with a reason.</li></ul>
+<p>The user doesn't drive the loop. The tool does. The user sets the destination. The tool picks the route, one step at a time.</p>
+<h3 id="one-sentence-on-model-vs-agent">One sentence on model vs agent</h3>
+<p>The <strong>model</strong> is the part that picks the next move. The <strong>agent</strong> is the loop that wraps the model and runs the four steps around it. They are not the same thing, and later lessons will lean on that distinction.</p>
+<p>A &quot;turn&quot; is one trip around the loop. A &quot;tool&quot; is the thing the loop calls when it picks &quot;read&quot; or &quot;run.&quot;</p>
+<h2 id="build-it">Build It</h2>
+<p>The reader watches the loop run three times. They don't drive it. They need to see the cycle, not run it.</p>
+<ol><li>Start a fresh session.</li><li>Give the tool a goal that requires reading a specific file in the repo. Something like: &quot;What does <code>package.json</code> say the test command is?&quot;</li><li>Watch the tool emit a tool call. That was the &quot;act&quot; step. The &quot;read a file&quot; move.</li><li>Give the tool a goal that requires a shell command. Something like: &quot;Run the tests and tell me which ones failed.&quot;</li><li>Watch the tool ask permission. That was the &quot;act&quot; step. The &quot;run a command&quot; move. The permission prompt is part of the act, not a separate step.</li><li>Give the tool a goal it can't satisfy. Something like: &quot;Find the database password in the codebase.&quot;</li><li>Watch the tool stop with a stated reason. That was the &quot;decide&quot; step picking &quot;stop.&quot;</li></ol>
+<p>End state: the reader has watched the loop run three times. They've seen all four moves — read, run, ask, stop — without doing anything themselves.</p>
+<h2 id="use-it">Use It</h2>
+<p>When something happens in the tool, this is the lookup table.</p>
+<div class="table-wrap"><table><thead><tr><th>What you see</th><th>Where the loop is</th></tr></thead><tbody><tr><td>The tool is reading a long file</td><td>Read state</td></tr><tr><td>A &quot;thinking&quot; block is on screen</td><td>Decide</td></tr><tr><td>The tool is asking you a question</td><td>Decide (picked &quot;ask you&quot;)</td></tr><tr><td>The tool is calling grep / reading a file</td><td>Act (picked &quot;read&quot;)</td></tr><tr><td>A permission prompt appears</td><td>Act (picked &quot;run&quot;)</td></tr><tr><td>The tool is summarizing what it did</td><td>Decide (picked &quot;stop&quot;)</td></tr><tr><td>The tool says it can't do something</td><td>Decide (picked &quot;stop&quot;)</td></tr></tbody></table></div>
+<p>If the tool is silent, it's almost always in &quot;decide.&quot; If it's producing output, it's in &quot;act&quot; or &quot;observe.&quot; If it's waiting on you, the loop is paused on &quot;ask you.&quot;</p>
+<h2 id="exercises">Exercises</h2>
+<ol><li><strong>Three-step task.</strong> Give the tool a real goal that needs three moves: read a file, edit a file, run a test. As each tool call appears, label it with the loop step it was. Pass: every tool call is correctly identified as read, run, ask, or stop, and the reader can say out loud which step (read state, decide, act, observe) was happening for each one.</li></ol>
+<ol><li><strong>Impossible goal.</strong> Ask the tool to do something it can't — read a file that doesn't exist, access a system it has no path to, or recover a deleted branch. Pass: the tool stops with a stated reason, and the reader can point to the &quot;decide → stop&quot; move that produced it. The reader does not accept a hallucinated result.</li></ol>
+<ol><li><strong>One turn, timed.</strong> Run a single-turn task that takes a few seconds. Watch the wall clock. Pass: the reader can name which of the four steps was the slow one. Most of the time it's &quot;act&quot; — the tool call itself dominates wall time. Sometimes it's &quot;read state,&quot; when the input is large. Knowing which is which is the start of predicting the tool's pace.</li></ol>
+<h2 id="key-terms">Key Terms</h2>
+<p><strong>The model.</strong> What people say: &quot;the thing that types.&quot; What it actually means: the part that decides what the next move is. The model does not read files, run commands, or talk to you. It picks a move; the loop executes the move.</p>
+<p><strong>The agent.</strong> What people say: &quot;the chat tool.&quot; What it actually means: the loop that wraps the model. The agent runs the four steps. The model is one step inside the agent.</p>
+<p><strong>A turn.</strong> What people say: &quot;one message from me, one message back.&quot; What it actually means: one trip around the loop. A turn can produce zero, one, or many model outputs. The trip ends when the &quot;decide&quot; step picks &quot;stop.&quot;</p>
+<p><strong>The agentic loop.</strong> The read–decide–act–observe cycle the tool runs until it decides to stop. The cycle is the agent; the model is the &quot;decide&quot; step.</p>
+<p><strong>Tool.</strong> One of the four moves the loop can pick: read a file, run a command, ask you, or stop. The word &quot;tool&quot; shows up a lot because &quot;read&quot; and &quot;run&quot; are tool calls.</p>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p>The context window as a number — that's Lesson 32, and it's where &quot;read state&quot; gets a size. Extending the loop with subagents — that's Phase 06, and it's how one agent becomes many. Observing the loop — logs, traces, hooks — those are later lessons too, and they only make sense once the loop itself is in view. The point of this lesson is the picture: each turn is a trip around a four-step cycle, the tool picks each step, and the user is in the loop only when the tool asks.</p>
+      </div>
+
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">Mid-task, Claude Code shows: <code>Run npm test? [y/n]</code>. Which step of the loop is this?</p>
+        <ol class="options" type="A">
+          <li>Read state — it is looking at the conversation</li>
+          <li>Decide, having picked &quot;ask you&quot;</li>
+          <li>Act, having picked &quot;run a command&quot; — the permission prompt is part of the act</li>
+          <li>Observe — it is waiting for the result</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> Act, having picked &quot;run a command&quot; — the permission prompt is part of the act</p>
+          <p class="why">The tool already chose to run a command, and the permission prompt is the gate on that act. Option B is the tempting confusion, and it is a real distinction: a question about the task is decide-picked-ask, but a prompt for one specific command is act-picked-run. Option A and D name steps that produce no prompt of this kind.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You ask Claude Code to find a database password in the codebase. It replies that it cannot, and says why. Which move is this?</p>
+        <ol class="options" type="A">
+          <li>Read state</li>
+          <li>Decide, having picked &quot;stop&quot;</li>
+          <li>A crash</li>
+          <li>A hallucination to ignore</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Decide, having picked &quot;stop&quot;</p>
+          <p class="why">Stopping with a stated reason is one of the four moves the decide step can pick, so a reasoned refusal is the loop working as designed. Option A names a step that only reads input. Option C mistakes a deliberate stop for a fault. Option D treats a grounded explanation as invented output, which is the opposite of what a reason-stated stop is.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You switch the model powering the session to a different one. Which statement is true?</p>
+        <ol class="options" type="A">
+          <li>The agent changed; the model is the loop</li>
+          <li>The model changed; the agent — the read/decide/act/observe loop that wraps it — is the same</li>
+          <li>Both changed at once</li>
+          <li>Neither changed; the model picks moves and the agent types them out</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The model changed; the agent — the read/decide/act/observe loop that wraps it — is the same</p>
+          <p class="why">The model is the decide step; the agent is the loop around it, so swapping the model swaps one step, not the loop. Option A reverses the two. Option C collapses a distinction later lessons lean on. Option D gets the roles backwards — the loop executes moves, the model picks them.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A single-turn task feels slow, and the input is not especially large. Where is the time most likely going?</p>
+        <ol class="options" type="A">
+          <li>Read state</li>
+          <li>Act — the tool call itself usually dominates wall time</li>
+          <li>The stop summary</li>
+          <li>Rendering the prompt</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Act — the tool call itself usually dominates wall time</p>
+          <p class="why">For a normal turn the tool call is the biggest chunk of wall time, which is why naming the slow step is the start of predicting pace. Option A is the other real possibility, but it is the one that shows up when the input is large — which the question rules out. Option C and D are not the loop steps that dominate.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span>Previous</span>30. Sessions, `/clear`, `/compact`</a>
+    <a class="next" href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span>Next</span>32. What Loads Into the Window, and What Doesn't</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

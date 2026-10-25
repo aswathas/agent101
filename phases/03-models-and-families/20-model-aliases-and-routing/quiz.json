@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Model Aliases and Routing — teach sonnet, never hardcoded IDs that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "A CI script hardcodes `claude-sonnet-4-5`. A newer Sonnet ships, and on one provider the old id no longer resolves the way the script expects. What is the durable fix?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Pin a different old version that still works today",
+        "Replace the id with the `sonnet` alias",
+        "Delete all model selection and rely on the account default",
+        "Wrap the failing request in a retry loop"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "The alias is a promise about a job, so it keeps working when the version behind it changes. Pinning a different old version just moves the expiry date. Dropping selection loses the chosen tier. Retries do not help when the id itself is rejected — the request fails the same way twice."
+    },
+    {
+      "id": 2,
+      "prompt": "Mid-session, on a long conversation, you run `/model opus`. The next turn is much slower and more expensive, though you changed nothing else. Why?",
+      "options": [
+        "Opus is simply a slower model for every request",
+        "The new model has no cache for this conversation, so the whole history is reprocessed",
+        "Switching uploads the conversation a second time",
+        "You hit a rate limit"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "Each model keeps its own cache, and a switch is a model change, so the next request matches no cached prefix and pays for the entire conversation again. 'Opus is slower' is tempting but wrong here — the change is a one-off recompute, not a permanently slower tier. A rate limit would be an error, not a slow turn."
+    },
+    {
+      "id": 3,
+      "prompt": "You must reproduce a benchmark exactly, next month, on a provider of your choosing. Alias or full model name?",
+      "options": [
+        "The `sonnet` alias, because it always points to the same model",
+        "The full model name, with a written reason",
+        "Whichever is cheapest on the day of the run",
+        "The account default"
+      ],
+      "answer": 1,
+      "explanation": "Reproduction needs the exact version, so you name it in full and record why it is pinned. The alias is the tempting wrong answer because it feels stable — but it is designed to move, which is exactly what you do not want in a benchmark."
+    },
+    {
+      "id": 4,
+      "prompt": "The `sonnet` alias resolves to a newer version on your machine than on a colleague's. What does that tell you?",
+      "options": [
+        "Your alias is misconfigured and needs fixing",
+        "The alias resolves per provider, and a specific version is still reachable by its full name",
+        "Sonnet is unavailable on your colleague's provider",
+        "Aliases are unsafe and should never be used"
+      ],
+      "answer": 1,
+      "explanation": "Resolution is per provider by design, so different versions are the expected behaviour. Calling it a misconfiguration is the tempting mistake: nothing is broken. 'Unavailable' is wrong too — an earlier Sonnet is still a Sonnet, and pinning the exact one by full name is always available when you need it."
     }
   ]
 }

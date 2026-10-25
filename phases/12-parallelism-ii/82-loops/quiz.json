@@ -5,23 +5,88 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
+      "id": 1,
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Loops — Scheduled and Recurring that needs a new situation, not recall.",
+      "prompt": "You run `/loop 5m check the deploy`, then close the laptop for 30 minutes. What did the loop do?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Nothing — a scheduled task fires only while Claude Code is running, so closing the session stops it",
+        "It fired six times and queued the output for when you reopened",
+        "It kept running in the background, because scheduled tasks are independent of any session",
+        "It fired six times, but discarded the output because there was no terminal attached"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "explanation": "Scheduled tasks are session-scoped: they fire while Claude Code is running and idle, and closing the terminal stops them. The independent-of-any-session answer is the belief the opening incident is about, and it is the whole reason the table of three scheduling options exists — cloud routines are the ones that survive your machine being off. The queued and discarded variants both assume the fires happened at all, which is the thing being tested.",
+      "concept": "loop-needs-an-open-session"
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "An hourly task is due at 9:00. At 9:00 the session is in the middle of a long request that doesn't finish until 10:40. What happens?",
+      "options": [
+        "It fires once when the turn ends, not once per missed interval",
+        "It fires twice as the turn ends, once for each missed hour",
+        "It is skipped entirely, since its scheduled time has passed",
+        "It interrupts the running request at the next safe point to fire on time"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 0,
+      "explanation": "There is no catch-up: a task whose time passed while Claude was busy fires once when the session next goes idle. The fires-twice answer is the natural expectation from cron, and it is the specific behaviour the docs rule out. Skipping entirely is the other half-truth — a *one-shot* task past its time is indeed not restored on resume, but a recurring task still gets its single fire. Nothing interrupts a running turn; the prompt waits for it.",
+      "concept": "no-catch-up"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "You run `/loop 7m check the deploy`. What does that interval become?",
+      "options": [
+        "A nearby cadence that maps to a clean cron step, with Claude telling you which it picked",
+        "Exactly seven minutes, since cron accepts any minute value",
+        "An error, because the interval does not divide evenly into an hour",
+        "Five minutes, silently, because that is the default step"
+      ],
+      "answer": 0,
+      "explanation": "Intervals that do not map to a clean cron step are rounded to the nearest one that does, and Claude reports the choice. The 'cron accepts any minute value' answer is the trap for anyone who has written `7 * * * *` before — that is a valid *schedule*, but this path converts an interval into a recurring step, and a step of seven minutes is not representable that way. Nothing errors, and the rounding is announced rather than silent.",
+      "concept": "interval-rounded-to-cron-step"
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "A self-paced loop is waiting for its next iteration, and you also have two tasks you scheduled by asking Claude directly. You press `Esc`. What is cancelled?",
+      "options": [
+        "The self-paced loop's pending wakeup only; your two explicit tasks stay",
+        "Every scheduled task in the session, including the two explicit ones",
+        "Nothing — `Esc` is a display key for the progress view",
+        "The two explicit tasks, since `Esc` cancels the oldest first"
+      ],
+      "answer": 0,
+      "explanation": "`Esc` clears the pending wakeup of a self-paced loop so it does not fire again, and the docs are explicit that tasks you scheduled by asking Claude directly are not affected. The cancel-everything answer is the plausible misreading, because a loop *feels* like one thing and `Esc` feels like a stop button. `Esc` is not a display key here, and cancellation is by task ID — there is no oldest-first ordering.",
+      "concept": "esc-is-scoped-to-self-paced"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "Both `.claude/loop.md` and `~/.claude/loop.md` exist, with different content. You run a bare `/loop`. What runs, and what is the file?",
+      "options": [
+        "The project file's prompt, which is a single default prompt for bare `/loop` rather than a list of tasks",
+        "The user file's prompt, since personal configuration takes precedence",
+        "Both prompts, concatenated, as two separate scheduled tasks",
+        "One task per heading in the project file, since headings delimit jobs"
+      ],
+      "answer": 0,
+      "explanation": "The project file wins when both exist, and it defines one default prompt for a bare `/loop`. The user-file-wins answer is the usual precedence intuition from settings, which is exactly why the docs call out the opposite here. The file is not a job list: headings do not create tasks, and it is ignored entirely when you supply a prompt on the command line.",
+      "concept": "loop-md-is-one-default-prompt"
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "You created a recurring task ten days ago and have kept the session alive through resumes. You resume again today. What do you find?",
+      "options": [
+        "The task is gone — it expired after seven days, having fired a final time",
+        "The task is still listed and firing, since you never cancelled it",
+        "The task is listed but will never fire again until you recreate it",
+        "The task fires three times in a row to catch up the three missed days"
+      ],
+      "answer": 0,
+      "explanation": "A recurring task expires seven days after creation: it fires one final time, then deletes itself, which bounds how long a forgotten loop can run. The still-listed answers describe other systems' behaviour and collide with the documented expiry. The catch-up answer is the same trap as question two and is ruled out twice over — there is no catch-up, and there is nothing left to catch up with.",
+      "concept": "seven-day-expiry"
     }
   ]
 }

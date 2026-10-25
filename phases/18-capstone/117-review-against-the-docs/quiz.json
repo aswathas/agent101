@@ -2,26 +2,52 @@
   "lesson": "18-capstone/117-review-against-the-docs",
   "title": "Review Against the Docs",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Review Against the Docs that needs a new situation, not recall.",
+      "prompt": "Your build depends on an option that you saw work in a session last week. You search the doc index and no page mentions it. What is the honest state of that claim, and what goes in the review row?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Documented — it worked, and working is the strongest evidence there is",
+        "Unconfirmed — observed, no page found; record the command that would settle it and re-check after a version change",
+        "Contradicted — no page means the docs disagree with you",
+        "Undocumented — so remove the option from the build immediately"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "There is a real state between 'in the docs' and 'wrong', and it is the one most of your build actually sits in: observed behaviour with no citation. Labelling it unconfirmed keeps the capability while marking it as the thing to look at first when a release lands. A is the tempting answer — 'it worked' feels like proof — but one successful session on one version is exactly the evidence that produced this repo's two false claims. C inverts the meaning: no page is a gap in the docs, not an assertion of the opposite; contradicted is reserved for a page that says otherwise. D overreacts — you do not delete working code because a page is missing; you label it and attach a test.",
+      "concept": "unconfirmed-is-a-state"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "The docs page states that a settings key applies per project. Your build sets it once and relies on it applying to your whole machine, and it has worked for months. Which is authoritative, and what is your next move?",
+      "options": [
+        "Your build — it has worked for months, and the docs are often out of date",
+        "The page — treat the disagreement as a finding and check whether your version predates the documented behaviour",
+        "Neither; the agent that set it up probably knew, so ask it before deciding",
+        "Neither; delete the key and rebuild the feature without it"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A page that states scope is describing intended behaviour, and your build working is not evidence of intent — it may be an accident of one version or one machine, which is precisely the failure that surfaces on a teammate's checkout instead of yours. Check the changelog to see whether the scope changed, then decide whether your build or your version is the outdated part. A is the tempting one because longevity feels like proof, and it is the same reasoning that keeps a bug alive for months. C offloads a documentation question to a guess. D throws away a feature over a wording question before you have established which side is stale.",
+      "concept": "docs-are-authority-version-first"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You are writing a short how-to for your team that tells them to run one specific Claude Code command. Which version of the instruction survives the next release?",
+      "options": [
+        "The exact command, quoted as fact, because precision is helpful",
+        "The capability in plain words, plus a link to the reference page and the date and version you checked it on",
+        "A screenshot of the command working in your terminal",
+        "The command copied from a blog post, since blog posts keep up faster than the docs"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Name the capability, link the page, and date the claim: then a reader whose command has changed can re-derive it in one fetch instead of concluding the how-to is garbage. A is the tempting one — an exact command feels more useful, and it is more useful right up until it silently runs something else. C freezes today's terminal, which is the least re-derivable artifact of the three. D swaps the source for a summary that carries an invisible version, which is the specific mistake the review step exists to catch.",
+      "concept": "cite-capability-not-command"
     }
   ]
 }

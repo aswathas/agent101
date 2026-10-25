@@ -2,26 +2,49 @@
   "lesson": "17-scaling-and-operations/113-channels-and-surfaces",
   "title": "Channels and Surfaces",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Channels and Surfaces that needs a new situation, not recall.",
+      "prompt": "A bug reproduces only against a Docker service running on your laptop, and the fix depends on changes you have not committed. Where should the agent run?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "A cloud session, because it can clone the branch and run the service in its sandbox",
+        "A local session on your machine, because that is the only surface that can see your uncommitted changes and reach the running service",
+        "A Slack `@Claude` mention, because it starts a task from team chat",
+        "A scheduled task, because it will retry until it succeeds"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Both constraints are local: uncommitted work exists only in your working tree, and a service bound to your machine is not reachable from a cloud clone. A local session (CLI or Desktop) is the surface that has both. A is tempting because a cloud sandbox sounds more capable, but it clones the repository — it never sees your uncommitted edits — and it is a different machine than the one running your Docker service. C starts a fresh cloud session, inheriting the same two blind spots. D changes when it runs, not what it can see."
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You want a CI failure to be acted on in the same session where you are currently debugging, with your files open. Which mechanism fits?",
+      "options": [
+        "A Slack `@Claude` mention in the channel where CI posts",
+        "A channel that pushes the CI event into your open session",
+        "A cloud session triggered on the failing pipeline",
+        "Remote Control from your phone"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A channel is an MCP server that pushes an event into the session already running, which is exactly 'act on this where my files already are.' A Slack mention is the tempting near-miss: it starts a *fresh cloud session* on a clone, so it loses your open context. A cloud session on the pipeline has the same problem plus a different checkout. Remote Control lets you drive a session from another device; it does not inject an external event, so there is nothing for CI to trigger."
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You plan to leave a channel running overnight so CI failures get handled while you sleep with your terminal closed. What is wrong with that plan?",
+      "options": [
+        "Nothing — the channel keeps a process alive after the session ends",
+        "A channel only delivers events while its session is open, so you need a persistent or background session, not a closed terminal",
+        "Channels work overnight but only for messages from the allowlisted sender",
+        "Channels run in the cloud, so closing the terminal is fine"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A channel pushes into a *running* session. Close the session and there is nowhere for the event to land — the receive end is gone, which is the same mistake as expecting a cross-session message to arrive after the tab is closed. To get always-on behaviour you keep a session alive in a background process or a persistent terminal. A is the exact misconception to kill. C names a real gate (the allowlist) but not the reason the plan fails. D is false: channels deliver to your machine's local session, not to a cloud host."
     }
   ]
 }

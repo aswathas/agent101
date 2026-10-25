@@ -4,94 +4,313 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Loops — Scheduled and Recurring — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="A loop is a timer bound to a live session. It fires between your turns, it">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Loops — Scheduled and Recurring</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li class="on"><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 81, Workflow Runtime Caps</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">BUILD · PHASE 12 · LESSON 82</p>
+      <h1>Loops — Scheduled and Recurring</h1>
+      <p class="lesson-motto">A loop is a timer bound to a live session. It fires between your turns, it</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Build</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 04 Lesson 30 (Sessions, `/clear`, `/compact`), Lesson 78 (Dynamic Workflows)</dd></div>
+        <div><dt>Time</dt><dd>~40 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Run a prompt on a fixed interval, and on an interval Claude chooses</li><li>Read a scheduled task back — its ID, its schedule, and when it fires next</li><li>Prove the two behaviours that surprise people: no catch-up, and session scope</li><li>Replace a bare <code>/loop</code> with your own default prompt using <code>loop.md</code></li><li>Decide between <code>/loop</code>, <code>/goal</code>, and a cloud routine for a given job</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>A deploy was rolling out. The plan was sensible: check it every five minutes, and act if something went red.</p>
+<p>So the loop was set — <code>/loop 5m check the deploy and tell me what happened</code> — and the laptop was closed while everyone went to lunch. Thirty minutes later it was opened again, and nothing had run. Not the checks, not one of them.</p>
+<p>Two things had been assumed that were not true. The first is that a loop is a daemon. It is not: a scheduled task fires <strong>while the session is open</strong>, so closing the terminal stops it firing, exactly as it stops the session. The second is that a missed fire is made up later. It is not: a task whose time passed while Claude was busy fires <strong>once</strong> when Claude next goes idle, not once per missed interval.</p>
+<p>That second one is the subtle one, because it is invisible on a quiet day. Set a loop, do nothing, and every iteration appears. Give the session one long request that spans three iterations and you get one fire, and no message telling you that two were skipped.</p>
+<p>Separately: a loop that had been running for a fortnight had quietly stopped some time in its second week. Recurring tasks expire seven days after creation — they fire a final time, then delete themselves.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Three ways to put Claude Code on a schedule. They are not variations of each other; they run in different places and survive different things.</p>
+<div class="table-wrap"><table><thead><tr><th></th><th>Cloud routines</th><th>Desktop scheduled tasks</th><th><code>/loop</code> (this lesson)</th></tr></thead><tbody><tr><td>Runs on</td><td>Cloud, Anthropic-managed by default</td><td>Your machine</td><td>Your machine</td></tr><tr><td>Machine must be on</td><td>No</td><td>Yes</td><td>Yes</td></tr><tr><td>Session must be open</td><td>No</td><td>No</td><td><strong>Yes</strong></td></tr><tr><td>Survives a restart</td><td>Yes</td><td>Yes</td><td>Restored on <code>--resume</code>, with exceptions</td></tr><tr><td>Access to local files</td><td>No (fresh clone)</td><td>Yes</td><td>Yes</td></tr><tr><td>MCP servers</td><td>Configured per task</td><td>Config files and connectors</td><td>Inherits from the session</td></tr><tr><td>Permission prompts</td><td>None — runs autonomously</td><td>Configurable per task</td><td>Inherits from the session</td></tr><tr><td>Minimum interval</td><td>1 hour</td><td>1 minute</td><td>1 minute</td></tr></tbody></table></div>
+<p>The column that decides most cases is &quot;session must be open&quot;. <code>/loop</code> is the one for polling <em>during</em> work you are doing. Everything durable is elsewhere, and that is Phase 17's territory.</p>
+<h3 id="three-shapes-of-loop">Three shapes of <code>/loop</code></h3>
+<p>What you pass decides which of these you get.</p>
+<div class="table-wrap"><table><thead><tr><th>You provide</th><th>What happens</th></tr></thead><tbody><tr><td>An interval and a prompt — <code>/loop 5m check the deploy</code></td><td>Your prompt runs on a fixed cron schedule</td></tr><tr><td>A prompt only — <code>/loop check the deploy</code></td><td>Claude picks a delay between one minute and one hour after each iteration, based on what it saw. It prints the delay and the reason</td></tr><tr><td>An interval only, or nothing — <code>/loop</code></td><td>The built-in maintenance prompt runs, or your <code>loop.md</code> if one exists</td></tr></tbody></table></div>
+<p>Intervals take <code>s</code>, <code>m</code>, <code>h</code>, and <code>d</code>. Seconds round up to the nearest minute, because cron has one-minute granularity. Intervals that do not map to a clean cron step — <code>7m</code>, <code>90m</code> — are rounded to the nearest one that does, and Claude tells you which it picked.</p>
+<p>You can pass a skill as the prompt — <code>/loop 20m /review-pr 1234</code>. A scheduled fire only runs skills Claude is <strong>allowed to invoke on its own</strong>. Built-in commands like <code>/permissions</code> or <code>/clear</code>, skills marked <code>disable-model-invocation: true</code>, and MCP prompts all arrive as plain text instead.</p>
+<h3 id="one-shot-reminders-are-the-same-machinery">One-shot reminders are the same machinery</h3>
+<pre class="code"><code>remind me at 3pm to push the release branch
+in 45 minutes, check whether the integration tests passed</code></pre>
+<p>Claude pins a fire time with a cron expression, creates a single-fire task, and the task deletes itself after it runs.</p>
+<p>Underneath all of it are three tools: <code>CronCreate</code> (a five-field cron expression, the prompt, and whether it recurs), <code>CronList</code>, and <code>CronDelete</code>. Each task has an eight-character ID, and one session can hold up to 50.</p>
+<h3 id="how-a-scheduled-fire-actually-happens">How a scheduled fire actually happens</h3>
+<p>The scheduler checks every second and queues due tasks at low priority. A scheduled prompt fires <strong>between your turns</strong>, never mid-response. If Claude is busy when a task comes due, the prompt waits for the turn to end.</p>
+<p>All times are local. <code>0 9 <em> </em> *</code> is 9am wherever you are, not UTC.</p>
+<p>And fire times are shifted on purpose. If every session ran its tasks exactly on schedule, they would all hit the API in the same instant, so:</p>
+<ul><li>A recurring task starts each run <strong>late</strong> — up to half the gap to its next run, and at most 30 minutes. Hourly and daily tasks are at the top of that range</li><li>The exception is a task written <code>*/5 <em> </em> <em> </em></code>, which is what <code>/loop 5m</code> creates. That one starts 15 seconds <em>early</em>, because a run exactly five minutes later would begin just after a five-minute prompt cache expired</li><li>A one-shot task scheduled for <code>:00</code> or <code>:30</code> runs up to 90 seconds early</li></ul>
+<p><code>CronList</code> shows a <code>next run</code> time, which is the only sane way to know what you actually got.</p>
+<h3 id="the-two-things-that-bound-a-loop">The two things that bound a loop</h3>
+<p><strong>Seven days.</strong> A recurring task expires seven days after creation. It fires one final time and deletes itself. To go longer, cancel and recreate before it expires, or use a cloud routine.</p>
+<p><strong>No catch-up.</strong> Missed fires are not replayed. One fire when the session next goes idle, not one per missed interval.</p>
+<p>Both of these are brakes on a forgotten loop, and both of them mean the loop cannot be your reliability mechanism.</p>
+<h3 id="writing-your-own-default-prompt">Writing your own default prompt</h3>
+<p>A bare <code>/loop</code> uses a built-in maintenance prompt unless a <code>loop.md</code> exists:</p>
+<div class="table-wrap"><table><thead><tr><th>Path</th><th>Scope</th></tr></thead><tbody><tr><td><code>.claude/loop.md</code></td><td>Project. Takes precedence</td></tr><tr><td><code>~/.claude/loop.md</code></td><td>User. Applies wherever the project has no file</td></tr></tbody></table></div>
+<p>It is plain Markdown with no required structure — write it as if you were typing the prompt. It defines one default prompt for bare <code>/loop</code>, not a list of tasks, and it is ignored whenever you supply a prompt on the command line. Edits take effect on the next iteration, so you can steer a loop while it runs. Content past 25,000 bytes is truncated, so keep it tight.</p>
+<blockquote><p><strong>The reframe:</strong> a loop is a timer bound to a live session rather than a</p><p>daemon — it fires between your turns, it cannot catch up on what it missed, and</p><p>it deletes itself after seven days, so it buys you fewer <em>keystrokes</em>, not</p><p>uptime.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-start-with-the-smallest-loop-one-fire">1. Start with the smallest loop: one fire</h3>
+<pre class="code"><code>in 2 minutes, tell me the current git branch and whether the tree is clean</code></pre>
+<p>Then:</p>
+<pre class="code"><code>what scheduled tasks do I have?</code></pre>
+<p>✅ You pass when <code>CronList</code> shows a single-fire task with a <code>next run</code> time, and the task is gone from the list after it fires.</p>
+<h3 id="2-fixed-interval">2. Fixed interval</h3>
+<pre class="code"><code>/loop 5m check whether CI passed and tell me what happened</code></pre>
+<p>✅ You pass when Claude confirms a cadence and a job ID, and <code>CronList</code> shows the schedule as a cron expression rather than as <code>5m</code>.</p>
+<h3 id="3-let-claude-choose-the-interval">3. Let Claude choose the interval</h3>
+<pre class="code"><code>/loop check whether CI passed and address any review comments</code></pre>
+<p>Read the end of the first iteration. A dynamically scheduled loop prints the delay it chose and why.</p>
+<p>✅ You pass when you can say what Claude saw in the first iteration that made it pick the delay it picked.</p>
+<h3 id="4-prove-no-catch-up">4. Prove no catch-up</h3>
+<p>This is the experiment the opening incident is about. Set a short interval, then immediately give the session a request that takes several intervals to finish — something genuinely long, not a sleep. Count the fires while it runs, then count what arrives when the turn ends.</p>
+<p>✅ You pass when you can state how many fires were due, how many actually happened, and which behaviour that demonstrates rather than a bug.</p>
+<h3 id="5-stop-it-two-ways">5. Stop it two ways</h3>
+<p>For a self-paced loop, press <code>Esc</code> while it is waiting for its next iteration.</p>
+<p>Then, for a loop you created by asking Claude directly, cancel it by ID:</p>
+<pre class="code"><code>cancel the deploy check job</code></pre>
+<p>✅ You pass when <code>Esc</code> clears a pending wakeup without touching your other scheduled tasks, and <code>CronDelete</code> removes the one you named.</p>
+<h3 id="6-own-the-default-prompt">6. Own the default prompt</h3>
+<p>Create <code>.claude/loop.md</code> in this repo:</p>
+<pre class="code" data-lang="markdown"><code>Check the current branch's pull request. If CI is red, pull the failing job log,
+diagnose, and push a minimal fix. If new review comments arrived, address each
+one and resolve the thread. If everything is green and quiet, say so in one line.</code></pre>
+<p>Run a bare <code>/loop</code>. While it is waiting for its next iteration, edit the file.</p>
+<p>✅ You pass when the next iteration reflects the edit, and you can say where the project file wins over the user file.</p>
+<h3 id="7-prove-session-scope-and-then-check-what-comes-back">7. Prove session scope, and then check what comes back</h3>
+<p>Two halves, and the second one is the interesting half.</p>
+<p>First: with a loop running, close the session. Reopen it. Nothing is firing.</p>
+<p>Second: restart with <code>claude --resume</code>. Now ask what tasks you have.</p>
+<p>✅ You pass when you can name which of your tasks came back and which did not — and specifically whether a self-paced loop returned.</p>
+<blockquote><p>Ordering, jitter, and the seven-day expiry are all version-gated, and the</p><p>jitter numbers in particular have been tuned more than once. Verified against</p><p><a href="https://code.claude.com/docs/en/scheduled-tasks" target="_blank" rel="noopener">the scheduled tasks page</a> on</p><p>2026-10-15. Check <code>https://code.claude.com/docs/llms.txt</code> before you promise</p><p>anyone a fire time.</p></blockquote>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Need</th><th>Reach for</th><th>Why not the next thing</th></tr></thead><tbody><tr><td>Poll a deploy for the next hour</td><td><code>/loop 5m &lt;prompt&gt;</code></td><td>Predictable cadence, and you are at the keyboard</td></tr><tr><td>Babysit a PR with irregular activity</td><td><code>/loop &lt;prompt&gt;</code>, no interval</td><td>Claude stretches the delay when nothing is happening</td></tr><tr><td>Leave a standing prompt for bare <code>/loop</code></td><td><code>.claude/loop.md</code></td><td>Defines the default, not a list of jobs</td></tr><tr><td>One reminder</td><td>Natural language</td><td>A single-fire task that deletes itself</td></tr><tr><td>Something that must survive next week</td><td>A cloud routine, or Desktop tasks</td><td><code>/loop</code> expires in seven days and needs an open session</td></tr><tr><td>React to an event rather than polling</td><td>Channels</td><td>A push beats a timer for anything that has a real signal</td></tr><tr><td>Keep working until a condition holds</td><td><code>/goal</code></td><td>Condition-based persistence, not an interval</td></tr><tr><td>Stream a long script's output</td><td>The Monitor tool</td><td>Avoids polling altogether when one is available</td></tr><tr><td>See what is scheduled</td><td><code>what scheduled tasks do I have?</code></td><td><code>CronList</code> under the hood, with IDs</td></tr><tr><td>Turn scheduling off entirely</td><td><code>CLAUDE_CODE_DISABLE_CRON=1</code></td><td>Disables the tools and stops pending tasks</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Set a fixed loop with an interval that does not map cleanly to cron — <code>7m</code> — and read what Claude says about the interval it actually chose. ✅ You pass when you can name the cadence it picked and why yours was not representable.</li></ol>
+<ol><li class="criterion">Run a self-paced loop for three iterations and record the delay and reason from each. Then change the thing it is watching — make CI go red, or leave a review comment — and record the next delay. ✅ You pass when you can point at the observation that changed the delay.</li></ol>
+<ol><li class="criterion">Predict, in writing, which of your scheduled tasks survive a <code>--resume</code> and which do not. Then run it and compare. ✅ You pass when your prediction matches the docs and the observation, or your note explains the rule you had backwards.</li></ol>
+<ol><li class="criterion">Take one job you currently poll by hand and decide, with reasons, between <code>/loop</code>, <code>/goal</code>, and a cloud routine. ✅ You pass when the deciding reason is about where the work runs and what has to be open — not about which command you already know.</li></ol>
+<ol><li class="criterion">A task is due at 9:00. The session is idle at 9:00 and again at 10:00. For an hourly task, write down when it actually fires and how long that is after 9:00. ✅ You pass when your answer is inside the documented range and you can say which direction the shift goes.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td><code>/loop</code></td><td>&quot;a cron job&quot;</td><td>A session-scoped scheduled prompt. Fires between your turns while the session is open</td></tr><tr><td>scheduled task</td><td>&quot;the timer&quot;</td><td>A <code>CronCreate</code> entry with an 8-character ID, a 5-field cron schedule, and a prompt. Max 50 per session</td></tr><tr><td>self-paced loop</td><td>&quot;the smart one&quot;</td><td>A <code>/loop</code> with no interval. Claude chooses 1–60 minutes after each iteration and prints why</td></tr><tr><td><code>loop.md</code></td><td>&quot;the config&quot;</td><td>The default prompt for bare <code>/loop</code>. Project file wins over user file. Truncated past 25,000 bytes</td></tr><tr><td>catch-up</td><td>&quot;it'll run late&quot;</td><td>It will not. Missed fires collapse to one when the session next goes idle</td></tr><tr><td>jitter</td><td>&quot;the drift&quot;</td><td>A deliberate shift so sessions do not hit the API together. Recurring tasks run late; <code>*/5</code> runs 15s early</td></tr><tr><td>seven-day expiry</td><td>&quot;the limit&quot;</td><td>A recurring task fires a final time and deletes itself seven days after creation</td></tr><tr><td><code>Esc</code></td><td>&quot;stop the loop&quot;</td><td>Clears a self-paced loop's pending wakeup. Does not affect tasks you asked for directly</td></tr><tr><td>cloud routine</td><td>&quot;the durable one&quot;</td><td>A schedule that runs without your machine or session. Phase 17</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Cloud routines and Desktop scheduled tasks in depth.</strong> The comparison table above is the decision; the configuration is Phase 17, along with <code>--schedule</code> and the GitHub Actions path.</p>
+<p><strong>Channels.</strong> The event-driven answer to &quot;stop polling&quot;. Lesson 83 shows where it sits next to hooks; the MCP contract behind it is Phase 17.</p>
+<p><strong><code>/goal</code> in detail.</strong> Keeping Claude working toward a condition is a different mechanism with its own stopping rules — a model judges it impossible, or an error you must fix clears it. Worth knowing it exists so that you do not reach for a one-minute loop to express a condition.</p>
+<p><strong>The Monitor tool.</strong> When it is available, a self-paced loop may use it to stream a script's output instead of polling. That is a token-efficiency choice, and it is documented on the tools reference rather than here.</p>
+<p><strong>Cron expression syntax beyond five fields.</strong> <code>L</code>, <code>W</code>, <code>?</code>, and name aliases are not supported. When both day-of-month and day-of-week are constrained, a date matches if <em>either</em> matches — standard vixie-cron behaviour, and a genuine trap if you are used to a different cron.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">6 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You run <code>/loop 5m check the deploy</code>, then close the laptop for 30 minutes. What did the loop do?</p>
+        <ol class="options" type="A">
+          <li>Nothing — a scheduled task fires only while Claude Code is running, so closing the session stops it</li>
+          <li>It fired six times and queued the output for when you reopened</li>
+          <li>It kept running in the background, because scheduled tasks are independent of any session</li>
+          <li>It fired six times, but discarded the output because there was no terminal attached</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Nothing — a scheduled task fires only while Claude Code is running, so closing the session stops it</p>
+          <p class="why">Scheduled tasks are session-scoped: they fire while Claude Code is running and idle, and closing the terminal stops them. The independent-of-any-session answer is the belief the opening incident is about, and it is the whole reason the table of three scheduling options exists — cloud routines are the ones that survive your machine being off. The queued and discarded variants both assume the fires happened at all, which is the thing being tested.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">An hourly task is due at 9:00. At 9:00 the session is in the middle of a long request that doesn't finish until 10:40. What happens?</p>
+        <ol class="options" type="A">
+          <li>It fires once when the turn ends, not once per missed interval</li>
+          <li>It fires twice as the turn ends, once for each missed hour</li>
+          <li>It is skipped entirely, since its scheduled time has passed</li>
+          <li>It interrupts the running request at the next safe point to fire on time</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> It fires once when the turn ends, not once per missed interval</p>
+          <p class="why">There is no catch-up: a task whose time passed while Claude was busy fires once when the session next goes idle. The fires-twice answer is the natural expectation from cron, and it is the specific behaviour the docs rule out. Skipping entirely is the other half-truth — a <em>one-shot</em> task past its time is indeed not restored on resume, but a recurring task still gets its single fire. Nothing interrupts a running turn; the prompt waits for it.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You run <code>/loop 7m check the deploy</code>. What does that interval become?</p>
+        <ol class="options" type="A">
+          <li>A nearby cadence that maps to a clean cron step, with Claude telling you which it picked</li>
+          <li>Exactly seven minutes, since cron accepts any minute value</li>
+          <li>An error, because the interval does not divide evenly into an hour</li>
+          <li>Five minutes, silently, because that is the default step</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> A nearby cadence that maps to a clean cron step, with Claude telling you which it picked</p>
+          <p class="why">Intervals that do not map to a clean cron step are rounded to the nearest one that does, and Claude reports the choice. The 'cron accepts any minute value' answer is the trap for anyone who has written <code>7 <em> </em> <em> </em></code> before — that is a valid <em>schedule</em>, but this path converts an interval into a recurring step, and a step of seven minutes is not representable that way. Nothing errors, and the rounding is announced rather than silent.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A self-paced loop is waiting for its next iteration, and you also have two tasks you scheduled by asking Claude directly. You press <code>Esc</code>. What is cancelled?</p>
+        <ol class="options" type="A">
+          <li>The self-paced loop's pending wakeup only; your two explicit tasks stay</li>
+          <li>Every scheduled task in the session, including the two explicit ones</li>
+          <li>Nothing — <code>Esc</code> is a display key for the progress view</li>
+          <li>The two explicit tasks, since <code>Esc</code> cancels the oldest first</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> The self-paced loop's pending wakeup only; your two explicit tasks stay</p>
+          <p class="why"><code>Esc</code> clears the pending wakeup of a self-paced loop so it does not fire again, and the docs are explicit that tasks you scheduled by asking Claude directly are not affected. The cancel-everything answer is the plausible misreading, because a loop <em>feels</em> like one thing and <code>Esc</code> feels like a stop button. <code>Esc</code> is not a display key here, and cancellation is by task ID — there is no oldest-first ordering.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Both <code>.claude/loop.md</code> and <code>~/.claude/loop.md</code> exist, with different content. You run a bare <code>/loop</code>. What runs, and what is the file?</p>
+        <ol class="options" type="A">
+          <li>The project file's prompt, which is a single default prompt for bare <code>/loop</code> rather than a list of tasks</li>
+          <li>The user file's prompt, since personal configuration takes precedence</li>
+          <li>Both prompts, concatenated, as two separate scheduled tasks</li>
+          <li>One task per heading in the project file, since headings delimit jobs</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> The project file's prompt, which is a single default prompt for bare <code>/loop</code> rather than a list of tasks</p>
+          <p class="why">The project file wins when both exist, and it defines one default prompt for a bare <code>/loop</code>. The user-file-wins answer is the usual precedence intuition from settings, which is exactly why the docs call out the opposite here. The file is not a job list: headings do not create tasks, and it is ignored entirely when you supply a prompt on the command line.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You created a recurring task ten days ago and have kept the session alive through resumes. You resume again today. What do you find?</p>
+        <ol class="options" type="A">
+          <li>The task is gone — it expired after seven days, having fired a final time</li>
+          <li>The task is still listed and firing, since you never cancelled it</li>
+          <li>The task is listed but will never fire again until you recreate it</li>
+          <li>The task fires three times in a row to catch up the three missed days</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> The task is gone — it expired after seven days, having fired a final time</p>
+          <p class="why">A recurring task expires seven days after creation: it fires one final time, then deletes itself, which bounds how long a forgotten loop can run. The still-listed answers describe other systems' behaviour and collide with the documented expiry. The catch-up answer is the same trap as question two and is ruled out twice over — there is no catch-up, and there is nothing left to catch up with.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span>Previous</span>81. Workflow Runtime Caps</a>
+    <a class="next" href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span>Next</span>83. Hooks-Driven Automation — Events as Control Flow</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

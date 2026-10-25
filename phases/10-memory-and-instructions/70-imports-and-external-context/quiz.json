@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Imports and External Context that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "You split a 400-line `CLAUDE.md` into five files and import them all. The session starts and `/context` shows all five. What did you gain and what did you not?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "You gained a smaller context window, because imports load on demand",
+        "You gained organisation, but the context cost is unchanged — every import loads at launch",
+        "You gained both organisation and a smaller window, because each file is counted separately",
+        "You gained nothing; imports are ignored in `CLAUDE.md`"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "Imports are expanded at launch, so the total context is the same; only the organisation improved. Option 0 is tempting because 'split into files' sounds like lazy loading — but imports are not fetched on demand; path-scoped rules are."
+    },
+    {
+      "id": 2,
+      "prompt": "Your `CLAUDE.md` at the repo root has the line `@docs/setup.md`. A teammate copies that line into `docs/guide.md`. Which file does it now import?",
+      "options": [
+        "`docs/setup.md` in both cases — relative to the repo root",
+        "`docs/docs/setup.md`, because the path resolves relative to `docs/guide.md`",
+        "It fails, because imports are only allowed in the root `CLAUDE.md`",
+        "`setup.md` in the working directory"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "Relative paths resolve against the file containing the import, so `docs/guide.md` plus `docs/setup.md` gives `docs/docs/setup.md`. Option 0 is the tempting wrong answer because the working directory is the usual base for paths — imports use the importing file instead."
+    },
+    {
+      "id": 3,
+      "prompt": "You clone a repo whose `CLAUDE.md` imports a file from the author's home directory. Claude asks you to approve external imports. What is the safe move?",
+      "options": [
+        "Approve it — the dialog only appears for trusted files",
+        "Decline unless you have read the file; the repo is asking you to trust something you did not write",
+        "Approve it, because declining permanently disables imports in that repo",
+        "Edit the import to point at your own home directory instead"
+      ],
+      "answer": 1,
+      "explanation": "An external import in a committed file reaches outside your project and should be read before you trust it. Option 0 is tempting because the dialog is a normal step — but it appears precisely because the file is not something you wrote."
+    },
+    {
+      "id": 4,
+      "prompt": "You want to mention `@README` in your `CLAUDE.md` as an example, without actually importing the file. What do you write?",
+      "options": [
+        "`@README` on its own line",
+        "Wrap it in backticks: `` `@README` ``",
+        "Wrap it in quotes: `\"@README\"`",
+        "Prefix it with a backslash: `\\@README`"
+      ],
+      "answer": 1,
+      "explanation": "Import parsing skips code spans, so a backticked `@README` stays literal. Option 2 is tempting because quotes feel like escaping — but a quoted path is simply not imported and the quotes remain in the text, which is not the same as leaving the path literal."
     }
   ]
 }

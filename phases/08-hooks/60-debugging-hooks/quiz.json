@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Debugging Hooks that needs a new situation, not recall.",
+      "prompt": "A hook that used to block force-pushes no longer does, and nothing about the script changed. Following the lesson's order, where do you look first?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "`/hooks` — is it registered, from which settings file, and did settings change since the session started?",
+        "The regexes in the script — re-read every pattern line by line",
+        "The transcript — search for where the agent mentioned the hook",
+        "`git status` — check whether the working tree is clean"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "The debug order is registration, then match, then payload, then exit code, then event capability. Registration first, because if the hook isn't listed — or was edited after the session started — nothing downstream matters. `/hooks` shows the source file and whether it is enabled. Option B is the hour-waster the order exists to prevent: nine times out of ten the script is fine and the wiring changed. Option C treats narrative as evidence. Option D is irrelevant to whether a hook fired.",
+      "concept": "check-registration-first"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "Your hook fires when the agent uses `Edit` but not when it uses `NotebookEdit`. Why?",
+      "options": [
+        "`Edit` is an exact-string matcher and does not match `NotebookEdit`; use `^Edit$|^NotebookEdit$`, or a deliberate regex like `Edit.*`",
+        "`NotebookEdit` isn't a tool, so no event fires for it",
+        "`Edit` is a substring filter, so it should have matched — the hook must be unregistered",
+        "`NotebookEdit` requires an entirely separate event from `Edit`"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "When a matcher contains only letters, digits, `_`, `-`, spaces, commas, and `|`, it is an exact string or an alternation — so `Edit` matches only `Edit`, not `NotebookEdit`. To cover both, add the second name or shift onto the regex path consciously. Option B is false: `NotebookEdit` is a real tool. Option C is the opposite of how exact matching works — a substring filter is what people assume and the docs say otherwise. Option D invents event separation that doesn't exist.",
+      "concept": "exact-string-not-substring"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You add a `PostToolUse` hook to `.claude/settings.json` and immediately trigger the action in the same session. Nothing happens. Most likely cause?",
+      "options": [
+        "Settings load at session start — the new hook isn't live until you restart Claude Code",
+        "The matcher string is malformed",
+        "`PostToolUse` hooks need `\"async\": true` to run at all",
+        "The settings file needs to be made executable"
+      ],
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "This is the single most common \"my hook doesn't work\": the file changed but the session is still running the copy it loaded at launch. Restart. Option B is possible but not the first suspect when the hook is brand new and the same file worked before. Option C is backwards — `async` makes a hook run in the background and it still runs; it is not required. Option D confuses a JSON config file with a script.",
+      "concept": "settings-load-at-startup"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You pipe a fabricated `git push` event into your guardrail script and it exits 2. But when the agent actually runs `git push`, nothing is blocked. Where is the problem?",
+      "options": [
+        "The script is fine — the fault is wiring: registration, the matcher, or a settings file that didn't reload",
+        "The script is wrong — it must be reading the wrong field",
+        "The agent is bypassing the hook on purpose",
+        "Hooks cannot block `git push` specifically"
+      ],
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "The fabricated-event test separates the two halves of the problem: a correct exit 2 in isolation means the decision logic works, so the defect is between the harness and the script — the hook isn't registered where you think, the matcher doesn't fire, or the session is running stale settings. Option B is ruled out by the test you just ran. Option C attributes intent to a mechanism. Option D is false: the command name is irrelevant; the event and matcher decide.",
+      "concept": "isolate-script-from-wiring"
     }
   ]
 }

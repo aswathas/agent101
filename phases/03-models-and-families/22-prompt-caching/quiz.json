@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Prompt Caching — why switching models makes a turn slow that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "You know you will want a different model for a long task. When is the cheapest moment to make the switch?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Any time — a switch costs the same whenever you do it",
+        "At the start, before the conversation has grown",
+        "Right after a long break, when the cache has expired anyway",
+        "After the task is finished"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "A switch forces a full recompute of everything sent so far, so the cost scales with the conversation size — switching early keeps that recompute small. 'After a break' is tempting because the cache is cold regardless, but by then the conversation is long, so the recompute is larger, not free."
+    },
+    {
+      "id": 2,
+      "prompt": "Which of these leaves the cache warm for the next turn?",
+      "options": [
+        "Switching models",
+        "Changing the effort level mid-session",
+        "Appending a new message to the conversation",
+        "Starting a new session in a different directory"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 2,
+      "explanation": "Appending sits at the end, so the cached prefix is untouched. A model switch, an effort change, and a fresh session in a new directory all change or replace the prefix, so each one recomputes the request."
+    },
+    {
+      "id": 3,
+      "prompt": "You come back from a 40-minute break, change nothing, and send one message. The turn is much slower and more expensive than the last one. What happened?",
+      "options": [
+        "The provider was overloaded",
+        "The cache expired during the break, so the whole conversation was reprocessed",
+        "Your model was downgraded for inactivity",
+        "The message itself was expensive"
+      ],
+      "answer": 1,
+      "explanation": "The cache survives only a period of inactivity, and every hit resets the timer; a long gap means the next turn misses and reprocesses the prefix. Overload is tempting because it is the usual explanation for slowness, but here the cost moved too — which points at a re-read, not a queue."
+    },
+    {
+      "id": 4,
+      "prompt": "Which statement about the cache is true?",
+      "options": [
+        "It caches each file separately, so editing one file costs nothing",
+        "It matches the exact prefix, so changing anything near the front recomputes everything after it",
+        "It is shared across all models, so switching models keeps it warm",
+        "It never expires while the conversation is open"
+      ],
+      "answer": 1,
+      "explanation": "The match is on the exact start of the request, which is why ordering content by how often it changes matters, and why a change near the front is expensive. Per-file caching is the tempting wrong answer — it would be convenient, but the mechanism has no per-file granularity."
     }
   ]
 }

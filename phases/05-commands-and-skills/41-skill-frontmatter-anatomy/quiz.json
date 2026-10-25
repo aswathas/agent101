@@ -1,27 +1,53 @@
 {
   "lesson": "05-commands-and-skills/41-skill-frontmatter-anatomy",
-  "title": "Anatomy — the 21-Field Frontmatter Table",
+  "title": "Anatomy — the Frontmatter Field Table",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Anatomy — the 21-Field Frontmatter Table that needs a new situation, not recall.",
+      "prompt": "A skill's command works perfectly from the menu, but it never fires on a natural request. You have already improved the description twice and nothing changed. What is the next move?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Add more trigger phrases to when_to_use until the description is longer",
+        "Stop editing words and run claude --debug — malformed frontmatter loads the body with empty metadata, which looks identical to a bad description",
+        "Set user-invocable: false so Claude is the only caller and picks it up more reliably",
+        "Move the markdown body above the frontmatter so it is read first"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Two different causes produce this exact silence: a description that doesn't match human phrasing, and a YAML parse error that leaves metadata empty while the command still loads. Once you've already edited the description twice with no result, the cheap hypothesis is spent — the debug log names the parse error, and the skill's directory name is the other thing to check for a refused character. Option A makes the truncation cap worse without testing a new hypothesis. Option C makes it worse in a different way — it removes your ability to run it directly. Option D inverts the file format.",
+      "concept": "silent-failures"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You author a skill that commits and pushes to main. It fires on its own during an unrelated refactor, twice in one week. Which frontmatter change addresses the actual failure?",
+      "options": [
+        "deleteModelInvocation is not a field, so the only option is renaming the skill to something less alarming",
+        "disable-model-invocation: true, which stops Claude choosing it automatically while you can still run /name — and drops its description from the listing you were paying for",
+        "user-invocable: false, which keeps it out of the model as well as the menu",
+        "allowed-tools: Bash(git commit:*) so the pushes are pre-approved and stop causing problems"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The failure is automatic invocation of a side-effecting skill, and disable-model-invocation is the field that stops exactly that while leaving /name working — and it also removes the description from the model-visible listing, so you stop paying for a skill that must never self-fire. Option C is close enough to be the tempting wrong answer: user-invocable false hides it from you, leaving Claude as the sole caller, which is the opposite of the intent. Option A invents a field. Option D pre-approves the danger instead of removing the trigger.",
+      "concept": "side-effects-need-manual-only"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A reviewer complains your skill auto-fires on every file in the repo and only ever makes sense for one of them. Which change expresses that constraint?",
+      "options": [
+        "Rewrite the description so it names the one file type",
+        "paths with a glob for that file type, so automatic activation is limited to matching files",
+        "setSkillScope in settings.json",
+        "Move the skill into a nested .claude/skills directory under that file's project"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "paths is the field that limits automatic activation by glob, using the same format as path-scoped rules — it constrains when the skill loads, which is exactly what the reviewer is asking for. Option A is worth doing but it is a softer fix: it makes matching less likely rather than impossible. Option B invents a settings key. Option D changes where the skill is discovered, which affects who gets it, not which files it fires on.",
+      "concept": "paths-field"
     }
   ]
 }

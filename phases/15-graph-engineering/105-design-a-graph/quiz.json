@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Design a Graph for a Real Project that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "A designer draws a graph, counts ten nodes, and reports a critical path of four waves. No script was run — they read it off the diagram. Why is that not yet a defensible number?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Diagrams cannot show waves, so the number is meaningless",
+        "The critical path is the longest chain of *blocking* edges; if any edge is a soft edge drawn as blocking, the human count is too high and must be recomputed",
+        "Four is correct as long as there are ten nodes",
+        "The widest wave is the critical path, so they counted the wrong thing"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "A hand count silently assumes every edge blocks; the honest number comes from removing soft edges and recomputing. Option A is false — diagrams do show waves. Option C invents a node-count relationship that does not exist. Option D conflates width with depth."
+    },
+    {
+      "id": 2,
+      "prompt": "`graph.mjs` reports no collision and a widest wave of five. Later the run has two agents editing `package.json` at once. What did the graph model miss?",
+      "options": [
+        "Nothing; the collision is a runner bug",
+        "A node's `writes` list was incomplete, so the busy-write check had no way to see the shared file",
+        "The widest wave should have been capped at one",
+        "The critical path was computed wrongly"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "The busy-write check is only as good as the `writes` field on each node; a missing file makes a real collision invisible. Option A is tempting but the graph is the model — an incomplete model is the design error. Option C destroys all parallelism. Option D is a different number and does not cause a write collision."
+    },
+    {
+      "id": 3,
+      "prompt": "To shorten the critical path, a team wants to convert their only blocking edge into a soft one by agreeing an interface — but the interface would be a guess about a third-party API they cannot test yet. What is the right call?",
+      "options": [
+        "Convert it anyway; fewer blocking edges is always better",
+        "Leave it blocking: an unverifiable interface is a bet whose reconciliation cost likely exceeds the wait",
+        "Delete the downstream node so the path shortens",
+        "Add a decision node to remove the edge automatically"
+      ],
+      "answer": 1,
+      "explanation": "Conversion is a comparison of wait cost against reconciliation cost; an untestable interface is close to a guaranteed reconciliation. Option A is the tempting slogan this whole phase warns against. Option C removes work rather than restructuring the graph. Option D is a category error — a decision node records a choice, it does not delete a data dependency."
+    },
+    {
+      "id": 4,
+      "prompt": "A graph has a critical path of three waves and a widest wave of one. A colleague says the design is broken because it has zero parallelism. What is the honest reading?",
+      "options": [
+        "The graph tool is broken",
+        "The project is a true pipeline: every step needs the previous, so there is no parallelism to extract as decomposed — worth knowing before spending on agents",
+        "They must have missed soft edges, so mark three soft",
+        "Widest wave of one always means a cycle"
+      ],
+      "answer": 1,
+      "explanation": "Width one with a real chain is a legitimate pipeline; the value is knowing it before paying for fan-out. Option A blames the tool. Option C is tempting because plans often over-block, but inventing soft edges without evidence is how you ship a collision. Option D is false — a cycle fails earlier, at the acyclic check, and would make the run impossible rather than narrow."
     }
   ]
 }

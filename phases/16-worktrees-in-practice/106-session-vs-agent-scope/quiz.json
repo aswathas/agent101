@@ -7,12 +7,31 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Session vs Agent Scope that needs a new situation, not recall.",
+      "prompt": "You run one session with `--worktree`, then spawn three subagents that each rewrite a different file — but two of them import the same shared helper and both rewrite it. Nothing errors, and at the end there is no conflict to resolve. What actually happened?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The session worktree isolated the subagents from each other, so their edits landed on separate branches",
+        "Claude Code refused the overlapping edits but reported success anyway",
+        "All three subagents shared the session's one worktree, so the second writer overwrote the first in the same file",
+        "The two subagents each got a temporary worktree, which is why there was no conflict"
+      ],
+      "answer": 2,
+      "distractors": [
+        0,
+        1,
+        3
+      ],
+      "explanation": "A session worktree gives the whole session one checkout; subagents without `isolation: worktree` inherit it. Two writers, one file, second wins. Option D is the tempting wrong answer because it sounds like a feature — but per-agent worktrees only appear when a subagent's frontmatter asks for them, and then a conflict would be possible rather than absent. The absence of any conflict is the clue that there was only one copy.",
+      "concept": "session-scope"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You want three subagents to refactor three separate packages in parallel without any chance of them touching each other's files. You are not currently in a worktree session. What is the smallest change that gives you that?",
+      "options": [
+        "Add `isolation: worktree` to the frontmatter of the subagent they share",
+        "Start the session with `claude --worktree refactor`",
+        "Run each subagent with a different model",
+        "Add `.claude/worktrees/` to `.gitignore`"
       ],
       "answer": 0,
       "distractors": [
@@ -20,8 +39,46 @@
         2,
         3
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "explanation": "Per-agent isolation is the scope that stops agents colliding with each other; `isolation: worktree` in the subagent's frontmatter gives each run its own checkout. Option B is the tempting wrong answer because `--worktree` is the command you know, but it isolates the session from other sessions and leaves the three agents sharing one folder. Models and `.gitignore` change nothing about who edits which folder.",
+      "concept": "agent-scope"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A subagent is configured with `isolation: worktree` and must build on a commit you made but have not pushed. By default its worktree branches from the default branch, so it does not see your commit. What do you change?",
+      "options": [
+        "Add the commit hash to the subagent's `description` field",
+        "Check out the branch in the main folder before running the subagent",
+        "Nothing — an isolated worktree always carries your unpushed commits",
+        "Set `worktree.baseRef` to `\"head\"` in settings"
+      ],
+      "answer": 3,
+      "distractors": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "`worktree.baseRef` controls the base: `\"fresh\"` (the default) branches from the default branch, `\"head\"` branches from your current local HEAD, including unpushed commits. Option C is the tempting wrong answer because it reverses the default. Option B does not help — an isolated worktree is a separate checkout and does not follow the main folder's current branch.",
+      "concept": "base-ref"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Two subagents only read code and return a written analysis; they never edit files. A colleague insists you must give them `isolation: worktree` or they will collide. Are they right?",
+      "options": [
+        "Yes — any two subagents that run at once need separate worktrees",
+        "No — read-only agents cannot collide on files, so isolation buys nothing and costs a checkout each",
+        "Yes, because the second subagent's context window overwrites the first",
+        "No, because `isolation: worktree` is not valid on a subagent"
+      ],
+      "answer": 1,
+      "distractors": [
+        0,
+        2,
+        3
+      ],
+      "explanation": "Isolation protects files from concurrent writes. Agents that do not write files have nothing to collide on, so per-agent worktrees add setup cost for no safety. Option A is the tempting wrong answer because it turns a real rule ('parallel writers need isolation') into a blanket one. Option D is simply false — `isolation: worktree` is valid subagent frontmatter.",
+      "concept": "scope-choice"
     }
   ]
 }

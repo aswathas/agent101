@@ -4,94 +4,306 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Workflow Runtime Caps — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="The runtime bounds how many agents are in flight, how long an agent may stay">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Workflow Runtime Caps</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li class="on"><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 80, The Completion-Order Gotcha</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 12 · LESSON 81</p>
+      <h1>Workflow Runtime Caps</h1>
+      <p class="lesson-motto">The runtime bounds how many agents are in flight, how long an agent may stay</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 80 (The Completion-Order Gotcha)</dd></div>
+        <div><dt>Time</dt><dd>~40 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Name the four caps that bound a run, and which one your script's design has to respect</li><li>Predict what a run does when it crosses the concurrency cap, the list cap, and the total-agent cap</li><li>Say what a restarted agent keeps and what it loses, in terms of files and transcript</li><li>Explain why a stalled agent is not the same as a failed one, for the purposes of a relaunch</li><li>Set the stall window deliberately, for one agent and for the whole run</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>Two incidents, one afternoon.</p>
+<p>The first: a workflow was asked to migrate 800 files, one agent per file. The author had assumed 800 agents would run at once. The run took the better part of an hour and looked, on the progress line, like nothing was happening — because sixteen agents were in flight and the rest were queued behind them. Nothing was stuck. The mental model was wrong.</p>
+<p>The second: one agent went quiet. It had made three edits, then started a tool call that produced no output for long enough that the runtime gave up on the attempt and <strong>restarted the agent from the same prompt</strong>. The new attempt began without the stalled attempt's transcript. But — and this is the whole incident — the three files the first attempt had already changed were still changed. The restart is not a rollback. The second attempt began on a repo that the first attempt had half-modified, with no memory that it had.</p>
+<p>Both of these are caps. Neither is a model problem, and neither is a bug.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Four caps. They bound different things, and each one has a different failure shape when you hit it.</p>
+<figure class="diagram"><pre>flowchart TB
+    A[&quot;your task&quot;] --&gt; B[&quot;1. list cap&lt;br/&gt;≤ 4,096 items per call&lt;br/&gt;REJECTED if longer&quot;]
+    B --&gt; C[&quot;2. in-flight cap&lt;br/&gt;≤ 16 agents at once&lt;br/&gt;the rest QUEUE&quot;]
+    C --&gt; D[&quot;3. run cap&lt;br/&gt;≤ 1,000 agents total&lt;br/&gt;run stops&quot;]
+    D --&gt; E[&quot;4. stall window&lt;br/&gt;how long an agent may be silent&lt;br/&gt;attempt RESTARTS&quot;]
+    E --&gt; F[&quot;agent restarts ≤ 5 times&lt;br/&gt;each restart is not a rollback&quot;]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="1-the-list-cap-4-096-items-per-call">1. The list cap: 4,096 items per call</h3>
+<p>A single <code>parallel()</code> or <code>pipeline()</code> call holds at most 4,096 items. A longer list is <strong>rejected with an error</strong> — not truncated, not split.</p>
+<p>The docs say why, and the reason is worth more than the number: a silent cap would drop part of the workload without telling the script. That is the same principle as the <code>null</code> slot from Lesson 80. The runtime refuses to be quietly wrong on your behalf.</p>
+<p>So if you have more items than that, split the list yourself — and decide what a batch boundary means for your results, because you are the one who has to rejoin them.</p>
+<h3 id="2-the-in-flight-cap-16-agents-at-a-time-by-default">2. The in-flight cap: 16 agents at a time, by default</h3>
+<p>The runtime runs up to <strong>16 concurrent agents</strong> by default, fewer when the machine has fewer CPUs — including inside a CPU-limited container. This is the cap behind the first incident: 800 items is 800 <em>agents</em>, but it is 16 <em>at a time</em>.</p>
+<p><code>CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS</code> accepts a value from 1 to 256 and requires a recent version. Raising it does not make the work free: more agents in flight is more tokens per minute and more load on the machine you are also trying to use.</p>
+<p>This is also where a fan-out's prompt cache lives. Agents that share a prefix — same model, effort level, agent type, tools, output schema, and working directory — can read each other's cache. So the runtime holds all but the first agent of a matching fan-out until the first one's response begins, then releases them together, up to a cap of five seconds by default. Set <code>CLAUDE_CODE_WORKFLOW_PREFIX_STAGGER_MS</code> to <code>0</code> to disable the hold. A workflow agent's cache lives five minutes by default; <code>subagentPromptCacheTtl</code> of <code>1h</code> extends it, and the API bills a one-hour cache write at a higher rate.</p>
+<p>You do not have to understand the cache to be bitten by the hold: it is one more reason a 20-agent fan-out does not start all at once.</p>
+<h3 id="3-the-run-cap-1-000-agents-total">3. The run cap: 1,000 agents total</h3>
+<p>A single run may spawn at most 1,000 agents. That is the backstop against a runaway loop. If your script recurses or retries unboundedly, it hits a wall instead of your card.</p>
+<p>For scale: 4,096 items per call is the <em>list</em> cap; 1,000 agents is the <em>run</em> cap. A pipeline over 4,000 items will not get 4,000 agents — it will stop at the run cap. Know which wall you are closer to before you write the loop.</p>
+<h3 id="4-the-stall-window-where-a-restart-is-not-a-rollback">4. The stall window: where a restart is not a rollback</h3>
+<p>An agent whose output stops arriving for long enough is <strong>restarted from the same prompt</strong>. In <code>/workflows</code> its name gains a <code>(retry 1)</code> suffix and its detail shows <code>attempt 2 (stalled)</code>.</p>
+<p>What the new attempt inherits, and what it does not:</p>
+<div class="table-wrap"><table><thead><tr><th></th><th>After a stall restart</th></tr></thead><tbody><tr><td>The stalled attempt's transcript</td><td><strong>Gone.</strong> The new attempt starts without it</td></tr><tr><td>Files the stalled attempt already changed</td><td><strong>Still changed.</strong> No rollback</td></tr><tr><td>Tokens the stalled attempt spent</td><td><strong>Still counted.</strong> They are in the run's total</td></tr></tbody></table></div>
+<p>An agent restarts at most five times, counting any restart you ask for with <code>r</code>. If the sixth attempt stalls too, the <code>agent()</code> call fails and the error names which of three ways it went:</p>
+<ul><li><code>agent stalled on all 6 attempts</code> — every attempt was silent for the whole window. The agent's work keeps it quiet that long; lengthen the window</li><li><code>agent lost its reply on all 6 attempts</code> — the response stream went silent. Lengthening the window will not help; a streaming idle watchdog ended it first</li><li><code>agent abandoned after 6 attempts</code> — the attempts ended in different ways, which the error lists in order</li></ul>
+<p>Two knobs. Per agent: <code>agent(prompt, { stallMs: 1800000 })</code> for a 30-minute window. Whole run: <code>CLAUDE_ASYNC_AGENT_STALL_TIMEOUT_MS</code>, which also applies to subagents outside workflows.</p>
+<p>Time an agent spends waiting on its own tool calls or on a usage-limit reset does <strong>not</strong> count toward the window. That is deliberate: a legitimately slow command is not a stall.</p>
+<h3 id="the-two-things-that-are-not-caps">The two things that are not caps</h3>
+<p><strong>A run takes no input mid-flight.</strong> It pauses on its own only for agent permission prompts and a usage-limit wait. For sign-off between stages, run each stage as its own workflow and let yourself look at the result.</p>
+<p><strong>A workflow has no filesystem and no shell.</strong> Agents read, write, and run commands; the script coordinates. A script containing <code>import()</code> fails before the run even starts.</p>
+<h3 id="one-more-number-that-is-advice-not-a-cap">One more number that is advice, not a cap</h3>
+<p>Above <strong>25 agents</strong>, or a projected <strong>1.5 million tokens</strong>, the run's progress line shows a <code>Large workflow</code> warning. It is advisory — it does not pause anything. The <strong>size guideline</strong> from Lesson 78 changes the agent-count threshold when you set it yourself, and the default guideline leaves it at 25. Sessions with ultracode on do not show the warning at all, because turning ultracode on already opts you in to large runs.</p>
+<blockquote><p><strong>The reframe:</strong> the caps bound how much is <em>in flight</em> and how long a single</p><p>attempt may stay silent — not how much work you may describe — so the number</p><p>your script is designed around is concurrency, and the stall window is the</p><p>number that decides whether a restart is cheap or destructive.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-count-before-you-run">1. Count before you run</h3>
+<p>Take a task you would actually fan out — every file in a directory, every issue in a tracker. Write down three numbers before touching a workflow: the number of items, your estimate of the agents the script will spawn, and the number you expect to be in flight at once.</p>
+<p>✅ You pass when all three numbers are different, and you can say which cap each one is measured against.</p>
+<h3 id="2-watch-the-queue">2. Watch the queue</h3>
+<p>Run a fan-out over a list comfortably larger than 16 — a directory with 60 or more files is plenty. Do not wait for it to finish; watch <code>/workflows</code> for the first thirty seconds.</p>
+<p>✅ You pass when you can see that some agents have not started, and name the cap that is holding them rather than the cap that would reject them.</p>
+<h3 id="3-hit-the-list-cap-cheaply">3. Hit the list cap cheaply</h3>
+<p>The list cap is enforced before any agent starts, which makes it the one cap you can prove for free. Have the workflow build a list of 4,100 items and pass it to a single <code>pipeline()</code> call.</p>
+<p>✅ You pass when the call fails with an error naming the list, and no agents were spawned — verify by checking the run's agent count.</p>
+<h3 id="4-kill-an-agent-by-being-quiet">4. Kill an agent by being quiet</h3>
+<p>This one is about the stall window, and you cannot force it directly. What you <em>can</em> do is give an agent a job that legitimately keeps it silent for a long time — a big build, a long test run — with a short window set through <code>CLAUDE_ASYNC_AGENT_STALL_TIMEOUT_MS</code>, and watch what <code>/workflows</code> shows.</p>
+<pre class="code" data-lang="javascript"><code>const slow = await agent('Run the full test suite and report every failure.', { stallMs: 5000 })</code></pre>
+<p>✅ You pass when the agent's row shows a <code>(retry 1)</code> suffix or an <code>attempt 2 (stalled)</code> detail, and you can state which of the three error strings you would get if it did that six times.</p>
+<h3 id="5-show-that-a-restart-is-not-a-rollback">5. Show that a restart is not a rollback</h3>
+<p>With an agent that writes a file before going quiet, let it stall, and then check the file it wrote during the <em>first</em> attempt.</p>
+<p>✅ You pass when the file is still changed after the restart, and you can say what the second attempt does <em>not</em> know about it.</p>
+<h3 id="6-raise-the-ceiling-and-measure">6. Raise the ceiling and measure</h3>
+<p>Set <code>CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS</code> to something larger for one run — say <code>32</code> — and repeat step 2 on the same list.</p>
+<p>✅ You pass when the number of agents in flight at the peak is visibly higher and you have a sentence about what it cost: wall clock, machine load, or tokens.</p>
+<h3 id="7-watch-a-large-run-warning-appear">7. Watch a large-run warning appear</h3>
+<p>A run above 25 agents will announce itself. If your list is smaller, pick a bigger directory.</p>
+<p>✅ You pass when you can point at the warning, and state the one action it offers you rather than the action it takes for you.</p>
+<blockquote><p>Every number here is version-gated, and several are environment-gated — the</p><p>concurrency default depends on the machine's CPUs, and the concurrency ceiling</p><p>needs a recent version. Verified against</p><p><a href="https://code.claude.com/docs/en/workflows" target="_blank" rel="noopener">the workflows page</a> on 2026-10-15.</p><p>Check <code>https://code.claude.com/docs/llms.txt</code> before you set any of them in</p><p>something that has to keep working next month.</p></blockquote>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>You are about to…</th><th>The cap that applies</th><th>Do this instead</th></tr></thead><tbody><tr><td>Fan out over 5,000 files</td><td>List cap, 4,096 per call</td><td>Split the list yourself and decide how the parts rejoin</td></tr><tr><td>Assume a big fan-out is instant</td><td>In-flight cap, 16 by default</td><td>Budget wall clock as <code>items ÷ in-flight</code>, roughly</td></tr><tr><td>Raise concurrency to make it fast</td><td><code>CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS</code>, 1–256</td><td>Expect more load and more tokens per minute</td></tr><tr><td>Retry forever on a flaky agent</td><td>Run cap, 1,000 agents</td><td>Bound the loop yourself</td></tr><tr><td>Give an agent a long silent job</td><td>Stall window</td><td><code>stallMs</code>, or <code>CLAUDE_ASYNC_AGENT_STALL_TIMEOUT_MS</code> for the run</td></tr><tr><td>Assume a restart undoes edits</td><td>It does not</td><td>Make the agent's writes idempotent, or check the disk</td></tr><tr><td>Pause mid-run for sign-off</td><td>Not supported</td><td>Run each stage as its own workflow</td></tr><tr><td>Read config inside the script</td><td>No filesystem</td><td>Give an agent the read; branch on its result</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take a real directory in this repo and compute, on paper, how long a one-agent-per-file fan-out would take at 16 in flight, assuming each agent is roughly as slow as the slowest one you have watched. ✅ You pass when your estimate and the actual wall clock are within a factor of two, or your note explains what you missed.</li></ol>
+<ol><li class="criterion">Find the script for a run that hit a stall restart, and read the stalled agent's task. Say what a <em>retry</em> of that task would do differently from the first attempt, given that its files were not rolled back. ✅ You pass when your answer names a concrete side effect the second attempt could duplicate rather than a general statement about idempotency.</li></ol>
+<ol><li class="criterion">Set the stall window to something absurdly short, then something generous, on the same task. Report what changed. ✅ You pass when you can say which error string a too-short window produces, and why lengthening the window would not fix a silent response stream.</li></ol>
+<ol><li class="criterion">A run pauses on a usage-limit wait. List the conditions that have to hold for it to pause rather than fail that agent, and one of them that does not apply in headless mode. ✅ You pass when your list matches the docs and you can name which session kinds never get the pause.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>list cap</td><td>&quot;too many files&quot;</td><td>4,096 items per <code>parallel()</code>/<code>pipeline()</code> call. Rejected, never truncated</td></tr><tr><td>in-flight cap</td><td>&quot;it should be parallel&quot;</td><td>16 concurrent agents by default, fewer with fewer CPUs. The rest queue</td></tr><tr><td>run cap</td><td>&quot;a safety limit&quot;</td><td>1,000 agents in one run. The backstop against a runaway loop</td></tr><tr><td>stall window</td><td>&quot;a timeout&quot;</td><td>How long an agent may produce no output before the attempt is abandoned and restarted</td></tr><tr><td>restart</td><td>&quot;a retry&quot;</td><td>A new attempt from the same prompt. No transcript, no rollback, tokens still counted</td></tr><tr><td><code>stallMs</code></td><td>&quot;a timeout option&quot;</td><td>The per-agent override for the stall window, in milliseconds</td></tr><tr><td><code>CLAUDE_ASYNC_AGENT_STALL_TIMEOUT_MS</code></td><td>&quot;the global timeout&quot;</td><td>The run-wide stall window. Also applies outside workflows</td></tr><tr><td>prefix stagger</td><td>&quot;a delay&quot;</td><td>Up to 5 seconds of hold so a fan-out's later agents read the first one's prompt cache</td></tr><tr><td>stall vs failure</td><td>&quot;it failed&quot;</td><td>A stall retries without the run noticing; a failure reruns the tail on a relaunch. Different mechanisms</td></tr><tr><td><code>Large workflow</code></td><td>&quot;an error&quot;</td><td>An advisory warning above 25 agents or 1.5M projected tokens. It does not stop anything</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Cost instrumentation.</strong> Knowing which agents spend the tokens is a different skill, and it is Phase 14. The size guideline here is a crude brake, not a measurement.</p>
+<p><strong>The full environment-variable surface.</strong> There are more knobs than the four above, and the env-vars page is the list. Anything you set belongs in a note with the version you set it on.</p>
+<p><strong>The Agent SDK host.</strong> A run launched through the SDK has its own permission model and no approval prompt. Phase 17.</p>
+<p><strong>Permission prompts inside a run.</strong> Agents in a run use your permission rules, and the runtime picks their mode by the same rules it uses for subagents — Lesson 33 for the modes, the subagents page for the exact selection order.</p>
+<p><strong>Time spent waiting on a usage-limit reset.</strong> It is excluded from the stall window, and the wait has its own conditions and a two-wait limit. Covered on the workflows page; not repeated here because it is about your plan, not your script.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">6 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A <code>pipeline()</code> fans out over 800 files, one agent per file, with nothing else configured. Roughly how many of those agents are working at the same time?</p>
+        <ol class="options" type="A">
+          <li>About 16, or fewer if the machine has fewer CPUs. The rest wait their turn</li>
+          <li>All 800, since one call means one batch</li>
+          <li>One at a time, because <code>pipeline()</code> runs items in sequence</li>
+          <li>Up to 4,096, which is the list cap for a single call</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> About 16, or fewer if the machine has fewer CPUs. The rest wait their turn</p>
+          <p class="why">The runtime runs up to 16 concurrent agents by default, and less when fewer CPUs are available, including inside a CPU-limited container — so 800 items means 800 agents overall but about 16 in flight. The all-800 answer and the one-at-a-time answer are the two intuitions people bring, and both are wrong in opposite directions; the docs explicitly do not give <code>pipeline()</code> a scheduling difference from <code>parallel()</code>. The 4,096 figure is a real number but it is the per-call <em>item</em> cap, not a concurrency figure.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">An agent edits three files, then goes quiet long enough to be restarted. What is true of the second attempt?</p>
+        <ol class="options" type="A">
+          <li>It starts without the first attempt's transcript, and the three files are still edited</li>
+          <li>It starts with the first attempt's transcript, and the three files are still edited</li>
+          <li>It starts without the transcript and the three edits are rolled back</li>
+          <li>It starts without the transcript, and the tokens the first attempt used are refunded to the run</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> It starts without the first attempt's transcript, and the three files are still edited</p>
+          <p class="why">A restart is a fresh attempt from the same prompt: the new attempt does not inherit the stalled transcript, the files it already changed stay changed, and the tokens it spent stay in the run's total. The rollback answer is the one everybody wants, because 'restart' sounds like 'clean slate' — it is the reason an agent's writes should be idempotent. The transcript and refund variants both describe a restore that the docs do not offer.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A script calls one <code>pipeline()</code> with a 4,100-item list. What happens?</p>
+        <ol class="options" type="A">
+          <li>The call is rejected with an error before any agent starts</li>
+          <li>The first 4,096 items run and the remaining four are reported as skipped</li>
+          <li>All 4,100 run, split into two internal batches</li>
+          <li>The last four items are dropped silently so the run can continue</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> The call is rejected with an error before any agent starts</p>
+          <p class="why">The per-call cap is 4,096 items and a longer list is rejected, because a silent cap would drop part of the workload without telling the script. The truncation answer is the tempting one — it is what most systems do — and it is exactly the behaviour the docs call out as unacceptable. Nothing is split automatically, and a silent drop is the failure the cap exists to prevent. This is also why it is the cheapest cap to demonstrate: no agent ever runs.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">An agent runs a test command that takes 25 minutes, and the stall window is 10 minutes. Does it count as stalled?</p>
+        <ol class="options" type="A">
+          <li>No — time an agent spends waiting on its own tool calls does not count toward the stall window</li>
+          <li>Yes — any 10 minutes without output ends the attempt</li>
+          <li>Yes, but only because the test command produces no incremental output</li>
+          <li>No, but only if the window was set with <code>stallMs</code> rather than the run-wide variable</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> No — time an agent spends waiting on its own tool calls does not count toward the stall window</p>
+          <p class="why">The stall window measures output starvation, and the docs exclude time spent waiting on the agent's own tool calls, or on a usage-limit reset. That exclusion is why a legitimately slow build does not get its agent killed. The 'any 10 minutes' answer is the natural reading of a plain timeout and is the trap: it would make long test runs impossible, which is not how workflows behave. The mechanism you set the window with is irrelevant to whether the wait counts.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">An agent fails after six attempts with <code>agent lost its reply on all 6 attempts</code>. What does that tell you to change?</p>
+        <ol class="options" type="A">
+          <li>Nothing about the stall window — the response stream went silent and a streaming idle watchdog ended it</li>
+          <li>Make the stall window longer, since the agent needed more time to produce output</li>
+          <li>Raise the retry count, since six attempts were not enough</li>
+          <li>Lower the concurrency cap, since too many agents were competing for the API</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Nothing about the stall window — the response stream went silent and a streaming idle watchdog ended it</p>
+          <p class="why">This error names the response stream going silent, and the docs are explicit that lengthening the stall window does not help because the streaming idle watchdog ended the response first — its own timeout is a different variable. The length-the-window answer is the strong temptation, because the sibling error, <code>agent stalled on all 6 attempts</code>, is exactly the case where more time does help. The other two options change the wrong number: the attempt count is fixed at six including manual restarts, and concurrency is not implicated.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A workflow schedules 40 agents and is projected to spend well over a million tokens. What does the runtime do?</p>
+        <ol class="options" type="A">
+          <li>Shows an advisory <code>Large workflow</code> warning; the run continues unless you stop it</li>
+          <li>Pauses the run and asks you to approve the spend before continuing</li>
+          <li>Caps the run at 25 agents and reports the remainder as skipped</li>
+          <li>Fails the run, because it crossed the projected-token threshold</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Shows an advisory <code>Large workflow</code> warning; the run continues unless you stop it</p>
+          <p class="why">The warning is advisory: it appears above 25 agents or a projected 1.5 million tokens and points you at <code>/workflows</code>, where you can stop the run — it neither pauses nor limits anything. The pause-and-approve answer is plausible because the launch does prompt in most permission modes, but that prompt happens <em>before</em> the run, not in response to its size. The other two answers treat an advisory threshold as an enforced cap, which it is not.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span>Previous</span>80. The Completion-Order Gotcha</a>
+    <a class="next" href="../../phases/12-parallelism-ii/82-loops.html"><span>Next</span>82. Loops — Scheduled and Recurring</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

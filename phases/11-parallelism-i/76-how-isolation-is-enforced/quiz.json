@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about How Isolation Is Actually Enforced — the blocking checks that needs a new situation, not recall.",
+      "prompt": "In a worktree session you ask Claude to run `cd ../repo && git commit -am wip` to commit work into the main checkout. What stops it?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Nothing; only Edit and Write are checked, so Bash git commands pass through",
+        "The working-directory and git-redirect checks block it",
+        "The file-edit check blocks it because a commit writes files",
+        "The command-shape check blocks any `cd` when inside a worktree"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The directory resolves into the main checkout, and the `cd` before git is a redirect into the main checkout — two of the four checks, and the command is blocked. Bash git commands are checked, not exempt. The file-edit check governs `Edit`/`Write`/`NotebookEdit` calls, not a commit run through Bash. The shape check fires when the command text can't be read, not for every `cd`.",
+      "concept": "checks-2-and-3"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You add a bold rule to CLAUDE.md: \"never edit the main checkout from this worktree.\" Then an agent edits it anyway. What does that tell you about the rule?",
+      "options": [
+        "The rule is enforced by the harness and the agent somehow bypassed a check",
+        "The rule was a request the model could decline; only the harness checks are impossible to talk past",
+        "CLAUDE.md rules don't load in worktree sessions",
+        "The edit must have gone through an MCP tool the checks don't cover"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A written rule is a request the model can reason around; an edit to the main checkout is supposed to be blocked by the file-edit check whether or not any rule exists. If the edit succeeded, the rule wasn't the guard — and the fix is a hook or tool restriction, not a firmer sentence. CLAUDE.md does load (with worktree read-through exceptions for untracked dirs), and MCP tools don't dodge the checks.",
+      "concept": "prose-vs-enforcement"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A `cp` command copies a file from a worktree into the main checkout. The isolation checks don't refuse it. Why?",
+      "options": [
+        "The checks only run on the main checkout, not inside worktrees",
+        "`cp` is allowlisted by default",
+        "The checks read the target path, the working directory, and the command text — they don't track which files a shell command writes",
+        "The checks only apply to the file-edit tools and never to Bash"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "The gap is real and specific: the checks reason about an edit's target path, a command's working directory, and the command text — not about arbitrary filesystem writes a command performs. So a `cp` or shell redirect that never invokes git isn't refused by them; it falls under permissions and sandboxing. The checks do apply to Bash commands, and start on every isolated session.",
+      "concept": "the-gap"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "A worktree session spawns a subagent. You want to be sure the isolation checks apply to that subagent's edits too. What is true?",
+      "options": [
+        "The checks cover every subagent the isolated session spawns, including one in its own worktree",
+        "Only the main session is checked; subagents run with your full permissions",
+        "Subagents are checked only if they set `isolation: worktree` themselves",
+        "The checks apply to subagents only in the background, not the foreground"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
-      ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "distractors": [1, 2, 3],
+      "explanation": "The enforcement follows the isolated session to every subagent it spawns, foreground or background, and also to a subagent that runs in its own worktree. They don't need `isolation: worktree` to be covered. Option B is the false claim this lesson exists to kill; option D inverts the background/foreground detail.",
+      "concept": "checks-cover-subagents"
     }
   ]
 }

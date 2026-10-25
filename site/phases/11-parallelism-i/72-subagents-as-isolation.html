@@ -4,94 +4,269 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Subagents as Isolation — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can say exactly what a subagent isolates and what it shares — and stop">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Subagents as Isolation</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li class="on"><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 71, The Five Names</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 11 · LESSON 72</p>
+      <h1>Subagents as Isolation</h1>
+      <p class="lesson-motto">You can say exactly what a subagent isolates and what it shares — and stop</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 71 (The Five Names); Phase 01 Lesson 8 (The Context Window); Phase 04 Lesson 30 (Sessions, `/clear`, `/compact`); Phase 06 Lesson 47 (Author a Subagent)</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
-
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Explain what isolation a subagent actually provides, and name the one it doesn't</li><li>Watch a subagent's work stay out of your context window instead of trusting that it does</li><li>Predict where two parallel subagents will collide before you run them</li><li>Turn on per-agent file isolation with one frontmatter line</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You delegated a 400-file search to a subagent. It worked exactly as advertised: your window stayed small, the answer came back in five lines, the 400 reads evaporated when the subagent finished. That is the demo everyone sees.</p>
+<p>So you delegated the next job the same way — three subagents, each editing its own set of files in the same repo. They ran at the same time. Two of them touched one file. The second write won, and the first agent's edit was simply gone.</p>
+<p>The mistake wasn't parallel agents. It was believing that &quot;isolated&quot; was one property. A subagent is isolated in the only place the demo showed you — its context window — and completely unisolated everywhere else. Both filesystems it ran against were the same filesystem.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Isolation is not a badge a mechanism carries. It is a list of things, and each mechanism covers a different subset.</p>
+<p>A subagent covers the <strong>context window</strong> (Lesson 8 — the one budget that limits everything). Give it a task, it spends its own budget on the search, the logs, the failed attempts, and the compaction that follows (Lesson 30), and it hands back a summary. Your window never saw the mess. That is a real and large win, and it is what makes parallelism worth doing at all: separate windows are why four agents can hold four problems at once.</p>
+<div class="table-wrap"><table><thead><tr><th></th><th>Subagent's window</th><th>Your files</th></tr></thead><tbody><tr><td><strong>A subagent</strong></td><td>Separate. Its own budget, its own compaction.</td><td><strong>Shared.</strong> It starts in your working directory.</td></tr><tr><td><strong>Two parallel subagents</strong></td><td>Separate from each other.</td><td><strong>Shared with each other.</strong> Same directory.</td></tr><tr><td><strong>A subagent with <code>isolation: worktree</code></strong></td><td>Separate.</td><td>Separate checkout. Collisions become merges.</td></tr></tbody></table></div>
+<figure class="diagram"><pre>flowchart TD
+    M[&quot;Your session window&quot;] --&gt;|delegation message| A[&quot;Subagent A window&quot;]
+    M --&gt;|delegation message| B[&quot;Subagent B window&quot;]
+    A --&gt; R1[&quot;summary&quot;]
+    B --&gt; R2[&quot;summary&quot;]
+    R1 --&gt; M
+    R2 --&gt; M
+    subgraph FS[&quot;One shared working directory&quot;]
+        F1[&quot;files A edits&quot;]
+        F2[&quot;files B edits&quot;]
+    end
+    A -.-&gt; FS
+    B -.-&gt; FS</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>The dotted arrows are the part the demo hid. Both subagents write to <code>FS</code>. If they touch the same path, the harness does not stop them — the second write is just later.</p>
+<h3 id="what-the-subagent-starts-with">What the subagent starts with</h3>
+<p>Isolation does not mean empty. A non-fork subagent starts with its own system prompt (the Markdown body), the delegation message Claude writes from your request, your <code>CLAUDE.md</code> files, a git status snapshot, and any preloaded skills. Then nothing else. Not your conversation, not the files you already read. The full list is Phase 06, Lesson 47.</p>
+<p>Its window size comes from <em>its own</em> model. Delegate to <code>haiku</code> and you quietly hand it a smaller room, which is a fine trade until the task outgrows it.</p>
+<h3 id="the-one-line-that-fixes-files">The one line that fixes files</h3>
+<p>Put this in a subagent's frontmatter and the agent gets its own checkout before it edits anything:</p>
+<pre class="code" data-lang="yaml"><code>---
+name: refactorer
+description: Applies mechanical refactors across many files
+isolation: worktree
+---</code></pre>
+<p>Now the collision is a merge instead of an overwrite. That is Lesson 74's subject; here it is enough to know the switch exists and that it defaults to <em>off</em>.</p>
+<blockquote><p><strong>The reframe:</strong> a subagent isolates the conversation, not the filesystem —</p><p>parallel subagents still share one working directory, and that shared</p><p>directory is the collision you will actually hit.</p></blockquote>
+<p>Claude Code ships weekly. The mechanics of what a subagent loads and where it runs are at <a href="https://code.claude.com/docs/en/sub-agents" target="_blank" rel="noopener">Create custom subagents</a>; the file field that changes it is documented under <code>isolation</code>.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-watch-context-isolation-actually-happen">1. Watch context isolation actually happen</h3>
+<p>Create a read-only subagent and give it a job that reads a lot:</p>
+<pre class="code" data-lang="markdown"><code>---
+name: wide-reader
+description: Reads many files and returns a short list of matches. Use for broad searches.
+tools: Read, Grep, Glob
+model: haiku
 ---
 
-## The Problem
+Search the paths you are given for the pattern in the request. Return only the
+file paths that match and one line of context each. Nothing else.</code></pre>
+<p>Run <code>/context</code> before and after delegating a wide search to it.</p>
+<p>✅ You pass when your own window's file-read count barely moves while the subagent's summary arrives.</p>
+<h3 id="2-predict-the-collision-before-you-run-it">2. Predict the collision before you run it</h3>
+<p>Write down four file paths. Give two subagents the job of editing the same repo at once, with one overlapping path in their lists. Before you run it, circle the overlap.</p>
+<p>✅ You pass when you named the colliding path before the run and can point at it in the output afterwards.</p>
+<h3 id="3-close-the-gap-with-one-line">3. Close the gap with one line</h3>
+<p>Add <code>isolation: worktree</code> to both agents, run the same two jobs, and compare.</p>
+<p>✅ You pass when each agent's edits land on its own branch, no write was lost, and you can say which mechanism — not which prompt — prevented the overwrite.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Situation</th><th>Move</th></tr></thead><tbody><tr><td>A side task would flood your window</td><td>Subagent. Nothing else needed.</td></tr><tr><td>Two subagents will write the same file</td><td><code>isolation: worktree</code> on each, or split the paths so they don't overlap.</td></tr><tr><td>The subagent's search came back empty or truncated</td><td>It probably ran out of its own model's window. Use a larger model or split the job.</td></tr><tr><td>You want the result interleaved in your own thinking</td><td>A skill, not a subagent (Phase 06, Lesson 47).</td></tr><tr><td>You need the subagent to see your conversation</td><td>A fork — the opposite trade. Phase 06, Lesson 47.</td></tr><tr><td>You want to see the background subagents you've spawned</td><td><code>/tasks</code>.</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Build a read-only subagent and delegate two searches in one turn. Then run <code>/context</code> and <code>/tasks</code>. ✅ You pass when you can name what each subagent used of <em>its own</em> window and confirm your window grew by roughly the summaries, not the reads.</li></ol>
+<ol><li class="criterion">Take the same subagent and add <code>Write</code> to its tools, then have two copies edit one shared file simultaneously. Record what each copy reported versus what ended up on disk. ✅ You pass when you can show the disk state diverging from at least one copy's report.</li></ol>
+<ol><li class="criterion">Add <code>isolation: worktree</code>, rerun exercise 2, and inspect <code>git worktree list</code> plus the branches involved. ✅ You pass when the two writes survive on two branches and you can explain why the earlier overwrite is now a merge.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>isolation</td><td>&quot;the agent can't touch my stuff&quot;</td><td>A specific thing kept separate. For a subagent, that thing is its context window — not your files.</td></tr><tr><td>context isolation</td><td>&quot;separate memory&quot;</td><td>The subagent spends its own window on the work and returns only a summary. The reason parallel agents help at all.</td></tr><tr><td>shared working directory</td><td>&quot;where it runs&quot;</td><td>Parallel subagents start in your directory. Same paths, same writes, no guard.</td></tr><tr><td><code>isolation: worktree</code></td><td>&quot;make it safe&quot;</td><td>Gives that subagent its own git checkout, so its edits land on their own branch. Off by default.</td></tr><tr><td>delegation message</td><td>&quot;the prompt&quot;</td><td>Written by Claude from your request. The only channel into a fresh subagent.</td></tr><tr><td>window from its own model</td><td>&quot;it has your window&quot;</td><td>A subagent's budget comes from the model in its definition, which may be smaller than yours.</td></tr><tr><td>summary return</td><td>&quot;the answer&quot;</td><td>What crosses back into your window. Everything else stays in the subagent's, and is gone.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Worktrees, properly.</strong> Branch naming, base refs, and cleanup are Lessons 74 and 75. This lesson only established that <code>isolation: worktree</code> is the switch.</p>
+<p><strong>Agent teams.</strong> How multiple sessions coordinate, and why teams do <em>not</em> get worktree isolation, is Lesson 73.</p>
+<p><strong>Forks.</strong> A subagent that inherits your whole conversation instead of starting fresh is Phase 06, Lesson 47 — the opposite of isolation.</p>
+<p><strong>Cross-session messaging.</strong> Passing findings between sessions you run yourself is Phase 12, Lesson 77.</p>
+<p><strong>The concurrency limit.</strong> How many subagents can run at once is a number that moves; check <a href="https://code.claude.com/docs/en/sub-agents" target="_blank" rel="noopener">the subagents page</a> rather than a figure quoted here.</p>
+      </div>
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You delegate a big read-only search to a subagent and your own window stays small, exactly as hoped. Why does that say nothing about whether two subagents can safely edit files at once?</p>
+        <ol class="options" type="A">
+          <li>Because a subagent only keeps its context isolated; it still writes to the same working directory as every other subagent</li>
+          <li>Because read-only subagents and writing subagents use different context windows</li>
+          <li>Because the harness reuses one window but swaps the tool list per subagent</li>
+          <li>Because your window stayed small only until the next compaction</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Because a subagent only keeps its context isolated; it still writes to the same working directory as every other subagent</p>
+          <p class="why">The demonstration showed context isolation — the subagent spent its own window and returned a summary — but the two agents would still start in one shared directory, so their writes collide. Read-only versus writing subagents don't have different windows. The harness gives each subagent its own window rather than reusing one. And compaction changes how much of your window survives, not where parallel agents write files.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A subagent keeps coming back with truncated search results on large repos. Nothing in your session is out of room. What is the most likely cause?</p>
+        <ol class="options" type="A">
+          <li>It shares your window but loses track of the token count</li>
+          <li>Its window is sized by the model in its own definition, which may be smaller than yours</li>
+          <li>Subagents have a fixed 100k window and you need to raise it</li>
+          <li>Your window and its window draw from one shared pool, so other work ate its room</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Its window is sized by the model in its own definition, which may be smaller than yours</p>
+          <p class="why">A subagent's context window comes from its own model — delegate to a cheaper alias and you may hand it a smaller room, so a search that fits in your session doesn't fit in its. Option A describes the opposite relationship. Option C invents a fixed size. Option D is wrong because each non-fork subagent's context is separate; that separation is the whole point of this lesson.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You want three subagents to run at once, each editing its own set of files, with no lost writes if their lists accidentally overlap. What do you add?</p>
+        <ol class="options" type="A">
+          <li>A longer delegation message warning each one not to touch the others' files</li>
+          <li><code>model: opus</code> on each, so they plan more carefully</li>
+          <li><code>isolation: worktree</code> on each, so each edits its own checkout</li>
+          <li>A skill that runs in your window and edits the files itself</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> <code>isolation: worktree</code> on each, so each edits its own checkout</p>
+          <p class="why">File isolation is the missing property, and <code>isolation: worktree</code> is the switch that provides it — each agent edits its own checkout, so an overlap becomes a merge rather than an overwrite. A warning in the prompt is a request, not a guard, and it can't survive an ambiguous edit. A bigger model reasons better but still writes to the same paths. A skill runs in your own window and doesn't isolate anything.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You want a subagent's result to land <em>interleaved</em> in your own next steps — you'll act on each item as it comes. Your teammate says &quot;just use a subagent.&quot; Why is that the wrong shape?</p>
+        <ol class="options" type="A">
+          <li>A subagent's summary is the only thing that returns, so you'd lose the step-by-step detail you need</li>
+          <li>A subagent can't use tools, only read files</li>
+          <li>A subagent's window is too large to hold a checklist</li>
+          <li>A subagent can't run until the main conversation is idle</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> A subagent's summary is the only thing that returns, so you'd lose the step-by-step detail you need</p>
+          <p class="why">A subagent is optimized to keep its intermediate work out of your window and hand back a summary — the opposite of what you want when you need each step in front of you. That case is a skill, which runs in your own window by design. Subagents use tools freely, their windows aren't the issue, and they don't require the main conversation to be idle.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/11-parallelism-i/71-the-five-names.html"><span>Previous</span>71. The Five Names</a>
+    <a class="next" href="../../phases/11-parallelism-i/73-agent-teams.html"><span>Next</span>73. Agent Teams — Mailbox, Task List, Documented Limits</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

@@ -2,26 +2,49 @@
   "lesson": "17-scaling-and-operations/111-headless-mode",
   "title": "Headless / Non-Interactive Mode",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Headless / Non-Interactive Mode that needs a new situation, not recall.",
+      "prompt": "A CI job runs `claude -p \"write the release notes\"` and produces a different answer on the runner than on the developer's laptop. The repository is identical on both. What is the most likely cause, and the fix?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The model is non-deterministic, so install a fixed seed with a flag",
+        "The run loads the host's context (CLAUDE.md, hooks, skills, MCP); re-run with no dependency on it by using `--bare` and passing only what the job needs",
+        "The runner is slower, so add `--max-turns` to force the same path",
+        "The prompt is too vague; make it more specific so any machine agrees"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A `-p` run uses the same context loader as an interactive session: it reads the working directory's and the home directory's .claude, CLAUDE.md, hooks, skills, MCP servers, and auto memory. On the laptop that set is rich; on a clean runner it is empty, so the same command has different inputs. `--bare` skips auto-discovery and makes the run depend only on what the script passes, which is what reproducibility requires. A is the tempting answer because model sampling is real, but the sample space cannot explain a difference that tracks the machine, and no seed flag fixes configuration drift. C confuses speed with context. D assumes the prompt is where the difference lives, but the prompt was the same on both machines."
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A nightly `claude -p` job sometimes runs for an hour and then times out instead of finishing. The task itself is quick. What should you change first?",
+      "options": [
+        "Raise the job timeout so it has room to finish",
+        "Add `--permission-prompts none` (and/or an explicit `--allowedTools` list) so a tool call can't sit waiting for an approval",
+        "Switch `--output-format` to `stream-json` so the job streams instead of blocking",
+        "Run it with `--continue` so it resumes past the stall"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A `-p` run still follows the permission system. When a tool call needs approval and no human is present, the run waits — which is exactly a quick task that occasionally takes an hour. `--permission-prompts none` tells the run nobody can answer: anything that would prompt is denied, Claude is told not to retry, and the run proceeds. `--allowedTools` pre-approves the tools that legitimately need to run. A is tempting because a timeout is the visible symptom, but a larger timeout just changes how long the hang lasts. C changes how output is delivered, not whether approval is needed. D continues a finished conversation; there is nothing to resume when the run never ended."
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A script must pull an array of function names out of a file's contents. Which approach is the robust one?",
+      "options": [
+        "Run with default text output and extract the names with a regular expression",
+        "Run with `--output-format json --json-schema '{...}'` and read the validated `structured_output` field",
+        "Ask the model to format the names as a comma-separated string and split on commas",
+        "Turn the prompt into several `-p` calls, one per function, and concatenate"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A JSON Schema turns the answer into a validated contract: the response carries a `structured_output` field shaped the way you asked, so your script parses a field instead of guessing at prose. A is tempting because it is what you do with an ordinary command, but scraping free text couples your script to the model's formatting, which changes without warning. C replaces a schema with a delimiter convention that the model may not honor, and names containing commas break it outright. D multiplies cost and calls without removing the parsing problem, since each call still returns prose."
     }
   ]
 }

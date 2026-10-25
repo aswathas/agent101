@@ -4,94 +4,247 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Channels and Surfaces — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can say where a run is happening, what context it can see, and how an">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Channels and Surfaces</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li class="on"><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 112, The Claude Agent SDK</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 17 · LESSON 113</p>
+      <h1>Channels and Surfaces</h1>
+      <p class="lesson-motto">You can say where a run is happening, what context it can see, and how an</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 112, The Claude Agent SDK</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Name the surfaces Claude Code runs on and the one thing each is best for</li><li>Predict which context travels between surfaces and which stays on the machine</li><li>Explain what a channel is and how it differs from a cloud session or a schedule</li><li>Run a channel and watch an outside event arrive in an open session</li><li>Decide, for a given task, whether the surface or the wake-up is the choice that matters</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You had a session open on your laptop with uncommitted changes and a clear picture of the bug. A teammate mentioned <code>@Claude</code> in Slack and asked it to fix the failing test.</p>
+<p>It started a fresh session in the cloud, on a clone of the default branch. It could not see your changes. It did not know what you were debugging. It opened a pull request of its own against code you had already moved past.</p>
+<p>Nothing was broken. You asked a sentence-shaped question and got a different <em>surface</em> than the one you were working in. A Slack mention spawns a cloud task; a channel pushes into the session already running on your machine. Same four letters, two different mechanisms, and one of them has your files.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Two words, two jobs:</p>
+<ul><li>A <strong>surface</strong> is <em>where the loop runs and how you watch it</em>. The engine is the same everywhere; what changes is the context it can see and the features it exposes.</li><li>A <strong>channel</strong> is <em>how an outside event gets into a run that is already open</em>. It is an MCP server that pushes messages, not a place to run.</li></ul>
+<figure class="diagram"><pre>flowchart LR
+    subgraph Local[&quot;Your machine&quot;]
+      C[CLI]
+      D[Desktop]
+      V[VS Code / JetBrains]
+      subgraph S[&quot;open session&quot;]
+        L[agent loop]
+      end
+      CH[&quot;channel (MCP server)&lt;br/&gt;CI failure, chat, webhook&quot;] --&gt; L
+      C --&gt; L
+      D --&gt; L
+      V --&gt; L
+    end
+    subgraph Cloud[&quot;Anthropic-hosted&quot;]
+      W[Web session on a clone]
+      M[Mobile = thin client]
+      SL[Slack mention → fresh cloud session]
+      M --&gt; W
+      SL --&gt; W
+    end</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="the-surfaces">The surfaces</h3>
+<div class="table-wrap"><table><thead><tr><th>Surface</th><th>Best for</th><th>What makes it different</th></tr></thead><tbody><tr><td>CLI</td><td>Terminal work, scripting, the Agent SDK, remote servers</td><td>The most complete surface; scripting and the SDK are CLI-only</td></tr><tr><td>Desktop</td><td>Visual diff review, parallel sessions, managed setup</td><td>A GUI over the same engine</td></tr><tr><td>VS Code / JetBrains</td><td>Staying in your editor</td><td>Inline diffs, selection sharing, a terminal session inside the IDE</td></tr><tr><td>Web</td><td>Long tasks with little steering; work that continues while you're offline</td><td>Runs in the cloud on a clone; keeps going after you disconnect</td></tr><tr><td>Mobile</td><td>Starting and monitoring tasks away from your desk</td><td>A thin client into cloud sessions, or into a local one via Remote Control</td></tr></tbody></table></div>
+<p>The rule that bites: **configuration, project memory, and MCP servers are shared across the <em>local</em> surfaces**, but a cloud session does not read your device's files or your admin's MDM policy. The same project on two surfaces is not the same context.</p>
+<h3 id="the-channels">The channels</h3>
+<p>A channel is an MCP server that pushes events into a running session. Install it as a plugin, opt it in per session, and push:</p>
+<pre class="code" data-lang="bash"><code>claude --channels plugin:fakechat@claude-plugins-official</code></pre>
+<p>An inbound message shows in the terminal as a line like <code>← fakechat · web: what's in my working directory?</code>, and the model receives it as a <code>&lt;channel source=&quot;…&quot;&gt;</code> event. Channels can be two-way — Claude replies through the same channel, which is how a chat bridge works.</p>
+<p>Three properties define the shape:</p>
+<ul><li><strong>Events arrive only while the session is open.</strong> For always-on use you run the session in a background process or a persistent terminal.</li><li><strong>Access is gated.</strong> Every channel keeps a sender allowlist; only IDs you added can push. Being in <code>.mcp.json</code> is not enough — the server must also be named in <code>--channels</code>.</li><li><strong>It is a research preview</strong>, controlled by <code>channelsEnabled</code> and <code>allowedChannelPlugins</code> in managed settings (Lesson 115).</li></ul>
+<h3 id="channels-vs-the-other-reach-me-when-i-m-away-features">Channels vs the other &quot;reach me when I'm away&quot; features</h3>
+<div class="table-wrap"><table><thead><tr><th>Feature</th><th>Trigger</th><th>Where the loop runs</th><th>Use it when</th></tr></thead><tbody><tr><td>Channel</td><td>An event pushed from chat, CI, or your server</td><td>Your open local session</td><td>You want the event acted on where your files already are</td></tr><tr><td>Slack <code>@Claude</code></td><td>A mention in a team channel</td><td>A fresh cloud session on a clone</td><td>You want to start a task from team chat</td></tr><tr><td>Cloud / web session</td><td>You submit a task</td><td>Anthropic-hosted, on a clone</td><td>Async work you check on later</td></tr><tr><td>Remote Control</td><td>You drive it from your phone or browser</td><td>Your local session</td><td>You want to steer, not to answer</td></tr><tr><td>Scheduled task</td><td>A timer</td><td>CLI, Desktop, or cloud</td><td>Recurring work, no external event</td></tr></tbody></table></div>
+<p>The trap is picking a wake-up to solve a context problem. If your task needs uncommitted work or a local server, no cloud trigger will have it. Choose the surface first; the event source second.</p>
+<blockquote><p><strong>The reframe:</strong> a surface decides where the loop lives and what it can see;</p><p>a channel only decides what walks in the door. Reaching for the wrong</p><p>wake-up cannot fix a run that is looking at the wrong files.</p></blockquote>
+<p><strong>A note on versions.</strong> Channels are an explicit research preview: the <code>--channels</code> flag and the protocol contract may change, and the flag is intentionally hidden from <code>claude --help</code> while in preview. Check the <a href="https://code.claude.com/docs/en/channels" target="_blank" rel="noopener">channels docs</a> and the <a href="https://code.claude.com/docs/en/platforms" target="_blank" rel="noopener">platforms page</a> before relying on any specific behaviour.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<ol><li class="criterion"><strong>Run the same prompt on two surfaces and compare context.</strong> In an interactive CLI session in a project with uncommitted changes, ask <em>&quot;What files have I changed but not committed?&quot;</em> Then submit a similar question to a cloud/web session on the same repository. ✅ You pass when you can state what the cloud session could and could not see, and name why.</li></ol>
+<ol><li class="criterion"><strong>Check what travels between local surfaces.</strong> Open the same project in the CLI and in the VS Code extension. Note the MCP servers and project memory each has. ✅ You pass when you can say which of the two had an MCP server the other lacked, or confirm they matched.</li></ol>
+<ol><li class="criterion"><strong>Run a channel.</strong> Install the <code>fakechat</code> demo plugin and start a session with it: <code>claude --channels plugin:fakechat@claude-plugins-official</code>. Open the local UI, send a message, approve the first reply if prompted. ✅ You pass when the message appears in your terminal as an inbound channel line and Claude's reply appears back in the UI.</li></ol>
+<ol><li class="criterion"><strong>Prove the open-session limit.</strong> Stop the channel session. Push another message. ✅ You pass when you can point at the absence of output and explain that a channel only delivers while the session is open.</li></ol>
+<ol><li class="criterion"><strong>(If you administer an org) Find the gate.</strong> Locate <code>channelsEnabled</code> and <code>allowedChannelPlugins</code> in managed settings (Lesson 115). ✅ You pass when you can say who can turn channels on and how one is restricted, without opening the docs.</li></ol>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Thing</th><th>When you reach for it</th></tr></thead><tbody><tr><td>CLI</td><td>Scripting, the Agent SDK, or any terminal-native workflow</td></tr><tr><td>Desktop</td><td>Visual diff review and managing several sessions at once</td></tr><tr><td>VS Code / JetBrains</td><td>You want the agent inside the editor you already have open</td></tr><tr><td>Web / cloud session</td><td>A long, low-steering task that should survive you closing the lid</td></tr><tr><td>Mobile</td><td>Starting or monitoring work away from your desk</td></tr><tr><td><code>claude --channels plugin:&lt;name&gt;@&lt;marketplace&gt;</code></td><td>Push external events into an already-open local session</td></tr><tr><td>The channel sender allowlist</td><td>Every channel — only IDs you trust should reach the loop</td></tr><tr><td>Remote Control</td><td>Steering a running session from another device</td></tr><tr><td>Scheduled tasks</td><td>A timer, when there is no external event to react to</td></tr><tr><td><code>channelsEnabled</code> / <code>allowedChannelPlugins</code></td><td>Org-level control over which channels may register</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion"><strong>Classify four requests by surface.</strong> Write down: (a) an overnight migration on a branch, (b) a fix that needs a local Docker service, (c) a triage of a CI failure the moment it happens, (d) a question you want to ask from your phone about code on your laptop. Assign each a surface <em>and</em> a wake-up, then justify the surface. ✅ You pass when no item relies on a cloud trigger to reach local-only context such as uncommitted files or a running service.</li></ol>
+<ol><li class="criterion"><strong>Break the assumption on purpose.</strong> Start a task you believe &quot;should&quot; work from Slack or a cloud session and let it run against a repository where the needed changes are uncommitted. ✅ You pass when you can name the exact moment the missing context showed up and which surface would have had it.</li></ol>
+<ol><li class="criterion"><strong>Make a channel fail closed.</strong> Run a channel, then try to push from a sender that is not on the allowlist. ✅ You pass when the message is silently dropped and you can say where the gate lives.</li></ol>
+<ol><li class="criterion"><strong>Choose the wake-up, not the habit.</strong> For one recurring need, compare a scheduled task against a channel. ✅ You pass when you can say which one you chose and name the specific thing the other would do worse.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>surface</td><td>&quot;the app&quot;</td><td>Where the loop runs and how you watch it. The same engine, a different context and feature set</td></tr><tr><td>channel</td><td>&quot;an integration&quot;</td><td>An MCP server that pushes events into an <em>already-open</em> session. Not a place to run</td></tr><tr><td>cloud session</td><td>&quot;Claude in the cloud&quot;</td><td>A run on an Anthropic-hosted clone. It sees the repository, not your uncommitted work</td></tr><tr><td>Slack <code>@Claude</code></td><td>&quot;a channel&quot;</td><td>The opposite: a mention <em>starts</em> a fresh cloud session, it does not feed an open one</td></tr><tr><td>Remote Control</td><td>&quot;the same as a channel&quot;</td><td>You drive a session from elsewhere; a channel pushes input into it</td></tr><tr><td>sender allowlist</td><td>&quot;permissions&quot;</td><td>The gate that decides which IDs may push into a channel; only IDs you add</td></tr><tr><td>shared across local surfaces</td><td>&quot;synced&quot;</td><td>Config, memory, and MCP travel between CLI, Desktop, and IDE — not to the cloud</td></tr><tr><td>research preview</td><td>&quot;shipped&quot;</td><td>Available, allowlisted, and explicitly subject to change</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>How to build a channel.</strong> The protocol contract — capability declaration, notification events, reply tools, permission relay — is the <a href="https://code.claude.com/docs/en/channels-reference" target="_blank" rel="noopener">channels reference</a>. This lesson is about choosing the surface and the trigger, not authoring the server.</p>
+<p><strong>Enterprise surfaces.</strong> Self-hosted environments, gateways, and the full admin picture are Lesson 115 and the <a href="https://code.claude.com/docs/en/admin-setup" target="_blank" rel="noopener">administration docs</a>.</p>
+<p><strong>Remote Control and Dispatch in depth.</strong> They are named here to keep them distinct from channels; each has its own page.</p>
+<p><strong>Cloud infrastructure.</strong> Where a cloud session runs, how environments are configured, and what isolation it has belong with <a href="https://code.claude.com/docs/en/cloud-environments" target="_blank" rel="noopener">cloud environments</a>, a different course than this one's parallel-work focus.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A bug reproduces only against a Docker service running on your laptop, and the fix depends on changes you have not committed. Where should the agent run?</p>
+        <ol class="options" type="A">
+          <li>A cloud session, because it can clone the branch and run the service in its sandbox</li>
+          <li>A local session on your machine, because that is the only surface that can see your uncommitted changes and reach the running service</li>
+          <li>A Slack <code>@Claude</code> mention, because it starts a task from team chat</li>
+          <li>A scheduled task, because it will retry until it succeeds</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A local session on your machine, because that is the only surface that can see your uncommitted changes and reach the running service</p>
+          <p class="why">Both constraints are local: uncommitted work exists only in your working tree, and a service bound to your machine is not reachable from a cloud clone. A local session (CLI or Desktop) is the surface that has both. A is tempting because a cloud sandbox sounds more capable, but it clones the repository — it never sees your uncommitted edits — and it is a different machine than the one running your Docker service. C starts a fresh cloud session, inheriting the same two blind spots. D changes when it runs, not what it can see.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You want a CI failure to be acted on in the same session where you are currently debugging, with your files open. Which mechanism fits?</p>
+        <ol class="options" type="A">
+          <li>A Slack <code>@Claude</code> mention in the channel where CI posts</li>
+          <li>A channel that pushes the CI event into your open session</li>
+          <li>A cloud session triggered on the failing pipeline</li>
+          <li>Remote Control from your phone</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A channel that pushes the CI event into your open session</p>
+          <p class="why">A channel is an MCP server that pushes an event into the session already running, which is exactly 'act on this where my files already are.' A Slack mention is the tempting near-miss: it starts a <em>fresh cloud session</em> on a clone, so it loses your open context. A cloud session on the pipeline has the same problem plus a different checkout. Remote Control lets you drive a session from another device; it does not inject an external event, so there is nothing for CI to trigger.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You plan to leave a channel running overnight so CI failures get handled while you sleep with your terminal closed. What is wrong with that plan?</p>
+        <ol class="options" type="A">
+          <li>Nothing — the channel keeps a process alive after the session ends</li>
+          <li>A channel only delivers events while its session is open, so you need a persistent or background session, not a closed terminal</li>
+          <li>Channels work overnight but only for messages from the allowlisted sender</li>
+          <li>Channels run in the cloud, so closing the terminal is fine</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A channel only delivers events while its session is open, so you need a persistent or background session, not a closed terminal</p>
+          <p class="why">A channel pushes into a <em>running</em> session. Close the session and there is nowhere for the event to land — the receive end is gone, which is the same mistake as expecting a cross-session message to arrive after the tab is closed. To get always-on behaviour you keep a session alive in a background process or a persistent terminal. A is the exact misconception to kill. C names a real gate (the allowlist) but not the reason the plan fails. D is false: channels deliver to your machine's local session, not to a cloud host.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span>Previous</span>112. The Claude Agent SDK</a>
+    <a class="next" href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span>Next</span>114. Sandboxing and Security Model</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

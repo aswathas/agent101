@@ -4,79 +4,264 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Base Ref, Cleanup, and the /batch Path — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can say what a fresh worktree starts from, what happens to it when you're">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Base Ref, Cleanup, and the /batch Path</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li class="on"><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 74, Worktrees, Deep — session vs per-agent</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 11 · LESSON 75</p>
+      <h1>Base Ref, Cleanup, and the /batch Path</h1>
+      <p class="lesson-motto">You can say what a fresh worktree starts from, what happens to it when you're</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 74 (Worktrees, Deep); Phase 02 Lesson 16 (Recovering Lost Work)</dd></div>
+        <div><dt>Time</dt><dd>~40 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Choose <code>worktree.baseRef</code> from what the agent needs to see, and predict the stale-code bug when you choose wrong</li><li>State what the retention sweep keeps and what it removes, and which of those loses work</li><li>Run <code>/batch</code> on a real change and read the plan it proposes before approving</li><li>Say how many worktrees a given <code>/batch</code> run will create, and where they go</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>An agent was sent into a worktree to fix a bug in a feature branch. The fix looked right. It also undid a change someone had made that morning, because the worktree had branched from the repository's <em>default</em> branch, not from the feature branch the session was on. The fix was correct against a tree that no longer existed.</p>
+<p>Nothing errored. That is the shape of this bug: <code>fresh</code> is the default, and <code>fresh</code> means &quot;branch from the repository's default branch on the remote, usually main.&quot; If your work lives on a feature branch and hasn't been pushed, every worktree starts blind to it.</p>
+<p>The second half of the problem is what happens after the run. A worktree with uncommitted work is <em>kept</em>, not deleted — which sounds safe until you learn that a worktree holding an unpushed commit can also be kept indefinitely, locked, and eventually forgotten. And a worktree a background session left behind can stay locked until something clears it.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<h3 id="what-a-fresh-worktree-starts-from">What a fresh worktree starts from</h3>
+<p><code>worktree.baseRef</code> in settings decides the base:</p>
+<div class="table-wrap"><table><thead><tr><th>Value</th><th>Branches from</th><th>Use when</th></tr></thead><tbody><tr><td><code>&quot;fresh&quot;</code> (default)</td><td>The repository's default branch on the remote, usually <code>main</code></td><td>The agent should work against a clean, up-to-date tree</td></tr><tr><td><code>&quot;head&quot;</code></td><td>Your current local <code>HEAD</code></td><td>The agent must see your unpushed commits and feature-branch state</td></tr></tbody></table></div>
+<p>```json .claude/settings.json { &quot;worktree&quot;: { &quot;baseRef&quot;: &quot;head&quot; } }</p>
+<pre class="code"><code>
+Two rules fall out of this:
 
----
+- You **can't** set `baseRef` to a branch name. For a specific existing branch,
+  create the worktree with `git worktree add` yourself (Lesson 74).
+- Inside a worktree, `&quot;head&quot;` resolves to *that worktree's* `HEAD`, not the main
+  checkout's. The setting is a rule, not a snapshot.
 
-## The Problem
+For `&quot;fresh&quot;`, Claude Code keeps `origin/HEAD` current, fetching the default
+branch if the repo hasn't been fetched in 24 hours. If there's no remote or the
+fetch fails, it falls back to your local `HEAD`.
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
+### What the retention sweep keeps
 
----
+Claude Code runs a periodic sweep that removes worktrees it created for subagents
+and background sessions, once they're older than `cleanupPeriodDays`. It keeps a
+worktree in place when:
 
-## The Concept
+- It still holds work: changed or untracked files, or **unpushed commits**.
+- A checked-out submodule has changes, or the submodules can't be inspected.
+- It belongs to a `--worktree` session you haven't backgrounded, whatever its age.
+- You created it yourself with `git worktree add`.
 
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
+Claude writes a marker into the git metadata of every worktree it creates, and
+the sweep keeps anything without one. While an agent runs, Claude holds a
+`git worktree lock`, released when the agent finishes; the sweep releases locks
+left by exited processes, but never a lock you set yourself.
 
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
+To clean one up by hand:
+</code></pre>
+<p>git worktree remove &lt;path&gt;            # add --force for uncommitted work git worktree unlock &lt;path&gt;            # if git refuses because it's locked</p>
+<pre class="code"><code>
+### The `/batch` path
+
+`/batch` is a skill that turns one large change into many isolated agents. It
+researches the codebase, decomposes the work into **5 to 30 independent units**,
+and shows you the plan. Once approved, it spawns one background subagent per unit
+in its own worktree. Each implements its unit, runs tests, and publishes its
+change.
+</code></pre>
+<p>/batch migrate src/ from JavaScript to TypeScript</p>
+<pre class="code"><code></code></pre>
+<p>sequenceDiagram participant You participant B as /batch skill participant W1 as Worktree 1 + agent participant W2 as Worktree 2 + agent You-&gt;&gt;B: /batch &lt;instruction&gt; B-&gt;&gt;B: research, decompose into 5-30 units B--&gt;&gt;You: plan You-&gt;&gt;B: approve B-&gt;&gt;W1: unit 1 B-&gt;&gt;W2: unit 2 W1--&gt;&gt;B: change + tests W2--&gt;&gt;B: change + tests B--&gt;&gt;You: published changes</p>
+<pre class="code"><code>
+It needs a git repository, or a `WorktreeCreate` hook that creates the worktrees
+for you. Outside git, that hook also changes how each subagent publishes — it
+reports what it published instead of opening a pull request.
+
+&gt; **The reframe:** a worktree is only as good as what it starts from and what
+&gt; happens to it after — `baseRef` decides the tree the agent sees, and the
+&gt; retention rules decide whether its work is still there tomorrow.
+
+Worktree defaults and `/batch` requirements are version-gated and move. Confirm
+against
+[Run parallel sessions with worktrees](https://code.claude.com/docs/en/worktrees)
+and [Commands](https://code.claude.com/docs/en/commands).
 
 ---
 
 ## Build It
 
-Numbered steps the reader runs. Each step ends in something observable.
+### 1. Feel the `fresh` bug
 
-1. First step.
-2. Second step.
+On a feature branch with an unpushed commit, create a worktree with the default
+base:
+</code></pre>
+<p>git switch -c feature-x git commit --allow-empty -m &quot;unpushed work&quot; claude --worktree demo</p>
+<pre class="code"><code>
+From inside the worktree:
+</code></pre>
+<p>git log --oneline -1</p>
+<pre class="code"><code>
+✅ You pass when the worktree's tip is the default branch, and the commit you
+just made is *not* visible there.
+
+### 2. Fix it with `baseRef: head`
+
+Add the setting from this lesson, remove the demo worktree, and repeat.
+
+✅ You pass when the worktree now contains your unpushed commit, and you can say
+which value the setting changed.
+
+### 3. Watch the lock
+
+With an agent still running in a worktree, run `git worktree list` from another
+terminal.
+
+✅ You pass when you can see the worktree marked locked, and explain why `git
+worktree remove` would refuse until the agent finishes or you unlock it.
+
+### 4. Read a `/batch` plan before approving
+
+Run `/batch` on a change small enough to judge — a rename across a folder.
+
+✅ You pass when you can state how many units it proposed, whether each maps to
+one worktree, and what it will do with each unit's change (publish, or open a PR).
 
 ---
 
 ## Use It
 
-| Command / concept | When you reach for it |
+| Situation | Move |
 |---|---|
-| — | — |
+| Agent must see your unpushed work | `worktree.baseRef: &quot;head&quot;`. |
+| Agent should work from a clean `main` | Leave `&quot;fresh&quot;` (the default). |
+| Start from a specific existing branch | `git worktree add` manually, not `baseRef`. |
+| One mechanical change across many folders | `/batch &lt;instruction&gt;`. |
+| A few independent edits you want to steer | Subagents or a team, not `/batch`. |
+| A worktree lingering after a crash | `git worktree remove`, unlock first if needed. |
+| No git repository | A `WorktreeCreate` hook; `/batch` then reports its published change. |
+| A shipped PR to review | `claude --worktree &quot;#1234&quot;`. |
 
 ---
 
 ## Exercises
 
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
+1. Run the same `/batch`-style change twice: once on `&quot;fresh&quot;`, once on
+   `&quot;head&quot;`, with an unpushed commit on your branch.
+   ✅ You pass when you can point at the run that built on stale code and name
+   the setting that caused it.
 
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
+2. Create a worktree, make an unpushed commit, and let the retention window
+   elapse (or simulate it). Determine whether the sweep keeps it.
+   ✅ You pass when you can state the rule and confirm it against `git worktree
+   list`.
+
+3. Run `/batch` on a change you can verify, and before approving, write down how
+   many worktrees you expect.
+   ✅ You pass when the run creates one worktree per unit and your predicted count
+   matches, or you can explain why the decomposition differed.
 
 ---
 
@@ -84,14 +269,100 @@ Numbered steps the reader runs. Each step ends in something observable.
 
 | Term | What people say | What it actually means |
 |---|---|---|
-| — | — | — |
+| `worktree.baseRef` | &quot;where the branch starts&quot; | `&quot;fresh&quot;` (default) from the remote default branch, or `&quot;head&quot;` from your current local `HEAD`. Never a branch name. |
+| fresh worktree | &quot;a clean copy&quot; | One branched from the default branch. It does not see unpushed work — the stale-code trap. |
+| retention sweep | &quot;cleanup&quot; | A periodic removal of Claude-created worktrees older than `cleanupPeriodDays`, skipping any that hold work. |
+| worktree lock | &quot;it won't delete while running&quot; | Held while an agent runs; released on finish, and for exited processes. Never releases a lock you set. |
+| `/batch` | &quot;mass edit&quot; | A skill that decomposes one change into 5–30 units and runs one worktree-isolated subagent per unit. |
+| publish | &quot;push the change&quot; | What each `/batch` subagent does with its result — a PR in git, or a reported change under a `WorktreeCreate` hook. |
+| `cleanupPeriodDays` | &quot;how long worktrees live&quot; | The age after which the sweep may remove an idle worktree — unless it holds work. |
 
 ---
 
 ## What this lesson skipped
 
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+**The enforcement checks.** Why a worktree session genuinely cannot edit the main
+checkout is Lesson 76.
+
+**Merge strategy for agent branches.** Rebasing, squash-merging, and the
+empty-branch bug are Phase 16.
+
+**Writing a `WorktreeCreate` hook.** The hooks model is Phase 08; the worktree
+page carries the working example.
+
+**Workflow scripts.** `/batch` is one packaged fan-out. Writing your own
+orchestration is Phase 12.
+</code></pre>
+      </div>
+
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">An agent in a worktree fixes a bug, but the fix assumes code you committed to your feature branch this morning and haven't pushed. The agent never saw that change. What was almost certainly true?</p>
+        <ol class="options" type="A">
+          <li><code>worktree.baseRef</code> was <code>&quot;head&quot;</code>, so it should have seen your commit</li>
+          <li><code>worktree.baseRef</code> was left at the default, so the worktree branched from the remote default branch</li>
+          <li>The worktree copied tracked files but not your commit messages</li>
+          <li>The agent's model had a smaller context window than your session</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> <code>worktree.baseRef</code> was left at the default, so the worktree branched from the remote default branch</p>
+          <p class="why">The default base is <code>&quot;fresh&quot;</code>, which branches from the repository's default branch on the remote — so unpushed work on your feature branch isn't there. Setting <code>&quot;head&quot;</code> is the fix. Option A is backwards. Option C confuses a checkout with commit history. Option D is a context-window issue and would show up as truncated results, not a stale tree.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A worktree Claude created for a background agent is days old. You want it gone, but <code>git worktree remove</code> refuses. Why might the sweep not have taken it already?</p>
+        <ol class="options" type="A">
+          <li>The sweep only removes worktrees created by <code>git worktree add</code></li>
+          <li>It still holds unpushed commits or changed files, which the sweep keeps on purpose</li>
+          <li>The sweep runs only at session startup and you haven't restarted</li>
+          <li>Claude-created worktrees can never be swept, only removed by hand</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> It still holds unpushed commits or changed files, which the sweep keeps on purpose</p>
+          <p class="why">The sweep deliberately skips any worktree that still holds work — changed or untracked files, or unpushed commits — so a worktree with real work stays until you deal with it, often locked while an agent runs. The sweep targets Claude-created worktrees (those with a marker), not <code>git worktree add</code> ones, which it keeps. It isn't a startup-only job, and Claude-created worktrees are exactly what it removes when they're clean and old.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A colleague asks you to change one function signature in one file. They suggest <code>/batch</code>. What should you tell them?</p>
+        <ol class="options" type="A">
+          <li>Yes — <code>/batch</code> runs one worktree per unit, so one unit is fine</li>
+          <li>No — <code>/batch</code> decomposes a large change into 5 to 30 units; a one-file change doesn't need fan-out</li>
+          <li>No — <code>/batch</code> needs a <code>WorktreeCreate</code> hook even in a git repo</li>
+          <li>Yes — <code>/batch</code> is required any time more than one file changes</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> No — <code>/batch</code> decomposes a large change into 5 to 30 units; a one-file change doesn't need fan-out</p>
+          <p class="why"><code>/batch</code> is built for large-scale changes it can split into 5–30 independent units; a single-file edit gains nothing and pays coordination overhead. It works in a git repository without a hook — the hook is for non-git version control. Nothing requires <code>/batch</code> merely because more than one file changes.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You set <code>worktree.baseRef</code> to <code>feature-x</code>, the name of your branch, and start a worktree. It fails. What is the correct fix?</p>
+        <ol class="options" type="A">
+          <li>Quote the branch name so the shell doesn't expand it</li>
+          <li>Use <code>&quot;head&quot;</code> while checked out on that branch, or create the worktree with <code>git worktree add</code></li>
+          <li>Set <code>baseRef</code> to the branch's commit hash instead</li>
+          <li>Enable <code>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS</code> first</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Use <code>&quot;head&quot;</code> while checked out on that branch, or create the worktree with <code>git worktree add</code></p>
+          <p class="why"><code>baseRef</code> accepts only <code>&quot;fresh&quot;</code> or <code>&quot;head&quot;</code> — it can't name a branch, so the correct move is <code>&quot;head&quot;</code> from that branch or a manual <code>git worktree add</code>. Quoting or a commit hash doesn't change the accepted values. The agent-teams variable is unrelated to worktree creation.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span>Previous</span>74. Worktrees, Deep — session vs per-agent</a>
+    <a class="next" href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span>Next</span>76. How Isolation Is Actually Enforced — the blocking checks</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

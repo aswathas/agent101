@@ -5,267 +5,278 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Commit Is a Photograph, Not a Diff — Harnessing Claude Code</title>
 <meta name="description" content="You can choose exactly what lands in a commit — instead of discovering after">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Commit Is a Photograph, Not a Diff</h1>
-  <p class="lesson-motto">You can choose exactly what lands in a commit — instead of discovering after</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li class="on"><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Phase 00, Lesson 2</p>
-    <p><strong>Time:</strong> ~35 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 02 · LESSON 12</p>
+      <h1>Commit Is a Photograph, Not a Diff</h1>
+      <p class="lesson-motto">You can choose exactly what lands in a commit — instead of discovering after</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 00, Lesson 2</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- Put two deliberate files into one commit and leave everything else out
-- Say what a commit actually stores, and where the staging area fits
-- Read any commit's identity back out of its hash
-- Write a commit message a stranger could act on
-
----
-
-## The Problem
-
-An agent refactored a file for you. It was right about nine files and wrong
-about one. You ran `git add -A &amp;&amp; git commit -m "fix parser"` because that is
-the command you know.
-
-Now the commit holds nine files of unrelated refactoring and one fix. Reviewing
-it means reading 400 changed lines to find the three that matter. Reverting it
-means losing the good eight. And there is no way to split it afterwards without
-rewriting history you have already pushed.
-
-Nothing about the situation was hard. The command was just too blunt for a
-mixed bag. One bad commit poisons every commit after it, because nobody can
-cherry-pick your fix without dragging the refactor along.
-
----
-
-## The Concept
-
-Lesson 2 established that a commit is a frozen copy of the whole project. This
-lesson adds the part that gives you control: a commit is **not** the diff. It is
-the whole tree at one moment, and you choose the moment.
-
-Three places, in order:
-
-&lt;div class="mermaid"&gt;&lt;pre&gt;flowchart LR
-    E[Editor / agent wrote files] --&amp;gt; WT[Working tree&amp;lt;br/&amp;gt;live folder on disk]
-    WT --&amp;gt;|git add| IDX[Staging area&amp;lt;br/&amp;gt;the index&amp;lt;br/&amp;gt;your draft]
-    IDX --&amp;gt;|git commit| C[Commit&amp;lt;br/&amp;gt;frozen full tree]
-    C --&amp;gt;|git diff| WT&lt;/pre&gt;&lt;/div&gt;
-
-**Working tree** — the live folder. Everything on disk.
-
-**Staging area** (the index) — a draft. Not history yet, not the folder yet.
-This is the part almost nobody uses deliberately, and it is the whole point of
-this lesson.
-
-**Commit** — a frozen full tree, identified by a hash of its contents.
-
-```bash
-git add src/parser.js test/parser.test.js   # only these two
-git commit -m "fix parser: handle empty input"
-```
-
-You edited eleven files. Two went in. The other nine are still uncommitted and
-still yours.
-
-### A commit stores a tree, not a delta
-
-You have heard "git stores diffs to save space." That is true of the packfile on
-disk and false of what a commit *is*. A commit is a complete snapshot. When two
-commits are stored together, git finds and stores the parts they share.
-
-This matters because it means:
-
-- A commit can be read on its own. `git show` on any commit shows the whole
-  tree at that moment.
-- Restoring one file from any commit needs no history walking.
-- Merging two commits is comparing two complete trees, not applying patches.
-
-### The hash is the content
-
-The commit hash is derived from what is in the commit — the tree, the parent,
-the author, the message, the timestamp. Change any of it, the hash changes.
-Two people who commit identical content with identical messages and timestamps
-get the same hash. Change one character of the message and it is a different
-commit.
-
-```bash
-git cat-file -p HEAD    # what is actually inside a commit: tree, parent, author, message
-git rev-parse HEAD      # the hash
-```
-
-`git cat-file -p` is the command that turns "a commit is a photograph" from a
-phrase into something you can read on screen.
-
-### Why this matters for agents
-
-An agent's output is one blob of mixed change. If you commit the blob, you have
-made the blob permanent and unreviewable. The staging area is where you split
-the blob: the fix in, the refactor out, the unrelated edit left for later.
-
-That is a two-minute operation done *before* the commit. After the commit it is
-`git rebase -i`, which is Lesson 14's territory and much worse.
-
-&gt; **The reframe:** `git add` is not "save my work", it is "put this exact work
-&gt; in the next photograph" — the photograph always shows the whole project, so
-&gt; what you leave out of the staging area is what you keep out of history.
-
----
-
-## Build It
-
-### 1. Watch the staging area hold a draft
-
-```bash
-mkdir -p ~/git-drill &amp;&amp; cd ~/git-drill
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Put two deliberate files into one commit and leave everything else out</li><li>Say what a commit actually stores, and where the staging area fits</li><li>Read any commit's identity back out of its hash</li><li>Write a commit message a stranger could act on</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>An agent refactored a file for you. It was right about nine files and wrong about one. You ran <code>git add -A &amp;&amp; git commit -m &quot;fix parser&quot;</code> because that is the command you know.</p>
+<p>Now the commit holds nine files of unrelated refactoring and one fix. Reviewing it means reading 400 changed lines to find the three that matter. Reverting it means losing the good eight. And there is no way to split it afterwards without rewriting history you have already pushed.</p>
+<p>Nothing about the situation was hard. The command was just too blunt for a mixed bag. One bad commit poisons every commit after it, because nobody can cherry-pick your fix without dragging the refactor along.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Lesson 2 established that a commit is a frozen copy of the whole project. This lesson adds the part that gives you control: a commit is <strong>not</strong> the diff. It is the whole tree at one moment, and you choose the moment.</p>
+<p>Three places, in order:</p>
+<figure class="diagram"><pre>flowchart LR
+    E[Editor / agent wrote files] --&gt; WT[Working tree&lt;br/&gt;live folder on disk]
+    WT --&gt;|git add| IDX[Staging area&lt;br/&gt;the index&lt;br/&gt;your draft]
+    IDX --&gt;|git commit| C[Commit&lt;br/&gt;frozen full tree]
+    C --&gt;|git diff| WT</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p><strong>Working tree</strong> — the live folder. Everything on disk.</p>
+<p><strong>Staging area</strong> (the index) — a draft. Not history yet, not the folder yet. This is the part almost nobody uses deliberately, and it is the whole point of this lesson.</p>
+<p><strong>Commit</strong> — a frozen full tree, identified by a hash of its contents.</p>
+<pre class="code" data-lang="bash"><code>git add src/parser.js test/parser.test.js   # only these two
+git commit -m &quot;fix parser: handle empty input&quot;</code></pre>
+<p>You edited eleven files. Two went in. The other nine are still uncommitted and still yours.</p>
+<h3 id="a-commit-stores-a-tree-not-a-delta">A commit stores a tree, not a delta</h3>
+<p>You have heard &quot;git stores diffs to save space.&quot; That is true of the packfile on disk and false of what a commit <em>is</em>. A commit is a complete snapshot. When two commits are stored together, git finds and stores the parts they share.</p>
+<p>This matters because it means:</p>
+<ul><li>A commit can be read on its own. <code>git show</code> on any commit shows the whole tree at that moment.</li><li>Restoring one file from any commit needs no history walking.</li><li>Merging two commits is comparing two complete trees, not applying patches.</li></ul>
+<h3 id="the-hash-is-the-content">The hash is the content</h3>
+<p>The commit hash is derived from what is in the commit — the tree, the parent, the author, the message, the timestamp. Change any of it, the hash changes. Two people who commit identical content with identical messages and timestamps get the same hash. Change one character of the message and it is a different commit.</p>
+<pre class="code" data-lang="bash"><code>git cat-file -p HEAD    # what is actually inside a commit: tree, parent, author, message
+git rev-parse HEAD      # the hash</code></pre>
+<p><code>git cat-file -p</code> is the command that turns &quot;a commit is a photograph&quot; from a phrase into something you can read on screen.</p>
+<h3 id="why-this-matters-for-agents">Why this matters for agents</h3>
+<p>An agent's output is one blob of mixed change. If you commit the blob, you have made the blob permanent and unreviewable. The staging area is where you split the blob: the fix in, the refactor out, the unrelated edit left for later.</p>
+<p>That is a two-minute operation done <em>before</em> the commit. After the commit it is <code>git rebase -i</code>, which is Lesson 14's territory and much worse.</p>
+<blockquote><p><strong>The reframe:</strong> <code>git add</code> is not &quot;save my work&quot;, it is &quot;put this exact work</p><p>in the next photograph&quot; — the photograph always shows the whole project, so</p><p>what you leave out of the staging area is what you keep out of history.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-watch-the-staging-area-hold-a-draft">1. Watch the staging area hold a draft</h3>
+<pre class="code" data-lang="bash"><code>mkdir -p ~/git-drill &amp;&amp; cd ~/git-drill
 git init
 printf 'one\n' &gt; a.txt
 printf 'one\n' &gt; b.txt
 printf 'one\n' &gt; c.txt
 git add a.txt
+git status</code></pre>
+<p><code>a.txt</code> is staged. <code>b.txt</code> and <code>c.txt</code> are not. The commit that comes next will contain <code>a.txt</code>, plus the other two files exactly as they were when the repo started — which right now is &quot;untracked&quot;, so they will not be in it at all.</p>
+<p>✅ You pass when <code>git status</code> lists <code>a.txt</code> under changes to be committed and <code>b.txt</code>, <code>c.txt</code> under untracked files.</p>
+<h3 id="2-commit-a-partial-set">2. Commit a partial set</h3>
+<pre class="code" data-lang="bash"><code>git add b.txt
+git commit -m &quot;add a and b&quot;
 git status
-```
-
-`a.txt` is staged. `b.txt` and `c.txt` are not. The commit that comes next will
-contain `a.txt`, plus the other two files exactly as they were when the repo
-started — which right now is "untracked", so they will not be in it at all.
-
-✅ You pass when `git status` lists `a.txt` under changes to be committed and
-`b.txt`, `c.txt` under untracked files.
-
-### 2. Commit a partial set
-
-```bash
-git add b.txt
-git commit -m "add a and b"
-git status
-git show --stat HEAD
-```
-
-The commit has two files. `c.txt` is still untracked and the working tree is not
-clean.
-
-✅ You pass when `git show --stat HEAD` lists exactly `a.txt` and `b.txt`, and
-`c.txt` still appears in `git status`.
-
-### 3. Take a commit apart
-
-```bash
-git cat-file -p HEAD
-```
-
-You get a tree hash, a parent line (absent here — first commit), author,
-timestamp, and the message. The commit names its contents.
-
-✅ You pass when you can point at the tree hash line and say that the commit
-does not store changes, it stores a complete tree at that hash.
-
-### 4. See that the message is part of the identity
-
-```bash
-git rev-parse HEAD
-git commit --amend -m "add a and b (typo fix)"
-git rev-parse HEAD
-```
-
-The hash changed. Nothing about the files changed.
-
-✅ You pass when the two hashes differ and you can say why, in one sentence.
-
-### 5. Stage a hunk, not a file
-
-Make a mess in one file: change two unrelated lines.
-
-```bash
-printf 'one\ntwo\nthree\n' &gt; a.txt
+git show --stat HEAD</code></pre>
+<p>The commit has two files. <code>c.txt</code> is still untracked and the working tree is not clean.</p>
+<p>✅ You pass when <code>git show --stat HEAD</code> lists exactly <code>a.txt</code> and <code>b.txt</code>, and <code>c.txt</code> still appears in <code>git status</code>.</p>
+<h3 id="3-take-a-commit-apart">3. Take a commit apart</h3>
+<pre class="code" data-lang="bash"><code>git cat-file -p HEAD</code></pre>
+<p>You get a tree hash, a parent line (absent here — first commit), author, timestamp, and the message. The commit names its contents.</p>
+<p>✅ You pass when you can point at the tree hash line and say that the commit does not store changes, it stores a complete tree at that hash.</p>
+<h3 id="4-see-that-the-message-is-part-of-the-identity">4. See that the message is part of the identity</h3>
+<pre class="code" data-lang="bash"><code>git rev-parse HEAD
+git commit --amend -m &quot;add a and b (typo fix)&quot;
+git rev-parse HEAD</code></pre>
+<p>The hash changed. Nothing about the files changed.</p>
+<p>✅ You pass when the two hashes differ and you can say why, in one sentence.</p>
+<h3 id="5-stage-a-hunk-not-a-file">5. Stage a hunk, not a file</h3>
+<p>Make a mess in one file: change two unrelated lines.</p>
+<pre class="code" data-lang="bash"><code>printf 'one\ntwo\nthree\n' &gt; a.txt
 printf 'one\nCHANGED\nthree\n' &gt; a.txt   # two edits in the same file
 git diff                # both changes, unstaged
 git add -p a.txt        # answer y for the first hunk, n for the second
-git diff --cached       # only the first change is staged
-```
+git diff --cached       # only the first change is staged</code></pre>
+<p>✅ You pass when <code>git diff --cached</code> shows exactly one of the two changes.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>git add &lt;file&gt;</code></td><td>Putting a known-good file into the next commit</td></tr><tr><td><code>git add -p</code></td><td>Splitting one file's changes into separate commits</td></tr><tr><td><code>git status</code></td><td>Before every commit. Tells staged from unstaged</td></tr><tr><td><code>git diff --cached</code></td><td>Seeing the actual draft of the next commit</td></tr><tr><td><code>git commit -m</code></td><td>Freezing the draft</td></tr><tr><td><code>git cat-file -p &lt;sha&gt;</code></td><td>Seeing what a commit really contains</td></tr><tr><td><code>git show --stat &lt;sha&gt;</code></td><td>What a commit touched, without reading it</td></tr><tr><td>Commit message</td><td>What a stranger needs to decide whether to revert this</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take any real change you have lying around — a fix, a config edit, anything. Stage only the files that belong to that one thought. Commit them. Leave the rest uncommitted. ✅ You pass when <code>git show --stat HEAD</code> lists only the files you meant, and <code>git status</code> still shows your other changes as uncommitted.</li></ol>
+<ol><li class="criterion">Write a commit message for a change someone would need to evaluate in six months without asking you. Then amend it. Record both hashes. ✅ You pass when you have two different hashes from two different messages, and a message that names the <em>what</em> and the <em>why</em>, not the <em>how</em>.</li></ol>
+<ol><li class="criterion">Use <code>git add -p</code> to make two commits out of changes in one file. Compare <code>git log --oneline -2</code> against a single commit of both changes. ✅ You pass when the two-commit log has two entries and reverting either one alone is possible without reverting the other.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>commit</td><td>&quot;saving my changes&quot;</td><td>A frozen full tree with a message and a parent. Content-addressed.</td></tr><tr><td>diff</td><td>&quot;the commit&quot;</td><td>The <em>difference</em> between two trees. Useful to read; never what is stored.</td></tr><tr><td>staging area / index</td><td>&quot;the thing before the commit&quot;</td><td>A draft tree. <code>git add</code> edits the draft; <code>git commit</code> freezes it.</td></tr><tr><td><code>git add -p</code></td><td>&quot;partial staging&quot;</td><td>Choose change-by-change inside one file instead of all or nothing.</td></tr><tr><td>commit hash</td><td>&quot;the commit id&quot;</td><td>A digest of the commit's contents. Change any byte, including the message, and it changes.</td></tr><tr><td><code>--amend</code></td><td>&quot;fixing the last commit&quot;</td><td>Replaces the last commit. Fine locally, disruptive once pushed.</td></tr><tr><td><code>git revert</code></td><td>&quot;undo&quot;</td><td>New commit that undoes an old one. History stays honest.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Sign commits.</strong> Nothing in this course requires them, and they are friction on Windows setups.</p>
+<p><strong>Rewriting a commit after pushing.</strong> <code>rebase -i</code> and <code>reset</code> on shared history. That is Lesson 14, and Lesson 16 for when you have already done it wrong.</p>
+<p><strong>Commit templates and hooks.</strong> <code>commit-msg</code> hooks automate message format. Real and worth adding once your messages are consistently good — after this lesson, not before.</p>
+      </div>
 
-✅ You pass when `git diff --cached` shows exactly one of the two changes.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| `git add &lt;file&gt;` | Putting a known-good file into the next commit |
-| `git add -p` | Splitting one file's changes into separate commits |
-| `git status` | Before every commit. Tells staged from unstaged |
-| `git diff --cached` | Seeing the actual draft of the next commit |
-| `git commit -m` | Freezing the draft |
-| `git cat-file -p &lt;sha&gt;` | Seeing what a commit really contains |
-| `git show --stat &lt;sha&gt;` | What a commit touched, without reading it |
-| Commit message | What a stranger needs to decide whether to revert this |
-
----
-
-## Exercises
-
-1. Take any real change you have lying around — a fix, a config edit, anything.
-   Stage only the files that belong to that one thought. Commit them. Leave the
-   rest uncommitted.
-   ✅ You pass when `git show --stat HEAD` lists only the files you meant, and
-   `git status` still shows your other changes as uncommitted.
-
-2. Write a commit message for a change someone would need to evaluate in six
-   months without asking you. Then amend it. Record both hashes.
-   ✅ You pass when you have two different hashes from two different messages,
-   and a message that names the *what* and the *why*, not the *how*.
-
-3. Use `git add -p` to make two commits out of changes in one file. Compare
-   `git log --oneline -2` against a single commit of both changes.
-   ✅ You pass when the two-commit log has two entries and reverting either one
-   alone is possible without reverting the other.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| commit | "saving my changes" | A frozen full tree with a message and a parent. Content-addressed. |
-| diff | "the commit" | The *difference* between two trees. Useful to read; never what is stored. |
-| staging area / index | "the thing before the commit" | A draft tree. `git add` edits the draft; `git commit` freezes it. |
-| `git add -p` | "partial staging" | Choose change-by-change inside one file instead of all or nothing. |
-| commit hash | "the commit id" | A digest of the commit's contents. Change any byte, including the message, and it changes. |
-| `--amend` | "fixing the last commit" | Replaces the last commit. Fine locally, disruptive once pushed. |
-| `git revert` | "undo" | New commit that undoes an old one. History stays honest. |
-
----
-
-## What this lesson skipped
-
-**Sign commits.** Nothing in this course requires them, and they are friction
-on Windows setups.
-
-**Rewriting a commit after pushing.** `rebase -i` and `reset` on shared history.
-That is Lesson 14, and Lesson 16 for when you have already done it wrong.
-
-**Commit templates and hooks.** `commit-msg` hooks automate message format. Real
-and worth adding once your messages are consistently good — after this lesson,
-not before.</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">An agent edited six files: one real bug fix, three unrelated renames, and two files it touched while exploring. You want the fix in history and the rest out. What do you do?</p>
+        <ol class="options" type="A">
+          <li>Commit all six, then use git revert later on the unwanted four</li>
+          <li>git add only the fix file, then commit</li>
+          <li>Commit all six so the history records what happened, and be more careful next time</li>
+          <li>git add -A, git commit, then git reset --soft HEAD~1 to separate them afterwards</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> git add only the fix file, then commit</p>
+          <p class="why">The staging area is the filter, and using it before the commit costs seconds. Reverting (A) leaves the renames in history forever and adds four junk commits; each one is a thing a reader has to skip. Committing everything (C) is the instinct this lesson exists to break — the commit always shows the whole project, so whatever is staged is what becomes history. Resetting afterwards (D) rewrites history you probably already pushed, which is Lesson 14's mess, not a step.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You amend a commit only to fix a typo in its message. The files in it are byte-identical. What happened to the commit?</p>
+        <ol class="options" type="A">
+          <li>It became a new commit — its hash is derived from its contents, including the message</li>
+          <li>It kept its hash because the files did not change</li>
+          <li>It became a dangling commit that git garbage-collects on the next run</li>
+          <li>It was replaced by a merge of the old and new commit</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> It became a new commit — its hash is derived from its contents, including the message</p>
+          <p class="why">The hash covers the tree, the parent, the author, the timestamp and the message, so changing any of it produces a different commit. Option B would mean two different messages could share an identity, which defeats the point of a content address. Option C confuses this with the old commit being unreachable after a reset — amend does not do that. Option D is not a thing git does anywhere.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A colleague says the repo is bloated because 'git stores every change as a diff'. Why is the concern wrong?</p>
+        <ol class="options" type="A">
+          <li>Git compresses diffs with zlib, so the storage cost is already negligible</li>
+          <li>A commit stores a complete tree; shared parts are found and stored once when objects are packed</li>
+          <li>Diff-based storage was removed in git 2.0</li>
+          <li>Only the final state of each branch is stored, so intermediate commits cost nothing</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A commit stores a complete tree; shared parts are found and stored once when objects are packed</p>
+          <p class="why">The commit itself names a full tree, not a patch — which is why <code>git show</code> works on any commit in isolation and why restoring one file needs no history walk. Packing is where similarity between trees is exploited. Compression (A) is real but it is a different mechanism and it does not make the claim true. Diffs-as-storage were never removed (C), and old commits are not free (D) — that is how <code>git gc</code> has work to do at all.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You edited ten lines in one file, two of which belong to a bug fix and eight to an unrelated cleanup. The eight come first in the file. How do you commit just the fix?</p>
+        <ol class="options" type="A">
+          <li>Commit the file whole, then revert the cleanup in a second commit</li>
+          <li>git add -p the file and take only the hunk containing the fix</li>
+          <li>Split the file into two files, commit one, then move it back</li>
+          <li>Stage the whole file, then use git checkout -- &lt;file&gt; to undo the cleanup in the working tree</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> git add -p the file and take only the hunk containing the fix</p>
+          <p class="why"><code>git add -p</code> walks the changes in a file and lets you take or skip each one, so the commit draft contains only the fix. Reverting afterwards (A) leaves both in history and adds noise. Splitting files (C) restructures the repo to serve your commit message — a much bigger change than the problem. Option D destroys the cleanup in the working tree without removing it from the staged draft; the commit would still contain it, and the cleanup work would be gone from disk.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span>Previous</span>11. Latency, Cost, and Rate Limits</a>
+    <a class="next" href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span>Next</span>13. Branches Are Movable Labels, Not Copies</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

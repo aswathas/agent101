@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about What Loads Into the Window, and What Doesn't that needs a new situation, not recall.",
+      "prompt": "You paste a long log, ask about its start, and later ask about it again — Claude Code can no longer see that part. What happened?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "A bug — the log should stay readable once pasted",
+        "The block filled up: later content pushed the earlier part out, so the tool is reading from what is left",
+        "The tool is being uncooperative",
+        "The log was deleted from disk"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The fixed-size block holds everything the tool sees, so new content evicts old content — it is a budget running out, not a capability failing. Option A is tempting because the words are still on your screen, but the transcript on disk is not the same as the block the tool reads. Option C assigns intent where there is only a limit. Option D mistakes the window for storage.",
+      "concept": "budget-not-bug"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "Which input costs the most room per turn once it is sitting in the block?",
+      "options": [
+        "A line of your message",
+        "A word in the system prompt",
+        "A long file the tool just read",
+        "A short tool result"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "Cost rises from a line of chat to a short result to a long file read, so a file the tool read is the most expensive per turn. Option D is tempting because a tool result feels like a small detail, but a short result is medium and a long read is the heavy one. Options A and B are the cheap end of the ordering.",
+      "concept": "cost-ordering"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You ask for a small edit. You never see an explicit \"reading\" message — only the edit result. What is true?",
+      "options": [
+        "It did not read the file; it edited blind",
+        "It read the file during the act step; that read lives in the block for the rest of the session and costs every turn",
+        "It read the file but discarded the read immediately",
+        "File reads never enter the block"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A hidden read is still a read: it happens during the act step and then sits in the block, costing room on every later turn. Option A is tempting when no reading message appears, but the edit could not have been made without the read. Option C assumes the read is transient when it is retained. Option D contradicts the whole model.",
+      "concept": "hidden-read-costs"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Your test command prints megabytes of output, and you run it every few turns. What is the effect on the block?",
+      "options": [
+        "Only the first run costs; later runs are free",
+        "Each run's output stays in the block and is re-paid every following turn, crowding out earlier content",
+        "The tool compacts just that output automatically, so it is free",
+        "The tool refuses to run it"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A giant output dump is the most expensive kind of content, and it is re-paid on every turn it remains. Option A is tempting because the command itself ran once, but its output persists. Option C invents targeted compaction that the lesson does not describe. Option D is not the failure mode — the block fills, the tool does not decline.",
+      "concept": "big-output-repeats"
     }
   ]
 }

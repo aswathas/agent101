@@ -1,6 +1,6 @@
-# Lesson 34 — Settings: 4 Files, 5 Precedence Levels
+# Settings — 4 Files, 5 Precedence Levels
 
-The settings system is four files plus a flag, in five layers, with a fixed rule for collisions.
+> Four files plus a flag, in five layers, with a fixed rule for collisions.
 
 **Type:** Learn
 **Prerequisites:** Lesson 33 (Permissions and Permission Modes)

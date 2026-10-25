@@ -3,95 +3,258 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>*"Plugins Are the Packaging Layer"* — and why — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<title>*&quot;Plugins Are the Packaging Layer&quot;* — and why — Harnessing Claude Code</title>
+<meta name="description" content="You can stop hand-copying a skill, a subagent, and a hook between machines, and">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>*"Plugins Are the Packaging Layer"* — and why</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li class="on"><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 60, Debugging Hooks</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 09 · LESSON 61</p>
+      <h1>*&quot;Plugins Are the Packaging Layer&quot;* — and why</h1>
+      <p class="lesson-motto">You can stop hand-copying a skill, a subagent, and a hook between machines, and</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 05 (Lesson 44, Author a Skill), Phase 06 (Lesson 47,</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Decide, for a given setup, whether it needs a plugin or is fine as loose files</li><li>Explain what changes about a component when a plugin owns it, and what does not</li><li>Predict the name a component will have once it moves inside a plugin</li><li>Hand a whole setup to a teammate as one directory</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You built three things: a skill that reviews a diff, a subagent that only reads one file type, and a hook that blocks <code>git push --force</code>. They work. A teammate wants them.</p>
+<p>You send the skill file. They send it back — &quot;where does this go?&quot; You send the subagent. They put it in the wrong directory and it silently never loads. You send the hook as a snippet to paste into their <code>settings.json</code>. They paste it. You paste yours. Now every <code>git push --force</code> triggers the block twice, and the duplicated output makes it look like the hook is broken.</p>
+<p>Three weeks later you fix a bug in the hook. The teammate's copy still has the bug. Nobody knows which of the four files on four machines is current. The setup drifted, and drift is invisible until it costs you an afternoon.</p>
+<p>None of that is a Claude Code failure. It is what happens when you ship a <em>configuration</em> instead of a <em>package</em>.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>A plugin is a directory of components — skills, subagents, hooks, MCP servers — that Claude Code installs and loads <strong>as one unit</strong>.</p>
+<p>Everything inside it already exists. You built each piece in an earlier phase. The plugin adds no capability. It adds a unit of installation.</p>
+<figure class="diagram"><pre>flowchart LR
+    subgraph Loose[&quot;Three loose setups&quot;]
+        A1[skill.md&lt;br/&gt;in .claude/skills/]
+        A2[agent.md&lt;br/&gt;in .claude/agents/]
+        A3[hook in&lt;br/&gt;settings.json]
+    end
+    subgraph Pkg[&quot;One plugin directory&quot;]
+        P1[skills/review/SKILL.md]
+        P2[agents/reviewer.md]
+        P3[hooks/hooks.json]
+        M[.claude-plugin/plugin.json]
+    end
+    P1 --&gt; S[&quot;Installed as one unit&quot;]
+    P2 --&gt; S
+    P3 --&gt; S
+    M --&gt; S
+    S --&gt; N[&quot;Namespaced&lt;br/&gt;/my-plugin:review&quot;]
+    S --&gt; U[&quot;Updates and uninstall&lt;br/&gt;as one unit&quot;]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>Three properties fall out of &quot;one unit&quot;, and they are the whole reason plugins exist:</p>
+<p><strong>1. Namespacing.</strong> Every skill and agent the plugin provides gets the plugin name as a prefix. Inside a plugin named <code>guardrail-kit</code>, a skill named <code>review</code> becomes <code>/guardrail-kit:review</code>, and an agent named <code>reviewer</code> becomes <code>guardrail-kit:reviewer</code>. Two plugins can each ship a <code>review</code> skill without fighting over the name. Loose files cannot do this — <code>review</code> is just <code>review</code>, and the second one loses.</p>
+<p><strong>2. Lifecycle together.</strong> Enable, disable, update, uninstall: all four act on the whole directory. You never again track which of the four pieces a teammate has.</p>
+<p><strong>3. Portability.</strong> The directory is the deliverable. Zip it, drop it in a folder, or list it in a marketplace. Nothing in it is specific to your machine.</p>
+<p>Hooks are the exception to (1), and this is the trap from the problem section: <strong>hooks have no prefix.</strong> A hook in a plugin and the same hook in <code>settings.json</code> both fire. That's the double-block.</p>
+<h3 id="do-you-need-a-plugin">Do you need a plugin?</h3>
+<p>Skills, subagents, hooks, and MCP servers all work on their own. A plugin is not the upgrade path from &quot;no setup&quot; to &quot;setup&quot;. It's the move from <em>my machine</em> to <em>anyone's machine</em>.</p>
+<div class="table-wrap"><table><thead><tr><th>Situation</th><th>Use</th></tr></thead><tbody><tr><td>Just for you, in one project</td><td>Loose files in <code>.claude/</code>. Stop here.</td></tr><tr><td>Just for you, in every project</td><td>Loose files in <code>~/.claude/</code></td></tr><tr><td>A teammate needs the same three things</td><td>Plugin</td></tr><tr><td>Same setup, several repos, versioned</td><td>Plugin</td></tr><tr><td>You're publishing to others</td><td>Plugin</td></tr></tbody></table></div>
+<p>If you only ever need it yourself, a plugin is packaging you don't need. The files are the product; the plugin is the shipping container.</p>
+<h3 id="why-this-phase-comes-after-skills-subagents-and-hooks">Why this phase comes after skills, subagents, and hooks</h3>
+<p>Because there is nothing to package until you have something worth packaging. A plugin whose only component is one skill is a directory with a JSON file in it — you would learn the format and none of the reason. The reason only shows up once you have a skill, a subagent, and a hook that have to travel together and not collide on the way.</p>
+<blockquote><p><strong>The reframe:</strong> a plugin adds no capability — it adds a <em>unit</em>. Every</p><p>component you already have keeps working exactly as it did; what changes is</p><p>that from now on they install, collide-proof, update, and uninstall as one</p><p>thing, which is the only reason to reach for one.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-inventory-what-you-already-have">1. Inventory what you already have</h3>
+<p>You wrote a skill in Phase 05, a subagent in Phase 06, and a hook in Phase 08. Find all three:</p>
+<pre class="code"><code>ls ~/.claude/skills/ .claude/skills/ 2&gt;/dev/null
+ls .claude/agents/ 2&gt;/dev/null
+cat .claude/settings.json 2&gt;/dev/null | head -40</code></pre>
+<p>✅ You pass when you can point at a file path for each of the three, or name which one you never built.</p>
+<h3 id="2-see-a-plugin-s-shape-without-writing-one">2. See a plugin's shape without writing one</h3>
+<pre class="code"><code>claude plugin list</code></pre>
+<p>Any marketplace plugin that shows a version is a directory on your disk. Lesson 62 opens one up. For now just confirm there is one to look at.</p>
+<p>✅ You pass when <code>claude plugin list</code> prints at least one plugin with a <code>Status: loaded</code> line.</p>
+<h3 id="3-watch-the-prefix-do-its-job">3. Watch the prefix do its job</h3>
+<p>Install nothing. Start a session with a plugin loaded from disk — you'll build one in Lesson 63, so use any marketplace plugin you already have:</p>
+<pre class="code"><code>claude --plugin-dir ./path/to/some-plugin</code></pre>
+<p>In the session, type <code>/</code> and look. Components from the plugin appear under <code>/&lt;plugin-name&gt;:</code>. A loose skill of the same name appears bare.</p>
+<p>✅ You pass when you can name one component that shows the plugin prefix and one that does not, and say why the difference exists.</p>
+<h3 id="4-predict-the-name-before-you-move-a-file">4. Predict the name before you move a file</h3>
+<p>Pick the skill you wrote in Phase 05. Its frontmatter <code>name</code> is, say, <code>review</code>. Write down, without running anything, the command it will answer to after it moves into a plugin called <code>guardrail-kit</code>.</p>
+<p>✅ You pass when your prediction is written down before Lesson 63 tests it.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>/&lt;plugin&gt;:&lt;skill&gt;</code></td><td>Invoking a skill a plugin shipped</td></tr><tr><td><code>&lt;plugin&gt;:&lt;agent&gt;</code></td><td>Asking for a subagent a plugin shipped</td></tr><tr><td>Plugin directory as deliverable</td><td>Handing a setup to someone</td></tr><tr><td>Marketplace listing</td><td>Same setup, many machines, with updates</td></tr><tr><td><code>claude plugin list</code></td><td>What is loaded right now</td></tr><tr><td>Loose files in <code>.claude/</code></td><td>The setup is yours alone</td></tr><tr><td>Plugin hooks have no prefix</td><td>Remember this before you paste a hook twice</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take the three files you found in step 1 and answer: which of the three would <em>collide</em> if two people installed them independently, and which would <em>double-fire</em>? Name each one. ✅ You pass when you can name the skill as the collision risk, the hook as the double-fire risk, and say what namespacing fixes and does not.</li></ol>
+<ol><li class="criterion">Pick a teammate-shaped scenario: someone on a different machine, different OS, no access to your <code>~/.claude/</code>. Write the one-sentence description of what you would hand them, and what it must contain. ✅ You pass when the description names a directory, not three files, and names the manifest inside it.</li></ol>
+<ol><li class="criterion">Argue the opposite case. Pick one of your own setups and write down why it should stay as loose files. Then say what would have to change for you to package it. ✅ You pass when you can state a trigger — &quot;when a second person needs it&quot;, &quot;when it spans two repos&quot; — not &quot;when it gets big&quot;.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>plugin</td><td>&quot;an extension&quot;</td><td>A directory of components Claude Code loads as one unit. Nothing new; a unit.</td></tr><tr><td>packaging layer</td><td>&quot;it's just a zip&quot;</td><td>One install, one update, one uninstall, and names that cannot collide.</td></tr><tr><td>namespace prefix</td><td>&quot;it's named differently&quot;</td><td>Plugin name on the front of every skill and agent it provides. Hooks are excluded.</td></tr><tr><td>marketplace</td><td>&quot;the plugin store&quot;</td><td>A repo or directory with a <code>marketplace.json</code> listing plugins and where to fetch them. A catalog you add, not a hosted store.</td></tr><tr><td>loose files</td><td>&quot;my setup&quot;</td><td>Skills, agents, and hooks in <code>.claude/</code> or <code>~/.claude/</code>. Fine when nobody else needs them.</td></tr><tr><td>mod</td><td>&quot;a JS plugin&quot;</td><td>A plugin that ships a JavaScript hooks module. Mentioned in docs; not this lesson.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>The manifest and the file layout.</strong> What goes where, what <code>plugin.json</code> does, and which paths are legal. That is Lesson 62, and it needs the frame this lesson sets.</p>
+<p><strong>Installing and publishing.</strong> The actual commands, and how to get a plugin onto someone else's machine. Lesson 63.</p>
+<p><strong>What every enabled plugin costs you.</strong> An enabled plugin is present in every session, not just the ones you use it in — and that has a price. Lesson 64 is the only one in this phase that is about restraint rather than capability.</p>
+<p><strong>MCP servers as plugin components.</strong> Phase 07 built one. It can ride inside a plugin, but nothing in this lesson needs it, and lesson 63 leaves it out on purpose — three component types is already enough to show the packaging idea.</p>
+<p><strong>Mods.</strong> JavaScript hook modules that can add panes and commands. Real, in the docs, and deliberately not taught. Come back when you need a plugin to draw something rather than guard something.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You built a skill called <code>review</code>, a subagent called <code>reviewer</code>, and a force-push hook for yourself only, in one repo. A colleague wants the same setup on their machine. What is the smallest change that actually solves it?</p>
+        <ol class="options" type="A">
+          <li>Move all three into a plugin directory with a manifest, so they install and update as one unit</li>
+          <li>Send the three files and a README explaining exactly where each one goes</li>
+          <li>Copy your whole ~/.claude directory into a zip and tell them to extract it over theirs</li>
+          <li>Publish each of the three as a separate plugin, so each can be installed independently</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Move all three into a plugin directory with a manifest, so they install and update as one unit</p>
+          <p class="why">A plugin is exactly the container for 'several components that must travel together' — one directory, one install, one update, and the plugin name namespaces the skill and agent so they cannot collide with someone else's <code>review</code>. The README (B) is the approach that already failed you: it works once and drifts the moment any one file changes. The zip of ~/.claude (C) overwrites the person's own settings, agents, and skills with yours — it ships your whole environment instead of the three things you promised. Three separate plugins (D) recreates the original problem in a new shape: three things to install, three things to keep current, and no unit to disable.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A plugin named <code>guardrail-kit</code> ships a skill named <code>review</code> and a hook that blocks <code>git push --force</code>. You install it into a repo whose <code>.claude/settings.json</code> already has a hand-pasted copy of the same block-on-force-push hook. What happens on a force push?</p>
+        <ol class="options" type="A">
+          <li>The plugin's hook wins and the settings.json copy is ignored, because plugins take precedence</li>
+          <li>Both hooks fire, so the block runs twice and the doubled output makes it look broken</li>
+          <li>The plugin does not load at all, because its hook conflicts with an existing hook</li>
+          <li>Only the settings.json hook fires, because a plugin's hooks are namespaced the same way its skills are</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Both hooks fire, so the block runs twice and the doubled output makes it look broken</p>
+          <p class="why">Hook names and hook precedence do not exist here: skills and agents get a plugin-name prefix, hooks do not, and Claude Code does not choose between two hooks that both match the same event. Both run, and a PreToolUse guardrail that exits non-zero twice produces two rounds of blocking output. No conflict error (C) — hooks from different sources are allowed to coexist; that is exactly the failure. Option D is the misconception this question exists for: 'plugins namespace everything' is false, and hooks are the standing exception.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You have eleven skills in <code>~/.claude/skills/</code> that you wrote for yourself and use every week. You are considering packaging them as a plugin so you can reinstall them on a new laptop. What is the honest assessment?</p>
+        <ol class="options" type="A">
+          <li>A plugin is the right call — anything reusable should be packaged so it can be reinstalled and updated</li>
+          <li>A plugin is optional here: loose files already load in every project on this machine, so packaging adds a layer without solving a problem you have</li>
+          <li>Packaging them is required, because loose skills in ~/.claude/skills/ are not versioned and will be lost on a machine reset</li>
+          <li>Package them only after you cut them down to five, since the plugin's always-on cost grows with the number of components</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A plugin is optional here: loose files already load in every project on this machine, so packaging adds a layer without solving a problem you have</p>
+          <p class="why">The job a plugin does is share-and-update-for-others; a setup that already loads everywhere on your machine has no gap to close. Making the smallest change that fully solves the stated problem is packaging only if you actually need a portable, updatable unit. 'Anything reusable should be packaged' (A) is the rule that makes people build packaging they don't need. The files are not lost on a machine reset (C) — that is what git is for, and git already existed before plugins. Option D smuggles in a real concern from Lesson 64 but attaches the wrong trigger: component count affects cost, not whether a plugin is justified.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/08-hooks/60-debugging-hooks.html"><span>Previous</span>60. Debugging Hooks</a>
+    <a class="next" href="../../phases/09-plugins/62-plugin-anatomy.html"><span>Next</span>62. Plugin Anatomy — the directory and the manifest</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

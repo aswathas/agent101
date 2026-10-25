@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Task Graphs — Dependencies and the Frontier that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "Graph: schema → api, schema → migration, api → tests, and migration → deploy, tests → deploy. Everything unfinished. What is the frontier, and what is it after the schema finishes?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Now: schema. After: api and migration",
+        "Now: api, migration, tests, deploy. After: tests and deploy",
+        "Now: schema. After: api, migration, deploy",
+        "Now: schema and api. After: migration"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "explanation": "Only schema has no parents, so the frontier starts as just schema. When it finishes, api and migration both have all parents done, so both enter the frontier together. Option B swaps the list for the frontier — unwritten nodes are not runnable, and deploy still needs tests. Option C adds deploy early, but deploy's parent tests has not run. Option D wrongly includes api before schema is done."
+    },
+    {
+      "id": 2,
+      "prompt": "Every node in a wave diagram takes one unit of time, so wave 2 shows api and migration running together. In the real run, migration finishes in seconds but api takes an hour, and migration's child becomes ready. A runner waits for all of wave 2 before starting wave 3. What did it get wrong?",
+      "options": [
+        "Nothing — waves are the frontier by definition",
+        "It treated a static wave as a live frontier, so a node that became ready early waited for a slow sibling",
+        "It should have put migration in a later wave",
+        "It needed to increase the number of waves"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "Waves assume equal cost; the frontier is recomputed after every completion, so migration's child can start while api still runs. Option A is the tempting conflation — this lesson exists because waves are not the frontier. Option C would not help; migration genuinely only depends on schema. Option D treats a scheduling strategy as a graph property."
+    },
+    {
+      "id": 3,
+      "prompt": "A run reports \"finished\" but the `docs` node never executed. `docs` needs `api`, and `api` is in a cycle with `tests`. What kind of node is `docs`, and what should the runner have shown?",
+      "options": [
+        "A sink node; nothing needed to be shown",
+        "A stranded node — its parent can never complete, so it never enters the frontier and the run must report it as not-run",
+        "A ready node the runner simply skipped",
+        "An entry node that was mislabelled"
+      ],
+      "answer": 1,
+      "explanation": "Because api sits in a cycle it can never finish, so docs never becomes ready; that is a stranded node, and a runner that silently omits it is losing work. Option A is wrong — sink means no outgoing edges, not no execution. Option C is tempting but docs was never ready, because its parent never completed. Option D inverts the definition: an entry node has no parents."
+    },
+    {
+      "id": 4,
+      "prompt": "A teammate says \"the critical path is the longest task, so I'll find my slowest node and shorten it.\" What is wrong with that?",
+      "options": [
+        "Nothing — speed up the slowest node and the project gets faster",
+        "The critical path is the longest *chain of dependencies*, not the longest single node; shortening an off-path node changes nothing",
+        "The critical path is the shortest path, so they should shorten the fastest task",
+        "Critical path is computed from durations only, never from edges"
+      ],
+      "answer": 1,
+      "explanation": "Critical path length in waves counts sequential *edges*, and the longest chain can run through several medium nodes rather than one slow one. Option A is the tempting rule of thumb and it frequently misfires: a slow node on a short side branch is not on the critical path. Option C reverses longest and shortest. Option D ignores that the chain is defined by edges."
     }
   ]
 }

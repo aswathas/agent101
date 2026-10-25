@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Confidence Gating — Escalate Only When Unsure that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "A decision model reports a confidence of 0.9 on almost every input, including ones it gets wrong. What do you do first?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Trust anything above 0.8",
+        "Check the model's accuracy in each score bucket against known answers",
+        "Raise the threshold to 0.95",
+        "Switch to a different model immediately"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "A score with no calibration is a number, not a measurement, so the first move is to see whether the score tracks correctness. Raising the threshold is tempting but pointless until you know what the score means — you'd just be moving a meaningless line."
+    },
+    {
+      "id": 2,
+      "prompt": "Your gate sends 90% of decisions to the frontier model. What is the most likely cause?",
+      "options": [
+        "The decision model is too weak",
+        "The threshold is too high or was never calibrated",
+        "You need a larger context window",
+        "You need prompt caching"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "A gate that escalates almost everything is usually mis-set, not outmatched. The fix is calibrating the score and moving the threshold. 'The model is too weak' is tempting, but even a strong decider escalates constantly if the line is drawn above most of its scores."
+    },
+    {
+      "id": 3,
+      "prompt": "You are gating a payments-routing loop. Which error should the threshold bias against?",
+      "options": [
+        "False accepts — let more wrong decisions through",
+        "False escalates — bias toward escalating when unsure",
+        "Neither; the threshold does not change errors",
+        "Disable the gate and always use the biggest model"
+      ],
+      "answer": 1,
+      "explanation": "When a wrong decision is expensive, bias the threshold low so uncertainty escalates rather than ships. 'Always use the biggest model' is tempting for the same reason, but it deletes the gate entirely and pays the strong path on every call — including the easy ones the gate existed to save."
+    },
+    {
+      "id": 4,
+      "prompt": "Why measure on a held-out slice after choosing a threshold?",
+      "options": [
+        "To make the run faster",
+        "To catch a threshold tuned to the specific examples you used",
+        "To increase the model's confidence",
+        "Because the gate requires it"
+      ],
+      "answer": 1,
+      "explanation": "If you pick T by staring at a set, T can fit that set's noise and fail on new inputs. A held-out slice measures generalization. The tempting answer treats it as a formality, but it is the only check that the threshold is real."
     }
   ]
 }

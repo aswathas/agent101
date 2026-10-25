@@ -3,95 +3,300 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>All 32 Events, Matchers, Handler Types — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<title>All the Events, Matchers, Handler Types — Harnessing Claude Code</title>
+<meta name="description" content="The reference page. Thirty-odd firing points, and for each one the only two">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>All 32 Events, Matchers, Handler Types</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li class="on"><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 55, What a Hook Is</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 08 · LESSON 56</p>
+      <h1>All the Events, Matchers, Handler Types</h1>
+      <p class="lesson-motto">The reference page. Thirty-odd firing points, and for each one the only two</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 55, What a Hook Is</dd></div>
+        <div><dt>Time</dt><dd>~40 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Find the right event for a job without reading the whole list</li><li>Read a matcher string and say what it matches — including the regex cases that surprise people</li><li>Name the five handler types and say which one a guardrail wants</li><li>Predict, from the event table alone, whether exit 2 will stop anything</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You write a <code>PostToolUse</code> hook that checks whether the agent just wrote a file with a secret in it, and denies the write when it finds one.</p>
+<p>It runs. It finds the secret. It reports the problem. The file is still there, because the file was written before <code>PostToolUse</code> fired.</p>
+<p>Nothing about that hook was wrong. It was attached to the wrong seam. You picked the event whose name sounded right — &quot;after a tool runs, check the result&quot; — instead of the event that sits before the tool runs.</p>
+<p>Picking an event is a decision about <em>when your code gets to speak</em>. Get it wrong and everything downstream is a working script that is too late.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>The events fall into six families, ordered by where they sit on the loop.</p>
+<figure class="diagram"><pre>flowchart TD
+    subgraph L1[&quot;Session&quot;]
+        A[SessionStart] &amp; B[Setup] &amp; C[SessionEnd]
+    end
+    subgraph L2[&quot;Turn&quot;]
+        D[UserPromptSubmit] &amp; E[UserPromptExpansion] &amp; F[Stop] &amp; G[StopFailure]
+    end
+    subgraph L3[&quot;Tool call&quot;]
+        H[PreToolUse] --&gt; I[PermissionRequest] --&gt; J[PostToolUse]
+        J --&gt; K[PostToolUseFailure] &amp; L[PostToolBatch]
+    end
+    subgraph L4[&quot;Agents and tasks&quot;]
+        M[SubagentStart] &amp; N[SubagentStop] &amp; O[TaskCreated] &amp; P[TaskCompleted] &amp; Q[TeammateIdle]
+    end
+    subgraph L5[&quot;Surface&quot;]
+        R[Notification] &amp; S[MessageDisplay] &amp; T[InstructionsLoaded] &amp; U[ConfigChange] &amp; V[CwdChanged] &amp; W[DirectoryAdded] &amp; X[FileChanged]
+    end
+    subgraph L6[&quot;The rest&quot;]
+        Y[PreCompact] &amp; Z[PostCompact] &amp; AA[WorktreeCreate] &amp; AB[WorktreeRemove] &amp; AC[PreModelSwitch] &amp; AD[PostModelSwitch] &amp; AE[Elicitation] &amp; AF[ElicitationResult]
+    end
+    L1 --&gt; L2 --&gt; L3 --&gt; L4
+    L2 -.after compaction.-&gt; Y
+    L6 -.context.-&gt; L1</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>That is 33 names. The course catalog says 32, written when the list was one shorter. <strong>Treat the number as a moving target and the list as the thing to check</strong> — <a href="https://code.claude.com/docs/en/hooks" target="_blank" rel="noopener">the hooks page</a> is the authority, and it changes as Claude Code ships.</p>
+<h3 id="the-event-table">The event table</h3>
+<p>&quot;Can block&quot; is the column that decides where you attach a guardrail. &quot;Carries&quot; is what arrives on stdin beyond the common fields.</p>
+<div class="table-wrap"><table><thead><tr><th>Event</th><th>Matcher matches</th><th>Carries</th><th>Can block?</th></tr></thead><tbody><tr><td><code>SessionStart</code></td><td><code>startup</code>, <code>resume</code>, <code>clear</code>, <code>compact</code></td><td><code>source</code></td><td>Yes — can refuse startup</td></tr><tr><td><code>Setup</code></td><td><code>init</code>, <code>maintenance</code></td><td><code>trigger</code></td><td>No. Command hooks only; output unused</td></tr><tr><td><code>SessionEnd</code></td><td><code>clear</code>, <code>logout</code>, <code>prompt_input_exit</code></td><td>reason</td><td>No</td></tr><tr><td><code>UserPromptSubmit</code></td><td>—</td><td><code>prompt</code></td><td>Yes — refuse the prompt</td></tr><tr><td><code>UserPromptExpansion</code></td><td><code>command_name</code></td><td><code>command_args</code>, <code>command_source</code></td><td>Yes — refuse the expansion</td></tr><tr><td><code>Stop</code></td><td>—</td><td><code>last_assistant_message</code>, <code>stop_hook_active</code></td><td>Yes — refuse to end the turn</td></tr><tr><td><code>StopFailure</code></td><td>error type</td><td><code>error</code>, <code>error_details</code></td><td>No</td></tr><tr><td><code>PreToolUse</code></td><td>tool name / regex</td><td><code>tool_name</code>, <code>tool_input</code>, <code>tool_use_id</code></td><td>Yes — allow / deny / ask / defer</td></tr><tr><td><code>PermissionRequest</code></td><td>tool name / regex</td><td><code>tool_name</code>, <code>tool_input</code>, <code>permission_suggestions</code></td><td>Yes — allow or deny the prompt</td></tr><tr><td><code>PermissionDenied</code></td><td>tool name / regex</td><td><code>tool_name</code>, <code>tool_input</code>, <code>reason</code></td><td>No — may set <code>retry: true</code></td></tr><tr><td><code>PostToolUse</code></td><td>tool name / regex</td><td><code>+ tool_response</code>, <code>duration_ms</code></td><td><strong>No.</strong> Can add context; the tool already ran</td></tr><tr><td><code>PostToolUseFailure</code></td><td>tool name / regex</td><td><code>+ error</code>, <code>is_interrupt</code></td><td>No — can add corrective context</td></tr><tr><td><code>PostToolBatch</code></td><td>—</td><td><code>tool_calls[]</code></td><td>Yes — stop the loop before the next model turn</td></tr><tr><td><code>SubagentStart</code></td><td>agent type</td><td><code>agent_id</code>, <code>agent_type</code></td><td>No — can inject context</td></tr><tr><td><code>SubagentStop</code></td><td>agent type</td><td><code>agent_type</code>, <code>last_assistant_message</code></td><td>Yes — send the subagent more work</td></tr><tr><td><code>TaskCreated</code></td><td>—</td><td><code>task_id</code>, <code>task_subject</code></td><td>Yes — refuse task creation</td></tr><tr><td><code>TaskCompleted</code></td><td>—</td><td><code>task_id</code>, <code>task_subject</code></td><td>Yes — reject completion</td></tr><tr><td><code>TeammateIdle</code></td><td>—</td><td><code>teammate_name</code></td><td>Yes — keep the teammate working</td></tr><tr><td><code>Notification</code></td><td>notification type</td><td><code>message</code>, <code>notification_type</code></td><td>No</td></tr><tr><td><code>MessageDisplay</code></td><td>—</td><td><code>message_id</code>, <code>delta</code>, <code>final</code></td><td>No — only <code>displayContent</code></td></tr><tr><td><code>InstructionsLoaded</code></td><td><code>load_reason</code></td><td><code>file_path</code>, <code>memory_type</code>, <code>globs</code></td><td>No — observability</td></tr><tr><td><code>ConfigChange</code></td><td>—</td><td>—</td><td>Yes</td></tr><tr><td><code>CwdChanged</code></td><td>—</td><td>—</td><td>No</td></tr><tr><td><code>DirectoryAdded</code></td><td>—</td><td>—</td><td>No</td></tr><tr><td><code>FileChanged</code></td><td>path glob</td><td>path</td><td>No</td></tr><tr><td><code>PreCompact</code></td><td><code>manual</code>, <code>auto</code></td><td>trigger</td><td>Yes</td></tr><tr><td><code>PostCompact</code></td><td>—</td><td>—</td><td>No</td></tr><tr><td><code>WorktreeCreate</code> / <code>WorktreeRemove</code></td><td>—</td><td>worktree path</td><td>—</td></tr><tr><td><code>PreModelSwitch</code> / <code>PostModelSwitch</code></td><td>—</td><td>from/to model</td><td><code>Pre</code> yes, <code>Post</code> no</td></tr><tr><td><code>Elicitation</code> / <code>ElicitationResult</code></td><td>—</td><td>MCP elicitation data</td><td>Yes</td></tr></tbody></table></div>
+<p><strong>Common fields on nearly every event:</strong> <code>session_id</code>, <code>transcript_path</code>, <code>cwd</code>, <code>permission_mode</code>, <code>hook_event_name</code>. Don't re-derive these — they're already on stdin.</p>
+<h3 id="matchers">Matchers</h3>
+<p>The matcher decides whether a handler group activates. There are three behaviours and one string decides which you got.</p>
+<div class="table-wrap"><table><thead><tr><th>Matcher string</th><th>Behaviour</th></tr></thead><tbody><tr><td><code>&quot;*&quot;</code>, <code>&quot;&quot;</code>, or omitted</td><td>Every occurrence</td></tr><tr><td>Only letters, digits, <code>_</code>, <code>-</code>, spaces, <code>,</code>, `\</td><td>`</td><td>Exact string, or alternatives split on `\</td><td><code> / </code>,`</td></tr><tr><td>Anything else</td><td>Unanchored JavaScript regex, tested with <code>RegExp.prototype.test</code></td></tr></tbody></table></div>
+<p>That third row is where people get bitten.</p>
+<ul><li><code>&quot;Edit&quot;</code> matches only <code>Edit</code>. It does not match <code>NotebookEdit</code>.</li><li><code>&quot;Edit.*&quot;</code> matches <code>NotebookEdit</code> too. Regex is unanchored — it will match a substring anywhere.</li><li><code>&quot;^Edit$&quot;</code> matches only <code>Edit</code>, and only if the whole name is <code>Edit</code>.</li></ul>
+<p>Use <code>^...$</code> when you mean exactly one tool. Write it down deliberately.</p>
+<p>Two events are stricter: <code>FileChanged</code> and <code>StopFailure</code> take exact values with only letters, digits, <code>_</code>, and <code>|</code>. A space, comma, or hyphen in those matcher strings pushes you onto the regex path, where <code>&quot;pull_request_review&quot;</code> is a literal, not a pattern.</p>
+<p>Events that don't support matchers ignore one you supply and run every time.</p>
+<h3 id="mcp-tool-names">MCP tool names</h3>
+<p>Tools from an MCP server (Phase 07) are named <code>mcp__&lt;server&gt;__&lt;tool&gt;</code>, so:</p>
+<pre class="code"><code>mcp__memory__create_entities</code></pre>
+<p>Matcher <code>^mcp__memory__</code> gets you all of that server's tools. A tool bundled by a plugin gets a scoped name: <code>mcp__plugin_&lt;plugin&gt;_db__query</code> (Phase 09).</p>
+<h3 id="per-handler-if">Per-handler <code>if</code></h3>
+<p>A tool-event handler can add one permission-rule expression instead of doing the matching in your script:</p>
+<pre class="code" data-lang="json"><code>{
+  &quot;type&quot;: &quot;command&quot;,
+  &quot;if&quot;: &quot;Bash(git *)&quot;,
+  &quot;command&quot;: &quot;./check-git-hook.sh&quot;
+}</code></pre>
+<p>One rule only. No <code>&amp;&amp;</code>, no <code>||</code>, no list. Two conditions means two handlers. It is only evaluated on <code>PreToolUse</code>, <code>PostToolUse</code>, <code>PostToolUseFailure</code>, <code>PermissionRequest</code>, and <code>PermissionDenied</code> — on any other event a handler with <code>if</code> never runs, silently. That last part has cost people an afternoon.</p>
+<p>And the docs are explicit that <code>if</code> matching is best-effort. For hard policy, match in your script.</p>
+<h3 id="handler-types">Handler types</h3>
+<p>Five. Four of them are overkill for a guardrail.</p>
+<div class="table-wrap"><table><thead><tr><th>Type</th><th>What runs</th><th>Cost</th><th>Use it for</th></tr></thead><tbody><tr><td><code>command</code></td><td>A script. JSON in on stdin, decision out via exit code or stdout.</td><td>Milliseconds</td><td><strong>Policy, blocking, logging.</strong> Start here</td></tr><tr><td><code>prompt</code></td><td>A small model classifies the event. Deprecated in favour of <code>agent</code>.</td><td>A model call</td><td>Legacy only</td></tr><tr><td><code>agent</code></td><td>A full subagent with your instructions, possibly tools</td><td>Slow, expensive</td><td>Judgement a regex can't make</td></tr><tr><td><code>http</code></td><td>A POST to your endpoint; the response is the decision</td><td>Network</td><td>Central policy service</td></tr><tr><td><code>mcp_tool</code></td><td>A tool on an MCP server; the result is the decision</td><td>A tool call</td><td>You already built one in Phase 07</td></tr></tbody></table></div>
+<p>Reach for <code>agent</code> only after a script has failed you. Every guardrail that costs a model call to evaluate is a guardrail you can't afford on every tool call.</p>
+<h3 id="precedence-between-handlers">Precedence between handlers</h3>
+<p>When several hooks decide the same <code>PreToolUse</code> call, they don't merge:</p>
+<pre class="code"><code>deny  &gt;  defer  &gt;  ask  &gt;  allow</code></pre>
+<p>One <code>deny</code> wins. There is no vote.</p>
+<blockquote><p><strong>The reframe:</strong> the only question when choosing an event is *when does my</p><p>code get to speak* — before the action is <code>Pre</code>, after it is <code>Post</code>, and a</p><p><code>Post</code> hook that says no is a comment on something that already happened.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-read-the-table-against-a-real-job">1. Read the table against a real job</h3>
+<p>Pick a rule you actually want: &quot;no edits outside <code>src/</code>&quot;, &quot;no <code>git push</code>, no force-push&quot;, &quot;run the formatter after every edit&quot;. For each, name the event before you write anything.</p>
+<p>✅ You pass when each rule has an event chosen by <em>timing</em>, and you can say what the tool call would look like if your hook did not exist.</p>
+<h3 id="2-prove-the-posttooluse-trap">2. Prove the <code>PostToolUse</code> trap</h3>
+<p>Take the &quot;no edits outside <code>src/</code>&quot; rule and wire it to <code>PostToolUse</code> with matcher <code>Edit|Write</code>. Ask the agent to write a file outside <code>src/</code>.</p>
+<p>The hook fires. Whatever it reports, the file exists.</p>
+<p>Then move the same script to <code>PreToolUse</code> and repeat.</p>
+<p>✅ You pass when you have the <code>PostToolUse</code> version's file on disk and the <code>PreToolUse</code> version's file absent, and you can name the difference in timing.</p>
+<h3 id="3-find-a-regex-biting-you">3. Find a regex biting you</h3>
+<p>Set matcher <code>Edit</code> and ask the agent to use <code>NotebookEdit</code>. Then set matcher <code>Edit.*</code> and repeat. Then <code>^Edit$</code>.</p>
+<p>✅ You pass when you can show which of the three fired for <code>NotebookEdit</code> and explain the unanchored match from the docs.</p>
+<h3 id="4-check-the-merge-not-the-replace">4. Check the merge, not the replace</h3>
+<p>Add a <code>SessionStart</code> hook to <code>.claude/settings.local.json</code> while one already exists in <code>.claude/settings.json</code>. Run <code>/hooks</code>.</p>
+<p>✅ You pass when <code>/hooks</code> shows both, sourced to the two different files.</p>
+<h3 id="5-confirm-a-silent-no-op">5. Confirm a silent no-op</h3>
+<p>Add <code>&quot;if&quot;: &quot;Bash(git *)&quot;</code> to a <code>SessionStart</code> hook. Trigger a Bash git command.</p>
+<p>✅ You pass when you can state that it did not run because <code>if</code> is only evaluated on tool events, and you can name the five events where it is.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Need</th><th>Event</th><th>Why</th></tr></thead><tbody><tr><td>Forbid a tool call</td><td><code>PreToolUse</code></td><td>Fires before the tool runs</td></tr><tr><td>Answer a permission prompt yourself</td><td><code>PermissionRequest</code></td><td>Fires at the prompt, with suggestions</td></tr><tr><td>Rewrite a tool's arguments</td><td><code>PreToolUse</code> + <code>updatedInput</code></td><td>Input not yet used</td></tr><tr><td>Remind after a write</td><td><code>PostToolUse</code> + <code>additionalContext</code></td><td>Only place it's true</td></tr><tr><td>Refuse to end the turn unfinished</td><td><code>Stop</code></td><td>Fires at turn end</td></tr><tr><td>Send a subagent more work</td><td><code>SubagentStop</code></td><td>Fires at subagent end</td></tr><tr><td>Log without touching the loop</td><td><code>Notification</code>, <code>SessionStart</code></td><td>Side effects only</td></tr><tr><td>Refuse a whole batch</td><td><code>PostToolBatch</code></td><td>Between batches, not inside one</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Pick five events from the table and write one sentence each on what a hook there could accomplish that a hook on the neighbouring event could not. ✅ You pass when every sentence names a timing difference, not a topic difference.</li></ol>
+<ol><li class="criterion">Write a matcher for &quot;every tool from the MCP server named <code>memory</code>, but not the <code>create_entities</code> one&quot;, and verify it fires for a sibling tool. ✅ You pass when the right tool triggers it and <code>create_entities</code> does not, and you can quote the matcher syntax you relied on.</li></ol>
+<ol><li class="criterion">Find an event in the table that cannot block, and write the strongest thing you can do there. Then say out loud what it still cannot do. ✅ You pass when your answer names the irreversibility explicitly — &quot;the tool already ran&quot; — rather than describing the feature.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>event</td><td>&quot;the hook&quot;</td><td>A named firing point. Many hooks can share one event.</td></tr><tr><td>matcher</td><td>&quot;a filter&quot;</td><td>The condition activating a handler group. Exact string, `\</td><td>`-alternatives, or regex — determined by which characters you used.</td></tr><tr><td>blocking event</td><td>&quot;one that stops things&quot;</td><td>An event where exit 2 cancels a pending action. <code>PostToolUse</code> is not one.</td></tr><tr><td>handler type</td><td>&quot;the hook type&quot;</td><td>What runs: <code>command</code>, <code>prompt</code>, <code>agent</code>, <code>http</code>, <code>mcp_tool</code>.</td></tr><tr><td><code>if</code></td><td>&quot;a second matcher&quot;</td><td>One permission-rule expression, on five events only. Silently ignored elsewhere.</td></tr><tr><td>precedence <code>deny &gt; defer &gt; ask &gt; allow</code></td><td>&quot;the strictest wins&quot;</td><td>Right. One <code>deny</code> overrides an <code>allow</code> from another handler. There is no vote.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>The full <code>hookSpecificOutput</code> schema per event.</strong> Each event's decision object has its own fields and its own shape, and the nesting differs between them. Lesson 57 covers the three you will write by hand; the rest is a copy-from-the-docs job.</p>
+<p><strong>Timeouts in depth.</strong> Defaults are 600s for command hooks, 30s on several events, 10s on <code>MessageDisplay</code>, with a shared 1.5s budget for <code>SessionEnd</code>. Relevant when a hook hangs. Lesson 60.</p>
+<p><strong><code>async</code> and <code>asyncRewake</code>.</strong> Background hooks can't block, because a decision printed after the harness stopped waiting controls nothing. Lesson 60, briefly.</p>
+<p><strong><code>Elicitation</code>, <code>TaskCreated</code>, <code>TaskCompleted</code>, <code>TeammateIdle</code>, <code>WorktreeCreate</code>.</strong> Real, and you will need them — but they lean on subagents, agent teams, and worktrees from Phases 06, 12, and 16. They get used there, not here.</p>
+<p><strong>Every field on stdin.</strong> The table lists what each event adds; the input JSON has more. Get the exact shape from the docs page for the event you're writing.</p>
+<p><strong>Ordering guarantees within an event.</strong> Whether two handler groups on the same event run in file order, in parallel, or otherwise. Not documented clearly enough to teach — check it in your own session before depending on it.</p>
+<p>The event list, the handler types, and which events block are all version-gated. Verified against <a href="https://code.claude.com/docs/en/hooks" target="_blank" rel="noopener">the hooks page</a> on 2026-10-15. Re-check <code>https://code.claude.com/docs/llms.txt</code> before trusting anything version-shaped in this table.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">Your hook must fire for the project's own Edit tool but never for NotebookEdit, and it must fire for every tool from an MCP server named <code>memory</code>. Which matcher set does that?</p>
+        <ol class="options" type="A">
+          <li>&quot;^Edit$|mcp__memory__.*&quot;</li>
+          <li>&quot;Edit|mcp__memory__&quot;</li>
+          <li>&quot;Edit.*|mcp__memory__&quot;</li>
+          <li>&quot;Edit$|^mcp__memory__&quot;</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> &quot;^Edit$|mcp__memory__.*&quot;</p>
+          <p class="why">The moment a matcher contains characters outside letters, digits, _, -, spaces, commas and |, the whole string becomes an unanchored JavaScript regex — so <code>^Edit$</code> anchors it to exactly Edit (which is what excludes NotebookEdit), and <code>mcp__memory__.*</code> matches the server's tools. Option B fails on the MCP side: bare <code>mcp__memory__</code> has no dot or anchor, so it would also match a server named <code>memory_dump</code>. Option C's <code>Edit.*</code> is unanchored and matches NotebookEdit, which is the exact exclusion you asked for. Option D gets the anchors but uses <code>^</code> on the MCP side with no trailing wildcard, so it can't match any tool name.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Two PreToolUse handlers disagree: one returns permissionDecision 'allow' and another returns 'deny'. What does the harness do?</p>
+        <ol class="options" type="A">
+          <li>Deny wins — precedence is deny &gt; defer &gt; ask &gt; allow</li>
+          <li>The last handler in the file wins</li>
+          <li>The most recently edited settings file wins</li>
+          <li>The user is prompted to break the tie</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Deny wins — precedence is deny &gt; defer &gt; ask &gt; allow</p>
+          <p class="why">Hooks don't vote and don't last-write-wins; the precedence ladder is deny &gt; defer &gt; ask &gt; allow, so one deny ends it regardless of what anything else said. Options B and C invent ordering rules that don't exist — settings levels merge rather than shadow, and within a level there's no documented last-wins behaviour. Option D is the intuitive guess and the wrong one: a hook decision is made outside the permission prompt, so the user never sees this tie to break.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Your PostToolUse hook exits 2 with a clear stderr reason after the agent edits a file you don't want edited. The file still exists. The agent mentions your reason on its next turn. Is the hook broken?</p>
+        <ol class="options" type="A">
+          <li>No — PostToolUse can't block; exit 2 there sends stderr into the model's context, which is what happened</li>
+          <li>Yes — you must have attached it to the wrong matcher, since the handler ran</li>
+          <li>Yes — exit 2 only blocks when the event carries a matcher</li>
+          <li>No — but only because hook failures default to continuing</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> No — PostToolUse can't block; exit 2 there sends stderr into the model's context, which is what happened</p>
+          <p class="why">That's PostToolUse behaving correctly: it fires after the tool ran, so the edit is irreversible from the hook's position, and exit 2's role there is to hand the reason to the model as a system reminder. If you wanted the write refused, the event is PreToolUse. Option B is wrong because the handler demonstrably ran. Option C confuses matcher support with blocking capability — they're independent columns in the event table. Option D misattributes the outcome to failure handling: nothing failed here, and the stderr was delivered deliberately, not as a notice.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A handler declared on SessionStart with <code>&quot;if&quot;: &quot;Bash(git *)&quot;</code> never runs, and produces no error. Why?</p>
+        <ol class="options" type="A">
+          <li><code>if</code> is only evaluated on PreToolUse, PostToolUse, PostToolUseFailure, PermissionRequest and PermissionDenied — elsewhere a handler with <code>if</code> never runs, silently</li>
+          <li><code>if</code> cannot be combined with a matcher on the same group</li>
+          <li><code>if</code> requires a newer Claude Code than the rest of the config</li>
+          <li><code>if</code> only works on <code>command</code> handlers, and yours is a <code>prompt</code> handler</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> <code>if</code> is only evaluated on PreToolUse, PostToolUse, PostToolUseFailure, PermissionRequest and PermissionDenied — elsewhere a handler with <code>if</code> never runs, silently</p>
+          <p class="why">The silent case is the documented behaviour: <code>if</code> is evaluated on five tool events and nowhere else, so a handler carrying one is simply skipped on SessionStart with no diagnostic. That's worth knowing precisely because nothing tells you. Option B invents an incompatibility that doesn't exist — <code>if</code> and matcher coexist on tool events. Option C is half-true about version gates but the wrong field; <code>if</code> itself is long-standing. Option D misreads the constraint: <code>if</code> is event-limited, not handler-type-limited.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/08-hooks/55-what-a-hook-is.html"><span>Previous</span>55. What a Hook Is</a>
+    <a class="next" href="../../phases/08-hooks/57-hook-script-shape.html"><span>Next</span>57. Hook Script Shape — stdin JSON → stdout / exit code</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

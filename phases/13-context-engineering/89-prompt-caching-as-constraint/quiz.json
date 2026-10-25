@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Prompt Caching as a Design Constraint that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "Twenty turns into a task, you run `/model` to switch to a cheaper model. Your next message is one short sentence, but the turn is slow and expensive. Why?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The cheaper model is simply slower",
+        "Each model has its own cache, so the new model reprocesses the entire history as an uncached prefix",
+        "Switching models forces a `/compact`",
+        "The message was longer than it looked"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "Caches are per-model, so a switch means the whole conversation history is read with no cache hits, even though the content is unchanged. Option A confuses price with speed and misses the one-time spike. Option C is not a mechanism — `/model` does not trigger compaction. Option D cannot explain a jump of the whole history for a one-line message; the cost is the prefix, not the message."
+    },
+    {
+      "id": 2,
+      "prompt": "You edit `CLAUDE.md` mid-session and then ask Claude to follow the new line. It does not. What are the two accurate facts?",
+      "options": [
+        "The edit invalidated the cache and applied immediately",
+        "The edit kept the cache and did not apply until `/clear`, `/compact`, or a restart",
+        "The edit neither kept nor invalidated the cache, and applied immediately",
+        "The edit invalidated the cache and did not apply until a restart"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "Editing project memory keeps the cache — the file is held from session start and the edit does not rewrite history — but the new content does not reach the running session until a reload point. Option A gets the application right and the cache cost wrong. Option C gets the cache right and the application wrong. Option D inverts the cache fact: the edit is cache-safe precisely because it does not change the prefix."
+    },
+    {
+      "id": 3,
+      "prompt": "You are designing a long-running session. Which ordering best exploits prefix matching?",
+      "options": [
+        "Put the most important instructions last, so Claude reads them most recently",
+        "Put stable content first and anything that changes every turn last",
+        "Reorder the context every turn so nothing becomes stale",
+        "Put the model switch in the middle of each task"
+      ],
+      "answer": 1,
+      "explanation": "The API caches the exact matching start of each request, so stable content first and changing content last keeps the prefix intact. Option A is a good *reading* heuristic and a bad *caching* one — recency in the text does not beat recomputation. Option C guarantees a rebuild every turn. Option D is the mistake this lesson is about: a mid-task model switch invalidates everything behind it."
+    },
+    {
+      "id": 4,
+      "prompt": "Which of these actions keeps the cached prefix intact?",
+      "options": [
+        "Running `/compact`",
+        "Switching models with `/model`",
+        "Invoking a skill that injects its instructions",
+        "Enabling a plugin that supplies MCP servers"
+      ],
+      "answer": 2,
+      "explanation": "A skill's instructions are injected as a message at the end of the conversation, leaving the prefix unchanged. Option A replaces the history with a summary — a new prefix by design. Option B is a per-model cache miss. Option D changes the tool-definition layer when schemas load upfront, which sits at the front. The tempting one is `/compact`, which feels like a refresh but is a rebuild."
     }
   ]
 }

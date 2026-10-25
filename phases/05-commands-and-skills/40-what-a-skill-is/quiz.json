@@ -2,26 +2,52 @@
   "lesson": "05-commands-and-skills/40-what-a-skill-is",
   "title": "What a Skill Is",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about What a Skill Is that needs a new situation, not recall.",
+      "prompt": "You have installed nine skills this month and /context shows the window is heavier at session start than it used to be, even on a session where you invoke none of them. What is actually being charged?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Nothing — a skill's body only loads when it fires, so an idle session pays nothing",
+        "Each skill's name and description, which sit in the listing every session whether or not you invoke anything",
+        "The supporting files, which are indexed at session start so they can be found later",
+        "The frontmatter only — the body is free until fired"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The body waits, but the listing never does: every skill's name and description is present in every session so the model can decide to load something it has not read. That is the cost you paid nine times. Option A is half the mechanism and then draws the wrong conclusion. Option C is invented — supporting files are read on demand, never indexed. Option D splits a cost that isn't split: frontmatter is part of the description, and the body is what waits, not the header.",
+      "concept": "listing-vs-body"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You type: go ahead and /deploy to staging. The deploy skill fires. What actually happened?",
+      "options": [
+        "The skill ran, because any slash-name in a message counts as invocation",
+        "The skill did not run — a mid-sentence mention grants Claude permission to use it while answering, without invoking it",
+        "The skill ran but only its frontmatter loaded, since the body needs a leading slash",
+        "The message was rejected as malformed and Claude answered from conversation instead"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Invocation means the slash-name at the start of a message; mid-sentence it only grants permission, and omitting the slash entirely just discusses the skill. Option A is the misconception the docs explicitly call out. Option C invents a half-state that does not exist — a skill loads whole or not at all. Option D is wrong because the message is perfectly well-formed; it just means something different.",
+      "concept": "invocation-vs-permission"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A skill fires on turn one and works perfectly. By turn fifteen Claude has stopped running the check it insists on every time. Which edit is most likely to be the fix?",
+      "options": [
+        "Add the check to CLAUDE.md so it survives compaction",
+        "Rewrite the guidance as a standing instruction that applies to the whole task, rather than a one-time step",
+        "Split the skill into two so each fires in its own turn",
+        "Set user-invocable: false so Claude decides when it is relevant"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The skill's content enters as one message and stays, and the file is not re-read on later turns — so 'run the checks' reads as a thing that is now done, while 'run the checks after every edit' is standing guidance. Option A treats it as a compaction problem when the skill content was never dropped. Option C adds a second invocation without addressing why the first one's wording stopped applying. Option D is backwards — it hides the skill from you and leaves it to the model, which is not what fixes wording.",
+      "concept": "standing-vs-one-time-instructions"
     }
   ]
 }

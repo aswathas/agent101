@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about The Five Names that needs a new situation, not recall.",
+      "prompt": "Your task is to read every file under src/ and report the two that log a secret. You don't want 400 file reads in your own conversation. Which of the five names fits, and why?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "A worktree, because the reads must not touch the real checkout",
+        "A subagent, because the axis to isolate is the context window",
+        "`/batch`, because the work spans many files",
+        "A teammate, because the reads need to be shared with peers"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The collision to prevent is your window filling with reads you won't quote again — that is context isolation, which is exactly what a subagent provides. A worktree isolates files, and reading doesn't write files, so it buys nothing. `/batch` is for mechanical changes across many files, not a read-and-report. A teammate adds coordination and still shares your files, which is the opposite of the problem here.",
+      "concept": "choose-by-axis"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You spawn five subagents to rewrite import style across 30 files. Two of them edit the same file and one overwrites the other. What was the missing mechanism?",
+      "options": [
+        "A bigger model on each subagent, so they plan before editing",
+        "A shared task list, so the subagents claim files in order",
+        "A worktree per subagent, because subagents isolate context and not files",
+        "A workflow, because workflows cross-check each other's edits"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "Subagents share your working directory, so parallel writers collide no matter how well they reason. Each editor needs its own checkout — `isolation: worktree`. A shared task list coordinates *who does what* but not *which directory they write to*, so the overwrite can still happen. A workflow orchestrates the plan; it doesn't give each agent a separate filesystem by itself.",
+      "concept": "subagents-isolate-context-not-files"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Three reviewers should each take a different lens on the same pull request — security, performance, and test coverage — and challenge each other's findings before you see a merged verdict. Which name is built for this?",
+      "options": [
+        "An agent team, because teammates message each other and coordinate over a shared task list",
+        "A single subagent with three lenses in its body",
+        "A worktree per reviewer, so each sees a clean checkout",
+        "`/batch`, because it splits work into 5 to 30 units"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "The defining feature here is reviewers talking to each other and coordinating — that is what agent teams add over subagents. One subagent with three lenses is still one voice and can't argue with itself. Worktrees isolate files, and reviewers aren't writing files, so three clean checkouts add cost and no coordination. `/batch` fans out isolated *edits*; it doesn't create a conversation between reviewers.",
+      "concept": "teams-coordinate"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "`/batch` is often called a sixth mechanism, alongside the other four. What is it actually?",
+      "options": [
+        "A separate scheduler that runs sessions on a timer",
+        "A packaged skill that uses subagents and worktrees together",
+        "The command-line form of an agent team",
+        "A monitor that watches background sessions for you"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "`/batch` is a skill: it decomposes one large change into units and runs one worktree-isolated subagent per unit — so it is subagents plus worktrees with a name, not a new kind of agent. A timer scheduler is routines. An agent team is a lead plus message-passing peers. The screen that watches background sessions is agent view.",
+      "concept": "batch-is-packaged"
     }
   ]
 }

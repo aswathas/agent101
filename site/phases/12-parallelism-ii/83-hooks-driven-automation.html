@@ -4,94 +4,341 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hooks-Driven Automation — Events as Control Flow — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="The same exit-code contract that fences a tool call can push work back into the">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Hooks-Driven Automation — Events as Control Flow</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li class="on"><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 82, Loops — Scheduled and Recurring</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">BUILD · PHASE 12 · LESSON 83</p>
+      <h1>Hooks-Driven Automation — Events as Control Flow</h1>
+      <p class="lesson-motto">The same exit-code contract that fences a tool call can push work back into the</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Build</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 08 (Lessons 55–60), Lesson 82 (Loops)</dd></div>
+        <div><dt>Time</dt><dd>~45 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Attach a hook to an event that <em>pushes the loop forward</em>, not just one that refuses a tool</li><li>Make &quot;done&quot; a checkable fact with a <code>Stop</code> hook instead of a sentence an agent wrote</li><li>Use <code>SubagentStop</code>, <code>PostToolBatch</code>, and <code>TeammateIdle</code> to keep orchestration moving</li><li>Post a message into your own session from a hook or Bash command, using the socket the session exports</li><li>Decide when a handler must be a <code>command</code> and when spending a model call is justified</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>A loop was babysitting a release branch, once every twenty minutes. On the fourth iteration it reported that everything was green and quiet.</p>
+<p>CI had been red for twenty minutes.</p>
+<p>Nobody lied. The agent ran the check, read a truncated log, and summarised what it saw. The claim &quot;everything is green&quot; was the agent's sentence, not the check's output — and a sentence is not a fact you can enforce.</p>
+<p>That is the gap this lesson closes, and it is not closed by a better prompt. It is closed by moving the decision somewhere that produces an exit code.</p>
+<p>A hook is the only part of Claude Code that runs <em>because an event happened</em> rather than <em>because the model chose to</em>. Phase 08 taught it as a fence: this tool call is refused, this write is impossible. The same mechanism points the other way. The loop is a sequence of events — a turn is about to end, a subagent just stopped, a batch of tool calls just completed, a teammate just went idle — and your code gets to speak at every one of them.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>The loop is a machine with seams in it. A hook attaches to a seam.</p>
+<figure class="diagram"><pre>flowchart LR
+    P[&quot;prompt&quot;] --&gt; M[&quot;model decides&quot;]
+    M --&gt; B[&quot;batch of tool calls&quot;]
+    B --&gt; PB{&quot;PostToolBatch&quot;}
+    PB --&gt;|stop the loop| X[&quot;turn ends&quot;]
+    PB --&gt;|continue| M
+    M --&gt; SS[&quot;SubagentStop&quot;]
+    SS --&gt;|send more work| M
+    M --&gt; S[&quot;Stop&quot;]
+    S --&gt;|&quot;refuse: not finished&quot;| M
+    S --&gt;|allow| X
+    T[&quot;TeammateIdle&quot;] --&gt;|keep working| M</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="the-events-that-push-not-just-block">The events that push, not just block</h3>
+<p>Phase 08's event table has a &quot;can block?&quot; column. Read it again with the orchestration question in mind: <em>what would blocking here push forward?</em></p>
+<div class="table-wrap"><table><thead><tr><th>Event</th><th>Blocking means</th><th>What it is for</th></tr></thead><tbody><tr><td><code>Stop</code></td><td>Refuse to end the turn</td><td>The turn is not finished, whatever the model said</td></tr><tr><td><code>SubagentStop</code></td><td>Send the subagent more work</td><td>A worker stopped early; the review says so</td></tr><tr><td><code>PostToolBatch</code></td><td>Stop the loop before the next model turn</td><td>A batch of results changed the plan; stop and look</td></tr><tr><td><code>TeammateIdle</code></td><td>Keep the teammate working</td><td>An agent-team peer went idle with the shared task list unfinished</td></tr><tr><td><code>TaskCreated</code> / <code>TaskCompleted</code></td><td>Refuse creation / reject completion</td><td>A task does not meet the bar to exist, or to be called done</td></tr><tr><td><code>SessionStart</code></td><td>Refuse startup</td><td>Load-time policy, not orchestration</td></tr><tr><td><code>PreCompact</code></td><td>Block the compaction</td><td>Rarely right. It is a seam, not a tool</td></tr></tbody></table></div>
+<p><code>WorktreeCreate</code> and <code>WorktreeRemove</code> are not blocking, and they are the other half of orchestration: they fire on the lifecycle of a worker's checkout, which is where logging and cleanup belong.</p>
+<p>And there is <code>MessageDisplay</code>, which carries a message's id, its delta, and whether it is final. It cannot block. It observes what a session shows.</p>
+<h3 id="done-is-an-event-and-you-get-to-define-it">&quot;Done&quot; is an event, and you get to define it</h3>
+<p>The single most useful hook in this phase is a <code>Stop</code> hook. The agent says it has finished; <code>Stop</code> fires; your script looks at the world and either allows the turn to end or refuses with a reason.</p>
+<figure class="diagram"><pre>sequenceDiagram
+    participant A as Agent
+    participant H as Stop hook
+    A-&gt;&gt;H: &quot;I'm done&quot;
+    H-&gt;&gt;H: does the artifact exist? does the check pass?
+    alt not finished
+        H--&gt;&gt;A: exit 2 + reason on stderr
+        A-&gt;&gt;A: keeps working
+    else finished
+        H--&gt;&gt;A: exit 0
+    end</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>That is the release-branch incident fixed. Not &quot;remember to check CI&quot; — a script that checks, and a turn that cannot end until it agrees.</p>
+<p>One guard you must have: <code>Stop</code> carries <code>stop_hook_active</code>, which tells you a stop hook has already fired. Without it, a hook that refuses for the wrong reason refuses forever. Phase 08's exit-2-versus-exit-1 distinction applies here exactly as it does to a fence — Lesson 58 if you need the reminder.</p>
+<h3 id="where-this-meets-workflows-and-loops">Where this meets workflows and loops</h3>
+<p>Two limits from the last four lessons point at hooks.</p>
+<p><strong>A workflow run takes no input mid-flight.</strong> It pauses only for agent permission prompts and a usage-limit wait. The seams that <em>are</em> available to you are the agent-lifecycle events: <code>SubagentStart</code>, <code>SubagentStop</code>, and the task events. A <code>SubagentStop</code> hook is how a stopping subagent gets handed one more sentence of work inside a run, without editing the script.</p>
+<p><strong>A loop cannot be trusted to report its own state.</strong> Lesson 82's loop fires between turns and summarises. A <code>Stop</code> hook is what converts that summary into a verifiable claim, and it fires whether the loop was Claude's idea or yours.</p>
+<h3 id="the-other-exit-post-into-your-own-session">The other exit: post into your own session</h3>
+<p>Phase 08 taught the return path as exit code plus stdout JSON. There is a second one, and it is the one that makes hooks a <em>channel</em> rather than a decision.</p>
+<p>Every session with messaging available binds a socket and exports its path and a per-session token to hooks and Bash commands as <code>CLAUDE_CODE_MESSAGING_SOCKET</code> and <code>CLAUDE_CODE_MESSAGING_TOKEN</code>. A hook or a command can open that socket and post a line back into its own session:</p>
+<pre class="code" data-lang="sh"><code>#!/bin/sh
+# Emit a line into this session's own conversation.
+{
+  printf '%s\n' &quot;{\&quot;type\&quot;:\&quot;auth\&quot;,\&quot;token\&quot;:\&quot;$CLAUDE_CODE_MESSAGING_TOKEN\&quot;}&quot;
+  printf '%s\n' &quot;build finished: 3 failures, see /tmp/build.log&quot;
+} &gt; &quot;$CLAUDE_CODE_MESSAGING_SOCKET&quot;</code></pre>
+<p>One connection carrying both lines, because the auth line has to be the first line of <em>its</em> connection.</p>
+<p>This is the same wire Lesson 77 described, addressed to yourself. Two traps carry over: on native Windows the auth line is <strong>required</strong>, and a connection that has not sent a complete line within 30 seconds is dropped — so capture slow output before you open it.</p>
+<h3 id="cost-decides-the-handler-type">Cost decides the handler type</h3>
+<p>Phase 08's five handler types are not interchangeable, and orchestration is where the bill shows up. A <code>command</code> handler is milliseconds. An <code>agent</code> handler is a full subagent: slow, and a model call.</p>
+<p>A hook on <code>Stop</code> fires once per turn. A hook on <code>PreToolUse</code> fires on every tool call. Put a model call on the second one and you have doubled the cost of your session to enforce a rule a <code>grep</code> could have enforced.</p>
+<p>The rule: <strong><code>command</code> until a script has demonstrably failed you.</strong> Then <code>agent</code>, on the narrowest event you can find.</p>
+<blockquote><p><strong>The reframe:</strong> a hook is not only a fence around a tool call — the same</p><p>exit-code contract can push work back into the loop, so an event handler is</p><p>where &quot;this step is finished&quot; gets decided instead of described.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-turn-a-claim-into-a-check">1. Turn a claim into a check</h3>
+<p>Pick a turn that has a checkable finish line. This repo works well: the lesson body is finished when the validator passes.</p>
+<p>Write <code>.claude/hooks/stop-requires-validator.sh</code>:</p>
+<pre class="code" data-lang="sh"><code>#!/bin/sh
+input=$(cat)
+active=$(printf '%s' &quot;$input&quot; | jq -r '.stop_hook_active // false')
 
----
+# Never refuse twice in a row; that is how a hook traps a session.
+[ &quot;$active&quot; = &quot;true&quot; ] &amp;&amp; exit 0
 
-## The Problem
+if [ -f package.json ] &amp;&amp; ! node scripts/validate-lessons.mjs 12-parallelism-ii &gt;/tmp/validate.log 2&gt;&amp;1; then
+  head -20 /tmp/validate.log &gt;&amp;2
+  exit 2
+fi
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
+exit 0</code></pre>
+<p>Wire it to <code>Stop</code> in <code>.claude/settings.json</code>, then ask the agent to finish something it has not actually finished.</p>
+<p>✅ You pass when the turn refuses to end, the reason on your screen is the validator's first lines, and a second attempt can still end normally.</p>
+<h3 id="2-prove-the-guard-is-load-bearing">2. Prove the guard is load-bearing</h3>
+<p>Remove the <code>stop_hook_active</code> check and repeat. Make the validator fail in a way the agent cannot fix — a malformed <code>quiz.json</code>, say.</p>
+<p>✅ You pass when you can describe what happens instead of a clean stop, and you can say which field would have prevented it.</p>
+<h3 id="3-push-work-to-a-subagent-at-the-moment-it-stops">3. Push work to a subagent at the moment it stops</h3>
+<p><code>SubagentStop</code> fires when a subagent finishes, and blocking there sends it more work. Use the incident from Phase 06: a subagent that triages a report file. Have it stop after writing the line, with its <code>SubagentStop</code> hook asking a follow-up question the first pass did not answer.</p>
+<p>✅ You pass when the same subagent does more work after its first stop, and you can point at the field that told your hook it was safe to block.</p>
+<h3 id="4-stop-the-loop-between-batches">4. Stop the loop between batches</h3>
+<p><code>PostToolBatch</code> fires after a batch of tool calls, with the calls in <code>tool_calls[]</code>, and blocking there stops the loop before the next model turn. Write a hook that refuses the batch when a single batch wrote more than twenty files.</p>
+<p>✅ You pass when the loop stops before the next model turn, and you can say which event you <em>would</em> have used if the rule were about one tool rather than a batch.</p>
+<h3 id="5-keep-a-teammate-from-going-idle">5. Keep a teammate from going idle</h3>
+<p>If you have agent teams enabled (Phase 11, Lesson 73), this is the orchestration event with no substitute. <code>TeammateIdle</code> carries <code>teammate_name</code>; blocking keeps the teammate working. Give a teammate a task and have the hook check the shared task list before letting it idle.</p>
+<p>✅ You pass when the teammate keeps working with tasks outstanding, and you can say what the hook reads to decide.</p>
+<h3 id="6-post-instead-of-return">6. Post instead of return</h3>
+<p>Rewrite the hook in step 1 so that, instead of refusing, it <em>reports</em> — into the session's own conversation, over the socket.</p>
+<p>✅ You pass when the line appears in your session without a tool call producing it, and you can say which of the two return paths is a decision and which is a message.</p>
+<h3 id="7-watch-the-cost">7. Watch the cost</h3>
+<p>Run <code>/hooks</code> and count how many handler groups are attached to tool events versus turn events. If any tool-event handler uses an <code>agent</code> handler, replace it with a <code>command</code> handler and see whether the behaviour survived.</p>
+<p>✅ You pass when the rule still holds and you can state, in milliseconds versus model calls, what you saved per session.</p>
+<blockquote><p>Event names, which events can block, and the socket's contract are all the kind</p><p>of thing that changes. Verified against</p><p><a href="https://code.claude.com/docs/en/hooks" target="_blank" rel="noopener">the hooks page</a> and</p><p><a href="https://code.claude.com/docs/en/cross-session-messaging" target="_blank" rel="noopener">the cross-session messaging page</a></p><p>on 2026-10-15. Phase 08's table, and this one, both inherit their age from</p><p><code>https://code.claude.com/docs/llms.txt</code>.</p></blockquote>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>You want to…</th><th>Event</th><th>Blocking does</th></tr></thead><tbody><tr><td>Refuse to call the work finished</td><td><code>Stop</code></td><td>Sends the agent back to work. Guard with <code>stop_hook_active</code></td></tr><tr><td>Give a subagent one more task</td><td><code>SubagentStop</code></td><td>Sends the subagent more work</td></tr><tr><td>Stop before the next model turn</td><td><code>PostToolBatch</code></td><td>Ends the loop at a batch boundary</td></tr><tr><td>Keep a team peer busy</td><td><code>TeammateIdle</code></td><td>Keeps the teammate working</td></tr><tr><td>Reject a task's completion</td><td><code>TaskCompleted</code></td><td>Refuses to accept it as done</td></tr><tr><td>Log a worker's checkout lifetime</td><td><code>WorktreeCreate</code> / <code>WorktreeRemove</code></td><td>Not blocking. Cleanup and logging live here</td></tr><tr><td>Put a line in your own conversation</td><td>Socket + token</td><td>Not a decision — a message</td></tr><tr><td>Watch what a session shows</td><td><code>MessageDisplay</code></td><td>Not blocking. <code>displayContent</code> only</td></tr><tr><td>Enforce a rule on every tool call</td><td><code>PreToolUse</code></td><td>Cheap and frequent. Keep it a <code>command</code> handler</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take a rule you currently enforce with prose — in a skill, a <code>CLAUDE.md</code>, or a prompt — and re-express it as a <code>Stop</code> hook. Run it for an afternoon. ✅ You pass when you can name a case where the prose version passed and the hook version refused, and a case where both passed.</li></ol>
+<ol><li class="criterion">Write a hook that posts a line into your own session from a background Bash command, not from a hook event. Compare it with returning JSON from a hook. ✅ You pass when the line arrives both ways and you can say which path the model sees as a tool result and which it sees as a message.</li></ol>
+<ol><li class="criterion">A hook that fires on <code>PostToolUse</code> and classifies each result with an <code>agent</code> handler costs one model call per tool call. Compute what that does to a 200-tool-call session. ✅ You pass when your number is derived from a run you measured, not from an estimate you wrote down.</li></ol>
+<ol><li class="criterion">Explain why a <code>WorktreeCreate</code> hook cannot stop a worktree from being created, and what you would use instead. ✅ You pass when your answer names a different event and says what it does <em>before</em> the worktree exists.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td><code>Stop</code></td><td>&quot;the end-of-turn hook&quot;</td><td>Fires as a turn is ending. Blocking refuses the end and sends the agent back</td></tr><tr><td><code>stop_hook_active</code></td><td>&quot;a flag&quot;</td><td>Whether a stop hook has already fired. You need it, or a bad hook never lets a turn end</td></tr><tr><td><code>SubagentStop</code></td><td>&quot;the worker's done&quot;</td><td>Fires when a subagent stops. Blocking hands it more work</td></tr><tr><td><code>PostToolBatch</code></td><td>&quot;after the tools&quot;</td><td>Fires between batches. Blocking stops the loop before the next model turn</td></tr><tr><td><code>TeammateIdle</code></td><td>&quot;the peer is waiting&quot;</td><td>Fires when a team peer goes idle. Blocking keeps it working</td></tr><tr><td>handler type</td><td>&quot;how the hook runs&quot;</td><td><code>command</code> (milliseconds), <code>agent</code> (a model call), <code>http</code>, <code>mcp_tool</code>, <code>prompt</code> (legacy)</td></tr><tr><td>control flow</td><td>&quot;an if statement&quot;</td><td>The decision about what runs next, moved out of the model and into a script that returns an exit code</td></tr><tr><td>own-child message</td><td>&quot;talking to myself&quot;</td><td>A hook or Bash command posting into its own session's socket. Needs the token where process evidence is missing</td></tr><tr><td><code>MessageDisplay</code></td><td>&quot;the output hook&quot;</td><td>Observes what a session shows. Cannot block, and only <code>displayContent</code> returns</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>The hook contract itself.</strong> Exit codes, stdin JSON, <code>hookSpecificOutput</code> shapes, matchers, and the <code>if</code> field are Phase 08, Lessons 55–60. This lesson builds on them and does not restate them.</p>
+<p><strong>The full JSON shape for each of these events.</strong> Each event's decision object has its own fields and its own nesting. Copy from the hooks page for the event you are writing — Lesson 57 says the same thing for the three you write by hand.</p>
+<p><strong>Channels.</strong> Pushing an event in from outside — CI, chat, monitoring — is an MCP server with a channel contract, and it is Phase 17. The distinction that matters here is direction: a hook reacts to something that happened <em>inside</em> a session; a channel injects something from <em>outside</em>.</p>
+<p><strong>Guardrails versus instructions as a design stance.</strong> This lesson is about where a decision lives. Lesson 96 is about what that decision can and cannot buy you, and which of the two an unattended run depends on.</p>
+<p><strong>Async hooks and timeouts.</strong> A background hook cannot block — the harness stops waiting — and a timeout on <code>PreToolUse</code> normally lets the call through. Both are Lesson 60, and both are silently wrong the first time you hit them.</p>
+      </div>
 
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">6 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You want a turn to be <em>impossible to end</em> until a generated file exists. Which event, and why?</p>
+        <ol class="options" type="A">
+          <li><code>Stop</code> — it fires as the turn ends and blocking there sends the agent back to work</li>
+          <li><code>PostToolUse</code> — it fires after every write, so it can check the file each time</li>
+          <li><code>PreToolUse</code> — it fires before the write and can hold the tool call until the file exists</li>
+          <li><code>SessionEnd</code> — it fires when the work is over and can reopen the turn</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> <code>Stop</code> — it fires as the turn ends and blocking there sends the agent back to work</p>
+          <p class="why">The turn ending is the thing you want to refuse, and <code>Stop</code> is the event at that seam; blocking sends the agent back to work. <code>PostToolUse</code> is the tempting choice because the file check happens there naturally — but that event cannot block, so it can add a note to a turn that then ends anyway. <code>PreToolUse</code> runs too early, before the file could exist. <code>SessionEnd</code> cannot block and is about the session, not a turn.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Your <code>Stop</code> hook refuses to end the turn, and the session now cannot stop. What is the missing piece?</p>
+        <ol class="options" type="A">
+          <li>A check on <code>stop_hook_active</code>, so the hook never refuses twice in a row</li>
+          <li><code>&quot;async&quot;: true</code>, so the hook does not hold the turn open</li>
+          <li>Exit code 1 instead of 2, which is the non-blocking form of a refusal</li>
+          <li>A <code>PreCompact</code> handler to clear the hook's state between turns</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> A check on <code>stop_hook_active</code>, so the hook never refuses twice in a row</p>
+          <p class="why"><code>Stop</code> carries <code>stop_hook_active</code>, which tells your hook a stop hook has already fired — the documented way to avoid trapping a session. The async answer is a trap because a background hook cannot block at all, which is the opposite of what you want here. Exit 1 is genuinely the non-blocking code, but it is not a refusal that lets the session proceed; it simply means &quot;no opinion&quot;, so it would not fix a hook that is already refusing. <code>PreCompact</code> has no bearing on a stop decision.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A subagent stops before it answered your follow-up question. You want to hand it one more task without editing the workflow script that spawned it. What do you do?</p>
+        <ol class="options" type="A">
+          <li>Attach a blocking hook to <code>SubagentStop</code>, which sends the subagent more work</li>
+          <li>Attach a hook to <code>SubagentStart</code>, which can add the follow-up to its context</li>
+          <li>Attach a hook to <code>TaskCompleted</code>, which rejects the task and reruns it</li>
+          <li>Nothing — a subagent that has stopped cannot be given more work</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Attach a blocking hook to <code>SubagentStop</code>, which sends the subagent more work</p>
+          <p class="why"><code>SubagentStop</code> fires when the subagent stops and blocking there sends it more work. <code>SubagentStart</code> is the plausible neighbour and does something different: it can inject context before work begins, not after. <code>TaskCompleted</code> is about task records rather than subagents, so rejecting a task does not resume the agent that produced it. The do-nothing answer misses the event entirely — this is one of the seams that makes orchestration work inside a run that takes no mid-run input.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You attach an <code>agent</code> handler to <code>PreToolUse</code> to classify every tool result. What is the cost problem?</p>
+        <ol class="options" type="A">
+          <li>It is a full subagent, so it costs a model call on every tool call and multiplies the session's spend</li>
+          <li>None — <code>agent</code> handlers run on a small model, so they are nearly free</li>
+          <li><code>agent</code> handlers are not allowed on tool events, so the hook is silently skipped</li>
+          <li>The handler runs once per turn, so the cost is bounded by the number of turns</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> It is a full subagent, so it costs a model call on every tool call and multiplies the session's spend</p>
+          <p class="why">An <code>agent</code> handler is a full subagent with your instructions and possibly tools — slow and expensive — and <code>PreToolUse</code> fires on every tool call, so the multiplication is the problem. The small-model answer belongs to the deprecated <code>prompt</code> handler, which is exactly why the two get confused. Agent handlers are not restricted by event, and the per-turn answer inverts the frequency: turn events fire once a turn, tool events fire constantly.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A hook opens its session's socket, then runs a command that takes 90 seconds, then writes the message. On any platform, what happens?</p>
+        <ol class="options" type="A">
+          <li>The connection is dropped, because it did not send a complete line within 30 seconds</li>
+          <li>The message arrives after 90 seconds, since the socket buffers partial output</li>
+          <li>The message arrives immediately and the command's output follows it later</li>
+          <li>The session refuses the message because the sender did not identify itself</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> The connection is dropped, because it did not send a complete line within 30 seconds</p>
+          <p class="why">A connection that has not sent a complete line within 30 seconds is closed, so the fix is to capture the slow output first and open the connection only when the message is ready. The buffering answer is the natural expectation from ordinary sockets and is the trap. Nothing is delivered early, and the identity question is a different requirement — an auth line is mandatory on native Windows, but that is about the first line, not about timing.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A <code>PostToolBatch</code> hook blocks. Where exactly does the loop stop?</p>
+        <ol class="options" type="A">
+          <li>At the batch boundary, before the next model turn</li>
+          <li>Immediately, cancelling the tool calls still running in the current batch</li>
+          <li>After the turn ends, before the next prompt</li>
+          <li>It does not stop anything; only <code>PreToolUse</code> can block</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> At the batch boundary, before the next model turn</p>
+          <p class="why"><code>PostToolBatch</code> sits between batches, and blocking there stops the loop before the next model turn — a checkpoint on the batch, not a kill switch inside it. The cancel-the-batch answer is the tempting one, because it is the kind of thing you wish a batch hook could do; the event fires after the calls, so there is nothing left to cancel. Turn end is <code>Stop</code>, and the last option contradicts the event table.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/12-parallelism-ii/82-loops.html"><span>Previous</span>82. Loops — Scheduled and Recurring</a>
+    <a class="next" href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span>Next</span>84. The Decision Framework — Which Mechanism, When</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

@@ -1,27 +1,53 @@
 {
   "lesson": "09-plugins/63-install-and-author-a-plugin",
-  "title": "Install from Marketplace, and Author One",
+  "title": "Install from a Marketplace, and Author One",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Install from Marketplace, and Author One that needs a new situation, not recall.",
+      "prompt": "Your plugin loads under `claude --plugin-dir ./guardrail-kit` and its skill runs, but the PreToolUse hook never fires. You run the script by hand with piped stdin and it exits 2 correctly. `claude plugin validate` passes. Where do you look next, and why?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Reinstall the plugin through a marketplace — `--plugin-dir` runs hooks in a sandbox where PreToolUse never fires",
+        "Check the hook debug log after triggering the event: a loaded hook whose matcher never matched looks identical to a hook that isn't loaded",
+        "Add `disable-model-invocation: false` to the hook's frontmatter so the harness schedules it",
+        "Move `hooks/hooks.json` into `.claude-plugin/` so it is discovered alongside the manifest"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Validate passing plus the script behaving correctly by hand narrows the failure to wiring, not logic — and the wiring check is the debug log, which reports which hooks matched, their exit codes, and their output. `--plugin-dir` loads hooks exactly as an installed plugin does (A is false). Hooks have no frontmatter and no model-invocation flag (C invents a field). Moving the file into `.claude-plugin/` is the one place hooks definitely do not load (D), and it would have broken validate, which passed.",
+      "concept": "hook-debug-loop"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You converted your `.claude/settings.json` setup into a plugin. Skills and agents both work, so you deleted the originals from `.claude/`. Now a teammate reports every blocked git command prints its refusal twice. What is happening?",
+      "options": [
+        "The plugin is installed twice, once per component directory, so each hook fires twice",
+        "You moved the hooks but left the original `hooks` block in `.claude/settings.json`, and plugin hooks carry no namespace prefix to de-duplicate them",
+        "The matcher `\"Bash\"` matched two tools — the shell tool and the plugin's own script runner — so each hook ran twice",
+        "Exit code 2 causes Claude Code to retry the PreToolUse check once before surfacing the block"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Skills and agents get a `guardrail-kit:` prefix, so the two sets coexisted harmlessly and deleting the originals was correct. Hooks get no prefix and no conflict detection — the leftover block in `settings.json` and the plugin's copy both match `PreToolUse` on `Bash`, so both run. Plugins are installed once per source, not per component directory (A), a matcher names tool types rather than counting them (C), and exit 2 blocks without retrying (D). This is the exact failure the convert-and-keep-originals order exists to prevent: verify the plugin's hooks work before deleting the old ones.",
+      "concept": "hooks-do-not-de-duplicate"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A teammate on another machine needs your three-component setup. The directory sits in a repo you both have read access to, it will change every few weeks, and neither of you wants to maintain an install step. What is the smallest thing that works?",
+      "options": [
+        "They clone the repo and run `claude --plugin-dir ./guardrail-kit` in each session themselves",
+        "They add your repo as a marketplace once, then install and update the plugin by name as it changes",
+        "You zip the plugin and send a new zip every time anything changes",
+        "They copy the plugin folder into their own `~/.claude/skills/` and update it with git pull"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A marketplace entry lists the plugin and where to fetch it; they add it once, and from then on `claude plugin install name@marketplace` plus an update flow handles every change — which is exactly the drift problem plugins exist to solve. `--plugin-dir` (A) makes them remember a flag per session and never picks up changes, so it recreates the manual step you were trying to remove. Repackaging a zip (C) makes you the update mechanism. Pulling into `~/.claude/skills/` (D) works mechanically and is a fine solo trick, but it puts an unmanaged copy of a versioned plugin outside any version tracking, and it hardcodes an assumption about where their plugins live.",
+      "concept": "marketplace-is-for-sharing"
     }
   ]
 }

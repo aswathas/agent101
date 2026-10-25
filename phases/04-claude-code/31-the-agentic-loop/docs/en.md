@@ -1,3 +1,8 @@
+# The Agentic Loop
+
+> Read, decide, act, observe — and repeat until done. The one concept everything
+> later in this course hangs on.
+
 **Type:** Learn
 **Prerequisites:** Lesson 30 (Sessions, /clear, /compact)
 **Time:** ~30 minutes

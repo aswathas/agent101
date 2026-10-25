@@ -2,26 +2,67 @@
   "lesson": "07-mcp/52-build-an-mcp-server",
   "title": "Build an MCP Server From Scratch",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Build an MCP Server From Scratch that needs a new situation, not recall.",
+      "prompt": "Your stdio server handles an unknown method and you reply with error code -32601. What has actually gone wrong, as opposed to -32603?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Your dispatch table has no handler for that method — the client asked for something this server does not implement",
+        "Your handler exists but threw while running, so the client saw an internal error",
+        "The client sent a method before initialize, which is a protocol violation",
+        "The argument schema failed validation, so the call never reached your handler"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "The two codes separate 'you asked wrong' from 'I broke'. -32601 means the method name has no entry in your dispatch table, which is a coverage gap in the server. -32603 is your code failing while handling a method that does exist. Telling them apart is what makes the bug findable: an unmapped method is fixed by adding a handler, a -32603 by fixing the code inside the one that exists.",
+      "concept": "jsonrpc-error-codes"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A tool's schema declares a top-level property named 'User Name' with a space in it. What happens?",
+      "options": [
+        "It works — JSON Schema allows spaces in property names",
+        "Claude Code excludes that tool when it loads the server's tools, and tells you which tool and why; the server's other tools keep working",
+        "The whole request fails with a 400 naming the tool, and every tool on that server becomes unusable",
+        "The property is silently renamed to userName and your handler receives the renamed key"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The API rejects a request whose tool schemas fail its checks, so Claude Code runs those checks at load time and excludes the offending tool rather than letting it poison every request. The name rule is 1 to 64 characters using only ASCII letters, digits, underscore, dot, and hyphen. Option C describes what would happen with no client-side check. Option D is the one that actually bites later: a schema that passes but names things differently from your handler produces silent wrong values, not an error.",
+      "concept": "schema-validation"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A tool needs to report that the requested title doesn't exist. Which return keeps the loop useful?",
+      "options": [
+        "Throw an exception and let the JSON-RPC error path report it",
+        "Return isError true with the content text 'No note titled X. Call list_notes first.'",
+        "Return an empty content array, letting the model infer that nothing matched",
+        "Exit the process so the client reports a clean disconnect"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A returned tool error is information the loop reads: it names what failed and names the tool that would fix it, so the model can immediately call list_notes. An uncaught exception is worse than useless — it kills the process, the client reports a disconnect, and the only thing the model learned is that something vanished. An empty array is ambiguous with a legitimate zero-result answer.",
+      "concept": "errors-as-content"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You write: 'Returns the specified note content from the local store for the given identifier.' Tool search is on. Your tool is being picked rarely. What is the most likely fix?",
+      "options": [
+        "Rename the tool to something shorter — the description is not the deciding factor",
+        "Put the words Claude would search for at the start of the description, because only the leading part survives the cut and only the leading part is matched",
+        "Add _meta anthropic/alwaysLoad true so the tool loads upfront at every session",
+        "Move the long description into the server's instructions field, which is not truncated"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "With tool search on, a deferred tool is matched by reading its description, and Claude Code cuts descriptions past a limit so only the leading text is ever seen. Search terms late in the description are therefore invisible twice over. Option A confuses identity with discoverability. Option C works but costs context on every turn forever — the expensive fix for a problem that ordering solves.",
+      "concept": "tool-search-description"
     }
   ]
 }

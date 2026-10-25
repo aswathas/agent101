@@ -2,26 +2,52 @@
   "lesson": "18-capstone/119-keeping-up",
   "title": "Keeping Up — Claude Code Ships Weekly",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Keeping Up — Claude Code Ships Weekly that needs a new situation, not recall.",
+      "prompt": "A teammate asks how to keep their own notes from going stale the way yours did. What is the durable instruction?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Re-read the docs from the top every few weeks so nothing gets missed",
+        "Sort each note into mechanism, surface, or model; date and link the surface ones; re-check them when the version changes",
+        "Only write down things you have personally tested, since tested behaviour can't go stale",
+        "Copy commands verbatim from the docs so the wording can never be wrong"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The three tiers tell you what to spend attention on: mechanism notes are permanent, model notes should be aliases, and surface notes are the only ones worth a date and a link. Re-checking happens on a version change, not on a calendar. A is the tempting one because it sounds thorough, and it is exactly the job nobody sustains — you either drown or stop, and both leave you trusting undated notes. C fails on precision: something tested and working on one version is the definition of a version-gated claim, not a durable one. D fixes the wording while the command itself moves under it, so the quote stays accurate and the instruction stops working.",
+      "concept": "three-tier-triage"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A new release adds a flag and renames a settings key you use. You have a ledger of about forty claims. What does the release actually obligate you to do?",
+      "options": [
+        "Re-verify all forty, since any of them could have changed",
+        "Re-check the surface rows, especially the renamed key, and leave the mechanism rows alone",
+        "Update the two things you know about and re-check the rest only if something breaks",
+        "Nothing — the ledger is a record, and records are corrected when you next read them"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A rename is a surface change, so it invalidates a surface row and nothing else — the loop still loops, the window still fills, the graph is still a graph. That is the payoff of having sorted the claims in the first place. A is the tempting one because a ledger looks like a to-do list, but a changelog entry names its components, so you can diff it against the rows that mention them. C is the opt-in version of the same mistake: 'breaks' is how surface changes present, and you will find out on a teammate's machine. D treats the ledger as archaeology rather than an instrument, which is what makes notes rot silently.",
+      "concept": "release-scopes-change"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A hook has run correctly for eight months. Today it fires with a payload shape you didn't expect, and nothing in your repo changed. Where is the fault most likely, and what is the first move?",
+      "options": [
+        "Your repository — something changed the input; bisect the commits",
+        "The surface layer — the event's payload changed in a release; check the hooks reference and the changelog for the version",
+        "The model — it produced a differently-shaped payload this time",
+        "Nothing is wrong; the payload was always like that and you misremembered"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A hook payload is surface: the event fires from the harness, not from your repo and not from the model, so the first suspect is a release that moved the shape. The reference page tells you the current shape; the changelog dates the change and names the version. A is tempting because 'what changed on my side' is the usual debugging instinct, and here your side is unchanged — eight months of stability is evidence the fault is upstream. C misplaces the origin: the harness calls the hook and hands it its arguments. D is the failure mode this whole lesson is about — deciding your memory is right and the system is lying, without opening the page.",
+      "concept": "surface-drift-diagnosis"
     }
   ]
 }

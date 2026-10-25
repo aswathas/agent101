@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about The Agentic Loop — the one concept everything hangs on that needs a new situation, not recall.",
+      "prompt": "Mid-task, Claude Code shows: `Run npm test? [y/n]`. Which step of the loop is this?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Read state — it is looking at the conversation",
+        "Decide, having picked \"ask you\"",
+        "Act, having picked \"run a command\" — the permission prompt is part of the act",
+        "Observe — it is waiting for the result"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "The tool already chose to run a command, and the permission prompt is the gate on that act. Option B is the tempting confusion, and it is a real distinction: a question about the task is decide-picked-ask, but a prompt for one specific command is act-picked-run. Option A and D name steps that produce no prompt of this kind.",
+      "concept": "permission-prompt-is-act"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You ask Claude Code to find a database password in the codebase. It replies that it cannot, and says why. Which move is this?",
+      "options": [
+        "Read state",
+        "Decide, having picked \"stop\"",
+        "A crash",
+        "A hallucination to ignore"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Stopping with a stated reason is one of the four moves the decide step can pick, so a reasoned refusal is the loop working as designed. Option A names a step that only reads input. Option C mistakes a deliberate stop for a fault. Option D treats a grounded explanation as invented output, which is the opposite of what a reason-stated stop is.",
+      "concept": "stop-with-reason"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You switch the model powering the session to a different one. Which statement is true?",
+      "options": [
+        "The agent changed; the model is the loop",
+        "The model changed; the agent — the read/decide/act/observe loop that wraps it — is the same",
+        "Both changed at once",
+        "Neither changed; the model picks moves and the agent types them out"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The model is the decide step; the agent is the loop around it, so swapping the model swaps one step, not the loop. Option A reverses the two. Option C collapses a distinction later lessons lean on. Option D gets the roles backwards — the loop executes moves, the model picks them.",
+      "concept": "model-vs-agent"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "A single-turn task feels slow, and the input is not especially large. Where is the time most likely going?",
+      "options": [
+        "Read state",
+        "Act — the tool call itself usually dominates wall time",
+        "The stop summary",
+        "Rendering the prompt"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "For a normal turn the tool call is the biggest chunk of wall time, which is why naming the slow step is the start of predicting pace. Option A is the other real possibility, but it is the one that shows up when the input is large — which the question rules out. Option C and D are not the loop steps that dominate.",
+      "concept": "where-the-time-goes"
     }
   ]
 }

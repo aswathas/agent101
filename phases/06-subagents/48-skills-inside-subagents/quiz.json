@@ -7,21 +7,77 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Skills Inside Subagents — the genuinely confusing case that needs a new situation, not recall.",
+      "prompt": "Your API subagent ignores a team conventions skill. You want that skill's content present before it starts writing code. Which change does it?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Add skills: [api-conventions] to the subagent's frontmatter",
+        "Add context: fork to the conventions skill's frontmatter",
+        "Move the conventions into CLAUDE.md",
+        "Add the skill name to the delegation message each time you ask"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "The `skills` field preloads full skill content into the subagent's context at startup, so the knowledge is there before work begins. Option B forks the skill into a fresh subagent where those guidelines become a prompt with no task — the classic empty result. Option C puts it in the subagent's window but nowhere near the endpoint code being written. Option D works but re-pays every run and depends on you remembering.",
+      "concept": "skills-preloads-into-subagent"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A subagent lists skills: [deploy-conventions] in its frontmatter. You want it to be unable to invoke any skill at all, including ones you didn't list. What actually enforces that?",
+      "options": [
+        "skills: — listing one skill already makes it the only reachable one",
+        "Remove Skill from the subagent's tools, or add it to disallowedTools",
+        "set disable-model-invocation: true on every other skill in the repo",
+        "Nothing — subagents can't invoke skills, only preload them"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "`skills` selects what's preloaded, not what's reachable — a subagent can still invoke project, user, and plugin skills through the Skill tool during the run. Removing Skill from the allowlist or denying it is the enforcement layer. Option C is both global and backwards: it would break your own invocations, and it's the wrong tool for scoping one agent. Option D is false — subagents can invoke skills.",
+      "concept": "preload-is-not-restriction"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A skill whose body is only \"use these API conventions\" is set to context: fork. Running it returns something vague or empty. Why?",
+      "options": [
+        "The skills field was missing so the content never loaded",
+        "forked skills need a model field or they default to refusing work",
+        "context: fork makes the skill the subagent's prompt, and a guideline with no task gives it nothing to do",
+        "Explore and Plan can't run skills and the default agent was Plan"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "context: fork turns the rendered SKILL.md into the subagent's prompt, so a skill needs explicit instructions with a task — a bare guideline leaves the subagent with principles and no work, and it returns without meaningful output. Option A confuses the two directions; the `skills` field belongs on the subagent, not the skill. Option D misreads which agent type applies — the default is general-purpose, and none of the listed agents are the cause.",
+      "concept": "guideline-vs-instruction"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "A forked skill edits three files in the background. You run /rewind expecting the edits to be undone and they aren't. Why?",
+      "options": [
+        "/rewind only handles the main conversation, which is exactly this case",
+        "The skill's context: fork field wasn't committed to version control",
+        "A backgrounded fork runs outside the session's checkpoints, so /rewind never reaches its edits",
+        "Edits from any subagent are permanent by design"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "Backgrounded forks specifically fall outside session checkpoints — that's why the guidance is to revert them with git rather than /rewind. Option A inverts it: /rewind handles the main conversation, and this edit isn't in it. Option C's scope is wrong too — foreground subagent edits do fall under checkpoints; it's the background-fork case that's outside them.",
+      "concept": "background-fork-checkpoints"
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "prompt": "You want a subagent that has your whole conversation, plus the option to edit files. Which combination is right?",
+      "options": [
+        "A skill with context: fork and an agent field pointing at general-purpose",
+        "A fork — /subtask — with isolation: worktree if the edits must not touch your checkout",
+        "A custom subagent with skills: preloaded, since preloading carries conversation history",
+        "A fresh subagent with omitClaudeMd: false, which inherits the parent conversation"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Only a fork inherits the full parent conversation; /subtask starts one, and isolation: worktree redirects its file edits into a separate worktree so your checkout stays clean. Option A gets the name backwards — context: fork creates a fresh isolated context and does not carry your history. Option B is wrong because preloading skills injects reference text, not conversation. Option D is also wrong: omitting CLAUDE.md controls instruction files, not history.",
+      "concept": "fork-vs-context-fork-naming"
     }
   ]
 }

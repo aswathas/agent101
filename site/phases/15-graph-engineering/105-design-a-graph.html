@@ -4,94 +4,294 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Design a Graph for a Real Project — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can take a real project, decompose it into a defended graph, and compute its">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Design a Graph for a Real Project</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li class="on"><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 104, Failure Propagation — What Happens When One Node Dies</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">BUILD · PHASE 15 · LESSON 105</p>
+      <h1>Design a Graph for a Real Project</h1>
+      <p class="lesson-motto">You can take a real project, decompose it into a defended graph, and compute its</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Build</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lessons 98–104 (Nodes and Edges through Failure Propagation)</dd></div>
+        <div><dt>Time</dt><dd>~45 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Decompose a real project into nodes whose outputs something consumes</li><li>Label every edge blocking or soft, and defend each blocking one</li><li>Add decision nodes and design the joins before running anything</li><li>Compute the critical path and the widest wave, and catch a wave that would collide</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You can read graphs now. Designing one is the part that fails, and it fails in a specific way: people draw an arrow between anything that <em>feels</em> ordered, call it a graph, and it is a line with decoration. Ten nodes, nine arrows, zero parallelism — and nobody notices, because an arrow was never questioned.</p>
+<p>The other failure is quieter. A real graph gets run and two nodes in the same wave both edit <code>config.json</code>. Nothing in the drawing warned them, because the drawing never asked <em>what does each node write</em>. The graph was a diagram, not a plan.</p>
+<p>A graph you cannot defend is decoration. This lesson is where you defend it.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Designing a graph is a sequence of commitments. Each one can be checked, and each one can be wrong. The artifact — call it <code>GRAPH.md</code> — is the record of those commitments: the nodes, the edges with their labels, the decision nodes, the joins, the failure policy, and the computed critical path.</p>
+<p>The two numbers the artifact must <em>compute</em>, not assert:</p>
+<ul><li><strong>Critical path</strong> — the number of waves in the longest blocking chain. The floor on wall-clock time with unlimited agents.</li><li><strong>Widest wave</strong> — the largest number of nodes that can run at once. The ceiling on useful parallelism, and the peak of your fan-out.</li></ul>
+<figure class="diagram"><pre>flowchart LR
+    D{&quot;decide auth&quot;} --&gt; S[settings]
+    D --&gt; B[billing]
+    SC[schema] --&gt; A[api]
+    SC --&gt; M[migration]
+    A --&gt; T[tests]
+    M --&gt; DEP[deploy]
+    T --&gt; DEP</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>A third check falls out of the first two: the <strong>busy-write check</strong>. Two nodes in the same wave that write the same file are a collision the graph created. Either they need a blocking edge between them, or they need a claim (Lesson 101) — but the graph must say which. A plan that cannot answer &quot;what does each node write&quot; cannot pass this check, which is why the node list starts with outputs.</p>
+<blockquote><p><strong>The reframe:</strong> a graph is a claim about what can run at once — every edge you</p><p>keep is parallelism you gave up, so you must be able to defend each one, or it is</p><p>decoration.</p></blockquote>
+<p>The concepts are version-independent; the runner that executes the result is not. Check <a href="https://code.claude.com/docs/en/agents" target="_blank" rel="noopener">Run agents in parallel</a> before assuming a mechanism.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>Build <code>GRAPH.md</code> and one script. Use a real project you intend to do — not a toy.</p>
+<h3 id="1-scope-the-project">1. Scope the project</h3>
+<p>Pick a project with <strong>10 to 20 nodes</strong>. Smaller and the structure is trivial; larger and it is a spreadsheet, not a design.</p>
+<p>✅ You pass when the project is one you would actually run, and you can name its single deliverable at the end.</p>
+<h3 id="2-write-the-nodes-as-outputs">2. Write the nodes as outputs</h3>
+<p>One line per output. No verbs. Reuse the checks from Lesson 98.</p>
+<pre class="code" data-lang="text"><code>- auth scheme chosen            (decision)
+- users schema has a token column
+- GET /profile ships
+- profile tests pass
+- deploy artifact built</code></pre>
+<p>✅ You pass when every node names something checkable and none reads &quot;work on…&quot;.</p>
+<h3 id="3-draw-edges-and-label-every-one">3. Draw edges and label every one</h3>
+<p>For each edge, answer &quot;can B produce a correct output without A?&quot; <code>no</code> is blocking; <code>yes</code> is soft. For a soft edge, name what B does without A, or delete it.</p>
+<p>✅ You pass when every edge carries a label and a one-line reason, and no soft edge is really a blocking edge in disguise.</p>
+<h3 id="4-add-the-decision-nodes">4. Add the decision nodes</h3>
+<p>Promote every shared unresolved question (Lesson 102) to a node with an owner and a consumer list.</p>
+<p>✅ You pass when at least one decision node exists and its consumers are the exact nodes that would otherwise have guessed.</p>
+<h3 id="5-design-the-joins">5. Design the joins</h3>
+<p>Where a node has several parents, name its join: all-of, any-of, or quorum, and what a missing child does.</p>
+<p>✅ You pass when every multi-parent node has a named join and an answer for a missing input.</p>
+<h3 id="6-give-every-node-a-failure-policy">6. Give every node a failure policy</h3>
+<p>For each node: what fails it, whether it retries (and idempotency), and fail-open or fail-closed.</p>
+<p>✅ You pass when every irreversible node is fail-closed and at least one advisory node is explicitly fail-open with a marker.</p>
+<h3 id="7-compute-the-two-numbers">7. Compute the two numbers</h3>
+<p>Extend <code>waves.mjs</code> from Lesson 99 to also report the widest wave and the busy-write list.</p>
+<pre class="code" data-lang="js"><code>// graph.mjs — waves, critical path, widest wave, and same-wave write collisions.
+import { readFileSync } from 'node:fs';
+const g = JSON.parse(readFileSync(process.argv[2], 'utf8'));
+const byId = new Map(g.tasks.map((t) =&gt; [t.id, t]));
+const memo = new Map();
+function depth(id, stack = []) {
+  if (memo.has(id)) return memo.get(id);
+  if (stack.includes(id)) throw new Error(`cycle: ${[...stack, id].join(' -&gt; ')}`);
+  const needs = byId.get(id).needs ?? [];
+  const d = needs.length ? 1 + Math.max(...needs.map((p) =&gt; depth(p, [...stack, id]))) : 1;
+  memo.set(id, d); return d;
+}
+for (const t of g.tasks) depth(t.id);
+const maxWave = Math.max(...memo.values());
+const byWave = new Map();
+for (const t of g.tasks) {
+  const w = memo.get(t.id);
+  if (!byWave.has(w)) byWave.set(w, []);
+  byWave.get(w).push(t.id);
+}
+let widest = 0;
+for (const [w, ids] of byWave) {
+  widest = Math.max(widest, ids.length);
+  const files = new Map();
+  for (const id of ids) for (const f of byId.get(id).writes ?? []) {
+    if (files.has(f)) console.log(`COLLISION wave ${w}: ${files.get(f)} and ${id} both write ${f}`);
+    else files.set(f, id);
+  }
+}
+console.log(`critical path: ${maxWave} waves`);
+console.log(`widest wave: ${widest} node(s)`);</code></pre>
+<p>✅ You pass when the script prints a critical path, a widest wave, and no collision — or names the collisions you then resolve with an edge or a claim.</p>
+<h3 id="8-assemble-graph-md">8. Assemble <code>GRAPH.md</code></h3>
+<p>One page: the mermaid diagram, the node table with <code>writes</code> and failure policy, the edge table with labels, the two computed numbers, and one sentence naming the first edge you would convert or delete to shorten the critical path.</p>
+<p>✅ You pass when a reader who has never seen the project can trace the critical path by hand and get the same number the script printed.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Step</th><th>The check that makes it real</th></tr></thead><tbody><tr><td>Nodes as outputs</td><td>Every node names something you could show someone.</td></tr><tr><td>Edges labelled</td><td>No unlabelled arrow survives; no soft edge hides a real wait.</td></tr><tr><td>Decision nodes</td><td>Every shared question has an owner and a consumer list.</td></tr><tr><td>Joins</td><td>Every multi-parent node names all-of / any-of / quorum.</td></tr><tr><td>Failure policy</td><td>Irreversible nodes are fail-closed.</td></tr><tr><td>Critical path</td><td>Computed by the script, not asserted in prose.</td></tr><tr><td>Widest wave</td><td>The peak fan-out, compared against your budget.</td></tr><tr><td>Busy-write check</td><td>No two same-wave nodes write the same file without a rule.</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Build <code>GRAPH.md</code> for a real 10–20 node project, with the script's critical path and widest wave pasted in. ✅ You pass when a grader can trace the critical path on the diagram and reach the same number the script printed.</li></ol>
+<ol><li class="criterion">Resolve one busy-write collision: either add a blocking edge or state the claim the two nodes use. ✅ You pass when the script reports no collision and the fix is named in <code>GRAPH.md</code>.</li></ol>
+<ol><li class="criterion">Shorten the critical path by exactly one wave. Do it by converting or deleting one edge, and show the before/after numbers. ✅ You pass when the widest wave grows or stays the same, and you can say what the change cost (a new interface, a reconciliation, a claim).</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>critical path</td><td>&quot;the long pole&quot;</td><td>The longest chain of blocking edges, in waves. Your wall-clock floor.</td></tr><tr><td>widest wave</td><td>&quot;how parallel it is&quot;</td><td>The most nodes that can run at once. Your fan-out ceiling.</td></tr><tr><td>busy-write check</td><td>&quot;it should be fine&quot;</td><td>Two same-wave nodes writing one file is a collision the graph must resolve.</td></tr><tr><td>defended edge</td><td>&quot;an obvious dependency&quot;</td><td>A blocking edge you can justify by naming the artifact it carries.</td></tr><tr><td>graph document</td><td>&quot;a diagram&quot;</td><td>The nodes, labelled edges, joins, failure policy, and computed numbers.</td></tr><tr><td>soft edge</td><td>&quot;also needed&quot;</td><td>A preference. It adds no wave; if deleting it changes nothing, delete it.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Executing the graph.</strong> This lesson designs; running it uses the mechanisms from Phase 11 and 12 (subagents, worktrees, workflows). The graph is the plan those mechanisms consume.</p>
+<p><strong>Cost modelling.</strong> Widest wave is a proxy for peak spend; converting it to tokens and dollars is Phase 03, Lesson 11.</p>
+<p><strong>Tools that draw graphs for you.</strong> A diagram generator can render your <code>GRAPH.md</code>; it cannot decide your edges, which is the part that matters.</p>
+<p><strong>The practice module.</strong> Module 15.1 turns this into a graded deliverable with a critical path you defend in writing. Do this lesson first; the module is stricter.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A designer draws a graph, counts ten nodes, and reports a critical path of four waves. No script was run — they read it off the diagram. Why is that not yet a defensible number?</p>
+        <ol class="options" type="A">
+          <li>Diagrams cannot show waves, so the number is meaningless</li>
+          <li>The critical path is the longest chain of <em>blocking</em> edges; if any edge is a soft edge drawn as blocking, the human count is too high and must be recomputed</li>
+          <li>Four is correct as long as there are ten nodes</li>
+          <li>The widest wave is the critical path, so they counted the wrong thing</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The critical path is the longest chain of <em>blocking</em> edges; if any edge is a soft edge drawn as blocking, the human count is too high and must be recomputed</p>
+          <p class="why">A hand count silently assumes every edge blocks; the honest number comes from removing soft edges and recomputing. Option A is false — diagrams do show waves. Option C invents a node-count relationship that does not exist. Option D conflates width with depth.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q"><code>graph.mjs</code> reports no collision and a widest wave of five. Later the run has two agents editing <code>package.json</code> at once. What did the graph model miss?</p>
+        <ol class="options" type="A">
+          <li>Nothing; the collision is a runner bug</li>
+          <li>A node's <code>writes</code> list was incomplete, so the busy-write check had no way to see the shared file</li>
+          <li>The widest wave should have been capped at one</li>
+          <li>The critical path was computed wrongly</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A node's <code>writes</code> list was incomplete, so the busy-write check had no way to see the shared file</p>
+          <p class="why">The busy-write check is only as good as the <code>writes</code> field on each node; a missing file makes a real collision invisible. Option A is tempting but the graph is the model — an incomplete model is the design error. Option C destroys all parallelism. Option D is a different number and does not cause a write collision.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">To shorten the critical path, a team wants to convert their only blocking edge into a soft one by agreeing an interface — but the interface would be a guess about a third-party API they cannot test yet. What is the right call?</p>
+        <ol class="options" type="A">
+          <li>Convert it anyway; fewer blocking edges is always better</li>
+          <li>Leave it blocking: an unverifiable interface is a bet whose reconciliation cost likely exceeds the wait</li>
+          <li>Delete the downstream node so the path shortens</li>
+          <li>Add a decision node to remove the edge automatically</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Leave it blocking: an unverifiable interface is a bet whose reconciliation cost likely exceeds the wait</p>
+          <p class="why">Conversion is a comparison of wait cost against reconciliation cost; an untestable interface is close to a guaranteed reconciliation. Option A is the tempting slogan this whole phase warns against. Option C removes work rather than restructuring the graph. Option D is a category error — a decision node records a choice, it does not delete a data dependency.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A graph has a critical path of three waves and a widest wave of one. A colleague says the design is broken because it has zero parallelism. What is the honest reading?</p>
+        <ol class="options" type="A">
+          <li>The graph tool is broken</li>
+          <li>The project is a true pipeline: every step needs the previous, so there is no parallelism to extract as decomposed — worth knowing before spending on agents</li>
+          <li>They must have missed soft edges, so mark three soft</li>
+          <li>Widest wave of one always means a cycle</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The project is a true pipeline: every step needs the previous, so there is no parallelism to extract as decomposed — worth knowing before spending on agents</p>
+          <p class="why">Width one with a real chain is a legitimate pipeline; the value is knowing it before paying for fan-out. Option A blames the tool. Option C is tempting because plans often over-block, but inventing soft edges without evidence is how you ship a collision. Option D is false — a cycle fails earlier, at the acyclic check, and would make the run impossible rather than narrow.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/15-graph-engineering/104-failure-propagation.html"><span>Previous</span>104. Failure Propagation — What Happens When One Node Dies</a>
+    <a class="next" href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span>Next</span>106. Session vs Agent Scope</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

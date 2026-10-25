@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Rules and Path-Scoped Rules that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "You write `.claude/rules/api-design.md` with `paths: [\"src/api/**/*.ts\"]`. You start a fresh session and run `/context`. The rule isn't listed. Is something wrong?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Yes — the frontmatter is invalid, so the rule failed to load",
+        "No — a path-scoped rule loads only after the agent reads, writes, or edits a matching file",
+        "Yes — rules must live in `~/.claude/rules/` to load at launch",
+        "No — `/context` never lists rules, only CLAUDE.md files"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "Path-scoped rules are deliberately absent at launch and load on the first matching file. Option 0 is tempting because 'not in /context' usually means 'didn't load' — but for a scoped rule, absence at launch is the correct behaviour."
+    },
+    {
+      "id": 2,
+      "prompt": "A rule you scoped to test files starts loading in every session, even when no test file is touched. You check the frontmatter and it looks right. What is the most likely cause?",
+      "options": [
+        "The `paths` value is a comma-separated string, which is not allowed",
+        "The YAML between the `---` markers doesn't parse, so the rule loads as if it had no `paths`",
+        "Rules with `paths` always load at launch; only skills are scoped",
+        "The rule is in a subdirectory, which disables scoping"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "If the frontmatter YAML fails to parse, Claude Code ignores it and loads the rule unconditionally. Option 0 is tempting because it sounds like a syntax rule — but both a YAML list and a comma-separated string are accepted, so that is not the cause."
+    },
+    {
+      "id": 3,
+      "prompt": "Your team needs a formatter to run after every file edit, without exception. You put the instruction in `.claude/rules/formatting.md`. What will happen?",
+      "options": [
+        "It works — rules are loaded every session and the agent follows them",
+        "The agent will usually follow it, but nothing guarantees it; a hook is the mechanism that runs every time",
+        "The rule will be skipped because formatting is not a file path",
+        "The rule will be rejected because it has no `paths` field"
+      ],
+      "answer": 1,
+      "explanation": "Rules are guidance the agent reads, not enforcement, so an occasional miss is expected. Option 0 is tempting because the rule does load every session — but loading is not the same as guaranteeing the action, which is what a hook is for."
+    },
+    {
+      "id": 4,
+      "prompt": "You have a release procedure the agent should run only when you ask for a release. Where does it belong?",
+      "options": [
+        "An unconditional rule, so it is always in the window",
+        "A path-scoped rule, scoped to release files",
+        "A skill, which loads when you invoke it",
+        "A user-level rule in `~/.claude/rules/`"
+      ],
+      "answer": 2,
+      "explanation": "A procedure that runs on demand belongs in a skill, which loads on invoke. Option 1 is tempting because scoping sounds close to on-demand — but a path-scoped rule loads on a *file match*, not on your request, so the release procedure would load whenever you happened to open a matching file."
     }
   ]
 }

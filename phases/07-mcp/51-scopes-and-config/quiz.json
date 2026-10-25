@@ -2,26 +2,67 @@
   "lesson": "07-mcp/51-scopes-and-config",
   "title": "Scopes, Precedence, Config Shape",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Scopes, Precedence, Config Shape that needs a new situation, not recall.",
+      "prompt": "A team commits a .mcp.json. You want to change one header and test it without touching the shared file, and you do not want your edit reaching anyone else. What do you do?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Edit .mcp.json, commit the change, and revert it after testing",
+        "Add the same server name at local scope with your version — local beats project, so yours runs and nobody else sees it",
+        "Delete .mcp.json, edit, and restore it from git afterwards",
+        "Add your version at user scope, then remember to remove it before the next project"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Precedence is local over project, and entries are matched by name, so a same-named local entry shadows the shared one for you alone. That is exactly what the safety valve is for. Options A and C both involve touching or deleting the tracked file, which is the thing you were trying to avoid. Option D nearly works but leaks: user scope loads in every project you open, so the override is live everywhere until you remember to delete it.",
+      "concept": "scope-precedence"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You define a server in project scope with a url and headers, and someone on the team has the same server defined at local scope with only an env var. At runtime, which fields are live?",
+      "options": [
+        "Both — project supplies url and headers, local supplies env",
+        "Only the local entry, in full; nothing is taken from the project entry",
+        "Local wins for the fields it declares, project fills in the rest",
+        "User scope fills the gaps, then project, then local"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Claude Code uses the entire highest-precedence entry and does not merge fields across scopes. Local is highest, so the project entry is ignored completely — including the url it was relying on for the server to work at all. That silent all-or-nothing behaviour is why the debugging advice is 'define the whole server locally, not just the bit you're changing'. Option D has the order backwards and would merge, which is not what happens.",
+      "concept": "no-merging"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You commit a .mcp.json for your team. Which change is the one that actually prevents a secret from landing in git history?",
+      "options": [
+        "Put the token in headers with a value like Bearer sk-livesecret-abc123",
+        "Put the token in headers as Bearer ${API_KEY} so the committed file holds the variable name and each machine supplies the value",
+        "Put the token in headers, then delete it from .mcp.json before the next commit",
+        "Put the token in env with the literal value, since env entries are not written to the file"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Expansion works in url, headers, command, args, and env, and ${VAR} / ${VAR:-default} mean the committed file contains no credential — the machine supplies it at load time. Option A is the failure this prevents: once it is in history, rotating the token is a commit plus a PR to a forty-person repo. Option C is not a control, it's a hope. Option D is factually wrong — env values in a committed .mcp.json are written to the file, which is precisely why expansion exists.",
+      "concept": "env-expansion"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You clone a repo whose .mcp.json defines a stdio server that runs a build script. /mcp shows it pending approval and the tools are absent. You want to use it. What is the correct read of the situation?",
+      "options": [
+        "The server is broken — a cloned repo cannot reach the author's machine to register it",
+        "sse servers cannot be approved from a clone, so this config is malformed",
+        "Approval is a human gate: a cloned repo cannot approve its own project servers until you accept workspace trust, then approve the server",
+        "The server will load on the next restart without any action from you"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "Project-scoped servers require approval in an interactive session, and settings committed to the repo — including anything that would auto-enable them — are ignored in an untrusted folder. So pending approval is the system working: a repository cannot hand itself permission to run code on your laptop. Option A confuses config distribution with runtime registration, which is not how any of this works. Option D would mean the gate didn't exist.",
+      "concept": "project-approval"
     }
   ]
 }

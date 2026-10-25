@@ -4,94 +4,312 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dynamic Workflows — the Script Decides — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="The plan moves out of Claude's window and into a JavaScript file that a runtime">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Dynamic Workflows — the Script Decides</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li class="on"><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 77, Cross-Session Messaging</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">BUILD · PHASE 12 · LESSON 78</p>
+      <h1>Dynamic Workflows — the Script Decides</h1>
+      <p class="lesson-motto">The plan moves out of Claude's window and into a JavaScript file that a runtime</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Build</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 11 (Lessons 71–76), Phase 04 Lesson 30 (Compaction), Phase 06 (Subagents)</dd></div>
+        <div><dt>Time</dt><dd>~45 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Run a bundled workflow and read its progress view without steering it</li><li>Find the script a run generated, and read its <code>meta</code> block, <code>agent()</code> calls, and phases</li><li>Ask Claude to write a workflow for a task of your own, and approve it deliberately</li><li>Save a run as a reusable <code>/&lt;name&gt;</code> command, and pass it input through <code>args</code></li><li>Say what a workflow cannot do that a conversation can</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You have 400 files to migrate. Claude spawns five subagents, each migrates a file, and each returns a summary into your conversation. Then it spawns five more. By file twenty, your window holds twenty summaries and three stack traces, and one of them was long enough to trigger a compaction.</p>
+<p>The plan — which files, in what order, what to do when one fails — lived in Claude's window. Compaction summarized the window. The plan is now a summary of a plan.</p>
+<p>That is not a bug. It is what subagents are: the <em>results</em> come back into the window, and the window is the one budget that fills (Lesson 08). Five delegated tasks per turn is the scale that fits.</p>
+<p>The other shape is to stop asking Claude to hold the loop. Write the loop down.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>A <strong>dynamic workflow</strong> is a JavaScript script that orchestrates subagents. Claude writes the script for the task you describe. A runtime executes it in the background, in an isolated environment, while your session stays responsive.</p>
+<p>The intermediate results stay in <strong>script variables</strong>. That is the part that matters. The script holds the list of files, the results so far, the branching, and the retries. Your conversation holds the final answer.</p>
+<figure class="diagram"><pre>flowchart TB
+    subgraph C[&quot;Conversation (Claude's window)&quot;]
+      P[&quot;your request&quot;] --&gt; O[&quot;orchestration, turn by turn&quot;]
+      O --&gt; R[&quot;every result lands here&quot;]
+      R --&gt; O
+      R --&gt; F1[&quot;final answer&quot;]
+    end
+    subgraph W[&quot;Workflow run (script's world)&quot;]
+      S[&quot;the script&quot;] --&gt; A1[&quot;agent()&quot;]
+      S --&gt; A2[&quot;agent()&quot;]
+      S --&gt; A3[&quot;agent()&quot;]
+      A1 --&gt; V[&quot;script variables&quot;]
+      A2 --&gt; V
+      A3 --&gt; V
+      V --&gt; F2[&quot;the script's return value&quot;]
+    end
+    C -. &quot;moves the plan into code&quot; .-&gt; W</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="the-trade-in-one-table">The trade, in one table</h3>
+<div class="table-wrap"><table><thead><tr><th></th><th>Subagents</th><th>Skills</th><th>Agent teams</th><th>Workflows</th></tr></thead><tbody><tr><td>What it is</td><td>A worker Claude spawns</td><td>Instructions Claude follows</td><td>A lead supervising peer sessions</td><td>A script the runtime executes</td></tr><tr><td>Who decides what runs next</td><td>Claude, turn by turn</td><td>Claude, following the prompt</td><td>The lead, turn by turn</td><td>The script</td></tr><tr><td>Where intermediate results live</td><td>Claude's window</td><td>Claude's window</td><td>A shared task list</td><td>Script variables</td></tr><tr><td>What's repeatable</td><td>The worker definition</td><td>The instructions</td><td>The team definition</td><td>The orchestration itself</td></tr><tr><td>Scale</td><td>A few delegated tasks per turn</td><td>Same as subagents</td><td>A handful of long-running peers</td><td>Dozens to hundreds per run</td></tr><tr><td>Interruption</td><td>Restarts the turn</td><td>Restarts the turn</td><td>Teammates keep running</td><td>Resumable in the same session</td></tr></tbody></table></div>
+<p>Read the second row twice. Subagents, skills, and teams all leave the <em>decision</em> with Claude — it looks at the last result and picks the next move. A workflow takes that decision away from the model and puts it in <code>if</code> statements.</p>
+<p>The fourth row is the payoff: a workflow you saved runs the <em>same</em> orchestration next time. That is the difference between &quot;Claude is good at migrations&quot; and &quot;we have a migration.&quot;</p>
+<blockquote><p><strong>The reframe:</strong> with subagents Claude is the orchestrator and the plan lives in</p><p>its window; with a workflow the script is the orchestrator and the plan lives in</p><p>code — decide which of those two you want before you decide how many agents.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-run-the-bundled-one-first">1. Run the bundled one first</h3>
+<p><code>/deep-research</code> ships with Claude Code. Give it a question with a real answer.</p>
+<pre class="code"><code>/deep-research What changed in the Node.js permission model between v20 and v22?</code></pre>
+<p>Approve the launch when asked. Then open the run:</p>
+<pre class="code"><code>/workflows</code></pre>
+<p>The view shows each phase and its agent count. <code>↑</code>/<code>↓</code> moves, <code>Enter</code> drills in, <code>Esc</code> backs out, <code>p</code> pauses and resumes, <code>x</code> stops an agent or the whole run, and <code>s</code> saves.</p>
+<p>✅ You pass when you can name the phases the run used, without having typed a single prompt into it after the first one.</p>
+<h3 id="2-read-the-script-it-wrote">2. Read the script it wrote</h3>
+<p>Every run writes its script to a file under your session's directory in <code>~/.claude/projects/</code>. Claude receives the path when the run starts, so you can just ask for it.</p>
+<pre class="code"><code>Show me the script for that run.</code></pre>
+<p>You are looking for four things:</p>
+<pre class="code" data-lang="javascript"><code>export const meta = {
+  name: 'audit-routes',
+  description: 'Audit every route handler for missing auth checks',
+}
 
----
+const found = await agent('List every .ts file under src/routes/.', {
+  schema: { type: 'object', required: ['files'], properties: { files: { type: 'array', items: { type: 'string' } } } },
+})
 
-## The Problem
+const audits = await pipeline(found.files, file =&gt;
+  agent(`Audit ${file} for missing authentication checks.`, { label: file }),
+)
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
+return audits.filter(Boolean)</code></pre>
+<p><code>agent()</code> spawns one subagent. <code>pipeline()</code> runs one per item in a list. <code>parallel()</code> runs a set of tasks at once. <code>phase()</code> groups the agents that follow under a title. <code>log()</code> prints above the phases. <code>args</code> is the input a saved workflow was called with.</p>
+<p>Three rules the runtime enforces, and each one will bite you once: no <code>import()</code> — the body is plain JavaScript; no direct filesystem or shell access — agents do the work and the script coordinates; and <code>Date.now()</code>, <code>Math.random()</code>, and a no-argument <code>new Date()</code> <strong>throw</strong>, so that a relaunched run repeats the same calls. Pass a timestamp in through <code>args</code> instead of reading the clock.</p>
+<p>✅ You pass when you can point at the line that decided <em>how many</em> agents would run, and say what would change it.</p>
+<h3 id="3-ask-for-one-of-your-own">3. Ask for one of your own</h3>
+<p>The keyword opts in for a single prompt:</p>
+<pre class="code"><code>ultracode: audit every API endpoint under src/routes/ for missing auth checks</code></pre>
+<p>Asking in your own words — &quot;use a workflow&quot;, &quot;run a workflow&quot; — is treated the same. For a session-wide setting, <code>/effort ultracode</code> makes Claude plan a workflow for each substantive task, which uses more tokens and takes longer per request. Turn it off with <code>/effort ultracode off</code> when you go back to routine work.</p>
+<p>The keyword only opts in from a prompt <strong>you</strong> type: the interactive prompt, an IDE panel, a Remote Control client, or an SDK app that stamps the input as human. It does <em>not</em> start a workflow from <code>-p</code>, from a scheduled task prompt, or from a webhook or pull-request comment relayed into the conversation. Before v2.1.210 it did, which is why old notes may say otherwise.</p>
+<p>✅ You pass when a workflow starts from a keyworded prompt you typed, and you can name one route that would <em>not</em> have triggered it.</p>
+<h3 id="4-approve-it-deliberately">4. Approve it deliberately</h3>
+<p>The per-run prompt shows the planned phases and four options:</p>
+<div class="table-wrap"><table><thead><tr><th>Choice</th><th>What it does</th></tr></thead><tbody><tr><td>Yes, run it</td><td>Starts the run</td></tr><tr><td>Yes, and don't ask again for <code>&lt;name&gt;</code> in <code>&lt;path&gt;</code></td><td>Offered for bundled, saved, and plugin workflows — not for a one-off script Claude just wrote</td></tr><tr><td>View raw script</td><td>Read it before deciding. <code>Ctrl+G</code> opens it in your editor</td></tr><tr><td>No</td><td>Cancels</td></tr></tbody></table></div>
+<p>Which prompt you see depends on your permission mode: <strong>auto</strong> prompts once and records consent; <strong>manual</strong> and <strong>accept edits</strong> prompt every run unless you chose &quot;don't ask again&quot;; <strong>bypass permissions</strong> never prompts; and <code>claude -p</code> and the Agent SDK never prompt — the <code>Workflow</code> call goes through the ordinary permission evaluation instead, so an allow rule of <code>Workflow</code> or <code>Workflow(&lt;name&gt;)</code> is how you let it start there.</p>
+<p>✅ You pass when you have read a generated script <em>before</em> running it and found something in it you would have changed.</p>
+<h3 id="5-save-the-one-worth-repeating">5. Save the one worth repeating</h3>
+<p><code>/workflows</code> → select the run → <code>s</code>. The save dialog toggles between two places:</p>
+<ul><li><code>.claude/workflows/</code> — this project, shared with everyone who clones it</li><li><code>~/.claude/workflows/</code> — every project, visible only to you</li></ul>
+<p>It runs as <code>/&lt;name&gt;</code> from then on. A saved workflow can read the <code>args</code> global, so the same script takes a different list each time:</p>
+<pre class="code"><code>Run /triage-issues on issues 1024, 1025, and 1030</code></pre>
+<p>Claude passes that as structured data — an array or an object, not a string you have to parse.</p>
+<p>✅ You pass when the saved name appears in <code>/</code> autocomplete and a second run with different <code>args</code> produces different work.</p>
+<h3 id="6-bound-the-next-run-before-it-starts">6. Bound the next run before it starts</h3>
+<p>A workflow spawns many agents, so one run can use meaningfully more tokens than doing the same task in conversation. Two settings bound it:</p>
+<ul><li><strong>Size guideline</strong> — <code>small</code> (under 5 agents), <code>medium</code> (under 10), <code>large</code> (under 50), or <code>unrestricted</code>. Default is <code>medium</code>, or <code>small</code> on Pro accounts at recent versions. Set <code>workflowSizeGuideline</code> in a settings file, or the Dynamic workflow size row in <code>/config</code>.</li><li><strong>A large-run warning</strong> — above 25 agents, or a projected 1.5 million tokens, the run's progress line grows a <code>Large workflow</code> warning. It is advisory: it does not pause anything.</li></ul>
+<p>✅ You pass when you can state your session's current guideline and where you found it, and you have run once on a small slice before committing to the whole repo.</p>
+<blockquote><p>Workflows are young and version-gated. Verified against</p><p><a href="https://code.claude.com/docs/en/workflows" target="_blank" rel="noopener">the workflows page</a> on 2026-10-15.</p><p>The runtime caps — concurrency, list length, total agents — get their own</p><p>treatment in Lesson 81. Check <code>https://code.claude.com/docs/llms.txt</code> before</p><p>trusting a number on this page.</p></blockquote>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Need</th><th>Reach for</th><th>Note</th></tr></thead><tbody><tr><td>See a workflow work</td><td><code>/deep-research</code></td><td>The bundled one. Read its script afterwards</td></tr><tr><td>Watch or steer a run</td><td><code>/workflows</code></td><td><code>p</code> pause, <code>x</code> stop, <code>r</code> restart an agent, <code>s</code> save</td></tr><tr><td>One task as a workflow</td><td><code>ultracode</code> in a prompt you type</td><td>Own words like &quot;use a workflow&quot; work too</td></tr><tr><td>Every substantive task as a workflow</td><td><code>/effort ultracode</code></td><td>Costs more per request. Off with <code>/effort ultracode off</code></td></tr><tr><td>Make one permanent</td><td><code>/workflows</code> → <code>s</code></td><td><code>.claude/workflows/</code> or <code>~/.claude/workflows/</code></td></tr><tr><td>Give a saved workflow input</td><td><code>args</code> in the script</td><td>Passed as structured data, not a string</td></tr><tr><td>Change a saved script</td><td><code>/workflow-authoring</code>, then <code>/reload-skills</code></td><td>The skill loads the script-writing reference</td></tr><tr><td>Ship one to a team</td><td>A plugin's <code>workflows/</code> directory</td><td>Namespaced as <code>/&lt;plugin&gt;:&lt;name&gt;</code></td></tr><tr><td>Bound the size</td><td><code>workflowSizeGuideline</code> setting or <code>/config</code></td><td>Advice to Claude, not a hard cap</td></tr><tr><td>Turn it all off</td><td><code>/config</code>, <code>disableWorkflows</code>, or <code>CLAUDE_CODE_DISABLE_WORKFLOWS=1</code></td><td>A run already in progress keeps going</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take a task you have done in conversation and that took more than ten tool calls. Ask for it as a workflow, then read the generated script and count the agent calls before you run it. ✅ You pass when your prediction of the agent count is within one of what the progress view shows, and you can say which line set it.</li></ol>
+<ol><li class="criterion">Run a workflow that fans out over a directory, then stop one agent mid-run with <code>x</code> and let the run finish. ✅ You pass when you can say what the stopped agent's result became, and whether the run ended or carried on.</li></ol>
+<ol><li class="criterion">Save a workflow, then run it twice with different <code>args</code> — one list of three items, one of ten. ✅ You pass when both runs complete from the same script and the second does visibly more work, with no edit to the file between runs.</li></ol>
+<ol><li class="criterion">Explain, in your own words, why <code>Date.now()</code> throws inside a workflow script, and what you would do instead if you genuinely needed the run's timestamp. ✅ You pass when your answer names both the reason (a relaunch must repeat the same calls) and the mechanism (<code>args</code>).</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>dynamic workflow</td><td>&quot;an ultracode thing&quot;</td><td>A JavaScript script the runtime executes to orchestrate many subagents</td></tr><tr><td><code>agent()</code></td><td>&quot;a subagent call&quot;</td><td>Spawns one subagent. Resolves to its result, or <code>null</code> if it was stopped or hit an unrecoverable error</td></tr><tr><td><code>pipeline()</code></td><td>&quot;the loop&quot;</td><td>One agent per item in a list. Keeps a <code>null</code> in the slot of an item that failed</td></tr><tr><td><code>parallel()</code></td><td>&quot;run them all&quot;</td><td>A set of tasks at once. Waits for all of them</td></tr><tr><td><code>meta</code></td><td>&quot;the header&quot;</td><td>A plain object literal with <code>name</code> and <code>description</code>, as the first statement. Non-literals drop it from autocomplete</td></tr><tr><td><code>args</code></td><td>&quot;the parameter&quot;</td><td>The structured input a saved workflow was invoked with. <code>undefined</code> if omitted</td></tr><tr><td><code>ultracode</code></td><td>&quot;a magic word&quot;</td><td>The opt-in keyword. Works only in a prompt you typed yourself</td></tr><tr><td>size guideline</td><td>&quot;a cap&quot;</td><td>Advice to Claude about how many agents to aim for. The runtime caps still apply separately</td></tr><tr><td>resumable</td><td>&quot;it remembers&quot;</td><td>Within one session, a relaunched run replays agents and returns saved results for the ones that completed</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>The two combinators in depth.</strong> <code>parallel()</code> versus <code>pipeline()</code> looks like a one-line difference and is not. Lesson 79 is entirely that.</p>
+<p>**What happens to a fan-out's <em>order</em>.** This lesson's example ends in <code>.filter(Boolean)</code> and does not explain why that is a loaded line. Lesson 80 is about the ordering trap hiding in it.</p>
+<p><strong>The runtime's numbers.</strong> Sixteen concurrent agents, 4,096 items per call, 1,000 agents per run, stall windows and restarts. Lesson 81.</p>
+<p><strong>Running agents on a schedule.</strong> A workflow is a plan, not a timer. <code>/loop</code> and the cron tools are Lesson 82.</p>
+<p><strong>Plugin distribution in full.</strong> The <code>workflows</code> directory and its manifest field, and what a plugin's namespace does to names, is Phase 09 Lesson 62.</p>
+<p><strong>The Agent SDK's <code>Workflow</code> tool.</strong> Same script, different host and permission model. Phase 17.</p>
+      </div>
 
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">5 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A workflow fans out over 400 files and each agent returns a long summary. Where does the summary of the 40th file live while the remaining agents are still running?</p>
+        <ol class="options" type="A">
+          <li>In a variable inside the workflow script, outside Claude's context window</li>
+          <li>In Claude's context window, where the next decision can read it</li>
+          <li>In the agent team's shared task list</li>
+          <li>Appended to the session transcript, which the script reads back</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> In a variable inside the workflow script, outside Claude's context window</p>
+          <p class="why">The runtime executes the script in an isolated environment and keeps intermediate results in script variables, which is the whole reason a workflow can scale past what one window holds. The first wrong option is the instinct carried over from subagents — there, results do land in the window, and that is exactly the constraint a workflow removes. Agent teams use a shared task list, which is for tasks rather than agent outputs, and the transcript is a record of what was said, not a working store the script reads.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A CI job runs <code>claude -p &quot;ultracode: audit every route handler&quot;</code>. The audit runs turn by turn and no workflow starts. Why?</p>
+        <ol class="options" type="A">
+          <li>The keyword only opts in from a prompt a human typed; a <code>-p</code> prompt does not trigger it</li>
+          <li>Workflows are unavailable in non-interactive mode, so Claude Code stripped the keyword</li>
+          <li>The keyword has to be the first character of the prompt, and a quote preceded it</li>
+          <li>The workflow needs to be saved as a command before the keyword can launch it</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> The keyword only opts in from a prompt a human typed; a <code>-p</code> prompt does not trigger it</p>
+          <p class="why">The docs list the routes that count as human input — the interactive prompt, an IDE panel, a Remote Control client, an SDK app that stamps the input as human — and <code>-p</code> is explicitly not one of them; neither is a scheduled task prompt or a relayed webhook. The unavailable-in-<code>-p</code> option is the tempting one because workflows are indeed young, but the pages state they run in non-interactive mode and in the Agent SDK. The quote has nothing to do with it, and a workflow does not need saving before it can run — saving is for reuse.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Your workflow script needs to read <code>.tool-versions</code> and branch on its contents. What does the script do?</p>
+        <ol class="options" type="A">
+          <li>Give an agent the job of reading the file and returning the value, because the script itself has no filesystem access</li>
+          <li><code>import { readFileSync } from 'node:fs'</code> inside the script body</li>
+          <li>Read the value with a top-level <code>await fetch('file://.tool-versions')</code></li>
+          <li>Nothing — the script must ask the user for the value, because runs take no input</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Give an agent the job of reading the file and returning the value, because the script itself has no filesystem access</p>
+          <p class="why">The workflow coordinates; agents read, write, and run commands. The first wrong option is the one most developers reach for, and it fails twice: the runtime rejects a script containing <code>import()</code> before the run even starts, and there is no filesystem for the script to use. Fetching a <code>file://</code> URL is not part of the documented script surface and runs into the same missing-access wall. The last option confuses the run's inability to accept <em>user input mid-run</em> with the script's ability to receive input — <code>args</code> covers that case.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You want each saved run to write into a new folder named after the time it started, and you want a relaunch to be able to repeat the run. What is the right move?</p>
+        <ol class="options" type="A">
+          <li>Pass the timestamp in through <code>args</code> and let the script use it</li>
+          <li>Call <code>Date.now()</code> at the top of the script and format it</li>
+          <li>Call <code>new Date()</code> for the folder name and <code>Date.now()</code> for a log line</li>
+          <li>Add a <code>phase('timestamp')</code> call and read the time from it</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Pass the timestamp in through <code>args</code> and let the script use it</p>
+          <p class="why">The runtime makes <code>Date.now()</code>, <code>Math.random()</code>, and a no-argument <code>new Date()</code> throw, precisely so a relaunched run repeats the same <code>agent()</code> calls instead of silently diverging. That is why the first two tempting answers are wrong rather than merely inelegant — the calls do not return values, they fail. <code>phase()</code> is real but it groups agents under a title in the progress view; it carries no clock.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You edit a saved workflow's <code>.js</code> file while a session is open, and run <code>/&lt;name&gt;</code> again. Nothing changes. What did you miss?</p>
+        <ol class="options" type="A">
+          <li>Run <code>/reload-skills</code> so the session re-reads the workflow directories, then run <code>/&lt;name&gt;</code> again</li>
+          <li>Delete the run from <code>/workflows</code> first, or the old script is reused</li>
+          <li>Re-save the workflow from <code>/workflows</code> so the edit is registered</li>
+          <li>Restart Claude Code; workflow files are read once at launch</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Run <code>/reload-skills</code> so the session re-reads the workflow directories, then run <code>/&lt;name&gt;</code> again</p>
+          <p class="why">Saved workflows are files, and the session caches the directories it read; <code>/reload-skills</code> re-reads them, and then <code>/&lt;name&gt;</code> runs the edited version. <code>/workflows</code> manages running and completed runs, so deleting one has no bearing on which file a name resolves to — that is the most plausible wrong answer, because the runs list is where you normally touch workflows from the inside. Re-saving writes the <em>run's</em> script back to a location, which is the opposite direction. And a restart would eventually work, which is why it is tempting, but the documented step is the reload.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span>Previous</span>77. Cross-Session Messaging</a>
+    <a class="next" href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span>Next</span>79. `parallel()` vs `pipeline()`</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

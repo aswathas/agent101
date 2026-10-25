@@ -3,95 +3,285 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Manual Worktrees — git worktree add — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<title>Manual Worktrees — `git worktree add` — Harnessing Claude Code</title>
+<meta name="description" content="You can put a second checkout of the same repository on any branch, anywhere on">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Manual Worktrees — git worktree add</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li class="on"><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 106, Session vs Agent Scope</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">BUILD · PHASE 16 · LESSON 107</p>
+      <h1>Manual Worktrees — `git worktree add`</h1>
+      <p class="lesson-motto">You can put a second checkout of the same repository on any branch, anywhere on</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Build</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 02 (Lessons 13–15), Phase 11</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Create a worktree on a brand-new branch and on an existing one</li><li>Commit inside a worktree and read that commit back from the main checkout</li><li>Explain why one branch cannot be checked out in two worktrees at once</li><li>Remove a worktree on purpose, and name what gets deleted with it</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You are halfway through a refactor on <code>main</code>, with changes you are not ready to commit. A bug report lands on <code>fix-issue-456</code>.</p>
+<p>Every move you know is bad:</p>
+<ul><li><code>git stash</code> — and now your half-done work is in a place you have to remember to come back to. Ask any agent: stashes get lost.</li><li>Commit the half-done work — and now <code>main</code> carries a commit labelled &quot;wip&quot; that someone will find in three months.</li><li><code>git switch fix-issue-456</code> — and git carries your uncommitted edits <em>into</em> the fix branch, where they will tangle with the actual fix.</li></ul>
+<p>There is a fourth move, and it is the whole reason <code>git worktree</code> exists: give <code>fix-issue-456</code> a folder of its own, and leave <code>main</code> exactly as it is.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>A worktree is a second working directory for the same repository. It has its own files and its own checked-out branch, but it <strong>shares the repository's object store and refs</strong> with every other worktree. A commit you make in one is a commit in the repository, visible from all of them.</p>
+<figure class="diagram"><pre>flowchart LR
+    subgraph Repo[One repository / one .git]
+        O[(object store + refs)]
+    end
+    M[~/project&lt;br/&gt;branch: main&lt;br/&gt;half-done edits] --&gt; O
+    W[~/project-fix&lt;br/&gt;branch: fix-issue-456] --&gt; O
+    O --&gt;|&quot;git log fix-issue-456&quot;| M</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>Two folders, one history. The branch you check out in a worktree stays there.</p>
+<h3 id="the-commands">The commands</h3>
+<pre class="code" data-lang="bash"><code># a worktree on a new branch
+git worktree add ../project-fix -b fix-issue-456
 
----
+# a worktree on a branch that already exists
+git worktree add ../project-fix fix-issue-456
 
-## The Problem
+# list them
+git worktree list
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
+# remove one (add --force if it has uncommitted changes or untracked files)
+git worktree remove ../project-fix</code></pre>
+<h3 id="one-branch-one-worktree">One branch, one worktree</h3>
+<p>Git refuses to check out the same branch in two worktrees at once. Try it and you get an error naming the other worktree. This is not a limitation to work around — it is what stops two folders from rewriting the same branch and racing each other. Every worktree gets a <em>different</em> branch, always.</p>
+<h3 id="claude-s-flag-is-sugar-over-this">Claude's flag is sugar over this</h3>
+<p><code>claude --worktree &lt;name&gt;</code> from Lesson 106 runs this machinery for you: it creates the worktree under <code>.claude/worktrees/</code> and checks out <code>worktree-&lt;name&gt;</code>. Use the manual form when you need something the flag does not do — an <em>existing</em> branch, or a folder outside the repository.</p>
+<p>One difference that bites later: Claude Code's cleanup sweep only manages worktrees <strong>it</strong> created. A worktree you made with <code>git worktree add</code> is yours to remove.</p>
+<blockquote><p><strong>The reframe:</strong> <code>git worktree add</code> gives the branch its own folder, so</p><p>switching branches stops meaning &quot;putting my uncommitted work at risk.&quot;</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-make-a-repo-with-work-you-are-not-ready-to-commit">1. Make a repo with work you are not ready to commit</h3>
+<pre class="code" data-lang="bash"><code>mkdir -p ~/wt-drill &amp;&amp; cd ~/wt-drill
+git init
+printf 'v1\n' &gt; app.txt
+git add app.txt &amp;&amp; git commit -m &quot;start app&quot;
+printf 'half-done\n' &gt;&gt; app.txt
+git status</code></pre>
+<p><code>app.txt</code> is modified but uncommitted. Leave it that way.</p>
+<p>✅ You pass when <code>git status</code> shows <code>app.txt</code> modified and no worktree exists yet (<code>git worktree list</code> shows only the main folder).</p>
+<h3 id="2-add-a-worktree-on-a-new-branch">2. Add a worktree on a new branch</h3>
+<pre class="code" data-lang="bash"><code>git worktree add ../wt-drill-fix -b fix-issue-456
+git worktree list</code></pre>
+<p>✅ You pass when <code>git worktree list</code> shows <strong>two</strong> entries: the main folder on <code>main</code>, and <code>../wt-drill-fix</code> on <code>fix-issue-456</code>.</p>
+<h3 id="3-commit-in-the-worktree-read-it-from-main">3. Commit in the worktree, read it from main</h3>
+<pre class="code" data-lang="bash"><code>cd ../wt-drill-fix
+printf 'fixed\n' &gt;&gt; app.txt
+git add app.txt &amp;&amp; git commit -m &quot;fix: handle empty input&quot;
+cd ~/wt-drill
+git log --oneline fix-issue-456
+git log --oneline main</code></pre>
+<p>The commit is now in the repository. <code>main</code> does not have it, and <code>main</code>'s half-done edit is still sitting there untouched.</p>
+<p>✅ You pass when <code>fix-issue-456</code> shows the fix commit, <code>main</code> does not, and the main folder's <code>app.txt</code> still shows your uncommitted <code>half-done</code> line.</p>
+<h3 id="4-try-to-check-the-branch-out-twice">4. Try to check the branch out twice</h3>
+<pre class="code" data-lang="bash"><code>git switch fix-issue-456</code></pre>
+<p>✅ You pass when git refuses, naming <code>../wt-drill-fix</code> as the worktree that already has that branch checked out.</p>
+<h3 id="5-remove-the-worktree-and-watch-what-goes-with-it">5. Remove the worktree and watch what goes with it</h3>
+<pre class="code" data-lang="bash"><code>git worktree remove ../wt-drill-fix
+git worktree list
+git log --oneline fix-issue-456</code></pre>
+<p>✅ You pass when the worktree is gone but the commit is <strong>still</strong> in the log — the folder went, the history stayed.</p>
+<h3 id="6-see-the-failure-mode-for-yourself">6. See the failure mode for yourself</h3>
+<p>Recreate the worktree, edit a file, and remove it <strong>without committing</strong>:</p>
+<pre class="code" data-lang="bash"><code>git worktree add ../wt-drill-fix fix-issue-456
+cd ../wt-drill-fix &amp;&amp; printf 'uncommitted\n' &gt;&gt; app.txt
+cd ~/wt-drill
+git worktree remove --force ../wt-drill-fix</code></pre>
+<p>✅ You pass when the edit is gone and you can say why: uncommitted work lives only in that folder, and the folder was deleted.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>git worktree add &lt;path&gt; -b &lt;branch&gt;</code></td><td>A worktree on a new branch, started where you are</td></tr><tr><td><code>git worktree add &lt;path&gt; &lt;branch&gt;</code></td><td>A worktree on a branch that already exists</td></tr><tr><td><code>git worktree list</code></td><td>Seeing every checkout of the repo and its branch</td></tr><tr><td><code>git worktree remove &lt;path&gt;</code></td><td>Cleaning up when you own the worktree</td></tr><tr><td><code>--force</code></td><td>Removing one that has uncommitted changes or untracked files</td></tr><tr><td>Worktree shares <code>.git</code></td><td>Why a commit in one folder is visible from all of them</td></tr><tr><td>One branch per worktree</td><td>Why git refuses the second checkout of the same branch</td></tr><tr><td>Manual vs <code>--worktree</code></td><td>Manual when you need an existing branch or a path outside the repo</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Create one worktree on an existing branch and one on a new branch. Commit in each. From the main folder, show both commits in one <code>git log --all --oneline</code>. ✅ You pass when a single command lists commits from both worktrees, and you can say which object store they share.</li></ol>
+<ol><li class="criterion">Reproduce the &quot;branch already checked out&quot; error, read the full message, and then do the thing it suggests instead of forcing it. ✅ You pass when you can quote the worktree git names, and you resolved it without deleting anything.</li></ol>
+<ol><li class="criterion">Create a worktree, leave an uncommitted change in it, and try to remove it without <code>--force</code>. ✅ You pass when git warns you the worktree contains modifications — and you can say what <code>--force</code> would have destroyed.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>worktree</td><td>&quot;a copy of the repo&quot;</td><td>A second working folder for one repository, on its own branch, sharing the object store.</td></tr><tr><td><code>git worktree add</code></td><td>&quot;checkout into a folder&quot;</td><td>Creates that folder and checks out a branch in it.</td></tr><tr><td>shared object store</td><td>&quot;they're synced&quot;</td><td>Every worktree writes commits to the same <code>.git</code>. There is nothing to sync.</td></tr><tr><td>one branch per worktree</td><td>&quot;git won't let me switch&quot;</td><td>Git forbids the same branch in two worktrees. This prevents two folders racing one branch.</td></tr><tr><td><code>git worktree remove</code></td><td>&quot;deleting the worktree&quot;</td><td>Deletes the folder and its branch bookkeeping. Uncommitted work goes with it.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong><code>git worktree lock</code> / <code>unlock</code>.</strong> Protects a worktree from being pruned while you might not be looking at it. Rarely needed by hand; Claude Code uses it internally so its own cleanup cannot remove a running agent's worktree.</p>
+<p><strong>Bare repositories and detached worktrees.</strong> Real, and outside this course's path.</p>
+<p><strong>The <code>.worktreeinclude</code> file.</strong> Copies gitignored files such as <code>.env</code> into worktrees Claude Code creates. It only applies to <code>--worktree</code>, not to a worktree you add by hand — copy those files yourself.</p>
+<p><strong>Garbage collection of pruned worktrees.</strong> <code>git worktree prune</code> cleans up bookkeeping for worktrees whose folders are already gone. Come back if <code>git worktree list</code> shows entries whose directories no longer exist.</p>
+      </div>
 
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You need a checkout of a branch named <code>release-2</code> that already exists, in a folder outside your repository, because <code>claude --worktree</code> always starts a new branch from the default. Which command gets you there?</p>
+        <ol class="options" type="A">
+          <li><code>claude --worktree release-2</code></li>
+          <li><code>git branch release-2 &amp;&amp; git switch release-2</code></li>
+          <li><code>git worktree add ../release-2 release-2</code></li>
+          <li><code>git clone . ../release-2</code></li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> <code>git worktree add ../release-2 release-2</code></p>
+          <p class="why"><code>git worktree add &lt;path&gt; &lt;branch&gt;</code> checks out an existing branch into a new folder. Option A is the tempting wrong answer because it is the command from the previous lesson, but <code>--worktree</code> creates a new branch (<code>worktree-&lt;name&gt;</code>) rather than checking out one that exists. Option B switches your current folder onto the branch and risks carrying uncommitted work, and a clone is a separate repository, not a shared worktree.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You commit inside <code>../wt-drill-fix</code> and then look at <code>git log</code> from your main folder. The commit is not on <code>main</code> but <code>git log fix-issue-456</code> shows it. Why can the main folder see a commit made somewhere else?</p>
+        <ol class="options" type="A">
+          <li>Both worktrees share the repository's object store and refs, so the commit exists once and is reachable from both</li>
+          <li>The worktree copied the commit back to the main folder on exit</li>
+          <li>Git stores worktree commits in a temporary area until you merge</li>
+          <li>The commit is only visible because the worktree is still on disk</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Both worktrees share the repository's object store and refs, so the commit exists once and is reachable from both</p>
+          <p class="why">A worktree shares the repository's <code>.git</code>; a commit is written once and its branch label is a ref in that shared repo, so the main checkout can read it immediately. Option D is the tempting wrong answer because it sounds plausible — but the commit survives <code>git worktree remove</code>, which is exactly the point of Build It step 5. Nothing is copied back, and there is no staging area for cross-worktree commits.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You run <code>git switch fix-issue-456</code> in your main folder while a worktree already has that branch checked out. Git refuses. What is the refusal protecting you from?</p>
+        <ol class="options" type="A">
+          <li>Losing commits that are only reachable from the worktree</li>
+          <li>A merge that would create a conflict between the two folders</li>
+          <li>Case-insensitive filesystems confusing branch names</li>
+          <li>Two folders editing and committing to the same branch at the same time</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>D.</strong> Two folders editing and committing to the same branch at the same time</p>
+          <p class="why">Git enforces one worktree per branch so two folders cannot move the same label out from under each other. Option B is the tempting wrong answer because 'two checkouts' sounds like a merge, but no merge happens — the hazard is concurrent writes to one branch, not divergent histories. Losing unreachable commits is what the reflog covers, not this rule.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A colleague made a worktree by hand with <code>git worktree add</code>, edited two files, and never committed. Their session ends. What reclaims that folder, and what happens to the edits?</p>
+        <ol class="options" type="A">
+          <li>Claude Code's cleanup sweep removes it and the edits are lost</li>
+          <li>Nothing automatic removes it; the edits stay in the folder until they remove it, and then the edits are gone</li>
+          <li>The edits are pushed to the remote automatically on exit</li>
+          <li>Git commits the edits to the branch so they are safe</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Nothing automatic removes it; the edits stay in the folder until they remove it, and then the edits are gone</p>
+          <p class="why">Claude Code's sweep only manages worktrees it created — a manual worktree is the user's to remove, so nothing reclaims it automatically. The uncommitted edits live only in that folder and vanish when it is removed. Option A is the tempting wrong answer for anyone who read that the sweep 'keeps worktrees with work'; that rule applies to worktrees Claude Code created, not the one added by hand. Nothing auto-pushes or auto-commits.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span>Previous</span>106. Session vs Agent Scope</a>
+    <a class="next" href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span>Next</span>108. The Startup-Cache Trap</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

@@ -5,23 +5,74 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
+      "id": 1,
       "type": "multiple-choice",
-      "prompt": "Replace with a question about parallel() vs pipeline() that needs a new situation, not recall.",
+      "prompt": "A script awaits a single `agent()` call directly at the top — a prerequisite that must succeed before the fan-out. You stop that agent mid-run from `/workflows`. What happens to the run?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "It ends with the error, because an awaited agent that is lost is not a slot in a fan-out",
+        "It carries on, with `null` in the place of that agent's result",
+        "It restarts the agent; stopping counts as a stall",
+        "It pauses until you resume, then continues from the next step"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "explanation": "The failure behaviour depends on *where the call sits*, not on which combinator is nearby: inside `parallel()` or `pipeline()` the run continues with `null` in the slot, but a directly awaited call ends the run with the error. The `null` answer is tempting because it is the documented behaviour one line lower in the script — it belongs to fan-out members. A manual stop is not a stall, so no automatic restart follows; and the runtime does not quietly continue past a load-bearing failure.",
+      "concept": "direct-await-fails-loudly"
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "A `pipeline()` over 412 files returned 412 entries, 16 of them `null`. A colleague asks which files failed. What do you do?",
+      "options": [
+        "Match each `null`'s index back to the input list, and add `label` so the next run names them for you",
+        "Read the error message stored on each `null` entry",
+        "Count the `null`s and re-run the whole pipeline, since you cannot tell which files they were",
+        "Sort the array so the `null`s group together, then re-run those positions"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 0,
+      "explanation": "A `null` is a placeholder that keeps its position in the array, so its index still points at the file that produced it — and adding a `label` to each `agent()` call makes the mapping readable in `/workflows` next time. The error-message answer is the natural instinct and is wrong: the runtime substitutes a bare `null` in place of the agent's result, and any reason for the loss is reported around the run rather than attached to the slot. Re-running everything or reordering the array discards the positional information that was the only thing telling you which files failed.",
+      "concept": "null-keeps-its-slot"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "Which statement about `parallel()` and `pipeline()` is actually supported by the documentation?",
+      "options": [
+        "Both wait for all of their agents, and neither returns as soon as one finishes",
+        "`pipeline()` bounds concurrency while `parallel()` starts every task at once",
+        "`pipeline()` runs items one after another while `parallel()` runs them concurrently",
+        "`parallel()` returns results as agents finish, in completion order"
+      ],
+      "answer": 0,
+      "explanation": "The docs describe `parallel()` as running a set of tasks at the same time and waiting for all of them, and `pipeline()` as running one agent per item; both are subject to the same runtime concurrency cap. Everything else here is a plausible invention. The two 'one is parallel and one is not' answers are the most seductive, because the names imply a scheduling difference the docs never draw, and the failure-handling section applies identically to both. Completion-order results are the opposite of the documented behaviour and are the subject of Lesson 80.",
+      "concept": "no-invented-scheduling-difference"
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "An audit agent can legitimately find nothing and report an empty result. You must be able to tell that apart from an agent that never came back. What do you build?",
+      "options": [
+        "Give the agent a `schema` so 'found nothing' is a well-formed empty list, and check for `null` separately as 'the agent was lost'",
+        "Treat an empty string and a `null` as the same failure, since both mean no finding",
+        "Add `.filter(Boolean)` so the empty ones drop out and only real findings remain",
+        "Ask a second verifier agent to decide whether the first one really ran"
+      ],
+      "answer": 0,
+      "explanation": "A well-formed empty result and a `null` slot are different facts, and conflating them is the bug from the opening story. Passing a `schema` makes the first one structured — the docs describe `agent()` returning validated JSON against the shape, and failing the call after bounded retries when it cannot. The merge-both-into-failure answer destroys exactly the distinction you need. `.filter(Boolean)` removes the evidence and shifts every later slot, and a verifier cannot see an agent that never returned.",
+      "concept": "absent-versus-empty"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "A list of 5,000 files is passed to one `pipeline()` call. What does the runtime do?",
+      "options": [
+        "Rejects the call with an error, rather than quietly running part of the list",
+        "Runs the first 4,096 and reports the count it skipped",
+        "Splits the list into two batches automatically and runs both",
+        "Runs all 5,000, just more slowly than usual"
+      ],
+      "answer": 0,
+      "explanation": "There is a hard cap on the number of items in a single `parallel()` or `pipeline()` call, and the runtime rejects a longer list with an error. The docs give the reason explicitly: a silent cap would drop part of the workload without telling the script. That makes the truncation answer the most dangerous wrong one — it assumes the failure mode is data loss the script can detect, when the actual failure is a loud rejection. Automatic batching and running-anyway belong to neither behaviour.",
+      "concept": "list-cap-rejects"
     }
   ]
 }

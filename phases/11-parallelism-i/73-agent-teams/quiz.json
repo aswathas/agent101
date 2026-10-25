@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Agent Teams — Mailbox, Task List, Documented Limits that needs a new situation, not recall.",
+      "prompt": "Two teammates finish their assigned tasks, then each claims the next unblocked item on the shared list without being told. Two other teammates are editing unrelated files. What is the single thing you must have set up to keep their edits from colliding?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Nothing — the shared task list's file locking prevents two agents editing one file",
+        "Disjoint file ownership, because teams isolate tasks but not files",
+        "A bigger model for the lead, so it notices overlaps",
+        "Turning off self-claim, so only the lead assigns work"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The lock protects the *task*, not the file the task edits, so two agents can hold different tasks that both write one path. Teams give no file isolation, so you partition ownership. A stronger lead still can't guarantee disjoint writes. Disabling self-claim changes who assigns work, not where they write.",
+      "concept": "teams-no-file-isolation"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You enable agent teams for a project and then ask Claude to do a small side task. Without your asking for a team, a worker is launched as a teammate with a name. Why?",
+      "options": [
+        "Enabling teams makes every tool call spawn a teammate",
+        "Claude names subagents on its own, and with teams on a named subagent launches as a teammate",
+        "The teammate is actually a forked subagent that inherited your conversation",
+        "`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` forces the general-purpose agent to be a teammate"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Claude names subagents to message them later; while teams are enabled, a named subagent becomes a teammate, so teams can form during ordinary delegation. Not every tool call spawns a teammate. A fork inherits your conversation; this worker is a teammate, which does not. The env var enables teams; it doesn't rewrite the general-purpose agent's type.",
+      "concept": "named-subagent-becomes-teammate"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You resume a session the next day. The lead says it messaged the researcher teammate to confirm a finding, and no reply arrived. Nothing errored. What is happening?",
+      "options": [
+        "The mailbox file was corrupted, so the message was dropped",
+        "In-process teammates are not restored on resume, so the lead messaged one that no longer exists",
+        "The researcher is idle and hiding; send it another message to wake it",
+        "The lead's permission mode blocked outbound messages"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Session resumption does not bring back in-process teammates, and the lead may still try to message them — the documented fix is to have the lead spawn new teammates. Hidden-idle rows apply within a live session, not after a resume. Mailbox corruption reports errors, and permission mode governs tool approvals, not peer messages.",
+      "concept": "resume-limitation"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "A five-teammate team is running a broad code review, and one dependency task sits in 'in progress' although the work is visibly done. What should you do first?",
+      "options": [
+        "Delete the stuck task, since its dependents are unreachable anyway",
+        "Assume the teammate crashed and spawn a replacement",
+        "Update the task status or ask the lead to nudge the teammate, because task status can lag",
+        "Switch the team to split-pane mode so you can watch that teammate"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "Task status lagging is a documented limitation: a teammate sometimes fails to mark a task complete, which blocks its dependents. Check the work is done, then fix the status or nudge the lead. Deleting the task discards the dependency structure. Spawning a replacement is a bigger move than the lag warrants. Display mode has nothing to do with task status.",
+      "concept": "task-status-lag"
     }
   ]
 }

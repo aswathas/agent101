@@ -4,94 +4,257 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rules and Path-Scoped Rules — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can split your instructions into topic files and make each one load only when the agent touches the files it is about.">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Rules and Path-Scoped Rules</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li class="on"><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 66, AGENTS.md, CLAUDE.local.md</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 10 · LESSON 67</p>
+      <h1>Rules and Path-Scoped Rules</h1>
+      <p class="lesson-motto">You can split your instructions into topic files and make each one load only when the agent touches the files it is about.</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 65, CLAUDE.md — the 200-Line Rule</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
-
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Split a long <code>CLAUDE.md</code> into <code>.claude/rules/</code> topic files</li><li>Write <code>paths:</code> frontmatter so a rule loads only for matching files</li><li>Predict which rules are in the window at launch and which load on demand</li><li>Choose between a rule and a skill for a given instruction</li><li>Explain why a rule is guidance the agent follows, not enforcement</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>Your API conventions live in <code>CLAUDE.md</code>. So does the test convention, and the React convention, and the CSS convention. The agent working on a CSS file is carrying 40 lines of API rules it will never use — every turn, in every session.</p>
+<p>That is the 200-line problem from Lesson 65, but the fix is not to delete the rules. It is to make them load only when they are relevant. An instruction that matters for <code>src/api/**</code> has no business in the window while the agent edits a stylesheet.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>A <strong>rule</strong> is a markdown file in a <code>.claude/rules/</code> directory. It is an instruction file like <code>CLAUDE.md</code>, with one addition: it can carry a <code>paths:</code> field that decides <em>when</em> it loads.</p>
+<figure class="diagram"><pre>flowchart TD
+    S[&quot;Session start&quot;] --&gt; A[&quot;CLAUDE.md files&quot;]
+    S --&gt; B[&quot;Rules with no `paths:`&lt;br/&gt;loaded at launch, same priority as .claude/CLAUDE.md&quot;]
+    S --&gt; C[&quot;Rules with `paths:`&lt;br/&gt;NOT loaded at launch&quot;]
+    C --&gt; D[&quot;Claude reads, writes, or edits&lt;br/&gt;a matching file&quot;]
+    D --&gt; E[&quot;Rule loads, for the rest of the session&quot;]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>Rules live in two places:</p>
+<ul><li><strong>Project:</strong> <code>.claude/rules/</code> — committed, shared with the team.</li><li><strong>User:</strong> <code>~/.claude/rules/</code> — yours, every project. Loaded before project rules, so a project rule appears later in context. Neither overrides the other; if they conflict, the agent may follow either.</li></ul>
+<p>All <code>.md</code> files under the directory are discovered recursively, so <code>frontend/react.md</code> and <code>backend/api.md</code> are both found.</p>
+<h3 id="path-scoped-rules">Path-scoped rules</h3>
+<p>A rule without frontmatter loads at launch. A rule with a <code>paths:</code> field loads only when the agent works with a matching file — read, write, or edit, including a Bash command like <code>cat</code> or <code>head</code> that counts as a read.</p>
+<pre class="code" data-lang="markdown"><code>---
+paths:
+  - &quot;src/api/**/*.ts&quot;
+  - &quot;tests/**/*.test.ts&quot;
 ---
 
-## The Problem
+# API rules
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
+- Every endpoint validates input with a schema
+- Return shape is `{ data }` or `{ error }`</code></pre>
+<p><code>paths</code> accepts a YAML list or a comma-separated string. Glob patterns cover extensions, directories, or both:</p>
+<div class="table-wrap"><table><thead><tr><th>Pattern</th><th>Matches</th></tr></thead><tbody><tr><td><code>**/*.ts</code></td><td>All TypeScript files, any directory</td></tr><tr><td><code>src/**/*</code></td><td>Everything under <code>src/</code></td></tr><tr><td><code>*.md</code></td><td>Markdown in the project root</td></tr><tr><td><code>src/components/*.tsx</code></td><td>React components in one directory</td></tr></tbody></table></div>
+<p>Brace expansion works: <code>&quot;src/**/*.{ts,tsx}&quot;</code>. One detail with teeth — <code>paths</code> is the <strong>only</strong> field Claude Code reads from a rule. Any other frontmatter key is ignored without an error. And if the YAML between the <code>---</code> markers doesn't parse, the rule loads as if it had no <code>paths</code> at all, quietly becoming always-on.</p>
+<h3 id="rules-are-not-enforcement">Rules are not enforcement</h3>
+<p>Like <code>CLAUDE.md</code>, a rule is guidance the agent reads. It is not a permission and not a hook. If an instruction must happen <em>every time</em>, a rule is the wrong tool — that is a hook (Lesson 55). If an instruction is a procedure the agent runs on demand, that is a skill (Lesson 40).</p>
+<div class="table-wrap"><table><thead><tr><th>You want</th><th>Use</th><th>Why</th></tr></thead><tbody><tr><td>Always-on project knowledge</td><td><code>CLAUDE.md</code> or an unconditional rule</td><td>Loads every session</td></tr><tr><td>Knowledge only when certain files are touched</td><td>A <code>paths:</code> rule</td><td>Loads on match, saves context otherwise</td></tr><tr><td>A procedure for one kind of task</td><td>A skill</td><td>Loads on invoke</td></tr><tr><td>Something that must happen, every time</td><td>A hook</td><td>Enforced, not requested</td></tr></tbody></table></div>
+<blockquote><p><strong>The reframe:</strong> a rule is not a smaller <code>CLAUDE.md</code> — it is a <code>CLAUDE.md</code> with a condition, and the condition is the whole point: it loads exactly when the files it talks about come into view.</p></blockquote>
+<h3 id="a-few-sharp-edges">A few sharp edges</h3>
+<ul><li><strong>Symlinks work</strong>, but a link whose target is outside your working directory is treated like an external import and needs approval once per project (Lesson 70).</li><li><strong>Excluding files:</strong> <code>claudeMdExcludes</code> in a settings file skips specific <code>CLAUDE.md</code> and rules files by path or glob — useful in a monorepo where another team's rules leak in.</li><li><strong>Prompt caching:</strong> loading a new rule mid-session changes what is in the window, so the cache is rebuilt. That is a small cost paid once, not every turn.</li></ul>
+<hr>
+<h2 id="build-it">Build It</h2>
+<ol><li>Create <code>.claude/rules/testing.md</code> with a <code>paths:</code> frontmatter scoped to your test files.</li></ol>
+<p>✅ You pass when the file exists with valid <code>paths:</code> frontmatter.</p>
+<ol><li>Start a fresh session and run <code>/context</code>. Look for the rule.</li></ol>
+<p>✅ You pass when the rule is <em>not</em> under the loaded memory files at launch.</p>
+<ol><li>Ask the agent to edit a file matching the glob. Watch for a <code>Loaded</code> line naming the rule, then run <code>/context</code> again.</li></ol>
+<p>✅ You pass when the rule now appears, and you can say which file triggered it.</p>
+<ol><li>Add a second rule with no frontmatter. Restart and run <code>/context</code>.</li></ol>
+<p>✅ You pass when the unconditional rule is loaded at launch and the scoped one is not.</p>
+<ol><li>Break the YAML between the <code>---</code> markers in the scoped rule (leave a field unclosed). Restart.</li></ol>
+<p>✅ You pass when you can explain why the rule loaded unconditionally despite the <code>paths:</code> you wrote.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>.claude/rules/</code></td><td>Project rules, committed and shared</td></tr><tr><td><code>~/.claude/rules/</code></td><td>Personal rules for every project</td></tr><tr><td><code>paths:</code> frontmatter</td><td>Load a rule only for matching files</td></tr><tr><td>Rule with no <code>paths:</code></td><td>Always-on, like <code>CLAUDE.md</code></td></tr><tr><td><code>/context</code></td><td>Confirm which rules are in the window right now</td></tr><tr><td><code>claudeMdExcludes</code></td><td>Skip a rule or <code>CLAUDE.md</code> in a monorepo</td></tr><tr><td><code>InstructionsLoaded</code> hook</td><td>Log which rules loaded, when, and why</td></tr><tr><td>Subdirectories in <code>rules/</code></td><td>Organise by area; still discovered recursively</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take one section out of a long <code>CLAUDE.md</code> — say, the API conventions — and move it into <code>.claude/rules/api-design.md</code> scoped to your API directory. Prove it stops loading in a session that never touches those files. ✅ You pass when <code>/context</code> shows the rule absent at launch and present after the agent reads a matching file.</li></ol>
+<ol><li class="criterion">Write two rules that both claim to govern the same file — one user-level, one project-level — with different guidance. Open the file and observe which the agent follows. ✅ You pass when you can explain that both loaded and neither overrides the other, so the agent may follow either, and you have removed the conflict.</li></ol>
+<ol><li class="criterion">You have an instruction that must run after every edit, not just when the agent is in a certain folder. Write it as a rule first, watch it get skipped, then convert it to the right mechanism. ✅ You pass when you can name why the rule failed and which mechanism you used instead.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>rule</td><td>&quot;a small CLAUDE.md&quot;</td><td>An instruction file in <code>.claude/rules/</code> that can be scoped with <code>paths:</code>.</td></tr><tr><td><code>paths:</code></td><td>&quot;a filter&quot;</td><td>The only frontmatter field a rule reads. Globs that decide when the rule loads.</td></tr><tr><td>path-scoped rule</td><td>&quot;a rule for one folder&quot;</td><td>A rule that stays out of the window until the agent touches a matching file.</td></tr><tr><td>load at launch</td><td>&quot;it's always on&quot;</td><td>Rules without <code>paths:</code>, loaded every session like <code>.claude/CLAUDE.md</code>.</td></tr><tr><td>user vs project rules</td><td>&quot;project overrides user&quot;</td><td>They concatenate; user rules load first. Conflicts are not resolved for you.</td></tr><tr><td>rules vs skills</td><td>&quot;both are instructions&quot;</td><td>Rules load at launch or on a file match; skills load when invoked.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<ul><li><strong><code>CLAUDE.md</code> itself</strong> — placement, load order, the 200-line rule. Lesson 65.</li><li><strong>Imports and external context</strong> — including how a symlinked rule's external target needs approval. Lesson 70.</li><li><strong>Hooks</strong> — the mechanism for instructions that must happen every time. Lesson 55.</li><li><strong>Skills</strong> — the mechanism for on-invoke procedures. Lesson 40.</li><li><strong>Prompt-cache behaviour</strong> when the window changes mid-session. Phase 13.</li></ul>
+<p>The behaviour above is from <a href="https://code.claude.com/docs/en/memory#organize-rules-with-claude/rules/" target="_blank" rel="noopener">Organize rules with <code>.claude/rules/</code></a>. The <code>paths</code> expansion budget and brace handling are version-gated; check the page before relying on an exact figure.</p>
+      </div>
 
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You write <code>.claude/rules/api-design.md</code> with <code>paths: [&quot;src/api/**/*.ts&quot;]</code>. You start a fresh session and run <code>/context</code>. The rule isn't listed. Is something wrong?</p>
+        <ol class="options" type="A">
+          <li>Yes — the frontmatter is invalid, so the rule failed to load</li>
+          <li>No — a path-scoped rule loads only after the agent reads, writes, or edits a matching file</li>
+          <li>Yes — rules must live in <code>~/.claude/rules/</code> to load at launch</li>
+          <li>No — <code>/context</code> never lists rules, only CLAUDE.md files</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> No — a path-scoped rule loads only after the agent reads, writes, or edits a matching file</p>
+          <p class="why">Path-scoped rules are deliberately absent at launch and load on the first matching file. Option 0 is tempting because 'not in /context' usually means 'didn't load' — but for a scoped rule, absence at launch is the correct behaviour.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A rule you scoped to test files starts loading in every session, even when no test file is touched. You check the frontmatter and it looks right. What is the most likely cause?</p>
+        <ol class="options" type="A">
+          <li>The <code>paths</code> value is a comma-separated string, which is not allowed</li>
+          <li>The YAML between the <code>---</code> markers doesn't parse, so the rule loads as if it had no <code>paths</code></li>
+          <li>Rules with <code>paths</code> always load at launch; only skills are scoped</li>
+          <li>The rule is in a subdirectory, which disables scoping</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The YAML between the <code>---</code> markers doesn't parse, so the rule loads as if it had no <code>paths</code></p>
+          <p class="why">If the frontmatter YAML fails to parse, Claude Code ignores it and loads the rule unconditionally. Option 0 is tempting because it sounds like a syntax rule — but both a YAML list and a comma-separated string are accepted, so that is not the cause.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Your team needs a formatter to run after every file edit, without exception. You put the instruction in <code>.claude/rules/formatting.md</code>. What will happen?</p>
+        <ol class="options" type="A">
+          <li>It works — rules are loaded every session and the agent follows them</li>
+          <li>The agent will usually follow it, but nothing guarantees it; a hook is the mechanism that runs every time</li>
+          <li>The rule will be skipped because formatting is not a file path</li>
+          <li>The rule will be rejected because it has no <code>paths</code> field</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The agent will usually follow it, but nothing guarantees it; a hook is the mechanism that runs every time</p>
+          <p class="why">Rules are guidance the agent reads, not enforcement, so an occasional miss is expected. Option 0 is tempting because the rule does load every session — but loading is not the same as guaranteeing the action, which is what a hook is for.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You have a release procedure the agent should run only when you ask for a release. Where does it belong?</p>
+        <ol class="options" type="A">
+          <li>An unconditional rule, so it is always in the window</li>
+          <li>A path-scoped rule, scoped to release files</li>
+          <li>A skill, which loads when you invoke it</li>
+          <li>A user-level rule in <code>~/.claude/rules/</code></li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> A skill, which loads when you invoke it</p>
+          <p class="why">A procedure that runs on demand belongs in a skill, which loads on invoke. Option 1 is tempting because scoping sounds close to on-demand — but a path-scoped rule loads on a <em>file match</em>, not on your request, so the release procedure would load whenever you happened to open a matching file.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span>Previous</span>66. AGENTS.md, CLAUDE.local.md</a>
+    <a class="next" href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span>Next</span>68. Auto Memory and `MEMORY.md`</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

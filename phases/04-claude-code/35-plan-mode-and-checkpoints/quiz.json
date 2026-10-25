@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Plan Mode and Checkpoints that needs a new situation, not recall.",
+      "prompt": "Which task is the best fit for plan mode?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Rename a single function",
+        "Reformat one file",
+        "Add error handling to all API routes",
+        "Look up what a library function does"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "A change that touches many files and is easy to get wrong is worth reading a plan for before anything runs. Options A and B are small, local, and reversible, so planning is overhead with no payoff. Option D is a question, not a change — no edits means nothing to plan.",
+      "concept": "when-to-plan"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "In plan mode, Claude Code reads files but will not edit them without your say-so. What is plan mode?",
+      "options": [
+        "A smarter model that thinks harder",
+        "A permission context — a sandbox over tools where reads are allowed and edits or side-effecting commands need your approval",
+        "An offline mode with no network",
+        "A read-only copy of your project on disk"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Plan mode changes which verbs are allowed for the same model, so it is a permission context, not a different brain. Option A is the tempting misconception the reframe names: it is not a smarter mode. Option C confuses sandboxing tools with cutting the network. Option D confuses a sandbox over actions with a copy of the files.",
+      "concept": "plan-mode-is-a-context"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You approve a plan, it executes, and then it takes a step the plan never listed. What is the correct response?",
+      "options": [
+        "Nothing — plans are rough drafts",
+        "Push back: that step was outside the approved plan; approval is the gate, not a blank cheque",
+        "Approve the plan again",
+        "Rewind is impossible once a plan runs"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The approved plan is what you agreed to, so a step outside it is a real deviation worth flagging. Option A is tempting when the extra step looks harmless, but it changes the contract you approved. Option C approves something already running. Option D is false — checkpoints and rewind are the subject of the next lesson.",
+      "concept": "approval-is-the-contract"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You are unsure whether to enter plan mode for a task. What is the better default, and why?",
+      "options": [
+        "Skip it — plan mode wastes tokens",
+        "Go in — plan mode is cheap, and a wrong plan costs a rewrite while a wrong action costs a revert",
+        "Only use it when you are in production",
+        "Plan mode is required for any edit touching more than one file"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Switching in and out is cheap, and the cost framing favours a wrong plan over a wrong action, so when unsure the answer is to go in. Option A misreads planning as expensive. Option C invents an environment rule. Option D states a hard requirement where the lesson gives a judgement call.",
+      "concept": "cheap-to-plan"
     }
   ]
 }

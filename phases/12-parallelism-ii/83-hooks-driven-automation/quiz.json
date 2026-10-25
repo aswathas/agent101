@@ -5,23 +5,88 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
+      "id": 1,
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Hooks-Driven Automation — Events as Control Flow that needs a new situation, not recall.",
+      "prompt": "You want a turn to be *impossible to end* until a generated file exists. Which event, and why?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "`Stop` — it fires as the turn ends and blocking there sends the agent back to work",
+        "`PostToolUse` — it fires after every write, so it can check the file each time",
+        "`PreToolUse` — it fires before the write and can hold the tool call until the file exists",
+        "`SessionEnd` — it fires when the work is over and can reopen the turn"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "explanation": "The turn ending is the thing you want to refuse, and `Stop` is the event at that seam; blocking sends the agent back to work. `PostToolUse` is the tempting choice because the file check happens there naturally — but that event cannot block, so it can add a note to a turn that then ends anyway. `PreToolUse` runs too early, before the file could exist. `SessionEnd` cannot block and is about the session, not a turn.",
+      "concept": "stop-is-the-done-seam"
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "Your `Stop` hook refuses to end the turn, and the session now cannot stop. What is the missing piece?",
+      "options": [
+        "A check on `stop_hook_active`, so the hook never refuses twice in a row",
+        "`\"async\": true`, so the hook does not hold the turn open",
+        "Exit code 1 instead of 2, which is the non-blocking form of a refusal",
+        "A `PreCompact` handler to clear the hook's state between turns"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 0,
+      "explanation": "`Stop` carries `stop_hook_active`, which tells your hook a stop hook has already fired — the documented way to avoid trapping a session. The async answer is a trap because a background hook cannot block at all, which is the opposite of what you want here. Exit 1 is genuinely the non-blocking code, but it is not a refusal that lets the session proceed; it simply means \"no opinion\", so it would not fix a hook that is already refusing. `PreCompact` has no bearing on a stop decision.",
+      "concept": "stop-hook-needs-a-guard"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "A subagent stops before it answered your follow-up question. You want to hand it one more task without editing the workflow script that spawned it. What do you do?",
+      "options": [
+        "Attach a blocking hook to `SubagentStop`, which sends the subagent more work",
+        "Attach a hook to `SubagentStart`, which can add the follow-up to its context",
+        "Attach a hook to `TaskCompleted`, which rejects the task and reruns it",
+        "Nothing — a subagent that has stopped cannot be given more work"
+      ],
+      "answer": 0,
+      "explanation": "`SubagentStop` fires when the subagent stops and blocking there sends it more work. `SubagentStart` is the plausible neighbour and does something different: it can inject context before work begins, not after. `TaskCompleted` is about task records rather than subagents, so rejecting a task does not resume the agent that produced it. The do-nothing answer misses the event entirely — this is one of the seams that makes orchestration work inside a run that takes no mid-run input.",
+      "concept": "subagent-stop-sends-work"
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "You attach an `agent` handler to `PreToolUse` to classify every tool result. What is the cost problem?",
+      "options": [
+        "It is a full subagent, so it costs a model call on every tool call and multiplies the session's spend",
+        "None — `agent` handlers run on a small model, so they are nearly free",
+        "`agent` handlers are not allowed on tool events, so the hook is silently skipped",
+        "The handler runs once per turn, so the cost is bounded by the number of turns"
+      ],
+      "answer": 0,
+      "explanation": "An `agent` handler is a full subagent with your instructions and possibly tools — slow and expensive — and `PreToolUse` fires on every tool call, so the multiplication is the problem. The small-model answer belongs to the deprecated `prompt` handler, which is exactly why the two get confused. Agent handlers are not restricted by event, and the per-turn answer inverts the frequency: turn events fire once a turn, tool events fire constantly.",
+      "concept": "handler-type-cost"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "A hook opens its session's socket, then runs a command that takes 90 seconds, then writes the message. On any platform, what happens?",
+      "options": [
+        "The connection is dropped, because it did not send a complete line within 30 seconds",
+        "The message arrives after 90 seconds, since the socket buffers partial output",
+        "The message arrives immediately and the command's output follows it later",
+        "The session refuses the message because the sender did not identify itself"
+      ],
+      "answer": 0,
+      "explanation": "A connection that has not sent a complete line within 30 seconds is closed, so the fix is to capture the slow output first and open the connection only when the message is ready. The buffering answer is the natural expectation from ordinary sockets and is the trap. Nothing is delivered early, and the identity question is a different requirement — an auth line is mandatory on native Windows, but that is about the first line, not about timing.",
+      "concept": "socket-30-second-line"
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "A `PostToolBatch` hook blocks. Where exactly does the loop stop?",
+      "options": [
+        "At the batch boundary, before the next model turn",
+        "Immediately, cancelling the tool calls still running in the current batch",
+        "After the turn ends, before the next prompt",
+        "It does not stop anything; only `PreToolUse` can block"
+      ],
+      "answer": 0,
+      "explanation": "`PostToolBatch` sits between batches, and blocking there stops the loop before the next model turn — a checkpoint on the batch, not a kill switch inside it. The cancel-the-batch answer is the tempting one, because it is the kind of thing you wish a batch hook could do; the event fires after the calls, so there is nothing left to cancel. Turn end is `Stop`, and the last option contradicts the event table.",
+      "concept": "batch-boundary"
     }
   ]
 }

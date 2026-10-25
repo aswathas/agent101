@@ -1,27 +1,56 @@
 {
   "lesson": "14-harness-engineering/97-design-your-own-harness",
-  "title": "Design Your Own Harness — and defend the trade-offs",
+  "title": "Design Your Own Harness — and Defend the Trade-offs",
   "version": 1,
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Design Your Own Harness — and defend the trade-offs that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "Which of these belongs in the harness spec rather than the prompt?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "'Be concise in your answers'",
+        "The retry cap and the verifier command",
+        "The tone the model should use",
+        "The model's persona"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "Caps and verifier commands are mechanisms the harness controls, so they are design choices. Tone, persona, and verbosity are instructions in the window. The tempting answer misplaces a style request as if it were architecture."
+    },
+    {
+      "id": 2,
+      "prompt": "Why does the harness skeleton use a stub model?",
+      "options": [
+        "To run faster than a real model",
+        "Because the harness is testable without a model, so you can verify the machinery in isolation",
+        "To save money on tokens",
+        "Because real models are unreliable"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "This is the boundary test from Lesson 91: if the loop works with a stub, that work is harness, and you can test it without the model. The tempting answers are about cost or speed, but the reason is testability, not thrift."
+    },
+    {
+      "id": 3,
+      "prompt": "A design doc says 'verify: the worker re-reads its own output.' What is the flaw?",
+      "options": [
+        "It is too slow to be useful",
+        "The worker is verifying itself, so the check is not independent",
+        "It needs a larger model",
+        "It should use a regular expression"
+      ],
+      "answer": 1,
+      "explanation": "From Lesson 95, a verifier must run outside the worker's context and check a signal the worker does not control. A worker re-reading its own output inherits its own belief that it succeeded. 'Too slow' is tempting to fix mechanically but leaves the structural flaw intact."
+    },
+    {
+      "id": 4,
+      "prompt": "What must a trade-off statement include to be credible?",
+      "options": [
+        "Only the benefit you gained",
+        "The cost you accepted and the alternative you rejected",
+        "The exact model version you used",
+        "A link to the documentation"
+      ],
+      "answer": 1,
+      "explanation": "A trade-off names both sides: what you paid and what you gave up. Stating only the benefit is a sales pitch, not a design. The tempting 'model version' answer is a citation, not a rationale — useful, but not what makes the choice defensible."
     }
   ]
 }

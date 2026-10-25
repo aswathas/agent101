@@ -4,94 +4,282 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Isolation Without a Commit Is Not a Backup — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can tell &quot;the agent's work is isolated&quot; apart from &quot;the agent's work is">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Isolation Without a Commit Is Not a Backup</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li class="on"><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 109, Merge Strategy for Agent Branches</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 16 · LESSON 110</p>
+      <h1>Isolation Without a Commit Is Not a Backup</h1>
+      <p class="lesson-motto">You can tell &quot;the agent's work is isolated&quot; apart from &quot;the agent's work is</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 02 (Lessons 12 and 16), Phase 11</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Detect an empty agent branch whose folder still holds uncommitted work</li><li>Explain why <code>git worktree remove</code> destroys work that <code>git reflog</code> cannot recover</li><li>Add a commit instruction to an agent so its branch is never left empty</li><li>Write the two-command check to run before merging any agent branch</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>Three agents ran in three worktrees. Each produced complete, correct work. Each reported success in a clean, confident summary.</p>
+<p>You go to merge. You list the branches:</p>
+<pre class="code" data-lang="bash"><code>git branch --all
+#   main
+# * worktree-refactor-a
+#   worktree-refactor-b
+#   worktree-refactor-c</code></pre>
+<p>Every worktree branch points at <code>main</code>. Every one is empty — no commits of its own. The folders are full of edits. The branches have nothing to merge.</p>
+<p>This is not hypothetical. It happened building this course. Three agents did perfect work and left three folders nobody could merge, because none of them committed. When those worktrees were eventually swept or removed, the edits went with them.</p>
+<p>The agents did not fail. They did exactly what they were asked — edit the files and report. Nobody asked them to commit, so nobody's work was ever recorded.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>A worktree is <strong>a folder plus a branch label</strong>. That is the whole machine.</p>
+<figure class="diagram"><pre>flowchart LR
+    subgraph WT[worktree-refactor-a]
+        F[folder: files edited, not committed]
+        L[branch label: still at main]
+    end
+    F -.-&gt;|&quot;git commit moves the label&quot;| L
+    L -.-&gt;|&quot;no commit: label never moved&quot;| M[main]
+    style L stroke-dasharray: 5 5</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>Editing a file changes the <strong>folder</strong>. Only <code>git commit</code> moves the <strong>label</strong>. In an untouched worktree the label sits exactly where the base was — usually <code>main</code>. So an agent can edit every file for an hour and the repository still sees a branch identical to <code>main</code>.</p>
+<p>Isolation protects against <strong>collision</strong>. It does not protect against <strong>loss</strong>. The worktree still obeys the oldest git rule in the course: uncommitted changes live only in the folder they are in. Remove the folder, lose the changes.</p>
+<h3 id="why-it-is-silent">Why it is silent</h3>
+<p>Two things make this failure invisible until it is too late:</p>
+<ul><li><strong>The agent's report is about files, not commits.</strong> &quot;I refactored the parser and ran the tests&quot; is true whether or not anything was committed.</li><li><strong>Nothing errors.</strong> Git is perfectly happy to hold uncommitted work. There is no warning that a branch is empty, because an empty branch is a normal state.</li></ul>
+<h3 id="the-check-that-would-have-caught-it">The check that would have caught it</h3>
+<p>From the main checkout, before merging anything:</p>
+<pre class="code" data-lang="bash"><code>git log --oneline main..worktree-refactor-a    # empty output = nothing to merge
+git -C .claude/worktrees/refactor-a status --porcelain   # non-empty = real, uncommitted work</code></pre>
+<p>If the first is empty and the second is not, you have found the bug. That combination — <em>empty branch, dirty folder</em> — is the signature.</p>
+<h3 id="the-fix-is-an-instruction-not-a-tool">The fix is an instruction, not a tool</h3>
+<p>There is no flag that makes isolation also mean &quot;committed.&quot; The fix is to put the rule in front of the agent:</p>
+<blockquote><p><strong>Commit before you finish.</strong> <code>git add -A &amp;&amp; git commit -m &quot;...&quot;</code>. At minimum a</p><p><code>wip</code> commit at the end of each step.</p></blockquote>
+<p>Once committed, the work is in the repository's object store — shared by every worktree — and it survives the folder's removal. From that point the branch is a normal branch you can rebase and merge (Lesson 109), and even a mistake is recoverable through the reflog (Lesson 16).</p>
+<blockquote><p><strong>The reframe:</strong> isolation is not a backup — until the agent commits, its branch</p><p>is still pointing at <code>main</code>, and the folder holds work git has never recorded.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-make-a-worktree-and-dirty-it-without-committing">1. Make a worktree and dirty it without committing</h3>
+<pre class="code" data-lang="bash"><code>mkdir -p ~/isolation-drill &amp;&amp; cd ~/isolation-drill
+git init
+printf 'v1\n' &gt; app.txt &amp;&amp; git add app.txt &amp;&amp; git commit -m &quot;start&quot;
+git worktree add ../isolation-drill-agent -b worktree-agent
+cd ../isolation-drill-agent
+printf 'real work\n' &gt;&gt; app.txt
+git status --porcelain</code></pre>
+<p>✅ You pass when <code>git status --porcelain</code> shows <code>app.txt</code> modified and the folder holds a real edit.</p>
+<h3 id="2-show-the-branch-is-empty">2. Show the branch is empty</h3>
+<p>From the main folder:</p>
+<pre class="code" data-lang="bash"><code>cd ~/isolation-drill
+git log --oneline main..worktree-agent
+git diff main worktree-agent</code></pre>
+<p>✅ You pass when <strong>both</strong> commands print nothing — the branch has no commits and no content difference, even though the folder is edited.</p>
+<h3 id="3-confirm-the-edit-is-only-on-disk">3. Confirm the edit is only on disk</h3>
+<pre class="code" data-lang="bash"><code>git -C ../isolation-drill-agent status --porcelain</code></pre>
+<p>✅ You pass when this is non-empty while step 2 is empty. That disagreement is the empty-branch bug.</p>
+<h3 id="4-remove-the-worktree-and-watch-the-work-vanish">4. Remove the worktree and watch the work vanish</h3>
+<pre class="code" data-lang="bash"><code>git worktree remove --force ../isolation-drill-agent
+ls ~/isolation-drill</code></pre>
+<p>✅ You pass when the folder is gone and the uncommitted edit with it — git cannot merge, restore, or reflog anything that was never committed.</p>
+<h3 id="5-do-it-again-with-a-commit">5. Do it again, with a commit</h3>
+<pre class="code" data-lang="bash"><code>git worktree add ../isolation-drill-agent -b worktree-agent
+cd ../isolation-drill-agent
+printf 'real work\n' &gt;&gt; app.txt
+git add -A &amp;&amp; git commit -m &quot;agent: real work&quot;
+cd ~/isolation-drill
+git log --oneline main..worktree-agent     # now shows the commit
+git worktree remove ../isolation-drill-agent
+git log --oneline worktree-agent           # commit survives the folder</code></pre>
+<p>✅ You pass when the commit is visible <strong>after</strong> the worktree is removed — the work moved from &quot;a folder&quot; to &quot;the repository.&quot;</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>git log --oneline main..&lt;branch&gt;</code></td><td>Checking a finished agent branch has commits to merge</td></tr><tr><td><code>git -C &lt;worktree&gt; status --porcelain</code></td><td>Seeing uncommitted work inside a worktree</td></tr><tr><td><code>git add -A &amp;&amp; git commit</code></td><td>The instruction every agent needs before it reports done</td></tr><tr><td>WIP commit</td><td>Cheap insurance before anything risky</td></tr><tr><td>Empty branch + dirty folder</td><td>The signature of the empty-branch bug</td></tr><tr><td><code>git worktree remove --force</code></td><td>Deletes uncommitted work. Know that before you run it.</td></tr><tr><td><code>git reflog</code></td><td>Recovers committed work only. Never uncommitted work.</td></tr><tr><td><code>main..branch</code> range</td><td>&quot;What is on the branch that is not on main&quot; — the merge preview</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Reproduce the empty-branch bug from scratch: a worktree, real edits, no commit, and a branch that still equals <code>main</code>. ✅ You pass when <code>git log --oneline main..&lt;branch&gt;</code> is empty while <code>git -C &lt;worktree&gt; status --porcelain</code> is not.</li></ol>
+<ol><li class="criterion">Take the same scenario and add a two-line instruction so a second run cannot finish without committing. Verify the branch is no longer empty at the end. ✅ You pass when a run that edits files leaves the branch with at least one commit, and <code>main..&lt;branch&gt;</code> is non-empty.</li></ol>
+<ol><li class="criterion">Write the one-line check you would run <strong>before</strong> merging any agent branch, and what its two outputs must disagree about. ✅ You pass when your check runs <code>main..&lt;branch&gt;</code> and <code>status --porcelain</code>, and &quot;empty + dirty&quot; is the failure you are looking for.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>isolation</td><td>&quot;the work is safe&quot;</td><td>Separate folders so edits do not collide. It says nothing about whether work is recorded.</td></tr><tr><td>empty branch</td><td>&quot;the branch is there&quot;</td><td>A branch label pointing where it started — usually <code>main</code> — with no commits of its own.</td></tr><tr><td>uncommitted work</td><td>&quot;the agent's changes&quot;</td><td>Edits that live only in one folder. Not in the object store. Not recoverable by git.</td></tr><tr><td>WIP commit</td><td>&quot;a throwaway commit&quot;</td><td>A commit that moves the label. Infinitely better than a folder about to be removed.</td></tr><tr><td><code>main..branch</code></td><td>&quot;the diff&quot;</td><td>Commits on <code>branch</code> that are not on <code>main</code>. Empty means nothing to merge.</td></tr><tr><td>worktree removal</td><td>&quot;cleaning up&quot;</td><td>Deleting a folder. Uncommitted work goes with it, silently.</td></tr><tr><td>reflog</td><td>&quot;git's undo&quot;</td><td>Recovers <em>committed</em> positions. It cannot see work that was never committed.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Automatic guardrails.</strong> A hook or a script that refuses to finish a worktree with uncommitted work is the durable fix. Building one is the Phase 16 module's job, not this lesson's — this lesson teaches why the guardrail is needed.</p>
+<p><strong>Recovering work that was never committed and whose folder is gone.</strong> Git cannot help. Only a filesystem undelete tool or the editor's local history can, and neither is reliable. This is the reason the rule is &quot;commit before you finish,&quot; not &quot;commit if you remember.&quot;</p>
+<p><strong>Every cleanup rule for worktrees.</strong> Which worktrees Claude Code sweeps, and how uncommitted work and unpushed commits keep them on disk, is documented on the worktrees page. Worth reading once you have felt this trap.</p>
+<p>Checked against the Claude Code worktrees documentation in October 2026: &lt;https://code.claude.com/docs/en/worktrees&gt;. Behaviour and messages drift; the git rule does not.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">An agent works in its own worktree, edits six files, runs the tests, and reports success. You check its branch with <code>git log --oneline main..worktree-agent</code> and get no output. The folder clearly has changes. What is the state of the branch?</p>
+        <ol class="options" type="A">
+          <li>The branch has commits, but <code>main</code> already contains them</li>
+          <li>The branch was never created</li>
+          <li>The agent committed to <code>main</code> by mistake</li>
+          <li>The branch label still points where it started, so it has no commits of its own — the edits are uncommitted in the folder</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>D.</strong> The branch label still points where it started, so it has no commits of its own — the edits are uncommitted in the folder</p>
+          <p class="why">An empty range means the branch is where it started; the edits live only in the folder because nothing was committed. Option A is the tempting wrong answer because an empty range can also mean 'main already has it' — but that requires the commits to exist on the branch, which the dirty folder contradicts. The branch exists (you listed it), and if the agent had committed to <code>main</code>, <code>main</code> itself would show the changes.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Before merging any finished agent branch, which pair of checks most directly reveals the empty-branch bug?</p>
+        <ol class="options" type="A">
+          <li><code>git log --oneline main..&lt;branch&gt;</code> and <code>git -C &lt;worktree&gt; status --porcelain</code></li>
+          <li><code>git status</code> on main, and <code>git branch</code> on the worktree</li>
+          <li><code>git worktree list</code> and <code>git remote -v</code></li>
+          <li><code>git diff main</code> and <code>git tag</code></li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> <code>git log --oneline main..&lt;branch&gt;</code> and <code>git -C &lt;worktree&gt; status --porcelain</code></p>
+          <p class="why">The signature is an empty commit range paired with a non-empty worktree status — nothing to merge, yet real work in the folder. Option C is the tempting wrong answer because <code>git worktree list</code> confirms a worktree exists, which feels like proof of work, but existence says nothing about commits. Tags and remote URLs are unrelated to whether a branch is empty.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Two agents finish. Agent A committed everything before its worktree was removed; Agent B did not, and its worktree was removed by a sweep. Which work can git still recover, and with what?</p>
+        <ol class="options" type="A">
+          <li>Both — <code>git reflog</code> sees all edits that ever existed on disk</li>
+          <li>Only B — an agent worktree is backed up when it is swept</li>
+          <li>Only A — its commit is in the shared object store; B's edits were never committed and are gone</li>
+          <li>Neither — removing a worktree discards any commits it held</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> Only A — its commit is in the shared object store; B's edits were never committed and are gone</p>
+          <p class="why">A commit is written to the shared object store and survives the folder; uncommitted edits exist only in the folder and die with it. Option A is the tempting wrong answer because reflog sounds like it records everything — but it records <em>committed</em> positions of refs, never uncommitted file content. Agent A's commits are not discarded by worktree removal, so option D is also false.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A colleague wants a durable fix so this cannot happen again, not just a note to 'remember to commit'. Which response matches the lesson?</p>
+        <ol class="options" type="A">
+          <li>Add a warning comment to the agent's prompt that says 'please commit soon'</li>
+          <li>Add a check — a hook or script — that fails when the worktree has uncommitted work at the end of the run</li>
+          <li>Disable worktrees entirely and run all agents in the main folder</li>
+          <li>Increase the worktree cleanup period so nothing is ever swept</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Add a check — a hook or script — that fails when the worktree has uncommitted work at the end of the run</p>
+          <p class="why">A guardrail that fires on uncommitted work is the fix, because the failure is silent and the forgetting agent is the one who cannot be trusted to remember. Option A is the tempting wrong answer because a stronger instruction feels like enforcement — but prose is a request, not a check, and this is exactly the failure mode of instructions. Disabling worktrees throws away isolation, and extending cleanup only delays the loss.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span>Previous</span>109. Merge Strategy for Agent Branches</a>
+    <a class="next" href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span>Next</span>111. Headless / Non-Interactive Mode</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Progressive Disclosure — Skills as a Loading Strategy that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "A 600-line skill has its three most important rules near the bottom. The session compacts. When the skill is re-attached, which content is most likely to be there?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The whole 600 lines, restored in full",
+        "Nothing — invoked skills are never re-attached",
+        "The first 5,000 tokens, filled from the top of the body",
+        "The bottom 5,000 tokens, because they were written most recently"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 2,
+      "explanation": "After compaction, Claude Code re-attaches the first 5,000 tokens of each invoked skill, with a 25,000-token combined budget. Option A overshoots — the cap exists because full restore is too expensive. Option B is wrong: invoked skills are re-attached; it is the *skill listing* that is not re-injected. Option D inverts the rule; the cap fills from the top of the file, which is why the strongest rule goes first."
+    },
+    {
+      "id": 2,
+      "prompt": "You want Claude to apply a set of codebase conventions automatically whenever they are relevant, but you do not want users to be able to trigger them with `/name`. Which frontmatter matches?",
+      "options": [
+        "`disable-model-invocation: true`",
+        "`user-invocable: false`",
+        "`context: fork`",
+        "`background: false`"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "`user-invocable: false` hides the skill from the `/` menu and stops `/name` from running it, while Claude can still invoke it — exactly the background-knowledge case. Option A is the reverse: it stops *Claude* from invoking on its own and leaves manual invocation open. Option C runs the skill in a forked subagent, which changes where it loads, not who can trigger it. Option D is a subagent-timing field that only applies with `context: fork`."
+    },
+    {
+      "id": 3,
+      "prompt": "You move a 400-line checklist out of a skill's body into `references/security.md` and add a one-line pointer. You invoke the skill for a tiny change that needs none of the checklist. What did the checklist cost this run?",
+      "options": [
+        "400 lines — files under the skill folder always ship into context",
+        "Nothing — supporting files are read only when the body points at them and they are actually read",
+        "Only the file's name, because the listing includes reference filenames",
+        "It is impossible to know without opening the file"
+      ],
+      "answer": 1,
+      "explanation": "Supporting files are tier three: they cost nothing until the body points at them and something reads them. Option A is the misconception that a skill folder is a single blob. Option C invents a listing of reference filenames; the startup listing is skill name plus description only. Option D overstates the uncertainty — `/context` and the transcript show whether the file was read."
+    },
+    {
+      "id": 4,
+      "prompt": "You run `/compact` in a long session that had a dozen skills listed at startup. Which of these is true afterwards?",
+      "options": [
+        "The skill descriptions reload with the rest of the startup content",
+        "The skill listing is not re-injected; only skills you actually invoked are carried forward",
+        "Every skill that was ever listed re-attaches in full",
+        "All skills are dropped, invoked or not"
+      ],
+      "answer": 1,
+      "explanation": "The skill descriptions are the one startup block that does not re-inject after compaction; invoked skills are re-attached (first 5,000 tokens each). Option A assumes the listing behaves like `CLAUDE.md`, which does reload — it does not. Option C retells the whole-listing myth in reverse. Option D is too strong: invoked skills are preserved, which is the point of putting your strongest rule at the top."
     }
   ]
 }

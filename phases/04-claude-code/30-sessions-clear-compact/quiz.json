@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Sessions, /clear, /compact that needs a new situation, not recall.",
+      "prompt": "You are an hour into a single task. Claude Code warns it is out of room, and you want to keep going on the same task. What do you run?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "/clear — free the memory and rebuild it",
+        "/compact — summarize the conversation and keep working, with the session's state intact",
+        "/exit — end the session so the state saves",
+        "Nothing — restart the terminal"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Same work, still going: compact replaces the long conversation with a summary while the files read and edits made stay tracked. Option A is tempting because freeing memory sounds like the fix, but it drops the state you still need. Option C ends rather than continues. Option D does not address the budget at all.",
+      "concept": "same-work-compact"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You finished one task and are starting an unrelated one. The session's memory is full. What is the right move?",
+      "options": [
+        "/compact so the old work is summarized and kept",
+        "/clear so the new task starts with an empty memory",
+        "/exit and reopen the same session",
+        "Keep going — unused history is harmless"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The new task does not use the old task's history, so clearing stops you paying for it every turn. Option A is tempting as the safe-sounding choice, but it keeps a summary the new task will never read. Option C ends and resumes the same full session. Option D is the misconception: history competes for room and is re-paid on every turn.",
+      "concept": "new-work-clear"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You ended a session with `/exit` and closed the terminal. Next morning you want to continue exactly where you stopped. What do you run?",
+      "options": [
+        "Start Claude Code fresh — sessions are not saved",
+        "`claude --continue` — resume the most recent session with its state",
+        "Re-paste your last message into a new session",
+        "`/compact` at launch"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "`/exit` saves the session to disk, and `--continue` brings it back with the summary, files, and edits. Option A is the tempting belief that closing the terminal loses everything. Option C starts a new session and rebuilds by hand. Option D is a command for a running session, not a launch flag.",
+      "concept": "exit-and-resume"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You type `/clear`, then ask Claude Code what it remembers. It remembers nothing, yet the session is still open. Which statement is correct?",
+      "options": [
+        "The session ended when you cleared it",
+        "`/clear` wipes the session's memory; a session can be alive with an empty memory, and `/exit` is what ends and saves it",
+        "`/clear` deletes the tool",
+        "The tool can scroll back through the transcript, so nothing is really lost"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The session is the state; `/clear` empties that state but does not end the session, and `/exit` is the operation that ends and saves. Option A is the tempting merge of clearing with exiting. Option C overstates it — the tool was not deleted. Option D confuses the transcript on disk with what the tool can currently see.",
+      "concept": "clear-vs-exit"
     }
   ]
 }

@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Context as Architecture, Not a Dump that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "A `CLAUDE.md` contains an eight-step release procedure. Where should it live?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "In `CLAUDE.md`, so it is always loaded and never forgotten",
+        "In a skill, so it loads when someone cuts a release and costs nothing otherwise",
+        "In a path-scoped rule matching the release script's directory",
+        "Nowhere — release procedures cannot be stored as context"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "A procedure is a task invoked at a known moment, so a skill is the home: metadata always, body on invoke. Option A makes it a standing charge paid every session for a task you run rarely — the dump pattern. Option C would fire when the release script is edited, not when a release is run, which is the wrong trigger. Option D is false; the question is which layer, not whether."
+    },
+    {
+      "id": 2,
+      "prompt": "A rule says \"code under `src/api/` must return this error shape.\" You start a session to fix a CSS bug in `src/web/`. Which home removes the rule from your window?",
+      "options": [
+        "`CLAUDE.md`",
+        "A path-scoped rule with `paths: src/api/**`",
+        "An auto-memory entry",
+        "A `references/` file inside every skill"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "A path-scoped rule loads only when a matching file is read, so a `src/web/` task never pays for it. Option A loads the rule at session start regardless of the task. Option C also loads at startup. Option D would attach the rule to skills you did not invoke, and it would not fire when an API file is edited — the wrong trigger entirely."
+    },
+    {
+      "id": 3,
+      "prompt": "You restart a session. Rank-free: which startup block is NOT re-injected after a `/compact`, even though it was loaded at the start?",
+      "options": [
+        "Project `CLAUDE.md`",
+        "Auto memory (`MEMORY.md`)",
+        "Skill descriptions",
+        "The system prompt"
+      ],
+      "answer": 2,
+      "explanation": "The skill description listing is the block that does not re-inject after compaction; only skills you actually invoked are re-attached. Options A, B, and D are all reloaded — `CLAUDE.md` and memory from disk, the system prompt from the fixed prompt. The trap is assuming every startup block reloads identically; the lifetimes differ, which is the whole point of the architecture."
+    },
+    {
+      "id": 4,
+      "prompt": "Your memory file states \"the build command is `pnpm build`\", but `package.json` already defines that script. What is the right decision?",
+      "options": [
+        "Keep it — having it in two places is safer",
+        "Change it to a path-scoped rule",
+        "Delete it — it is derivable from the code, so it is a standing charge with no return",
+        "Move it to auto memory so Claude learns it itself"
+      ],
+      "answer": 2,
+      "explanation": "Content the repo already states is derivable: keeping it in the window costs every session and buys nothing. Option A is the dump instinct — duplication is not safety, it is a second place to go stale. Option B misapplies path scoping to a fact that is not directory-specific. Option D solves the wrong problem; the fact does not need remembering, it needs reading when relevant."
     }
   ]
 }

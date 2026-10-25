@@ -5,7 +5,7 @@
   "description": "Read-only access to the Harnessing Claude Code course catalog and lessons. No auth, no write endpoints.",
   "transport": {
     "type": "streamable-http",
-    "url": "https://harnessing.example/mcp"
+    "url": "http://127.0.0.1:4180/mcp"
   },
   "tools": [
     {

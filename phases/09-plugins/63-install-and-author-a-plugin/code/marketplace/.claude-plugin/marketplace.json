@@ -1,0 +1,13 @@
+{
+  "name": "workflowtest-local",
+  "owner": {
+    "name": "WorkflowTest learner"
+  },
+  "plugins": [
+    {
+      "name": "guardrail-kit",
+      "source": "./guardrail-kit",
+      "description": "Blocks force-pushes and secrets-into-commits, and hands diff review to a subagent"
+    }
+  ]
+}

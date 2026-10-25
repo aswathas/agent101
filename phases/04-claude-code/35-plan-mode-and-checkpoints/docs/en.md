@@ -1,6 +1,7 @@
-# Lesson 35 — Plan Mode and Checkpoints
+# Plan Mode and Checkpoints
 
-Plan mode is a permission context where the tool can read and think, but cannot act. Its tool calls for edits and commands come back as proposals.
+> Plan mode is a permission context, not a different model — the tool can read
+> and think, but not act.
 
 **Type:** Learn
 **Prerequisites:** Lesson 34 (Settings)

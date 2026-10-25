@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Checkpointing, /rewind, Recovery that needs a new situation, not recall.",
+      "prompt": "A refactor touched eight files, the tests fail, and each fix makes the next failure worse. What is the right move?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Keep debugging forward until the tests pass",
+        "Rewind to the checkpoint from before the refactor and start over from a known-good state",
+        "/clear to empty the conversation",
+        "Commit the broken state and move on"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Many steps have gone wrong at once, which is exactly the case for rolling back to a known-good checkpoint. Option A is the default mistake the lesson exists to fix. Option C empties the conversation but does not restore the files you broke. Option D banks the damage.",
+      "concept": "rewind-the-multi-step-mess"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A single typo in one config file needs fixing. Rewind, or edit directly?",
+      "options": [
+        "Rewind — undoing is always safer",
+        "Edit directly — one wrong thing in one file is not the rewind case",
+        "Rewind to before the session started",
+        "`/clear`, then redo the whole task"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The rewind threshold is more than one thing to undo; a single line is faster to fix in place. Option A is tempting as the cautious choice, but rewinding also costs the conversation around it. Option C throws away far more than the typo. Option D redoes work that was never broken.",
+      "concept": "rewind-threshold"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You deleted a file in Finder, outside Claude Code. You then rewind. Is the file back?",
+      "options": [
+        "Yes — rewind restores the whole machine",
+        "Only if the tool itself snapshotted that file; rewinds restore the tool's session state, not changes made outside it",
+        "Yes, but only if you were in plan mode",
+        "Yes — rewind restores anything on disk from that time"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A rewind restores what the tool saw and changed, so a change made outside its view is not in any checkpoint. Option A is the tempting overestimate of what undo means. Option C invents a link between plan mode and file recovery. Option D claims a whole-disk rollback the mechanism does not provide.",
+      "concept": "rewind-restores-tool-state"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "The conversation has grown long and full of dead ends, but the files are all fine. What do you reach for?",
+      "options": [
+        "Rewind — it trims the conversation",
+        "`/clear` — rewind restores state, it does not trim the conversation",
+        "Nothing — dead ends are harmless",
+        "Rewind to the first checkpoint"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "When the problem is conversation length rather than broken files, `/clear` is the trimming tool and rewind is the wrong one. Option A is the tempting mix-up: rewind restores state to a checkpoint, it does not shrink the conversation. Option C ignores that dead ends keep costing room. Option D would restore files that were never wrong and still leave the chat long.",
+      "concept": "clear-vs-rewind"
     }
   ]
 }

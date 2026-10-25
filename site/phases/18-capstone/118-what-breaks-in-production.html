@@ -4,94 +4,263 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What Breaks in Production — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can name the five ways an unattended parallel run fails, check them in">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>What Breaks in Production</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li class="on"><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 117, Review Against the Docs</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 18 · LESSON 118</p>
+      <h1>What Breaks in Production</h1>
+      <p class="lesson-motto">You can name the five ways an unattended parallel run fails, check them in</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 117, Review Against the Docs; Lesson 104, Failure</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Name the five failure classes an unattended run fails into, and which one is the model</li><li>Run a triage in cheapest-cause-first order and stop before blaming an agent</li><li>Force four of these failures on purpose and record the observable signal each one leaves</li><li>Write a preflight that turns two of them from failures into something that can't happen</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>A parallel run finished. Four agents reported success. Three of the four branches pointed at <code>main</code>.</p>
+<p>Nothing was lost only because the worktrees hadn't been cleaned up yet — the work was still sitting in working trees that no branch referenced. The agents had done everything except the one thing that makes work real: commit. Isolation is not a backup (Lesson 110), and cleanup does not ask whether you were finished (Lesson 75).</p>
+<p>Same repo, different week. A run came back with a red suite, so the agents took the blame — the fanciest-looking change must be the culprit. The actual cause was a wrong glob in <code>package.json</code>: the test command pointed one directory wide. Every agent's work was fine. The <em>witness</em> was lying, and nobody checked the witness because blaming an agent is more satisfying than reading a config line.</p>
+<p>Two failures with the same lesson underneath: the model was not the broken part either time. It almost never is.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Unattended runs fail in five classes. Exactly one of them is &quot;the model misbehaved,&quot; and it is the last one you check — because it is the most expensive to check and the least likely to be true.</p>
+<figure class="diagram"><pre>flowchart TD
+    R[&quot;A run went wrong&quot;] --&gt; A{&quot;1. Is the work&lt;br/&gt;saved?&quot;}
+    A --&gt;|no| A1[&quot;Empty branch.&lt;br/&gt;Branch at main.&lt;br/&gt;Work only in a worktree&quot;]
+    A --&gt;|yes| B{&quot;2. Is the witness&lt;br/&gt;honest?&quot;}
+    B --&gt;|no| B1[&quot;Wrong glob, stale build,&lt;br/&gt;wrong cwd, swallowed exit code&quot;]
+    B --&gt;|yes| C{&quot;3. Did isolation hold —&lt;br/&gt;as files and as meaning?&quot;}
+    C --&gt;|no| C1[&quot;Two agents, one resource:&lt;br/&gt;a config key, an index,&lt;br/&gt;a version, an interface&quot;]
+    C --&gt;|yes| D{&quot;4. Does the environment&lt;br/&gt;match the assumption?&quot;}
+    D --&gt;|no| D1[&quot;Startup-cache trap.&lt;br/&gt;Session socket closed.&lt;br/&gt;Interactive-only behaviour&quot;]
+    D --&gt;|yes| E[&quot;5. Now suspect the model —&lt;br/&gt;and check the input&lt;br/&gt;before the intelligence&quot;]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="1-the-transaction-boundary-work-that-was-never-saved">1. The transaction boundary — work that was never saved</h3>
+<p>A change in a working tree is not saved. It is <em>present</em>. <code>git status</code> will show it until a <code>clean</code>, a reset, or a worktree cleanup removes it without ceremony.</p>
+<p>The tell is a branch that exists and points at <code>main</code>, or a <code>git log</code> with fewer commits than agents you spawned. The cheapest check in the whole lesson:</p>
+<pre class="code" data-lang="bash"><code>git branch --contains &lt;sha&gt;     # names the branch holding this commit, or nothing
+git worktree list               # every isolated copy, and the branch it holds</code></pre>
+<p>If an agent's transcript says &quot;committed&quot; and the sha is on no branch, the answer is almost never &quot;it lied.&quot; It is &quot;the commit went into a worktree whose branch you never merged, and the branch still says <code>main</code>.&quot;</p>
+<h3 id="2-the-witness-the-thing-reporting-on-the-work">2. The witness — the thing reporting on the work</h3>
+<p>Your verifier is a system, and systems lie in ordinary ways: a glob that matches one directory wide, a build artifact from before the change, a command run from the wrong cwd, a pipeline where a failure exits 0 because something swallowed the code. The red suite that &quot;proved&quot; the agents failed was this class.</p>
+<p>The rule: <strong>check the witness before the work.</strong> Run the suite on the <em>last known good</em> commit. If it is red there too, the agents are exonerated in one command.</p>
+<h3 id="3-isolation-files-are-separated-meaning-is-not">3. Isolation — files are separated, meaning is not</h3>
+<p>Two worktrees cannot touch each other's files. They can absolutely both bump the same version string, both add an entry to the same index array, both rename the same exported function, or both assume opposite shapes for the same interface. Each branch is green; the merge is red.</p>
+<p>Worktrees solve the file problem. The graph's blocking edges solve the meaning problem (Lessons 100, 101, 104) — and only if the edges came from data flow. Two nodes that &quot;look independent&quot; because they live in different folders are the false frontier from Lesson 116, and their failure arrives after the merge, when it is most expensive to unpick.</p>
+<h3 id="4-the-environment-where-the-harness-and-reality-disagree">4. The environment — where the harness and reality disagree</h3>
+<p>Two documented shapes, both invisible until they bite:</p>
+<ul><li><strong>The startup-cache trap.</strong> The harness establishes things about its working directory once, at launch. Create a git repository <em>after</em> the session starts and worktree tools refuse with &quot;not in a git repository&quot; while <code>git rev-parse</code> cheerfully prints a path. The fix is to restart in an existing repo — the session cannot learn about a repo that appeared beneath it (Lesson 108).</li><li><strong>A session-scoped transport.</strong> Cross-session messaging belongs to a session; a closed session receives nothing. A worker that &quot;should have been told&quot; was told, to a socket nobody was reading. This repo asserted the opposite once and was wrong. The default is: the session is the lifetime.</li></ul>
+<p>Anything a step assumes about its environment — a branch that exists, a file another node wrote, a TTY, a credential in the shell — is this class, and it fails as &quot;nothing happened,&quot; which is the quietest failure there is.</p>
+<h3 id="5-the-model-last-and-not-alone">5. The model — last, and not alone</h3>
+<p>By the time you get here you have ruled out four cheaper causes, and the remaining possibility is still two things: the model, and <strong>what the model was given</strong>. A confident wrong answer from a well-fed agent is rare. A confident wrong answer from an agent handed a stale CLAUDE.md, a truncated file read, or a task with no acceptance check is routine — and that is a harness problem wearing the model's face.</p>
+<h3 id="the-order-is-the-lesson">The order is the lesson</h3>
+<p>Cheapest first, and most-likely first, which here happen to agree. &quot;Is it saved?&quot; costs one command. &quot;Is the witness honest?&quot; costs one run. Suspicion of the model costs a transcript read and probably a re-run. Doing them out of order is how a five-minute problem becomes a day of re-running agents that were right.</p>
+<h3 id="retries-hide-the-first-failure">Retries hide the first failure</h3>
+<p>An unattended loop that retries will produce a green run after a red one, and the green one is not a pass. It is a pass <strong>plus an unexplained earlier failure</strong>. Until you can name what changed between the two, you have a flaky system, not a fixed one — and Lesson 95's verification loops are where that gets designed properly.</p>
+<blockquote><p><strong>The reframe:</strong> in production the model is the last suspect, not the first —</p><p>what breaks is the seam between two systems, and no seam belongs to either side.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>You cannot debug a failure mode you have never seen. Force four of them.</p>
+<h3 id="1-seed-the-empty-branch">1. Seed the empty branch</h3>
+<p>In a scratch repo, spawn or write a change in a worktree, then remove it without merging. Then run the two commands above.</p>
+<p>✅ You pass when you can show a worktree whose work is reachable from no branch, and you know which command would have caught it <em>before</em> the cleanup.</p>
+<h3 id="2-break-the-witness">2. Break the witness</h3>
+<p>Make the suite pass on code you know is broken. Change a test glob, or edit a source file without rebuilding, or put a <code>|| true</code> in a pipeline.</p>
+<pre class="code" data-lang="bash"><code># run the suite on the last known good commit
+git stash list
+git log --oneline -3</code></pre>
+<p>✅ You pass when the suite reports green on broken code, and you can point at the single line that made it lie.</p>
+<h3 id="3-seed-a-semantic-collision">3. Seed a semantic collision</h3>
+<p>Give two parallel nodes a shared resource — the same config key, the same index array, the same exported name. Let both pass on their own branch. Merge.</p>
+<p>✅ You pass when the merged branch fails while both branches pass, and you can name the resource they shared in one sentence.</p>
+<h3 id="4-leave-the-environment-stale">4. Leave the environment stale</h3>
+<p>Start a session in a plain directory, create a repository inside it, and try a worktree operation. Record the exact message.</p>
+<p>✅ You pass when you have the message, and can say which single action — taken <em>before</em> the session started — would have avoided it.</p>
+<h3 id="5-write-the-runbook">5. Write the runbook</h3>
+<p>Turn the five classes into a triage sheet: symptom, first check, the command, what a pass looks like. Two rows must be a <strong>preflight</strong> — things you run before spawning, so the failure cannot occur at all.</p>
+<p>✅ You pass when every row has a runnable command, and at least two rows are preflight rather than triage.</p>
+<h3 id="6-have-someone-else-use-it">6. Have someone else use it</h3>
+<p>Hand the runbook to a person (or a fresh agent session) who did not write it, seed one failure at random, and watch.</p>
+<p>✅ You pass when they resolve it without asking you a question, and you can name the row that did the work.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Thing</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>git branch --contains &lt;sha&gt;</code></td><td>First command after any &quot;the agent says it finished&quot;</td></tr><tr><td><code>git worktree list</code></td><td>Before cleanup. Every isolated copy, every branch</td></tr><tr><td>Known-good commit</td><td>Run the witness there before blaming anyone</td></tr><tr><td><code>git log --oneline --graph --all</code></td><td>When the shape of history doesn't match the number of agents</td></tr><tr><td>Blocking edges</td><td>The fix for a semantic collision — after the fact, add the edge you skipped</td></tr><tr><td>Startup-cache trap</td><td>Any &quot;not in a git repository&quot; that contradicts <code>git rev-parse</code></td></tr><tr><td>Session-scoped transport</td><td>Any message a closed session &quot;should have received&quot;</td></tr><tr><td>Unchanged re-run</td><td>Treat as unresolved until you can name what differed</td></tr><tr><td>Preflight</td><td>Two rows of the runbook that stop failures happening instead of explaining them</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take a parallel run of yours — any size — and run the four triage checks in order against its last red result. Write down which class it was. ✅ You pass when you can name the class, the command that revealed it, and the command that <em>would not</em> have revealed it.</li></ol>
+<ol><li class="criterion">Reproduce the empty-branch failure in a scratch repo, then write the one-line preflight that makes it impossible. ✅ You pass when the failure is reproducible on demand and the preflight is a command, not a rule you remember.</li></ol>
+<ol><li class="criterion">Break your verifier so it passes on broken code, then fix it, keeping the evidence of both states. ✅ You pass when you can show the same commit passing and failing under two different verifier configurations, and you can say which one you trust.</li></ol>
+<ol><li class="criterion">Re-run a previously-failed unattended job. If it now passes, write down what changed — or state plainly that you cannot, and treat the pass as unresolved. ✅ You pass when the outcome is one of &quot;named the change&quot; or &quot;flagged as unexplained,&quot; and not &quot;it works now.&quot;</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>empty branch</td><td>&quot;the agent didn't do anything&quot;</td><td>A branch that exists and points at <code>main</code> while the work sits uncommitted in a worktree.</td></tr><tr><td>the witness</td><td>&quot;the test suite&quot;</td><td>Whatever reports on the work. Check it on known-good code first — it lies in mundane ways.</td></tr><tr><td>transaction boundary</td><td>&quot;it's saved&quot;</td><td>A working tree is not a commit. Until it's committed, cleanup can and will remove it.</td></tr><tr><td>semantic collision</td><td>&quot;they were in different folders&quot;</td><td>Two nodes that share a resource (key, index, name, interface) while sharing no file. Green apart, red merged.</td></tr><tr><td>startup-cache trap</td><td>&quot;it says not a git repository&quot;</td><td>The harness probed the working directory once, at launch. A repo created later is invisible to it.</td></tr><tr><td>session-scoped transport</td><td>&quot;the worker should have got the message&quot;</td><td>Cross-session messaging lives and dies with the session. A closed session receives nothing.</td></tr><tr><td>retry masking</td><td>&quot;it's green now&quot;</td><td>A pass after a failure with no explanation for the difference. Unresolved, not fixed.</td></tr><tr><td>preflight</td><td>&quot;running the tests first&quot;</td><td>A check that runs before the work starts, turning a failure class into something that cannot happen.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Cost and rate limits.</strong> A fan-out that dies at call forty is a capacity problem, not a correctness one — Lesson 11 for the shape, Lesson 81 for the runtime caps.</p>
+<p><strong>Security.</strong> Sandbox escapes and prompt injection are their own failure class and their own lesson (Lesson 114); this lesson assumes the permission boundary held.</p>
+<p><strong>Fleet and organizational failure.</strong> Settings drift across machines, plugin policy, central telemetry — Lesson 115. Everything here happens on one machine, inside one run.</p>
+<p><strong>Designing the verification loop itself.</strong> Retries, escalation, and what &quot;unresolved&quot; does to a run is Lesson 95. This lesson is what to check when that loop has already given you an answer you don't trust.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">Four agents finished. All four reported success. The merged branch fails the suite. Which order do you check in, and why?</p>
+        <ol class="options" type="A">
+          <li>Read each agent's transcript and find which one produced the bad change</li>
+          <li>Is the work saved, is the witness honest, did isolation hold, does the environment match — then the model</li>
+          <li>Re-run the whole workflow, since a fresh run usually clears it</li>
+          <li>Revert the merge and redo the nodes serially, so the culprit can't hide</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Is the work saved, is the witness honest, did isolation hold, does the environment match — then the model</p>
+          <p class="why">Each step is cheaper and more likely than the next: 'is it committed' is one command, 'is the verifier lying' is one run, and blaming a model costs a transcript read plus a re-run. A is the tempting one because a red suite looks like a culprit, and it is exactly the mistake that had the agents taking blame for a wrong glob in package.json. C burns the whole run to avoid a five-minute check, and will reproduce the same failure. D serializes work before establishing that parallelism caused anything — if the witness is lying, serial runs are just slower and equally red.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">An agent's transcript says it committed its work. <code>git branch --contains &lt;sha&gt;</code> returns nothing, and <code>feat-node-b</code> sits at the same commit as <code>main</code>. What is the most likely state, and the cheapest check?</p>
+        <ol class="options" type="A">
+          <li>The agent lied about committing — re-run the node</li>
+          <li>The commit is in that worktree's working tree but was never made, or the branch label never moved — check <code>git -C &lt;worktree&gt; status</code> and its log</li>
+          <li>The commit was garbage-collected — recover it from the reflog of the main working copy</li>
+          <li>The sha was mistyped — trust the transcript and move on</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The commit is in that worktree's working tree but was never made, or the branch label never moved — check <code>git -C &lt;worktree&gt; status</code> and its log</p>
+          <p class="why">The empty branch is the classic shape: the code exists in an isolated working tree that no branch references, so it is one cleanup away from gone. Look inside the worktree before you look anywhere else — <code>status</code> and <code>log</code> there settle it in one command, and the fix is a commit of work that already exists. A is the tempting reading of a mismatch, and 'the model is lying' is both insulting and expensive: a missing commit is almost always a missing step, not a lie. C sends you hunting in the wrong repository's object store; work never committed has nothing in any reflog. D stops looking at the exact moment the trail gets warm.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Two nodes ran in parallel. Each branch passes the suite on its own. The merged branch fails, reproducibly, and rerunning the suite does not change it. What is the first hypothesis?</p>
+        <ol class="options" type="A">
+          <li>One agent wrote a bug that its own tests happened not to cover</li>
+          <li>The two nodes share a resource neither owns — a config key, an index, an exported name, an interface — so they were never independent</li>
+          <li>The suite is flaky under parallel load</li>
+          <li>The merge tool resolved a conflict incorrectly</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The two nodes share a resource neither owns — a config key, an index, an exported name, an interface — so they were never independent</p>
+          <p class="why">Green-apart and red-together is the signature of a semantic collision: the two changes are self-consistent and mutually inconsistent, and the disagreement exists only on the merged branch. The fix is an edge you did not draw, then re-running the dependent node. A is tempting because a failure feels like a culprit, but an individual bug would show up on that node's own branch, where the suite is green. C is ruled out by the reproducibility — flakiness comes and goes. D would normally leave the merge conflicted; here the merge is clean and the semantics are not, which is why a clean merge is not evidence that two nodes were independent.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/18-capstone/117-review-against-the-docs.html"><span>Previous</span>117. Review Against the Docs</a>
+    <a class="next" href="../../phases/18-capstone/119-keeping-up.html"><span>Next</span>119. Keeping Up — Claude Code Ships Weekly</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

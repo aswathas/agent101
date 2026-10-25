@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Nodes and Edges that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "A plan says `tests → schema`, meaning someone drew an arrow from the test task to the schema task. You read it aloud as \"the tests need the schema.\" What is actually wrong with the graph?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Nothing — the arrow direction is a convention and either end works",
+        "The arrow is reversed: the tests depend on the schema, so it should point from schema to tests",
+        "The graph is fine, but the tests should be a soft edge instead",
+        "The schema should be deleted from the graph because the tests produce its input"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "An edge `A → B` means B needs A's output, so the arrow points at the dependent node. If the tests need the schema, the edge runs schema → tests. Option A is the tempting one because \"order\" feels symmetric, but direction is the whole meaning of a edge — swapping the ends inverts who waits on whom. Option C mistakes this for an edge-strength issue (that is Lesson 100); the direction is simply wrong. Option D inverts producer and consumer."
+    },
+    {
+      "id": 2,
+      "prompt": "Your graph has: docs → api → tests, and also tests → docs (someone added a feedback loop). No node has started. Why will this graph never run?",
+      "options": [
+        "Because docs has two outgoing edges and that is not allowed",
+        "Because there is a cycle: docs waits on tests, tests wait on api, api waits on docs",
+        "Because tests has both an incoming and an outgoing edge",
+        "Because every graph needs exactly one sink node"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "The path api → tests → docs → api returns to where it started, so each node is waiting on a node that waits (transitively) on itself. Nothing in the cycle qualifies as an entry node. Option A is tempting because a node with many edges *looks* suspicious, but branching is fine in a DAG. Option C describes an ordinary middle node. Option D is not a rule — a graph may have several sinks."
+    },
+    {
+      "id": 3,
+      "prompt": "A colleague lists three tasks: \"work on auth,\" \"polish the settings page,\" \"investigate performance.\" You try to draw edges between them and cannot tell what waits on what. What is the actual problem?",
+      "options": [
+        "The tasks are too few to form a graph",
+        "The graph needs a cycle to be well-formed",
+        "The tasks are activities, not outputs — none names something a later node can consume",
+        "You need to know each task's duration before edges can be drawn"
+      ],
+      "answer": 2,
+      "explanation": "A node is defined by the artifact it produces. None of these three produces a checkable output, so nothing downstream could depend on it and no edge is meaningful. Option A is wrong: three nodes are plenty. Option B is backwards — cycles make a graph unrunnable. Option D confuses scheduling (Lesson 99) with structure: dependency comes from what a node produces, not how long it takes."
+    },
+    {
+      "id": 4,
+      "prompt": "Two tasks in your project genuinely need each other's output — the frontend needs the API's response shape, and the API team says it needs the frontend's field list to define that shape. What does a graph tell you to do first?",
+      "options": [
+        "Run both at once and let the conflict surface at merge time",
+        "Pick whichever is faster and mark the other as its dependent",
+        "Recognise a cycle and break it — merge the two, or split out a shared interface they can both code against",
+        "Remove one node from the graph entirely"
+      ],
+      "answer": 2,
+      "explanation": "Mutual dependency is a cycle; no node in it can be an entry node, so the graph cannot start as drawn. The graph forces the split: agree a shape as its own node, or merge the work. Option A is the tempting \"parallelism\" answer and is exactly the merge conflict the graph exists to prevent. Option B invents a false direction. Option D drops work rather than restructuring it."
     }
   ]
 }

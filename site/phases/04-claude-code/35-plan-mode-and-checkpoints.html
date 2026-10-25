@@ -3,34 +3,245 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lesson 35 — Plan Mode and Checkpoints — Harnessing Claude Code</title>
-<meta name="description" content="">
+<title>Plan Mode and Checkpoints — Harnessing Claude Code</title>
+<meta name="description" content="Plan mode is a permission context, not a different model — the tool can read">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LESSON</p>
-  <h1>Lesson 35 — Plan Mode and Checkpoints</h1>
-  
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li class="on"><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> —</p>
-    <p><strong>Prerequisites:</strong> —</p>
-    <p><strong>Time:</strong> —</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 04 · LESSON 35</p>
+      <h1>Plan Mode and Checkpoints</h1>
+      <p class="lesson-motto">Plan mode is a permission context, not a different model — the tool can read</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 34 (Settings)</dd></div>
+        <div><dt>Time</dt><dd>~25 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;"></pre>
-</article>
+      <div class="ascii-rule"></div>
+
+      <div class="prose">
+<h2 id="the-concept">The Concept</h2>
+<p>Plan mode is not a separate model. It is not a &quot;smarter&quot; mode. It is a sandbox over tools.</p>
+<p>In plan mode:</p>
+<ul><li>The tool can read files.</li><li>The tool can search the web, if it would in normal mode.</li><li>The tool can run read-only commands.</li><li>The tool cannot edit files without your say-so.</li><li>The tool cannot run side-effecting commands without your say-so.</li></ul>
+<p>The tool, if asked, will produce a written plan. The plan is just a normal response from the tool, formatted as steps. There is no special syntax.</p>
+<h2 id="build-it">Build It</h2>
+<p>For this conceptual lesson, the work is one short scenario in a Claude Code session to confirm the section landed:</p>
+<ol><li>Open a fresh session in any project folder.</li><li>Apply the idea in the section above to your project in a way that fits.</li><li>Notice what happens when the condition in the section is met, and when it is not.</li></ol>
+<p>Pass: you can describe the difference between the two cases in one paragraph.</p>
+<h2 id="how-a-plan-gets-out-of-plan-mode">How a plan gets out of plan mode</h2>
+<p>When you are happy with the plan, you tell the tool to execute it. That is the gate. The tool does not sneak out by itself.</p>
+<p>How you tell it varies: a phrase like &quot;go&quot; or &quot;do it&quot; or &quot;proceed.&quot; The exact phrasing is not the lesson here. The mental model is: the plan is a proposal, you are the approver.</p>
+<p>If the plan is wrong, you do not approve it. You tell the tool what is wrong with the plan. The tool revises.</p>
+<h2 id="what-checkpoints-means-here">What &quot;checkpoints&quot; means here</h2>
+<p>A checkpoint is a saved state of the session — the conversation, the files the tool has read, the in-flight state — at a moment when things were good. You can return to that state.</p>
+<p>Two related ideas:</p>
+<ul><li>The tool creates checkpoints at meaningful moments (after a successful action, on a unit boundary).</li><li>You can ask to rewind to a checkpoint if later steps went sideways.</li></ul>
+<p>For now, just hold the word: a checkpoint is a saved &quot;we were good here.&quot; Lesson 36 will show the mechanics.</p>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this lesson you can:</p>
+<ul><li>Name what plan mode allows and what it does not</li><li>Tell the difference between plan mode and normal mode at the tool level</li><li>Decide when to enter plan mode and when to skip it</li><li>Approve or reject a plan based on what the tool wrote</li><li>Define a checkpoint and say when one is created</li></ul>
+<h2 id="the-problem">The Problem</h2>
+<p>You ask for a multi-file refactor. The tool dives in. Five minutes later, it has touched eight files and the tests are failing. You wanted to see the plan first.</p>
+<p>The plan exists in the tool's head. It could have written it out before acting. In normal mode, it acts. In plan mode, it writes first. The lesson exists to make that choice visible: you can ask the tool to plan before it acts, and the cost of doing so is small.</p>
+<h2 id="when-to-use-plan-mode">When to use plan mode</h2>
+<p>Use plan mode when:</p>
+<ul><li>The change touches multiple files.</li><li>The change is hard to reverse.</li><li>You want to see the tool's reasoning before it acts.</li><li>The task has unknowns the tool might guess at.</li></ul>
+<p>Skip plan mode when:</p>
+<ul><li>The task is a one-line fix.</li><li>The task is well-known and reversible.</li><li>You asked for a tool call, not a plan.</li></ul>
+<h2 id="the-reframe">The reframe</h2>
+<p><strong>The reframe:</strong> Plan mode is not the tool being careful. It is the tool being told the cost of mistake is high, and it will respond with a slower but more deliberate plan.</p>
+<p>In normal mode, the tool tries to act quickly and correctly. The cost of a mistake is borne by you, in reverts and re-dos. In plan mode, the cost of a wrong plan is just a re-write. The tool is being told: do not act yet, but think in front of me.</p>
+<p>A useful analogy. Plan mode is the difference between a contractor saying &quot;I'll start tomorrow&quot; and the contractor saying &quot;here is what I will do Tuesday.&quot; Same contractor. Different cost framing.</p>
+<h2 id="a-worked-example">A worked example</h2>
+<p>You ask: &quot;add error handling to all the API routes.&quot;</p>
+<p>In normal mode the tool goes: reads the routes, edits each one, runs the tests. Fast, but you cannot see the plan before it is run.</p>
+<p>In plan mode the tool goes: reads the routes, writes a plan that names each route and the pattern it would add, asks you to approve. Slow, but you can read the plan, see that the tool has missed two routes, point that out, and approve the revision.</p>
+<p>The tool that produced the plan and the tool that would have done the work are the same. The mode changed which verbs were allowed.</p>
+<h2 id="three-practical-consequences">Three practical consequences</h2>
+<p><strong>1. Plan mode is cheap.</strong> Switching into and out of it does not cost much. If unsure, go in.</p>
+<p><strong>2. The plan is editable.</strong> When you read it, you will see things to change. That is normal.</p>
+<p><strong>3. Approval is the gate, not the duration.</strong> The tool exits plan mode when you say so, not when the plan reaches some length.</p>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Situation</th><th>Use plan mode?</th></tr></thead><tbody><tr><td>Rename a single function</td><td>Probably not — the change is small and local</td></tr><tr><td>Add error handling to all routes</td><td>Yes — the change is multi-file, and the plan is short to read</td></tr><tr><td>Add a new dependency and import it everywhere</td><td>Maybe — depends on how widespread the imports are</td></tr><tr><td>Reformat a single file</td><td>No</td></tr><tr><td>Reformat the whole project</td><td>Yes — you want to see the plan, then pick files</td></tr><tr><td>Write a SQL migration that the tool will run</td><td>Yes — destructive, hard to reverse</td></tr></tbody></table></div>
+<h2 id="exercises">Exercises</h2>
+<ol><li><strong>See how a plan differs from auto-execution.</strong> In any project with at least three source files, enter plan mode. Ask: &quot;refactor the imports across all source files.&quot; Pass: the plan names each file in the project, or you pushed back once and the plan now names them. The plan is in front of you before any edit happens.</li></ol>
+<ol><li><strong>Approve a plan and watch it execute.</strong> Enter plan mode. Ask for a small change. Read the plan. Approve. Watch the tool execute the plan. Pass: every step the tool takes during execution matches a step in the plan you approved. If the tool does something the plan did not list, push back: that was outside the plan.</li></ol>
+<ol><li><strong>Reject a plan on purpose.</strong> Enter plan mode. Ask for a non-trivial change. Reject the plan with a specific reason. Pass: the tool produces a revised plan that addresses your reason. You can name what changed between the first and the second plan.</li></ol>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>&quot;It's in plan mode, why isn't it doing anything?&quot;</td><td>Plan mode is a sandbox over edits and side-effecting commands. The tool can read and think. Acting requires your approval. The misconception is that plan mode is a different model. It is a different permission context.</td></tr><tr><td>&quot;I want a plan.&quot;</td><td>Use plan mode. Read the plan. Push back if it is wrong. Approve only when it is right.</td></tr><tr><td>&quot;Checkpoint.&quot;</td><td>A saved session state from a moment when things were good. You can return to it. Lesson 36 has the details.</td></tr><tr><td>&quot;Approve.&quot;</td><td>The signal that tells the tool to leave plan mode and act. You are the gate.</td></tr></tbody></table></div>
+<h2 id="what-this-lesson-does-not-cover">What this lesson does not cover</h2>
+<p>We did not show the key bindings for entering or exiting plan mode. We did not talk about checkpoint storage or the rewind UI. Those are Lesson 36.</p>
+<p>This lesson was about plan mode as a permission context, not a different tool.</p>
+      </div>
+
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">Which task is the best fit for plan mode?</p>
+        <ol class="options" type="A">
+          <li>Rename a single function</li>
+          <li>Reformat one file</li>
+          <li>Add error handling to all API routes</li>
+          <li>Look up what a library function does</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> Add error handling to all API routes</p>
+          <p class="why">A change that touches many files and is easy to get wrong is worth reading a plan for before anything runs. Options A and B are small, local, and reversible, so planning is overhead with no payoff. Option D is a question, not a change — no edits means nothing to plan.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">In plan mode, Claude Code reads files but will not edit them without your say-so. What is plan mode?</p>
+        <ol class="options" type="A">
+          <li>A smarter model that thinks harder</li>
+          <li>A permission context — a sandbox over tools where reads are allowed and edits or side-effecting commands need your approval</li>
+          <li>An offline mode with no network</li>
+          <li>A read-only copy of your project on disk</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A permission context — a sandbox over tools where reads are allowed and edits or side-effecting commands need your approval</p>
+          <p class="why">Plan mode changes which verbs are allowed for the same model, so it is a permission context, not a different brain. Option A is the tempting misconception the reframe names: it is not a smarter mode. Option C confuses sandboxing tools with cutting the network. Option D confuses a sandbox over actions with a copy of the files.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You approve a plan, it executes, and then it takes a step the plan never listed. What is the correct response?</p>
+        <ol class="options" type="A">
+          <li>Nothing — plans are rough drafts</li>
+          <li>Push back: that step was outside the approved plan; approval is the gate, not a blank cheque</li>
+          <li>Approve the plan again</li>
+          <li>Rewind is impossible once a plan runs</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Push back: that step was outside the approved plan; approval is the gate, not a blank cheque</p>
+          <p class="why">The approved plan is what you agreed to, so a step outside it is a real deviation worth flagging. Option A is tempting when the extra step looks harmless, but it changes the contract you approved. Option C approves something already running. Option D is false — checkpoints and rewind are the subject of the next lesson.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You are unsure whether to enter plan mode for a task. What is the better default, and why?</p>
+        <ol class="options" type="A">
+          <li>Skip it — plan mode wastes tokens</li>
+          <li>Go in — plan mode is cheap, and a wrong plan costs a rewrite while a wrong action costs a revert</li>
+          <li>Only use it when you are in production</li>
+          <li>Plan mode is required for any edit touching more than one file</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Go in — plan mode is cheap, and a wrong plan costs a rewrite while a wrong action costs a revert</p>
+          <p class="why">Switching in and out is cheap, and the cost framing favours a wrong plan over a wrong action, so when unsure the answer is to go in. Option A misreads planning as expensive. Option C invents an environment rule. Option D states a hard requirement where the lesson gives a judgement call.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/04-claude-code/34-settings-and-precedence.html"><span>Previous</span>34. Settings — 4 Files, 5 Precedence Levels</a>
+    <a class="next" href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span>Next</span>36. Checkpointing, `/rewind`, Recovery</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

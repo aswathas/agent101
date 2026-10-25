@@ -4,94 +4,380 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Build a Guardrail Hook — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="Four rules, one settings file, one script — and a test you can run without">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Build a Guardrail Hook</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li class="on"><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 58, The Exit-1-vs-2 Trap</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">BUILD · PHASE 08 · LESSON 59</p>
+      <h1>Build a Guardrail Hook</h1>
+      <p class="lesson-motto">Four rules, one settings file, one script — and a test you can run without</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Build</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 58, The Exit-1-vs-2 Trap</dd></div>
+        <div><dt>Time</dt><dd>~45 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Write a <code>PreToolUse</code> guardrail that blocks by exit code and explains by stderr</li><li>Cover Bash and Edit/Write in one script without confusing the two payload shapes</li><li>Add a <code>PostToolUse</code> reminder that costs nothing and never blocks</li><li>Build a self-test that pipes events at your hook and asserts exit codes</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You write the rules you keep re-explaining. &quot;Don't push.&quot; &quot;Don't force-push.&quot; &quot;Don't edit generated files.&quot; &quot;Commit before you make a worktree.&quot;</p>
+<p>They live in <code>CLAUDE.md</code>. They get honored most of the time. The time they don't get honored is exactly the time it matters — an agent three hours into a session, mid-flow, told to create worktrees, does create worktrees, and creates four of them uncommitted.</p>
+<p>Nothing about that failure is a model problem. It's a mechanism problem. A rule in a window is a request; you need something that runs whether or not the model is attending.</p>
+<p>The naive guardrail — four separate scripts, copy-pasted, no tests — fails a different way. Six weeks later one has a bug, the bug fails <em>open</em>, and you have four scripts of varying strictness and no idea which one is lying.</p>
+<p>So: one script, one place for policy, and a test that tells you how it fails.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>The artifact is three files:</p>
+<figure class="diagram"><pre>flowchart TD
+    A[.claude/hooks/guardrail.mjs] --&gt; B{Event}
+    B --&gt;|PreToolUse| C{Bash?}
+    C --&gt;|Yes| D[Check command against BLOCKED_COMMANDS]
+    C --&gt;|No| E{Edit or Write?}
+    E --&gt;|Yes| F[Check file_path against BLOCKED_PATHS]
+    E --&gt;|No| G[exit 0]
+    D --&gt;|Hit| H[reason to stderr, exit 2]
+    F --&gt;|Hit| H
+    D --&gt;|Miss| G
+    F --&gt;|Miss| G
+    I[.claude/hooks/selftest.mjs] --&gt;|pipes events, asserts codes| A
+    J[.claude/settings.json] --&gt;|declares both hooks on A| K[Claude Code]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>Three rules make this survive contact with a real repo:</p>
+<p><strong>One script, all events.</strong> It branches on <code>hook_event_name</code> and <code>tool_name</code> rather than assuming. A policy file that's scattered across scripts is a policy file nobody can update.</p>
+<p><strong>Blocked things are data, not code.</strong> A list at the top of the file. Adding a rule is adding a line, not adding a branch — which means adding a rule can't introduce a new way to fail.</p>
+<p><strong>The test is not optional.</strong> Every rule has an allowed case and a blocked case, and the test asserts the exit code for both. Without it, &quot;is the guardrail working?&quot; is a question you answer by pushing and seeing what happens.</p>
+<blockquote><p><strong>The reframe:</strong> a guardrail is enforcement only when it blocks the dangerous</p><p>thing <em>and</em> leaves its safe neighbour alone — and the self-test, not the block</p><p>list, is what tells you which of the two you actually built.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>The full files are in <code>code/</code>. Copy them into your repo.</p>
+<h3 id="1-write-the-guardrail">1. Write the guardrail</h3>
+<p>Create <code>.claude/hooks/guardrail.mjs</code>:</p>
+<pre class="code" data-lang="js"><code>#!/usr/bin/env node
+// One script, one policy. Reads the event on stdin; exits 2 to block.
+import { readFileSync } from 'node:fs';
 
----
+const BLOCKED_COMMANDS = [
+  { pattern: /^git\s+push\b(?!.*--force-with-lease)/, reason: 'Pushing is a human decision here. Use --force-with-lease if you really must.' },
+  { pattern: /--force(?!-with-lease)/, reason: 'Force-push can destroy a colleague's work.' },
+  { pattern: /\brm\s+-rf?\b/, reason: 'Recursive delete. Delete one path at a time.' },
+  { pattern: /\bgit\s+reset\s+--hard\b/, reason: 'Uncommitted work dies there.' },
+];
 
-## The Problem
+const BLOCKED_PATHS = [/(^|\/)dist\//, /(^|\/)node_modules\//, /\.min\.(js|css)$/];
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
+let raw = '';
+process.stdin.on('data', (c) =&gt; (raw += c));
+process.stdin.on('end', () =&gt; {
+  let event;
+  try {
+    event = JSON.parse(raw);
+  } catch {
+    process.stderr.write('guardrail: unreadable event, allowing\n');
+    process.exit(0); // see the fail-open note below
+  }
 
----
+  if (event.hook_event_name === 'PreToolUse') {
+    if (event.tool_name === 'Bash') {
+      const cmd = event.tool_input?.command ?? '';
+      const hit = BLOCKED_COMMANDS.find((r) =&gt; r.pattern.test(cmd));
+      if (hit) {
+        process.stderr.write(`Blocked: ${hit.reason}\n`);
+        process.exit(2);
+      }
+    } else if (event.tool_name === 'Edit' || event.tool_name === 'Write') {
+      const file = event.tool_input?.file_path ?? '';
+      const hit = BLOCKED_PATHS.find((p) =&gt; p.test(file));
+      if (hit) {
+        process.stderr.write(`Blocked: ${file} is generated or build output.\n`);
+        process.exit(2);
+      }
+    }
+  }
+  process.exit(0);
+});</code></pre>
+<p>Three details that matter more than the pattern list:</p>
+<ul><li><code>?? ''</code> on both fields. An <code>Edit</code> event has no <code>.command</code> and a <code>Bash</code> event has no <code>.file_path</code>. Without it, <code>undefined</code> hits <code>test()</code> and throws.</li><li><code>/--force(?!-with-lease)/</code> excludes <code>--force-with-lease</code>. If you block plain <code>--force</code>, you block the safe variant too, and your team will route around the guardrail rather than through it. A guardrail that blocks the right thing gets obeyed; one that blocks the annoying thing gets worked around.</li></ul>
+<p>That last point is not hypothetical, and it's the reason step 4 exists. The first version of this script blocked <strong>all</strong> pushes with <code>/^git\s+push\b/</code> and carried a separate <code>--force-with-lease</code> exception. The self-test failed on the allow case, because rule one fired first and the exception was dead code underneath it. Two lessons in one failure: the exception had to live in the rule that actually matches, and <strong>the test earned its place on the same day it was written</strong> — before it shipped.</p>
+<ul><li>The catch block <strong>exits 0</strong>. That's deliberate for development — you can still work while you fix a bug — and wrong for production. Change it, or add <code>&quot;onFailure&quot;: &quot;block&quot;</code> in the settings, once you trust it. Lesson 58 covers the trade-off; make the choice deliberately.</li></ul>
+<h3 id="2-declare-it">2. Declare it</h3>
+<p><code>.claude/settings.json</code>:</p>
+<pre class="code" data-lang="json"><code>{
+  &quot;hooks&quot;: {
+    &quot;PreToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;Bash&quot;,
+        &quot;hooks&quot;: [
+          {
+            &quot;type&quot;: &quot;command&quot;,
+            &quot;command&quot;: &quot;node&quot;,
+            &quot;args&quot;: [&quot;${CLAUDE_PROJECT_DIR}/.claude/hooks/guardrail.mjs&quot;],
+            &quot;timeout&quot;: 5
+          }
+        ]
+      },
+      {
+        &quot;matcher&quot;: &quot;Edit|Write&quot;,
+        &quot;hooks&quot;: [
+          {
+            &quot;type&quot;: &quot;command&quot;,
+            &quot;command&quot;: &quot;node&quot;,
+            &quot;args&quot;: [&quot;${CLAUDE_PROJECT_DIR}/.claude/hooks/guardrail.mjs&quot;],
+            &quot;timeout&quot;: 5
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<p>Two matcher groups, one script. <code>Edit|Write</code> uses the pipe-separated exact-match syntax (Lesson 56), not regex. The script doesn't need to know which group fired it.</p>
+<p><code>timeout: 5</code> because this script does two regex tests. The default is 600 seconds — a hang there is a hang in your session.</p>
+<h3 id="3-add-the-reminder-which-is-not-a-guardrail">3. Add the reminder, which is not a guardrail</h3>
+<p><code>PostToolUse</code> on <code>Edit|Write</code>, emitting <code>additionalContext</code> when a generated file was written:</p>
+<pre class="code" data-lang="json"><code>&quot;PostToolUse&quot;: [
+  {
+    &quot;matcher&quot;: &quot;Edit|Write&quot;,
+    &quot;hooks&quot;: [
+      {
+        &quot;type&quot;: &quot;command&quot;,
+        &quot;command&quot;: &quot;node&quot;,
+        &quot;args&quot;: [&quot;${CLAUDE_PROJECT_DIR}/.claude/hooks/generated-warning.mjs&quot;]
+      }
+    ]
+  }
+]</code></pre>
+<p><code>.claude/hooks/generated-warning.mjs</code> prints one JSON object and nothing else. Note it does <strong>not</strong> try to block — <code>PostToolUse</code> can't, and a script that attempts it teaches you the wrong lesson. Its job is to tell the model something it can't know.</p>
+<h3 id="4-write-the-self-test">4. Write the self-test</h3>
+<p><code>.claude/hooks/selftest.mjs</code>. This is the part people skip.</p>
+<pre class="code" data-lang="js"><code>#!/usr/bin/env node
+// Runs the guardrail against fabricated events. No Claude Code required.
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 
-## The Concept
+const here = dirname(fileURLToPath(import.meta.url));
+const guardrail = join(here, 'guardrail.mjs');
 
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
+const cases = [
+  { name: 'allows git status',        event: { hook_event_name: 'PreToolUse', tool_name: 'Bash', tool_input: { command: 'git status' } },              expect: 0 },
+  { name: 'allows --force-with-lease', event: { hook_event_name: 'PreToolUse', tool_name: 'Bash', tool_input: { command: 'git push --force-with-lease' } }, expect: 0 },
+  { name: 'allows Read on dist/',     event: { hook_event_name: 'PreToolUse', tool_name: 'Read', tool_input: { file_path: '/repo/dist/app.js' } },   expect: 0 },
+  { name: 'blocks git push',          event: { hook_event_name: 'PreToolUse', tool_name: 'Bash', tool_input: { command: 'git push origin main' } },    expect: 2 },
+  { name: 'blocks git push --force',  event: { hook_event_name: 'PreToolUse', tool_name: 'Bash', tool_input: { command: 'git push --force' } },       expect: 2 },
+  { name: 'blocks reset --hard',      event: { hook_event_name: 'PreToolUse', tool_name: 'Bash', tool_input: { command: 'git reset --hard HEAD~1' } }, expect: 2 },
+  { name: 'blocks Write to dist/',    event: { hook_event_name: 'PreToolUse', tool_name: 'Write', tool_input: { file_path: '/repo/dist/app.js' } },   expect: 2 },
+  { name: 'ignores PostToolUse',      event: { hook_event_name: 'PostToolUse', tool_name: 'Bash', tool_input: { command: 'git push' } },           expect: 0 },
+  { name: 'survives empty tool_input', event: { hook_event_name: 'PreToolUse', tool_name: 'Bash' },                                       expect: 0 },
+];
 
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
+let failed = 0;
+for (const c of cases) {
+  const r = spawnSync(process.execPath, [guardrail], { input: JSON.stringify(c.event), encoding: 'utf8' });
+  const ok = r.status === c.expect;
+  if (!ok) failed++;
+  console.log(`${ok ? 'ok  ' : 'FAIL'} ${c.name} (exit ${r.status}, want ${c.expect})${ok ? '' : ` — ${r.stderr.trim()}`}`);
+}
+console.log(`\n${cases.length - failed}/${cases.length} passed`);
+process.exit(failed ? 1 : 0);</code></pre>
+<p>Run it:</p>
+<pre class="code" data-lang="sh"><code>node .claude/hooks/selftest.mjs</code></pre>
+<p>✅ You pass when it prints <code>9/9 passed</code> and exits 0.</p>
+<h3 id="5-wire-it-to-an-actual-command">5. Wire it to an actual command</h3>
+<p>Add <code>&quot;command&quot;: &quot;node selftest.mjs&quot;</code> to <code>package.json</code> scripts as <code>test:guardrails</code>, and keep it in the loop. A guardrail with a test that runs once is a guardrail you've already broken.</p>
+<p>✅ You pass when <code>npm run test:guardrails</code> fails when you add a deliberately wrong expectation, and you watched it fail.</p>
+<h3 id="6-prove-it-end-to-end">6. Prove it end to end</h3>
+<p>Restart Claude Code, then ask it to run <code>git push</code>. Then ask it to write a file under <code>dist/</code>. Then ask it to run <code>git status</code>.</p>
+<p>✅ You pass when the first two are refused with your stderr text as the reason and the third goes through.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Piece</th><th>When</th></tr></thead><tbody><tr><td><code>BLOCKED_COMMANDS</code> array</td><td>Every time you add a forbidden command</td></tr><tr><td><code>--force(?!-with-lease)</code></td><td>Whenever a pattern would swallow a safe variant</td></tr><tr><td><code>?? ''</code> on every optional field</td><td>Any time an event's shape varies by tool</td></tr><tr><td>Two matcher groups, one script</td><td>Any time two tools need the same policy</td></tr><tr><td><code>timeout: 5</code></td><td>Any script doing real work; the default is 600s</td></tr><tr><td><code>selftest.mjs</code> in package.json</td><td>Once, at setup, and after every rule change</td></tr><tr><td><code>additionalContext</code> on <code>PostToolUse</code></td><td>Facts the model can't derive from the tool result</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Add a rule blocking <code>git commit --amend</code> on a shared branch, and add the matching test cases before you add the rule. ✅ You pass when the self-test reports 11/11 and the amend is blocked live, and you can show the test failed before the rule existed.</li></ol>
+<ol><li class="criterion">Break your guardrail on purpose — delete a <code>}</code> — and run the self-test. Note the exit code and what the self-test reports. ✅ You pass when you can state which way it failed and whether that matches the fail-open choice you wrote in step 1.</li></ol>
+<ol><li class="criterion">Add a fourth hook: <code>Stop</code>, refusing to end the turn while <code>git status</code> shows uncommitted changes, using <code>last_assistant_message</code> from stdin. ✅ You pass when a turn with a dirty tree gets one continuation, and it stops nagging once the tree is clean.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>guardrail</td><td>&quot;a lint rule for the agent&quot;</td><td>A hook on a blocking event, before the action. Enforcement, not feedback.</td></tr><tr><td>policy as data</td><td>&quot;config&quot;</td><td>Forbidden things in an array, so adding a rule can't add a failure mode.</td></tr><tr><td>self-test</td><td>&quot;unit tests&quot;</td><td>Fabricated events piped into the script, asserting exit codes. No Claude Code in the loop.</td></tr><tr><td>fail open</td><td>&quot;it lets things through&quot;</td><td>Broken guardrail permits. The default, and dangerous once you trust it.</td></tr><tr><td><code>--force-with-lease</code></td><td>&quot;force push, safer&quot;</td><td>Force-push that checks the remote hasn't moved. Block plain <code>--force</code>, not this.</td></tr><tr><td>generated file</td><td>&quot;build output&quot;</td><td>Anything under <code>dist/</code>, <code>node_modules/</code>, or minified. Edited by a generator, never by hand.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Hook scope.</strong> This guardrail lives in <code>.claude/settings.json</code>, so it ships to everyone who clones the repo — including people who don't want it. A per-user rule belongs in <code>.claude/settings.local.json</code>. Lesson 55 has the scope table.</p>
+<p><strong>An <code>agent</code> handler for judgement.</strong> A regex can't tell whether <code>git rebase -i</code> is a disaster or routine. An <code>agent</code> handler can, at the cost of a model call on every Bash invocation. Worth it for a small, expensive repo; not worth it for the four rules above. Lesson 56 has the type table.</p>
+<p><strong>Time-based and permission-mode guards.</strong> <code>permission_mode</code> is on stdin and lets a guardrail relax under <code>bypassPermissions</code>. Real, and a genuine trade-off — skipped because the mechanics are identical to what you just built.</p>
+<p><strong>Async.</strong> A slow check that must block cannot be async. A slow check that only logs should be. Lesson 60.</p>
+<p><strong>Cross-platform invocation.</strong> The settings use exec form (<code>&quot;command&quot;: &quot;node&quot;</code> plus <code>args</code>), which sidesteps Windows <code>.cmd</code> resolution. Shell form needs <code>sh -c</code> and quoting discipline. Lesson 57 explains the difference.</p>
+<p>The <code>${CLAUDE_PROJECT_DIR}</code> placeholder and exec-form <code>args</code> are current behaviour, verified against <a href="https://code.claude.com/docs/en/hooks" target="_blank" rel="noopener">the hooks page</a> on 2026-10-15. Re-check <code>https://code.claude.com/docs/llms.txt</code> before copying this config verbatim into a repo you care about.</p>
+      </div>
 
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You list rule one as <code>{ pattern: /^git\s+push\b/, reason: '...' }</code> — blocking every push — and keep a <code>git push --force-with-lease</code> allow-case test below it. The self-test fails on that allow case. Why?</p>
+        <ol class="options" type="A">
+          <li>Rules are evaluated in order and the first match wins, so the broad push rule fires before the <code>--force-with-lease</code> exception below it is ever reached</li>
+          <li><code>--force-with-lease</code> is a different command the <code>Bash</code> matcher doesn't cover</li>
+          <li>The self-test only checks block cases, so the allow case was never actually run</li>
+          <li><code>--force-with-lease</code> contains <code>--force</code>, and no regex can exclude a substring it matches</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Rules are evaluated in order and the first match wins, so the broad push rule fires before the <code>--force-with-lease</code> exception below it is ever reached</p>
+          <p class="why">The list is scanned with <code>.find()</code>, so the first rule whose pattern tests true decides the outcome. A broad rule placed above a narrow exception makes the exception dead code — the safe variant is swallowed before its allow-case can save it. The fix is to put the exclusion inside the rule that actually matches, e.g. <code>^git\s+push\b(?!.*--force-with-lease)</code>. Option B is wrong because the matcher fires the script on every Bash command; the script, not the matcher, does the deciding. Option C misses that the test did run — that's how the failure was seen. Option D misreads regex: a negative lookahead excludes exactly that substring, which is the pattern the lesson uses.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You add a <code>PostToolUse</code> hook on <code>Edit|Write</code>, intending to block writes to generated files. Its script exits 2 with a clear reason. The agent writes a file under <code>dist/</code>. What happens?</p>
+        <ol class="options" type="A">
+          <li>The write lands; exit 2 on <code>PostToolUse</code> sends the reason to the model instead of blocking, so the guardrail must move to <code>PreToolUse</code></li>
+          <li>The write is refused and the reason is shown as the blocking reason</li>
+          <li>The write lands, and nothing reaches the model</li>
+          <li>The write is refused only on the second attempt</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> The write lands; exit 2 on <code>PostToolUse</code> sends the reason to the model instead of blocking, so the guardrail must move to <code>PreToolUse</code></p>
+          <p class="why"><code>PostToolUse</code> cannot block because the tool already ran; exit 2 there is a way to hand the model feedback, which is why the lesson's generated-file hook uses <code>additionalContext</code> and deliberately does not try to block. A guardrail — enforcement before the action — belongs on <code>PreToolUse</code>. Option B is the exact confusion the event table exists to prevent. Option C undersells it: the reason does reach the model, which is why a wrong-seam hook can look like it is doing something. Option D invents a retry that doesn't exist.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You want a fifth forbidden command. Where does it go, and why does that choice matter?</p>
+        <ol class="options" type="A">
+          <li>As a new entry in the <code>BLOCKED_COMMANDS</code> array — adding data can't introduce a new code path or a new way to fail</li>
+          <li>As a new <code>if</code> branch ahead of the existing ones — more explicit and easier to test</li>
+          <li>In <code>CLAUDE.md</code> beside the other rules, so the model sees it as well</li>
+          <li>In a second, separate script, so a bug in one can't affect the other</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> As a new entry in the <code>BLOCKED_COMMANDS</code> array — adding data can't introduce a new code path or a new way to fail</p>
+          <p class="why">Policy-as-data is the point: a rule is a line in an array, and adding a line cannot add a branch, a crash surface, or an untested path. Option B is what the array replaced — every new branch is a new way to fail, which is how four copy-pasted scripts drift out of sync. Option C puts enforcement back in the window, where it is a request again. Option D scatters the policy, so nobody can read or update it in one place and you now have several failure surfaces instead of one.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Your <code>PreToolUse</code> guardrail does two regex tests and declares no <code>timeout</code>. A typo makes it block on reading stdin forever. What does the user experience?</p>
+        <ol class="options" type="A">
+          <li>The session can hang for up to 600 seconds — the default command-hook timeout — which is why a fast guardrail sets a short explicit <code>timeout: 5</code></li>
+          <li>The hook is killed at 30 seconds and the tool call proceeds</li>
+          <li><code>PreToolUse</code> has no timeout, so the session hangs until it is killed by hand</li>
+          <li>The harness runs the tool anyway after 10 seconds</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> The session can hang for up to 600 seconds — the default command-hook timeout — which is why a fast guardrail sets a short explicit <code>timeout: 5</code></p>
+          <p class="why">The default timeout for command hooks is 600 seconds — ten minutes — and it exists for slow work, which a two-regex guardrail is not. A bug then becomes a six-hundred-second freeze in your session. Option B quotes 30s, which is the default on some events, not this one. Option C is wrong: a timeout exists, it is just far too generous. Option D misreads the failure path — a timeout doesn't fast-forward the tool.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/08-hooks/58-exit-1-vs-2.html"><span>Previous</span>58. The Exit-1-vs-2 Trap</a>
+    <a class="next" href="../../phases/08-hooks/60-debugging-hooks.html"><span>Next</span>60. Debugging Hooks</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

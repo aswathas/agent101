@@ -3,75 +3,264 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Harnessing Claude Code</title>
+<title>Home — Harnessing Claude Code</title>
 <meta name="description" content="From zero to graph engineering on AI agents — for people who use them.">
+<link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
-    <a class="logo" href="/">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="catalog.html">Catalog</a>
-      <a href="prereqs.html">Roadmap</a>
-      <a href="glossary.html">Glossary</a>
-      <a href="about.html">About</a>
-      <a href="llms.txt">llms.txt</a>
-    </nav>
+    <a class="logo" href="index.html">■ HARNESSING CLAUDE CODE</a>
+    <nav><a href="catalog.html">Catalog</a><a href="glossary.html">Glossary</a><a href="developer.html">API</a><a href="llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<main class="container">
-  <section>
+<main id="main" class="container">
+  <section id="start" class="hero">
     <p class="lesson-meta-tag">HARNESSING / CLAUDE CODE</p>
     <h1>From zero to graph engineering on AI agents — for people who use them.</h1>
-    <p class="lesson-motto">A free, open-source course. 119 lessons across 20 phases. MCP, hooks, plugins, worktree isolation, dynamic workflows, harness engineering, task graphs.</p>
+    <p class="lesson-motto">A free, open-source course. 119 lessons across 19 phases, 19 graded practice modules. MCP, hooks, plugins, worktree isolation, dynamic workflows, harness engineering, task graphs.</p>
+
+    <p class="hero-actions">
+      <a class="button" href="phases/00-setup-and-tooling/01-dev-environment.html">Start with Lesson 1 →</a>
+      <a class="button ghost" href="catalog.html">See the whole map</a>
+    </p>
+
+    <ul class="stats">
+      <li><strong>119</strong><span>lessons</span></li>
+      <li><strong>19</strong><span>phases</span></li>
+      <li><strong>19</strong><span>practice modules</span></li>
+      <li><strong>463</strong><span>quiz questions</span></li>
+    </ul>
 
     <div class="ascii-rule"></div>
 
-    <p>Every abstraction in Claude Code resolves to something you can reason about, break, and rebuild. This course teaches the mechanism — not the prompt.</p>
+    <p class="lede">Every abstraction in Claude Code resolves to something you can reason about, break, and rebuild. This course teaches the mechanism — not the prompt.</p>
+  </section>
 
+  <section id="why">
     <h2>Why this course exists</h2>
     <p>Most agentic tooling is taught in two broken ways: as a list of features, or as prompts to copy. Neither teaches the <em>mechanism</em>. The same fear — losing work to an agent run — drives both failures. The fix is to know what the agent is doing. This course is that.</p>
+  </section>
 
-    <h2>Start here</h2>
-    <table>
-      <thead><tr><th>You want to…</th><th>Read</th></tr></thead>
-      <tbody>
-        <tr><td>See the whole map</td><td><a href="catalog.html">Catalog</a></td></tr>
-        <tr><td>Give an agent the full context</td><td><code>llms.txt</code></td></tr>
-        <tr><td>Start learning now</td><td><a href="phases/00-setup-and-tooling/01-dev-environment.html">Lesson 00.1 — Dev Environment</a></td></tr>
-        <tr><td>Understand the repo</td><td><a href="developer.html">Developer / API</a></td></tr>
-      </tbody>
-    </table>
+  <section id="phases">
+    <h2>The 19 phases</h2>
+    <div class="phase-grid">
 
+      <a class="phase-card" href="phases/00-setup-and-tooling/01-dev-environment.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 00</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Setup &amp; Tooling</h3>
+        <p>Your tools shape your thinking. Set them up once.</p>
+        <p class="pc-meta">5 lessons · module 00.1 <em>Break</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/01-foundations-of-ai/06-what-a-language-model-is.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 01</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Foundations of AI</h3>
+        <p>The words everything else leans on.</p>
+        <p class="pc-meta">6 lessons · module 01.1 <em>Instrument</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 02</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Git Deep</h3>
+        <p>Commit = photograph. Branch = label. `worktree` hides `working tree`.</p>
+        <p class="pc-meta">7 lessons · module 02.1 <em>Break</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/03-models-and-families/19-open-weight-vs-frontier.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 03</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Models &amp; Families</h3>
+        <p>Open-weight vs frontier. What actually costs money.</p>
+        <p class="pc-meta">8 lessons · module 03.1 <em>Instrument</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/04-claude-code/27-what-claude-code-is.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 04</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Claude Code</h3>
+        <p>The tool, from first run to fluency.</p>
+        <p class="pc-meta">11 lessons · module 04.1 <em>Build</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/05-commands-and-skills/38-built-in-commands.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 05</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Commands &amp; Skills</h3>
+        <p>The most flexible extension layer.</p>
+        <p class="pc-meta">7 lessons · module 05.1 <em>Break</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/06-subagents/45-subagent-format.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 06</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Subagents</h3>
+        <p>Context isolation.</p>
+        <p class="pc-meta">4 lessons · module 06.1 <em>Build</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/07-mcp/49-what-mcp-is.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 07</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>MCP</h3>
+        <p>A protocol, not a tool.</p>
+        <p class="pc-meta">6 lessons · module 07.1 <em>Decide</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/08-hooks/55-what-a-hook-is.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 08</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Hooks</h3>
+        <p>Events on the loop. Enforcement, not requests.</p>
+        <p class="pc-meta">6 lessons · module 08.1 <em>Build</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/09-plugins/61-plugins-are-the-packaging-layer.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 09</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Plugins</h3>
+        <p>The packaging layer. Comes last for a reason.</p>
+        <p class="pc-meta">4 lessons · module 09.1 <em>Build</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/10-memory-and-instructions/65-claude-md.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 10</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Memory &amp; Instructions</h3>
+        <p>How context persists.</p>
+        <p class="pc-meta">6 lessons · module 10.1 <em>Build</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/11-parallelism-i/71-the-five-names.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 11</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Parallelism I</h3>
+        <p>The five names, and why they're different.</p>
+        <p class="pc-meta">6 lessons · module 11.1 <em>Build</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/12-parallelism-ii/77-cross-session-messaging.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 12</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Parallelism II</h3>
+        <p>Orchestration.</p>
+        <p class="pc-meta">9 lessons · module 12.1 <em>Break</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/13-context-engineering/86-what-loads-what-costs.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 13</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Context Engineering</h3>
+        <p>Context as architecture.</p>
+        <p class="pc-meta">5 lessons · module 13.1 <em>Instrument</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/14-harness-engineering/91-what-a-harness-is.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 14</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Harness Engineering</h3>
+        <p>The loop minus the intelligence.</p>
+        <p class="pc-meta">7 lessons · module 14.1 <em>Instrument</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/15-graph-engineering/98-nodes-and-edges.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 15</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Graph Engineering</h3>
+        <p>Nodes, edges, and what genuinely parallelizable means.</p>
+        <p class="pc-meta">8 lessons · module 15.1 <em>Decide</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/16-worktrees-in-practice/106-session-vs-agent-scope.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 16</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Worktrees in Practice</h3>
+        <p>Deep on the one you came for.</p>
+        <p class="pc-meta">5 lessons · module 16.1 <em>Break</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/17-scaling-and-operations/111-headless-mode.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 17</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Scaling &amp; Operations</h3>
+        <p>Running it for real.</p>
+        <p class="pc-meta">5 lessons · module 17.1 <em>Build</em></p>
+      </a>
+
+      <a class="phase-card" href="phases/18-capstone/116-spec-graph-build-verify.html">
+        <div class="pc-head">
+          <span class="pc-num">Phase 18</span>
+          <span class="status-square complete" title="complete"></span>
+        </div>
+        <h3>Capstone</h3>
+        <p>Ship it.</p>
+        <p class="pc-meta">4 lessons · module 18.1 <em>Build</em></p>
+      </a>
+    </div>
+  </section>
+
+  <section id="agent-skills">
     <h2>Teaching it to yourself, with an agent</h2>
-    <p>This repo is designed to be pointed at an AI agent. The <a href="developer.html">MCP server and REST API</a> are the agent entry points. Four skills, each invoked deliberately by the learner:</p>
-    <table>
+    <p>This repo is designed to be pointed at an AI agent. The <a href="developer.html">MCP server and REST API</a> are the agent entry points. Five skills, each invoked deliberately by the learner:</p>
+    <div class="table-wrap"><table>
       <thead><tr><th>Command</th><th>Does</th></tr></thead>
       <tbody>
         <tr><td><code>/teach-me</code></td><td>Teach one lesson, at the learner's actual level</td></tr>
-        <tr><td><code>/run-module</code></td><td>Start or grade a practice module</td></tr>
+        <tr><td><code>/run-module</code></td><td>Start or grade a practice module against its rubric</td></tr>
         <tr><td><code>/where-am-i</code></td><td>What's demonstrated, what's next</td></tr>
-        <tr><td><code>/write-lesson</code></td><td>Author a new lesson</td></tr>
+        <tr><td><code>/write-lesson</code></td><td>Author a new lesson to template</td></tr>
+        <tr><td><code>/run-workflow</code></td><td>Author the corpus, validate it, rebuild this site</td></tr>
       </tbody>
-    </table>
-
-    <h2>What you will learn</h2>
-    <ul>
-      <li><span class="status-square complete"></span> <strong>Phase 0 — Setup &amp; Tooling.</strong> Tools shape thinking. Five lessons on environment, git, terminal, editor, debugging.</li>
-      <li><span class="status-square in-progress"></span> <strong>Phase 3 — Models &amp; Families.</strong> Open-weight vs frontier, when small wins, the decision-model line.</li>
-      <li><span class="status-square planned"></span> <strong>Phase 4 — Claude Code.</strong> The agentic loop, sessions, permissions, settings, plan mode, checkpoints, troubleshooting.</li>
-      <li><span class="status-square planned"></span> <strong>Phase 5 — Skills, subagents, MCP, hooks, plugins.</strong> The extension layer.</li>
-      <li><span class="status-square planned"></span> <strong>Phase 8 — Memory &amp; instructions.</strong> CLAUDE.md, AGENTS.md, rules, output styles, imports.</li>
-      <li><span class="status-square planned"></span> <strong>Phase 11–12 — Parallelism I &amp; II.</strong> Five distinct names, isolation, the agentic loop's parallel version.</li>
-      <li><span class="status-square planned"></span> <strong>Phase 13–14 — Context &amp; harness engineering.</strong> Context as architecture. The loop minus the intelligence.</li>
-      <li><span class="status-square planned"></span> <strong>Phase 15 — Graph engineering.</strong> Nodes, edges, the frontier, the critical path.</li>
-    </ul>
-
-    <p><a class="button primary" href="phases/00-setup-and-tooling/01-dev-environment.html" style="display:inline-block;text-decoration:none;background:var(--blueprint);color:#fff;padding:0.5em 1em;box-shadow:var(--shadow-hard);">Start with Phase 0 →</a></p>
+    </table></div>
   </section>
 </main>
-
 </body>
 </html>

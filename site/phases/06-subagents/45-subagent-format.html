@@ -4,79 +4,341 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Subagent Markdown Format — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can write a subagent that Claude picks for the right job — and you know">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Subagent Markdown Format</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li class="on"><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 44, Author a Skill From Scratch</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 06 · LESSON 45</p>
+      <h1>Subagent Markdown Format</h1>
+      <p class="lesson-motto">You can write a subagent that Claude picks for the right job — and you know</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 01 Lesson 8 (The Context Window), Phase 04 Lesson 31 (The Agentic Loop), Phase 05 Lesson 41 (Skill Frontmatter)</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Write a subagent file from memory: frontmatter block, then a Markdown body</li><li>Say which field controls <em>routing</em> and which controls <em>behaviour</em>, and not mix them up</li><li>Restrict a subagent's tools with one line</li><li>Point at the file, from a file, and tell which of the five scopes wins</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>An agent was asked to review a 400-file repo for one specific class of bug. It read ninety files into the conversation, found nothing it could prove, and came back with a nine-paragraph essay about code quality in general.</p>
+<p>Nothing crashed. The review was <em>plausible</em>. The problem is that ninety file reads landed in the same window as the conversation — the window from Lesson 8, the one budget for instructions, tool definitions, file reads, and chat alike. By the time the agent wrote its conclusion, the two actual bugs it had spotted at file twelve were a summary line in a compacted history.</p>
+<p>The same task, done as a separate agent with its own window, would have carried all ninety reads, held the findings in context to the end, and handed back a five-line answer.</p>
+<p>The gap between those two runs is a Markdown file. This lesson is that file.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>A subagent is a Markdown file. YAML frontmatter, then a body. The body becomes the agent's system prompt — it replaces the normal Claude Code system prompt rather than adding to it.</p>
+<p>```markdown .claude/agents/code-reviewer.md</p>
+<hr>
+<p>name: code-reviewer description: Reviews code for quality and best practices tools: Read, Glob, Grep model: sonnet</p>
+<hr>
+<p>You are a code reviewer. When invoked, analyze the code and provide specific, actionable feedback on quality, security, and best practices.</p>
+<pre class="code"><code>
+That's it. There is no schema file, no registration step, no build. Put the file
+in the right folder and the next session knows it exists.
 
----
+### Two fields doing two different jobs
 
-## The Problem
+The single most common authoring mistake is putting the same content in both
+places. Split them:
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
+| Field | Job | Reads like |
+|---|---|---|
+| `description` | **Routing.** When should Claude hand work to this agent? | &quot;Use proactively after any change to an API handler.&quot; |
+| Markdown body | **Behaviour.** What does it do once it starts? | &quot;You are a reviewer. Run git diff. Report by priority.&quot; |
 
----
+`description` is the only thing Claude reads *before* it decides. It is compared
+against your request and the current context. If it doesn't say *when*, Claude
+will never pick the agent — no matter how good the body is.
 
-## The Concept
+And the body is never seen until after that decision. If you put the trigger
+conditions in the body, it is too late: Claude already decided not to run it.
 
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
+### The frontmatter field reference
 
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
+`name` and `description` are the only two required fields. Everything else is
+optional.
+
+| Field | What it does | Notes |
+|---|---|---|
+| `name` | Unique identifier. Max 256 chars, no `:`. | Identity comes from here, **not** the filename. |
+| `description` | When Claude should delegate. | Keep short — see the budget below. |
+| `tools` | Allowlist, comma-separated or a YAML list. | Omit it to inherit what subagents get. |
+| `disallowedTools` | Denylist, removed from the inherited pool. | Applied **first**, then `tools` resolves. |
+| `model` | `sonnet`, `opus`, `haiku`, `fable`, a full ID, or `inherit`. | Teach the alias. Aliases don't age. |
+| `permissionMode` | `default`, `acceptEdits`, `auto`, `dontAsk`, `bypassPermissions`, `plan`, `manual`. | |
+| `maxTurns` | Cap on agentic turns before partial output returns. | |
+| `autoCompactWindow` | Token count, `100000`–`1000000`, at which this subagent compacts. | Phase 04 Lesson 30 owns the concept. |
+| `skills` | Names of skills whose **full content** is preloaded. | Lesson 48 does this properly. |
+| `mcpServers` | MCP servers available to this subagent. | Phase 07. Named here only so the field isn't a surprise. |
+| `hooks` | Lifecycle and tool hooks scoped to this subagent. | Phase 08. |
+| `memory` | `user`, `project`, or `local`. | Phase 10. |
+| `background` | `true` keeps it running in the background where possible. | |
+| `omitClaudeMd` | `true` drops user, project, and local `CLAUDE.md` at startup. | Managed policy files still load. |
+| `effort` | `low`, `medium`, `high`, `xhigh`, `max`. | Phase 03 Lesson 21. |
+| `isolation` | `worktree` runs it in an isolated temporary Git worktree. | Phase 11 / 16. |
+| `color` | One of the eight session colours. | Cosmetic. |
+| `initialPrompt` | Prompt auto-submitted when this agent is the main session agent. | |
+| `experimental` | Currently `cacheTtl: 5m` or `1h`. | Moves. Read the docs before using. |
+
+Unrecognized fields are **silently ignored**. A typo doesn't warn you. If a field
+seems to do nothing, check the spelling before assuming the feature is broken.
+
+### The description budget
+
+Descriptions load into the *main* session's context — every one of them, whether
+or not it ever runs. If your custom descriptions pass **15,000 tokens** combined,
+Claude Code shows a startup warning and still loads them all.
+
+That is a real budget with a real cost, and it is the reason descriptions stay
+short. Detail goes in the body.
+
+### Where the file goes
+
+| Priority | Location | Scope |
+|---:|---|---|
+| 1 | Managed settings `agents/` | Organization-wide |
+| 2 | `--agents` CLI flag | This session |
+| 3 | `.claude/agents/` | This project |
+| 4 | `~/.claude/agents/` | This user, all projects |
+| 5 | An enabled plugin's `agents/` | Where the plugin is enabled |
+
+- Project and user directories are scanned **recursively**.
+- Project agents are discovered walking upward from your current directory to the
+  repo root.
+- For a duplicate `name` in nested project scopes, the definition **closest to
+  the working directory wins**.
+- Plugin subfolders become part of the name: `my-plugin:review:security`.
+
+Nested directories are just organization. They don't scope anything by
+themselves — only the file location does.
+</code></pre>
+<p>flowchart TD Y[&quot;Your request arrives&quot;] --&gt; D{&quot;Compare against&lt;br/&gt;each agent's description&quot;} D --&gt;|match| R[&quot;Claude writes a&lt;br/&gt;delegation message&quot;] D --&gt;|no match| M[&quot;Main conversation&lt;br/&gt;handles it&quot;] R --&gt; W[&quot;Subagent starts:&lt;br/&gt;fresh isolated window&quot;] W --&gt; B[&quot;Body becomes&lt;br/&gt;its system prompt&quot;] B --&gt; O[&quot;Final summary returns.&lt;br/&gt;Everything else stays there.&quot;]</p>
+<pre class="code"><code>
+That last box is the whole point. What the subagent did not need to say back, it
+does not say back.
+
+&gt; **The reframe:** a subagent is a Markdown file whose `description` decides
+&gt; whether it runs and whose body decides what it does — put the trigger in the
+&gt; first and the instructions in the second, or the agent is either never picked
+&gt; or picked for the wrong reason.
+
+Claude Code ships weekly and this field list moves. Check
+[the subagents page](https://code.claude.com/docs/en/sub-agents) and
+`https://code.claude.com/docs/llms.txt` before trusting a row here.
 
 ---
 
 ## Build It
 
-Numbered steps the reader runs. Each step ends in something observable.
+### 1. Write the smallest valid subagent
+</code></pre>
+<p>mkdir -p .claude/agents</p>
+<pre class="code"><code>
+Create `.claude/agents/note-taker.md`:
+</code></pre>
+<hr>
+<p>name: note-taker description: Records one-line decisions from the conversation. Use after any design choice is made.</p>
+<hr>
+<p>When invoked, list the decisions made in the task you were handed. One line each, with the reason. Nothing else.</p>
+<pre class="code"><code>
+Restart the session — agent definitions are discovered at startup.
 
-1. First step.
-2. Second step.
+✅ You pass when `@` shows `note-taker` in the typeahead.
+
+### 2. Prove the description is doing the routing
+
+Look at what you wrote. `description` says *when*; the body says *what*. Now
+break it on purpose: change the description to `description: A helpful agent`.
+
+Restart. Ask the agent something that obviously needs note-taker. It handles it
+in the main conversation.
+
+✅ You pass when you can state, without looking, which line you broke and why
+that line was load-bearing.
+
+### 3. Restrict the tools
+
+Add a read-only agent at `.claude/agents/repo-scout.md`:
+</code></pre>
+<hr>
+<p>name: repo-scout description: Finds files and reports paths only. Use when asked where something lives. Read-only. tools: Read, Glob, Grep model: haiku</p>
+<hr>
+<p>Find the files relevant to the request. Report paths and one-line descriptions. Never edit. Never suggest edits.</p>
+<pre class="code"><code>
+The omitted `Edit` and `Write` are not merely discouraged — they are not in the
+tool pool at all.
+
+✅ You pass when the agent completes a search and reports that it cannot edit,
+naming the missing tool rather than &quot;being careful&quot;.
+
+### 4. Test the two directions of restriction
+
+Create `.claude/agents/no-writes.md` with `disallowedTools: Write, Edit` and no
+`tools` field. It inherits everything else.
+
+Now think about which you would pick for &quot;review this, then apply the trivial
+renames&quot;. Only one of the two can apply the renames.
+
+✅ You pass when you can say which file permits edits and which forbids them,
+and name the field that does it in each.
+
+### 5. Check the description budget
+</code></pre>
+<p>node -e &quot;const fs=require('fs');for(const f of fs.readdirSync('.claude/agents')){const m=fs.readFileSync('.claude/agents/'+f,'utf8').match(/^description:\s*(.*)$/m);console.log(f, m? m[1].length : 'NO DESCRIPTION')}&quot;</p>
+<pre class="code"><code>
+Rough token count is characters ÷ 4. Check yours against the 15,000-token
+combined warning threshold.
+
+✅ You pass when every agent file has a description and the total is well under
+the threshold, or you have a reason it isn't.
+
+### 6. Find out which scope actually won
+
+Create `~/.claude/agents/note-taker.md` with a different description from the
+project one. Both exist. Restart.
+
+✅ You pass when the project-level definition is the one in effect, and you can
+name the rule — closest to the working directory wins.
 
 ---
 
 ## Use It
 
-| Command / concept | When you reach for it |
+| Field / move | When you reach for it |
 |---|---|
-| — | — |
+| `description` | Whenever Claude *isn't* picking the agent you wrote. First suspect. |
+| Markdown body | Whenever the agent runs but does the wrong thing. |
+| `tools:` allowlist | Read-only work, review, anything that should not touch your files. |
+| `disallowedTools:` | You want the full pool minus one tool. |
+| `model:` | A cheap job that doesn't need your main model. Aliases, never IDs. |
+| `maxTurns` | An agent that would otherwise explore forever. |
+| `.claude/agents/` | Anything your team should share — it commits. |
+| `~/.claude/agents/` | Personal agents, available in every project. |
+| `--agents` JSON | One-off, session-only. The prompt is `prompt`, not the body. |
+| `omitClaudeMd: true` | The project rules are noise for this agent. |
 
 ---
 
 ## Exercises
 
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
+1. Write `lesson-auditor.md` — reads files under `phases/`, reports which
+   lessons lack a pass criterion, changes nothing. Then deliberately remove the
+   `tools` line and see what it does now.
+   ✅ You pass when you can state, from the tool list alone, whether the agent
+   *can* edit, and what the removal changed beyond the risk.
 
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
+2. Make two agents with the same `name` in `.claude/agents/` and
+   `.claude/agents/nested/`. Figure out which one Claude Code loads and why.
+   ✅ You pass when you have the correct winner and can name the rule that
+   decided it in one sentence.
+
+3. Take an agent you like and cut its `description` in half, moving the removed
+   half into the body. Test both versions against three realistic prompts.
+   ✅ You pass when you can say which version routed more reliably, and the
+   routing wasn't luck — you checked three prompts, not one.
 
 ---
 
@@ -84,14 +346,107 @@ Numbered steps the reader runs. Each step ends in something observable.
 
 | Term | What people say | What it actually means |
 |---|---|---|
-| — | — | — |
+| subagent | &quot;a second Claude&quot; | A separate agentic loop with its own window, its own tool list, its own model. It returns a summary. |
+| delegation message | &quot;the prompt you gave it&quot; | Written by Claude from your request and the agent's `description`. You usually don't write it. |
+| body | &quot;the prompt&quot; | Markdown after the frontmatter. It *replaces* the Claude Code system prompt for that agent. |
+| `description` | &quot;documentation&quot; | The routing input. Read before the decision to delegate. |
+| `tools` | &quot;permissions&quot; | The pool. Not in the list, not callable. Distinct from your permission settings. |
+| `disallowedTools` | &quot;a blacklist&quot; | Applied first; `tools` resolves against what's left. |
+| silent failure | &quot;it's a bug&quot; | Unrecognized frontmatter fields are ignored with no warning. Check spelling first. |
 
 ---
 
 ## What this lesson skipped
 
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+**Fork context.** A subagent normally starts with an empty window. There's one
+case where it inherits everything instead, and it changes which agent you want.
+That's Lesson 47.
+
+**The built-in agents.** `Explore`, `Plan`, `general-purpose`. Two of them skip
+your `CLAUDE.md` for a reason that surprises people. Lesson 46.
+
+**Skills inside subagents.** The `skills` field is listed above and means
+something specific and non-obvious. Lesson 48.
+
+**Worktree isolation.** The `isolation: worktree` field is Phase 11 and 16. The
+only thing worth knowing here: it changes where *files* land, not what lands in
+the window.
+
+**Permissions in depth.** `permissionMode` exists. What each mode does to the
+agentic loop is Phase 04 Lesson 33 and Phase 08.
+
+**Prompt caching.** A subagent's first request is a cold cache unless it shares a
+parent's. Real cost, not yet actionable — Phase 03 Lesson 22.</code></pre>
+      </div>
+
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You wrote a review subagent and it has never once been picked, even when you say &quot;review this&quot; by name. Where is the bug most likely?</p>
+        <ol class="options" type="A">
+          <li>The Markdown body is too long, so Claude can't get to the decision</li>
+          <li>The tools list is missing Read and Grep, so Claude assumes it can't review anything</li>
+          <li>The description says what the agent does but never says when to use it</li>
+          <li>The name is kebab-case; Claude only routes to snake_case names</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> The description says what the agent does but never says when to use it</p>
+          <p class="why">Routing happens on the description alone, before the body is ever read — so a description that only says what the agent does gives Claude no reason to choose it. Body length and tool list are invisible at routing time, and name casing is irrelevant: identity comes from the name field, not from a naming convention.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">An agent must read the whole repo and report findings, and must never be able to change anything. Which frontmatter is correct?</p>
+        <ol class="options" type="A">
+          <li>tools: Read, Glob, Grep</li>
+          <li>disallowedTools: Write, Edit</li>
+          <li>A body that opens with &quot;You are read-only. Never edit files.&quot;</li>
+          <li>permissionMode: plan</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> tools: Read, Glob, Grep</p>
+          <p class="why">An allowlist is the strongest form here: Edit and Write are not in the pool, so they are not callable at all. A denylist is weaker — it removes two tools from a pool that can also gain new ones as Claude Code ships. Option C is a request, not a restriction; the model can comply or not. Option D changes how prompts surface, not which tools exist, so Bash could still write.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You add permissionMode: maxTurns to a subagent and it keeps running forever. What is actually happening?</p>
+        <ol class="options" type="A">
+          <li>maxTurns is a valid field but must be lowercase</li>
+          <li>maxTurns is silently ignored because you wrote it outside the tools field</li>
+          <li>maxTurns is silently ignored because the field name is max_turns</li>
+          <li>maxTurns only applies to background subagents, and yours runs in the foreground</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> maxTurns is silently ignored because the field name is max_turns</p>
+          <p class="why">Unrecognized frontmatter fields are ignored with no warning at all — the field is maxTurns in camelCase, and max_turns isn't a field, so your cap never applied and the agent ran unbounded. Option B misplaces the issue: frontmatter fields all sit in the same block. Option D is wrong because the cap applies regardless of foreground or background.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You have .claude/agents/notes.md and .claude/agents/research/notes.md, both with name: notes, and you start Claude from the repo root. Which definition is live?</p>
+        <ol class="options" type="A">
+          <li>Neither — duplicate names are rejected at startup</li>
+          <li>The one in .claude/agents/, because shallower always wins</li>
+          <li>The one in .claude/agents/research/, because it is nested and therefore more specific</li>
+          <li>Whichever file git tracked most recently</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> The one in .claude/agents/research/, because it is nested and therefore more specific</p>
+          <p class="why">For duplicate names in nested project scopes, the definition closest to the working directory wins — research/ is closer to where you're standing than the agents/ root. There is no rejection and no git ordering; option B invents a depth rule that doesn't exist.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span>Previous</span>44. Author a Skill From Scratch</a>
+    <a class="next" href="../../phases/06-subagents/46-built-in-subagents.html"><span>Next</span>46. Built-in Subagents — Explore, Plan, general-purpose</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

@@ -4,64 +4,303 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Catalog — Harnessing Claude Code</title>
+<meta name="description" content="All 119 lessons across 19 phases">
+<link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
-    <a class="logo" href="/">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="catalog.html">Catalog</a>
-      <a href="prereqs.html">Roadmap</a>
-      <a href="glossary.html">Glossary</a>
-      <a href="about.html">About</a>
-      <a href="llms.txt">llms.txt</a>
-    </nav>
+    <a class="logo" href="index.html">■ HARNESSING CLAUDE CODE</a>
+    <nav><a href="catalog.html">Catalog</a><a href="glossary.html">Glossary</a><a href="developer.html">API</a><a href="llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<main class="container">
+<main id="main" class="container">
   <article class="lesson-article">
     <p class="lesson-meta-tag">CATALOG / ALL LESSONS</p>
-    <h1>119 lessons across 20 phases</h1>
+    <h1>119 lessons across 19 phases</h1>
     <p class="lesson-motto">Each lesson is a single claim you can act on. The phase structure is the dependency graph; the path is the URL.</p>
+    <p>119 of 119 lessons are authored, and 19 of 19 practice modules are written.
+    For the agent-readable form see <a href="llms.txt">llms.txt</a>; for the API see <a href="developer.html">developer.html</a>.</p>
 
-    <p>This is the full catalog. For the agent-readable form, see <a href="llms.txt">/llms.txt</a>. For the API, see <a href="developer.html">/developer.html</a>.</p>
-
-    <h2>Phase 0 — Setup &amp; Tooling</h2>
-    <p>Five lessons on environment, git, terminal, editor, debugging. <span class="status-square complete"></span></p>
-    <ol>
-      <li><a href="phases/00-setup-and-tooling/01-dev-environment.html">Dev Environment</a> — verify your tools, CLAUDE.md, get your bearings</li>
-      <li><a href="phases/00-setup-and-tooling/02-git-and-collaboration.html">Git as Your Safety Net</a> — four states, the safety net, recovery</li>
-      <li><a href="phases/00-setup-and-tooling/03-terminal-and-shell.html">Terminal and Shell</a> — read what the agent is about to run</li>
-      <li><a href="phases/00-setup-and-tooling/04-editor-setup.html">Editor Setup</a> — format-on-save, integrated terminal, project-wide search, bound test runner</li>
-      <li><a href="phases/00-setup-and-tooling/05-debugging-and-profiling.html">Debugging and Profiling</a> — most agent problems are environment problems</li>
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 00 — Setup &amp; Tooling</h2>
+    <p>Your tools shape your thinking. Set them up once.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/00-setup-and-tooling/01-dev-environment.html">1. Dev Environment</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/00-setup-and-tooling/02-git-and-collaboration.html">2. Git as Your Safety Net</a> — your safety net, not optional</li>
+      <li><span class="status-square complete"></span> <a href="phases/00-setup-and-tooling/03-terminal-and-shell.html">3. Terminal and Shell</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/00-setup-and-tooling/04-editor-setup.html">4. Editor Setup</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/00-setup-and-tooling/05-debugging-and-profiling.html">5. Debugging and Profiling</a></li>
     </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 00.1 — Break this repo on purpose. Recover it. Recover it faster. <em>(Break)</em></p>
+    </section>
 
-    <h2>Phase 3 — Models &amp; Families</h2>
-    <p>Open-weight vs frontier, when small wins, the decision-model line. <span class="status-square in-progress"></span></p>
-    <ol>
-      <li><a href="phases/03-models-and-families/19-open-weight-vs-frontier.html">Open-Weight vs Frontier</a> — the weights being public is what makes the difference</li>
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 01 — Foundations of AI</h2>
+    <p>The words everything else leans on.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/01-foundations-of-ai/06-what-a-language-model-is.html">6. What a Language Model Is</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html">7. Tokens — why text becomes currency</a> — why text becomes currency</li>
+      <li><span class="status-square complete"></span> <a href="phases/01-foundations-of-ai/08-the-context-window.html">8. The Context Window — the only budget that matters</a> — the only budget that matters</li>
+      <li><span class="status-square complete"></span> <a href="phases/01-foundations-of-ai/09-prompt-inference-api.html">9. Prompt, Inference, API</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/01-foundations-of-ai/10-what-agentic-means.html">10. What &quot;Agentic&quot; Means</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html">11. Latency, Cost, and Rate Limits</a></li>
     </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 01.1 — Explain any codebase to yourself, out loud. Find the jargon leaks. <em>(Instrument)</em></p>
+    </section>
 
-    <h2>Phase 4 — Claude Code</h2>
-    <p>The gateway phase. Half the course inherits its terminology from here. <span class="status-square planned"></span></p>
-    <ol>
-      <li><a href="phases/04-claude-code/27-what-claude-code-is.html">What Claude Code Is</a> — terminal tool, goal-shaped, agent not completion</li>
-      <li><a href="phases/04-claude-code/28-install-first-run-verify.html">Install, First Run, Verify</a> — presence is not correctness</li>
-      <li><a href="phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html">Files and Edits — and When It Refuses</a></li>
-      <li><a href="phases/04-claude-code/30-sessions-clear-compact.html">Sessions, /clear, /compact</a></li>
-      <li><a href="phases/04-claude-code/31-the-agentic-loop.html">The Agentic Loop</a> — read, decide, act, observe</li>
-      <li><a href="phases/04-claude-code/32-what-loads-into-the-window.html">What Loads Into the Window, and What Doesn't</a></li>
-      <li><a href="phases/04-claude-code/33-permissions-and-permission-modes.html">Permissions and Permission Modes</a></li>
-      <li><a href="phases/04-claude-code/34-settings-and-precedence.html">Settings: 4 Files, 5 Precedence Levels</a></li>
-      <li><a href="phases/04-claude-code/35-plan-mode-and-checkpoints.html">Plan Mode and Checkpoints</a></li>
-      <li><a href="phases/04-claude-code/36-checkpointing-rewind-recovery.html">Checkpointing, /rewind, Recovery</a></li>
-      <li><a href="phases/04-claude-code/37-troubleshooting-reading-errors-properly.html">Troubleshooting: Reading Errors Properly</a></li>
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 02 — Git Deep</h2>
+    <p>Commit = photograph. Branch = label. `worktree` hides `working tree`.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html">12. Commit Is a Photograph, Not a Diff</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/02-git-deep/13-branches-are-movable-labels-not-copies.html">13. Branches Are Movable Labels, Not Copies</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/02-git-deep/14-merge-and-rebase.html">14. Merge and Rebase</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html">15. Conflicts: What They Are, How They Resolve</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/02-git-deep/16-recovering-lost-work.html">16. Recovering Lost Work</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/02-git-deep/17-stashing-and-why-agents-break-things.html">17. Stashing, and Why Agents Break Things</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html">18. Remotes, Forks, and the Full Mental Model</a></li>
     </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 02.1 — Break it. Recover it. Recover it again, faster. <em>(Break)</em></p>
+    </section>
 
-    <h2>Phases 5–18</h2>
-    <p>Skills, subagents, MCP, hooks, plugins, memory, parallelism, context engineering, harness engineering, graph engineering, worktrees, scaling, capstone. Lessons are scaffolded; content follows Phase 0 and Phase 4 completion.</p>
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 03 — Models &amp; Families</h2>
+    <p>Open-weight vs frontier. What actually costs money.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/03-models-and-families/19-open-weight-vs-frontier.html">19. Open-Weight vs Frontier</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/03-models-and-families/20-model-aliases-and-routing.html">20. Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a> — teach `sonnet`, never hardcoded IDs</li>
+      <li><span class="status-square complete"></span> <a href="phases/03-models-and-families/21-effort-levels-and-extended-thinking.html">21. Effort Levels and Extended Thinking</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/03-models-and-families/22-prompt-caching.html">22. Prompt Caching — why switching models makes a turn slow</a> — why switching models makes a turn slow</li>
+      <li><span class="status-square complete"></span> <a href="phases/03-models-and-families/23-quantization-distillation-fine-tuning.html">23. Quantization, Distillation, Fine-Tuning</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/03-models-and-families/24-slms-when-a-small-model-wins.html">24. SLMs — When a 350M Model Wins</a> — When a 350M Model Wins</li>
+      <li><span class="status-square complete"></span> <a href="phases/03-models-and-families/25-decision-models.html">25. Decision Models Beat Generation on Cost</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/03-models-and-families/26-the-taxonomy.html">26. The Taxonomy: LLM / Decision Model / SLM</a></li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 03.1 — Route a real workload across model tiers. Find where the frontier model was wasted. <em>(Instrument)</em></p>
+    </section>
+
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 04 — Claude Code</h2>
+    <p>The tool, from first run to fluency.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/04-claude-code/27-what-claude-code-is.html">27. What Claude Code Is</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/04-claude-code/28-install-first-run-verify.html">28. Install, First Run, Verify</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html">29. Files and Edits — and When It Refuses</a> — and When It Refuses</li>
+      <li><span class="status-square complete"></span> <a href="phases/04-claude-code/30-sessions-clear-compact.html">30. Sessions, `/clear`, `/compact`</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/04-claude-code/31-the-agentic-loop.html">31. The Agentic Loop</a> — the one concept everything hangs on</li>
+      <li><span class="status-square complete"></span> <a href="phases/04-claude-code/32-what-loads-into-the-window.html">32. What Loads Into the Window, and What Doesn't</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/04-claude-code/33-permissions-and-permission-modes.html">33. Permissions and Permission Modes</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/04-claude-code/34-settings-and-precedence.html">34. Settings — 4 Files, 5 Precedence Levels</a> — 4 Files, 5 Precedence Levels</li>
+      <li><span class="status-square complete"></span> <a href="phases/04-claude-code/35-plan-mode-and-checkpoints.html">35. Plan Mode and Checkpoints</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/04-claude-code/36-checkpointing-rewind-recovery.html">36. Checkpointing, `/rewind`, Recovery</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/04-claude-code/37-troubleshooting-reading-errors-properly.html">37. Troubleshooting — Reading Errors Properly</a> — Reading Errors Properly</li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 04.1 — Configure a real project. Know which settings file won. <em>(Build)</em></p>
+    </section>
+
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 05 — Commands &amp; Skills</h2>
+    <p>The most flexible extension layer.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/05-commands-and-skills/38-built-in-commands.html">38. Built-in Commands</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/05-commands-and-skills/39-commands-merged-into-skills.html">39. Why Custom Commands Merged Into Skills</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/05-commands-and-skills/40-what-a-skill-is.html">40. What a Skill Is</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html">41. Anatomy — the Frontmatter Field Table</a> — the 21-Field Frontmatter Table</li>
+      <li><span class="status-square complete"></span> <a href="phases/05-commands-and-skills/42-the-invocation-matrix.html">42. The Invocation Matrix — Who Can Trigger It</a> — Who Can Trigger It</li>
+      <li><span class="status-square complete"></span> <a href="phases/05-commands-and-skills/43-install-a-skill.html">43. Install a Skill</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/05-commands-and-skills/44-author-a-skill.html">44. Author a Skill From Scratch</a></li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 05.1 — Author a skill. Use it. Break it. Fix the frontmatter. <em>(Break)</em></p>
+    </section>
+
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 06 — Subagents</h2>
+    <p>Context isolation.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/06-subagents/45-subagent-format.html">45. Subagent Markdown Format</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/06-subagents/46-built-in-subagents.html">46. Built-in Subagents — Explore, Plan, general-purpose</a> — `Explore`, `Plan`, `general-purpose`</li>
+      <li><span class="status-square complete"></span> <a href="phases/06-subagents/47-author-a-subagent.html">47. Author a Subagent — and the Fork-Context Subtlety</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/06-subagents/48-skills-inside-subagents.html">48. Skills Inside Subagents — the genuinely confusing case</a> — the genuinely confusing case</li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 06.1 — Write a subagent that does one job perfectly and refuses everything else. <em>(Build)</em></p>
+    </section>
+
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 07 — MCP</h2>
+    <p>A protocol, not a tool.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/07-mcp/49-what-mcp-is.html">49. What MCP Is</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/07-mcp/50-four-transports.html">50. Four Transports</a> — http / sse *(deprecated)* / stdio / ws</li>
+      <li><span class="status-square complete"></span> <a href="phases/07-mcp/51-scopes-and-config.html">51. Scopes, Precedence, Config Shape</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/07-mcp/52-build-an-mcp-server.html">52. Build an MCP Server From Scratch</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/07-mcp/53-trust-model-and-prompt-injection.html">53. The Trust Model and Prompt Injection</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/07-mcp/54-oauth-and-tool-search.html">54. OAuth, Headers, and MCP Tool Search</a></li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 07.1 — Build an MCP server. Then ask: would you trust a repo you cloned? <em>(Decide)</em></p>
+    </section>
+
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 08 — Hooks</h2>
+    <p>Events on the loop. Enforcement, not requests.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/08-hooks/55-what-a-hook-is.html">55. What a Hook Is</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/08-hooks/56-all-32-events.html">56. All the Events, Matchers, Handler Types</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/08-hooks/57-hook-script-shape.html">57. Hook Script Shape — stdin JSON → stdout / exit code</a> — stdin JSON → stdout / exit code</li>
+      <li><span class="status-square complete"></span> <a href="phases/08-hooks/58-exit-1-vs-2.html">58. The Exit-1-vs-2 Trap</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/08-hooks/59-build-a-guardrail-hook.html">59. Build a Guardrail Hook</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/08-hooks/60-debugging-hooks.html">60. Debugging Hooks</a></li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 08.1 — Write a hook that makes an unsafe action *impossible*. <em>(Build)</em></p>
+    </section>
+
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 09 — Plugins</h2>
+    <p>The packaging layer. Comes last for a reason.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/09-plugins/61-plugins-are-the-packaging-layer.html">61. *&quot;Plugins Are the Packaging Layer&quot;* — and why</a> — and why</li>
+      <li><span class="status-square complete"></span> <a href="phases/09-plugins/62-plugin-anatomy.html">62. Plugin Anatomy — the directory and the manifest</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/09-plugins/63-install-and-author-a-plugin.html">63. Install from a Marketplace, and Author One</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/09-plugins/64-plugin-economics.html">64. Plugin Economics — What Every Enabled Plugin Costs</a> — What Every Enabled Plugin Costs</li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 09.1 — Package your skill + subagent + hook as one installable plugin. <em>(Build)</em></p>
+    </section>
+
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 10 — Memory &amp; Instructions</h2>
+    <p>How context persists.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/10-memory-and-instructions/65-claude-md.html">65. CLAUDE.md — the 200-Line Rule</a> — the 200-Line Rule</li>
+      <li><span class="status-square complete"></span> <a href="phases/10-memory-and-instructions/66-agents-md-and-local-md.html">66. AGENTS.md, CLAUDE.local.md</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/10-memory-and-instructions/67-rules.html">67. Rules and Path-Scoped Rules</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/10-memory-and-instructions/68-auto-memory.html">68. Auto Memory and `MEMORY.md`</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/10-memory-and-instructions/69-output-styles.html">69. Output Styles</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/10-memory-and-instructions/70-imports-and-external-context.html">70. Imports and External Context</a></li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 10.1 — Write a CLAUDE.md that changes behavior. Prove it. <em>(Build)</em></p>
+    </section>
+
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 11 — Parallelism I</h2>
+    <p>The five names, and why they're different.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/11-parallelism-i/71-the-five-names.html">71. The Five Names</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/11-parallelism-i/72-subagents-as-isolation.html">72. Subagents as Isolation</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/11-parallelism-i/73-agent-teams.html">73. Agent Teams — Mailbox, Task List, Documented Limits</a> — Mailbox, Task List, Documented Limits</li>
+      <li><span class="status-square complete"></span> <a href="phases/11-parallelism-i/74-worktrees-deep.html">74. Worktrees, Deep — session vs per-agent</a> — session vs per-agent</li>
+      <li><span class="status-square complete"></span> <a href="phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html">75. Base Ref, Cleanup, and the /batch Path</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/11-parallelism-i/76-how-isolation-is-enforced.html">76. How Isolation Is Actually Enforced — the blocking checks</a> — the blocking checks</li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 11.1 — Build a parallel system. Prove isolation held. <em>(Build)</em></p>
+    </section>
+
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 12 — Parallelism II</h2>
+    <p>Orchestration.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/12-parallelism-ii/77-cross-session-messaging.html">77. Cross-Session Messaging</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/12-parallelism-ii/78-dynamic-workflows.html">78. Dynamic Workflows — the Script Decides</a> — the Script Decides</li>
+      <li><span class="status-square complete"></span> <a href="phases/12-parallelism-ii/79-parallel-vs-pipeline.html">79. `parallel()` vs `pipeline()`</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/12-parallelism-ii/80-the-completion-order-gotcha.html">80. The Completion-Order Gotcha</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/12-parallelism-ii/81-workflow-runtime-caps.html">81. Workflow Runtime Caps</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/12-parallelism-ii/82-loops.html">82. Loops — Scheduled and Recurring</a> — Scheduled and Recurring</li>
+      <li><span class="status-square complete"></span> <a href="phases/12-parallelism-ii/83-hooks-driven-automation.html">83. Hooks-Driven Automation — Events as Control Flow</a> — Events as Control Flow</li>
+      <li><span class="status-square complete"></span> <a href="phases/12-parallelism-ii/84-the-decision-framework.html">84. The Decision Framework — Which Mechanism, When</a> — Which Mechanism, When</li>
+      <li><span class="status-square complete"></span> <a href="phases/12-parallelism-ii/85-when-not-to-parallelize.html">85. When NOT to Parallelize</a></li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 12.1 — Write a workflow with propose → verify. Hit the completion-order trap *on purpose*. <em>(Break)</em></p>
+    </section>
+
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 13 — Context Engineering</h2>
+    <p>Context as architecture.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/13-context-engineering/86-what-loads-what-costs.html">86. What Loads, What Costs</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/13-context-engineering/87-progressive-disclosure.html">87. Progressive Disclosure — Skills as a Loading Strategy</a> — Skills as a Loading Strategy</li>
+      <li><span class="status-square complete"></span> <a href="phases/13-context-engineering/88-context-as-architecture.html">88. Context as Architecture, Not a Dump</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/13-context-engineering/89-prompt-caching-as-constraint.html">89. Prompt Caching as a Design Constraint</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/13-context-engineering/90-reducing-context.html">90. Reducing Context Without Losing Capability</a></li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 13.1 — Cut a bloated context by half. Prove capability survived. <em>(Instrument)</em></p>
+    </section>
+
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 14 — Harness Engineering</h2>
+    <p>The loop minus the intelligence.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/14-harness-engineering/91-what-a-harness-is.html">91. What a Harness Is</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/14-harness-engineering/92-decisions-not-generation.html">92. Most Agent Calls Are Decisions, Not Generation</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/14-harness-engineering/93-decision-models-in-a-loop.html">93. Decision Models Inside a Loop</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/14-harness-engineering/94-confidence-gating.html">94. Confidence Gating — Escalate Only When Unsure</a> — Escalate Only When Unsure</li>
+      <li><span class="status-square complete"></span> <a href="phases/14-harness-engineering/95-verification-loops.html">95. Verification Loops — the Prerequisite for Unattended Runs</a> — the prerequisite for unattended runs</li>
+      <li><span class="status-square complete"></span> <a href="phases/14-harness-engineering/96-guardrails-vs-instructions.html">96. Guardrails vs Instructions — Requests vs Enforcement</a> — requests vs enforcement</li>
+      <li><span class="status-square complete"></span> <a href="phases/14-harness-engineering/97-design-your-own-harness.html">97. Design Your Own Harness — and Defend the Trade-offs</a> — and defend the trade-offs</li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 14.1 — Instrument a real loop. Find the 20% of calls costing 80%. <em>(Instrument)</em></p>
+    </section>
+
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 15 — Graph Engineering</h2>
+    <p>Nodes, edges, and what genuinely parallelizable means.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/15-graph-engineering/98-nodes-and-edges.html">98. Nodes and Edges</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/15-graph-engineering/99-task-graphs.html">99. Task Graphs — Dependencies and the Frontier</a> — Dependencies and the Frontier</li>
+      <li><span class="status-square complete"></span> <a href="phases/15-graph-engineering/100-blocking-edges.html">100. Blocking Edges — What's Actually Parallelizable</a> — What's Actually Parallelizable</li>
+      <li><span class="status-square complete"></span> <a href="phases/15-graph-engineering/101-claiming.html">101. Claiming — Stopping Two Agents Doing One Job</a> — Stopping Two Agents Doing One Job</li>
+      <li><span class="status-square complete"></span> <a href="phases/15-graph-engineering/102-wayfinding.html">102. Wayfinding — Producing Decisions, Not Deliverables</a> — Producing Decisions, Not Deliverables</li>
+      <li><span class="status-square complete"></span> <a href="phases/15-graph-engineering/103-fan-out-fan-in.html">103. Fan-Out / Fan-In Patterns</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/15-graph-engineering/104-failure-propagation.html">104. Failure Propagation — What Happens When One Node Dies</a> — What Happens When One Node Dies</li>
+      <li><span class="status-square complete"></span> <a href="phases/15-graph-engineering/105-design-a-graph.html">105. Design a Graph for a Real Project</a></li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 15.1 — Decompose a real project. Find the critical path. <em>(Decide)</em></p>
+    </section>
+
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 16 — Worktrees in Practice</h2>
+    <p>Deep on the one you came for.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/16-worktrees-in-practice/106-session-vs-agent-scope.html">106. Session vs Agent Scope</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/16-worktrees-in-practice/107-manual-worktrees.html">107. Manual Worktrees — `git worktree add`</a> — `git worktree add`</li>
+      <li><span class="status-square complete"></span> <a href="phases/16-worktrees-in-practice/108-the-startup-cache-trap.html">108. The Startup-Cache Trap</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/16-worktrees-in-practice/109-merge-strategy.html">109. Merge Strategy for Agent Branches</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/16-worktrees-in-practice/110-isolation-without-a-commit.html">110. Isolation Without a Commit Is Not a Backup</a></li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 16.1 — Reproduce the empty-branch bug. Then prevent it. <em>(Break)</em></p>
+    </section>
+
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 17 — Scaling &amp; Operations</h2>
+    <p>Running it for real.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/17-scaling-and-operations/111-headless-mode.html">111. Headless / Non-Interactive Mode</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/17-scaling-and-operations/112-the-agent-sdk.html">112. The Claude Agent SDK</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/17-scaling-and-operations/113-channels-and-surfaces.html">113. Channels and Surfaces</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/17-scaling-and-operations/114-sandboxing-and-security.html">114. Sandboxing and Security Model</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/17-scaling-and-operations/115-managing-settings-at-scale.html">115. Managing Settings at Scale</a></li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 17.1 — Automate a real task headlessly, end to end. <em>(Build)</em></p>
+    </section>
+
+    <section class="cat-phase">
+    <h2><span class="status-square complete"></span> Phase 18 — Capstone</h2>
+    <p>Ship it.</p>
+    <ol class="cat-lessons">
+      <li><span class="status-square complete"></span> <a href="phases/18-capstone/116-spec-graph-build-verify.html">116. Spec → Graph → Build → Verify</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/18-capstone/117-review-against-the-docs.html">117. Review Against the Docs</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/18-capstone/118-what-breaks-in-production.html">118. What Breaks in Production</a></li>
+      <li><span class="status-square complete"></span> <a href="phases/18-capstone/119-keeping-up.html">119. Keeping Up — Claude Code Ships Weekly</a> — Claude Code Ships Weekly</li>
+    </ol>
+<p class="mod"><span class="status-square complete"></span> Practice module 18.1 — End-to-end with everything. <em>(Build)</em></p>
+    </section>
   </article>
 </main>
 </body>

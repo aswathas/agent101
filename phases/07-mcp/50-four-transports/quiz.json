@@ -1,27 +1,68 @@
 {
   "lesson": "07-mcp/50-four-transports",
-  "title": "Four Transports — http / sse *(deprecated)* / stdio / ws",
+  "title": "Four Transports",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Four Transports — http / sse *(deprecated)* / stdio / ws that needs a new situation, not recall.",
+      "prompt": "You write a local server in Node. It works when you run it, but Claude Code reports a parse failure the moment it connects. You add one console.log at the top of the file. What is the actual defect?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "console.log is synchronous, so it blocks the event loop and the handshake times out",
+        "The log went to stdout, which is the JSON-RPC channel — the client's first line is now your log line, not a message",
+        "The server needs a shebang line to be spawned as a child process",
+        "Logs are only allowed after the initialize handshake, and this one was before"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "On stdio, stdout carries one JSON-RPC message per line and stderr carries anything meant for humans. A console.log at the top of the file puts non-JSON on the protocol channel before the handshake even arrives, and a client reading lines gets garbage. Option C is a real requirement for direct execution but irrelevant when Claude Code spawns it as node server.mjs. Option D is invented — there is no such rule.",
+      "concept": "stdio-stdout-is-protocol"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A teammate's .mcp.json has a remote server entry that Claude Code silently ignores — no error, no entry in /mcp. You check the URL and it resolves. What is the most likely cause?",
+      "options": [
+        "The url points at an endpoint that only speaks sse, and sse was removed",
+        "The entry has a url but no type field, and a remote entry without an explicit type is invalid",
+        "The server was added at local scope in someone else's ~/.claude.json",
+        "Tool search deferred the tools, so the server is there but its tools are not"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A remote entry must name its transport explicitly — http, sse, or ws. Miss the type and the entry is skipped without a diagnostic, which is why 'it silently does nothing' is the classic symptom. Option A is wrong: sse is deprecated, not removed, and http falls back to it. Option C can't reach you at all — local scope lives on that person's machine. Option D would show a connected server in /mcp with deferred tools, which is not what a missing entry looks like.",
+      "concept": "missing-type"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You need a server that pushes a message to Claude the moment a build finishes, without anything asking first. Which transport, and what is the one trade-off you accept?",
+      "options": [
+        "http — the server can respond to a long poll when you next call it",
+        "ws — a persistent bidirectional socket, but there is no OAuth story on this transport",
+        "stdio — the child process can write to stdout whenever it likes",
+        "sse — deprecated, but it is the only transport with server-initiated events"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Server-initiated events need a channel that stays open in both directions, which is exactly what WebSocket is; the others are request/response and the model has to go looking. The trade-off is real and worth naming: ws has no OAuth support, so a ws server needs a static token in headers. Option C is a common misconception — a stdio child can write any time, but nothing is listening for unsolicited frames. Option D doubles down on the wrong fact: sse is being retired, not expanded.",
+      "concept": "ws-push"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Two failures look identical to you: 'MCP server X failed to connect'. One is a stdio server whose command exits in 50ms with a syntax error. The other is a remote server behind a proxy that returns 502. What separates them without turning on debug logging?",
+      "options": [
+        "Nothing — both are connect failures and only the log distinguishes them",
+        "The shape of the cause: for stdio the process is local and dies, so you can run the exact command yourself; for http the failure is in the network path and there is no local process to inspect",
+        "The timeout value — a stdio failure always trips MCP_TIMEOUT and an http failure never does",
+        "Whether the entry has an oauth block, which tells you auth is involved"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The transports fail in different places, and that difference is actionable: a stdio connection is a local child process you can paste into a terminal and watch, while an http failure lives in a network path where your debugging tools are curl and the proxy log. Option C is backwards in practice — a fast crash reports immediately rather than waiting out a timeout. Option D is decorative; a missing or bad oauth block produces a 401, which is a different message.",
+      "concept": "diagnosing-transport-failure"
     }
   ]
 }

@@ -4,94 +4,267 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quantization, Distillation, Fine-Tuning — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can tell three look-alike levers apart, so you reach for the one that actually solves your problem.">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Quantization, Distillation, Fine-Tuning</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li class="on"><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 22, Prompt Caching — why switching models makes a turn slow</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 03 · LESSON 23</p>
+      <h1>Quantization, Distillation, Fine-Tuning</h1>
+      <p class="lesson-motto">You can tell three look-alike levers apart, so you reach for the one that actually solves your problem.</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 22, Prompt Caching</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this lesson, you can:</p>
+<ul><li>State what quantization changes, and what it leaves alone</li><li>Explain distillation as a teacher producing a smaller student</li><li>Say what fine-tuning requires that the other two do not</li><li>Pick the right lever for a stated problem, and name what each one costs</li><li>Build a small check set that keeps a fine-tune from teaching the model your mistakes</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You downloaded a 7B open-weight model. It wants more memory than your laptop has, and it generates text slower than you can read it.</p>
+<p>Someone says &quot;just quantize it.&quot; You do, it fits, and it is fast. Then you notice the answers on the one task you actually cared about got a little worse, and it still does not know your domain.</p>
+<p>A week went by. You never needed a smaller model. You needed a model that knew your part numbers and your house style — a completely different lever, with a completely different cost. Lesson 19 promised this lesson; here it is.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Three levers, three different changes to a model. They are constantly confused because they all sound like &quot;make the model mine, or make it smaller.&quot;</p>
+<p><strong>Quantization</strong> — store the same weights at lower precision. Fewer bits per number, so the model is smaller, fits in less memory, and runs faster. It does not add knowledge and does not change what the model knows. You accept a small quality loss for a large size and speed win. It is usually already done for you: a downloaded file tagged <code>Q4_K_M</code> is a 4-bit quantized build.</p>
+<p><strong>Distillation</strong> — train a small <em>student</em> model to imitate a larger <em>teacher</em>. You run the teacher on a lot of inputs, keep its outputs, and train the student on them. The student ends up much smaller but behaves like the teacher on the inputs you covered. This is how a small model gets to be useful on a narrow task.</p>
+<p><strong>Fine-tuning</strong> — continue training a downloaded model on your own data, so it picks up your domain, your style, your labels. It changes what the model has learned; it does not change its size. It requires the weights, which is exactly why it is only possible with open-weight models (Lesson 19).</p>
+<figure class="diagram"><pre>flowchart TD
+    subgraph Base[Base open-weight model]
+      W[Weights]
+    end
+    W --&gt;|quantize| Q[Same model, smaller file, faster, slight quality loss]
+    W --&gt;|fine-tune on your data| F[Same model, new domain behaviour]
+    T[Large teacher model] --&gt;|run on many inputs| O[Teacher outputs]
+    O --&gt;|distill| S[Small student that imitates the teacher]
 
----
+    style Q fill:#eef
+    style F fill:#efe
+    style S fill:#ffe</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p><strong>The reframe:</strong> quantize for size, distill for cost, fine-tune for behaviour — only one of the three teaches the model anything about you.</p>
+<h3 id="choosing-between-them">Choosing between them</h3>
+<div class="table-wrap"><table><thead><tr><th>Lever</th><th>Changes</th><th>Leaves alone</th><th>Real cost</th><th>Reach for it when</th></tr></thead><tbody><tr><td>Quantize</td><td>Precision of the weights</td><td>Knowledge and behaviour</td><td>A little quality, mostly hidden</td><td>It does not fit or runs too slowly</td></tr><tr><td>Distill</td><td>Which model answers at all</td><td>Nothing — it makes a new model</td><td>Compute to run the teacher and train the student</td><td>You want a small, cheap stand-in for a big model on a narrow task</td></tr><tr><td>Fine-tune</td><td>Behaviour on your domain</td><td>Size and speed</td><td>Data, an eval set, training time, and the risk below</td><td>The model needs to know your domain, style, or labels</td></tr></tbody></table></div>
+<h3 id="the-discipline-of-not-teaching-it-to-lie">The discipline of not teaching it to lie</h3>
+<p>Fine-tuning learns whatever is in your data — including the mistakes. Train on support tickets that contain a few confidently wrong answers and the model will learn to sound confident and be wrong, which is worse than an honest refusal because nothing looks off.</p>
+<p>So fine-tuning is not just &quot;gather data and train.&quot; It is:</p>
+<ol><li>A held-out <strong>check set</strong> — twenty or more examples with known good answers, never used in training.</li><li>A <strong>before</strong> score on that check set, so you know what you started with.</li><li>An <strong>after</strong> score, so you can tell improvement from confident drift.</li></ol>
+<p>If you cannot measure it, you cannot tell whether fine-tuning helped or made the model more articulate about being wrong.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-see-quantization-do-its-one-job">1. See quantization do its one job</h3>
+<p>Using the runtime you installed in Lesson 19, list the available tags for one model and pick two builds of the same model at different precisions — for example a <code>Q4_K_M</code> tag and a larger-precision tag of the same weights.</p>
+<p>Note the file size of each, and how much memory each uses when it loads.</p>
+<p>✅ You pass when you can state both sizes and say, in one sentence, what the smaller build traded away.</p>
+<h3 id="2-check-that-the-behaviour-barely-moved">2. Check that the behaviour barely moved</h3>
+<p>Run the same prompt through both builds. Compare the answers.</p>
+<p>Quantization is supposed to shrink the model, not change it. If the small build is dramatically worse on your prompt, you may be comparing two different models, not two precisions of one.</p>
+<p>✅ You pass when both builds answer in the same shape, and you can point to the small, expected difference rather than a change in what the model knows.</p>
+<h3 id="3-build-the-check-set-that-makes-the-rest-measurable">3. Build the check set that makes the rest measurable</h3>
+<p>Pick a task you would fine-tune for — a domain label, a house style, a fixed output format. Write twenty inputs with their correct outputs. Keep them out of any future training data.</p>
+<p>Run both model builds against all twenty and score them.</p>
+<p>✅ You pass when you have twenty inputs, twenty known-good answers, and a before score for each model, written down.</p>
+<h3 id="4-decide-the-lever-three-times">4. Decide the lever, three times</h3>
+<p>For each scenario, name the single lever and one sentence of justification:</p>
+<ol><li>A model you like is too big for the machine it must run on.</li><li>You have a large model answering a narrow classification task in production, and want a cheap version of it.</li><li>The model must follow your company's naming rules and never invent a part number.</li></ol>
+<p>✅ You pass when all three answers are different levers, and each justification uses this lesson's vocabulary rather than a slogan.</p>
+<h3 id="5-spot-the-confidently-wrong">5. Spot the confidently wrong</h3>
+<p>Look at your check set's failures under the cheaper model. Sort them into &quot;wrong but sounds unsure&quot; and &quot;confidently wrong.&quot;</p>
+<p>That split is the reason the check set exists. A confidently wrong model can survive review for a long time.</p>
+<p>✅ You pass when you can name how many of the failures were confidently wrong, and why that number is the one you watch.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td>Quantization</td><td>The model does not fit or is too slow, and its knowledge is already good enough</td></tr><tr><td>Distillation</td><td>You want a small cheap model to imitate a big one on a narrow, well-defined task</td></tr><tr><td>Fine-tuning</td><td>The model needs your domain, style, or labels, and you can measure the result</td></tr><tr><td>The check set</td><td>Before <em>and</em> after any fine-tune; without it, improvement is a feeling</td></tr><tr><td>&quot;Confidently wrong&quot;</td><td>The failure mode fine-tuning can amplify; count it, do not eyeball it</td></tr><tr><td>Held-out data</td><td>Keeping the check set out of training, so the score means something</td></tr></tbody></table></div>
+<p>Current tooling and file formats move quickly. Treat named formats and tags as examples of the shape, not as fixed truth.</p>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take one model you use and find two precision builds of it. Record the size difference and one observed quality difference. ✅ You pass when you have the sizes and a specific, observed quality difference rather than a vague impression.</li></ol>
+<ol><li class="criterion">Write a twenty-example check set for a task you actually care about, with known good answers, and score one model against it. ✅ You pass when the twenty examples exist as a file and the score is a number you could hand to someone else.</li></ol>
+<ol><li class="criterion">A colleague proposes fine-tuning to fix slow responses. Say what is wrong with that plan and which lever they actually want. ✅ You pass when you name the correct lever and the reason fine-tuning would not change speed.</li></ol>
+<ol><li class="criterion">For a task of your choosing, argue for distillation over fine-tuning, or the reverse. Name the cost you are accepting. ✅ You pass when the argument names what each lever changes and the specific cost your choice accepts.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>quantization</td><td>&quot;compressing the model&quot;</td><td>Storing the same weights at lower precision. Smaller and faster, knowledge unchanged, slight quality loss.</td></tr><tr><td>precision / bit-width</td><td>&quot;how many bits&quot;</td><td>How many bits store each weight. Eight, four, and smaller are common; lower means smaller and a little lossier.</td></tr><tr><td>distillation</td><td>&quot;shrinking the model&quot;</td><td>Training a small student to imitate a large teacher's outputs. A new, smaller model with the teacher's behaviour on covered inputs.</td></tr><tr><td>teacher / student</td><td>&quot;the big one and the little one&quot;</td><td>The capable model producing training targets, and the small model learning from them.</td></tr><tr><td>fine-tuning</td><td>&quot;training it more&quot;</td><td>Continuing training on your own data so the model picks up your domain. Needs the weights, and a check set.</td></tr><tr><td>check set</td><td>&quot;the tests&quot;</td><td>Held-out examples with known good answers, scored before and after, so you can tell improvement from drift.</td></tr><tr><td>confidently wrong</td><td>&quot;hallucinating&quot;</td><td>A fluent, wrong answer. The failure mode fine-tuning can amplify, because it learns your data's errors too.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Actually running a training job.</strong> Fine-tuning and distillation need GPUs, a data pipeline, and time. This lesson is the decision; the mechanics are a different course.</p>
+<p><strong>Preference tuning and reinforcement learning.</strong> Teaching a model <em>which</em> of two answers is better, rather than imitating outputs. More advanced, and out of this course's scope.</p>
+<p><strong>LoRA and adapters.</strong> Small add-on weights that change behaviour without rewriting the whole model. Useful, and a detail under &quot;fine-tune&quot; rather than a fourth lever.</p>
+<p><strong>Serving and distribution.</strong> How you host a distilled or fine-tuned model at volume. Phase 17 territory.</p>
+<p><strong>Evaluation methodology.</strong> A twenty-example check set is a floor, not a rigorous benchmark. Doing evaluation properly is its own discipline, and this course only asks you to be honest about what you measured.</p>
+      </div>
 
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A 7B model you like needs more memory than your laptop has. Which lever first?</p>
+        <ol class="options" type="A">
+          <li>Fine-tune it on your data so it gets smaller</li>
+          <li>Quantize it to a lower precision</li>
+          <li>Distill it from a larger model</li>
+          <li>Nothing helps; you need a different model</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Quantize it to a lower precision</p>
+          <p class="why">Quantization stores the same weights at lower precision, which is exactly a size and memory problem. Fine-tuning is the tempting answer because it is the most talked-about lever, but it does not change size at all, and distilling would make a <em>new</em> model rather than shrink this one.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You have a large model doing a narrow classification task in production and want a cheap, small model that behaves the same on that task. Which lever?</p>
+        <ol class="options" type="A">
+          <li>Quantize the large model further</li>
+          <li>Distill the large model's outputs into a small student</li>
+          <li>Fine-tune a frontier model</li>
+          <li>Raise the effort level</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Distill the large model's outputs into a small student</p>
+          <p class="why">Distillation trains a small student to imitate the large teacher on the inputs you cover, which is the definition of a cheap stand-in on a narrow task. Fine-tuning a frontier model is impossible anyway — you do not have its weights — and effort does not change size or cost the way this task needs.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">The model must follow your company's naming rules and never invent a part number. Which lever, and what must accompany it?</p>
+        <ol class="options" type="A">
+          <li>Quantize it; smaller models invent less</li>
+          <li>Fine-tune it on your data, with a held-out check set scored before and after</li>
+          <li>Distill it from a bigger model, with no measurement</li>
+          <li>Raise the effort level to maximum</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Fine-tune it on your data, with a held-out check set scored before and after</p>
+          <p class="why">Teaching the model your domain is fine-tuning, and because it learns whatever is in your data — including your mistakes — it needs a held-out check set measured before and after. 'Smaller models invent less' is tempting folklore; quantization changes precision, not knowledge.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">After a fine-tune, the model sounds right more often but is wrong on edge cases it used to flag. What is the most likely cause?</p>
+        <ol class="options" type="A">
+          <li>The quantization got worse during training</li>
+          <li>Your training data encoded the errors, and there was no check set to catch the drift</li>
+          <li>You raised the effort level too far</li>
+          <li>The model is now too small</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Your training data encoded the errors, and there was no check set to catch the drift</p>
+          <p class="why">Fine-tuning learns the behaviour in your data, wrong answers included, so it can make a wrong answer sound fluent. Without a held-out check set scored before and after, that drift is invisible until it ships.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/03-models-and-families/22-prompt-caching.html"><span>Previous</span>22. Prompt Caching — why switching models makes a turn slow</a>
+    <a class="next" href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span>Next</span>24. SLMs — When a 350M Model Wins</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

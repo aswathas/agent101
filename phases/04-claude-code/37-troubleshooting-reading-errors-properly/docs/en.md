@@ -1,6 +1,7 @@
-# Lesson 37 — Troubleshooting: Reading Errors Properly
+# Troubleshooting — Reading Errors Properly
 
-The error message is the first source of information when something goes wrong. Reading it carefully is the skill.
+> The error message is the first source of information when something goes
+> wrong. Reading it carefully is the skill.
 
 **Type:** Learn
 **Prerequisites:** Lesson 36 (Checkpointing, /rewind, Recovery)

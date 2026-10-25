@@ -7,12 +7,31 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Manual Worktrees — git worktree add that needs a new situation, not recall.",
+      "prompt": "You need a checkout of a branch named `release-2` that already exists, in a folder outside your repository, because `claude --worktree` always starts a new branch from the default. Which command gets you there?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "`claude --worktree release-2`",
+        "`git branch release-2 && git switch release-2`",
+        "`git worktree add ../release-2 release-2`",
+        "`git clone . ../release-2`"
+      ],
+      "answer": 2,
+      "distractors": [
+        0,
+        1,
+        3
+      ],
+      "explanation": "`git worktree add <path> <branch>` checks out an existing branch into a new folder. Option A is the tempting wrong answer because it is the command from the previous lesson, but `--worktree` creates a new branch (`worktree-<name>`) rather than checking out one that exists. Option B switches your current folder onto the branch and risks carrying uncommitted work, and a clone is a separate repository, not a shared worktree.",
+      "concept": "existing-branch"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You commit inside `../wt-drill-fix` and then look at `git log` from your main folder. The commit is not on `main` but `git log fix-issue-456` shows it. Why can the main folder see a commit made somewhere else?",
+      "options": [
+        "Both worktrees share the repository's object store and refs, so the commit exists once and is reachable from both",
+        "The worktree copied the commit back to the main folder on exit",
+        "Git stores worktree commits in a temporary area until you merge",
+        "The commit is only visible because the worktree is still on disk"
       ],
       "answer": 0,
       "distractors": [
@@ -20,8 +39,46 @@
         2,
         3
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "explanation": "A worktree shares the repository's `.git`; a commit is written once and its branch label is a ref in that shared repo, so the main checkout can read it immediately. Option D is the tempting wrong answer because it sounds plausible — but the commit survives `git worktree remove`, which is exactly the point of Build It step 5. Nothing is copied back, and there is no staging area for cross-worktree commits.",
+      "concept": "shared-object-store"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You run `git switch fix-issue-456` in your main folder while a worktree already has that branch checked out. Git refuses. What is the refusal protecting you from?",
+      "options": [
+        "Losing commits that are only reachable from the worktree",
+        "A merge that would create a conflict between the two folders",
+        "Case-insensitive filesystems confusing branch names",
+        "Two folders editing and committing to the same branch at the same time"
+      ],
+      "answer": 3,
+      "distractors": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Git enforces one worktree per branch so two folders cannot move the same label out from under each other. Option B is the tempting wrong answer because 'two checkouts' sounds like a merge, but no merge happens — the hazard is concurrent writes to one branch, not divergent histories. Losing unreachable commits is what the reflog covers, not this rule.",
+      "concept": "one-branch-one-worktree"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "A colleague made a worktree by hand with `git worktree add`, edited two files, and never committed. Their session ends. What reclaims that folder, and what happens to the edits?",
+      "options": [
+        "Claude Code's cleanup sweep removes it and the edits are lost",
+        "Nothing automatic removes it; the edits stay in the folder until they remove it, and then the edits are gone",
+        "The edits are pushed to the remote automatically on exit",
+        "Git commits the edits to the branch so they are safe"
+      ],
+      "answer": 1,
+      "distractors": [
+        0,
+        2,
+        3
+      ],
+      "explanation": "Claude Code's sweep only manages worktrees it created — a manual worktree is the user's to remove, so nothing reclaims it automatically. The uncommitted edits live only in that folder and vanish when it is removed. Option A is the tempting wrong answer for anyone who read that the sweep 'keeps worktrees with work'; that rule applies to worktrees Claude Code created, not the one added by hand. Nothing auto-pushes or auto-commits.",
+      "concept": "manual-not-swept"
     }
   ]
 }

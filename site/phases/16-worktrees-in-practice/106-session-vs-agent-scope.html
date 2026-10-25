@@ -4,94 +4,282 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Session vs Agent Scope — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can say whether a worktree belongs to a whole session or to one agent —">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Session vs Agent Scope</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li class="on"><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 105, Design a Graph for a Real Project</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 16 · LESSON 106</p>
+      <h1>Session vs Agent Scope</h1>
+      <p class="lesson-motto">You can say whether a worktree belongs to a whole session or to one agent —</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 11 (Lesson 74, Worktrees, Deep), Phase 02</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Say whether a given worktree covers a session or a single agent</li><li>Read a subagent file and predict, from its frontmatter, whether it gets its own checkout</li><li>Start a session worktree and a per-agent worktree, and show the difference on disk</li><li>Pick the scope that stops two parallel editors from touching the same file</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You start a session with a worktree. You spawn three subagents to refactor three parts of a module that all import the same helper. You assume <code>--worktree</code> means &quot;every agent gets its own checkout.&quot;</p>
+<p>It does not. It gives the <strong>session</strong> one checkout. Ordinary subagents run in that one folder.</p>
+<p>Two of your subagents edit the same helper file. The second one writes over the first. When the run ends there is no merge conflict waiting for you — and that is the tell that something is wrong. There was only ever one copy. The work one agent did is simply gone, and the file looks like the other agent wrote it.</p>
+<p>Nobody lied, and no command failed. You picked the wrong scope.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>A worktree is a second working folder for the same repository, on its own branch. That much is Phase 11. The question this lesson answers is <strong>who owns it</strong>: the session, or one agent inside it.</p>
+<p>Two scopes, and they stack.</p>
+<figure class="diagram"><pre>flowchart TD
+    S[Session] --&gt;|&quot;--worktree name&quot;| WT[Session worktree&lt;br/&gt;one folder, one branch]
+    WT --&gt; A1[Subagent A]
+    WT --&gt; A2[Subagent B]
+    WT --&gt; A3[Subagent C]
+    A1 -.-&gt;|&quot;no isolation&quot;| WT
+    A2 -.-&gt;|&quot;no isolation&quot;| WT
+    A3 -.-&gt;|&quot;no isolation&quot;| WT
 
+    S2[Session] --&gt;|&quot;--worktree name&quot;| WT2[Session worktree]
+    WT2 --&gt; B1[&quot;Subagent A&lt;br/&gt;isolation: worktree&quot;]
+    WT2 --&gt; B2[&quot;Subagent B&lt;br/&gt;isolation: worktree&quot;]
+    B1 --&gt; B1w[own temp worktree]
+    B2 --&gt; B2w[own temp worktree]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="session-scope">Session scope</h3>
+<p><code>claude --worktree &lt;name&gt;</code> (or <code>-w</code>) creates one worktree and starts the session in it. Claude Code puts it under <code>.claude/worktrees/&lt;name&gt;/</code> at the repository root and checks out a branch named <code>worktree-&lt;name&gt;</code>. You can also ask Claude to &quot;work in a worktree&quot; mid-session; it enters one with the <code>EnterWorktree</code> tool.</p>
+<p>This isolates the <strong>session</strong> from <em>other sessions</em>. Open a second terminal, run <code>claude --worktree bugfix</code>, and the two sessions now have separate folders.</p>
+<p>It does <strong>not</strong> isolate subagents from the session or from each other. Every subagent that is not configured otherwise inherits the session's working folder. That is usually what you want — an agent editing the session's files. It is a problem when you launch several at once against overlapping files.</p>
+<h3 id="agent-scope">Agent scope</h3>
+<p>A subagent can be given its own worktree by adding one line to its frontmatter:</p>
+<pre class="code" data-lang="markdown"><code>---
+name: refactorer
+description: Applies mechanical refactors across many files
+isolation: worktree
 ---
 
-## The Problem
+Apply the requested refactor across every affected file, then run the tests
+and report the results.</code></pre>
+<p>Now each time that subagent runs it gets a <strong>temporary</strong> worktree of its own. Claude Code removes it automatically when the subagent finishes with no changes. If the subagent leaves changes behind, the worktree stays on disk so nothing is lost.</p>
+<p>That is the difference in one line: <strong>session scope isolates sessions; agent scope isolates agents.</strong></p>
+<h3 id="the-base-they-branch-from">The base they branch from</h3>
+<p>Both kinds branch from your repository's default branch by default — the setting <code>worktree.baseRef</code> is <code>&quot;fresh&quot;</code>, meaning a clean checkout of <code>main</code>. Set it to <code>&quot;head&quot;</code> when the agent must start from your <em>current</em> work, including commits you have not pushed:</p>
+<pre class="code" data-lang="json"><code>{
+  &quot;worktree&quot;: {
+    &quot;baseRef&quot;: &quot;head&quot;
+  }
+}</code></pre>
+<p>This matters because &quot;fresh&quot; means every agent starts from the same clean base. If your session's work is uncommitted, an isolated subagent will not see it.</p>
+<blockquote><p><strong>The reframe:</strong> a session worktree isolates you from other sessions; a</p><p>per-agent worktree isolates agents from each other — the same trick, aimed at</p><p>two different collisions.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>You need a git repo with at least one commit. Phase 00's lab repo works.</p>
+<h3 id="1-start-a-session-worktree-and-find-it-on-disk">1. Start a session worktree and find it on disk</h3>
+<pre class="code" data-lang="bash"><code>cd ~/claude-course-lab
+claude --worktree auth</code></pre>
+<p>Then, from another terminal or after the session ends:</p>
+<pre class="code" data-lang="bash"><code>git worktree list</code></pre>
+<p>✅ You pass when <code>git worktree list</code> shows a worktree under <code>.claude/worktrees/auth</code> on a branch named <code>worktree-auth</code>.</p>
+<h3 id="2-confirm-subagents-share-it">2. Confirm subagents share it</h3>
+<p>Inside that session, with no subagent configured for isolation, ask Claude to run any two subagents that touch files. While they run, watch the worktree list from a second terminal.</p>
+<pre class="code" data-lang="bash"><code>git worktree list</code></pre>
+<p>✅ You pass when no <em>new</em> worktree appears — both subagents are working in the one session folder.</p>
+<h3 id="3-give-one-subagent-its-own-scope">3. Give one subagent its own scope</h3>
+<p>Create the file <code>.claude/agents/refactorer.md</code> with the frontmatter from above, including <code>isolation: worktree</code>. Run it once from the session.</p>
+<p>✅ You pass when a second worktree appears under <code>.claude/worktrees/</code> while the subagent runs, and disappears afterwards if it made no changes.</p>
+<h3 id="4-make-the-base-explicit">4. Make the base explicit</h3>
+<p>Add the <code>worktree.baseRef</code> block to <code>.claude/settings.json</code> and set it to <code>&quot;head&quot;</code>. Run the subagent again from a session that has an uncommitted commit.</p>
+<p>✅ You pass when the subagent's worktree contains your unpushed commit, visible with <code>git -C &lt;that-worktree&gt; log --oneline -1</code>.</p>
+<h3 id="5-explain-the-failure-from-the-problem">5. Explain the failure from The Problem</h3>
+<p>Two subagents stampeded one helper file. Say, in one sentence, which scope was missing.</p>
+<p>✅ You pass when your answer is &quot;agent scope — they shared the session worktree,&quot; not &quot;session scope — we needed a worktree.&quot;</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>claude --worktree &lt;name&gt;</code> / <code>-w</code></td><td>Isolating a whole session from other sessions</td></tr><tr><td><code>.claude/worktrees/&lt;name&gt;/</code></td><td>Where Claude Code puts the worktrees it creates</td></tr><tr><td><code>git worktree list</code></td><td>Seeing every checkout of the repo, and which branch each is on</td></tr><tr><td><code>isolation: worktree</code> (subagent frontmatter)</td><td>Isolating one agent from the session and from its siblings</td></tr><tr><td><code>worktree.baseRef: &quot;fresh&quot;</code></td><td>Every agent starts from the default branch (the default)</td></tr><tr><td><code>worktree.baseRef: &quot;head&quot;</code></td><td>Agents start from your current, possibly unpushed, work</td></tr><tr><td><code>EnterWorktree</code></td><td>Asking Claude to move a running session into a worktree</td></tr><tr><td><code>.gitignore</code></td><td>Add <code>.claude/worktrees/</code> so worktree contents don't show as untracked</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Run two sessions with <code>--worktree</code>, edit the same file in each, and commit in each. Merge them yourself. ✅ You pass when both commits exist in the repository history and you can name the branch each came from.</li></ol>
+<ol><li class="criterion">Take a subagent that edits several files, give it <code>isolation: worktree</code>, and run two copies of it at once. ✅ You pass when two separate worktrees appear in <code>git worktree list</code> and neither agent's edits show up in the other's folder.</li></ol>
+<ol><li class="criterion">For each of these, write down the scope you would choose and why: (a) three research subagents that only read code; (b) three subagents that each rewrite a different package's internals; (c) one subagent fixing a typo. ✅ You pass when (a) and (c) are agent-free — they cannot collide — and (b) is per-agent isolation, with your reason matching &quot;they edit files in parallel.&quot;</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>session worktree</td><td>&quot;isolation for my agents&quot;</td><td>One checkout for the whole session. It isolates the session from other sessions, not its subagents from each other.</td></tr><tr><td>agent worktree</td><td>&quot;a worktree&quot;</td><td>A checkout that belongs to one subagent, created because its frontmatter says <code>isolation: worktree</code>.</td></tr><tr><td><code>isolation: worktree</code></td><td>&quot;agent isolation&quot;</td><td>A subagent frontmatter field. One line; each run gets its own temporary checkout.</td></tr><tr><td>base ref</td><td>&quot;where it branches from&quot;</td><td><code>worktree.baseRef</code>: <code>&quot;fresh&quot;</code> = the default branch, <code>&quot;head&quot;</code> = your current local work.</td></tr><tr><td><code>EnterWorktree</code></td><td>&quot;opening a worktree&quot;</td><td>Claude moving the running session into a worktree mid-session.</td></tr><tr><td><code>.worktreeinclude</code></td><td>&quot;copying my env file in&quot;</td><td>A list of gitignored files (<code>.env</code>, and so on) copied into every worktree Claude Code creates.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>The desktop app's worktree option.</strong> Select <strong>worktree</strong> when you start a desktop session and you get the same thing without the flag. Same mechanism, a different door.</p>
+<p><strong>Non-git version control.</strong> SVN, Perforce, and Mercurial need <code>WorktreeCreate</code> and <code>WorktreeRemove</code> hooks. Come back when you are not on git.</p>
+<p><strong>Sparse and partial worktrees.</strong> Useful in monorepos to check out only the part you need. Phase 17's scaling material, not this.</p>
+<p><strong>Every cleanup rule.</strong> Which worktrees Claude Code sweeps, locks, and keeps is a page of its own. The short version: uncommitted work and unpushed commits keep a worktree on disk, and that is exactly the safety net Lesson 110 is about.</p>
+<p>Checked against the Claude Code worktrees documentation in October 2026: &lt;https://code.claude.com/docs/en/worktrees&gt;. Version-gated details drift — verify in your build.</p>
+      </div>
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You run one session with <code>--worktree</code>, then spawn three subagents that each rewrite a different file — but two of them import the same shared helper and both rewrite it. Nothing errors, and at the end there is no conflict to resolve. What actually happened?</p>
+        <ol class="options" type="A">
+          <li>The session worktree isolated the subagents from each other, so their edits landed on separate branches</li>
+          <li>Claude Code refused the overlapping edits but reported success anyway</li>
+          <li>All three subagents shared the session's one worktree, so the second writer overwrote the first in the same file</li>
+          <li>The two subagents each got a temporary worktree, which is why there was no conflict</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> All three subagents shared the session's one worktree, so the second writer overwrote the first in the same file</p>
+          <p class="why">A session worktree gives the whole session one checkout; subagents without <code>isolation: worktree</code> inherit it. Two writers, one file, second wins. Option D is the tempting wrong answer because it sounds like a feature — but per-agent worktrees only appear when a subagent's frontmatter asks for them, and then a conflict would be possible rather than absent. The absence of any conflict is the clue that there was only one copy.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You want three subagents to refactor three separate packages in parallel without any chance of them touching each other's files. You are not currently in a worktree session. What is the smallest change that gives you that?</p>
+        <ol class="options" type="A">
+          <li>Add <code>isolation: worktree</code> to the frontmatter of the subagent they share</li>
+          <li>Start the session with <code>claude --worktree refactor</code></li>
+          <li>Run each subagent with a different model</li>
+          <li>Add <code>.claude/worktrees/</code> to <code>.gitignore</code></li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Add <code>isolation: worktree</code> to the frontmatter of the subagent they share</p>
+          <p class="why">Per-agent isolation is the scope that stops agents colliding with each other; <code>isolation: worktree</code> in the subagent's frontmatter gives each run its own checkout. Option B is the tempting wrong answer because <code>--worktree</code> is the command you know, but it isolates the session from other sessions and leaves the three agents sharing one folder. Models and <code>.gitignore</code> change nothing about who edits which folder.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A subagent is configured with <code>isolation: worktree</code> and must build on a commit you made but have not pushed. By default its worktree branches from the default branch, so it does not see your commit. What do you change?</p>
+        <ol class="options" type="A">
+          <li>Add the commit hash to the subagent's <code>description</code> field</li>
+          <li>Check out the branch in the main folder before running the subagent</li>
+          <li>Nothing — an isolated worktree always carries your unpushed commits</li>
+          <li>Set <code>worktree.baseRef</code> to <code>&quot;head&quot;</code> in settings</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>D.</strong> Set <code>worktree.baseRef</code> to <code>&quot;head&quot;</code> in settings</p>
+          <p class="why"><code>worktree.baseRef</code> controls the base: <code>&quot;fresh&quot;</code> (the default) branches from the default branch, <code>&quot;head&quot;</code> branches from your current local HEAD, including unpushed commits. Option C is the tempting wrong answer because it reverses the default. Option B does not help — an isolated worktree is a separate checkout and does not follow the main folder's current branch.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Two subagents only read code and return a written analysis; they never edit files. A colleague insists you must give them <code>isolation: worktree</code> or they will collide. Are they right?</p>
+        <ol class="options" type="A">
+          <li>Yes — any two subagents that run at once need separate worktrees</li>
+          <li>No — read-only agents cannot collide on files, so isolation buys nothing and costs a checkout each</li>
+          <li>Yes, because the second subagent's context window overwrites the first</li>
+          <li>No, because <code>isolation: worktree</code> is not valid on a subagent</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> No — read-only agents cannot collide on files, so isolation buys nothing and costs a checkout each</p>
+          <p class="why">Isolation protects files from concurrent writes. Agents that do not write files have nothing to collide on, so per-agent worktrees add setup cost for no safety. Option A is the tempting wrong answer because it turns a real rule ('parallel writers need isolation') into a blanket one. Option D is simply false — <code>isolation: worktree</code> is valid subagent frontmatter.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/15-graph-engineering/105-design-a-graph.html"><span>Previous</span>105. Design a Graph for a Real Project</a>
+    <a class="next" href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span>Next</span>107. Manual Worktrees — `git worktree add`</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

@@ -3,95 +3,256 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Anatomy — the 21-Field Frontmatter Table — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<title>Anatomy — the Frontmatter Field Table — Harnessing Claude Code</title>
+<meta name="description" content="You can pick a field for a reason, write a `description` that makes a skill">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Anatomy — the 21-Field Frontmatter Table</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li class="on"><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 40, What a Skill Is</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 05 · LESSON 41</p>
+      <h1>Anatomy — the Frontmatter Field Table</h1>
+      <p class="lesson-motto">You can pick a field for a reason, write a `description` that makes a skill</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 40, What a Skill Is</dd></div>
+        <div><dt>Time</dt><dd>~40 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
-
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Write valid frontmatter and know which line is load-bearing</li><li>Choose fields deliberately instead of pasting a header someone else wrote</li><li>Write a <code>description</code> in terms of <em>when to use</em>, not <em>what it does</em></li><li>Tell the two silent failure modes apart: bad name, bad YAML</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You wrote a skill. <code>/my-skill</code> works. Your colleague tries it — it doesn't fire. You try asking Claude to do the thing naturally, without the slash. Nothing.</p>
+<p>Then you run it manually and it is perfect. So the content is fine, the instructions are fine, and the skill is broken in a way that produces <strong>no error at all</strong>.</p>
+<p>Two different causes produce that identical silence:</p>
+<ol><li>The <strong>description</strong> describes what the skill <em>is</em> instead of when to use it, so it never matches the words a person actually types.</li><li>The <strong>YAML is malformed</strong>, so Claude Code loads the body with empty metadata — <code>/name</code> still works, but there is nothing for the model to match against.</li></ol>
+<p>Case 2 is the cruel one. A skill with a broken header looks <em>healthy</em>: the command is in the menu. You spend an hour improving the description while the YAML stays broken. You need <code>--debug</code> to see either.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Frontmatter is the YAML block at the <strong>top</strong> of <code>SKILL.md</code>. The opening <code>---</code> must be the <strong>first line</strong> — no shebang, no comment, no blank line above it.</p>
+<pre class="code" data-lang="markdown"><code>---
+name: deploy
+description: Deploy the application to staging. Use when the user says deploy, ship, or release, or asks to push to the staging environment.
 ---
 
-## The Problem
+Run the tests, build, and deploy. Verify before reporting success.</code></pre>
+<p>Markdown instructions follow the closing <code>---</code>. <strong>All fields are optional.</strong> <code>description</code> is the recommended one.</p>
+<h3 id="the-field-table">The field table</h3>
+<p>Counted from the reference table on <strong>2026-10-15</strong>. It listed <strong>20 fields</strong>. The catalog calls this the &quot;21-field&quot; table, and I would rather say so than invent a twenty-first: check the page and count them yourself. The list moves.</p>
+<div class="table-wrap"><table><thead><tr><th>Field</th><th>Controls</th></tr></thead><tbody><tr><td><code>name</code></td><td>The command you type. Defaults to the directory name.</td></tr><tr><td><code>description</code></td><td>What it does <strong>and when to use it</strong>. Drives automatic invocation.</td></tr><tr><td><code>when_to_use</code></td><td>Extra trigger phrases / example requests. Appended to <code>description</code>.</td></tr><tr><td><code>argument-hint</code></td><td>What autocomplete shows, e.g. <code>[issue-number]</code>.</td></tr><tr><td><code>arguments</code></td><td>Named positional arguments for <code>$name</code> substitution.</td></tr><tr><td><code>disable-model-invocation</code></td><td><code>true</code> = Claude may never auto-load it. You still can.</td></tr><tr><td><code>user-invocable</code></td><td><code>false</code> = hidden from <code>/</code>, won't run when typed. Claude still can.</td></tr><tr><td><code>allowed-tools</code></td><td>Tools usable without asking <strong>during that turn only</strong>.</td></tr><tr><td><code>disallowed-tools</code></td><td>Tools removed from the pool while the skill is active.</td></tr><tr><td><code>model</code></td><td>Model for the turn. <code>inherit</code> keeps the session model.</td></tr><tr><td><code>effort</code></td><td><code>low</code>/<code>medium</code>/<code>high</code>/<code>xhigh</code>/<code>max</code>. Available levels depend on the model.</td></tr><tr><td><code>context</code></td><td><code>fork</code> runs it in a forked subagent context (Phase 06).</td></tr><tr><td><code>agent</code></td><td>Which subagent type, when <code>context: fork</code>.</td></tr><tr><td><code>background</code></td><td>With <code>fork</code>: <code>false</code> waits for the result.</td></tr><tr><td><code>hooks</code></td><td>Hooks registered on invoke, kept for the session (Phase 08).</td></tr><tr><td><code>paths</code></td><td>Globs that limit auto-activation to matching files.</td></tr><tr><td><code>shell</code></td><td><code>bash</code> (default) or <code>powershell</code>, for inline shell blocks.</td></tr><tr><td><code>metadata</code></td><td>Free-form map for your own tooling. Claude Code does not act on it.</td></tr><tr><td><code>license</code></td><td>Agent Skills spec field. Accepted, not acted on.</td></tr><tr><td><code>compatibility</code></td><td>Agent Skills spec field. Accepted, not acted on.</td></tr></tbody></table></div>
+<p>Booleans accept <code>yes</code>, <code>no</code>, <code>on</code>, <code>off</code>, <code>1</code>, <code>0</code> as well as <code>true</code>/<code>false</code>. Legacy command files accept everything <strong>except</strong> <code>name</code> and <code>paths</code>.</p>
+<p><code>description</code> + <code>when_to_use</code> combined is truncated at <strong>1,536 characters</strong> in the listing — put the key use case first.</p>
+<h3 id="the-four-that-earn-their-place">The four that earn their place</h3>
+<p>Everything else is situational. These are the ones that change behaviour you depend on.</p>
+<p><strong><code>description</code></strong> — the only field that decides whether the skill exists for this request. The failure mode is writing <em>what it is</em>:</p>
+<blockquote><p>✗ &quot;A skill for deployment. Runs tests, builds, and deploys.&quot;</p></blockquote>
+<p>vs <em>when to use it</em>:</p>
+<blockquote><p>✓ &quot;Deploy the application. Use when the user says deploy, ship, or release,</p><p>or asks to push to the staging environment.&quot;</p></blockquote>
+<p>The second contains the words people type. The first contains words only its author would type.</p>
+<p><strong><code>disable-model-invocation: true</code></strong> — for anything with side effects: deploying, committing, sending mail, deleting. Its description is also removed from the model's available-skill context, so you stop paying listing cost for something that must never fire on its own.</p>
+<p><strong><code>allowed-tools</code></strong> — pre-approve tools for the invoking turn. Phase 04's permission model is what this reaches into; the grant clears on your next message, and it never persists.</p>
+<p><strong><code>paths</code></strong> — auto-load only when working with files matching the globs. Same format as path-scoped rules. This is the cheapest way to keep a skill's listing honest about when it applies.</p>
+<blockquote><p><strong>The reframe:</strong> frontmatter isn't metadata <em>about</em> the skill, it is the only</p><p>text Claude reads before deciding the skill should exist — so a skill that</p><p>won't fire is almost always a contract problem, not a content problem.</p></blockquote>
+<h3 id="the-two-silent-failures">The two silent failures</h3>
+<div class="table-wrap"><table><thead><tr><th>Symptom</th><th>Cause</th><th>Where to look</th></tr></thead><tbody><tr><td><code>/name</code> works, model never auto-loads</td><td>Description doesn't contain the words people type</td><td>The <code>description</code> line</td></tr><tr><td><code>/name</code> works, model never auto-loads, description looks fine</td><td>Malformed YAML — body loaded, metadata empty</td><td><code>claude --debug</code>, look for the parse error</td></tr><tr><td>Skill missing from the <code>/</code> menu entirely</td><td>The <strong>name</strong> holds a refused character</td><td><code>claude --debug</code>, grep the log for <code>[names]</code></td></tr></tbody></table></div>
+<p>The middle row is the one that burns the afternoon. If the description is good and it still doesn't fire, stop improving words and go read the log.</p>
+<p>Refused name characters include zero-width and control characters, private-use glyphs, bidi direction characters, any whitespace that isn't a single plain space, and <code>&lt;</code> or <code>&gt;</code>.</p>
+<p>To find <code>SKILL.md</code> files whose frontmatter doesn't parse, run <code>claude plugin validate .claude/skills</code> (needs Claude Code v2.1.233 or later). The minimum version check is why this lesson dates its claims — check <a href="https://code.claude.com/docs/en/skills" target="_blank" rel="noopener">current docs</a> before quoting it back.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-write-the-header-from-nothing">1. Write the header from nothing</h3>
+<p>Create a skill with <strong>only</strong> <code>description</code>. Run it. Confirm it works with no other fields.</p>
+<p>✅ You pass when <code>/name</code> runs and you can say which fields were absent.</p>
+<h3 id="2-add-one-field-observe-one-change">2. Add one field, observe one change</h3>
+<p>Add <code>argument-hint</code>. Type <code>/name </code> and watch autocomplete. Then add <code>arguments</code> and pass a real value through.</p>
+<p>✅ You pass when you can show the hint appearing, and a substituted value reaching the body.</p>
+<h3 id="3-break-the-yaml-on-purpose">3. Break the YAML on purpose</h3>
+<p>Add a stray colon-space inside the <code>description</code> value so it stops being valid YAML. Run with <code>claude --debug</code>, and try both <code>/name</code> and a natural request.</p>
+<p>✅ You pass when you can report all three: whether <code>/name</code> still works, whether automatic invocation died, and the parse error the log showed.</p>
+<h3 id="4-write-two-descriptions-measure-which-fires">4. Write two descriptions, measure which fires</h3>
+<p>Take one skill. Version A: &quot;A helper for the deploy process.&quot; Version B: the when-to-use phrasing. Try three realistic natural requests against each, in fresh sessions.</p>
+<p>✅ You pass when you have six results and at least one request where A fired and B did not, or vice versa.</p>
+<h3 id="5-make-it-manual-and-confirm-the-listing-shrinks">5. Make it manual and confirm the listing shrinks</h3>
+<p>Add <code>disable-model-invocation: true</code>. Run <code>/context</code> before and after.</p>
+<p>✅ You pass when you can say whether the listing cost went down, and that <code>/name</code> still works.</p>
+<h3 id="6-scope-it-to-a-path">6. Scope it to a path</h3>
+<p>Add <code>paths: &quot;**/*.ts&quot;</code>. Ask for something that matches, then something that doesn't.</p>
+<p>✅ You pass when you can point at one request where it fired and one where it didn't, and the difference is the glob.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Field</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>description</code></td><td>Always. First and last line you edit on a skill that won't fire.</td></tr><tr><td><code>when_to_use</code></td><td>When <code>description</code> is getting long and you want examples kept separate</td></tr><tr><td><code>disable-model-invocation</code></td><td>Any side-effecting skill</td></tr><tr><td><code>user-invocable: false</code></td><td>Background reference knowledge the user should never type</td></tr><tr><td><code>allowed-tools</code></td><td>A skill that would otherwise prompt mid-run</td></tr><tr><td><code>disallowed-tools</code></td><td>A background skill that must never ask the user anything</td></tr><tr><td><code>paths</code></td><td>A skill that only makes sense for certain files</td></tr><tr><td><code>argument-hint</code> / <code>arguments</code></td><td>Any skill that takes input</td></tr><tr><td><code>model</code> / <code>effort</code></td><td>Rare. Know they exist; leave them alone by default</td></tr><tr><td><code>context</code> / <code>agent</code> / <code>background</code></td><td>Phase 06</td></tr><tr><td><code>hooks</code></td><td>Phase 08</td></tr><tr><td><code>metadata</code></td><td>Your tooling reads it, Claude Code does not</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take a skill that doesn't fire. Change <strong>only</strong> the <code>description</code>. Report before and after. ✅ You pass when you can say what words were missing, quoting the actual request that should have matched.</li></ol>
+<ol><li class="criterion">Produce a skill that fails silently. Submit which of the two silent modes you produced, the debug output that identified it, and the fix. ✅ You pass when the identification is right and the fix is one line — a valid header plus a better description.</li></ol>
+<ol><li class="criterion">Audit the frontmatter of every skill you own. Mark each field used and each field there &quot;because I copied a template&quot;. ✅ You pass when the copied-without-reason fields are deleted, and you can say which one deletion changed behaviour and which changed nothing.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>frontmatter</td><td>&quot;metadata&quot; / &quot;the YAML header&quot;</td><td>The only text read before the decision to load. It is a contract, not a label.</td></tr><tr><td><code>description</code></td><td>&quot;a summary&quot;</td><td>The match target. Needs the words a human would type.</td></tr><tr><td>1,536-character cap</td><td>&quot;it's too long&quot;</td><td>Per-entry truncation of <code>description</code> + <code>when_to_use</code> in the listing.</td></tr><tr><td>silent failure</td><td>&quot;it's broken&quot;</td><td>Two different causes, one appearance. <code>--debug</code> is the only way to tell.</td></tr><tr><td>refused name</td><td>&quot;bad skill&quot;</td><td>A character in the name Claude Code will not accept. <code>[names]</code> in the debug log.</td></tr><tr><td><code>inherit</code></td><td>&quot;use the session model&quot;</td><td>The literal value that means &quot;don't override&quot;.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Invocation control as a system.</strong> <code>disable-model-invocation</code> and <code>user-invocable</code> are two independent switches, not one flag. Lesson 42.</p>
+<p><strong>String substitutions.</strong> <code>$ARGUMENTS</code>, <code>$1</code>, <code>$2</code> and the <code>arguments</code> field were named. Lesson 44 shows them working.</p>
+<p><strong>Dynamic context injection.</strong> `<code> !</code>command<code> </code><code> and </code>``<code> </code>`<code>! </code>``` blocks. Not in the field table because they're markdown syntax, not frontmatter.</p>
+<p><strong>Subagent fields</strong> (<code>context</code>, <code>agent</code>, <code>background</code>) and <strong><code>hooks</code></strong>. Named for shape only. Phase 06 and Phase 08.</p>
+<p><strong>Plugin skill prefixing.</strong> A plugin skill's name is namespaced (<code>/my-plugin:review</code>). Phase 09.</p>
+      </div>
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A skill's command works perfectly from the menu, but it never fires on a natural request. You have already improved the description twice and nothing changed. What is the next move?</p>
+        <ol class="options" type="A">
+          <li>Add more trigger phrases to when_to_use until the description is longer</li>
+          <li>Stop editing words and run claude --debug — malformed frontmatter loads the body with empty metadata, which looks identical to a bad description</li>
+          <li>Set user-invocable: false so Claude is the only caller and picks it up more reliably</li>
+          <li>Move the markdown body above the frontmatter so it is read first</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Stop editing words and run claude --debug — malformed frontmatter loads the body with empty metadata, which looks identical to a bad description</p>
+          <p class="why">Two different causes produce this exact silence: a description that doesn't match human phrasing, and a YAML parse error that leaves metadata empty while the command still loads. Once you've already edited the description twice with no result, the cheap hypothesis is spent — the debug log names the parse error, and the skill's directory name is the other thing to check for a refused character. Option A makes the truncation cap worse without testing a new hypothesis. Option C makes it worse in a different way — it removes your ability to run it directly. Option D inverts the file format.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You author a skill that commits and pushes to main. It fires on its own during an unrelated refactor, twice in one week. Which frontmatter change addresses the actual failure?</p>
+        <ol class="options" type="A">
+          <li>deleteModelInvocation is not a field, so the only option is renaming the skill to something less alarming</li>
+          <li>disable-model-invocation: true, which stops Claude choosing it automatically while you can still run /name — and drops its description from the listing you were paying for</li>
+          <li>user-invocable: false, which keeps it out of the model as well as the menu</li>
+          <li>allowed-tools: Bash(git commit:*) so the pushes are pre-approved and stop causing problems</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> disable-model-invocation: true, which stops Claude choosing it automatically while you can still run /name — and drops its description from the listing you were paying for</p>
+          <p class="why">The failure is automatic invocation of a side-effecting skill, and disable-model-invocation is the field that stops exactly that while leaving /name working — and it also removes the description from the model-visible listing, so you stop paying for a skill that must never self-fire. Option C is close enough to be the tempting wrong answer: user-invocable false hides it from you, leaving Claude as the sole caller, which is the opposite of the intent. Option A invents a field. Option D pre-approves the danger instead of removing the trigger.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A reviewer complains your skill auto-fires on every file in the repo and only ever makes sense for one of them. Which change expresses that constraint?</p>
+        <ol class="options" type="A">
+          <li>Rewrite the description so it names the one file type</li>
+          <li>paths with a glob for that file type, so automatic activation is limited to matching files</li>
+          <li>setSkillScope in settings.json</li>
+          <li>Move the skill into a nested .claude/skills directory under that file's project</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> paths with a glob for that file type, so automatic activation is limited to matching files</p>
+          <p class="why">paths is the field that limits automatic activation by glob, using the same format as path-scoped rules — it constrains when the skill loads, which is exactly what the reviewer is asking for. Option A is worth doing but it is a softer fix: it makes matching less likely rather than impossible. Option B invents a settings key. Option D changes where the skill is discovered, which affects who gets it, not which files it fires on.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span>Previous</span>40. What a Skill Is</a>
+    <a class="next" href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span>Next</span>42. The Invocation Matrix — Who Can Trigger It</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

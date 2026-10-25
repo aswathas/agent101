@@ -3,34 +3,251 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title> — Harnessing Claude Code</title>
-<meta name="description" content="">
+<title>Sessions, `/clear`, `/compact` — Harnessing Claude Code</title>
+<meta name="description" content="A session has memory, and memory fills up. `/clear` drops it. `/compact`">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LESSON</p>
-  <h1></h1>
-  
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li class="on"><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> —</p>
-    <p><strong>Prerequisites:</strong> —</p>
-    <p><strong>Time:</strong> —</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 04 · LESSON 30</p>
+      <h1>Sessions, `/clear`, `/compact`</h1>
+      <p class="lesson-motto">A session has memory, and memory fills up. `/clear` drops it. `/compact`</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 29 (Files and Edits)</dd></div>
+        <div><dt>Time</dt><dd>~25 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;"></pre>
-</article>
+      <div class="ascii-rule"></div>
+
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this lesson, you can:</p>
+<ul><li>Start a session.</li><li>End a session cleanly.</li><li>Recover when the tool says it has run out of room.</li><li>Tell a &quot;new session&quot; from &quot;continue the previous one.&quot;</li><li>Reach for the right slash command when the budget runs out.</li></ul>
+<h2 id="the-problem">The Problem</h2>
+<p>You have been working for an hour. Long conversation, lots of files read, edits made, a few background tasks finished. You ask the tool to summarize what you two have done. It says: &quot;I can't — the conversation is too long for me to fit.&quot;</p>
+<p>You stare at the screen. What does that mean? What broke? Did you do something wrong?</p>
+<p>You did nothing wrong. There is a limit to how much of the conversation the tool can see at once. You hit it. The fix is small. You just need to know which of three moves to make:</p>
+<ul><li>Keep going from here, in the same session.</li><li>Get a summary, keep working in a new session.</li><li>Start over, fresh.</li></ul>
+<p>Pick the right one and the tool keeps helping. Pick the wrong one and you lose state, or you keep paying for memory you don't need.</p>
+<h2 id="the-concept">The Concept</h2>
+<p>A <strong>session</strong> is the unit of conversation with the tool. Not a chat. A session has a beginning, a middle, and an end. It has state. The state includes:</p>
+<ul><li>The conversation so far — your messages and the tool's replies.</li><li>The files the tool has read this session.</li><li>The edits the tool has made.</li><li>Any background work still in progress.</li></ul>
+<p>A <strong>conversation</strong> is just the words exchanged. A session is the words plus everything that hangs off them. Two sessions can have the same opening message and diverge from there. The opening line is cheap; the state is the weight.</p>
+<p>The session has a memory. That memory fills up. Three operations on that memory:</p>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>What it does</th><th>What's left</th></tr></thead><tbody><tr><td><code>/clear</code></td><td>Wipes the session's memory. The tool forgets everything: the conversation, the files it read, the edits it made.</td><td>Nothing. A blank slate.</td></tr><tr><td><code>/compact</code></td><td>Asks the tool to summarize the conversation so far, then keeps the summary in place of the long version. Files read and edits made are still tracked.</td><td>A short version of the conversation. State preserved.</td></tr><tr><td><code>/exit</code></td><td>Ends the session. State is saved to disk. You can resume later with <code>--continue</code> or the resume flag.</td><td>Everything, but on disk, not in front of the tool.</td></tr></tbody></table></div>
+<p><strong>The reframe:</strong> when the tool says it is out of room, it is telling you a budget problem, not a capability problem. The right move is whichever matches what you want next — keep going from here, get a summary, or start over. None of the three is &quot;better.&quot; They are three different decisions.</p>
+<figure class="diagram"><pre>flowchart LR
+    A[Session running] --&gt; B{Room left?}
+    B -- yes --&gt; A
+    B -- no --&gt; C{Want to keep going?}
+    C -- yes, same work --&gt; D[&quot;/compact&quot;]
+    C -- yes, different work --&gt; E[&quot;/clear&quot;]
+    C -- no, come back later --&gt; F[&quot;/exit&quot;]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>The tool gives you a signal before the wall. A warning, a slowdown, a refusal. Watch for the slow.</p>
+<p>Slash commands are how you talk to the tool outside the conversation. They begin with <code>/</code>. You have been using one already: <code>/exit</code>. The full list lives in Phase 05. For this lesson, four matter: <code>/clear</code>, <code>/compact</code>, <code>/exit</code>, and the flag <code>--continue</code> (or <code>claude --continue</code> to resume the last session).</p>
+<h2 id="build-it">Build It</h2>
+<p>A short exercise you can run in five minutes.</p>
+<ol><li>Launch a fresh session. Type <code>claude</code> in your terminal.</li><li>Paste in something long. A chapter from a book, a long log file, a stack trace from a real bug. Twenty pages or more.</li><li>Watch what happens. The tool will start to slow. It may warn you. It may stop answering mid-thought.</li><li>Type <code>/clear</code>. Watch the state reset. Ask the tool what it remembers. It remembers nothing.</li><li>Re-paste the long text. Let it fill up again.</li><li>This time, type <code>/compact</code>. The tool writes a summary, then continues. Ask it what it remembers. It remembers the summary, not the original.</li><li>Type <code>/exit</code>. The session ends.</li><li>Re-launch with <code>claude --continue</code>. The state is back — the summary, the files, the edits, all of it.</li></ol>
+<p>The point: touch the three operations. See what each one does to the state. After this, none of them will surprise you.</p>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Situation</th><th>Reach for</th><th>Why</th></tr></thead><tbody><tr><td>The tool is slowing, the work is the same, you want to keep going</td><td><code>/compact</code></td><td>Cheaper than clearing. State stays. You lose detail in the summary.</td></tr><tr><td>The work changed — new task, new files, no continuity needed</td><td><code>/clear</code></td><td>Free up room. Stop paying for context the next task will not use.</td></tr><tr><td>You are done for now and will come back later</td><td><code>/exit</code></td><td>State is saved. Resume with <code>--continue</code> next time.</td></tr><tr><td>You want a clean start, no carry-over, no previous session</td><td>New <code>claude</code> launch</td><td>A fresh session is a blank slate. Nothing carries over.</td></tr><tr><td>You want to come back to where you stopped</td><td><code>claude --continue</code></td><td>Resumes the most recent session, exactly where it left off.</td></tr></tbody></table></div>
+<p>The unit the tool tracks is the <strong>session</strong>, not the conversation. Two sessions can share an opening message; they are still separate. A long chat inside one session is one session, even if you took a coffee break. Treat the session as the thing you are managing.</p>
+<h2 id="exercises">Exercises</h2>
+<p><strong>1. Fill it up, then choose.</strong></p>
+<p>Pick a long document. A book chapter, a dump of git log, a CSV with 10,000 rows. Paste it in. Keep asking the tool questions about it until the tool warns you, slows down, or refuses. Then make a decision: do you want the same work to continue, or is the task done?</p>
+<ul><li>If same work: <code>/compact</code>. Verify by asking the tool to summarize what it knows. The summary should match the document.</li><li>If task done: <code>/exit</code>. Re-launch with <code>claude --continue</code>. Verify the state carried over.</li></ul>
+<p><strong>Pass:</strong> You can name which command you used and why, without looking back at the table.</p>
+<p><strong>2. Resume a session.</strong></p>
+<p>Start a session. Do something small — read two files, edit one, run one command. Then <code>/exit</code>. Close the terminal. Open a new one. Run <code>claude --continue</code>. Verify:</p>
+<ul><li>The conversation is there.</li><li>The edits you made are still on disk.</li><li>The tool knows which files it read this session.</li></ul>
+<p><strong>Pass:</strong> All three of the above are true. If any one is missing, you did not actually exit-and-resume — you started a fresh session by accident.</p>
+<p><strong>3. The wrong move.</strong></p>
+<p>Start a session. Paste in a long document. The tool starts to slow. You type <code>/clear</code> — but you did not mean to. You wanted the document in memory. Notice what is gone. Notice what is not. Now you know the cost of <code>/clear</code> and you will not pick it by accident again.</p>
+<p><strong>Pass:</strong> You can list three things <code>/clear</code> removes that <code>/compact</code> would have kept.</p>
+<h2 id="key-terms">Key Terms</h2>
+<p><strong>Session</strong> — the unit the tool tracks. A beginning, a middle, an end, and a state.</p>
+<ul><li>What people say: &quot;a chat.&quot;</li><li>What it actually means: a chat plus the files read, edits made, and work in progress. The state is the weight, not the words.</li></ul>
+<p><strong>Conversation</strong> — the messages exchanged inside a session. The words only.</p>
+<ul><li>What people say: same as session, used interchangeably.</li><li>What it actually means: only the messages. A session can survive its conversation being cleared. A conversation cannot survive its session ending.</li></ul>
+<p><strong>Context</strong> — everything the tool sees as input on a given turn. The conversation, the files, the edits, the results of past tool calls.</p>
+<ul><li>What people say: &quot;what's been said.&quot;</li><li>What it actually means: more than what's been said. The tool's input on the next turn is the conversation plus everything the tool did in earlier turns. Files read are part of the context. Edits are part of the context. A long log file is part of the context once you paste it.</li></ul>
+<p><strong>/clear</strong> — wipe the session's memory. Start over, in the same session.</p>
+<ul><li>What people say: &quot;delete the tool&quot; or &quot;reset everything.&quot; Half-right. It does not delete the tool or the session. It wipes the session's memory.</li></ul>
+<p><strong>/compact</strong> — summarize the conversation so far, keep working.</p>
+<ul><li>What people say: &quot;make it shorter&quot; or &quot;save space.&quot; Close. It replaces the long conversation with a summary; the rest of the state stays.</li></ul>
+<p><strong>/exit</strong> — end the session. Save to disk.</p>
+<ul><li>What people say: &quot;close the chat&quot; or &quot;quit.&quot; Almost right. It does not just close. It saves the session so you can resume.</li></ul>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p>The size of the budget — the actual numbers, when the tool starts to slow, when <code>/compact</code> is cheaper than <code>/clear</code> — is Lesson 32. Slash commands in full (every one of them, when to reach for each) live in Phase 05. The pattern of message, tool call, result, next message is Lesson 31. For this lesson, only the three operations on a session's memory, and the four commands that perform them.</p>
+      </div>
+
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You are an hour into a single task. Claude Code warns it is out of room, and you want to keep going on the same task. What do you run?</p>
+        <ol class="options" type="A">
+          <li>/clear — free the memory and rebuild it</li>
+          <li>/compact — summarize the conversation and keep working, with the session's state intact</li>
+          <li>/exit — end the session so the state saves</li>
+          <li>Nothing — restart the terminal</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> /compact — summarize the conversation and keep working, with the session's state intact</p>
+          <p class="why">Same work, still going: compact replaces the long conversation with a summary while the files read and edits made stay tracked. Option A is tempting because freeing memory sounds like the fix, but it drops the state you still need. Option C ends rather than continues. Option D does not address the budget at all.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You finished one task and are starting an unrelated one. The session's memory is full. What is the right move?</p>
+        <ol class="options" type="A">
+          <li>/compact so the old work is summarized and kept</li>
+          <li>/clear so the new task starts with an empty memory</li>
+          <li>/exit and reopen the same session</li>
+          <li>Keep going — unused history is harmless</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> /clear so the new task starts with an empty memory</p>
+          <p class="why">The new task does not use the old task's history, so clearing stops you paying for it every turn. Option A is tempting as the safe-sounding choice, but it keeps a summary the new task will never read. Option C ends and resumes the same full session. Option D is the misconception: history competes for room and is re-paid on every turn.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You ended a session with <code>/exit</code> and closed the terminal. Next morning you want to continue exactly where you stopped. What do you run?</p>
+        <ol class="options" type="A">
+          <li>Start Claude Code fresh — sessions are not saved</li>
+          <li><code>claude --continue</code> — resume the most recent session with its state</li>
+          <li>Re-paste your last message into a new session</li>
+          <li><code>/compact</code> at launch</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> <code>claude --continue</code> — resume the most recent session with its state</p>
+          <p class="why"><code>/exit</code> saves the session to disk, and <code>--continue</code> brings it back with the summary, files, and edits. Option A is the tempting belief that closing the terminal loses everything. Option C starts a new session and rebuilds by hand. Option D is a command for a running session, not a launch flag.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You type <code>/clear</code>, then ask Claude Code what it remembers. It remembers nothing, yet the session is still open. Which statement is correct?</p>
+        <ol class="options" type="A">
+          <li>The session ended when you cleared it</li>
+          <li><code>/clear</code> wipes the session's memory; a session can be alive with an empty memory, and <code>/exit</code> is what ends and saves it</li>
+          <li><code>/clear</code> deletes the tool</li>
+          <li>The tool can scroll back through the transcript, so nothing is really lost</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> <code>/clear</code> wipes the session's memory; a session can be alive with an empty memory, and <code>/exit</code> is what ends and saves it</p>
+          <p class="why">The session is the state; <code>/clear</code> empties that state but does not end the session, and <code>/exit</code> is the operation that ends and saves. Option A is the tempting merge of clearing with exiting. Option C overstates it — the tool was not deleted. Option D confuses the transcript on disk with what the tool can currently see.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span>Previous</span>29. Files and Edits — and When It Refuses</a>
+    <a class="next" href="../../phases/04-claude-code/31-the-agentic-loop.html"><span>Next</span>31. The Agentic Loop</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

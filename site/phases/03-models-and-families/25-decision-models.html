@@ -3,95 +3,264 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Decision Models — Jev, Jeff, and the LFM line — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<title>Decision Models Beat Generation on Cost — Harnessing Claude Code</title>
+<meta name="description" content="You can find the calls that only need a label, and stop paying for paragraphs nobody reads.">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Decision Models — Jev, Jeff, and the LFM line</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li class="on"><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 24, SLMs — When a 350M Model Wins</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 03 · LESSON 25</p>
+      <h1>Decision Models Beat Generation on Cost</h1>
+      <p class="lesson-motto">You can find the calls that only need a label, and stop paying for paragraphs nobody reads.</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 24, SLMs — When a 350M Model Wins</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this lesson, you can:</p>
+<ul><li>Tell a decision call from a generation call, up front</li><li>Explain why a decision's cost is dominated by output tokens</li><li>Rewrite a decision call so it returns a label instead of prose</li><li>Say when a decision model is the wrong tool</li><li>Name the decision-model pattern without naming a product</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>An agent loop made about forty calls to finish one task. The hard call — the one that actually reasoned — was not the expensive one.</p>
+<p>The expensive part was thirty-five easy calls. Each asked a small question: is this step done? should I retry? which file comes next? And each one answered in a full sentence, because that is what a generation model does. A sentence where a single word would do.</p>
+<p>You paid, every time, for output tokens nobody was ever going to read. Multiply by forty, multiply by every task. The bill was dominated by prose that was thrown away the moment it arrived.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Every model call answers one of two questions, and they cost differently.</p>
+<ul><li>A <strong>generation</strong> call produces open-ended text: <code>write the migration guide</code>, <code>summarise this thread</code>, <code>explain this error</code>.</li><li>A <strong>decision</strong> call chooses from a fixed set, or returns a score: <code>done or not done</code>, <code>retry or escalate</code>, <code>which of these six categories</code>, <code>is this safe to run</code>.</li></ul>
+<p>A <strong>decision model</strong> is built and served for the second kind. It returns a label or a probability, not a paragraph. It is usually small — often an SLM (Lesson 24) that was distilled or fine-tuned for a fixed output (Lesson 23).</p>
+<p><strong>The reframe:</strong> most calls in a loop produce a label, not a paragraph — and a model that only ever outputs a label can be far smaller than one that has to write.</p>
+<figure class="diagram"><pre>flowchart TD
+    S[One step in the loop] --&gt; Q{Is the answer a label or a piece of writing?}
+    Q --&gt;|A label, a score, a choice| D[Decision model: tiny, fast, cheap]
+    Q --&gt;|Open-ended text| G[Generation model]
+    D --&gt; R[Route, retry, stop, escalate]
+    G --&gt; W[Text a human reads]
+    R --&gt; S</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="why-the-decision-is-so-much-cheaper">Why the decision is so much cheaper</h3>
+<p>Cost is input plus output, priced differently. For a decision in a loop, the input is often the same chunky context regardless of which model you use — but the output is the surprise:</p>
+<div class="table-wrap"><table><thead><tr><th></th><th>Generation model answering a decision</th><th>Decision model</th></tr></thead><tbody><tr><td>Output</td><td>A sentence, an explanation, sometimes a plan</td><td>One label, a few tokens</td></tr><tr><td>Latency</td><td>Larger model, longer output</td><td>Small model, tiny output</td></tr><tr><td>Cost</td><td>You pay for prose nobody reads</td><td>You pay for the label</td></tr></tbody></table></div>
+<p>The generation model can be <em>right</em> and still be the wrong tool: it is charging for words the caller discards. That is the whole insight. The loop asked a yes/no question and bought an essay.</p>
+<h3 id="most-of-a-loop-is-decisions">Most of a loop is decisions</h3>
+<p>Inside an agentic loop (Lesson 10), most steps are choices, not writing:</p>
+<ul><li>should this step run at all</li><li>which one of the available actions comes next</li><li>did that succeed</li><li>is the task finished</li><li>is this result good enough, or does it need escalation</li></ul>
+<p>Only the small remainder produces something a human reads. Route the decisions to a decision model and keep the generation calls for the parts that end up in front of someone — and the cost falls where the volume is, not where the intelligence is.</p>
+<h3 id="naming-the-pattern-not-the-product">Naming the pattern, not the product</h3>
+<p>Some vendors market model families built specifically for decisions. You may encounter names like <strong>Jev</strong>, <strong>Jeff</strong>, or <strong>LFM</strong> as examples of that pattern.</p>
+<p>As of October 2026 this course has not verified those as specific, current products, and it will not title a lesson on a guess. Treat any such name as <em>an example of the pattern</em> — a model that outputs a decision — and check whether it exists and fits before you adopt it. The pattern is the lesson.</p>
+<h3 id="when-a-decision-model-is-wrong">When a decision model is wrong</h3>
+<ul><li>The task is genuinely open-ended and has no fixed answer set.</li><li>You need the reasoning <em>as the deliverable</em>, not just the answer.</li><li>You cannot define what &quot;correct&quot; means, so you cannot tell a good label from a bad one.</li><li>A wrong label is invisible downstream. Then you need a check, not just a smaller model.</li></ul>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-inventory-a-real-loop">1. Inventory a real loop</h3>
+<p>Take a loop you actually run — a script, a retry pattern, a workflow you drive by hand. List every model call it makes, in order.</p>
+<p>✅ You pass when the list has every call in the loop, not a sample.</p>
+<h3 id="2-label-each-call-d-or-g">2. Label each call D or G</h3>
+<p>Mark each one <strong>D</strong> if the answer is a label, a score, or a choice from a fixed set. Mark it <strong>G</strong> if it produces open-ended text.</p>
+<p>✅ You pass when every call carries a D or a G, with no blanks.</p>
+<h3 id="3-find-where-the-money-actually-is">3. Find where the money actually is</h3>
+<p>For a single run, estimate the output tokens each call produced. Sort by total output tokens across the run.</p>
+<p>The most expensive call is rarely the hardest one.</p>
+<p>✅ You pass when you can name the call with the largest output-token total and say whether it was a D or a G.</p>
+<h3 id="4-collapse-one-decision">4. Collapse one decision</h3>
+<p>Take a D call and rewrite the prompt so the answer is a single token:</p>
+<pre class="code" data-lang="text"><code>Answer with exactly one word: yes or no. Do not explain.</code></pre>
+<p>Compare the cost of that call before and after.</p>
+<p>✅ You pass when the same decision costs measurably less, and you can attribute the difference to output tokens rather than to the task.</p>
+<h3 id="5-route-one-decision-down">5. Route one decision down</h3>
+<p>Point one D call at a small local model and keep the G calls where they are. Measure accuracy on the D call with your check set from Lesson 24.</p>
+<p>✅ You pass when the decision still makes the same choice on your check set, at a lower cost.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Call type</th><th>Answer shape</th><th>Reach for</th></tr></thead><tbody><tr><td>Route / classify</td><td>One label from a set</td><td>A decision model</td></tr><tr><td>Gate / retry / stop</td><td>Yes or no</td><td>A decision model</td></tr><tr><td>Extract a field</td><td>A short, fixed value</td><td>A decision model</td></tr><tr><td>Write a summary</td><td>Open-ended prose</td><td>A generation model</td></tr><tr><td>Explain a failure to a person</td><td>Open-ended prose</td><td>A generation model</td></tr><tr><td>Decide <em>and</em> explain</td><td>Label plus text</td><td>A decision model for the label, a generation model only if the text is read</td></tr></tbody></table></div>
+<p>Confidence gates — escalating to a bigger model only when the decision is unsure — are how this pattern was designed to be used. That is Phase 14's subject, and it is where this idea pays off.</p>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take a loop with at least ten calls. Label every call D or G, and estimate output tokens per call. ✅ You pass when the inventory is complete and the largest output-token total is identified with its type.</li></ol>
+<ol><li class="criterion">Find one call you currently send to a large model that is really a decision. Rewrite it to return a single label, and compare cost against the old version. ✅ You pass when the cost difference is measured and attributed to output tokens.</li></ol>
+<ol><li class="criterion">A teammate wants every decision to also write out its reasoning &quot;for auditability.&quot; Argue for or against, and name the cost. ✅ You pass when your answer states that this converts a decision into a generation call, and gives the price in output tokens.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>decision model</td><td>&quot;a classifier&quot;</td><td>A model built to return a label, score, or choice rather than open-ended text. Small, fast, cheap.</td></tr><tr><td>generation model</td><td>&quot;the chatbot&quot;</td><td>A model that produces open-ended text. Right for writing, wasteful for a yes/no.</td></tr><tr><td>decision call</td><td>&quot;a simple call&quot;</td><td>A call whose answer is one of a fixed set. Cost is dominated by the output you did not need.</td></tr><tr><td>label set</td><td>&quot;the options&quot;</td><td>The fixed choices a decision can return. A small, closed set is what makes a small model viable.</td></tr><tr><td>output tokens</td><td>&quot;the reply&quot;</td><td>What the model generated. The cost driver when a decision is answered with a paragraph.</td></tr><tr><td>confidence gate</td><td>&quot;escalate when unsure&quot;</td><td>Sending only the uncertain decisions to a bigger model. Phase 14 builds this; here you only need the pattern.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Confidence gates and escalation in detail.</strong> How to score a decision's confidence and route only the unsure ones upward. Phase 14.</p>
+<p><strong>Building or training your own decision model.</strong> The levers are Lesson 23; this lesson is about <em>when</em> a decision model is the right shape.</p>
+<p><strong>Harness design.</strong> Where in a real system the decision calls sit, and how they are wired. Phase 14 is the harness phase; this lesson is the model-level pattern it uses.</p>
+<p><strong>Prompt engineering for reliable labels.</strong> Getting a model to always return exactly one token is a craft. This lesson asks you to try it once; refining it is a skill you build elsewhere.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A loop makes about 40 calls per task: 35 decide something, 5 write user-facing text. Which calls should run on the large generation model?</p>
+        <ol class="options" type="A">
+          <li>All 40, for consistency</li>
+          <li>The 5 that write text a human reads</li>
+          <li>The 35 decisions, because decisions are harder</li>
+          <li>Whichever the model picks</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The 5 that write text a human reads</p>
+          <p class="why">Only the generation calls produce something anyone reads, so they justify the larger model. 'Decisions are harder' is the tempting answer, but the output-token cost is driven by how much text comes back, and a decision needs almost none.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Why is output token count the cost driver for a decision call?</p>
+        <ol class="options" type="A">
+          <li>Input tokens are free</li>
+          <li>A generation model answers a yes/no with a paragraph, and you are billed for that paragraph</li>
+          <li>Decisions use a more expensive model tier</li>
+          <li>Output tokens are billed at a fixed rate per call</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A generation model answers a yes/no with a paragraph, and you are billed for that paragraph</p>
+          <p class="why">The input is often the same chunky context either way; the waste is the sentence the model writes when a label would do. 'Input tokens are free' is false — the point is that output is where the decision version costs more than it needs to.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A teammate wants every decision call to write out its reasoning, for auditability. What is the cost, and when is it worth paying?</p>
+        <ol class="options" type="A">
+          <li>No cost; text is always cheap</li>
+          <li>It turns a decision into a generation call, so you pay for the prose; worth it when the explanation is genuinely read</li>
+          <li>It is impossible with current models</li>
+          <li>It improves accuracy automatically</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> It turns a decision into a generation call, so you pay for the prose; worth it when the explanation is genuinely read</p>
+          <p class="why">Asking a decision to explain itself is asking a generation call, and output tokens are the bill. The tempting answer is 'no cost', but the whole lesson is that prose you throw away is still billed — the exception is prose that a person actually audits.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">When is a decision model the wrong tool?</p>
+        <ol class="options" type="A">
+          <li>When the answer is one of six fixed categories</li>
+          <li>When the task is open-ended and has no defined correct answer to compare against</li>
+          <li>When the volume is high</li>
+          <li>When the input is private</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> When the task is open-ended and has no defined correct answer to compare against</p>
+          <p class="why">A decision model needs a closed set of answers and a way to tell a good label from a bad one. Fixed categories, high volume, and private input are the situations where it is <em>right</em>. Without a defined correct answer, a smaller model just fails faster and cheaper.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span>Previous</span>24. SLMs — When a 350M Model Wins</a>
+    <a class="next" href="../../phases/03-models-and-families/26-the-taxonomy.html"><span>Next</span>26. The Taxonomy: LLM / Decision Model / SLM</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

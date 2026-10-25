@@ -1,0 +1,9 @@
+{
+  "name": "guardrail-kit",
+  "displayName": "Guardrail Kit",
+  "description": "Blocks force-pushes and secrets-into-commits, and hands diff review to a subagent",
+  "version": "1.0.0",
+  "author": {
+    "name": "WorkflowTest learner"
+  }
+}

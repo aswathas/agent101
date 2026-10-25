@@ -4,94 +4,252 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Review Against the Docs — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can point at a dated URL for every capability your build depends on, label">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Review Against the Docs</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li class="on"><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 116, Spec → Graph → Build → Verify</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 18 · LESSON 117</p>
+      <h1>Review Against the Docs</h1>
+      <p class="lesson-motto">You can point at a dated URL for every capability your build depends on, label</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 116, Spec → Graph → Build → Verify; Lesson 20, Model</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>List every external claim your build makes — flags, commands, settings keys, event names, frontmatter fields, env vars</li><li>Look each one up in the doc index and record four things: URL, date, version, and state</li><li>Sort claims into documented, version-gated, unconfirmed, and contradicted — and treat &quot;unconfirmed&quot; as a real label, not a failure</li><li>Tell a source from a summary, and cite the source</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>This repo's history contains two confident false claims, and both came from the same move: an agent asserting a capability without opening the page.</p>
+<p>One said a syntax accepted a <code>[ref]</code> address. It isn't in the docs. It was stated as fact; it was a remembered guess. The other said workers survive closing a session tab — they don't; the transport is a per-session socket and a dead session receives nothing. That one reached the learner before it was caught, and the learner repeated it to someone else.</p>
+<p>Neither failure was dramatic. That is what makes the shape dangerous. A wrong claim doesn't crash — it just becomes something you build on, and then something you teach, and then something you defend in a code review because it has worked so far.</p>
+<p>Your capstone is that risk at scale. It depends on maybe forty small external facts, and you learned most of them from a summary: a blog post, a changelog snippet, an agent's explanation, or one session where it happened to work. The review step is where you find out which ones you can still point at.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>A claim about the harness is in exactly one of four states. The docs decide which.</p>
+<div class="table-wrap"><table><thead><tr><th>State</th><th>What it means</th><th>What you do</th></tr></thead><tbody><tr><td><strong>Documented</strong></td><td>You have the page, and you can quote the sentence</td><td>Cite URL + the date you checked</td></tr><tr><td><strong>Version-gated</strong></td><td>Documented, but only from some version</td><td>Cite URL + date + <em>your</em> version</td></tr><tr><td><strong>Unconfirmed</strong></td><td>You observed it; no page says it</td><td>Say &quot;unconfirmed&quot; out loud, and write how you'd test it</td></tr><tr><td><strong>Contradicted</strong></td><td>A page says otherwise</td><td>This is the valuable one. Your build is wrong, or your version is older than the page</td></tr></tbody></table></div>
+<figure class="diagram"><pre>flowchart TD
+    A[&quot;List the claims your build depends on&quot;] --&gt; B[&quot;Search the doc index&quot;]
+    B --&gt; C{&quot;A page states it?&quot;}
+    C --&gt;|yes| D[&quot;Quote the sentence.&lt;br/&gt;Record URL + date + version gate&quot;]
+    C --&gt;|no| E[&quot;Label it unconfirmed.&lt;br/&gt;Write the command that would test it&quot;]
+    D --&gt; F[&quot;Run your build; compare behaviour to the sentence&quot;]
+    E --&gt; F
+    F --&gt; G{&quot;They agree?&quot;}
+    G --&gt;|no| H[&quot;A finding — not a bug in your build yet&quot;]
+    G --&gt;|yes| I[&quot;Recorded. Re-check when the version changes&quot;]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="the-index-is-the-map-the-page-is-the-source">The index is the map, the page is the source</h3>
+<p><code>https://code.claude.com/docs/llms.txt</code> is a machine-readable index of every doc page — titles and URLs, no content. It answers &quot;does a page about this exist?&quot; in one fetch, which is the question you actually have most of the time.</p>
+<p>The page it points to is the source. A blog post <em>about</em> the page is a summary, and summaries carry a version you can't see. The changelog (<code>https://code.claude.com/docs/en/changelog.md</code>) is where a change becomes dated.</p>
+<h3 id="one-page-per-claim-and-the-claim-is-narrow">One page per claim, and the claim is narrow</h3>
+<p>&quot;A hook can run a command&quot; is documented and stable. &quot;<code>SessionStart</code> receives a <code>source</code> field with these three values&quot; is documented <strong>and</strong> version-gated <strong>and</strong> surface-tier — the kind of sentence that is true this release and quietly different the next.</p>
+<p>Review works because the claims are narrow. A wide claim (&quot;hooks exist&quot;) is almost always documented, which makes it useless for finding the one narrow thing you got wrong.</p>
+<h3 id="aliases-never-versions">Aliases, never versions</h3>
+<p>Lesson 20's rule is a review rule too. <code>sonnet</code> is a capability; a dated model ID is a version. Write the alias in your notes; if you must record a version, record it as a version, next to the date, in a place you will look again.</p>
+<p>Verified against the pages linked above on <strong>2026-10-15</strong>. URLs and version gates age; the habit does not.</p>
+<blockquote><p><strong>The reframe:</strong> a review against the docs is not &quot;does my code match my notes&quot;</p><p>— it is &quot;which of the sentences my build depends on can I still point at, and</p><p>which am I simply remembering.&quot;</p></blockquote>
+<h3 id="what-this-review-is-not">What this review is not</h3>
+<p>It is not a security review, not a style review, and not a test of whether the feature is a good idea. It answers one question: <strong>is what I rely on still true, and can I show it?</strong> Everything else has its own phase.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>Do this on your capstone, after Lesson 116's verifier passes. The verifier proves the behaviour you asked for; this proves the facts you asked for it <em>with</em>.</p>
+<h3 id="1-harvest-the-claims">1. Harvest the claims</h3>
+<p>Grep your build for every external name. Each hit is a claim.</p>
+<pre class="code" data-lang="bash"><code># settings keys, hooks, MCP entries, plugin components
+grep -rn &quot;hooks\|settings\|mcpServers\|frontmatter&quot; .claude .mcp.json 2&gt;/dev/null | head -50</code></pre>
+<p>Then add the ones that don't appear in a file: flags you typed from memory, the name of an event, the spelling of a field.</p>
+<p>✅ You pass when you have a list, not a feeling — and it is longer than you expected.</p>
+<h3 id="2-look-each-one-up-in-the-index">2. Look each one up in the index</h3>
+<p>Fetch <code>https://code.claude.com/docs/llms.txt</code>. For each claim, find the page or record that no page matched. Two columns, filled honestly.</p>
+<p>✅ You pass when every claim has either a URL or an explicit &quot;no page found&quot;.</p>
+<h3 id="3-record-the-four-fields">3. Record the four fields</h3>
+<p>Build the table in a file, not in your head — <code>REVIEW.md</code> next to your build:</p>
+<div class="table-wrap"><table><thead><tr><th>Claim</th><th>Where I got it</th><th>URL</th><th>Checked</th><th>State</th><th>My version</th></tr></thead><tbody><tr><td>session workers survive a closed tab</td><td>conversation</td><td>—</td><td>2026-10-15</td><td>contradicted</td><td>—</td></tr><tr><td><code>SessionStart</code> fires at session start</td><td>docs</td><td><code>…/en/hooks.md</code></td><td>2026-10-15</td><td>documented</td><td>—</td></tr></tbody></table></div>
+<pre class="code" data-lang="bash"><code>claude --version</code></pre>
+<p>✅ You pass when every row has a state, and the state is one of the four words — no &quot;probably&quot; and no blank.</p>
+<h3 id="4-run-the-build-and-compare-behaviour-to-the-sentence">4. Run the build and compare behaviour to the sentence</h3>
+<p>This is the step people skip. The doc says X; your build does Y; one of them is authority. If a claim is contradicted, decide whether it is your bug or your version — the changelog will usually say.</p>
+<p>✅ You pass when at least one claim was checked against real output rather than against your memory of how it behaved.</p>
+<h3 id="5-write-the-leftovers-down">5. Write the leftovers down</h3>
+<p>For every unconfirmed claim, write the command that would settle it. That sentence is the difference between &quot;unconfirmed&quot; and &quot;I don't know and I don't care.&quot;</p>
+<p>✅ You pass when each unconfirmed row ends with a runnable test, and you have run at least one of them.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Thing</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>llms.txt</code> index</td><td>First move for any &quot;does this exist?&quot; question</td></tr><tr><td>The page, not the summary</td><td>Whenever you are about to write the claim into a doc or a config</td></tr><tr><td>Changelog</td><td>When your behaviour and the page disagree — it dates the change</td></tr><tr><td>Glossary</td><td>When you and a teammate mean different things by one word</td></tr><tr><td><code>claude --version</code></td><td>Next to every version-gated claim, every time</td></tr><tr><td>&quot;Unconfirmed&quot;</td><td>For anything you observed but can't cite. Say it out loud</td></tr><tr><td>Alias over ID</td><td>In every note you expect to read again</td></tr><tr><td>The date you checked</td><td>Beside every URL. A citation without a date is a memory</td></tr><tr><td>The narrow claim</td><td>When a review finds nothing — your claims are too big to be wrong</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">List ten external claims your capstone relies on, and resolve each one against the doc index. ✅ You pass when every claim carries a state and a URL, and at least one is not &quot;documented&quot; — a list of ten green rows usually means you picked ten easy claims.</li></ol>
+<ol><li class="criterion">Find one claim you have repeated to another person that the docs do not support. ✅ You pass when you can quote the sentence you said, say what the docs say, and name who you'd have to correct. If you find none, look at claims about <em>concurrency</em> — that is where the last two in this repo hid.</li></ol>
+<ol><li class="criterion">Take one version-gated claim and find the changelog entry that introduced or changed it. ✅ You pass when you can give the version and the date, and say whether your installed version is before or after it.</li></ol>
+<ol><li class="criterion">Replace every hardcoded model version in your build with an alias. ✅ You pass when <code>grep</code> for a dated model ID returns nothing, and the build still runs.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>documented</td><td>&quot;it's in the docs&quot;</td><td>You can quote the sentence on a page you linked, and you checked today.</td></tr><tr><td>version-gated</td><td>&quot;it works on my machine&quot;</td><td>Documented, but only from some version. Useless without your version beside it.</td></tr><tr><td>unconfirmed</td><td>&quot;I've seen it work&quot;</td><td>Observed, uncited. A legitimate state — as long as it's labelled and has a test attached.</td></tr><tr><td>contradicted</td><td>&quot;the docs are wrong&quot;</td><td>The page disagrees with you. The page is usually right; check your version before arguing.</td></tr><tr><td>source vs summary</td><td>&quot;I read an article&quot;</td><td>A doc page is the source. Anything that quotes a version you can't see is a summary.</td></tr><tr><td>the index</td><td>&quot;the docs site&quot;</td><td><code>llms.txt</code> — titles and URLs only. Answers &quot;does a page exist&quot; without a search.</td></tr><tr><td>dated claim</td><td>&quot;I linked it&quot;</td><td>URL + date + version. Any two of the three is a memory.</td></tr><tr><td>narrow claim</td><td>&quot;hooks work&quot;</td><td>A claim small enough to be wrong. Wide claims are always true and never useful.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Filing a docs bug.</strong> If a page is wrong, the changelog and the docs issue tracker are where it goes. Out of scope here — this lesson is about not building on it first.</p>
+<p><strong>Deprecation policy.</strong> How long a deprecated flag keeps working is a product decision that changes; the changelog dates each deprecation when it happens.</p>
+<p><strong>Semantic version ranges in plugins.</strong> <code>^1.2</code> and what a plugin update does to a pin is Phase 09's plugin-dependencies page, not this lesson.</p>
+<p><strong>The Agent SDK's version story.</strong> A different surface with a different cadence (Lesson 112). Come back when you ship an SDK-based runner.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">Your build depends on an option that you saw work in a session last week. You search the doc index and no page mentions it. What is the honest state of that claim, and what goes in the review row?</p>
+        <ol class="options" type="A">
+          <li>Documented — it worked, and working is the strongest evidence there is</li>
+          <li>Unconfirmed — observed, no page found; record the command that would settle it and re-check after a version change</li>
+          <li>Contradicted — no page means the docs disagree with you</li>
+          <li>Undocumented — so remove the option from the build immediately</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Unconfirmed — observed, no page found; record the command that would settle it and re-check after a version change</p>
+          <p class="why">There is a real state between 'in the docs' and 'wrong', and it is the one most of your build actually sits in: observed behaviour with no citation. Labelling it unconfirmed keeps the capability while marking it as the thing to look at first when a release lands. A is the tempting answer — 'it worked' feels like proof — but one successful session on one version is exactly the evidence that produced this repo's two false claims. C inverts the meaning: no page is a gap in the docs, not an assertion of the opposite; contradicted is reserved for a page that says otherwise. D overreacts — you do not delete working code because a page is missing; you label it and attach a test.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">The docs page states that a settings key applies per project. Your build sets it once and relies on it applying to your whole machine, and it has worked for months. Which is authoritative, and what is your next move?</p>
+        <ol class="options" type="A">
+          <li>Your build — it has worked for months, and the docs are often out of date</li>
+          <li>The page — treat the disagreement as a finding and check whether your version predates the documented behaviour</li>
+          <li>Neither; the agent that set it up probably knew, so ask it before deciding</li>
+          <li>Neither; delete the key and rebuild the feature without it</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The page — treat the disagreement as a finding and check whether your version predates the documented behaviour</p>
+          <p class="why">A page that states scope is describing intended behaviour, and your build working is not evidence of intent — it may be an accident of one version or one machine, which is precisely the failure that surfaces on a teammate's checkout instead of yours. Check the changelog to see whether the scope changed, then decide whether your build or your version is the outdated part. A is the tempting one because longevity feels like proof, and it is the same reasoning that keeps a bug alive for months. C offloads a documentation question to a guess. D throws away a feature over a wording question before you have established which side is stale.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You are writing a short how-to for your team that tells them to run one specific Claude Code command. Which version of the instruction survives the next release?</p>
+        <ol class="options" type="A">
+          <li>The exact command, quoted as fact, because precision is helpful</li>
+          <li>The capability in plain words, plus a link to the reference page and the date and version you checked it on</li>
+          <li>A screenshot of the command working in your terminal</li>
+          <li>The command copied from a blog post, since blog posts keep up faster than the docs</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The capability in plain words, plus a link to the reference page and the date and version you checked it on</p>
+          <p class="why">Name the capability, link the page, and date the claim: then a reader whose command has changed can re-derive it in one fetch instead of concluding the how-to is garbage. A is the tempting one — an exact command feels more useful, and it is more useful right up until it silently runs something else. C freezes today's terminal, which is the least re-derivable artifact of the three. D swaps the source for a summary that carries an invisible version, which is the specific mistake the review step exists to catch.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span>Previous</span>116. Spec → Graph → Build → Verify</a>
+    <a class="next" href="../../phases/18-capstone/118-what-breaks-in-production.html"><span>Next</span>118. What Breaks in Production</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

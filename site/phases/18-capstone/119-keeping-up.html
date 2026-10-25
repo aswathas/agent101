@@ -4,94 +4,259 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Keeping Up — Claude Code Ships Weekly — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can sort your own notes into the part that won't change and the part that">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Keeping Up — Claude Code Ships Weekly</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li class="on"><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 118, What Breaks in Production</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 18 · LESSON 119</p>
+      <h1>Keeping Up — Claude Code Ships Weekly</h1>
+      <p class="lesson-motto">You can sort your own notes into the part that won't change and the part that</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 118, What Breaks in Production; Lesson 20, Model</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Sort a claim about Claude Code into surface, mechanism, or model — by how fast it decays</li><li>Keep a claims ledger with a URL, a date, and a version on every entry that can drift</li><li>Build a <code>SessionStart</code> hook that prints the version at the top of every session</li><li>Re-check the surface tier on a trigger, not on a habit of reading everything</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>This course once stated a <code>[ref]</code> addressing syntax as documented fact. It isn't in the docs. Nobody was harmed — the sentence was just wrong, and it would have failed for whichever reader tried it first. The agent had used the syntax before, remembered it, and said it.</p>
+<p>The same shape costs more elsewhere. Write a model ID into a config because it worked in March, and by autumn <code>sonnet</code> points somewhere else while your file still names the old thing — valid, current, and no longer what you chose. Nothing errors. Your setup just quietly stopped being the setup you think you have.</p>
+<p>Two failure surfaces, one cause: <strong>notes with no date on them.</strong> You cannot tell a sentence that is still true from one that was true when you wrote it, so you either re-read everything or trust everything. Both are expensive.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Every claim you hold about Claude Code sits in one of three tiers. They decay at wildly different rates, and that difference is the whole method.</p>
+<figure class="diagram"><pre>flowchart LR
+    N[&quot;Your notes&lt;br/&gt;about Claude Code&quot;] --&gt; M[&quot;Mechanism&lt;br/&gt;the loop, the window,&lt;br/&gt;isolation, the graph&quot;]
+    N --&gt; S[&quot;Surface&lt;br/&gt;commands, flags, events,&lt;br/&gt;keys, defaults&quot;]
+    N --&gt; D[&quot;Model&lt;br/&gt;aliases, effort, limits,&lt;br/&gt;capability&quot;]
+    M --&gt; M2[&quot;Teach it. Bet on it.&quot;]
+    S --&gt; S2[&quot;Link it. Date it.&lt;br/&gt;Re-check on a version bump.&quot;]
+    D --&gt; D2[&quot;Use the alias.&lt;br/&gt;Never pin a version into prose.&quot;]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<div class="table-wrap"><table><thead><tr><th>Tier</th><th>Examples</th><th>Decay</th><th>What you do with it</th></tr></thead><tbody><tr><td><strong>Mechanism</strong></td><td>The agentic loop, the context window, compaction, isolation, nodes and edges</td><td>Effectively never</td><td>Teach it, build on it. These are why the course is 119 lessons and not a changelog</td></tr><tr><td><strong>Surface</strong></td><td>Slash commands, CLI flags, hook event names, settings keys, defaults, file locations</td><td>Weeks</td><td>Link the page, write the date, re-check on a version change</td></tr><tr><td><strong>Model</strong></td><td>Model aliases, effort levels, context limits, capability per task</td><td>Every release</td><td>Use the alias; if you must name a version, name it as a version</td></tr></tbody></table></div>
+<p>The tiers exist so that a release changes your <em>checklist</em> and not your <em>understanding</em>. When a flag moves, you have one page to re-read. When the loop is still the loop, the twentieth lesson you wrote about it is still true.</p>
+<h3 id="one-index-one-log-one-definition">One index, one log, one definition</h3>
+<ul><li><strong>The index</strong> — <code>https://code.claude.com/docs/llms.txt</code>. Titles and URLs for every page. Answers &quot;does a page exist&quot; without a search engine.</li><li><strong>The log</strong> — <code>https://code.claude.com/docs/en/changelog.md</code>. Where a change becomes dated and attributed to a version.</li><li><strong>The definitions</strong> — <code>https://code.claude.com/docs/en/glossary.md</code>. One word, one meaning, so your notes and the docs agree on what a term is.</li></ul>
+<h3 id="the-ledger">The ledger</h3>
+<p>Surface claims go in a file — <code>DRIFT.md</code> — with four columns. Not in your head, where they cannot be recounted.</p>
+<div class="table-wrap"><table><thead><tr><th>Claim</th><th>Source</th><th>Checked</th><th>Version</th></tr></thead><tbody><tr><td><code>SessionStart</code> fires when a session starts</td><td><code>…/en/hooks.md</code></td><td>2026-10-15</td><td>—</td></tr><tr><td>the settings key for a hook matcher is spelled this way</td><td><code>…/en/hooks.md</code></td><td>2026-10-15</td><td>—</td></tr></tbody></table></div>
+<p>The column that matters is <strong>Version</strong>. A row with a version and no version bump since is a fact. A row whose version is older than yours is a question.</p>
+<h3 id="the-trigger-not-the-feed">The trigger, not the feed</h3>
+<p>Reading every release note is a job, and it is not your job. Instead:</p>
+<ul><li>re-check the <strong>surface</strong> rows whose component you actually use — your hooks, your plugin, your settings keys — when the version changes;</li><li>read the changelog filtered by those components, not end to end;</li><li>re-check <strong>unconfirmed</strong> rows from Lesson 117 whenever the version changes at all, because they were never on solid ground to begin with.</li></ul>
+<p>A ledger turns &quot;keep up with Claude Code&quot; from an ambient anxiety into a diff with two sides.</p>
+<p>Verified against the pages linked above on <strong>2026-10-15</strong>. Page URLs, flags and version gates age; the three-tier split does not.</p>
+<blockquote><p><strong>The reframe:</strong> keeping up is not reading every release note — it is knowing</p><p>which of your sentences are about the harness and which are about a version,</p><p>and only the second kind ever needs re-checking.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-sort-ten-of-your-own-claims">1. Sort ten of your own claims</h3>
+<p>Take the claims you harvested in Lesson 117. Label each one mechanism, surface, or model.</p>
+<p>✅ You pass when the mechanism rows outnumber the surface rows, and you can say why that ratio is the reason this course exists.</p>
+<h3 id="2-start-the-ledger">2. Start the ledger</h3>
+<p>Create <code>DRIFT.md</code> with the four columns. One row per surface claim.</p>
+<p>✅ You pass when every surface row has a URL <strong>and</strong> a date, and no row says &quot;somewhere in the docs.&quot;</p>
+<h3 id="3-print-the-version-at-the-top-of-every-session">3. Print the version at the top of every session</h3>
+<p>A <code>SessionStart</code> hook that runs a command and injects its output turns the trigger into something you cannot miss.</p>
+<pre class="code" data-lang="json"><code>{
+  &quot;hooks&quot;: {
+    &quot;SessionStart&quot;: [
+      {
+        &quot;hooks&quot;: [
+          { &quot;type&quot;: &quot;command&quot;, &quot;command&quot;: &quot;echo \&quot;claude $(claude --version) — surface claims due for re-check\&quot;&quot; }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<p>Confirm the event name, the matcher, and the settings key against <code>https://code.claude.com/docs/en/hooks.md</code> before you trust that block — hook config is surface tier, which is this lesson's entire point. Lesson 57 has the script shape; Lesson 34 has the settings file that wins.</p>
+<p>✅ You pass when a new session prints your line, and you can say which settings file you put it in and why that one won.</p>
+<h3 id="4-find-the-version-bump">4. Find the version bump</h3>
+<pre class="code" data-lang="bash"><code>claude --version</code></pre>
+<p>Check it against the changelog. Find one entry — any entry — that touches something in your ledger.</p>
+<p>✅ You pass when you can name the component, the version, and the ledger row it invalidates or confirms.</p>
+<h3 id="5-alias-the-models">5. Alias the models</h3>
+<p>Replace any dated model ID in your config or notes with the alias.</p>
+<p>✅ You pass when <code>grep</code> for a dated ID in your build returns nothing, and the build still runs.</p>
+<h3 id="6-set-the-re-check-trigger">6. Set the re-check trigger</h3>
+<p>Write, in <code>DRIFT.md</code>, the one thing that starts a re-check: a version change, a failed preflight, or the changelog mentioning a component you use. Not a calendar reminder to &quot;read the notes.&quot;</p>
+<p>✅ You pass when the trigger is a condition you can evaluate in one command, not an intention.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Thing</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>llms.txt</code> index</td><td>&quot;Does a page about this exist?&quot; — the first move, always</td></tr><tr><td>Changelog</td><td>When behaviour and the page disagree, or a version just changed</td></tr><tr><td>Glossary</td><td>When two people are using one word three ways</td></tr><tr><td><code>claude --version</code></td><td>Beside every surface claim, in the ledger and at session start</td></tr><tr><td>Mechanism tier</td><td>Anything you are about to teach someone else</td></tr><tr><td>Surface tier</td><td>Anything you are about to type into a config</td></tr><tr><td>Model tier</td><td>Anything with a name that could route somewhere else next month</td></tr><tr><td>Alias over ID</td><td>Every note, every config, every lesson</td></tr><tr><td>The version column</td><td>The single column that tells you which rows are now questions</td></tr><tr><td>Re-check trigger</td><td>When a version changes — not when you remember</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Write a short how-to for a teammate that involves one Claude Code command. Make it survive the next release. ✅ You pass when a reader with a newer version can recover the correct command from your link alone, without asking you.</li></ol>
+<ol><li class="criterion">Take a claim that lives only in your head — a flag, an event name, a field — and resolve it against the docs today. ✅ You pass when it has a state (from Lesson 117) and a row in <code>DRIFT.md</code>, or you have removed it from your build.</li></ol>
+<ol><li class="criterion">Add the <code>SessionStart</code> version line, then update Claude Code and start a session. ✅ You pass when the printed version changes and your ledger's surface rows are now visibly older than the session you are sitting in.</li></ol>
+<ol><li class="criterion">Find one lesson in this course, or one note of your own, that is now wrong. Fix it in place and date the fix. ✅ You pass when the corrected text carries the date and the page you checked, so the next reader knows how old it is.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>mechanism</td><td>&quot;the concepts&quot;</td><td>Part of the harness that doesn't decay: the loop, the window, isolation, the graph. Bet on these.</td></tr><tr><td>surface</td><td>&quot;the syntax&quot;</td><td>Commands, flags, events, keys, defaults. True this release; re-check on a version bump.</td></tr><tr><td>model tier</td><td>&quot;which model&quot;</td><td>Aliases, effort, limits, capability. Route by alias; a version in prose is a claim with an expiry date.</td></tr><tr><td>claims ledger</td><td>&quot;my notes&quot;</td><td><code>DRIFT.md</code>: claim, source, date checked, version. The version column is what makes it usable.</td></tr><tr><td>version gate</td><td>&quot;it needs a newer version&quot;</td><td>A behaviour that only exists from some version on. Useless without your version beside it.</td></tr><tr><td>alias</td><td>&quot;the model name&quot;</td><td><code>sonnet</code>, <code>opus</code> — a route, not a version. What you write when you want it to keep working.</td></tr><tr><td>trigger</td><td>&quot;staying up to date&quot;</td><td>A condition you can test in one command that starts a re-check. Not a resolution to read more.</td></tr><tr><td>drift</td><td>&quot;the docs changed&quot;</td><td>Your note silently stopped being true. Nothing errored, which is what makes it expensive.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Deprecation windows.</strong> How long a deprecated flag keeps working is a product decision; the changelog dates each one when it happens. Read it there rather than trusting a number in this lesson.</p>
+<p><strong>Plugin dependency ranges.</strong> <code>^1.2</code>, and what an update does to a pin, is a Phase 09 concern — the plugin dependencies page.</p>
+<p><strong>The Agent SDK's cadence.</strong> A separate surface with its own versioning (Lesson 112). Come back to it when you ship an SDK-based runner.</p>
+<p><strong>Enterprise release channels.</strong> Managed settings can hold a fleet on a version (Lesson 115). One machine does not need a rollout plan; a team does.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A teammate asks how to keep their own notes from going stale the way yours did. What is the durable instruction?</p>
+        <ol class="options" type="A">
+          <li>Re-read the docs from the top every few weeks so nothing gets missed</li>
+          <li>Sort each note into mechanism, surface, or model; date and link the surface ones; re-check them when the version changes</li>
+          <li>Only write down things you have personally tested, since tested behaviour can't go stale</li>
+          <li>Copy commands verbatim from the docs so the wording can never be wrong</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Sort each note into mechanism, surface, or model; date and link the surface ones; re-check them when the version changes</p>
+          <p class="why">The three tiers tell you what to spend attention on: mechanism notes are permanent, model notes should be aliases, and surface notes are the only ones worth a date and a link. Re-checking happens on a version change, not on a calendar. A is the tempting one because it sounds thorough, and it is exactly the job nobody sustains — you either drown or stop, and both leave you trusting undated notes. C fails on precision: something tested and working on one version is the definition of a version-gated claim, not a durable one. D fixes the wording while the command itself moves under it, so the quote stays accurate and the instruction stops working.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A new release adds a flag and renames a settings key you use. You have a ledger of about forty claims. What does the release actually obligate you to do?</p>
+        <ol class="options" type="A">
+          <li>Re-verify all forty, since any of them could have changed</li>
+          <li>Re-check the surface rows, especially the renamed key, and leave the mechanism rows alone</li>
+          <li>Update the two things you know about and re-check the rest only if something breaks</li>
+          <li>Nothing — the ledger is a record, and records are corrected when you next read them</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Re-check the surface rows, especially the renamed key, and leave the mechanism rows alone</p>
+          <p class="why">A rename is a surface change, so it invalidates a surface row and nothing else — the loop still loops, the window still fills, the graph is still a graph. That is the payoff of having sorted the claims in the first place. A is the tempting one because a ledger looks like a to-do list, but a changelog entry names its components, so you can diff it against the rows that mention them. C is the opt-in version of the same mistake: 'breaks' is how surface changes present, and you will find out on a teammate's machine. D treats the ledger as archaeology rather than an instrument, which is what makes notes rot silently.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A hook has run correctly for eight months. Today it fires with a payload shape you didn't expect, and nothing in your repo changed. Where is the fault most likely, and what is the first move?</p>
+        <ol class="options" type="A">
+          <li>Your repository — something changed the input; bisect the commits</li>
+          <li>The surface layer — the event's payload changed in a release; check the hooks reference and the changelog for the version</li>
+          <li>The model — it produced a differently-shaped payload this time</li>
+          <li>Nothing is wrong; the payload was always like that and you misremembered</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The surface layer — the event's payload changed in a release; check the hooks reference and the changelog for the version</p>
+          <p class="why">A hook payload is surface: the event fires from the harness, not from your repo and not from the model, so the first suspect is a release that moved the shape. The reference page tells you the current shape; the changelog dates the change and names the version. A is tempting because 'what changed on my side' is the usual debugging instinct, and here your side is unchanged — eight months of stability is evidence the fault is upstream. C misplaces the origin: the harness calls the hook and hands it its arguments. D is the failure mode this whole lesson is about — deciding your memory is right and the system is lying, without opening the page.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/18-capstone/118-what-breaks-in-production.html"><span>Previous</span>118. What Breaks in Production</a>
+    <span></span>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

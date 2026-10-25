@@ -4,79 +4,344 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Skills Inside Subagents — the genuinely confusing case — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="Two fields that sound like the same thing do opposite jobs. Get this wrong and">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Skills Inside Subagents — the genuinely confusing case</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li class="on"><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 47, Author a Subagent + the fork-context subtlety</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 06 · LESSON 48</p>
+      <h1>Skills Inside Subagents — the genuinely confusing case</h1>
+      <p class="lesson-motto">Two fields that sound like the same thing do opposite jobs. Get this wrong and</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lessons 45–47; Phase 05 Lesson 42 (The Invocation Matrix), Lesson 44 (Author a Skill From Scratch)</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Tell <code>skills:</code> on a subagent apart from <code>context: fork</code> on a skill, in one sentence each</li><li>Decide which direction you need before you write either field</li><li>Say what a preloaded skill costs and what it saves</li><li>Explain why a skill with <code>disable-model-invocation: true</code> can't be preloaded</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>An agent needed to write API endpoints matching a team's conventions. Delegating to a subagent produced plausible endpoints that ignored every convention the team had written down — different error shape, different naming, no auth header. The conventions existed. They were in a skill. The subagent never saw them.</p>
+<p>The fix was one line, <code>skills:</code> in the agent's frontmatter, which preloads the full content of named skills before work starts.</p>
+<p>Then somebody tried the same thing the other way round. They set <code>context: fork</code> on the convention skill itself, expecting it to &quot;apply to subagents too.&quot; It ran in a fresh subagent with the skill text as its only prompt, no history, and returned something useless — because the skill said &quot;follow these conventions&quot; and a subagent with no task to perform has nowhere to apply them.</p>
+<p>Two fields. Opposite directions. One of them failed for a reason that looks like it should have worked.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>There are two arrows. They point opposite ways, and they do different things.</p>
+<h3 id="direction-one-knowledge-into-a-subagent">Direction one: knowledge <em>into</em> a subagent</h3>
+<p>The <code>skills</code> field on a subagent preloads the <strong>full content</strong> of named skills into that subagent's context at startup.</p>
+<p>```markdown .claude/agents/api-developer.md</p>
+<hr>
+<p>name: api-developer description: Implement API endpoints following team conventions skills:</p>
+<ul><li>api-conventions</li><li>error-handling-patterns</li></ul>
+<hr>
+<p>Implement API endpoints. Follow the conventions and patterns from the preloaded skills.</p>
+<pre class="code"><code>
+The subagent controls the system prompt. The skill is reference material sitting
+next to it, loaded before work starts.
 
----
+**What it does not do:** restrict anything. A subagent can still invoke *other*
+project, user, and plugin skills through the `Skill` tool during the run. `skills:`
+selects what's preloaded, not what's reachable.
 
-## The Problem
+To actually block skill invocation, remove `Skill` from `tools`, or add it to
+`disallowedTools`. Those are enforcement. `skills:` is not.
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
+Limits and rules:
+- Up to **32 distinct names** are preloaded; the rest are ignored.
+- Skills with `disable-model-invocation: true` **cannot** be preloaded — preloading
+  draws from the set of skills Claude is allowed to invoke.
+- A missing or disabled skill is skipped with a warning in the debug log. Not an
+  error.
+- Built-in agents don't preload skills at all.
 
----
+### Direction two: a skill *into* a subagent
 
-## The Concept
+`context: fork` on a skill runs the skill's content in a fresh subagent.
+</code></pre>
+<hr>
+<p>name: deep-research description: Research a topic thoroughly context: fork agent: Explore</p>
+<hr>
+<p>Research $ARGUMENTS thoroughly:</p>
+<ol><li>Find relevant files using Glob and Grep</li><li>Read and analyze the code</li><li>Summarize findings with specific file references</li></ol>
+<pre class="code"><code>
+The subagent is the **task**. It gets the rendered skill as its prompt, runs
+`agent` (which sets model, tools, permissions), and returns its result.
+</code></pre>
+<p>flowchart TD subgraph A[&quot;skills: on a subagent&quot;] A1[&quot;Subagent's own body&lt;br/&gt;= its system prompt&quot;] --&gt; A3[&quot;Named skills&lt;br/&gt;preloaded alongside&quot;] A2[&quot;Claude's delegation message&lt;br/&gt;= its task&quot;] --&gt; A3 A3 --&gt; A4[&quot;Subagent does the task,&lt;br/&gt;with the knowledge loaded&quot;] end subgraph B[&quot;context: fork on a skill&quot;] B1[&quot;Rendered SKILL.md&lt;br/&gt;= the subagent's PROMPT&quot;] --&gt; B2[&quot;The task IS the skill&quot;] B2 --&gt; B3[&quot;Subagent returns the result&quot;] end</p>
+<pre class="code"><code>
+Same words, inverted roles. In one, the skill is *reference for* a task. In the
+other, the skill *becomes* the task.
 
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
+### The comparison table
 
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
+| | `skills:` on a subagent | `context: fork` on a skill |
+|---|---|---|
+| System prompt | The subagent's markdown body | The agent type named in `agent` |
+| Task | Claude's delegation message | The rendered SKILL.md |
+| Also loads | Named skills + CLAUDE.md, per the subagent's startup | CLAUDE.md, per the agent type's startup |
+| Starts with your history? | No | No |
+
+### The trap in the name
+
+`context: fork` does **not** fork your current conversation. It creates a new
+isolated context. That's the exact opposite of the `fork` from Lesson 47, which
+does inherit everything.
+
+If your task depends on the conversation, `/subtask` (Lesson 47) is what you
+want. `context: fork` on a skill is the wrong tool and will not be fixed by
+turning it on.
+
+### When `context: fork` is pointless
+
+`context: fork` only makes sense for skills with **explicit instructions**.
+
+A skill that says &quot;use these API conventions&quot; is a guideline. In a forked
+subagent it becomes a prompt with no task — the subagent gets the guidelines, has
+nothing to do, and returns without meaningful output.
+
+Guidelines → put them in a subagent's `skills:` field, where a real task is
+waiting next to them.
+
+### Behaviour worth knowing before you use it
+
+- Forked skills normally run in the **background**. You keep working; the result
+  arrives when it finishes. Set `background: false` to wait.
+- A backgrounded fork also runs with the **narrower background-subagent tool
+  set**. If your skill's steps need a tool outside that set, `background: false`.
+  Note the asymmetry with Lesson 47: a `/subtask` **conversation** fork is
+  exempt from that filter and keeps your full tool pool. A `context: fork` skill
+  is an ordinary subagent, so the exemption does not cover it.
+- A backgrounded fork's edits fall **outside session checkpoints**. `/rewind`
+  won't undo them. Use git.
+- Claude Code waits anyway in non-interactive mode (`-p`, the Agent SDK), when
+  another invocation of the same forked skill is running, when a scheduled task
+  invokes it, and for some dynamic-workflow agent invocations.
+- For side-effecting operations, model invocation on a forked skill is normally
+  the safer default — Claude triggering your deploy should require a human to type
+  `/deploy`.
+
+&gt; **The reframe:** `skills:` on a subagent loads knowledge *next to* a task the
+&gt; subagent already has, while `context: fork` on a skill *becomes* the task — and
+&gt; the one that runs in the background quietly gets a smaller tool set and no
+&gt; checkpoint safety net.
+
+Skill frontmatter moves too. Verify against
+[the skills page](https://code.claude.com/docs/en/skills) and
+`https://code.claude.com/docs/llms.txt`.
 
 ---
 
 ## Build It
 
-Numbered steps the reader runs. Each step ends in something observable.
+### 1. Build the failing case on purpose
 
-1. First step.
-2. Second step.
+Create `.claude/skills/api-conventions/SKILL.md`:
+</code></pre>
+<hr>
+<p>name: api-conventions description: Team conventions for API endpoints. Error shape, naming, auth headers.</p>
+<hr>
+<p>Every endpoint returns <code>{&quot;error&quot;: {&quot;code&quot;: &quot;...&quot;, &quot;message&quot;: &quot;...&quot;}}</code> on failure. Never return a bare error string. Authenticated routes require an <code>Authorization</code> header. Handlers are named <code>handle&lt;Resource&gt;&lt;Verb&gt;</code>.</p>
+<pre class="code"><code>
+Now create `.claude/agents/api-developer.md` **without** a `skills` field, same
+body as the example above. Restart. Ask it to write an endpoint.
+
+✅ You pass when the output ignores at least one convention and you can see the
+convention was available in the repo the whole time.
+
+### 2. Add the one line
+
+Add to the agent's frontmatter:
+</code></pre>
+<p>skills:</p>
+<ul><li>api-conventions</li></ul>
+<pre class="code"><code>
+Restart. Ask again.
+
+✅ You pass when the output now follows the error shape and the handler naming,
+and you can name the line responsible.
+
+### 3. Check that it preloads rather than restricts
+
+Remove `Skill` from nothing — the agent has no `tools` field, so it inherits the
+pool including `Skill`. Add a second skill to the repo that this agent was never
+told about, and ask it to use it.
+
+It can. `skills:` is a preload list, not an access list.
+
+✅ You pass when the agent can reach a skill you never named, and you can say
+what would actually block it.
+
+### 4. Try the other direction and watch it fail
+
+Add `context: fork` to the conventions skill itself. Remove `skills:` from the
+agent. Restart. Invoke the skill.
+
+The subagent receives the guidelines and no task.
+
+✅ You pass when it returns something empty or confused, and you can say which
+half of the problem that was.
+
+### 5. Fix it by giving the skill a task
+
+Rewrite the skill body as instructions with a task, and point `agent:` at
+`Explore`:
+</code></pre>
+<hr>
+<p>name: api-conventions description: Audit API handlers in a repo against team conventions context: fork agent: Explore</p>
+<hr>
+<p>Audit the repository's API handlers against these conventions:</p>
+<ul><li>Errors return {&quot;error&quot;: {&quot;code&quot;: ..., &quot;message&quot;: ...}}, never a bare string.</li><li>Authenticated routes carry an Authorization header.</li><li>Handlers are named handle&lt;Resource&gt;&lt;Verb&gt;.</li></ul>
+<p>Report each violation as <code>path:line — convention broken</code>.</p>
+<pre class="code"><code>
+✅ You pass when it produces findings rather than nothing, and you can say what
+changed: the skill went from guideline to instruction.
+
+### 6. Feel the background cost
+
+Set `background: false` on the forked skill. Run something in the main
+conversation while it runs.
+
+Then remove it and do the same.
+
+✅ You pass when you can state what changes about *your* session — you can either
+keep working or you can't — without rereading the docs.
 
 ---
 
 ## Use It
 
-| Command / concept | When you reach for it |
+| Situation | Move |
 |---|---|
-| — | — |
+| A subagent needs standing knowledge it can't discover | `skills:` in the subagent |
+| You want to stop a subagent invoking skills at all | Remove `Skill` from `tools`, or `disallowedTools: Skill` |
+| You want a skill to run isolated, in the background | `context: fork` on the skill |
+| The task depends on your conversation history | `/subtask`, not `context: fork` |
+| A skill is pure guideline with no task | Don't fork it. Preload it into a subagent that has a task. |
+| A forked skill needs a tool the background set drops | `background: false` |
+| A backgrounded fork edited files | Use git. `/rewind` won't reach it. |
+| Something destructive, invoked by a model | `disable-model-invocation: true` |
 
 ---
 
 ## Exercises
 
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
+1. Take a skill from your own repo. Decide whether it is a guideline or an
+   instruction, and put it on the matching side of the arrow.
+   ✅ You pass when the placement follows the task/no-task distinction rather than
+   which one felt more isolated.
 
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
+2. Author a subagent with a `skills:` list, then add a `tools:` field that omits
+   `Skill`. Try to make it invoke an unlisted skill.
+   ✅ You pass when it cannot, and you can say which of the two fields did the
+   blocking.
+
+3. Run the same task three ways: in the main conversation, as a fresh subagent,
+   and as a fork. Note what each one knew at the start.
+   ✅ You pass when you can name what the fork had that the fresh subagent
+   didn't, and what it gave up to get it.
 
 ---
 
@@ -84,14 +349,114 @@ Numbered steps the reader runs. Each step ends in something observable.
 
 | Term | What people say | What it actually means |
 |---|---|---|
-| — | — | — |
+| `skills:` on a subagent | &quot;give this agent skills&quot; | Preloads full skill content into its window at startup. Up to 32 names. Not a restriction. |
+| `context: fork` on a skill | &quot;run this in a fork&quot; | Starts a new isolated subagent whose prompt is the skill. Not a fork of your conversation. |
+| preload vs access | &quot;skills controls what it can use&quot; | It controls what's *loaded*. Access is `tools` / `disallowedTools`. |
+| `disable-model-invocation` | &quot;manual-only skill&quot; | Also makes the skill **unpreloadable** — preloading draws from the invocable set. |
+| guideline vs instruction | &quot;a skill&quot; | Guidelines have no task and fork to nothing. Instructions fork usefully. |
+| backgrounded fork | &quot;running in parallel&quot; | Narrower tool set, outside session checkpoints. `/rewind` doesn't reach its edits. |
+| `agent:` on a forked skill | &quot;which agent it uses&quot; | Picks the subagent type — which decides model, tools, permissions. Defaults to `general-purpose`. |
 
 ---
 
 ## What this lesson skipped
 
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+**Auto-compaction inside a subagent.** `autoCompactWindow` exists, and the window
+fills exactly as it does in the main conversation — Phase 04 Lesson 30 owns that.
+
+**Prompt caching.** A subagent's first request is cold unless it shares a
+parent's — a fork's does. This changes what a fork actually costs, and Phase 03
+Lesson 22 is where caching makes sense as a budget.
+
+**Agent teams and cross-session messaging.** Subagents that can message each
+other, and roster injection at startup. Phase 11.
+
+**How skills get packaged and shared.** A skill in a plugin is still a skill, but
+scoped names and the discovery path change. Phase 09.</code></pre>
+      </div>
+
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">5 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">Your API subagent ignores a team conventions skill. You want that skill's content present before it starts writing code. Which change does it?</p>
+        <ol class="options" type="A">
+          <li>Add skills: [api-conventions] to the subagent's frontmatter</li>
+          <li>Add context: fork to the conventions skill's frontmatter</li>
+          <li>Move the conventions into CLAUDE.md</li>
+          <li>Add the skill name to the delegation message each time you ask</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Add skills: [api-conventions] to the subagent's frontmatter</p>
+          <p class="why">The <code>skills</code> field preloads full skill content into the subagent's context at startup, so the knowledge is there before work begins. Option B forks the skill into a fresh subagent where those guidelines become a prompt with no task — the classic empty result. Option C puts it in the subagent's window but nowhere near the endpoint code being written. Option D works but re-pays every run and depends on you remembering.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A subagent lists skills: [deploy-conventions] in its frontmatter. You want it to be unable to invoke any skill at all, including ones you didn't list. What actually enforces that?</p>
+        <ol class="options" type="A">
+          <li>skills: — listing one skill already makes it the only reachable one</li>
+          <li>Remove Skill from the subagent's tools, or add it to disallowedTools</li>
+          <li>set disable-model-invocation: true on every other skill in the repo</li>
+          <li>Nothing — subagents can't invoke skills, only preload them</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Remove Skill from the subagent's tools, or add it to disallowedTools</p>
+          <p class="why"><code>skills</code> selects what's preloaded, not what's reachable — a subagent can still invoke project, user, and plugin skills through the Skill tool during the run. Removing Skill from the allowlist or denying it is the enforcement layer. Option C is both global and backwards: it would break your own invocations, and it's the wrong tool for scoping one agent. Option D is false — subagents can invoke skills.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A skill whose body is only &quot;use these API conventions&quot; is set to context: fork. Running it returns something vague or empty. Why?</p>
+        <ol class="options" type="A">
+          <li>The skills field was missing so the content never loaded</li>
+          <li>forked skills need a model field or they default to refusing work</li>
+          <li>context: fork makes the skill the subagent's prompt, and a guideline with no task gives it nothing to do</li>
+          <li>Explore and Plan can't run skills and the default agent was Plan</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> context: fork makes the skill the subagent's prompt, and a guideline with no task gives it nothing to do</p>
+          <p class="why">context: fork turns the rendered SKILL.md into the subagent's prompt, so a skill needs explicit instructions with a task — a bare guideline leaves the subagent with principles and no work, and it returns without meaningful output. Option A confuses the two directions; the <code>skills</code> field belongs on the subagent, not the skill. Option D misreads which agent type applies — the default is general-purpose, and none of the listed agents are the cause.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A forked skill edits three files in the background. You run /rewind expecting the edits to be undone and they aren't. Why?</p>
+        <ol class="options" type="A">
+          <li>/rewind only handles the main conversation, which is exactly this case</li>
+          <li>The skill's context: fork field wasn't committed to version control</li>
+          <li>A backgrounded fork runs outside the session's checkpoints, so /rewind never reaches its edits</li>
+          <li>Edits from any subagent are permanent by design</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> A backgrounded fork runs outside the session's checkpoints, so /rewind never reaches its edits</p>
+          <p class="why">Backgrounded forks specifically fall outside session checkpoints — that's why the guidance is to revert them with git rather than /rewind. Option A inverts it: /rewind handles the main conversation, and this edit isn't in it. Option C's scope is wrong too — foreground subagent edits do fall under checkpoints; it's the background-fork case that's outside them.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You want a subagent that has your whole conversation, plus the option to edit files. Which combination is right?</p>
+        <ol class="options" type="A">
+          <li>A skill with context: fork and an agent field pointing at general-purpose</li>
+          <li>A fork — /subtask — with isolation: worktree if the edits must not touch your checkout</li>
+          <li>A custom subagent with skills: preloaded, since preloading carries conversation history</li>
+          <li>A fresh subagent with omitClaudeMd: false, which inherits the parent conversation</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A fork — /subtask — with isolation: worktree if the edits must not touch your checkout</p>
+          <p class="why">Only a fork inherits the full parent conversation; /subtask starts one, and isolation: worktree redirects its file edits into a separate worktree so your checkout stays clean. Option A gets the name backwards — context: fork creates a fresh isolated context and does not carry your history. Option B is wrong because preloading skills injects reference text, not conversation. Option D is also wrong: omitting CLAUDE.md controls instruction files, not history.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/06-subagents/47-author-a-subagent.html"><span>Previous</span>47. Author a Subagent — and the Fork-Context Subtlety</a>
+    <a class="next" href="../../phases/07-mcp/49-what-mcp-is.html"><span>Next</span>49. What MCP Is</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

@@ -1,6 +1,7 @@
-# Lesson 32 — What Loads Into the Window, and What Doesn't
+# What Loads Into the Window, and What Doesn't
 
-Before the tool writes a single word, it reads a block of text. That block is its world.
+> Before the tool writes a single word, it reads a block of text. That block is
+> its world.
 
 **Type:** Learn
 **Prerequisites:** Lesson 31 (The Agentic Loop)

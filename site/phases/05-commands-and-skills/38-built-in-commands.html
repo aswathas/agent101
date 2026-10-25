@@ -3,95 +3,247 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Built-in Commands *(renamed from "slash commands")* — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<title>Built-in Commands — Harnessing Claude Code</title>
+<meta name="description" content="You can read the `/` menu, tell which entries run fixed code and which hand">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Built-in Commands *(renamed from "slash commands")*</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li class="on"><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 37, Troubleshooting — Reading Errors Properly</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 05 · LESSON 38</p>
+      <h1>Built-in Commands</h1>
+      <p class="lesson-motto">You can read the `/` menu, tell which entries run fixed code and which hand</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 04, Lesson 37, Troubleshooting — Reading Errors Properly</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Open the <code>/</code> menu and find the command you wanted without asking</li><li>Sort any menu entry into &quot;fixed logic&quot; or &quot;prompt-based&quot; and act differently on each</li><li>Reach for <code>/help</code>, <code>/status</code>, <code>/skills</code>, and <code>/context</code> at the right moments</li><li>Confirm a command exists on your install instead of assuming it does</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You type <code>/review</code>. Nothing. You try <code>/code-review</code>, <code>/review-changes</code>, <code>/review-changes main</code>, <code>/pr-review</code>. Three of those don't exist. Then you give up and paste the review instructions you wanted anyway — a paragraph of prompt text you now retype every single review, which is exactly the job a command is for.</p>
+<p>Nothing warned you. The <code>/</code> menu was right there, autocompleting on every character, and you never opened it.</p>
+<p>The cost isn't the four typos. It's the paragraph. <strong>You have retyped the same instructions more times than you've run them by hand.</strong> The tool already ships two dozen saved entry points; most people discover three.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Type <code>/</code> at the start of a message and Claude Code shows you the menu. Everything on it is invoked the same way — a slash and a name — but <strong>two different mechanisms sit behind that one surface</strong>.</p>
+<figure class="diagram"><pre>flowchart TD
+    A[&quot;Type /&quot;] --&gt; M[&quot;The slash menu&quot;]
+    M --&gt; B1
+    M --&gt; B2
+    subgraph FIXED[&quot;Fixed logic — the harness runs code&quot;]
+        B1[&quot;/compact, /clear, /rewind, /cost, /login, /status, /permissions&quot;]
+    end
+    subgraph PROMPT[&quot;Prompt-based — the model reads instructions and acts&quot;]
+        B2[&quot;/code-review, /doctor, /debug, /run, /verify, /loop&quot;]
+    end
+    FIXED --&gt; O1[&quot;Deterministic. You cannot edit it.&quot;]
+    PROMPT --&gt; O2[&quot;It orchestrates. Its behaviour depends on the work.&quot;]
+    style O1 fill:#1f6f4a,color:#fff</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>The docs put it plainly: most built-in commands execute fixed logic directly, while bundled skills are prompt-based — they hand Claude detailed instructions and let it do the work with its tools.</p>
+<p>So <code>/compact</code> always does the same thing. <code>/code-review</code> is Claude reading a checklist, and a bad review is its fault, not a bug in your install.</p>
+<h3 id="reading-the-menu">Reading the menu</h3>
+<div class="table-wrap"><table><thead><tr><th>You want</th><th>Do this</th></tr></thead><tbody><tr><td>Find a name that exists</td><td>Type <code>/</code> and read the list — autocompletion is the search</td></tr><tr><td>Know what an entry is</td><td>Hover/select it; the hint line tells you if it takes arguments</td></tr><tr><td>Know for sure</td><td>Run <code>/help</code></td></tr></tbody></table></div>
+<p><code>/help</code> is the honest answer to &quot;does this exist&quot;. Every guess you make instead of opening the menu is a guess the menu already answered.</p>
+<h3 id="the-handful-worth-knowing-cold">The handful worth knowing cold</h3>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>Job</th></tr></thead><tbody><tr><td><code>/help</code></td><td>The full list, on your install</td></tr><tr><td><code>/context</code></td><td>Where the window's tokens went</td></tr><tr><td><code>/cost</code></td><td>What this session has spent (alias of <code>/usage</code>)</td></tr><tr><td><code>/status</code></td><td>What session is loaded, what model, what directory</td></tr><tr><td><code>/permissions</code></td><td>What the agent may do without asking</td></tr><tr><td><code>/skills</code></td><td>Which skills are installed — Lesson 40 territory</td></tr><tr><td><code>/doctor</code></td><td>Health check, and it estimates skill-listing cost</td></tr><tr><td><code>/rewind</code></td><td>Undo a turn or restore a file</td></tr></tbody></table></div>
+<p>Learn those eight. The rest you look up.</p>
+<h3 id="fixed-vs-prompt-based-changes-how-you-debug">Fixed vs prompt-based changes how you debug</h3>
+<div class="table-wrap"><table><thead><tr><th></th><th>Fixed logic</th><th>Prompt-based</th></tr></thead><tbody><tr><td>Deterministic?</td><td>Yes</td><td>No</td></tr><tr><td>Can you change it?</td><td>No — you can only avoid it or script around it</td><td>Yes — that's the next lesson</td></tr><tr><td>When it goes wrong</td><td>Check the harness</td><td>Re-read the instructions you're feeding it</td></tr><tr><td>Tool to inspect</td><td><code>/help</code>, <code>--debug</code></td><td>The skill's own file</td></tr></tbody></table></div>
+<blockquote><p><strong>The reframe:</strong> the slash menu is one list but two mechanisms — knowing</p><p>whether an entry runs fixed code or hands the model a prompt tells you</p><p>whether &quot;it went wrong&quot; is a bug or a bad conversation.</p></blockquote>
+<p>Verified against the <a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener">commands reference</a> and the <a href="https://code.claude.com/docs/en/skills" target="_blank" rel="noopener">skills page</a> on 2026-10-15. Both lists move as Claude Code ships. Run <code>/help</code> for yours.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-open-the-menu-and-count">1. Open the menu and count</h3>
+<p>In any session, type <code>/</code> on an empty line.</p>
+<p>✅ You pass when you can name at least eight entries and say which two you had never used before this lesson.</p>
+<h3 id="2-sort-five-entries-by-mechanism">2. Sort five entries by mechanism</h3>
+<p>Take five entries you recognise. For each, write down: fixed logic or prompt-based? Check <code>/help</code> or the docs page for any you're unsure of.</p>
+<p>✅ You pass when all five are sorted and you can name the page you checked against.</p>
+<h3 id="3-find-the-honest-names">3. Find the honest names</h3>
+<p>You want to review a diff. Before typing anything, open the menu and find the entry that does it. Write down its exact name and any alias.</p>
+<p>✅ You pass when you have the exact name plus its alias, or confirmation that the name you assumed doesn't exist.</p>
+<h3 id="4-baseline-the-window">4. Baseline the window</h3>
+<p>Run <code>/context</code> now, before adding any custom skills to this project. Save the grid.</p>
+<p>✅ You pass when you have a saved &quot;before&quot; grid with the Skills row noted, including if the row is absent.</p>
+<h3 id="5-ask-what-the-menu-actually-costs">5. Ask what the menu actually costs</h3>
+<p>Run <code>/doctor</code> and look for the skill-listing estimate.</p>
+<p>✅ You pass when you can say in one sentence what the listing is charging you today, even if the answer is &quot;nothing, because no skills are installed&quot;.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>/</code> (bare)</td><td>Any time you half-remember a command name</td></tr><tr><td><code>/help</code></td><td>&quot;Does this exist?&quot; — before you retype the prompt by hand</td></tr><tr><td><code>/context</code></td><td>Window filling; also baseline before adding skills</td></tr><tr><td><code>/cost</code></td><td>End of a long session, before starting another</td></tr><tr><td><code>/status</code></td><td>Session feels wrong; confirm which conversation is loaded</td></tr><tr><td><code>/permissions</code></td><td>Before a run that touches a lot of files</td></tr><tr><td><code>/skills</code></td><td>After installing anything in Lesson 43</td></tr><tr><td><code>/doctor</code></td><td>Listing costs too much, or something refuses to load</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Build yourself a cheat sheet of the eight commands above, with one line each saying what it answers. Keep it where you'll see it. ✅ You pass when you can blank out the &quot;when&quot; column and re-derive it from memory within a minute.</li></ol>
+<ol><li class="criterion">Invent three plausible command names for tasks you'd want one-liners for. Open the menu and mark each one real or fictional. ✅ You pass when you have three verdicts and at least one you were wrong about — a wrong guess is the evidence the exercise was worth doing.</li></ol>
+<ol><li class="criterion">Run <code>/help</code> and write down the count of commands listed on your install. Run it again next week and compare. ✅ You pass when you have two numbers with dates and a one-line note on what changed.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>slash command</td><td>&quot;a shortcut&quot;</td><td>Any entry invoked by typing <code>/name</code>. One surface, two mechanisms.</td></tr><tr><td>built-in command</td><td>&quot;a command&quot;</td><td>Fixed logic the harness runs. Same input, same result.</td></tr><tr><td>bundled skill</td><td>&quot;a command&quot;</td><td>Prompt-based: instructions the model follows using its tools.</td></tr><tr><td>invocation</td><td>&quot;running the command&quot;</td><td>Putting the slash-name at the start of a message. Mid-sentence is not invocation.</td></tr><tr><td>alias</td><td>&quot;the other name&quot;</td><td>A second name for one entry, e.g. <code>/review</code> for <code>/code-review</code>.</td></tr><tr><td>&quot;it doesn't exist&quot;</td><td>&quot;it's broken&quot;</td><td>Usually it was never a name. Open the menu and read.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Custom commands and skills.</strong> The whole point of <code>/</code> beyond reading it is that you can add your own entries. That is Lessons 39–44.</p>
+<p><strong>Arguments.</strong> <code>/deploy staging</code>, <code>/code-review 42</code> — most entries take arguments and the hint line shows them. Covered where it matters, in Lesson 41's <code>arguments</code> field.</p>
+<p><strong>Hook-driven commands and scheduled tasks.</strong> Both can invoke things on a schedule or an event. Phase 08 and Phase 12, in that order.</p>
+<p><strong>Aliases beyond the ones listed.</strong> Alias behaviour is documented per-entry and drifts. Check <code>/help</code>.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A command you ran in every repo for a year has suddenly started producing a different, worse result on a task it used to nail. Which distinction tells you where to look?</p>
+        <ol class="options" type="A">
+          <li>It is a prompt-based entry, so the variation comes from the model reading the instructions in a different context — re-read and sharpen them</li>
+          <li>It is a fixed built-in, so the output should be identical every time — check the harness version and the --debug log</li>
+          <li>It is fixed logic either way, so the cause is your conversation history being too long</li>
+          <li>It depends on nothing — commands that behave differently across projects are always a bug in the skill listing budget</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> It is a fixed built-in, so the output should be identical every time — check the harness version and the --debug log</p>
+          <p class="why">Fixed built-in commands run the same harness code on the same input, so variation across repos means something environmental changed — a version, a setting, or a permission boundary — and --debug is where that shows up. Option A swaps the categories: it is exactly the prompt-based failure mode, and those entries vary because the model varies. Option C assumes history leaks into a deterministic code path, which it cannot. Option D invents a mechanism — the listing budget decides whether a skill is described to the model, not whether a command's output varies.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You want a one-liner that opens a pull request, and you are fairly sure the name is /pr. What is the right first move?</p>
+        <ol class="options" type="A">
+          <li>Type /pr and read the error, which lists the closest valid names</li>
+          <li>Type /pr and if it fails try /pull-request, /open-pr, /pr-open until one works</li>
+          <li>Open the slash menu and check whether any entry does it, then run /help to confirm the exact name and alias</li>
+          <li>Skip the built-in one and write your own — the built-ins never cover a workflow as small as this</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> Open the slash menu and check whether any entry does it, then run /help to confirm the exact name and alias</p>
+          <p class="why">The menu autocompletes on every character, so it answers 'does this exist' in one keystroke, and /help confirms the exact name and its alias. Option A bets on an error message listing near-misses; that is not something the CLI guarantees. Option B is the guessing loop from the lesson's opening problem — four wrong guesses and a paragraph retyped by hand. Option C's error is the last one: reaching for a custom command before checking what ships is how the retyped paragraph happened in the first place.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Before adding your own skills to this project, what is the most useful thing to run and why?</p>
+        <ol class="options" type="A">
+          <li>/clear, so the baseline is measured on an empty window</li>
+          <li>/doctor, to confirm no skill is currently installed and charging you for its listing</li>
+          <li>/context, so you have a before-grid you can compare against once the listing has a cost</li>
+          <li>/compact, to keep the grid small enough to compare later</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> /context, so you have a before-grid you can compare against once the listing has a cost</p>
+          <p class="why">A baseline needs to be comparable to a later reading, and /context is what gives you that reading — the Skills row is where a listing's cost shows up once you have skills. Option A is backwards: clearing mid-session destroys the very history you'd want to compare against, and costs you the work. Option B is close but off-target — /doctor estimates listing cost, which is useful once things exist, and it is not a stored before/after measurement. Option D is destructive for a reason unrelated to measurement.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span>Previous</span>37. Troubleshooting — Reading Errors Properly</a>
+    <a class="next" href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span>Next</span>39. Why Custom Commands Merged Into Skills</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

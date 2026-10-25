@@ -1,27 +1,56 @@
 {
   "lesson": "03-models-and-families/26-the-taxonomy",
-  "title": "The Taxonomy: LLM / Jev / Jeff / LFM",
+  "title": "The Taxonomy: LLM / Decision Model / SLM",
   "version": 1,
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about The Taxonomy: LLM / Jev / Jeff / LFM that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "A team benchmarks a small model against a frontier model on 'review this architecture and suggest improvements', sees the small model lose, and concludes small models are not ready. What went wrong?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Nothing; the small model really was worse",
+        "They tested an open-ended generation task, which is a decision-optimised small model's weakest axis, not the task they actually ran",
+        "They used the wrong temperature setting",
+        "The frontier model cheated"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "The benchmark measured output shape, not capability, and the task they ran in production was a fixed-label classification. 'Nothing went wrong' is tempting because the result is real — the small model did lose — but it lost a comparison nobody needed."
+    },
+    {
+      "id": 2,
+      "prompt": "Which two questions place a model on the taxonomy map?",
+      "options": [
+        "How many parameters it has, and how old it is",
+        "What shape its output is, and where it runs",
+        "How much it costs, and who made it",
+        "How fast it is, and how big its context window is"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "Output shape (decision or generation) and serving (open-weight or frontier) are the two independent axes; size like 'LLM' or 'SLM' is a description that crosses both. Parameter count is the tempting wrong answer, because it feels like the obvious measure, but it is the axis that caused the mistake in the problem."
+    },
+    {
+      "id": 3,
+      "prompt": "A call has a fixed label set and must run on a machine with no network access. Which placement fits?",
+      "options": [
+        "Frontier generation model",
+        "An open-weight small or decision model, run locally",
+        "A frontier model constrained to a label",
+        "It cannot be done"
+      ],
+      "answer": 1,
+      "explanation": "Decision output plus a local-only constraint lands in the open-weight decision quadrant. 'A frontier model constrained to a label' is the tempting answer because it matches the shape, but it fails the serving constraint — the input would have to leave the machine."
+    },
+    {
+      "id": 4,
+      "prompt": "When does a frontier model genuinely earn its higher price?",
+      "options": [
+        "Always; capability is worth it",
+        "When the task is open-ended, or a wrong answer is expensive and invisible, or volume is too low for per-call cost to matter",
+        "Only when the output is a single label",
+        "Never, once you have a good small model"
+      ],
+      "answer": 1,
+      "explanation": "The frontier pays off where breadth is actually used or where its capability is a safety margin. 'Always' is the tempting default, but the lesson's point is that the waste is using the frontier on narrow decisions — that is what the practice module asks you to find. 'Never' is the equal-but-opposite error."
     }
   ]
 }

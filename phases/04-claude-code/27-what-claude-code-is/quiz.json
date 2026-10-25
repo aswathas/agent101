@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about What Claude Code Is that needs a new situation, not recall.",
+      "prompt": "You need to know where a config value is defined in a repo on your laptop, and every place it is used. You have a chat box and Claude Code. Which move fits the shape of the task?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Paste the config file into the chat box and ask where the value is used",
+        "Give Claude Code the goal \"find where MAX_RETRIES is defined and list every place it is used\" and let it search",
+        "Tell the chat box to open the repo at C:/work/app and read it",
+        "Type the config file's path into Claude Code and press enter, then read the reply"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Usage lives across files the tool has to find, so you hand over the destination and it picks the steps. Option A is tempting because pasting feels direct, but a chat box only sees what you pasted, so everything you left out is invisible. Option C names a path to something that cannot reach your disk at all. Option D treats Claude Code like a file viewer: you give it goals, not paths-as-questions.",
+      "concept": "goal-not-question"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A colleague watches you run Claude Code and says, \"so it is the same chatbot, just in a terminal.\" Which correction is accurate?",
+      "options": [
+        "It is a bigger model than the chat box, so it answers better",
+        "Same model, different body: the terminal version can read, edit, run, and search your project; the chat box only sees what you paste",
+        "Both are completion-shaped, so it is really the same interaction",
+        "It is mainly an IDE plugin that can see your open editor tabs"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Same brain, different body — and the body is what lets it act on your files. Option A is the tempting one: the difference is not a smarter model, it is scope and side effects. Option C is wrong because Claude Code is goal-shaped, not completion-shaped. Option D misreads the product: it is a terminal program, not primarily an editor plugin.",
+      "concept": "same-model-different-body"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Your laptop is offline and the project in front of you holds credentials you are not allowed to send anywhere. You need the definition of a standard library function. What is correct?",
+      "options": [
+        "Claude Code, because it runs locally in your terminal",
+        "A chat box, because you can paste in just the one function call",
+        "Neither online tool; use local docs, because Claude Code needs network access and works in your project",
+        "Claude Code, but only with plan mode switched on"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "Claude Code sends the turn to a model over the network and operates inside your project, so an offline machine with secrets in scope is the wrong place for it. Option A is the tempting confusion: \"runs in your terminal\" is not the same as \"runs offline.\" Option B fails the same network test and risks leaking whatever you paste. Option D invents a capability — plan mode restricts acting, it does not remove the need for a network.",
+      "concept": "affordances-and-limits"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Your team cannot install Claude Code, so it uses OpenCode pointed at DeepSeek. A later lesson says \"Claude Code\" throughout. How should you read it?",
+      "options": [
+        "Ignore it — it is about a specific product your team does not use",
+        "Read \"Claude Code\" as \"the terminal coding agent you have installed\"; the shape is the same and the brand is incidental",
+        "It applies only once your team switches to Anthropic models",
+        "It applies, but only the parts that mention the terminal"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The phase teaches a shape — terminal tool, goal in, route out, you approve — and treats the brand as incidental. Option A is the tempting literal reading and would throw the whole course away. Option C inverts the lesson: the model is the swappable part. Option D draws a false line; the shape, not just the terminal, is what carries over.",
+      "concept": "shape-over-brand"
     }
   ]
 }

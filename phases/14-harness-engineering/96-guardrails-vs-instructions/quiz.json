@@ -1,27 +1,56 @@
 {
   "lesson": "14-harness-engineering/96-guardrails-vs-instructions",
-  "title": "Guardrails vs Instructions — requests vs enforcement",
+  "title": "Guardrails vs Instructions — Requests vs Enforcement",
   "version": 1,
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Guardrails vs Instructions — requests vs enforcement that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "CLAUDE.md says 'never edit files under /vendor.' An agent edits them anyway. What do you add?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "A stronger sentence in CLAUDE.md",
+        "A PreToolUse hook or permission deny rule for that path",
+        "A bigger model",
+        "More context about why /vendor is off-limits"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "The instruction already failed, so adding more instruction is the same layer failing again. A mechanism outside the model stops the edit regardless of what the model decides. 'A stronger sentence' is tempting because it feels more forceful, but emphasis does not change the fact that it is still a request."
+    },
+    {
+      "id": 2,
+      "prompt": "Which of these is a guardrail rather than an instruction?",
+      "options": [
+        "A line in AGENTS.md that says 'one agent, one branch'",
+        "A system prompt stating 'do not force-push'",
+        "A PreToolUse hook that blocks `git push --force`",
+        "A reminder in the task description"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 2,
+      "explanation": "Only the hook runs outside the model and can veto the action. The other three are text the model weighs and may override. The tempting answer is the system prompt, because it sounds authoritative — authority in the window is still just a request."
+    },
+    {
+      "id": 3,
+      "prompt": "You already have a hook that blocks force-push. Why keep the instruction too?",
+      "options": [
+        "Because the hook is unreliable",
+        "Because the instruction keeps the model from proposing the action at all, which is cheaper and clearer — the hook is still the guarantee",
+        "Because the hook will not fire without it",
+        "You should not; the hook replaces the instruction"
+      ],
+      "answer": 1,
+      "explanation": "Instructions and guardrails do different jobs: the instruction steers, the guardrail enforces. Keeping both avoids needless blocked calls while preserving the guarantee. 'The hook will not fire without it' is tempting but false — a hook fires on the event, not on the prose."
+    },
+    {
+      "id": 4,
+      "prompt": "A hook is meant to block a dangerous command but the command runs anyway. Which detail should you check first?",
+      "options": [
+        "Whether the model is large enough",
+        "Whether the hook exits with the code that blocks, rather than the code that only reports an error",
+        "Whether the prompt is clear",
+        "Whether the context window is full"
+      ],
+      "answer": 1,
+      "explanation": "From Lesson 58, only one exit code blocks the call; the other reports an error without stopping it — the classic exit-1-vs-2 trap. The tempting answer reaches for model size, but a hook that returns the wrong code is a wall with no door."
     }
   ]
 }

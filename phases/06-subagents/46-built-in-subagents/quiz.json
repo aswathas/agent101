@@ -1,27 +1,68 @@
 {
   "lesson": "06-subagents/46-built-in-subagents",
-  "title": "Built-ins — Explore, Plan, general-purpose",
+  "title": "Built-in Subagents — Explore, Plan, general-purpose",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Built-ins — Explore, Plan, general-purpose that needs a new situation, not recall.",
+      "prompt": "You delegate to Explore and it returns paths only. You wanted it to also fix the two files it found. What actually blocked it?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Its prompt says \"never edit\", and it over-applied the instruction",
+        "Write and Edit are not in its tool pool, so there was no way to comply",
+        "It stopped early because CLAUDE.md told it not to modify anything",
+        "Read-only agents report findings by design and a follow-up run is needed"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Denied here means absent from the tool pool, not discouraged in prose — the capability isn't there, so no amount of re-prompting makes it possible. Option A invents a prompt the built-ins don't carry. Option C gets the mechanism backwards: Explore doesn't load CLAUDE.md at all, so no rule there could have stopped it. Option D is a workaround, not an explanation of the block.",
+      "concept": "read-only-is-absence"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "Your CLAUDE.md says \"never modify anything under vendor/\". You delegate to Explore to map the vendor directory's contents and it walks straight through it. Why?",
+      "options": [
+        "Explore overrides CLAUDE.md by design for discovery work",
+        "The rule was too deep in the file for Explore to find",
+        "Explore starts without CLAUDE.md, so the rule was never in its window",
+        "CLAUDE.md applies only to the main conversation and only for writes"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "Explore and Plan deliberately start with no CLAUDE.md and no git status, so your rules are simply absent from their startup context — the fix is to restate the rule in the delegation message. Option A describes the same gap as if it were an override policy, which misleads you into thinking a setting exists. Option B is wrong because the whole file is skipped, not part of it. Option D is backwards: the rule governs the main conversation too.",
+      "concept": "no-claude-md-for-explore-and-plan"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You want to explore a risky refactor, try two approaches in parallel from where you are now, and keep both attempts out of your main window. Which is the best fit?",
+      "options": [
+        "general-purpose, twice, once per approach",
+        "Explore, twice, once per approach",
+        "Two forks of the current conversation",
+        "A skill with context: fork, invoked twice"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "Forks inherit the entire parent conversation, which is exactly the requirement here — you want each attempt to start from everything already established instead of re-explaining it, and each fork's tool calls still stay out of your window. general-purpose and Explore both start fresh, so you'd pay to rebuild the context twice. Option D is the inverse: a forked skill gets the skill content as its prompt and still can't see your conversation.",
+      "concept": "fork-vs-fresh-subagent"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You need to find out what a stack trace in the conversation two turns ago actually meant. Which is the right tool?",
+      "options": [
+        "Explore, asking it to read the terminal output",
+        "general-purpose, passing the trace text in the prompt",
+        "/btw, which sees your full context and has no tool access",
+        "A custom subagent with Read and Bash"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "/btw exists for exactly this shape: the answer is about what's already in your conversation, so it can see the context without you re-transcribing it, and its answer isn't added to your history. Any subagent starts without your conversation, so options A, B, and D all require you to paste the trace back in — which is the thing you were trying to avoid.",
+      "concept": "btw-vs-subagent"
     }
   ]
 }

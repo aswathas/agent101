@@ -4,27 +4,41 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Developer / API — Harnessing Claude Code</title>
+<link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
-    <a class="logo" href="/">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="catalog.html">Catalog</a>
-      <a href="prereqs.html">Roadmap</a>
-      <a href="glossary.html">Glossary</a>
-      <a href="about.html">About</a>
-      <a href="llms.txt">llms.txt</a>
-    </nav>
+    <a class="logo" href="index.html">■ HARNESSING CLAUDE CODE</a>
+    <nav><a href="catalog.html">Catalog</a><a href="glossary.html">Glossary</a><a href="developer.html">API</a><a href="llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<main class="container">
+<main id="main" class="container">
   <article class="lesson-article">
     <p class="lesson-meta-tag">DEVELOPER / API</p>
     <h1>Read-only access for AI agents</h1>
     <p class="lesson-motto">The course is a resource. The site is its access surface. No auth, no accounts, no write endpoints — just three ways for an agent to read it.</p>
+
+    <aside class="callout">
+      <p><strong>On the public host, only the static files exist.</strong> GitHub Pages serves
+      files and runs no code, so the REST API and the <code>Accept: text/markdown</code>
+      negotiation below are served by <code>scripts/serve-site.mjs</code> when you run the
+      site locally — not here. <code>openapi.json</code> and <code>server.json</code> describe
+      the contract; they are not live endpoints on this domain.</p>
+      <p>What <em>does</em> work here: every lesson URL, <a href="llms.txt">llms.txt</a>,
+      <a href="sitemap.xml">sitemap.xml</a>, <a href="catalog.html">the catalog</a>, and
+      <a href="glossary.html">the glossary</a>. The lesson markdown also lives in the repo at
+      <code>phases/NN-phase/NN-slug/docs/en.md</code>, which an agent can read with no API at all.</p>
+    </aside>
 
     <h2>1. llms.txt</h2>
     <p>The fastest way in. A plain-text index of every lesson, one URL per line. Point an agent at <a href="llms.txt">/llms.txt</a> and it can decide what to read.</p>
@@ -50,7 +64,7 @@ GET /api/v1/markdown?path=/catalog</code></pre>
 
     <h2>Content negotiation</h2>
     <p>Every page on this site has a markdown twin. Add <code>Accept: text/markdown</code> and the server returns markdown. Example:</p>
-    <pre><code>curl -H "Accept: text/markdown" https://harnessing.example/about
+    <pre><code>curl -H "Accept: text/markdown" http://127.0.0.1:4180/about
 # returns the about page as markdown</code></pre>
 
     <h2>Limits</h2>
@@ -68,6 +82,11 @@ GET /api/v1/markdown?path=/catalog</code></pre>
     <p>Every lesson is also a markdown file on disk at the canonical path:</p>
     <pre><code>phases/NN-phase-slug/NN-lesson-slug/docs/en.md</code></pre>
     <p>You can read lessons directly from the source repo, with no API in the way. The API exists for the cases where you want filtering, search, or a single source of truth.</p>
+
+    <h2>Running this locally</h2>
+    <p>The site is static and dependency-free. <code>node scripts/serve-site.mjs</code> serves it on <code>127.0.0.1:4180</code> and implements every endpoint on this page, so the API above is real rather than aspirational:</p>
+    <pre><code>node scripts/serve-site.mjs --port 4180</code></pre>
+    <p>Opening <code>site/index.html</code> from disk is not the same thing — the lesson pages use relative links, and <code>Accept: text/markdown</code> needs a server to read it.</p>
   </article>
 </main>
 </body>

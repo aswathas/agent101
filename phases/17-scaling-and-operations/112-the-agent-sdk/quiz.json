@@ -2,26 +2,49 @@
   "lesson": "17-scaling-and-operations/112-the-agent-sdk",
   "title": "The Claude Agent SDK",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about The Claude Agent SDK that needs a new situation, not recall.",
+      "prompt": "You are building a feature inside a TypeScript app. It must return a validated object, and your code — not a person — must approve or deny each file write. Which tool fits?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "`claude -p --output-format json`, because JSON output is validated",
+        "The Agent SDK, because it gives you structured output and a tool-approval callback in-process",
+        "The Client SDK, because it gives you the tools and the loop",
+        "A scheduled task, because approvals can be answered later"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The Agent SDK is Claude Code's loop as a library: it supports schema-validated structured output and a `canUseTool` callback, so the approval decision lives in your program — exactly the two requirements. A is tempting because `json` sounds validated, but `--output-format json` wraps free-form text in an envelope; without `--json-schema` the payload is still prose, and there is no in-process approval callback at all. C describes the Client SDK, which talks to the Claude API directly: you get no built-in tools and no loop — you would write both. D answers approval with a delay, which is not a control your app can rely on."
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A parser that reads an agent's text output broke silently when the wording changed. What is the structural fix, rather than a patch to the pattern?",
+      "options": [
+        "Pin the model so the wording can't change",
+        "Ask for a schema-validated structured result and read that field",
+        "Add a fallback regex for the new phrasing and keep the old one",
+        "Log the raw output so you can notice breakage sooner"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Structured output replaces an implicit contract (the wording) with an explicit one (a schema): the response carries a validated field, so your code reads data instead of guessing at prose. A is tempting because pinning feels like control, but model aliases move and the phrasing depends on inputs too, so pinning narrows the surface without removing it. C is the patch the question rules out: more regexes cover more phrasings, and the next wording still wins. D improves observability, which is good, but it only tells you the parser broke sooner — it doesn't stop it breaking."
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You are turning an SDK agent into a service several teams call. What must you now provide that the interactive terminal used to handle?",
+      "options": [
+        "A larger context window, so long sessions fit",
+        "Process supervision and isolation, session persistence, and app-level authentication",
+        "A second model to review the first one's answers",
+        "Nothing extra — the SDK is a drop-in replacement for the terminal"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The SDK launches the Claude Code binary as a subprocess. In a terminal, a person supervises the process, the session store keeps the transcript, and you log in once. As a service, all three move into your architecture: who restarts the subprocess, where transcripts persist for resume, how callers authenticate, and how tenants stay isolated. A confuses a model budget with a deployment concern. C is optional and orthogonal. D is the misconception this lesson exists to kill: you gain a typed control surface and lose a set of jobs the terminal was quietly doing."
     }
   ]
 }

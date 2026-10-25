@@ -3,95 +3,284 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Four Transports — http / sse *(deprecated)* / stdio / ws — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<title>Four Transports — Harnessing Claude Code</title>
+<meta name="description" content="You can pick the right wire for a server — and tell the difference between &quot;the">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Four Transports — http / sse *(deprecated)* / stdio / ws</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li class="on"><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 49, What MCP Is</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 07 · LESSON 50</p>
+      <h1>Four Transports</h1>
+      <p class="lesson-motto">You can pick the right wire for a server — and tell the difference between &quot;the</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 49, What MCP Is</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Choose a transport for a server from one question: does it run on this machine?</li><li>Tell from an error message whether the failure is the server, the wire, or the handshake</li><li>Explain why <code>sse</code> still exists in configs you didn't write</li><li>Write the <code>claude mcp add</code> command for <code>http</code>, <code>stdio</code>, and <code>ws</code> from memory</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>A server you wrote works fine when you run it by hand. You add it to Claude Code and get <code>MCP server &quot;notes&quot; failed to connect</code> — a message that names the server and nothing else. An hour later you find out you used <code>--transport http</code> for a command that prints JSON-RPC to stdout and exits. The program was fine. You asked it to speak HTTP to something that only speaks stdio.</p>
+<p>Every transport failure looks like this. A server that genuinely crashed, a URL that 404s, a handshake that timed out, and a wrong transport all produce one line with a name in it. Learning the four transports is mostly learning to read that line.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>MCP's messages are JSON-RPC. A <strong>transport</strong> is just how those bytes move. Four of them, and the choice follows from one question: <em>where does the program run?</em></p>
+<div class="table-wrap"><table><thead><tr><th>Transport</th><th>The program</th><th>Use it for</th><th>Status</th></tr></thead><tbody><tr><td><code>stdio</code></td><td>Claude Code <strong>starts</strong> it, as a child process</td><td>Local scripts, your own machine, npm packages</td><td>Recommended for local</td></tr><tr><td><code>http</code></td><td>Something is <strong>already</strong> running, you send requests</td><td>Hosted services, shared servers, anything a team uses</td><td>Recommended for remote</td></tr><tr><td><code>sse</code></td><td>Same as http, older style</td><td>Legacy servers you don't control</td><td><strong>Deprecated</strong></td></tr><tr><td><code>ws</code></td><td>Same as http, persistent socket</td><td>Server <strong>pushes</strong> events to you</td><td>Supported, narrower</td></tr></tbody></table></div>
+<p>There is a fifth value, <code>&quot;sdk&quot;</code>, for in-process servers registered by a host application. Claude Code CLI configuration skips it. You will not meet it here.</p>
+<figure class="diagram"><pre>flowchart TB
+    C[Client] --&gt;|spawns, pipes stdin/stdout| S1[stdio server]
+    C --&gt;|POST requests| S2[http server]
+    C --&gt;|POST, old style| S3[&quot;sse server (deprecated)&quot;]
+    C --&gt;|persistent socket, server pushes| S4[ws server]
+    S1 -.-&gt;|dies with the process| X1[Failure = local, check your command]
+    S2 -.-&gt; X2[Failure = network, check URL and auth]
+    S4 -.-&gt; X3[Failure = usually auth or handshake]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="stdio-the-important-mechanic">stdio — the important mechanic</h3>
+<p>The client runs your command. Your process's <strong>stdin</strong> carries JSON-RPC requests, its <strong>stdout</strong> carries replies, one JSON object per line. Its stderr is yours — Claude Code shows it in logs.</p>
+<p>Two consequences that will bite you:</p>
+<ul><li><strong>Anything you print to stdout is protocol traffic.</strong> A stray <code>console.log</code> in your server corrupts the stream, and the client reports a parse failure that looks like a corrupt server. Log to stderr.</li><li><strong>The server's lifetime is the connection.</strong> It starts when needed, dies when it's no longer needed. A crash is visible immediately and is easy to reproduce — which makes stdio the best transport for learning.</li></ul>
+<p><code>--</code> matters: everything after it goes to the server, not to Claude Code.</p>
+<pre class="code" data-lang="bash"><code>claude mcp add --env API_KEY=xyz --transport stdio notes -- node server.mjs</code></pre>
+<h3 id="http-the-default-for-remote">http — the default for remote</h3>
+<p>One endpoint, POST requests, responses come back on the same connection or the next. <code>type: &quot;http&quot;</code> and <code>type: &quot;streamable-http&quot;</code> are equivalent in config — the second is the protocol's own name for it.</p>
+<pre class="code" data-lang="bash"><code>claude mcp add --transport http notion https://mcp.notion.com/mcp</code></pre>
+<h3 id="sse-why-it-s-still-in-your-config">sse — why it's still in your config</h3>
+<p>SSE was the original remote transport: a long-lived GET for events plus POSTs for requests. It works and it's being retired. Claude Code will try HTTP first and fall back to SSE for a URL that only speaks it — useful when you're handed an old endpoint and don't control it. You don't choose it; you tolerate it.</p>
+<p>Note the docs' own version gate: automatic HTTP-to-SSE fallback needs a recent Claude Code (v2.1.265+ as of October 2026). If you're on an older build and a server only speaks SSE, set <code>--transport sse</code> explicitly rather than assuming the fallback will happen.</p>
+<h3 id="ws-the-one-that-s-actually-different">ws — the one that's actually different</h3>
+<p>Everything above is request/response. WebSocket is a persistent bidirectional socket, which is the point: the server can send you things you didn't ask for. If your use case is &quot;the server tells Claude something when it happens,&quot; this is the transport. You cannot add it with <code>--transport</code> — it goes in as JSON.</p>
+<pre class="code" data-lang="bash"><code>claude mcp add-json events-server \
+  '{&quot;type&quot;:&quot;ws&quot;,&quot;url&quot;:&quot;wss://mcp.example.com/socket&quot;,&quot;headers&quot;:{&quot;Authorization&quot;:&quot;Bearer TOKEN&quot;}}'</code></pre>
+<p>No OAuth story on this transport. That's a real limit, not an oversight — Lesson 54 is where auth gets its own treatment.</p>
+<h3 id="a-remote-entry-with-a-url-and-no-type-is-invalid">A remote entry with a <code>url</code> and no <code>type</code> is invalid</h3>
+<p>Claude Code skips it. No error, no server, no explanation in <code>/mcp</code> beyond an absent entry. If a hand-written config &quot;does nothing,&quot; check <code>type</code> first.</p>
+<blockquote><p><strong>The reframe:</strong> the transport isn't a setting on a server — it's a claim</p><p>about who runs the program, so every &quot;failed to connect&quot; is naming a layer,</p><p>and each layer has exactly one place to look: the process for stdio, the</p><p>network path for http and sse, the socket for ws.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-stdio-with-the-command-shown-to-you">1. stdio, with the command shown to you</h3>
+<pre class="code" data-lang="bash"><code>claude mcp add --transport stdio time -- npx -y @modelcontextprotocol/server-everything</code></pre>
+<p>Then <code>claude mcp get time</code>. It prints the command it will spawn. Confirm it matches character for character.</p>
+<p>✅ You pass when <code>/mcp</code> lists <code>time</code> connected, and you can name the process Claude Code is running on your behalf.</p>
+<h3 id="2-prove-the-stdout-rule">2. Prove the stdout rule</h3>
+<p>Create <code>noisy.mjs</code> in a scratch folder:</p>
+<pre class="code" data-lang="js"><code>console.log('starting up');
+process.stdin.on('data', () =&gt; {
+  console.log('saw a request');
+  process.stdout.write(JSON.stringify({ jsonrpc: '2.0', id: 1, result: {} }) + '\n');
+});</code></pre>
+<pre class="code" data-lang="bash"><code>claude mcp add --transport stdio noisy -- node &quot;$PWD/noisy.mjs&quot;</code></pre>
+<p>Start Claude Code. It will fail or behave strangely. Move the first <code>console.log</code> to <code>console.error</code> and watch it work.</p>
+<p>✅ You pass when you can say in one sentence which byte stream was corrupted and why the fix was stderr, not deleting the log line.</p>
+<h3 id="3-http-then-look-at-what-the-entry-claims">3. http, then look at what the entry claims</h3>
+<pre class="code" data-lang="bash"><code>claude mcp add --transport http example -- https://example.com/mcp
+claude mcp get example</code></pre>
+<p>That URL isn't a real MCP server, so it fails. That is the point — the error tells you it is a <em>connection</em> problem, and there is no process to inspect. Note what the message does <strong>not</strong> say.</p>
+<p>✅ You pass when you can distinguish this failure from step 2's by the error text alone.</p>
+<h3 id="4-count-the-processes">4. Count the processes</h3>
+<p>While Claude Code is open with <code>time</code> and <code>noisy</code> connected:</p>
+<pre class="code" data-lang="bash"><code>ps -ef | grep -i &quot;mcp\|server-everything&quot; | grep -v grep</code></pre>
+<p>Two stdio servers, two processes, children of Claude Code. Now compare against Lesson 49's http server — no process at all, because nothing local was started.</p>
+<p>✅ You pass when you can see exactly the two child processes and no third one for the http server.</p>
+<h3 id="5-timeouts-the-failure-with-no-message">5. Timeouts — the failure with no message</h3>
+<pre class="code" data-lang="bash"><code>MCP_TIMEOUT=10000 claude</code></pre>
+<p>Ten seconds to start. Point at a stdio server whose command is <code>npx -y</code> on a package that takes longer the first time, and watch it fail at startup rather than mid-task.</p>
+<p>Per-tool wall clock is separate:</p>
+<pre class="code" data-lang="bash"><code>MCP_TOOL_TIMEOUT=60000 claude</code></pre>
+<p>or per server, in the config entry:</p>
+<pre class="code" data-lang="json"><code>{ &quot;type&quot;: &quot;http&quot;, &quot;url&quot;: &quot;https://mcp.example.com/mcp&quot;, &quot;timeout&quot;: 600000 }</code></pre>
+<p>✅ You pass when you can say which of the two timeouts you hit, based on whether the server never connected or connected and then stopped responding.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>--transport stdio &lt;name&gt; -- &lt;cmd&gt;</code></td><td>The program runs here, on your machine</td></tr><tr><td><code>--transport http &lt;name&gt; &lt;url&gt;</code></td><td>Someone else runs it; you send requests</td></tr><tr><td><code>--transport sse &lt;name&gt; &lt;url&gt;</code></td><td>Only when a legacy server forces it — it's deprecated</td></tr><tr><td><code>claude mcp add-json</code> with <code>&quot;type&quot;:&quot;ws&quot;</code></td><td>The server pushes events to you</td></tr><tr><td><code>--</code> before the command</td><td>Always, for stdio</td></tr><tr><td><code>--env KEY=value</code></td><td>Secrets for a stdio server — readable only by that server</td></tr><tr><td>Logs on stderr, protocol on stdout</td><td>Every time you write a stdio server</td></tr><tr><td><code>MCP_TIMEOUT</code></td><td>A server that takes too long to start</td></tr><tr><td><code>MCP_TOOL_TIMEOUT</code> / per-server <code>timeout</code></td><td>A single slow tool call</td></tr><tr><td>Missing <code>type</code> on a remote entry</td><td>First thing to check when a hand-written server &quot;does nothing&quot;</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take one server you would want to use and answer: does it run on my machine or someone else's? Write the exact <code>claude mcp add</code> command. Then run it. ✅ You pass when the command runs, <code>/mcp</code> shows it connected, and your one-sentence justification names which side of the question decided it.</li></ol>
+<ol><li class="criterion">Break a stdio server three ways — print to stdout, exit immediately, hang forever — and record the error text for each. ✅ You pass when you have three distinct error messages and can say which layer each one is reporting on (protocol, process, wall clock).</li></ol>
+<ol><li class="criterion">Take a <code>.mcp.json</code> entry someone wrote for you. Delete its <code>&quot;type&quot;</code> field, then run it. Write down what Claude Code does and what it <em>doesn't</em> say. ✅ You pass when your write-up names the silent-skip behaviour and you can point to the line in the docs that says so.</li></ol>
+<ol><li class="criterion">Decide, in writing, whether your project needs <code>ws</code>. Argue the case <em>for</em> it and then the case against. ✅ You pass when the answer names the requirement that would force <code>ws</code> (server-initiated events) and you can say what you'd use instead if you don't have it.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>transport</td><td>&quot;the protocol&quot;</td><td>How JSON-RPC messages physically move. Four options; the protocol itself is transport-agnostic.</td></tr><tr><td>stdio</td><td>&quot;local&quot;</td><td>Claude Code spawns the process and talks over its stdin/stdout, one JSON message per line.</td></tr><tr><td><code>sse</code></td><td>&quot;the old one&quot;</td><td>Deprecated remote transport. Kept for endpoints that only speak it; you tolerate it rather than choose it.</td></tr><tr><td><code>http</code></td><td>&quot;the modern one&quot;</td><td>Remote request/response. <code>streamable-http</code> is an accepted alias in config.</td></tr><tr><td><code>ws</code></td><td>&quot;the streaming one&quot;</td><td>Persistent bidirectional socket. The only transport where the server speaks first, unprompted.</td></tr><tr><td>handshake / <code>initialize</code></td><td>&quot;the connection&quot;</td><td>First exchange: versions and capabilities, before any tool call. A failure here is not a tool failure.</td></tr><tr><td>startup timeout</td><td>&quot;it failed to connect&quot;</td><td><code>MCP_TIMEOUT</code>. Bounds how long the client waits for the server to be ready.</td></tr><tr><td>tool timeout</td><td>&quot;the tool hung&quot;</td><td><code>MCP_TOOL_TIMEOUT</code> or a per-server <code>timeout</code>. A wall clock on one call.</td></tr><tr><td><code>--</code></td><td>&quot;the separator&quot;</td><td>Stops Claude Code parsing flags. Everything after belongs to your command.</td></tr><tr><td>stdout is the protocol</td><td>—</td><td>One stray print and the stream is corrupt. stderr is free for humans.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Where the config lives.</strong> Every command above used default scope, which meant one specific file. Which file, and which scope wins — Lesson 51.</p>
+<p><strong>Auth.</strong> <code>--header &quot;Authorization: Bearer …&quot;</code> appeared in one example and was not explained. Remote servers that need credentials, and OAuth for those that don't take a static token, are Lesson 54.</p>
+<p><strong>Notifications on <code>ws</code>.</strong> You saw why the transport exists; the push contract, and how Claude Code surfaces a server-initiated event, is deeper than this phase goes.</p>
+<p><strong>HTTP-to-SSE fallback specifics.</strong> Mentioned, with a version gate. If you hit it, read <a href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noopener">Connect Claude Code to tools via MCP</a> rather than trusting a number quoted here — that table moves.</p>
+<p><strong>Sampling and elicitation.</strong> A server can ask <em>you</em> things mid-task (<code>elicitation</code>), which is a different direction of the conversation. Reached in the same doc page; come back when you write a server that needs input.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You write a local server in Node. It works when you run it, but Claude Code reports a parse failure the moment it connects. You add one console.log at the top of the file. What is the actual defect?</p>
+        <ol class="options" type="A">
+          <li>console.log is synchronous, so it blocks the event loop and the handshake times out</li>
+          <li>The log went to stdout, which is the JSON-RPC channel — the client's first line is now your log line, not a message</li>
+          <li>The server needs a shebang line to be spawned as a child process</li>
+          <li>Logs are only allowed after the initialize handshake, and this one was before</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The log went to stdout, which is the JSON-RPC channel — the client's first line is now your log line, not a message</p>
+          <p class="why">On stdio, stdout carries one JSON-RPC message per line and stderr carries anything meant for humans. A console.log at the top of the file puts non-JSON on the protocol channel before the handshake even arrives, and a client reading lines gets garbage. Option C is a real requirement for direct execution but irrelevant when Claude Code spawns it as node server.mjs. Option D is invented — there is no such rule.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A teammate's .mcp.json has a remote server entry that Claude Code silently ignores — no error, no entry in /mcp. You check the URL and it resolves. What is the most likely cause?</p>
+        <ol class="options" type="A">
+          <li>The url points at an endpoint that only speaks sse, and sse was removed</li>
+          <li>The entry has a url but no type field, and a remote entry without an explicit type is invalid</li>
+          <li>The server was added at local scope in someone else's ~/.claude.json</li>
+          <li>Tool search deferred the tools, so the server is there but its tools are not</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The entry has a url but no type field, and a remote entry without an explicit type is invalid</p>
+          <p class="why">A remote entry must name its transport explicitly — http, sse, or ws. Miss the type and the entry is skipped without a diagnostic, which is why 'it silently does nothing' is the classic symptom. Option A is wrong: sse is deprecated, not removed, and http falls back to it. Option C can't reach you at all — local scope lives on that person's machine. Option D would show a connected server in /mcp with deferred tools, which is not what a missing entry looks like.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You need a server that pushes a message to Claude the moment a build finishes, without anything asking first. Which transport, and what is the one trade-off you accept?</p>
+        <ol class="options" type="A">
+          <li>http — the server can respond to a long poll when you next call it</li>
+          <li>ws — a persistent bidirectional socket, but there is no OAuth story on this transport</li>
+          <li>stdio — the child process can write to stdout whenever it likes</li>
+          <li>sse — deprecated, but it is the only transport with server-initiated events</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> ws — a persistent bidirectional socket, but there is no OAuth story on this transport</p>
+          <p class="why">Server-initiated events need a channel that stays open in both directions, which is exactly what WebSocket is; the others are request/response and the model has to go looking. The trade-off is real and worth naming: ws has no OAuth support, so a ws server needs a static token in headers. Option C is a common misconception — a stdio child can write any time, but nothing is listening for unsolicited frames. Option D doubles down on the wrong fact: sse is being retired, not expanded.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Two failures look identical to you: 'MCP server X failed to connect'. One is a stdio server whose command exits in 50ms with a syntax error. The other is a remote server behind a proxy that returns 502. What separates them without turning on debug logging?</p>
+        <ol class="options" type="A">
+          <li>Nothing — both are connect failures and only the log distinguishes them</li>
+          <li>The shape of the cause: for stdio the process is local and dies, so you can run the exact command yourself; for http the failure is in the network path and there is no local process to inspect</li>
+          <li>The timeout value — a stdio failure always trips MCP_TIMEOUT and an http failure never does</li>
+          <li>Whether the entry has an oauth block, which tells you auth is involved</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The shape of the cause: for stdio the process is local and dies, so you can run the exact command yourself; for http the failure is in the network path and there is no local process to inspect</p>
+          <p class="why">The transports fail in different places, and that difference is actionable: a stdio connection is a local child process you can paste into a terminal and watch, while an http failure lives in a network path where your debugging tools are curl and the proxy log. Option C is backwards in practice — a fast crash reports immediately rather than waiting out a timeout. Option D is decorative; a missing or bad oauth block produces a 401, which is a different message.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/07-mcp/49-what-mcp-is.html"><span>Previous</span>49. What MCP Is</a>
+    <a class="next" href="../../phases/07-mcp/51-scopes-and-config.html"><span>Next</span>51. Scopes, Precedence, Config Shape</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

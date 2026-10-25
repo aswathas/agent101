@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Wayfinding — Producing Decisions, Not Deliverables that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "Four builders each begin work, and each quietly picks a different date format because nobody decided one. Their outputs later fail to combine. Where was the missing node?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "A deliverable node for the combine step",
+        "A wayfinding node whose output is the date-format decision and whose consumers are the four builders",
+        "A spike that measures how long each builder wants to spend",
+        "A soft edge between the builders"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "The shared unresolved answer is a decision needed by all four, so it belongs on the graph as one node that gates them. Option A describes the fan-in, which is fine — the failure is upstream of it. Option C confuses a spike (produces knowledge) with the decision that was actually missing. Option D removes an edge the builders do not have; there was no explicit connection at all, which is the problem."
+    },
+    {
+      "id": 2,
+      "prompt": "A team says \"we decided to use an event bus months ago\" but every new component re-asks and two have since chosen different queues. What is the wayfinding failure?",
+      "options": [
+        "The decision was never made",
+        "The decision was made but no record was produced, so it cannot be consumed — a decision that lives in conversation blocks invisibly and gets re-litigated",
+        "The event bus should have been a spike",
+        "The components needed a longer lease"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "The output of a wayfinding node is the record; without it, downstream nodes cannot read the commitment and drift. Option A is the tempting reading, but the decision was made — the failure is that its output was never written down. Option C swaps a commitment for knowledge-gathering. Option D is a claiming concept and unrelated."
+    },
+    {
+      "id": 3,
+      "prompt": "A single node needs to know the retention period for logs. Nobody else needs this. Should you add a separate wayfinding node that gates other work?",
+      "options": [
+        "Yes — every decision must be a top-level node",
+        "No — make the decision a node that gates only that one consumer, so it does not become a bottleneck for unrelated work",
+        "No — leave it out of the graph and let the builder decide",
+        "Yes, and make it block the whole frontier so it is resolved first"
+      ],
+      "answer": 1,
+      "explanation": "A decision node should block exactly its consumers; with one consumer, scoping it narrowly keeps the decision from serialising unrelated work. Option A is the tempting rule-taken-too-far and creates bottlenecks. Option C is the invisible-dependency bug: an unassigned question the builder will guess at. Option D is over-blocking — the retention decision has one consumer and does not belong on the critical path of everything else."
+    },
+    {
+      "id": 4,
+      "prompt": "You cannot phase a blocker as \"option A or option B, choose one, here is why\" — it is really \"go find out whether the vendor API supports webhooks.\" What kind of node is this, and what comes next?",
+      "options": [
+        "A wayfinding node; write the decision record now",
+        "A spike — it produces knowledge; the decision it informs becomes its own node afterwards",
+        "A deliverable; ship the support check as a feature",
+        "Nothing — unknown blockers cannot be represented on a graph"
+      ],
+      "answer": 1,
+      "explanation": "An open question that needs investigating is a spike: its output is a fact, which then feeds a decision node. Option A is tempting because both are \"up front,\" but you cannot commit a choice before the fact exists. Option C ships an investigation as if it were a product. Option D is false — spikes are ordinary nodes and belong on the graph."
     }
   ]
 }

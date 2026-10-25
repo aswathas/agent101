@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about CLAUDE.md — the 200-Line Rule that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "Your `~/.claude/CLAUDE.md` says \"never use default exports\". A project `./CLAUDE.md` says \"default exports are fine here\". You start a fresh session in the project. What does Claude read?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Only the project file — it overrides the user file",
+        "Only the user file — it loads first and wins",
+        "Both files, with the project file read later, so it wins in practice",
+        "Neither — conflicting files are skipped"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 2,
+      "explanation": "Memory files are concatenated, not merged key by key, so both load and the one closest to the working directory is read last. Option 0 is the tempting wrong answer because 'override' is the right mental model for settings.json — but CLAUDE.md files do not override each other."
+    },
+    {
+      "id": 2,
+      "prompt": "Your `CLAUDE.md` is 500 lines. `/context` shows it under Memory files. The agent keeps ignoring the line about not editing generated files, so you add that rule a second time near the top. It still ignores it. What is the most likely cause?",
+      "options": [
+        "The file didn't load — you should check `/context` again",
+        "Long files reduce adherence, so the fix is to shorten the file or move the rule to a path-scoped rule, not repeat it",
+        "CLAUDE.md can only hold rules about commands, not about files",
+        "You need to run `/compact` before the rule takes effect"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "The docs target under 200 lines because longer files reduce adherence; repeating the rule just makes the file longer. Option 0 is tempting because 'it didn't load' is the first thing to check — but the question already told you it loaded, which rules it out."
+    },
+    {
+      "id": 3,
+      "prompt": "You edit `CLAUDE.md` to add \"always run lint\", then in the same session ask the agent to make a change. It doesn't lint. Why?",
+      "options": [
+        "Edits apply immediately, so something else must be wrong",
+        "The session read the file at the start; the edit applies from the next session",
+        "You must run `/memory` to reload the file into the running session",
+        "Lint belongs in a hook, not in CLAUDE.md, so the line is ignored"
+      ],
+      "answer": 1,
+      "explanation": "CLAUDE.md loads once, at session start. Option 2 is tempting because `/memory` opens and edits the file — but opening it does not reload it into a session that is already running."
+    },
+    {
+      "id": 4,
+      "prompt": "You have a 15-step release checklist that only matters when you cut a release. Where does it belong?",
+      "options": [
+        "CLAUDE.md, so every session knows it",
+        "A skill, which loads when invoked and stays out of every other session",
+        "A hook, because it has to run",
+        "`~/.claude/CLAUDE.md`, so it is available in every project"
+      ],
+      "answer": 1,
+      "explanation": "A multi-step procedure that only matters for one task belongs in a skill, which loads on invoke. Option 0 is tempting because 'put knowledge in CLAUDE.md' is the lesson's headline — but a release checklist would load into every session and make the file longer for no benefit."
     }
   ]
 }

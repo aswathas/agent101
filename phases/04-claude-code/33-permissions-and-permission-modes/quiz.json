@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Permissions and Permission Modes that needs a new situation, not recall.",
+      "prompt": "You want `.env` blocked for everyone who works in this repo, in a way that travels with the project. What do you set?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Answer \"no\" every time Claude Code asks to read .env",
+        "A deny rule in the project's shared settings file, committed",
+        "A deny rule in your own project-local settings file, uncommitted",
+        "Turn on accept-all mode so it never asks"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A committed deny rule in the shared settings file is the one that applies to everyone and travels with the project. Option A is tempting because it works for you right now, but it is a per-conversation yes/no that helps nobody else and resets. Option C is personal and uncommitted, so it does not reach the team. Option D loosens rather than blocks.",
+      "concept": "shared-deny-rule"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "Claude Code edits `src/auth/login.py` without asking, but minutes ago it asked before editing a different file. Why?",
+      "options": [
+        "It is ignoring the permission system",
+        "A previous yes is in scope — you already allowed edits to that path, so it does not re-ask",
+        "It only asks once per session",
+        "Edits to auth files are always allowed"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Permission scope is per-tool and per-path, so a prior yes to that path is why it stays quiet now. Option A is the tempting read when prompting looks inconsistent, but the inconsistency is the scope you already granted. Option C is too broad — the tool still asks for new tools and paths. Option D invents a special case that does not exist.",
+      "concept": "prior-yes-in-scope"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Earlier this session you said yes to reading `.env`. Now a deny rule for `Read(.env)` is in effect. You ask it to read `.env`. What happens?",
+      "options": [
+        "The earlier yes wins — it reads the file",
+        "Deny always wins: it refuses, even though you allowed it earlier",
+        "It asks you to confirm the deny",
+        "Session yeses override project denies"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Deny beats allow — if a path is denied, no tool touches it, which is one of the few hard rules in the system. Option A is tempting because an explicit yes feels stronger than a rule, but the ordering is the other way. Option C is not how a deny works; there is nothing to confirm. Option D inverts the precedence.",
+      "concept": "deny-beats-allow"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You open a folder Claude Code has never seen. It asks \"do you trust this folder?\" What is that prompt?",
+      "options": [
+        "A convenience ask you can silence with accept-all",
+        "The security boundary — the one prompt that decides whether the folder is trusted at all",
+        "A per-file permission for the first file it reads",
+        "A plan-mode gate"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The folder-trust prompt is the boundary; everything after it is fineness over an already-trusted folder. Option A is the tempting confusion the reframe targets: accept-all smooths the per-action prompts, not the boundary. Option C confuses the one prompt per folder with the many prompts per file. Option D mixes the boundary up with a sandbox over edits.",
+      "concept": "trust-prompt-is-boundary"
     }
   ]
 }

@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about The Exit-1-vs-2 Trap that needs a new situation, not recall.",
+      "prompt": "Your `PreToolUse` guardrail reads `rm -rf`, decides to block, writes its reason with `echo \"Blocked: destructive\"` (no redirect) and exits 1. The agent runs the command anyway. Why?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Exit 1 is a non-blocking error — the harness treats it as a crash and carries on, and the reason on stdout is ignored",
+        "Exit 1 blocks only when stderr is empty",
+        "The command ran because `echo` flushed stdout before the exit code was read",
+        "Exit 1 blocks, but Bash is an event where exit codes don't apply"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "To the harness, exit 1 means \"this hook broke\" — a non-blocking error — so the pending action continues. The reason is doubly lost: it went to stdout, and only the first line of *stderr* is read as a blocking reason, on exit 2. Option B invents a condition; stream choice and exit code are independent, and exit 1 never blocks. Option C mistakes ordering for semantics: the decision is the exit code, not the timing of the write. Option D is simply false — `PreToolUse` is a blocking event, and a guardrail can be attached to any tool via its matcher.",
+      "concept": "exit1-fails-open"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "The same guardrail script is moved to `PostToolUse` on `Edit|Write` and still exits 2 when the path is under `dist/`. You edit a file there. The edit lands, and on a later turn the model references your reason. Is the hook working?",
+      "options": [
+        "Yes — `PostToolUse` fires after the write, so exit 2 can't undo it; there it delivers stderr into the model's context",
+        "No — exit 2 always blocks, so the file should have been removed",
+        "No — the matcher must be wrong, since a correct matcher would have fired before the write",
+        "Yes — but only because the file happened to be under `dist/`"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "`PostToolUse` is a non-blocking event: the write already happened, so no exit code can take it back. Exit 2's useful role there is to hand the first line of stderr to the model as feedback — which is exactly what you observed. If you wanted the write refused, the seam is `PreToolUse`. Option B assumes exit 2 blocks everywhere, which is the trap this lesson is named for. Option C blames the matcher although the handler demonstrably ran. Option D attaches significance to `dist/` that isn't there; the event's position on the loop is the whole story.",
+      "concept": "exit2-noop-on-post"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A hook exits 3 and prints exactly one valid JSON object on stdout. What does the harness do with the decision?",
+      "options": [
+        "Treats the JSON as the decision and ignores the exit code — a valid structured decision wins",
+        "Treats exit 3 as the decision and ignores the JSON",
+        "Fails the hook, because exit 3 is out of range",
+        "Skips the hook and runs the next handler in the group"
+      ],
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "Valid JSON on stdout is a successful structured decision, and when one is present the exit code is not consulted. This is convenient and is exactly how a leftover `echo` that happens to print JSON turns into a hook that 'succeeds' while blocking nothing. Option B reverses the precedence. Option C assumes an allowed range that doesn't exist — any exit other than 0 and 2 is just a generic failure. Option D invents handler-skipping; the JSON is the answer.",
+      "concept": "json-beats-exit-code"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You want a broken guardrail — a crash, a timeout, or schema-invalid JSON — to stop the action instead of letting it through. What do you add, and what does it *not* cover?",
+      "options": [
+        "`\"onFailure\": \"block\"` in the handler — it converts failures, timeouts, and invalid output into blocks, but plain-text stdout is not a failure",
+        "`\"exitOnFailure\": true` — it blocks on any non-zero exit, including exit 1",
+        "`set -e` at the top of the script — any error becomes a block",
+        "`\"onFailure\": \"block\"` — it also blocks whenever stdout isn't JSON, so plain text is covered"
+      ],
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "`onFailure: \"block\"` is the documented switch: it turns crashes, timeouts, connection failures, and schema-invalid output into blocks, and it needs a recent Claude Code (v2.1.295 or later). What it does not cover is plain text on stdout — that is not a failure, so a hook printing prose still doesn't block. Option B names a field that doesn't exist. Option C is a shell feature that makes the script exit non-zero, which fails *open*, the opposite of what you want. Option D is the tempting over-read and wrong precisely because of the plain-text clause.",
+      "concept": "onFailure-scope"
     }
   ]
 }

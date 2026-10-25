@@ -1,27 +1,83 @@
 {
   "lesson": "06-subagents/47-author-a-subagent",
-  "title": "Author a Subagent + the fork-context subtlety",
+  "title": "Author a Subagent — and the Fork-Context Subtlety",
   "version": 1,
   "passingScore": 3,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Author a Subagent + the fork-context subtlety that needs a new situation, not recall.",
+      "prompt": "Your triage subagent declines most out-of-scope requests because its body says \"you do one thing.\" Last week it still ran an unwanted shell command. What closes the gap?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Add an explicit refusal list to the body, covering each case you can think of",
+        "Narrow the description so out-of-scope work never routes here",
+        "Add Bash to disallowedTools, so the capability is gone rather than discouraged",
+        "Set maxTurns low, so the agent has less opportunity to wander"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "A refusal list is still a request and you have to enumerate every case; the capability itself is what makes the request unnecessary. Option A lengthens a prompt that already failed. Option B is bypassed by any explicit @-mention, so it reduces wrong delegations but cannot prevent a wrong one. Option D limits how long it runs, not what it may do.",
+      "concept": "enforce-with-the-tool-pool"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You write max_turns: 10 in a subagent's frontmatter and the agent runs for thirty turns anyway. Why?",
+      "options": [
+        "maxTurns only applies to subagents that set a model explicitly",
+        "maxTurns caps tool calls, not turns",
+        "The field is maxTurns; max_turns is unrecognized and silently ignored",
+        "maxTurns was capped at 5 in this version"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "Unknown frontmatter keys are dropped with no warning, so the cap you thought you set was never applied — that's why nothing happened rather than something surprising. Option A and B invent rules that don't exist, and option D gives a cap that would have produced a partial return rather than unlimited running.",
+      "concept": "silent-field-ignoring"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A subagent you delegated to was supposed to be clean and focused on one narrow job. It came back quoting details from a decision you made twenty turns ago that it had no reason to see. What happened?",
+      "options": [
+        "The subagent read your CLAUDE.md, which records recent decisions",
+        "Fork mode is on by default, so Claude spawned a fork that inherited your conversation",
+        "The delegation message quoted the conversation back to it",
+        "The subagent resumed a previous run with your history attached"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "When Claude spawns a subagent without naming a type, it may spawn a fork — and a fork inherits the whole parent conversation plus system prompt, tools, and model, which is exactly the context you were trying to isolate it from. Option A is wrong because CLAUDE.md holds conventions, not conversation. Option C is Claude's summary of your *request*, not your history. Option D requires a resume you never performed.",
+      "concept": "fork-mode-default"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You wrote a reusable \"run the release checklist\" workflow. Running it dumped the whole checklist output into your conversation, which is fine — you want to act on each step as it comes. What should this have been?",
+      "options": [
+        "A fork, so the checklist agent can see why each step exists",
+        "A skill, because the result belongs interleaved in your window",
+        "A subagent with maxTurns set high, so nothing gets truncated",
+        "A subagent with a skills field naming the checklist"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The deciding question is where the result should land: interleaved in your own conversation means a skill, and a skill runs in your window by design. A subagent exists to keep its mess out of yours — here you'd get a summary of steps you need to follow one at a time, which is the opposite of useful. Option A adds isolation cost for no benefit; options C and D are variations on a subagent, which is the wrong shape regardless of tuning.",
+      "concept": "skill-vs-subagent"
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "prompt": "A subagent runs long searches across your whole repo and keeps running out of room on big ones. You never set a model. What's most likely?",
+      "options": [
+        "It inherited your session's context window but lost track of the token count",
+        "Its context window comes from its own model's alias, which may be smaller than yours",
+        "Its window is fixed at 100k regardless of model, and you need autoCompactWindow",
+        "Subagents share one window pool across the session, so other agents ate its room"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A subagent's window is sized by the model named in its own `model` field, not the parent's — so delegating to a cheaper alias quietly gives it a smaller room, and a search that fits in yours may not fit in its. Option A describes the opposite relationship. Option C invents a fixed size. Option D is wrong because each non-fork subagent's context is isolated — that's the whole point of the phase.",
+      "concept": "window-comes-from-own-model"
     }
   ]
 }

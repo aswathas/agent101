@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about What Loads, What Costs that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "A teammate adds a skill that deploys to production and sets `disable-model-invocation: true` on it. What does that skill cost you at startup, in a session where you never type its name?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Its full body loads, so Claude knows what the side effect is",
+        "Nothing — it is left out of the startup listing entirely and costs zero until invoked",
+        "Only its description loads, so Claude can warn you before you trigger it",
+        "It loads when Claude reads a file matching its `paths:` pattern"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "`disable-model-invocation: true` removes the skill from the startup listing, so neither description nor body is in the window until you invoke it by name. Option A is backwards: the switch exists precisely to keep side-effecting skills out of context. Option C describes the *default* behavior (description only), which is the thing the switch turns off. Option D confuses a skill with a path-scoped rule; `paths:` governs automatic activation, not listing cost."
+    },
+    {
+      "id": 2,
+      "prompt": "You connect an MCP server that exposes forty tools. You brace for a huge jump in your startup context, but `/context` barely moves. What is the most likely explanation?",
+      "options": [
+        "MCP servers never enter the context window",
+        "Only the tool names load at startup; the full schemas are deferred and fetched on demand by tool search",
+        "The server failed to connect, so nothing loaded",
+        "All forty schemas loaded, but `/context` rounds numbers below 1,000 tokens"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "By default, MCP tool names are listed at startup so Claude knows what exists, while the much larger schemas are deferred and loaded on demand via tool search. Option A is too strong: names and, when a tool is used, its schema do enter the window. Option C is a symptom you would see as tools failing to appear, not as a quietly small context. Option D misreads `/context`, which shows the block cost; forty schemas would be a visible jump, not a rounding artifact."
+    },
+    {
+      "id": 3,
+      "prompt": "Your project has a rule at `.claude/rules/api-conventions.md` with `paths: src/api/**`. You start a fresh session and edit only `src/lib/util.ts`. What did that rule cost?",
+      "options": [
+        "A standing charge, because all rules load at startup",
+        "Nothing — path-scoped rules load only when a matching file is read",
+        "Its full text, because rules are always loaded and never path-scoped",
+        "Only its name, because the listing loads every rule's filename"
+      ],
+      "answer": 1,
+      "explanation": "A path-scoped rule loads when a file matching its `paths:` pattern is read, so a session that never touches `src/api/` never pays for it. Option A is the classic misconception this lesson exists to kill. Option C contradicts the `paths:` field, which is exactly what scopes it. Option D is close but wrong: the detail that loads is the rule's content on a match, not a name at startup — that is the difference between a rule and a skill listing."
+    },
+    {
+      "id": 4,
+      "prompt": "Your auto-memory file has grown to 900 lines of notes. Which part can you count on being in the window at a new session's start?",
+      "options": [
+        "All 900 lines, because auto memory always loads in full",
+        "None of it, because auto memory is only read on demand",
+        "The first 200 lines or 25 KB, whichever comes first",
+        "Only the lines Claude wrote most recently, up to 200"
+      ],
+      "answer": 2,
+      "explanation": "Auto memory loads at startup, but only the first 200 lines or 25 KB, whichever comes first. Option A is the trap: it feels like memory should be all-or-nothing, but it is capped. Option B is wrong in the other direction — it is a startup block, not an on-demand read. Option D invents a recency rule; the cap is positional (the start of the file), which is why what you put at the top matters."
     }
   ]
 }

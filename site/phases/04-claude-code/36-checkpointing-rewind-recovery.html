@@ -3,34 +3,242 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lesson 36 — Checkpointing, /rewind, Recovery — Harnessing Claude Code</title>
-<meta name="description" content="">
+<title>Checkpointing, `/rewind`, Recovery — Harnessing Claude Code</title>
+<meta name="description" content="The undo for a multi-step tool session: roll back to a known good state.">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LESSON</p>
-  <h1>Lesson 36 — Checkpointing, /rewind, Recovery</h1>
-  
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li class="on"><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> —</p>
-    <p><strong>Prerequisites:</strong> —</p>
-    <p><strong>Time:</strong> —</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 04 · LESSON 36</p>
+      <h1>Checkpointing, `/rewind`, Recovery</h1>
+      <p class="lesson-motto">The undo for a multi-step tool session: roll back to a known good state.</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 35 (Plan Mode and Checkpoints)</dd></div>
+        <div><dt>Time</dt><dd>~20 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;"></pre>
-</article>
+      <div class="ascii-rule"></div>
+
+      <div class="prose">
+<h2 id="the-concept">The Concept</h2>
+<p>A checkpoint is a snapshot of the session at a moment when it was working. It includes:</p>
+<ul><li>The conversation up to that point.</li><li>The files the tool had read.</li><li>The in-flight state of the work.</li></ul>
+<p>You do not create checkpoints by hand for the most part. The tool marks one at meaningful seams: after a successful edit, after a green test, after a clean commit. If something goes wrong later, you can return to one of those seams.</p>
+<p>If you want to be sure you have a checkpoint, do the work, see the work succeed, and then move on. The checkpoint is already there.</p>
+<h2 id="build-it">Build It</h2>
+<p>For this conceptual lesson, the work is one short scenario in a Claude Code session to confirm the section landed:</p>
+<ol><li>Open a fresh session in any project folder.</li><li>Apply the idea in the section above to your project in a way that fits.</li><li>Notice what happens when the condition in the section is met, and when it is not.</li></ol>
+<p>Pass: you can describe the difference between the two cases in one paragraph.</p>
+<h2 id="the-undo-for-the-session">The undo for the session</h2>
+<p>When something goes sideways, you reach for a rewind. The function is what matters, not the exact name. You tell the tool: take the session back to a checkpoint. Anything after that checkpoint is gone. The conversation continues from that point.</p>
+<p>A rewind is not an undo button for one edit. It is an undo button for many steps at once.</p>
+<h2 id="what-a-rewind-can-and-cannot-do">What a rewind can and cannot do</h2>
+<p>A rewind can:</p>
+<ul><li>Roll the conversation back to an earlier turn.</li><li>Restore files the tool had read or written.</li><li>Let you start the next step from a clean state.</li></ul>
+<p>A rewind cannot:</p>
+<ul><li>Bring back a file you deleted outside the tool (unless the tool had a copy).</li><li>Roll back changes another tool made (out of scope).</li><li>Restore anything the tool itself does not snapshot.</li></ul>
+<p>If something happens outside the tool's view, the tool has no checkpoint to rewind to. Rewinds restore tool-state. They do not restore everything.</p>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this lesson you can:</p>
+<ul><li>Define a checkpoint and say what it contains</li><li>Define a rewind and say what it restores</li><li>Decide when to use a rewind and when to make a manual fix</li><li>Use a rewind and see the conversation roll back</li></ul>
+<h2 id="the-problem">The Problem</h2>
+<p>You told the tool to refactor a module. It did. Then it ran the tests. They failed. It tried to fix them. They failed harder. You have lost track of where things went wrong.</p>
+<p>The right move is not to debug forward. The right move is to roll the session back to a known good checkpoint and start over. The lesson exists because the most common response to this situation is to keep poking, when a rewind would have been faster.</p>
+<h2 id="when-to-use-it">When to use it</h2>
+<p>Use a rewind when:</p>
+<ul><li>The tool edited the wrong file and you want the file back.</li><li>The tool ran tests that mutated state, and you want a clean state.</li><li>You tried an approach, it failed, and you want to try a different one without the failed baggage in the conversation.</li><li>You went down a path and want to start over with what you have learned.</li></ul>
+<p>Do not use it when:</p>
+<ul><li>The work is fine and you just want to ask a different question.</li><li>The issue is one paragraph the tool got wrong. Edit the paragraph.</li></ul>
+<h2 id="the-reframe">The reframe</h2>
+<p><strong>The reframe:</strong> Checkpointing is the answer to &quot;I should have stopped it earlier.&quot; It is the undo for a multi-step tool session, not a single edit.</p>
+<p>A single edit, use the editor. Two edits, rewind. Twenty edits and a refactor, definitely rewind. The threshold is &quot;more than one thing to undo.&quot;</p>
+<h2 id="a-worked-example">A worked example</h2>
+<p>Scenario. You told the tool to refactor a module. It did. Then it ran the tests. They failed. It tried to fix them. They failed harder. You have lost track of where things went wrong.</p>
+<p>Reach for the rewind. Pick the checkpoint from before the refactor started. Conversation is restored. Files are restored. Start over, with the lesson learned: do not let it auto-fix test failures blindly.</p>
+<h2 id="three-practical-consequences">Three practical consequences</h2>
+<p><strong>1. Be lazy with rewind.</strong> If in doubt, rewind. It is cheaper than reasoning about partial states.</p>
+<p><strong>2. Rewinds cost conversations.</strong> Anything you wrote in the rewound turns is gone from the conversation. If that text was important, save it elsewhere first.</p>
+<p><strong>3. Rewinds are not magic.</strong> If the tool never read the file, the rewind does not have it. If the file was changed outside the tool, the rewind does not have it.</p>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Situation</th><th>Reach for</th></tr></thead><tbody><tr><td>One edit went wrong</td><td>Edit the file directly, no rewind</td></tr><tr><td>A small change produced two cascading failures</td><td>Rewind</td></tr><tr><td>A long refactor went sideways and you cannot see when</td><td>Rewind</td></tr><tr><td>You want to try a different approach from a known-good state</td><td>Rewind</td></tr><tr><td>The conversation has gotten long and full of dead ends</td><td><code>/clear</code> instead — rewind does not trim the conversation, just restores state</td></tr></tbody></table></div>
+<h2 id="exercises">Exercises</h2>
+<ol><li><strong>Use a rewind and see the conversation roll back.</strong> In a folder with one source file, ask the tool to make a small edit, confirm it. Make a second edit, confirm. Make a third edit that is wrong on purpose: change a function name in a way that breaks the file. Stop. Issue a rewind to the checkpoint from step 2. Read the file. Read the conversation. Pass: the file is back to its step-2 state, and the conversation no longer contains your step-3 mistake. If the file still has the broken name, you rewound too far or too little — pick a different checkpoint and try again.</li></ol>
+<ol><li><strong>Decide rewind-or-edit on purpose.</strong> In a session, do one small thing wrong — a typo in a config file, for example. Decide: rewind, or edit? Pass: you can name why you chose. A single-line typo in one file is &quot;edit directly.&quot; Two wrong files and a confused conversation is &quot;rewind.&quot;</li></ol>
+<ol><li><strong>Distinguish <code>/clear</code> from rewind.</strong> Start a session. Do a small task. Run <code>/clear</code>. Note what is gone. Then run <code>/compact</code>. Note what is gone. Then rewind. Note what is gone. Pass: you can name what each one keeps and what each one drops. None of them is the right tool for every problem.</li></ol>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>&quot;Undo.&quot;</td><td>Within the tool, yes. Outside the tool, only what the tool snapshotted. The misconception is that rewind restores the whole machine. It restores the tool's session.</td></tr><tr><td>&quot;Checkpoint.&quot;</td><td>A saved session state from a moment when things were good.</td></tr><tr><td>&quot;Rewind.&quot;</td><td>The act of returning to a checkpoint.</td></tr><tr><td>&quot;/rewind.&quot;</td><td>The name of the command. The lesson is about what it does, not the spelling.</td></tr></tbody></table></div>
+<h2 id="what-this-lesson-does-not-cover">What this lesson does not cover</h2>
+<p>We did not show the exact rewind command in detail. We did not list the keybindings. We did not talk about checkpoint retention or storage limits.</p>
+<p>This lesson was about the function: undo for multi-step tool sessions.</p>
+      </div>
+
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A refactor touched eight files, the tests fail, and each fix makes the next failure worse. What is the right move?</p>
+        <ol class="options" type="A">
+          <li>Keep debugging forward until the tests pass</li>
+          <li>Rewind to the checkpoint from before the refactor and start over from a known-good state</li>
+          <li>/clear to empty the conversation</li>
+          <li>Commit the broken state and move on</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Rewind to the checkpoint from before the refactor and start over from a known-good state</p>
+          <p class="why">Many steps have gone wrong at once, which is exactly the case for rolling back to a known-good checkpoint. Option A is the default mistake the lesson exists to fix. Option C empties the conversation but does not restore the files you broke. Option D banks the damage.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A single typo in one config file needs fixing. Rewind, or edit directly?</p>
+        <ol class="options" type="A">
+          <li>Rewind — undoing is always safer</li>
+          <li>Edit directly — one wrong thing in one file is not the rewind case</li>
+          <li>Rewind to before the session started</li>
+          <li><code>/clear</code>, then redo the whole task</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Edit directly — one wrong thing in one file is not the rewind case</p>
+          <p class="why">The rewind threshold is more than one thing to undo; a single line is faster to fix in place. Option A is tempting as the cautious choice, but rewinding also costs the conversation around it. Option C throws away far more than the typo. Option D redoes work that was never broken.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You deleted a file in Finder, outside Claude Code. You then rewind. Is the file back?</p>
+        <ol class="options" type="A">
+          <li>Yes — rewind restores the whole machine</li>
+          <li>Only if the tool itself snapshotted that file; rewinds restore the tool's session state, not changes made outside it</li>
+          <li>Yes, but only if you were in plan mode</li>
+          <li>Yes — rewind restores anything on disk from that time</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Only if the tool itself snapshotted that file; rewinds restore the tool's session state, not changes made outside it</p>
+          <p class="why">A rewind restores what the tool saw and changed, so a change made outside its view is not in any checkpoint. Option A is the tempting overestimate of what undo means. Option C invents a link between plan mode and file recovery. Option D claims a whole-disk rollback the mechanism does not provide.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">The conversation has grown long and full of dead ends, but the files are all fine. What do you reach for?</p>
+        <ol class="options" type="A">
+          <li>Rewind — it trims the conversation</li>
+          <li><code>/clear</code> — rewind restores state, it does not trim the conversation</li>
+          <li>Nothing — dead ends are harmless</li>
+          <li>Rewind to the first checkpoint</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> <code>/clear</code> — rewind restores state, it does not trim the conversation</p>
+          <p class="why">When the problem is conversation length rather than broken files, <code>/clear</code> is the trimming tool and rewind is the wrong one. Option A is the tempting mix-up: rewind restores state to a checkpoint, it does not shrink the conversation. Option C ignores that dead ends keep costing room. Option D would restore files that were never wrong and still leave the chat long.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span>Previous</span>35. Plan Mode and Checkpoints</a>
+    <a class="next" href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span>Next</span>37. Troubleshooting — Reading Errors Properly</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

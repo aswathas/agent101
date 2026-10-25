@@ -4,94 +4,259 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Five Names — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can name the mechanism a task needs before you run it — and say what each">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>The Five Names</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li class="on"><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 70, Imports and External Context</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 11 · LESSON 71</p>
+      <h1>The Five Names</h1>
+      <p class="lesson-motto">You can name the mechanism a task needs before you run it — and say what each</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 02 Lesson 13 (Branches Are Movable Labels); Phase 04 Lesson 31 (The Agentic Loop); Phase 06 Lesson 45 (Subagent Markdown Format)</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Name the five mechanisms and, for each, say what it isolates</li><li>Choose a mechanism from the isolation a task needs, not from a feature name</li><li>Explain why &quot;many agents&quot; is the wrong question to start from</li><li>Say which of the five a task does <em>not</em> need, in one sentence</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>A change touched twenty files. The instinct was &quot;spawn agents.&quot; Five subagents went out, all editing the same checkout. Two of them wrote the same file. The work that survived was fine. The work that didn't was a merge with no branch to merge.</p>
+<p>Recovering it cost a restart and a manual re-apply. Nothing was wrong with the subagents. The wrong name was chosen for the job.</p>
+<p>Four words were in play — <em>subagent</em>, <em>team</em>, <em>worktree</em>, <em>workflow</em> — plus a fifth that isn't a mechanism at all. They read like synonyms when you are holding a task and deciding. They are not synonyms. Each one is a different answer to &quot;what must not collide?&quot;</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Claude Code ships several things that look like &quot;run work in parallel.&quot; Five names cover almost everything a learner reaches for. They are not five settings on one dial. They are five different axes of isolation.</p>
+<div class="table-wrap"><table><thead><tr><th>Name</th><th>What it actually is</th><th>What it isolates</th><th>Who holds the plan</th></tr></thead><tbody><tr><td><strong>Subagent</strong></td><td>A worker inside your one session</td><td>Its context window</td><td>Claude, turn by turn</td></tr><tr><td><strong>Teammate</strong> (an agent team)</td><td>Peer sessions a lead runs</td><td>Who owns which task</td><td>The lead, over a shared task list</td></tr><tr><td><strong>Worktree</strong></td><td>A second checkout of the repo</td><td>The files on disk</td><td>You, or the harness for you</td></tr><tr><td><strong>Workflow</strong></td><td>A script that runs many subagents</td><td>The plan itself</td><td>The script</td></tr><tr><td><strong><code>/batch</code></strong></td><td>A packaged fan-out</td><td>Both: it uses subagents <em>and</em> worktrees</td><td>The skill's plan</td></tr></tbody></table></div>
+<p>Read the middle column, not the name. That column is the whole lesson.</p>
+<ul><li>A <strong>subagent</strong> keeps its mess out of your window. It does not keep it out of your files. Two subagents in one session share one working directory.</li><li>A <strong>teammate</strong> is a full session that can message its peers and claim work. It gives you coordination, not file isolation — teams do not isolate teammates in worktrees, so you partition the files yourself.</li><li>A <strong>worktree</strong> is the only one of the five that isolates files. It is not a worker. It is a copy of the repository where a worker can safely run.</li><li>A <strong>workflow</strong> moves the loop out of Claude's turn-by-turn judgment and into a script. What it isolates is the plan, so a 500-file job doesn't have to fit in one conversation.</li><li><strong><code>/batch</code></strong> is not a sixth mechanism. It is a skill: it decomposes a change into units and runs one isolated subagent per unit.</li></ul>
+<figure class="diagram"><pre>flowchart TD
+    Q{&quot;What must not collide?&quot;} --&gt;|the window| S[&quot;Subagent&lt;br/&gt;own context, shared files&quot;]
+    Q --&gt;|who owns what| T[&quot;Teammate&lt;br/&gt;coordination, still shared files&quot;]
+    Q --&gt;|the files| W[&quot;Worktree&lt;br/&gt;separate checkout&quot;]
+    Q --&gt;|the plan| F[&quot;Workflow&lt;br/&gt;script runs the agents&quot;]
+    S --&gt; B[&quot;/batch =&lt;br/&gt;subagents + worktrees&quot;]
+    W --&gt; B</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>Two more names exist, and this lesson is honest about leaving them out. <strong>Agent view</strong> (background sessions you dispatch and watch) is Phase 12 — it is mostly how you <em>monitor</em> work, and it has nothing to say about what collides. <strong>Projects</strong> runs in the cloud and is out of scope for this course, which is local-first. Neither is one of the five you pick between at the keyboard.</p>
+<blockquote><p><strong>The reframe:</strong> the five names do not differ by how many agents they run —</p><p>they differ by what they isolate, and choosing one is choosing which collision</p><p>you are trying to prevent.</p></blockquote>
+<p>Claude Code ships weekly and these names move. The comparison this lesson is built on lives at <a href="https://code.claude.com/docs/en/agents" target="_blank" rel="noopener">Run agents in parallel</a>; check it before trusting a row. Workflows are also off by default on some plans.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-inventory-what-your-install-actually-has">1. Inventory what your install actually has</h3>
+<pre class="code" data-lang="bash"><code>claude --version
+env | grep CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS || echo &quot;agent teams: off&quot;</code></pre>
+<p>Open a session and run <code>/agents</code>, then <code>/batch</code> with no argument. One lists your subagent files; the other tells you what it needs before it runs.</p>
+<p>✅ You pass when you can say which of the five names are available in <em>your</em> build right now, and which need turning on.</p>
+<h3 id="2-take-three-real-tasks-and-assign-each-an-axis">2. Take three real tasks and assign each an axis</h3>
+<p>Write them down before choosing a name. For each task, answer <strong>one</strong> question: what must not collide?</p>
+<pre class="code"><code>Task: &quot;read every file under src/ and report the two that log a secret&quot;
+Collision to prevent: my context window filling with 400 file reads
+Axis: context
+Name: subagent
 
----
+Task: &quot;rewrite the import style in 30 files&quot;
+Collision to prevent: two editors writing one file at once
+Axis: files
+Name: worktrees
 
-## The Problem
+Task: &quot;audit the whole codebase for the same bug, cross-checking findings&quot;
+Collision to prevent: a job too big for one turn, needing verification
+Axis: the plan
+Name: workflow</code></pre>
+<p>✅ You pass when each task has an axis written next to it, and the axis was decided before the name.</p>
+<h3 id="3-try-the-wrong-axis-on-purpose">3. Try the wrong axis on purpose</h3>
+<p>Take the import-rewrite task and do it as five subagents with no worktrees. Watch them share one directory. Then do it again with <code>isolation: worktree</code> (Phase 11, Lesson 74).</p>
+<p>✅ You pass when you can point at the run that collided and name the column in the table above that would have prevented it.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Reach for</th><th>When the thing that must not collide is…</th></tr></thead><tbody><tr><td>A <strong>subagent</strong></td><td>Your context window. Big searches, logs, file dumps you won't quote again.</td></tr><tr><td>A <strong>teammate</strong></td><td>Who owns which task, and the workers need to talk to each other.</td></tr><tr><td>A <strong>worktree</strong></td><td>The files. Any time two writers touch the same checkout.</td></tr><tr><td>A <strong>workflow</strong></td><td>The plan. Dozens to hundreds of agents, or findings that must be cross-checked.</td></tr><tr><td><strong><code>/batch</code></strong></td><td>A large mechanical change you'd otherwise script by hand. It is subagents plus worktrees, packaged.</td></tr><tr><td>Nothing</td><td>The task is one file and one decision.</td></tr><tr><td>Agent view</td><td>You want to dispatch and watch several independent sessions. Phase 12.</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Write the five names in a column. Next to each, write the one thing it isolates, in three words or fewer. Do it from memory first, then check the table. ✅ You pass when all five rows name a <em>different</em> thing, and none of them says &quot;files&quot; except the worktree row.</li></ol>
+<ol><li class="criterion">Take a task from this week that you ran (or could have run) with an agent. Name the mechanism you used and the axis it isolated. If you used &quot;none,&quot; name the axis that didn't need isolating. ✅ You pass when your answer names the collision you were or weren't preventing, not the feature you clicked.</li></ol>
+<ol><li class="criterion">A colleague says &quot;let's spin up a team to land this 12-file refactor.&quot; Write two sentences back: what team gives you, and what it doesn't. ✅ You pass when your reply says teams share files, so the 12 files need partitioning or worktrees — not just coordination.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>subagent</td><td>&quot;a parallel agent&quot;</td><td>A worker inside one session. Isolates context, not files.</td></tr><tr><td>teammate</td><td>&quot;another agent&quot;</td><td>A full session in an agent team, coordinated through a shared task list and a mailbox. Not worktree-isolated.</td></tr><tr><td>worktree</td><td>&quot;a branch&quot;</td><td>A second working directory with its own checkout. The only one of the five that isolates files.</td></tr><tr><td>workflow</td><td>&quot;a big prompt&quot;</td><td>A script that holds the plan and runs many subagents. Isolates the plan from your conversation.</td></tr><tr><td><code>/batch</code></td><td>&quot;run it everywhere&quot;</td><td>A skill that splits one change into units and runs one worktree-isolated subagent per unit. Subagents plus worktrees, packaged.</td></tr><tr><td>axis of isolation</td><td>&quot;how parallel it is&quot;</td><td>The single thing a mechanism keeps from colliding. The word that actually decides your choice.</td></tr><tr><td>agent view</td><td>&quot;the agent dashboard&quot;</td><td>A screen for dispatching and watching background sessions. A monitoring surface, not an isolation axis. Phase 12.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Worktrees in depth.</strong> Branch names, base refs, <code>.worktreeinclude</code>, cleanup, and per-agent isolation are Lessons 74 and 75, and all of Phase 16.</p>
+<p><strong>Agent teams' mechanics.</strong> The mailbox, the task list, and the documented limits are Lesson 73.</p>
+<p><strong>Workflows.</strong> The script API, <code>parallel()</code> vs <code>pipeline()</code>, and the completion-order trap are all of Phase 12.</p>
+<p><strong>Projects and cloud sessions.</strong> Out of scope for a local-first course. If you move work to the cloud, read <a href="https://code.claude.com/docs/en/claude-code-on-the-web" target="_blank" rel="noopener">Claude Code in the cloud</a>.</p>
+<p><strong>Cost.</strong> Every name here multiplies token usage. Phase 03 Lesson 11 owns the budget side; this lesson is about collisions, not spend.</p>
+      </div>
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">Your task is to read every file under src/ and report the two that log a secret. You don't want 400 file reads in your own conversation. Which of the five names fits, and why?</p>
+        <ol class="options" type="A">
+          <li>A worktree, because the reads must not touch the real checkout</li>
+          <li>A subagent, because the axis to isolate is the context window</li>
+          <li><code>/batch</code>, because the work spans many files</li>
+          <li>A teammate, because the reads need to be shared with peers</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A subagent, because the axis to isolate is the context window</p>
+          <p class="why">The collision to prevent is your window filling with reads you won't quote again — that is context isolation, which is exactly what a subagent provides. A worktree isolates files, and reading doesn't write files, so it buys nothing. <code>/batch</code> is for mechanical changes across many files, not a read-and-report. A teammate adds coordination and still shares your files, which is the opposite of the problem here.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You spawn five subagents to rewrite import style across 30 files. Two of them edit the same file and one overwrites the other. What was the missing mechanism?</p>
+        <ol class="options" type="A">
+          <li>A bigger model on each subagent, so they plan before editing</li>
+          <li>A shared task list, so the subagents claim files in order</li>
+          <li>A worktree per subagent, because subagents isolate context and not files</li>
+          <li>A workflow, because workflows cross-check each other's edits</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> A worktree per subagent, because subagents isolate context and not files</p>
+          <p class="why">Subagents share your working directory, so parallel writers collide no matter how well they reason. Each editor needs its own checkout — <code>isolation: worktree</code>. A shared task list coordinates <em>who does what</em> but not <em>which directory they write to</em>, so the overwrite can still happen. A workflow orchestrates the plan; it doesn't give each agent a separate filesystem by itself.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Three reviewers should each take a different lens on the same pull request — security, performance, and test coverage — and challenge each other's findings before you see a merged verdict. Which name is built for this?</p>
+        <ol class="options" type="A">
+          <li>An agent team, because teammates message each other and coordinate over a shared task list</li>
+          <li>A single subagent with three lenses in its body</li>
+          <li>A worktree per reviewer, so each sees a clean checkout</li>
+          <li><code>/batch</code>, because it splits work into 5 to 30 units</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> An agent team, because teammates message each other and coordinate over a shared task list</p>
+          <p class="why">The defining feature here is reviewers talking to each other and coordinating — that is what agent teams add over subagents. One subagent with three lenses is still one voice and can't argue with itself. Worktrees isolate files, and reviewers aren't writing files, so three clean checkouts add cost and no coordination. <code>/batch</code> fans out isolated <em>edits</em>; it doesn't create a conversation between reviewers.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q"><code>/batch</code> is often called a sixth mechanism, alongside the other four. What is it actually?</p>
+        <ol class="options" type="A">
+          <li>A separate scheduler that runs sessions on a timer</li>
+          <li>A packaged skill that uses subagents and worktrees together</li>
+          <li>The command-line form of an agent team</li>
+          <li>A monitor that watches background sessions for you</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A packaged skill that uses subagents and worktrees together</p>
+          <p class="why"><code>/batch</code> is a skill: it decomposes one large change into units and runs one worktree-isolated subagent per unit — so it is subagents plus worktrees with a name, not a new kind of agent. A timer scheduler is routines. An agent team is a lead plus message-passing peers. The screen that watches background sessions is agent view.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span>Previous</span>70. Imports and External Context</a>
+    <a class="next" href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span>Next</span>72. Subagents as Isolation</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

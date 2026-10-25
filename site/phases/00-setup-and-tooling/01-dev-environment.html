@@ -5,233 +5,256 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dev Environment — Harnessing Claude Code</title>
 <meta name="description" content="After this lesson your terminal, editor and shell are configured the way this">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">BUILD</p>
-  <h1>Dev Environment</h1>
-  <p class="lesson-motto">After this lesson your terminal, editor and shell are configured the way this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section class="on">
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li class="on"><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Build</p>
-    <p><strong>Prerequisites:</strong> none — first lesson in the course</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">BUILD · PHASE 00 · LESSON 1</p>
+      <h1>Dev Environment</h1>
+      <p class="lesson-motto">After this lesson your terminal, editor and shell are configured the way this</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Build</dd></div>
+        <div><dt>Prerequisites</dt><dd>none — first lesson in the course</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- Set a shell that keeps your working directory and shows which git branch you are on
-- Point your editor at a line of output you were given, without hunting for it
-- Create the throwaway repo this course will break on purpose, and confirm it is a git repo
-- Name the three places a command can run, and say which one an agent uses
-
----
-
-## The Problem
-
-Two hours into your first session you ask an agent to change one file. It reports
-success. Nothing changed. The file it edited was in a different folder than the
-one you are looking at — and you have no way to tell, because your terminal shows
-a bare prompt with no path in it.
-
-That is the whole problem. Not the tooling. **Not knowing which folder you are
-in.** Everything this course builds later — sending several agents at once,
-isolating their work, merging it back — assumes you can always answer "where am
-I?" without thinking. Get that habit in place now and the rest is mechanical.
-
----
-
-## The Concept
-
-Three places a command can run. Confusing them is the most common way a session
-goes wrong.
-
-&lt;div class="mermaid"&gt;&lt;pre&gt;flowchart TD
-    A[You type a command] --&amp;gt; B{Which shell?}
-    B --&amp;gt;|your terminal| C[Your machine, your folders]
-    B --&amp;gt;|the agent's shell| D[The same machine, the session's working folder]
-    B --&amp;gt;|a server elsewhere| E[Not your files at all]
-    D -.-&amp;gt; F[Both usually agree — until one of them changes folder]&lt;/pre&gt;&lt;/div&gt;
-
-The middle row is the one that surprises people. The agent does not get a
-special machine. It runs commands **in a specific folder**, and that folder was
-decided when the session started. It is not re-decided every time you talk to it.
-
-So two habits cover most of it:
-
-1. **Your prompt shows the folder.** A path and a branch, always visible.
-2. **You say the folder once, at the start.** "We're working in
-   `~/projects/my-app`." Then you never think about it again.
-
-&gt; **The reframe:** the working folder is set once, at session start, and never
-&gt; moves — so verifying it once is worth more than being careful forever.
-
-### What "set up" actually means
-
-Not a theme. Not a font. Four things, in this order:
-
-| # | Thing | Why this course needs it |
-|---|---|---|
-| 1 | Git installed and configured | Every later phase leans on it |
-| 2 | A shell prompt showing path + branch | You must never be unsure where you are |
-| 3 | An editor you can drive from the terminal | Reading a diff without leaving the keyboard |
-| 4 | A throwaway repo to experiment on | Practice modules break things on purpose |
-
----
-
-## Build It
-
-Do these in order. Each step ends with something you can look at.
-
-### 1. Check git, and set who you are
-
-```bash
-git --version
-git config --global user.name "Your Name"
-git config --global user.email "you@example.com"
-```
-
-Without those two `config` lines every commit in this course fails, and the error
-message does not explain why.
-
-✅ You pass when `git --version` prints a version and both config lines are set.
-
-### 2. Make your prompt show path and branch
-
-Append one line to your shell profile. Bash and zsh differ; use the one that
-matches what you actually run.
-
-```bash
-# zsh (~/.zshrc) or bash (~/.bashrc)
-PS1='$(git branch --show-current 2&gt;/dev/null || echo "no-repo") %c $ '
-```
-
-Then reload it and move into any git repo.
-
-```bash
-source ~/.zshrc    # or ~/.bashrc
-cd ~/.claude       # any repo you have
-```
-
-Your prompt should now read something like `main ~ $`.
-
-✅ You pass when your prompt shows a branch name while you are in a repo.
-
-### 3. Open a file at a given line from the terminal
-
-```bash
-# macOS / Linux
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Set a shell that keeps your working directory and shows which git branch you are on</li><li>Point your editor at a line of output you were given, without hunting for it</li><li>Create the throwaway repo this course will break on purpose, and confirm it is a git repo</li><li>Name the three places a command can run, and say which one an agent uses</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>Two hours into your first session you ask an agent to change one file. It reports success. Nothing changed. The file it edited was in a different folder than the one you are looking at — and you have no way to tell, because your terminal shows a bare prompt with no path in it.</p>
+<p>That is the whole problem. Not the tooling. <strong>Not knowing which folder you are in.</strong> Everything this course builds later — sending several agents at once, isolating their work, merging it back — assumes you can always answer &quot;where am I?&quot; without thinking. Get that habit in place now and the rest is mechanical.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Three places a command can run. Confusing them is the most common way a session goes wrong.</p>
+<figure class="diagram"><pre>flowchart TD
+    A[You type a command] --&gt; B{Which shell?}
+    B --&gt;|your terminal| C[Your machine, your folders]
+    B --&gt;|the agent's shell| D[The same machine, the session's working folder]
+    B --&gt;|a server elsewhere| E[Not your files at all]
+    D -.-&gt; F[Both usually agree — until one of them changes folder]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>The middle row is the one that surprises people. The agent does not get a special machine. It runs commands <strong>in a specific folder</strong>, and that folder was decided when the session started. It is not re-decided every time you talk to it.</p>
+<p>So two habits cover most of it:</p>
+<ol><li><strong>Your prompt shows the folder.</strong> A path and a branch, always visible.</li><li><strong>You say the folder once, at the start.</strong> &quot;We're working in <code>~/projects/my-app</code>.&quot; Then you never think about it again.</li></ol>
+<blockquote><p><strong>The reframe:</strong> the working folder is set once, at session start, and never</p><p>moves — so verifying it once is worth more than being careful forever.</p></blockquote>
+<h3 id="what-set-up-actually-means">What &quot;set up&quot; actually means</h3>
+<p>Not a theme. Not a font. Four things, in this order:</p>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>Thing</th><th>Why this course needs it</th></tr></thead><tbody><tr><td>1</td><td>Git installed and configured</td><td>Every later phase leans on it</td></tr><tr><td>2</td><td>A shell prompt showing path + branch</td><td>You must never be unsure where you are</td></tr><tr><td>3</td><td>An editor you can drive from the terminal</td><td>Reading a diff without leaving the keyboard</td></tr><tr><td>4</td><td>A throwaway repo to experiment on</td><td>Practice modules break things on purpose</td></tr></tbody></table></div>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>Do these in order. Each step ends with something you can look at.</p>
+<h3 id="1-check-git-and-set-who-you-are">1. Check git, and set who you are</h3>
+<pre class="code" data-lang="bash"><code>git --version
+git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;you@example.com&quot;</code></pre>
+<p>Without those two <code>config</code> lines every commit in this course fails, and the error message does not explain why.</p>
+<p>✅ You pass when <code>git --version</code> prints a version and both config lines are set.</p>
+<h3 id="2-make-your-prompt-show-path-and-branch">2. Make your prompt show path and branch</h3>
+<p>Append one line to your shell profile. Bash and zsh differ; use the one that matches what you actually run.</p>
+<pre class="code" data-lang="bash"><code># zsh (~/.zshrc) or bash (~/.bashrc)
+PS1='$(git branch --show-current 2&gt;/dev/null || echo &quot;no-repo&quot;) %c $ '</code></pre>
+<p>Then reload it and move into any git repo.</p>
+<pre class="code" data-lang="bash"><code>source ~/.zshrc    # or ~/.bashrc
+cd ~/.claude       # any repo you have</code></pre>
+<p>Your prompt should now read something like <code>main ~ $</code>.</p>
+<p>✅ You pass when your prompt shows a branch name while you are in a repo.</p>
+<h3 id="3-open-a-file-at-a-given-line-from-the-terminal">3. Open a file at a given line from the terminal</h3>
+<pre class="code" data-lang="bash"><code># macOS / Linux
 code path/to/file.ts:42
 
 # Windows PowerShell
-code path\to\file.ts:42
-```
-
-Add the alias so you never retype it:
-
-```bash
-alias c='code'     # add to the same profile
-```
-
-✅ You pass when the editor opens with the cursor on line 42.
-
-### 4. Create the practice repo
-
-This is the repo the Break modules will destroy on purpose. Make it boring and
-disposable.
-
-```bash
-mkdir -p ~/claude-course-lab
+code path\to\file.ts:42</code></pre>
+<p>Add the alias so you never retype it:</p>
+<pre class="code" data-lang="bash"><code>alias c='code'     # add to the same profile</code></pre>
+<p>✅ You pass when the editor opens with the cursor on line 42.</p>
+<h3 id="4-create-the-practice-repo">4. Create the practice repo</h3>
+<p>This is the repo the Break modules will destroy on purpose. Make it boring and disposable.</p>
+<pre class="code" data-lang="bash"><code>mkdir -p ~/claude-course-lab
 cd ~/claude-course-lab
 git init
 mkdir -p src
 printf 'export const sum = (a, b) =&gt; a + b\n' &gt; src/index.ts
 git add -A
-git commit -m "chore: start the lab"
-git log --oneline
-```
+git commit -m &quot;chore: start the lab&quot;
+git log --oneline</code></pre>
+<p>✅ You pass when <code>git log --oneline</code> shows exactly one commit.</p>
+<h3 id="5-prove-you-know-where-you-are">5. Prove you know where you are</h3>
+<pre class="code" data-lang="bash"><code>pwd
+git rev-parse --show-toplevel</code></pre>
+<p>These two should agree, and the second should be your lab folder. If they ever disagree later in the course, stop and fix that before continuing — every confusing thing downstream traces back to it.</p>
+<p>✅ You pass when both print the same folder.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>pwd</code></td><td>Any time you are not sure what folder you are in</td></tr><tr><td><code>git rev-parse --show-toplevel</code></td><td>Finding the repo root, not the current subfolder</td></tr><tr><td><code>code file:line</code></td><td>Jumping to an error the agent quoted at you</td></tr><tr><td><code>git init</code></td><td>Starting a throwaway repo to experiment in</td></tr><tr><td><code>git config --global user.email</code></td><td>Once per machine, before your first commit</td></tr><tr><td><code>cd -</code></td><td>Returning to the folder you were just in</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Make a folder, <code>git init</code> it, make one commit, then <code>cd</code> somewhere else and recover your position with <code>git rev-parse --show-toplevel</code> alone — without typing the full path. ✅ You pass when you print the lab folder path from a different directory.</li></ol>
+<ol><li class="criterion">Create a file with 60 lines, then open it at line 57 from the terminal in one command. ✅ You pass when the editor lands on line 57 without you scrolling.</li></ol>
+<ol><li class="criterion">Open a brand-new terminal tab and check your prompt. Does it show a branch? If not, your profile edit did not take. ✅ You pass when a fresh tab shows a branch name while you are inside the lab repo.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>working directory</td><td>&quot;the project folder&quot;</td><td>One specific folder a command runs in. Not a default. Not negotiable per command.</td></tr><tr><td>repo root</td><td>&quot;wherever I ran git init&quot;</td><td>The top folder of the repo, found with <code>git rev-parse --show-toplevel</code>. Subfolders are inside it but are not it.</td></tr><tr><td>git config</td><td>&quot;git settings&quot;</td><td>Identity and defaults, stored per-machine globally and per-repo locally. Without identity, commits fail.</td></tr><tr><td>prompt</td><td>&quot;the thing with the cursor&quot;</td><td>The text your shell prints before each command. Make it carry path and branch, and you stop needing to check.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p>No shell scripting, no aliases beyond the two above, no terminal multiplexers. No git concepts beyond &quot;a repo exists and one commit happened&quot; — branches, merging and recovery are Phase 02, and this lesson must not lean on them.</p>
+<p>One warning, because it has already bitten us: <strong>run <code>git init</code> before you start a session, not during one.</strong> A session that begins outside a repo will not pick up a repo created later, and every tool that assumes a repo will fail with a message that does not explain why. Restart your session in an existing repo instead.</p>
+      </div>
 
-✅ You pass when `git log --oneline` shows exactly one commit.
-
-### 5. Prove you know where you are
-
-```bash
-pwd
-git rev-parse --show-toplevel
-```
-
-These two should agree, and the second should be your lab folder. If they ever
-disagree later in the course, stop and fix that before continuing — every
-confusing thing downstream traces back to it.
-
-✅ You pass when both print the same folder.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| `pwd` | Any time you are not sure what folder you are in |
-| `git rev-parse --show-toplevel` | Finding the repo root, not the current subfolder |
-| `code file:line` | Jumping to an error the agent quoted at you |
-| `git init` | Starting a throwaway repo to experiment in |
-| `git config --global user.email` | Once per machine, before your first commit |
-| `cd -` | Returning to the folder you were just in |
-
----
-
-## Exercises
-
-1. Make a folder, `git init` it, make one commit, then `cd` somewhere else and
-   recover your position with `git rev-parse --show-toplevel` alone — without
-   typing the full path.
-   ✅ You pass when you print the lab folder path from a different directory.
-
-2. Create a file with 60 lines, then open it at line 57 from the terminal in one
-   command.
-   ✅ You pass when the editor lands on line 57 without you scrolling.
-
-3. Open a brand-new terminal tab and check your prompt. Does it show a branch?
-   If not, your profile edit did not take.
-   ✅ You pass when a fresh tab shows a branch name while you are inside the lab repo.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| working directory | "the project folder" | One specific folder a command runs in. Not a default. Not negotiable per command. |
-| repo root | "wherever I ran git init" | The top folder of the repo, found with `git rev-parse --show-toplevel`. Subfolders are inside it but are not it. |
-| git config | "git settings" | Identity and defaults, stored per-machine globally and per-repo locally. Without identity, commits fail. |
-| prompt | "the thing with the cursor" | The text your shell prints before each command. Make it carry path and branch, and you stop needing to check. |
-
----
-
-## What this lesson skipped
-
-No shell scripting, no aliases beyond the two above, no terminal multiplexers.
-No git concepts beyond "a repo exists and one commit happened" — branches,
-merging and recovery are Phase 02, and this lesson must not lean on them.
-
-One warning, because it has already bitten us: **run `git init` before you start
-a session, not during one.** A session that begins outside a repo will not pick
-up a repo created later, and every tool that assumes a repo will fail with a
-message that does not explain why. Restart your session in an existing repo
-instead.</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You start a session in ~/notes, then <code>git init</code> a repo at ~/projects/api and <code>cd</code> into it in your own terminal. The agent still edits files under ~/notes. Why?</p>
+        <ol class="options" type="A">
+          <li>Git caches the folder a session began in, and only updates after you commit</li>
+          <li>The agent's working directory was set when the session started and does not follow your terminal</li>
+          <li>The agent cannot edit files outside the folder it was launched from</li>
+          <li><code>cd</code> in your terminal is scoped to your terminal, so the agent sees a different prompt</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The agent's working directory was set when the session started and does not follow your terminal</p>
+          <p class="why">The working directory is decided once, at session start, and does not move as you talk to the agent. Fix: say the folder explicitly at the start of a session, or restart the session in the repo. Option C sounds right but is wrong — the agent can reach any folder you grant; it simply defaults to the session's folder.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You are deep in a repo at repo/src/components/Button/. Which single command reliably tells you the folder you should report problems against?</p>
+        <ol class="options" type="A">
+          <li>pwd</li>
+          <li>ls</li>
+          <li>git rev-parse --show-toplevel</li>
+          <li>git status</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> git rev-parse --show-toplevel</p>
+          <p class="why"><code>git rev-parse --show-toplevel</code> prints the repo root regardless of how deep you are. <code>pwd</code> is right when you want your current subfolder and wrong when you want the project — and it will disagree with the path in a stack trace.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A colleague's <code>git commit</code> fails with an error mentioning identity. Nothing in the repo looks wrong. What is the actual cause?</p>
+        <ol class="options" type="A">
+          <li>The repo has no commits yet, so there is nothing to attach a commit to</li>
+          <li>The branch has diverged from main</li>
+          <li><code>user.name</code> and <code>user.email</code> were never configured on that machine</li>
+          <li>A file is staged but has never been committed</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> <code>user.name</code> and <code>user.email</code> were never configured on that machine</p>
+          <p class="why">Git refuses to attribute a commit to nobody. The other three are real situations but produce different messages — none of them mention identity.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <span></span>
+    <a class="next" href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span>Next</span>2. Git as Your Safety Net</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

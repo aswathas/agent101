@@ -1,28 +1,32 @@
 #!/usr/bin/env node
-// dynamic-workflow.mjs — end-to-end: plan → write → validate → publish.
+// dynamic-workflow.mjs — one entry point for the whole authoring pipeline:
+// status → author (in isolated worktrees) → validate → build site.
 //
-// One entry point. Runs each step in order; each step is allowed to fail loudly
-// so the next step is never fed garbage. CLI agents do all content work; this
-// script only orchestrates and never authors prose.
+// Each step is allowed to fail loudly so the next is never fed garbage. This
+// script only orchestrates; the worker in write-phase.mjs writes prose, and the
+// validator decides whether that prose is finished.
 //
-// Steps
-//   1. agy plans the authoring order from CATALOG.md
-//   2. write-all-phases.mjs fans one headless claude worker per phase
-//   3. validate-lessons.mjs checks every lesson against LESSON-TEMPLATE.md
-//   4. publish-site.mjs renders the validated corpus to site/
+// What changed from the first version, and why:
+//   * `--phases` was accepted and then ignored — it filtered `order` and then
+//     passed every phase to the authoring step anyway. Now the filter is
+//     applied to the set of phases that actually have gaps.
+//   * The publish step called publish-site.mjs, a second renderer that writes
+//     `site/<phase-slug>/...`. The maintained site is build-site.mjs writing
+//     `site/phases/...`. Running both left two half-sites in one directory.
+//     build-site.mjs is the one wired in.
+//   * "Was it authored?" is now the same gap check the worker and the status
+//     report use (scripts/lib/workflow-lib.mjs), not a word-count guess.
 //
-// Usage
-//   node scripts/dynamic-workflow.mjs [--concurrency N] [--phases a,b,c] [--skip-publish]
+// Usage:
+//   node scripts/dynamic-workflow.mjs [--concurrency N] [--phases a,b,c]
+//                                     [--worker claude|opencode] [--status-only]
+//                                     [--skip-site] [--dry-run]
 //
-// Exit codes
-//   0  every step succeeded
-//   1  planning failed (agy returned no order or the order is invalid)
-//   2  authoring failed (one or more phases did not commit)
-//   3  validation failed (problems array non-empty)
-//   4  publishing failed (write to site/ failed or HTML render threw)
+// Exit: 0 every step succeeded; 1 planning failed; 2 authoring failed;
+//       3 validation failed; 4 site build failed; 5 verification failed.
 
-import { spawnSync, spawn } from 'node:child_process';
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 const ROOT = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
@@ -31,116 +35,102 @@ const get = (flag, dflt) => {
   const i = argv.indexOf(flag);
   return i === -1 ? dflt : argv[i + 1];
 };
-const flag = (f) => argv.includes(f);
+const has = (f) => argv.includes(f);
 
-const CONCURRENCY = Number(get('--concurrency', '4'));
-const PHASES_ARG = get('--phases', null);
-const SKIP_AGY = flag('--no-agy');
-const SKIP_PUBLISH = flag('--skip-publish');
+const CONCURRENCY = get('--concurrency', '3');
+const WORKER = get('--worker', 'claude');
+const PHASES = get('--phases', null);
+const STATUS_ONLY = has('--status-only');
+const SKIP_SITE = has('--skip-site');
+const DRY = has('--dry-run');
 
-const CLAUDE = process.env.CLAUDE_BIN || 'C:/Users/aswat/.local/bin/claude.exe';
-
-const node = (script, args = []) =>
+const log = (...m) => console.log('\n══════ ' + m.join(' '));
+const node = (script, args = [], opts = {}) =>
   spawnSync(process.execPath, [join(ROOT, 'scripts', script), ...args], {
-    cwd: ROOT, stdio: 'inherit', shell: false,
+    cwd: ROOT, stdio: 'inherit', shell: false, ...opts,
   });
 
-const log = (...m) => console.log('\n=== ' + m.join(' '));
-
-function runClaudePrompt(prompt, label) {
-  // Headless claude, prompt on stdin (Windows CLI lives under "C:\Program Files\...";
-  // shell:true makes cmd split on the space and fail). acceptEdits blocks Bash so
-  // planning never accidentally edits the repo.
-  const res = spawnSync(
-    CLAUDE,
-    [
-      '-p',
-      '--permission-mode', 'acceptEdits',
-      '--allowedTools', 'Read,Glob,Grep',
-      '--model', 'sonnet',
-      '--max-turns', '50',
-    ],
-    { cwd: ROOT, stdio: ['pipe', 'pipe', 'pipe'], input: prompt, shell: false, encoding: 'utf8' },
-  );
-  if (res.status !== 0) throw new Error(`[${label}] claude exited ${res.status}: ${res.stderr}`);
-  return res.stdout;
-}
-
-// ── Step 1: agy plans the authoring order ────────────────────────────────────
-function plan() {
-  if (SKIP_AGY) return ['00-setup-and-tooling', '01-foundations-of-ai', '02-git-deep',
-    '03-models-and-families', '04-claude-code', '05-commands-and-skills',
-    '06-subagents', '07-mcp', '08-hooks', '09-plugins', '10-memory-and-instructions',
-    '11-parallelism-i', '12-parallelism-ii', '13-context-engineering',
-    '14-harness-engineering', '15-graph-engineering', '16-worktrees-in-practice',
-    '17-scaling-and-operations', '18-capstone'];
-
-  log('agy plans authoring order from CATALOG.md');
-  const out = runClaudePrompt(`
-You are the architecture reviewer for a 19-phase curriculum (see CATALOG.md at
-${ROOT}/CATALOG.md). Read it, then return a strict JSON array of phase slugs
-in the order they should be authored. Grounding matters: a phase may only use
-a concept an earlier phase established. Return ONLY the JSON array — no prose,
-no markdown fences, no commentary. Example shape:
-
-["00-setup-and-tooling","01-foundations-of-ai","02-git-deep","..."]
-`, 'agy-plan');
-
-  // Pull the first [...] block; tolerate prose around it.
-  const m = out.match(/\[[\s\S]*?\]/);
-  if (!m) throw new Error('agy returned no JSON array');
-  const order = JSON.parse(m[0]);
-  if (!Array.isArray(order) || order.length === 0) throw new Error('agy order is empty');
-
-  const onDisk = readdirSync(join(ROOT, 'phases'));
-  const unknown = order.filter((p) => !onDisk.includes(p));
-  if (unknown.length) throw new Error('agy referenced unknown phases: ' + unknown.join(','));
-  return order;
-}
-
-// ── Step 2: fan one worker per phase (reuses write-all-phases.mjs) ──────────
-function author(order) {
-  log('authoring phases via write-all-phases.mjs');
-  const res = node('write-all-phases.mjs', ['--concurrency', String(CONCURRENCY), ...order.flatMap((p) => ['--force'])]);
-  if (res.status !== 0) throw new Error('authoring failed (exit ' + res.status + ')');
-}
-
-// ── Step 3: validate every lesson ────────────────────────────────────────────
-function validate() {
-  log('validating every lesson');
-  const res = node('validate-lessons.mjs');
-  if (res.status !== 0) throw new Error('validation failed');
-}
-
-// ── Step 4: publish static site ──────────────────────────────────────────────
-function publish() {
-  log('publishing static site');
-  const res = node('publish-site.mjs');
-  if (res.status !== 0) throw new Error('publish failed');
-}
-
-// ── driver ──────────────────────────────────────────────────────────────────
-(async () => {
-  try {
-    let order = plan();
-    if (PHASES_ARG) {
-      const wanted = new Set(PHASES_ARG.split(','));
-      order = order.filter((p) => wanted.has(p));
+// ── Step 1: what is actually left ───────────────────────────────────────────
+function status() {
+  log('status: which phases still have gaps');
+  // exit 0 = complete, 1 = gaps remain. Both are fine here; 1 just means work.
+  // The status report takes one phase per call, so honour --phases by looping.
+  if (PHASES) {
+    let complete = true;
+    for (const p of PHASES.split(',').map((s) => s.trim())) {
+      if (node('workflow-status.mjs', ['--phase', p]).status !== 0) complete = false;
     }
-    log('order:', order.join(' → '));
-
-    author(order);
-    validate();
-    if (!SKIP_PUBLISH) publish();
-
-    console.log('\n=== done: every step succeeded.');
-    process.exit(0);
-  } catch (err) {
-    console.error('\n=== FAILED:', err.message);
-    const code = /authoring/.test(err.message) ? 2
-      : /validation/.test(err.message) ? 3
-      : /publish/.test(err.message) ? 4
-      : 1;
-    process.exit(code);
+    return complete;
   }
-})();
+  return node('workflow-status.mjs', []).status === 0;
+}
+
+// ── Step 2: author each phase in its own worktree, merge in catalog order ───
+function author() {
+  const args = ['--concurrency', CONCURRENCY, '--worker', WORKER];
+  if (PHASES) args.push('--phases', PHASES);
+  if (DRY) args.push('--dry-run');
+  log('author: fan one worker per phase, isolate in worktrees, merge in order');
+  const res = node('author-phases.mjs', args);
+  // 4 = nothing needed. That is a success for this pipeline, not a failure.
+  if (res.status !== 0 && res.status !== 4) throw new Error(`authoring failed (exit ${res.status})`);
+  return res.status === 4;
+}
+
+// ── Step 3: validate ────────────────────────────────────────────────────────
+// The validator takes one phase per call (it scopes practice modules by the
+// phase number), so validate the phases this run touched, one at a time. With
+// no --phases, that is the whole corpus.
+function validate() {
+  const phases = PHASES ? PHASES.split(',').map((s) => s.trim()) : null;
+  const list = phases ?? readdirSync(join(ROOT, 'phases')).sort();
+  log(`validate: ${list.length} phase(s) against LESSON-TEMPLATE.md`);
+  const bad = [];
+  for (const p of list) {
+    const res = node('validate-lessons.mjs', [p]);
+    if (res.status !== 0) bad.push(p);
+  }
+  if (bad.length) throw new Error('validation failed: ' + bad.join(', '));
+}
+
+// ── Step 4: render the site ─────────────────────────────────────────────────
+function buildSite() {
+  log('site: render every lesson page');
+  const res = node('build-site.mjs', []);
+  if (res.status !== 0) throw new Error('site build failed');
+}
+
+// ── Step 5: the end-to-end gate ─────────────────────────────────────────────
+function verify() {
+  log('verify: the project-complete gate');
+  const res = node('verify-all.mjs', []);
+  if (res.status !== 0) throw new Error('verification failed');
+}
+
+// ── drive ───────────────────────────────────────────────────────────────────
+try {
+  const complete = status();
+  if (STATUS_ONLY) {
+    console.log(complete ? '\n=== corpus complete.' : '\n=== corpus has gaps.');
+    process.exit(complete ? 0 : 1);
+  }
+
+  const nothingToDo = author();
+  if (!nothingToDo) validate();
+  else console.log('\nnothing authored this run; validating what exists.');
+
+  if (!SKIP_SITE) buildSite();
+  verify();
+
+  console.log('\n=== done: every step succeeded.');
+  process.exit(0);
+} catch (err) {
+  console.error('\n=== FAILED:', err.message);
+  const code = /planning/.test(err.message) ? 1
+    : /authoring/.test(err.message) ? 2
+    : /validation/.test(err.message) ? 3
+    : /site/.test(err.message) ? 4
+    : /verification/.test(err.message) ? 5
+    : 2;
+  process.exit(code);
+}

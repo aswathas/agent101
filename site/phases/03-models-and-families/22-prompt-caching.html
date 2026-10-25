@@ -4,94 +4,264 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Prompt Caching — why switching models makes a turn slow — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can predict which of your actions makes the next turn slow and expensive, before you take them.">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Prompt Caching — why switching models makes a turn slow</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li class="on"><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 21, Effort Levels and Extended Thinking</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 03 · LESSON 22</p>
+      <h1>Prompt Caching — why switching models makes a turn slow</h1>
+      <p class="lesson-motto">You can predict which of your actions makes the next turn slow and expensive, before you take them.</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 21, Effort Levels and Extended Thinking</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this lesson, you can:</p>
+<ul><li>Explain why every turn re-sends the whole conversation</li><li>Say what a cache hit and a cache miss are, in terms of the request prefix</li><li>Predict which actions will force a full re-read, and which will not</li><li>Read the cache numbers in <code>/usage</code> and say whether a session was efficient</li><li>Choose the cheap moment to change your model or effort level</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>Forty minutes into debugging, you switched from <code>sonnet</code> to <code>opus</code> to get a better theory. The next turn took a minute and cost more than the previous twenty put together.</p>
+<p>Nothing about the conversation had changed. Only the model had. And that one turn — not the debugging, not the long history — is the line item that made the session look expensive.</p>
+<p>The same thing happens every time an effort level moves, a long session is resumed after lunch, or a team member tweaks a settings file mid-task. All of it is one mechanism, and once you can see it you stop being surprised by it. Lesson 11 gave you the symptom — a &quot;cold cache&quot;. This lesson gives you the cause.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>The model has no memory between requests. Each turn, the client re-sends the whole conversation: the system prompt, the project context, every earlier message and tool result, and your new message.</p>
+<p>That should be enormously wasteful. It is not, because providers <strong>cache the prefix</strong>.</p>
+<p>The cache matches the <strong>exact start</strong> of the request against something recently processed. Most of a turn is identical to the turn before, so the unchanged prefix is served from cache at a reduced rate, and only the new part is processed fresh. There is no per-file or per-section caching: a change anywhere in the prefix invalidates everything after it.</p>
+<figure class="diagram"><pre>flowchart TD
+    T1[&quot;Turn 1: whole request&quot;] --&gt;|cache miss, write| C[(Cache)]
+    T2[&quot;Turn 2: same prefix + new exchange&quot;] --&gt;|cache read, cheap| C
+    T3[&quot;Turn 3: same prefix + new exchange&quot;] --&gt;|cache read, cheap| C
+    T4[&quot;Turn 4: model switched - prefix changed&quot;] --&gt;|miss: reprocess + write| C</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p><strong>The reframe:</strong> the cache matches the exact start of your request, so the only cheap change is one appended at the end — anything that edits the prefix makes the next turn pay for the whole conversation again.</p>
+<h3 id="the-layers-in-order">The layers, in order</h3>
+<p>The client orders each request so content that rarely changes comes first:</p>
+<div class="table-wrap"><table><thead><tr><th>Layer</th><th>What is in it</th><th>Changes when</th></tr></thead><tbody><tr><td>System prompt</td><td>Core instructions and the definitions of the tools the session can call</td><td>The set of those definitions changes</td></tr><tr><td>Project context</td><td>The instructions loaded at session start</td><td>A new session, or a clear</td></tr><tr><td>Conversation</td><td>Your messages, the model's answers, tool results</td><td>Every turn</td></tr></tbody></table></div>
+<p>A change in the conversation layer leaves the first two layers cached. A change to the system prompt sits <em>behind</em> everything, so it invalidates the lot. That ordering is not an accident — it is the whole trick.</p>
+<p>Two settings sit outside the layers and still break the prefix:</p>
+<ul><li><strong>The model.</strong> Each model has its own cache. Switching recomputes the entire request even when the content is identical.</li><li><strong>The effort level.</strong> On most models each level has its own cache, so changing effort mid-session recomputes the whole request too. Lesson 21's slow turn was this.</li></ul>
+<h3 id="reading-it">Reading it</h3>
+<p>Two token counts tell the story, and <code>/usage</code> summarises them:</p>
+<div class="table-wrap"><table><thead><tr><th>Number</th><th>Meaning</th></tr></thead><tbody><tr><td>Cache write (creation)</td><td>Tokens written into the cache this turn, at the cache-write rate</td></tr><tr><td>Cache read</td><td>Tokens served from cache, at a rate below standard input</td></tr><tr><td>Hit ratio</td><td>How much of the input was a read rather than a write</td></tr></tbody></table></div>
+<p>A high read-to-write ratio means caching is working for you. Writes staying high turn after turn mean something is changing at the front of your request — usually a model or effort change, an instruction file edited mid-task, or a fresh session.</p>
+<p>Two more facts, both load-bearing:</p>
+<ul><li><strong>The cache expires after a period of inactivity.</strong> The timer resets on every hit. After a long enough gap, the next turn recomputes everything and re-establishes it. That is why the first turn back after stepping away is slow.</li><li><strong>The cache is effectively scoped to a machine and a directory.</strong> Two sessions in different folders build different prefixes and cannot share each other's cache.</li></ul>
+<p>Read the mechanism and current numbers at <a href="https://code.claude.com/docs/en/prompt-caching" target="_blank" rel="noopener">Prompt caching</a>.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-watch-the-cache-work">1. Watch the cache work</h3>
+<p>In a fresh session, run three or four turns of ordinary work. Then:</p>
+<pre class="code" data-lang="text"><code>/usage</code></pre>
+<p>Find the prompt-cache line in the session block. Read the hit ratio, the miss count, and whether the cache is warm right now.</p>
+<p>✅ You pass when you can state this session's hit ratio and name one action that caused a miss.</p>
+<h3 id="2-break-it-on-purpose-with-a-model-switch">2. Break it on purpose with a model switch</h3>
+<p>With the conversation warm, switch models and send one more message:</p>
+<pre class="code" data-lang="text"><code>/model opus
+... send a normal follow-up ...
+/usage</code></pre>
+<p>The turn after the switch is the outlier: no cache read, a large write. Compare it to the turns before it.</p>
+<p>✅ You pass when you can point at the turn that followed the switch and name it as a cache miss, not a slower model.</p>
+<h3 id="3-break-it-with-effort-and-notice-the-warning">3. Break it with effort, and notice the warning</h3>
+<p>Change effort mid-session and send a message. On most models the same re-read happens — and the tool may ask you to confirm the switch first, precisely because of that cost.</p>
+<p>✅ You pass when you can explain, in one sentence, why changing effort mid-session is not free.</p>
+<h3 id="4-prove-the-cheap-change">4. Prove the cheap change</h3>
+<p>Now do the opposite. With the cache warm, append a normal message — no model change, no effort change, no restart. The next turn reads the prefix from cache.</p>
+<p>✅ You pass when the appended message's turn shows a cache read, and you can say what was different about it.</p>
+<h3 id="5-let-it-go-cold">5. Let it go cold</h3>
+<p>Warm a session, then step away long enough that the cache expires. Send one more message and read <code>/usage</code>.</p>
+<p>✅ You pass when you can distinguish a cold-cache turn from a model-switch turn using only the numbers, and both are attributable to the prefix rather than to the task.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command or concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>/model &lt;alias&gt;</code></td><td>Pick the model at the <em>top</em> of a session, before the conversation grows</td></tr><tr><td><code>/effort &lt;level&gt;</code></td><td>Same: set it early, change it rarely</td></tr><tr><td>Appending a new message</td><td>The only change that is reliably cheap — it sits at the end</td></tr><tr><td><code>/usage</code> prompt-cache line</td><td>Judging whether a session was efficient, and why a turn was slow</td></tr><tr><td>Cache hit ratio</td><td>Reading a session's efficiency at a glance; a run of misses is a signal, not a bug</td></tr><tr><td>Cold-cache turn</td><td>Explaining the first slow turn after a break; expected, it settles</td></tr><tr><td>New session in a new directory</td><td>Remembering that the cache does not follow you there</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take one real session and narrate its cache history from <code>/usage</code> alone: where the hits were, where the misses were, and what caused each miss. ✅ You pass when every miss you identify is attributed to a specific action you took, not to &quot;slow model&quot;.</li></ol>
+<ol><li class="criterion">Run the identical task twice: once having switched model just before it, once having switched model at the start of the session. Compare the two costs. ✅ You pass when you have both costs and can explain the gap in terms of the prefix.</li></ol>
+<ol><li class="criterion">You must change model mid-task. Write down the cheapest moment to do it and why, then demonstrate that a mid-task switch is more expensive than the same switch made at the session's start. ✅ You pass when your written prediction matches the measured difference, and both numbers are recorded.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>prompt cache</td><td>&quot;it remembered&quot;</td><td>Server-side reuse of a request prefix you recently sent. Not memory between turns.</td></tr><tr><td>prefix</td><td>&quot;the start&quot;</td><td>The exact beginning of the request matched against the cache. A change anywhere in it recomputes everything after.</td></tr><tr><td>cache read</td><td>&quot;free&quot;</td><td>Reduced-rate reuse of cached tokens. High read-to-write means caching is working.</td></tr><tr><td>cache write (creation)</td><td>&quot;the miss&quot;</td><td>Tokens written into the cache on this turn, at the cache-write rate. High every turn means your prefix keeps changing.</td></tr><tr><td>invalidation</td><td>&quot;cold cache&quot;</td><td>The prefix no longer matches, so the next turn reprocesses the whole request and writes a new cache entry.</td></tr><tr><td>TTL</td><td>&quot;how long it lasts&quot;</td><td>The idle period the cache survives. Every hit resets it; a long gap means the next turn can miss.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Making caching a design constraint.</strong> This lesson explains the mechanism. Phase 13 turns it into architecture — ordering an agent's context so the prefix changes as rarely as possible.</p>
+<p><strong>Compaction, and what it costs.</strong> Replacing a long conversation with a summary is its own cache event. Phase 04 covers the command; the interaction with the cache is covered on the prompt-caching page.</p>
+<p><strong>Caching through a gateway or cloud provider.</strong> Where the cache lives, and whether it works at all, depends on how your requests are routed. Real, and only relevant once you deploy.</p>
+<p><strong>Choosing a cache lifetime.</strong> The default TTL is per request type and follows your billing; you can override it. Not needed for interactive work.</p>
+<p><strong>Caching for subagents and workflows.</strong> Separate request buckets with their own behaviour. It arrives with Phases 06 and 12.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You know you will want a different model for a long task. When is the cheapest moment to make the switch?</p>
+        <ol class="options" type="A">
+          <li>Any time — a switch costs the same whenever you do it</li>
+          <li>At the start, before the conversation has grown</li>
+          <li>Right after a long break, when the cache has expired anyway</li>
+          <li>After the task is finished</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> At the start, before the conversation has grown</p>
+          <p class="why">A switch forces a full recompute of everything sent so far, so the cost scales with the conversation size — switching early keeps that recompute small. 'After a break' is tempting because the cache is cold regardless, but by then the conversation is long, so the recompute is larger, not free.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Which of these leaves the cache warm for the next turn?</p>
+        <ol class="options" type="A">
+          <li>Switching models</li>
+          <li>Changing the effort level mid-session</li>
+          <li>Appending a new message to the conversation</li>
+          <li>Starting a new session in a different directory</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> Appending a new message to the conversation</p>
+          <p class="why">Appending sits at the end, so the cached prefix is untouched. A model switch, an effort change, and a fresh session in a new directory all change or replace the prefix, so each one recomputes the request.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You come back from a 40-minute break, change nothing, and send one message. The turn is much slower and more expensive than the last one. What happened?</p>
+        <ol class="options" type="A">
+          <li>The provider was overloaded</li>
+          <li>The cache expired during the break, so the whole conversation was reprocessed</li>
+          <li>Your model was downgraded for inactivity</li>
+          <li>The message itself was expensive</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The cache expired during the break, so the whole conversation was reprocessed</p>
+          <p class="why">The cache survives only a period of inactivity, and every hit resets the timer; a long gap means the next turn misses and reprocesses the prefix. Overload is tempting because it is the usual explanation for slowness, but here the cost moved too — which points at a re-read, not a queue.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Which statement about the cache is true?</p>
+        <ol class="options" type="A">
+          <li>It caches each file separately, so editing one file costs nothing</li>
+          <li>It matches the exact prefix, so changing anything near the front recomputes everything after it</li>
+          <li>It is shared across all models, so switching models keeps it warm</li>
+          <li>It never expires while the conversation is open</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> It matches the exact prefix, so changing anything near the front recomputes everything after it</p>
+          <p class="why">The match is on the exact start of the request, which is why ordering content by how often it changes matters, and why a change near the front is expensive. Per-file caching is the tempting wrong answer — it would be convenient, but the mechanism has no per-file granularity.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span>Previous</span>21. Effort Levels and Extended Thinking</a>
+    <a class="next" href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span>Next</span>23. Quantization, Distillation, Fine-Tuning</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

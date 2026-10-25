@@ -1,6 +1,6 @@
-# Lesson 36 — Checkpointing, /rewind, Recovery
+# Checkpointing, `/rewind`, Recovery
 
-When the tool goes wrong — wrong file edited, test you did not want, accidental deletion — there is a way to roll the session back to a known good state. That is this lesson.
+> The undo for a multi-step tool session: roll back to a known good state.
 
 **Type:** Learn
 **Prerequisites:** Lesson 35 (Plan Mode and Checkpoints)

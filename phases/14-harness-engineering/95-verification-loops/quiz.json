@@ -1,27 +1,56 @@
 {
   "lesson": "14-harness-engineering/95-verification-loops",
-  "title": "Verification Loops — the prerequisite for unattended runs",
+  "title": "Verification Loops — the Prerequisite for Unattended Runs",
   "version": 1,
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Verification Loops — the prerequisite for unattended runs that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "An agent edits a file and then grades its own edit in the same context. Why is that weak?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "It is slower than a separate check",
+        "It shares the context where it already decided it succeeded, so there is no independent check",
+        "It costs more tokens",
+        "It cannot run test commands"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "Independence is the point: a verifier in the worker's own context inherits the worker's assumptions and tends to bless the result. The tempting answer is about speed or cost, but the defect is structural, not economic."
+    },
+    {
+      "id": 2,
+      "prompt": "Your verifier checks whether the output begins with the word 'Success.' What is wrong with it?",
+      "options": [
+        "It is too strict",
+        "The worker controls that string, so it is not independent evidence",
+        "It needs a stronger model",
+        "It should be a decision call"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "Evidence must live outside the worker's control — an exit code, a schema, a diff. A string the worker wrote can always be written again. 'Too strict' is tempting because string checks feel brittle, but the real flaw is that it proves nothing."
+    },
+    {
+      "id": 3,
+      "prompt": "A verify loop keeps 'fixing' and never terminates. What is the first fix?",
+      "options": [
+        "Use a bigger model",
+        "Add a retry cap and a budget",
+        "Remove verification",
+        "Lower the temperature"
+      ],
+      "answer": 1,
+      "explanation": "An unbounded loop needs a floor before anything else; without a cap, a better model just fails more expensively. 'Bigger model' is tempting but does not bound the loop at all."
+    },
+    {
+      "id": 4,
+      "prompt": "Three parallel workers finish in the order 2, 1, 3. How should the loop pick the result?",
+      "options": [
+        "Take worker 2's result, since it finished first",
+        "Collect all results, then verify and select deterministically — not by arrival order",
+        "Take the result of whichever worker is largest",
+        "Run them again one at a time"
+      ],
+      "answer": 1,
+      "explanation": "Arrival order is an artifact of scheduling, not a measure of correctness — the completion-order trap from Lesson 80. The tempting choice equates 'first' with 'best,' which is exactly the bug."
     }
   ]
 }

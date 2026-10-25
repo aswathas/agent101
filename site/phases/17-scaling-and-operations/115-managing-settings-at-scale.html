@@ -4,94 +4,247 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Managing Settings at Scale — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can put one policy on every machine and prove it applied — and say which">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Managing Settings at Scale</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li class="on"><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 114, Sandboxing and Security Model</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 17 · LESSON 115</p>
+      <h1>Managing Settings at Scale</h1>
+      <p class="lesson-motto">You can put one policy on every machine and prove it applied — and say which</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 114, Sandboxing and Security Model</dd></div>
+        <div><dt>Time</dt><dd>~40 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Name the four ways managed settings reach a machine and their rank</li><li>Read <code>/status</code> and tell an unapplied policy from an overridden one</li><li>Choose between <code>first-wins</code> and <code>merge</code>, and predict which source supplies a key</li><li>Recognise the keys that fail closed and why that is deliberate</li><li>Split a policy across files without creating a merge accident</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You rolled out <code>managed-settings.json</code> to the fleet. A developer says the policy is not applying. You open the file on their machine: it is there, valid JSON, the right path. You redeploy it. Still nothing.</p>
+<p>The file is not the problem. Either a <em>higher-ranked</em> source is present and winning — an MDM profile, or server-managed settings from the admin console — or the file is real but contains only control keys and no actual policy, so it does not count as a source at all. Neither failure is visible by looking harder at the file you deployed.</p>
+<p>The pain: managed settings have <strong>their own precedence</strong>, different from the four-file order you learned in Lesson 34. The fix is to read which source was selected, not to deploy again.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Managed settings sit above every other layer: user, project, and local files and even the <code>--settings</code> flag cannot override them, apart from a small set of security-sensitive exceptions where a <em>stricter</em> lower value still counts.</p>
+<p>But &quot;above everything&quot; is only half the story. Managed settings have four delivery mechanisms that outrank <em>each other</em>.</p>
+<figure class="diagram"><pre>flowchart TB
+    R[&quot;1. Remote&lt;br/&gt;server-managed (claude.ai / gateway)&lt;br/&gt;fetched, polled hourly&quot;] --&gt; M[&quot;2. MDM / OS policy&lt;br/&gt;macOS plist, Windows HKLM&lt;br/&gt;checked every 30 min&quot;]
+    M --&gt; F[&quot;3. Files&lt;br/&gt;managed-settings.json&lt;br/&gt;+ managed-settings.d/&quot;]
+    F --&gt; H[&quot;4. HKCU registry&lt;br/&gt;Windows user-writable fallback&quot;]
+    R --&gt; P[The policy for this session]
+    M --&gt; P
+    F --&gt; P
+    H --&gt; P</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>The default behaviour is <strong><code>first-wins</code></strong>: Claude Code uses the highest-ranked source that delivers at least one <strong>policy key</strong> and ignores the rest. A <em>policy key</em> is any settings key other than the two control keys (<code>managedSourcesBehavior</code>, <code>wslInheritsWindowsSettings</code>). A file containing only control keys is not a source, and Claude Code moves down the list.</p>
+<p>If you want every source to contribute, set <a href="https://code.claude.com/docs/en/settings-reference" target="_blank" rel="noopener"><code>managedSourcesBehavior</code></a> to <code>&quot;merge&quot;</code> in the highest-ranked source you deploy. Under <code>&quot;merge&quot;</code>, lists combine, locks take the strictest value, and most other keys take the value from the highest-ranked source that sets them. The user-writable HKCU registry never merges with another source.</p>
+<h3 id="where-the-files-live">Where the files live</h3>
+<div class="table-wrap"><table><thead><tr><th>OS</th><th>Directory</th><th>PowerShell / shell</th></tr></thead><tbody><tr><td>Windows</td><td><code>C:\Program Files\ClaudeCode\</code></td><td><code>managed-settings.json</code>, <code>managed-settings.d\</code>, <code>managed-mcp.json</code></td></tr><tr><td>macOS</td><td><code>/Library/Application Support/ClaudeCode/</code></td><td>same file names</td></tr><tr><td>Linux / WSL</td><td><code>/etc/claude-code/</code></td><td>same file names</td></tr></tbody></table></div>
+<p>The Windows HKCU fallback is a <code>Settings</code> value under <code>HKCU\SOFTWARE\Policies\ClaudeCode</code>. The legacy path <code>C:\ProgramData\ClaudeCode\managed-settings.json</code> is <strong>not</strong> read.</p>
+<h3 id="splitting-the-file-across-teams">Splitting the file across teams</h3>
+<p>Rather than one shared file everyone edits, put each team's part in <code>managed-settings.d/</code>. Claude Code merges <code>managed-settings.json</code> first, then every <code>*.json</code> in that directory in alphabetical order — so numeric prefixes set the order:</p>
+<pre class="code"><code>managed-settings.json
+managed-settings.d/
+├── 10-telemetry.json
+└── 20-security.json</code></pre>
+<p>When two files set the same key: single values are replaced by the later file, lists are combined (duplicates removed), and nested blocks merge key by key. Same rule as everywhere else in this course — <strong>arrays merge, scalars are replaced</strong>.</p>
+<h3 id="fail-closed-or-fail-open">Fail closed, or fail open</h3>
+<p>Managed settings are more forgiving than your own files, in two opposite ways.</p>
+<ul><li><strong>Invalid JSON refuses to start.</strong> If a managed file, MDM plist, or HKLM value is present but cannot be parsed, Claude Code exits with an error naming the source rather than running with a partial policy.</li><li><strong>Individual bad entries are repaired or dropped,</strong> with a warning, instead of failing the whole file.</li><li><strong>Some keys fail closed.</strong> A restrictive single-value key that is present but invalid reads as its restrictive value until you fix it, so a broken restriction never silently becomes an open gate: <code>allowManagedPermissionRulesOnly</code>, <code>disableAutoMode</code>, and <code>skipDangerousModePermissionPrompt</code> all behave this way, and <code>allowedMcpServers</code> falls back to an empty allowlist that admits no user-added servers. A few keys fail open deliberately — <code>requiredMinimumVersion</code> is dropped rather than enforced when invalid.</li></ul>
+<p>This asymmetry is on purpose: a bad list should not silently <em>grant</em> access, but a bad rollout should not brick every machine either.</p>
+<h3 id="keys-only-a-managed-source-can-set">Keys only a managed source can set</h3>
+<p>A handful of keys have no effect in user, project, or local files — they are read only from a managed source. These are the levers that make a rollout a rollout, not a suggestion: things like <code>allowManagedPermissionRulesOnly</code>, <code>managedMcpServers</code>, <code>availableModels</code>, and the sandbox locks from Lesson 114 (such as <code>sandbox.network.allowManagedDomainsOnly</code>). The <a href="https://code.claude.com/docs/en/settings-reference" target="_blank" rel="noopener">settings reference</a> marks each key's scope.</p>
+<p>When a source names you in <code>/status</code>, it can also be <em>computed</em>: a <a href="https://code.claude.com/docs/en/settings-reference" target="_blank" rel="noopener"><code>policyHelper</code></a> is an executable a managed source names, and Claude Code runs it at startup to produce the <code>managedSettings</code> object.</p>
+<blockquote><p><strong>The reframe:</strong> a policy is two things — the file on the machine, and the</p><p>rank that lets it win. Deploying harder only ever fixes the first.</p></blockquote>
+<p><strong>A note on versions.</strong> The managed-settings surface adds keys and combine-rules regularly — <code>managedSourcesBehavior</code>, per-source locking, and several fail-closed keys are version-gated. Treat the <em>ranking</em> in this lesson as the durable part and check the <a href="https://code.claude.com/docs/en/managed-settings" target="_blank" rel="noopener">managed settings docs</a> before depending on a specific key.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>You need administrator rights to write the system directory. If you do not have them, do steps 1–2 with the <code>--settings</code> flag to rehearse and note where the real mechanism differs.</p>
+<ol><li><strong>Deploy a minimal policy.</strong> Create the file at your OS path — on Windows:</li></ol>
+<p>``<code>json { &quot;permissions&quot;: { &quot;deny&quot;: [&quot;Read(./.env)&quot;] }, &quot;allowManagedPermissionRulesOnly&quot;: true } </code>``</p>
+<p>Save it as <code>C:\Program Files\ClaudeCode\managed-settings.json</code> (or the macOS/Linux path from the table above). Include at least one <strong>policy</strong> key, not just a control key.</p>
+<ol><li class="criterion"><strong>Confirm it applied.</strong> Start Claude Code and run <code>/status</code>. The <code>Setting sources</code> line should show <code>Enterprise managed settings (file)</code>. ✅ You pass when that exact label appears.</li></ol>
+<ol><li><strong>Break it on purpose — control keys only.</strong> Replace the file with <code>{ &quot;managedSourcesBehavior&quot;: &quot;merge&quot; }</code> and restart. Run <code>/status</code> again. The managed line should be <strong>missing</strong>, because a control-only file is not a policy source.</li></ol>
+<ol><li class="criterion"><strong>See a skip.</strong> If you can also add an MDM-style source (a second machine or a lab box), do. Otherwise reason it through from the ranking and check for a <code>Skipped sources</code> line in <code>/status</code> on a machine with two sources. ✅ You pass when you can say which source was selected and which was skipped.</li></ol>
+<ol><li><strong>Split the policy.</strong> Move one team's keys into <code>managed-settings.d/10-telemetry.json</code> and another's into <code>20-security.json</code>. Confirm the merged result via <code>/status</code> and by testing a behaviour each file sets.</li></ol>
+<ol><li class="criterion"><strong>Watch a fail-closed key.</strong> Set <code>allowedMcpServers</code> to something invalid and run <code>claude doctor</code>. ✅ You pass when the report names the key and the value it fell back to.</li></ol>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Thing</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>managed-settings.json</code></td><td>The simplest rollout — one policy file in the OS directory</td></tr><tr><td><code>managed-settings.d/*.json</code></td><td>Several teams own parts of one policy; numeric prefixes set order</td></tr><tr><td>Server-managed settings</td><td>One place to change policy for a claude.ai org without touching machines</td></tr><tr><td>MDM / OS policy (plist, HKLM)</td><td>You already manage devices with Jamf, Intune, or Group Policy</td></tr><tr><td><code>managedSourcesBehavior: &quot;merge&quot;</code></td><td>You want every deployed source to contribute, not just the top one</td></tr><tr><td><code>policyHelper</code></td><td>The policy must be computed at startup, not stored</td></tr><tr><td><code>allowManagedPermissionRulesOnly</code></td><td>Only the org's permission rules may apply</td></tr><tr><td><code>managedMcpServers</code> / <code>sandbox.*</code> locks</td><td>Deliver and lock servers or sandbox boundaries</td></tr><tr><td><code>/status</code></td><td>Find which managed source was selected, and which were skipped</td></tr><tr><td><code>claude doctor</code></td><td>Find the entries Claude Code dropped as invalid</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion"><strong>Diagnose from the line, not the file.</strong> A developer shows you a correct <code>managed-settings.json</code> and says the policy is not applying. Write the two things you check in <code>/status</code>, in order. ✅ You pass when your first check distinguishes &quot;no managed source at all&quot; from &quot;a higher source won,&quot; and your second names the overriding source.</li></ol>
+<ol><li class="criterion"><strong>Predict the winner.</strong> A machine has an MDM plist, a <code>managed-settings.json</code>, and an HKCU value. Which supplies the policy under the default, and what changes under <code>&quot;merge&quot;</code>? ✅ You pass when you name the MDM plist for both, and add that HKCU stays out of the merge.</li></ol>
+<ol><li class="criterion"><strong>Rehearse without admin rights.</strong> Simulate a policy for one session using <code>--settings</code>, then explain why that is <em>not</em> managed settings. ✅ You pass when you can say which layer <code>--settings</code> occupies and which source would beat it.</li></ol>
+<ol><li class="criterion"><strong>Avoid a merge accident.</strong> Plan a policy split across three <code>managed-settings.d/</code> files where two files set the same list key. Predict the merged list. ✅ You pass when your prediction matches the combined, de-duplicated list and you name the file order that produced it.</li></ol>
+<ol><li class="criterion"><strong>Prove enforcement.</strong> Deploy <code>allowManagedPermissionRulesOnly: true</code> and try to add an allow rule in a project settings file. ✅ You pass when the project's allow rule has no effect and you can say which layer dropped it.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>managed settings</td><td>&quot;admin settings.json&quot;</td><td>A policy that outranks user, project, local, and <code>--settings</code>. Its <em>own</em> sources also outrank each other</td></tr><tr><td>policy key</td><td>&quot;any setting&quot;</td><td>Any key other than the two control keys. A file with none is not a source</td></tr><tr><td><code>first-wins</code></td><td>&quot;the default&quot;</td><td>The top-ranked source with a policy key supplies the policy; the rest are skipped and named</td></tr><tr><td><code>merge</code></td><td>&quot;combine them&quot;</td><td>An opt-in where every admin source contributes, combined by kind of key</td></tr><tr><td>fail closed</td><td>&quot;a bug&quot;</td><td>A restrictive key that is present but invalid reads as its restrictive value, on purpose</td></tr><tr><td>refuses to start</td><td>&quot;it broke&quot;</td><td>What happens when a managed source is present but not parseable — a deliberate hard stop</td></tr><tr><td><code>/status</code> line</td><td>&quot;a status readout&quot;</td><td>The field that tells you <em>which</em> source won and which were skipped</td></tr><tr><td><code>policyHelper</code></td><td>&quot;a script&quot;</td><td>An executable that computes the managed settings at startup</td></tr><tr><td>scoped key</td><td>&quot;a normal setting&quot;</td><td>A key read only from a managed source; putting it in your own file does nothing</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Server-managed settings and gateways.</strong> The claude.ai console path and the self-hosted gateway deliver the same keys through different infrastructure. See <a href="https://code.claude.com/docs/en/server-managed-settings" target="_blank" rel="noopener">server-managed settings</a> and <a href="https://code.claude.com/docs/en/gateways" target="_blank" rel="noopener">gateways</a>.</p>
+<p><strong>MDM tooling.</strong> Deployment templates for Jamf, Intune, and Group Policy live in the <a href="https://github.com/anthropics/claude-code/tree/main/examples/mdm" target="_blank" rel="noopener">MDM examples repository</a>; this lesson covered the ranking, not the packaging.</p>
+<p><strong>The full key list.</strong> There are hundreds of keys with per-source scopes. Read <a href="https://code.claude.com/docs/en/settings-reference" target="_blank" rel="noopener">all settings</a> when you need a specific one.</p>
+<p><strong>Compliance configurations.</strong> HIPAA and zero-data-retention setups have their own documents; they are organisation policy, not the mechanism this lesson teaches.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A developer's <code>managed-settings.json</code> is at the correct path and is valid JSON, yet the policy is not applying. <code>/status</code> shows no <code>Enterprise managed settings</code> line. What are the two likely causes?</p>
+        <ol class="options" type="A">
+          <li>The file sets no policy key, or a higher-ranked source such as an MDM profile is present and won</li>
+          <li>The file is invalid JSON, or the developer lacks admin rights</li>
+          <li>The developer edited a project settings file instead, or removed the file</li>
+          <li>Claude Code needs a restart, or the model alias is wrong</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> The file sets no policy key, or a higher-ranked source such as an MDM profile is present and won</p>
+          <p class="why">Under <code>first-wins</code>, a managed file counts only if it delivers a policy key — any key other than the two control keys. A file of control keys alone is not a source, so the line is absent. The line is also absent when a higher-ranked source (server-managed, or MDM/OS policy) supplies the policy; <code>/status</code> then names the selected source, and a <code>Skipped sources</code> line names the file. B is tempting because invalid JSON is a real failure mode — but it makes Claude Code <em>refuse to start</em>, not run without a policy, so it contradicts the symptom. Admin rights matter for writing the file, not for whether it is read. C and D guess at causes the stated facts already rule out.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A machine has an MDM/OS policy, a <code>managed-settings.json</code>, and an HKCU registry value, each with policy keys. Under the default behaviour, which supplies the policy?</p>
+        <ol class="options" type="A">
+          <li>The <code>managed-settings.json</code>, because files are the canonical source</li>
+          <li>The MDM/OS policy, because it outranks the file; and under <code>merge</code> the HKCU value still stays out</li>
+          <li>The HKCU value, because it is closest to the user</li>
+          <li>All three merge automatically, so the question is moot</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The MDM/OS policy, because it outranks the file; and under <code>merge</code> the HKCU value still stays out</p>
+          <p class="why">The ranking, highest first, is: remote (server-managed), MDM/OS policy, managed files, then the user-writable HKCU registry. Under the default <code>first-wins</code>, the highest-ranked source that carries a policy key wins, so the MDM policy supplies the policy and the file is skipped (and named under <code>Skipped sources</code>). If you opt into <code>merge</code>, every admin source contributes — but the HKCU registry is user-writable and is excluded from merging, so it still does not join. A is tempting because a file feels authoritative, yet files are ranked below device policy. C reverses the ranking. D is the exact misconception: merging is opt-in, and never automatic.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A manager sets <code>allowManagedPermissionRulesOnly</code> in a managed source, but mistypes the value so it cannot be read. What should you expect when the policy is next applied?</p>
+        <ol class="options" type="A">
+          <li>The key is dropped, so permission rules from user and project files apply again</li>
+          <li>The key reads as its restrictive value — permission rules come only from managed settings — until the value is fixed</li>
+          <li>Claude Code refuses to start until the value is fixed</li>
+          <li>The whole managed source is ignored and the next-ranked source is used</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The key reads as its restrictive value — permission rules come only from managed settings — until the value is fixed</p>
+          <p class="why">Restrictive single-value keys like <code>allowManagedPermissionRulesOnly</code> fail closed: when present but invalid, they read as the restrictive value, so the policy cannot silently loosen. This is deliberate — a broken restriction should not become an open gate. A is the tempting 'fail open' assumption, and it is wrong for exactly these keys. C is a real behaviour for a managed source that cannot be parsed at all (malformed JSON), but a single invalid value inside a valid source is repaired, not fatal. D misapplies the source ranking: a source that delivers keys is still the selected source.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span>Previous</span>114. Sandboxing and Security Model</a>
+    <a class="next" href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span>Next</span>116. Spec → Graph → Build → Verify</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

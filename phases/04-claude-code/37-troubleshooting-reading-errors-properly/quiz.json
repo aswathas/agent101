@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Troubleshooting — Reading Errors Properly that needs a new situation, not recall.",
+      "prompt": "You see a wall of error text, most of it stack frames. What do you read first?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The middle frames, where the failure is",
+        "The first and last lines — one states the problem, the other usually suggests the next step",
+        "The last fix you tried",
+        "The top of the file the code lives in"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The first line says what went wrong and the last usually says what to do, so those two carry the most signal. Option A is tempting because the frames look dense and technical, but the middle is mostly context. Option C is about your last attempt, not this failure. Option D opens a file the error has not pointed you at yet.",
+      "concept": "read-first-and-last"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "Claude Code suggested a fix. It did not work. What does that tell you?",
+      "options": [
+        "Claude Code is broken",
+        "Check whether the suggestion actually matched the error's first and last lines; if it did not, it was a guess",
+        "The error message was lying",
+        "You need to restart the session"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A failed suggestion is a report about whether the fix was grounded in the error text — if it does not match the first and last lines, it was a guess. Option A is the tempting \"tool is broken\" move the reframe targets. Option C blames the error instead of checking the fix against it. Option D addresses nothing.",
+      "concept": "failed-fix-is-a-report"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "An error reads `at Object.<anonymous> (/app/src/user.js:42:17)`. What is your next move?",
+      "options": [
+        "Search the whole repo for the string `foo`",
+        "Open `/app/src/user.js` at line 42 and read the lines around it",
+        "Rerun the command a few times to see if it clears",
+        "Ignore the line number — it is usually wrong"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Most errors are local, so the file-and-line in the message is where to look and the surrounding lines give the context. Option A searches broadly for a name the error already narrowed down. Option C hopes a real failure is flaky. Option D discards the most specific clue the error gave you.",
+      "concept": "read-path-and-line"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "An error from a tool call makes no sense to you. What is the best move?",
+      "options": [
+        "Retype the error from memory into a search engine",
+        "Paste or quote the actual error text and ask Claude Code what it tells you",
+        "Guess a fix and try it",
+        "`/clear` and start the task again"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The error is data — hand the real text to the tool, which is good at restating it in plainer words and pointing at the line. Option A is tempting, but a retyped error drifts and loses the detail that mattered. Option C is the guessing loop the lesson exists to cut. Option D throws away the context you need to understand the failure.",
+      "concept": "send-the-error-back"
     }
   ]
 }

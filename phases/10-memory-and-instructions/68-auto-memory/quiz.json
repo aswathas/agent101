@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Auto Memory and MEMORY.md that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "You correct the agent — \"our API tests need a local Redis\" — and it saves a note. Next week you start a fresh session and the agent already knows. Which file carried that knowledge?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "`CLAUDE.md`, because you wrote the correction",
+        "A topic file in the auto memory directory, indexed by `MEMORY.md`",
+        "The session transcript from last week, which is replayed at startup",
+        "The system prompt, which now includes your correction"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "Claude writes auto memory itself, as topic files indexed by MEMORY.md. Option 2 is tempting because transcripts are stored on disk — but the next session does not replay them; only the memory files load."
+    },
+    {
+      "id": 2,
+      "prompt": "`MEMORY.md` has grown to 400 lines. What does the next session actually load?",
+      "options": [
+        "All 400 lines, because MEMORY.md is loaded in full",
+        "The first 200 lines or 25KB, whichever comes first",
+        "Nothing — an over-length index is skipped",
+        "Only the topic files, because the index is ignored once it is long"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "The index loads its first 200 lines or 25KB, and everything past the limit is dropped on the next load. Option 0 is tempting because CLAUDE.md loads in full up to 4 MiB — but MEMORY.md has its own, much smaller read limit."
+    },
+    {
+      "id": 3,
+      "prompt": "A teammate asks for your auto memory notes so they can get the same context. You copy `MEMORY.md` to their machine. What is the problem?",
+      "options": [
+        "Nothing — auto memory is designed to be shared with the team",
+        "Auto memory is machine-local, and the useful detail lives in topic files that don't travel with the index",
+        "`MEMORY.md` is encrypted and cannot be copied",
+        "It works only if they also copy `~/.claude/settings.json`"
+      ],
+      "answer": 1,
+      "explanation": "Auto memory is machine-local and the index only points at topic files, so a copied index references files the teammate doesn't have. Option 0 is tempting because sharing context is the goal — but the mechanism for sharing context across machines is a committed CLAUDE.md."
+    },
+    {
+      "id": 4,
+      "prompt": "You want the agent to stop taking its own notes in one repository, but keep the feature everywhere else. What do you set?",
+      "options": [
+        "`CLAUDE_CODE_DISABLE_AUTO_MEMORY=1` in your shell",
+        "`\"autoMemoryEnabled\": false` in that project's settings",
+        "Delete `MEMORY.md` in that project",
+        "Set Project instructions to `managed-only`"
+      ],
+      "answer": 1,
+      "explanation": "Setting `autoMemoryEnabled` to false in one project's settings disables it there only. Option 0 is tempting because it disables auto memory — but it is an environment variable, so it applies to every project in that shell, not just one."
     }
   ]
 }

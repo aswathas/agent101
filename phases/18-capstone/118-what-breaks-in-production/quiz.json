@@ -2,26 +2,52 @@
   "lesson": "18-capstone/118-what-breaks-in-production",
   "title": "What Breaks in Production",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about What Breaks in Production that needs a new situation, not recall.",
+      "prompt": "Four agents finished. All four reported success. The merged branch fails the suite. Which order do you check in, and why?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Read each agent's transcript and find which one produced the bad change",
+        "Is the work saved, is the witness honest, did isolation hold, does the environment match — then the model",
+        "Re-run the whole workflow, since a fresh run usually clears it",
+        "Revert the merge and redo the nodes serially, so the culprit can't hide"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Each step is cheaper and more likely than the next: 'is it committed' is one command, 'is the verifier lying' is one run, and blaming a model costs a transcript read plus a re-run. A is the tempting one because a red suite looks like a culprit, and it is exactly the mistake that had the agents taking blame for a wrong glob in package.json. C burns the whole run to avoid a five-minute check, and will reproduce the same failure. D serializes work before establishing that parallelism caused anything — if the witness is lying, serial runs are just slower and equally red.",
+      "concept": "triage-cheapest-first"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "An agent's transcript says it committed its work. `git branch --contains <sha>` returns nothing, and `feat-node-b` sits at the same commit as `main`. What is the most likely state, and the cheapest check?",
+      "options": [
+        "The agent lied about committing — re-run the node",
+        "The commit is in that worktree's working tree but was never made, or the branch label never moved — check `git -C <worktree> status` and its log",
+        "The commit was garbage-collected — recover it from the reflog of the main working copy",
+        "The sha was mistyped — trust the transcript and move on"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The empty branch is the classic shape: the code exists in an isolated working tree that no branch references, so it is one cleanup away from gone. Look inside the worktree before you look anywhere else — `status` and `log` there settle it in one command, and the fix is a commit of work that already exists. A is the tempting reading of a mismatch, and 'the model is lying' is both insulting and expensive: a missing commit is almost always a missing step, not a lie. C sends you hunting in the wrong repository's object store; work never committed has nothing in any reflog. D stops looking at the exact moment the trail gets warm.",
+      "concept": "empty-branch-diagnosis"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Two nodes ran in parallel. Each branch passes the suite on its own. The merged branch fails, reproducibly, and rerunning the suite does not change it. What is the first hypothesis?",
+      "options": [
+        "One agent wrote a bug that its own tests happened not to cover",
+        "The two nodes share a resource neither owns — a config key, an index, an exported name, an interface — so they were never independent",
+        "The suite is flaky under parallel load",
+        "The merge tool resolved a conflict incorrectly"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Green-apart and red-together is the signature of a semantic collision: the two changes are self-consistent and mutually inconsistent, and the disagreement exists only on the merged branch. The fix is an edge you did not draw, then re-running the dependent node. A is tempting because a failure feels like a culprit, but an individual bug would show up on that node's own branch, where the suite is green. C is ruled out by the reproducibility — flakiness comes and goes. D would normally leave the merge conflicted; here the merge is clean and the semantics are not, which is why a clean merge is not evidence that two nodes were independent.",
+      "concept": "semantic-collision"
     }
   ]
 }

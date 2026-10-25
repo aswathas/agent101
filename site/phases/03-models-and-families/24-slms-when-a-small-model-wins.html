@@ -4,94 +4,260 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SLMs — When a 350M Model Wins — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can spot the tasks where a tiny model beats the frontier, and the ones where it will embarrass you.">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>SLMs — When a 350M Model Wins</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li class="on"><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 23, Quantization, Distillation, Fine-Tuning</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 03 · LESSON 24</p>
+      <h1>SLMs — When a 350M Model Wins</h1>
+      <p class="lesson-motto">You can spot the tasks where a tiny model beats the frontier, and the ones where it will embarrass you.</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 23, Quantization, Distillation, Fine-Tuning</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this lesson, you can:</p>
+<ul><li>Say what an SLM is, and why parameter count is a description and not a definition</li><li>Name the task shapes where a small model wins, and where it loses</li><li>Measure a small model against a larger one on a task, with a number</li><li>Compute the volume at which a small model's cost advantage matters</li><li>Decide the tier for a task from its shape rather than from a brand</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>A pipeline classified two hundred thousand support tickets with a frontier model. The bill was enormous. A colleague swapped in a small model running locally, and the labels barely changed. Same pipeline, a fraction of the cost.</p>
+<p>The same team tried the swap on a different task — summarising customer complaints for a report — and got fluent, confident, subtly wrong summaries. They shipped them. Nobody noticed for a month.</p>
+<p>Same tiny model. Opposite outcomes. The difference was never the model. It was the <em>task</em>: one wanted a label from a fixed list, the other wanted writing.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>An <strong>SLM</strong> — small language model — is, roughly, a model small enough to run on a laptop or a single modest machine. In practice that means from a few hundred million parameters to a few billion.</p>
+<p>Do not over-read that number. Lesson 19's reframe applies here too: size is a description, not a definition. What matters is what the model is being asked to do.</p>
+<p>A small model wins when the task is:</p>
+<ul><li><strong>Narrow</strong> — a fixed set of possible answers, not open-ended prose</li><li><strong>High-volume</strong> — you run it thousands of times</li><li><strong>Shape-constrained</strong> — &quot;one word&quot;, &quot;a number&quot;, &quot;a category&quot; rather than a paragraph</li><li><strong>Private</strong> — the input cannot leave the machine</li><li><strong>Simple-but-tedious</strong> — extracting a field, routing a message, tagging a commit</li></ul>
+<p>A small model loses when the task is:</p>
+<ul><li><strong>Open-ended</strong> — reasoning about a novel problem with no known answer shape</li><li><strong>Long-chained</strong> — many steps where an early small error compounds</li><li><strong>Invisible when wrong</strong> — any fluent answer looks plausible, so a confident error slips through</li></ul>
+<p><strong>The reframe:</strong> a small model does not win by being smart; it wins when the task is narrow enough that smart is not what you need.</p>
+<figure class="diagram"><pre>flowchart TD
+    A[One call] --&gt; B{What shape is the answer?}
+    B --&gt;|One of a fixed set| C{Is a wrong answer obvious?}
+    B --&gt;|Open-ended prose| D[Generation: a larger model]
+    C --&gt;|Yes, checked| E[SLM / decision model]
+    C --&gt;|No, it just looks right| F[Larger model, plus a check]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="why-small-stopped-meaning-bad">Why small stopped meaning bad</h3>
+<p>Two levers from Lesson 23 are why this is now practical rather than a stunt.</p>
+<p><strong>Quantization</strong> makes a small model fit and run fast on ordinary hardware. <strong>Distillation</strong> makes a small model behave like a big one on a narrow task, because it was trained on that big model's answers for exactly those inputs. Add a fixed output shape and you have a model that is small, cheap, fast, and right where it matters.</p>
+<h3 id="the-honest-comparison">The honest comparison</h3>
+<p>The comparison that matters is not &quot;is the small model as good.&quot; It is:</p>
+<blockquote><p>On <em>this task</em>, what does the small model lose in accuracy, and what does that loss cost me — in money, latency, or a wrong answer nobody catches?</p></blockquote>
+<div class="table-wrap"><table><thead><tr><th></th><th>Small, local</th><th>Large, hosted</th></tr></thead><tbody><tr><td>Cost per call</td><td>Electricity and hardware</td><td>Billed per token</td></tr><tr><td>Latency</td><td>Local, no network</td><td>Round trip, larger model</td></tr><tr><td>Privacy</td><td>Input stays put</td><td>Input leaves the machine</td></tr><tr><td>Capability</td><td>Enough for narrow tasks</td><td>Broad and open-ended</td></tr></tbody></table></div>
+<p>The small model usually wins on the first three. The question is always whether the fourth is enough.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-pick-a-narrow-task-with-a-real-answer">1. Pick a narrow task with a real answer</h3>
+<p>Choose something with a fixed label set, so accuracy is a number and not a feeling. A good one: read a commit message and classify it as <code>feat</code>, <code>fix</code>, <code>docs</code>, <code>test</code>, or <code>chore</code>.</p>
+<h3 id="2-build-the-check-set-first">2. Build the check set first</h3>
+<p>Twenty examples — a message and its correct label. This is the same check set pattern from Lesson 23. Write it before you run anything, so you cannot pick examples that flatter a model.</p>
+<p>✅ You pass when the twenty inputs and their correct labels exist as a file, before any model has scored them.</p>
+<h3 id="3-run-the-small-model-constrained">3. Run the small model, constrained</h3>
+<p>Give the small model an exact output shape:</p>
+<pre class="code" data-lang="text"><code>Classify the git commit below as exactly one word: feat, fix, docs, test, or chore.
+Answer with the word only.</code></pre>
+<p>Score it against the twenty.</p>
+<p>✅ You pass when you have an accuracy number for the small model, and can say how many it missed.</p>
+<h3 id="4-run-the-large-model-on-the-same-twenty">4. Run the large model on the same twenty</h3>
+<p>Same prompt, same check set. Score it, and record latency per call.</p>
+<p>✅ You pass when you have both accuracies and both latencies side by side.</p>
+<h3 id="5-find-the-crossover">5. Find the crossover</h3>
+<p>Cost is volume multiplied by cost per call. At your real volume, a one-percent accuracy gap can be worth very little or a great deal.</p>
+<p>Write down: how many calls a day this task makes, what each tier costs you at that volume, and what the accuracy gap is.</p>
+<p>✅ You pass when you can state the tier you would choose and the number that decided it.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Situation</th><th>Reach for</th></tr></thead><tbody><tr><td>Fixed label set, thousands of calls a day</td><td>A small model, run locally</td></tr><tr><td>Input cannot leave the machine</td><td>A small model, run locally</td></tr><tr><td>Open-ended reasoning about a new problem</td><td>A larger model</td></tr><tr><td>Long multi-step chain with no check between steps</td><td>A larger model, or add a check</td></tr><tr><td>Fluent output that nobody verifies</td><td>A larger model <em>and</em> a check set; the task is dangerous for any tier</td></tr><tr><td>One-off request, tiny volume</td><td>Whichever answers best; volume is not a lever at this size</td></tr></tbody></table></div>
+<p>Tooling and model names move quickly. Nothing here names a specific small model on purpose — the pattern is the lesson, and the current best small model will be different next quarter.</p>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take a narrow task you run often. Write a twenty-example check set and score both a small and a large model against it. ✅ You pass when both scores are numbers, on the same twenty inputs, recorded together.</li></ol>
+<ol><li class="criterion">Find one task in your own work where a small model would be <em>dangerous</em> — fluent when wrong, and unchecked. Say what makes it dangerous. ✅ You pass when you can name the specific property (invisibility of errors) and the check that is missing.</li></ol>
+<ol><li class="criterion">Take a task for which you currently use a large model. Compute, from your real volume, whether a small model's accuracy gap costs more or less than the money it saves. ✅ You pass when the answer is a comparison of two numbers, not an opinion.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>SLM</td><td>&quot;a weak model&quot;</td><td>A small language model, roughly hundreds of millions to a few billion parameters. Weak at open-ended reasoning; often enough for a narrow task.</td></tr><tr><td>parameter count</td><td>&quot;how big it is&quot;</td><td>The number of learned weights. A description, not a definition of capability (Lesson 19).</td></tr><tr><td>narrow task</td><td>&quot;simple task&quot;</td><td>A task with a small, fixed set of correct answers. Narrow is about the output space, not the difficulty of the input.</td></tr><tr><td>throughput</td><td>&quot;how fast&quot;</td><td>Calls handled per unit time, locally and without a network round trip. Why small models win at volume.</td></tr><tr><td>crossover</td><td>&quot;the break-even&quot;</td><td>The volume at which a per-call cost difference outweighs an accuracy difference. It is arithmetic, not taste.</td></tr><tr><td>confidently wrong</td><td>&quot;hallucinating&quot;</td><td>Fluent and incorrect. The failure a small model hits hardest when the task is open-ended and unchecked.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Serving small models at scale.</strong> Batching, GPU scheduling, and concurrency for high volume. Phase 17 territory.</p>
+<p><strong>Evaluation frameworks.</strong> A twenty-example check set is a floor. Rigorous evaluation is its own discipline, and this course only asks you to be honest about what you measured.</p>
+<p><strong>Training a small model yourself.</strong> Distillation and fine-tuning are Lesson 23; this lesson assumes you pick one off the shelf or accept the one you built.</p>
+<p><strong>Decision models.</strong> A small model used specifically to output a label, rather than text, is the next lesson — and it is the sharper version of this idea.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">Two hundred thousand private tickets a day, each to be labelled with one of twelve categories. Which tier?</p>
+        <ol class="options" type="A">
+          <li>A frontier model, because classification is reasoning</li>
+          <li>A small local model, because the task is narrow, high-volume, and the data is private</li>
+          <li>Whichever is cheapest, regardless of accuracy</li>
+          <li>A frontier model, because small models cannot classify</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A small local model, because the task is narrow, high-volume, and the data is private</p>
+          <p class="why">A fixed label set is narrow, the volume is high, and 'private' rules out sending the input elsewhere — three of the SLM's strengths at once. 'Classification is reasoning' is tempting, but the output space is small, which is exactly what makes a small model viable.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A product lead asks: 'Why did churn rise this quarter, and what should we do?' Which tier, and why?</p>
+        <ol class="options" type="A">
+          <li>A small model, because the question is short</li>
+          <li>A larger model, because the task is open-ended prose with no fixed answer shape</li>
+          <li>A small model, because it is cheaper at any volume</li>
+          <li>Whichever answers fastest</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A larger model, because the task is open-ended prose with no fixed answer shape</p>
+          <p class="why">The output is open-ended analysis, which is the SLM's weak spot. 'Short question' is the tempting mistake — length of input is not the axis; the shape of the answer is.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A small model matches a large one within 2% accuracy on your task and costs a fiftieth as much at your volume. The 2% misses are obvious when they happen. What do you do?</p>
+        <ol class="options" type="A">
+          <li>Keep the large model; any accuracy loss is unacceptable</li>
+          <li>Route down to the small model, and keep the check set running against the failures you can see</li>
+          <li>Route down and stop checking, since the cost is now tiny</li>
+          <li>Average the two models' answers</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Route down to the small model, and keep the check set running against the failures you can see</p>
+          <p class="why">Obvious, checked failures make the accuracy gap a measured cost rather than a hidden one, so the cheaper tier wins. 'Any accuracy loss is unacceptable' is the tempting answer, but the lesson's point is that the gap is arithmetic — and here the errors are visible and capped.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Why can a 350M-parameter model beat a frontier model on one task?</p>
+        <ol class="options" type="A">
+          <li>It is secretly as capable as the frontier model</li>
+          <li>The task is narrow enough that the frontier model's extra breadth is not used, and the small model wins on cost and latency</li>
+          <li>Small models are always more accurate</li>
+          <li>The frontier model is being throttled</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The task is narrow enough that the frontier model's extra breadth is not used, and the small model wins on cost and latency</p>
+          <p class="why">The win is about the task's output space, not the model's raw capability. 'Secretly as capable' is the tempting wrong answer because the result looks like parity — but on an open-ended task the same model would fail, which is what Lesson 26 calls picking by shape rather than by size.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span>Previous</span>23. Quantization, Distillation, Fine-Tuning</a>
+    <a class="next" href="../../phases/03-models-and-families/25-decision-models.html"><span>Next</span>25. Decision Models Beat Generation on Cost</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

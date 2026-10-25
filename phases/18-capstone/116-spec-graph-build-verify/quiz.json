@@ -2,26 +2,52 @@
   "lesson": "18-capstone/116-spec-graph-build-verify",
   "title": "Spec → Graph → Build → Verify",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Spec → Graph → Build → Verify that needs a new situation, not recall.",
+      "prompt": "You wrote five acceptance checks. After the parallel build, all five pass on the merged branch. What have you proven?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "That the feature is correct",
+        "That the five behaviours you thought to check hold — anything beyond them is unestablished",
+        "That the task graph was correct, since the checks map to nodes one-to-one",
+        "Nothing, until a human reads every diff and approves it"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Verification is bounded by the checks you wrote: a green suite proves five behaviours and is silent about the sixth you never thought to name. Option A is the tempting one — 'all green means done' — and it is the exact mistake the verify step exists to prevent, because the empty-query bug that started this lesson would have sat in an unchecked behaviour. C confuses the verifier with the graph: nodes being satisfiable says nothing about whether you decomposed the work correctly. D overcorrects: the checks do prove those five things, and refusing to trust any evidence is not rigour, it is paralysis.",
+      "concept": "verification-is-bounded-by-the-checks"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "Three nodes: A adds a `searchMode` option to config, B implements the empty-query guard against config, C writes the empty-query test. You mark A→B and A→C, then run B and C at the same time in separate worktrees. Both pass on their own branches. The merged branch fails C. What is the diagnosis?",
+      "options": [
+        "One of the two agents produced bad code — re-run them serially and find which",
+        "B and C shared a decision neither owned (the guard's interface), so they were not genuinely independent; the edge belongs between them, or one node must own that interface",
+        "The verifier is flaky — re-run the suite on the merged branch",
+        "They should have been given separate worktrees, which would have prevented it"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Both nodes were individually green because each was self-consistent; the failure lives in the seam between them, which only exists after the merge. That is a missing edge, not a bad agent — file isolation held, and what leaked was meaning. A is the tempting one because a failure looks like a culprit, but 'find the guilty agent' cannot explain a defect that appears only in the combination. C is possible in general and is the wrong first move here: the failure is reproducible and logical, not intermittent. D inverts the lesson — separate worktrees are exactly what they had, and worktrees isolate files, not decisions.",
+      "concept": "false-frontier-shared-decision"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You decide to verify by reading the three diffs and re-running each agent's own tests, reasoning that each node already passed. Which class of defect does that method miss?",
+      "options": [
+        "None — if every part passes, the whole passes",
+        "Defects that only exist in the combination: two nodes that are individually green and inconsistent with each other once merged",
+        "Only performance regressions, which unit tests never catch",
+        "Only defects in the checks themselves"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "'Every part passed' feels like it must transfer to the whole, and it does not: two nodes can each satisfy their own checks while disagreeing about a shared interface, a config value, or an ordering. That disagreement has no existence on either branch, so no per-branch run can see it. A is the assumption this question is testing, and it is the most common way a parallel run ships broken. C narrows the gap to performance and misses integration entirely. D is a real category but not what per-branch verification systematically misses — you can verify each check on the merged branch just as easily.",
+      "concept": "verify-the-merged-whole"
     }
   ]
 }

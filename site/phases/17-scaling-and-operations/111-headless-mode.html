@@ -4,94 +4,241 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Headless / Non-Interactive Mode — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can turn a Claude Code session into one command that runs, prints, and">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Headless / Non-Interactive Mode</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li class="on"><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 110, Isolation Without a Commit Is Not a Backup</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 17 · LESSON 111</p>
+      <h1>Headless / Non-Interactive Mode</h1>
+      <p class="lesson-motto">You can turn a Claude Code session into one command that runs, prints, and</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 110, Isolation Without a Commit Is Not a Backup</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Run a one-shot task with <code>claude -p</code> and read its result</li><li>Pipe input into a run and choose the output format your script needs</li><li>Predict what a <code>-p</code> run loads from the working directory, and when that is a liability</li><li>Make an unattended run that cannot hang waiting for a human</li><li>Branch a script on the run's exit code</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You put <code>claude -p &quot;write the changelog for this release&quot;</code> into a GitHub Action. It worked on your laptop. On the runner it produced a different answer — or exited non-zero — and nothing in the repository changed.</p>
+<p>You did not break anything. The command did exactly what it does everywhere: it loaded whatever the machine had. On your laptop that was your <code>CLAUDE.md</code>, your hooks, your MCP servers, your personal skills. On the runner there were none of those. Same command, same prompt, different context — and a result that is different for a reason you cannot see from the log.</p>
+<p>The pain is not &quot;non-interactive mode is hard.&quot; It is that headless mode looks like the CLI with the interface turned off. It is not. It is the whole context loader, running with nobody to notice what it picked up.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Add <code>-p</code> (or <code>--print</code>) to any <code>claude</code> command. The run reads your prompt, does one turn, prints the result, and exits. No interface, no waiting for you.</p>
+<figure class="diagram"><pre>flowchart LR
+    P[&quot;prompt / stdin&quot;] --&gt; C{context loader}
+    C --&gt;|CLAUDE.md, hooks, skills,&lt;br/&gt;MCP, auto memory| W[(context window)]
+    C --&gt;|--bare: none of that| W
+    W --&gt; L[agentic loop]
+    L --&gt; O[&quot;stdout: text | json | stream-json&quot;]
+    L --&gt; E[&quot;exit code 0 | non-zero&quot;]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>Everything left of the loop is the part people forget. An interactive session and a <code>-p</code> run load from the same places: the working directory's <code>.claude/</code>, <code>~/.claude/</code>, project <code>CLAUDE.md</code>, <code>.mcp.json</code>, <code>auto memory</code>, installed plugins. <code>--bare</code> skips all of it, so the run is the same on every machine.</p>
+<p>Two doors exist because of how little is different:</p>
+<ul><li><strong>Input.</strong> The run reads stdin, so you pipe like any other command: <code>cat build-error.txt | claude -p 'explain the root cause'</code>.</li><li><strong>Output.</strong> <code>--output-format text</code> (default), <code>json</code>, or <code>stream-json</code>. With <code>json</code> the payload carries <code>result</code>, <code>session_id</code>, <code>total_cost_usd</code>. With <code>--json-schema</code> you get a validated <code>structured_output</code> field.</li></ul>
+<p>The exit code is the script's contract: <code>0</code> when the run succeeds, non-zero when it fails. That is how a job knows to stop.</p>
+<h3 id="the-thing-that-makes-unattended-runs-hang">The thing that makes unattended runs hang</h3>
+<p>A <code>-p</code> run still follows the permission system. If a tool call needs approval and nothing can answer, the run waits. Two flags fix it:</p>
+<ul><li><code>--allowedTools &quot;Read,Edit,Bash(git diff *)&quot;</code> pre-approves specific tools.</li><li><code>--permission-prompts none</code> says nobody is available. Anything that would prompt is denied, Claude is told so, and the run continues instead of stalling. (This flag is version-gated — see the note below.)</li></ul>
+<p>There is no approval prompt in a <code>-p</code> run and no workspace trust dialog. That means a <code>-p</code> session will run a project's hooks and connect its <code>.mcp.json</code> servers <em>even in a folder you have never trusted</em>. That is the security edge of headless mode; Lesson 114 picks it up.</p>
+<blockquote><p><strong>The reframe:</strong> headless mode does not make the agent smaller — it makes</p><p>you absent. Everything a session would load still loads; the only thing gone</p><p>is the person who would have caught it.</p></blockquote>
+<p><strong>A note on versions.</strong> Claude Code ships weekly, so treat flags, not versions, as the thing to learn. <code>--bare</code> and <code>--permission-prompts none</code> are newer additions; if your binary rejects one, check the <a href="https://code.claude.com/docs/en/headless" target="_blank" rel="noopener">headless docs</a> and <a href="https://code.claude.com/docs/en/cli-reference" target="_blank" rel="noopener">CLI reference</a> for its current spelling. As of this lesson, <code>--permission-prompts none</code> requires v2.1.259+, and some bare-mode limits changed at v2.1.286.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>Run these in a real project folder. Each step ends in something you can point at.</p>
+<ol><li><strong>One-shot question.</strong> Ask about your codebase:</li></ol>
+<p>``<code>bash claude -p &quot;What does the auth module do?&quot; </code>``</p>
+<p>The answer prints and the process exits.</p>
+<ol><li><strong>Pipe input in, redirect output out.</strong> Write the answer to a file:</li></ol>
+<p>``<code>bash cat build-error.txt | claude -p 'concisely explain the root cause of this build error' &gt; output.txt </code>``</p>
+<ol><li><strong>Get structured output.</strong> Ask for JSON and pull one field:</li></ol>
+<p>``<code>bash claude -p &quot;Summarize this project&quot; --output-format json | jq -r '.result' </code>``</p>
+<p>You also get <code>session_id</code> and a client-side cost estimate in the same blob.</p>
+<ol><li><strong>Run the same prompt in bare mode.</strong> Compare:</li></ol>
+<p>``<code>bash claude --bare -p &quot;Summarize README.md&quot; --allowedTools &quot;Read&quot; </code>``</p>
+<p>Bare mode skips your <code>CLAUDE.md</code>, hooks, skills, plugins, MCP servers, and auto memory. It also does not use your subscription login — set <code>ANTHROPIC_API_KEY</code> first. If your project relies on a skill or a <code>CLAUDE.md</code> rule, this run won't have it. That difference <em>is</em> the lesson.</p>
+<ol><li><strong>Branch on the exit code.</strong> Make the shell stop on failure:</li></ol>
+<p>``<code>bash claude -p &quot;run the test suite and fix any failures&quot; --allowedTools &quot;Bash,Read,Edit&quot; echo &quot;exit: $?&quot; </code>``</p>
+<ol><li><strong>Run it unattended.</strong> Simulate a scheduled job:</li></ol>
+<p>``<code>bash claude -p &quot;Update the dependency pins and run the tests&quot; \ --permission-mode auto --permission-prompts none </code>``</p>
+<p>It finishes instead of waiting for an approval nobody will give. With <code>--output-format stream-json</code>, denials appear as <code>permission_denied</code> messages and the final result lists them in <code>permission_denials</code>.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>claude -p &quot;…&quot;</code></td><td>One turn, no interface — scripts, CI, one-off questions</td></tr><tr><td><code>--output-format json</code></td><td>Your script needs fields, not prose (<code>result</code>, <code>session_id</code>, cost)</td></tr><tr><td><code>--json-schema '{…}'</code></td><td>You need a validated shape in <code>structured_output</code>, not free text</td></tr><tr><td><code>--output-format stream-json</code></td><td>You want events as they happen (tokens, tool calls, retries)</td></tr><tr><td><code>--allowedTools &quot;Read,Edit&quot;</code></td><td>Auto-approve specific tools instead of prompting</td></tr><tr><td>`--permission-mode auto \</td><td>dontAsk \</td><td>acceptEdits`</td><td>Set the baseline for a whole run, not one tool</td></tr><tr><td><code>--permission-prompts none</code></td><td>Nobody can answer — jobs must not hang</td></tr><tr><td><code>--bare</code></td><td>CI and scripts: same result on every machine, load only what you pass</td></tr><tr><td><code>--settings &lt;file-or-json&gt;</code></td><td>Inject settings for one run without touching a settings file</td></tr><tr><td><code>--mcp-config &lt;file&gt;</code></td><td>Give a bare run exactly the MCP servers it needs</td></tr><tr><td><code>--append-system-prompt</code></td><td>Add an instruction (e.g. &quot;you are a typo linter&quot;) without replacing defaults</td></tr><tr><td><code>--continue</code> / <code>--resume &lt;id&gt;</code></td><td>Multi-step jobs that build on the previous turn</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion"><strong>Make one run reproducible.</strong> Write a one-line script that runs the same prompt with and without <code>--bare</code> in a repo that has a <code>CLAUDE.md</code> or a hook. Record both outputs. ✅ You pass when you can name the concrete difference the two runs produced and say which flag belongs in CI.</li></ol>
+<ol><li class="criterion"><strong>Turn a command into a contract.</strong> Wrap a <code>claude -p</code> call in a shell script that exits non-zero when the run fails, so a job stops instead of committing a lie. ✅ You pass when forcing the run to fail (bad input or a denied tool) makes your script exit with a non-zero status.</li></ol>
+<ol><li class="criterion"><strong>Build a JSON pipeline.</strong> Run a task with <code>--output-format json</code> (add <code>--json-schema</code> if you want a fixed shape) and parse exactly one field with <code>jq</code>. ✅ You pass when your script prints that one field to stdout and exits <code>0</code>.</li></ol>
+<ol><li class="criterion"><strong>Make it survive nobody answering.</strong> Run a command that would normally prompt, with <code>--permission-prompts none</code>, in a context where stdin is closed. ✅ You pass when the run ends on its own — no hang — and you can state, from the output, what it was denied.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>headless mode</td><td>&quot;the CLI without the UI&quot;</td><td>The same context loader and loop, with no person to approve or catch anything</td></tr><tr><td><code>-p</code> / <code>--print</code></td><td>&quot;just a flag&quot;</td><td>The switch that makes a run do one turn and exit, so it composes like a command</td></tr><tr><td><code>--bare</code></td><td>&quot;a faster start&quot;</td><td>A start that skips auto-discovery — the same result on every machine, and <em>none</em> of your setup</td></tr><tr><td>exit code</td><td>&quot;did it work&quot;</td><td>The script's contract. <code>0</code> success, non-zero failure; a job that ignores it ships garbage</td></tr><tr><td>stdout / stdin</td><td>&quot;I/O&quot;</td><td>The two doors that make a run a Unix command: pipe in, format out</td></tr><tr><td><code>--allowedTools</code></td><td>&quot;permissions&quot;</td><td>Pre-approval for a run. Not a security boundary — see Lesson 114</td></tr><tr><td><code>--permission-prompts none</code></td><td>&quot;don't ask&quot;</td><td>Tell the run nobody is there, so it denies and continues instead of hanging</td></tr><tr><td><code>stream-json</code></td><td>&quot;verbose JSON&quot;</td><td>Newline-delimited events — tool calls, tokens, retries, denials — as they occur</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>The Agent SDK.</strong> <code>claude -p --output-format json</code> is already &quot;programmatic,&quot; but it is still a subprocess you scrape. Lesson 112 is the same loop as a library with typed output and tool-approval callbacks.</p>
+<p><strong>What a <code>-p</code> run may execute without asking.</strong> A <code>-p</code> session connects a project's MCP servers and runs its hooks with no trust dialog. That is a real edge and it belongs with Lesson 114.</p>
+<p><strong>Cost and session mechanics in depth.</strong> <code>json</code> output gives you a client-side estimate and a <code>session_id</code>; using them across a fleet is out of scope here.</p>
+<p><strong>Provider auth.</strong> Bare mode does not read your subscription login. Running on Bedrock, Google Cloud, or Microsoft Foundry has its own setup; see the <a href="https://code.claude.com/docs/en/headless" target="_blank" rel="noopener">headless docs</a>.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A CI job runs <code>claude -p &quot;write the release notes&quot;</code> and produces a different answer on the runner than on the developer's laptop. The repository is identical on both. What is the most likely cause, and the fix?</p>
+        <ol class="options" type="A">
+          <li>The model is non-deterministic, so install a fixed seed with a flag</li>
+          <li>The run loads the host's context (CLAUDE.md, hooks, skills, MCP); re-run with no dependency on it by using <code>--bare</code> and passing only what the job needs</li>
+          <li>The runner is slower, so add <code>--max-turns</code> to force the same path</li>
+          <li>The prompt is too vague; make it more specific so any machine agrees</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The run loads the host's context (CLAUDE.md, hooks, skills, MCP); re-run with no dependency on it by using <code>--bare</code> and passing only what the job needs</p>
+          <p class="why">A <code>-p</code> run uses the same context loader as an interactive session: it reads the working directory's and the home directory's .claude, CLAUDE.md, hooks, skills, MCP servers, and auto memory. On the laptop that set is rich; on a clean runner it is empty, so the same command has different inputs. <code>--bare</code> skips auto-discovery and makes the run depend only on what the script passes, which is what reproducibility requires. A is the tempting answer because model sampling is real, but the sample space cannot explain a difference that tracks the machine, and no seed flag fixes configuration drift. C confuses speed with context. D assumes the prompt is where the difference lives, but the prompt was the same on both machines.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A nightly <code>claude -p</code> job sometimes runs for an hour and then times out instead of finishing. The task itself is quick. What should you change first?</p>
+        <ol class="options" type="A">
+          <li>Raise the job timeout so it has room to finish</li>
+          <li>Add <code>--permission-prompts none</code> (and/or an explicit <code>--allowedTools</code> list) so a tool call can't sit waiting for an approval</li>
+          <li>Switch <code>--output-format</code> to <code>stream-json</code> so the job streams instead of blocking</li>
+          <li>Run it with <code>--continue</code> so it resumes past the stall</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Add <code>--permission-prompts none</code> (and/or an explicit <code>--allowedTools</code> list) so a tool call can't sit waiting for an approval</p>
+          <p class="why">A <code>-p</code> run still follows the permission system. When a tool call needs approval and no human is present, the run waits — which is exactly a quick task that occasionally takes an hour. <code>--permission-prompts none</code> tells the run nobody can answer: anything that would prompt is denied, Claude is told not to retry, and the run proceeds. <code>--allowedTools</code> pre-approves the tools that legitimately need to run. A is tempting because a timeout is the visible symptom, but a larger timeout just changes how long the hang lasts. C changes how output is delivered, not whether approval is needed. D continues a finished conversation; there is nothing to resume when the run never ended.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A script must pull an array of function names out of a file's contents. Which approach is the robust one?</p>
+        <ol class="options" type="A">
+          <li>Run with default text output and extract the names with a regular expression</li>
+          <li>Run with <code>--output-format json --json-schema '{...}'</code> and read the validated <code>structured_output</code> field</li>
+          <li>Ask the model to format the names as a comma-separated string and split on commas</li>
+          <li>Turn the prompt into several <code>-p</code> calls, one per function, and concatenate</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Run with <code>--output-format json --json-schema '{...}'</code> and read the validated <code>structured_output</code> field</p>
+          <p class="why">A JSON Schema turns the answer into a validated contract: the response carries a <code>structured_output</code> field shaped the way you asked, so your script parses a field instead of guessing at prose. A is tempting because it is what you do with an ordinary command, but scraping free text couples your script to the model's formatting, which changes without warning. C replaces a schema with a delimiter convention that the model may not honor, and names containing commas break it outright. D multiplies cost and calls without removing the parsing problem, since each call still returns prose.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span>Previous</span>110. Isolation Without a Commit Is Not a Backup</a>
+    <a class="next" href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span>Next</span>112. The Claude Agent SDK</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

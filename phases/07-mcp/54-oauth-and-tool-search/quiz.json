@@ -2,26 +2,67 @@
   "lesson": "07-mcp/54-oauth-and-tool-search",
   "title": "OAuth, Headers, and MCP Tool Search",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about OAuth, Headers, and MCP Tool Search that needs a new situation, not recall.",
+      "prompt": "You commit a .mcp.json so your team gets the same server. It needs a bearer token. Which entry keeps the secret out of git history?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "\"headers\": {\"Authorization\": \"Bearer ${API_KEY}\"} — the file holds the variable name, and expansion resolves it per machine at load time",
+        "\"headers\": {\"Authorization\": \"Bearer sk-live-abc123\"} — remove it from the file in a later commit before the repo is public",
+        "\"env\": {\"API_KEY\": \"sk-live-abc123\"} on the server entry, since env values are not written to .mcp.json",
+        "Put the token in headersHelper, which runs as a shell command and so is never stored in the config"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "Expansion runs in url, headers, command, args, and env, so ${API_KEY} in a committed file resolves from each machine's environment and the file itself holds no credential. Option B is the failure this prevents — once a secret is in history, deleting it later does not remove it. Option C is factually wrong; env values in .mcp.json are written to the file, which is exactly why expansion exists. Option D is a real mechanism but a shell command executes on load — trading a readable secret for executable config.",
+      "concept": "no-secrets-in-config"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A server exposes 60 tools and every session feels slower to start and /compact happens sooner. What does tool search, on by default, actually change here?",
+      "options": [
+        "It caps each server at a smaller number of tools, dropping the rest permanently",
+        "It loads only tool names and server instructions at startup, deferring full descriptions until a query suggests a tool is relevant",
+        "It caches the tool definitions on disk so later sessions don't pay for them",
+        "It disables tools from servers you haven't used in the last few sessions"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Tool search changes when descriptions load, not which tools exist — the full list is always reachable, just found by searching descriptions when something looks relevant, so startup cost stays small as servers multiply. Option A is a cap that doesn't exist. Option C describes a caching layer that isn't the mechanism, and it wouldn't help the first session anyway. Option D is invented; unused servers aren't retired.",
+      "concept": "tool-search-deferral"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You mark a whole 60-tool server with alwaysLoad true because you use three of its tools most days. What did you actually buy?",
+      "options": [
+        "Faster tool discovery, since everything is visible without a search step",
+        "All 60 tool definitions in context on every turn of every session, plus a startup that now waits for that server to connect",
+        "Correctness — deferred tools can be missed, while always-loaded ones cannot",
+        "Nothing until the tools are first used, after which they stay pinned"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "alwaysLoad exempts a server from deferral, which means every definition is resident in the window every turn — a standing context cost — and startup waits for the server so the first prompt has its tools. That is the right trade only for one or two tools you reach for constantly; pinning 60 to use 3 spends the budget Lesson 32 told you to protect. Option C is the tempting justification and it is wrong: deferral changes discovery, not availability.",
+      "concept": "alwaysload-cost"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "One MCP tool returns a 200,000-character schema dump. At the default threshold, what does the model actually receive?",
+      "options": [
+        "The first 50,000 characters, with the rest dropped",
+        "A file reference to the persisted full result, not the 200,000 characters inline",
+        "The full result inline, with older parts dropped from the window by compaction later",
+        "An error, because a tool result cannot exceed the limit"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Oversized results aren't truncated — they're persisted and replaced in the conversation by a reference, so the model reads a pointer and can work from the file. That distinction matters: a truncated schema is a wrong schema, whereas a file reference is a redirect the agent can follow. Per-tool _meta anthropic/maxResultSizeChars raises the threshold for that one tool, scoped rather than session-wide.",
+      "concept": "oversized-tool-results"
     }
   ]
 }

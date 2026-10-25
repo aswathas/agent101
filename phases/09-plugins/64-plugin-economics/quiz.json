@@ -2,26 +2,52 @@
   "lesson": "09-plugins/64-plugin-economics",
   "title": "Plugin Economics — What Every Enabled Plugin Costs",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Plugin Economics — What Every Enabled Plugin Costs that needs a new situation, not recall.",
+      "prompt": "You enabled a plugin in March for one project. You have not used it since April. It ships three skills and one MCP server. Which statements are true of what you are paying now?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Nothing — cost is only incurred when a component actually runs, and none of them have",
+        "The three skills' names and descriptions on every turn, plus the server process running in every session you open",
+        "Only the MCP server, because a plugin's skills are namespaced and namespaced content is not counted",
+        "The full body of all three skills plus the server, because enabling a plugin loads its components"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "An enabled plugin is part of every session: each skill and agent's name and description must be in context so the model can match a request to it, and the MCP server starts alongside the session whether or not you speak to it. Bodies load only on use (D is the model people carry from install-type systems), namespacing is a naming scheme and not an exemption (C), and 'cost only on use' (A) is exactly the assumption this lesson exists to break.",
+      "concept": "always-on-charge"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You maintain a plugin with four skills. `claude plugin details` reports ~180 always-on tokens, and one skill's `description` is a 400-character paragraph. Users report the skill 'never triggers' when they ask for the obvious thing. What is the real trade-off?",
+      "options": [
+        "Shorten the description to cut the always-on cost — a smaller description can only improve matching",
+        "Shorten it, then verify triggering still works, because the description is both what you're charged for and what Claude matches requests against",
+        "Split the plugin into four so each user's always-on cost drops, then stop editing descriptions",
+        "Leave it: the always-on cost is fixed by the component count and description length is not part of it"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The same description text is doing two jobs at once — it is charged to every session's context and it is the text a request is matched against. Shortening it lowers the bill and can break triggering, so the edit has to be verified afterwards (`claude plugin eval`), which is exactly why this is not a free win. Option A assumes the two jobs don't interfere. Splitting (C) is a real structural lever but does nothing about a description that no longer matches its own skill. And description length plainly is in the always-on figure (D), which is the whole point of the per-component rows.",
+      "concept": "description-is-cost-and-signal"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "`claude plugin details` reports a plugin with three skills and two MCP servers at ~150 always-on tokens, and lists no row for either server. You read `/context` and find the `MCP tools` category is the third-largest row in your window. Why the discrepancy?",
+      "options": [
+        "The servers failed to start, so their tools are showing up as orphaned definitions",
+        "MCP tool schemas resolve at runtime and are counted in `/context`, not in the plugin's always-on estimate — the plugin is costing more than `details` reports",
+        "The always-on figure counts only the plugin's skills; its servers are billed separately and shown in `/usage`",
+        "`/context` counts tool schemas across all sources, so this plugin's contribution may be zero and other plugins are responsible"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "`details` deliberately excludes MCP schemas because they resolve at runtime rather than being carried as fixed always-on text, so the honest total for a server-shipping plugin is the estimate plus whatever its tools add in `/context`. Failed servers (A) would show as disconnected in `/mcp`, not as live tool definitions in your window. The estimate isn't split into a separate bill anywhere (C). And the fact that the row is large is your evidence it is real — you still have to attribute it, but assuming it belongs to someone else's plugin is the wrong default (D).",
+      "concept": "mcp-cost-not-in-details"
     }
   ]
 }

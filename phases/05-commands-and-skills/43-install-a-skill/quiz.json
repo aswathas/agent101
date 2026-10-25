@@ -2,26 +2,52 @@
   "lesson": "05-commands-and-skills/43-install-a-skill",
   "title": "Install a Skill",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Install a Skill that needs a new situation, not recall.",
+      "prompt": "You wrote a release workflow skill for yourself and left it in ~/.claude/skills/. A teammate says they don't have it and asks you to send it over. What is actually wrong?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Personal skills are machine-local by definition — a teammate will never see them, and the fix is project scope, committed to the repo",
+        "The install failed silently; re-copy the folder to ~/.claude/skills/ on their machine",
+        "They need to run claude plugin validate before personal skills appear",
+        "The skill's name is refused because it isn't lowercase"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "Scope is the whole mechanism here: personal skills load on this user, this machine, and nowhere else — so a teammate not having one is correct behaviour, not a failed install. The fix is to move it to .claude/skills/ and commit it. Option B asks a teammate to copy a file into a machine-local location that will diverge immediately. Option C is unrelated — validate checks frontmatter parsing on a skills directory, not who can see it. Option D invents a naming rule; names are rejected for specific characters, not case.",
+      "concept": "scope-decides-who-gets-it"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A skill you installed runs fine as /my-skill but never fires on a natural request. The description looks correct. What is the diagnostic order?",
+      "options": [
+        "Re-read the description out loud and rewrite it more emphatically",
+        "Check /skills first to confirm discovery, then claude plugin validate the directory for unparseable frontmatter",
+        "Delete and reinstall the skill",
+        "Check ~/.claude/skills/.trash/ in case a sweep moved it"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The symptom has two causes that look identical from outside — a description that doesn't match human phrasing, and frontmatter that fails to parse so the body loads with empty metadata — and only a parse check separates them. /skills first establishes that discovery is even the problem; validate then names the file. Option A tests a hypothesis you said you'd already ruled out. Option C destroys the evidence that would have told you which cause it was. Option D is a real failure mode but it removes the skill from the menu entirely, which is not the symptom described.",
+      "concept": "diagnose-in-order"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A colleague's eleven personal skills vanished between sessions with no error, and their folders are gone from ~/.claude/skills/. Where do they actually go?",
+      "options": [
+        "They are deleted permanently the moment they stop loading",
+        "They are moved into a timestamped folder under ~/.claude/skills/.trash/, recoverable until the retention sweep — historically triggered by a stray manifest.json in the skills directory",
+        "They moved into ~/.claude/skills/synced/, which is where downloaded skills live",
+        "They were overridden by a plugin with the same names"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "This is a reported failure shape, not a hypothetical: a file named manifest.json in the skills directory used to make Claude Code sweep the listed skill folders into ~/.claude/skills/.trash/ under a timestamped subfolder, and those skills stopped loading — with a 30-day retention sweep afterwards. So recovery is a move, and it is time-limited. Option A is the panic response and it's wrong. Option C confuses two different things — synced skills are downloaded, not swept. Option D would change what commands exist, not remove files.",
+      "concept": "trash-recovery"
     }
   ]
 }

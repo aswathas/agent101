@@ -4,94 +4,269 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spec → Graph → Build → Verify — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can turn a paragraph of intent into a spec of runnable checks, arrange">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Spec → Graph → Build → Verify</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li class="on"><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 115, Managing Settings at Scale</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">BUILD · PHASE 18 · LESSON 116</p>
+      <h1>Spec → Graph → Build → Verify</h1>
+      <p class="lesson-motto">You can turn a paragraph of intent into a spec of runnable checks, arrange</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Build</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 115, Managing Settings at Scale; Lessons 98–105, Graph</dd></div>
+        <div><dt>Time</dt><dd>~45 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Write a spec as acceptance checks — each one a command and an expected result — before any agent starts</li><li>Turn those checks into a task graph and mark the blocking edges from data flow, not from folder layout</li><li>Hand each independent node to one isolated agent, with a claim and a commit instruction</li><li>Run the checks from step one against the <strong>merged</strong> result and say exactly what a pass proves and what it doesn't</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You asked for better search. You got better search, plus a filter panel, plus a rename nobody requested, plus a bug where an empty query returns every row. It ran. It reviewed clean. It merged. Three weeks later someone asks why typing a single space dumps the whole table, and there is no line anywhere that says it shouldn't.</p>
+<p>&quot;Iterate on search&quot; is not a task. Every agent that touched it had a different definition of finished, and all of them were defensible.</p>
+<p>Now parallelize that. You split &quot;search work&quot; into three nodes by folder — one agent per directory — and run them at once. They never touch the same file, so isolation holds, so nothing collides. The merged branch still fails, because the thing they shared was a decision: the shape of the options object, the cache key, the order of the query clauses. Folders are not the graph. The dependencies are.</p>
+<p>Two failures, one cause. The request described an outcome with no way to check it, so &quot;done&quot; was an opinion — and opinions don't compose across agents.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Four phases. One loop, and the loop is the point.</p>
+<figure class="diagram"><pre>flowchart LR
+    S[&quot;1. Spec&lt;br/&gt;acceptance checks:&lt;br/&gt;command + expected&quot;] --&gt; G[&quot;2. Graph&lt;br/&gt;one node per check,&lt;br/&gt;blocking edges from data flow&quot;]
+    G --&gt; B[&quot;3. Build&lt;br/&gt;one isolated agent&lt;br/&gt;per independent node&quot;]
+    B --&gt; V[&quot;4. Verify&lt;br/&gt;run step 1's checks&lt;br/&gt;on the merged result&quot;]
+    V --&gt;|fail| G
+    V --&gt;|pass| SHIP[Ship]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="1-spec-a-list-of-commands-not-a-paragraph">1. Spec — a list of commands, not a paragraph</h3>
+<p>A spec entry has a command and an expected result. Nothing else counts.</p>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>Check</th><th>Command</th><th>Expected</th></tr></thead><tbody><tr><td>C1</td><td>empty query returns nothing</td><td><code>npm test -- search.empty</code></td><td>1 passing</td></tr><tr><td>C2</td><td>whitespace-only query returns nothing</td><td><code>npm test -- search.whitespace</code></td><td>1 passing</td></tr><tr><td>C3</td><td>filter panel is not part of this change</td><td><code>git diff --name-only</code></td><td>no file under <code>filters/</code></td></tr></tbody></table></div>
+<p>If you cannot write the command, you do not have a spec. You have a wish, and a wish is what an agent fills in with its own judgement.</p>
+<h3 id="2-graph-the-spec-re-ordered">2. Graph — the spec, re-ordered</h3>
+<p>Each check becomes a node. An edge runs from node A to node B when B <strong>needs something A produces</strong>. That is what a blocking edge is (Lesson 100) — not &quot;B sounds like it comes later.&quot;</p>
+<figure class="diagram"><pre>flowchart TD
+    A[&quot;A. config: add searchMode&quot;] --&gt; B[&quot;B. implement empty-query guard&quot;]
+    A --&gt; C[&quot;C. test: empty + whitespace&quot;]
+    B --&gt; D[&quot;D. test: filter panel absent&quot;]
+    C --&gt; D</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>The <strong>frontier</strong> is the set of nodes with no unfinished predecessor — the only things genuinely parallelizable <em>right now</em> (Lesson 99). Here that is A alone. After A, B and C can run at once. D waits for both.</p>
+<p>The edges come from shared data: a type, a config key, an interface, a fixture. If you drew an edge because two files live in the same folder, you drew the wrong graph — and the parallel run will prove it to you in the merge.</p>
+<h3 id="3-build-one-agent-one-node-one-commit">3. Build — one agent, one node, one commit</h3>
+<p>Each node gets an isolated agent in its own worktree (Lesson 74), a <strong>claim</strong> on that node so no second agent picks it up (Lesson 101), and one standing instruction:</p>
+<blockquote><p>Commit your work before you report. An isolated worktree with no commit is not</p><p>a backup — it is a branch pointing at <code>main</code> (Lesson 110).</p></blockquote>
+<p>Agents may run in parallel only for nodes on the same frontier. Nodes joined by an edge run in order, because the edge is a promise B makes about A.</p>
+<h3 id="4-verify-the-same-list-on-the-whole">4. Verify — the same list, on the whole</h3>
+<p>Run step one's checks against the merged branch, from a clean checkout, by someone who did not build it — you, or a verifier agent that has not seen the diffs. Each node passing on its own branch proves nothing about the combination (Lesson 95). Verification is a property of the merged whole.</p>
+<figure class="diagram"><pre>sequenceDiagram
+    participant You
+    participant A as Agent (node B)
+    participant Main as merged branch
+    You-&gt;&gt;A: node B, claim, commit instruction
+    A-&gt;&gt;Main: commit
+    You-&gt;&gt;Main: merge
+    You-&gt;&gt;Main: run spec C1..C3
+    Main--&gt;&gt;You: pass / fail + the line that failed</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<blockquote><p><strong>The reframe:</strong> the spec is not the text you hand to an agent — it is the set</p><p>of commands you will run at the end, and the graph is those commands arranged</p><p>so that nothing waits longer than it has to.</p></blockquote>
+<h3 id="what-verify-can-and-cannot-tell-you">What verify can and cannot tell you</h3>
+<p>A pass proves the behaviours you thought to check. It says nothing about the ones you didn't. So write the blind spots down in the spec itself, as a section named &quot;Not covered.&quot; &quot;Maybe the model wrote something clever elsewhere&quot; is not a failure of the method; claiming the method covered it is.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>Do this on your capstone's next real change, small enough to finish in one sitting.</p>
+<h3 id="1-write-the-checks-before-the-code">1. Write the checks before the code</h3>
+<p>Put them in <code>SPEC.md</code> as a table. Include one check that is <strong>false right now</strong>, so the spec fails before any work starts.</p>
+<pre class="code" data-lang="bash"><code># one command runs the whole spec
+npm test -- search</code></pre>
+<p>✅ You pass when the whole spec runs as one command and fails on the current commit — you can point at the failing check.</p>
+<h3 id="2-turn-checks-into-nodes-and-draw-the-edges">2. Turn checks into nodes and draw the edges</h3>
+<p>One node per check. For each pair, ask: <em>does B need anything A produces?</em> Write the answer down; a guessed edge costs a serialized node, a missing edge costs a merge you cannot explain.</p>
+<p>✅ You pass when every node has its predecessors named or explicitly marked &quot;none&quot;, and you can mark the frontier.</p>
+<h3 id="3-kill-the-false-frontier-before-you-spawn">3. Kill the false frontier before you spawn</h3>
+<p>For each pair of frontier nodes, ask whether they share a resource: a config key, an interface, a fixture, a version string, a generated file. Sharing means one of them comes first, or one of them owns the resource.</p>
+<p>✅ You pass when no two nodes you are about to run at once touch the same file <strong>or</strong> the same decision, and you can name the check you ran to decide that.</p>
+<h3 id="4-spawn-one-agent-per-frontier-node">4. Spawn one agent per frontier node</h3>
+<p>Give each agent: its node, its inputs, its claim, its worktree, and the commit instruction. Nothing else. An agent that &quot;might as well also&quot; fix something adjacent is a node you did not model.</p>
+<p>✅ You pass when each agent's branch has at least one commit and <code>git branch --contains &lt;sha&gt;</code> names its branch.</p>
+<h3 id="5-merge-then-verify-the-whole">5. Merge, then verify the whole</h3>
+<p>Merge the branches (Lesson 109). Then run the spec from step one against the merged result, from a clean checkout.</p>
+<pre class="code" data-lang="bash"><code>git worktree list      # every isolated copy, and which branch it holds
+git log --oneline --graph --all
+npm test -- search</code></pre>
+<p>✅ You pass when the spec passes on the merged branch, and <code>git status</code> is clean afterwards — a suite that only passes while files are dirty is not a pass.</p>
+<h3 id="6-record-the-gap-between-spec-and-result">6. Record the gap between spec and result</h3>
+<p>Write down, in <code>NOTES.md</code>, one behaviour the final artifact has that no check covers, and one check that had to be added after a failure. That list is the spec's real coverage report.</p>
+<p>✅ You pass when <code>NOTES.md</code> names both, and you can say which of the two you would add to the spec first.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td>Acceptance check</td><td>Any request you can't turn into a command yet — that is the work</td></tr><tr><td><code>SPEC.md</code> as a table</td><td>Before the first agent starts, and again after the merge</td></tr><tr><td>Blocking edge</td><td>Whenever two nodes share a decision, not just a file</td></tr><tr><td>Frontier</td><td>The only correct answer to &quot;what can run right now?&quot;</td></tr><tr><td>Claim</td><td>Before spawning, so two agents never do one job</td></tr><tr><td>Worktree</td><td>Any node you want isolated from your working copy</td></tr><tr><td>Commit instruction</td><td>In every agent's prompt. Untracked work is not saved work</td></tr><tr><td>Verifier on the merged branch</td><td>The last step, every time. Part-branches green means nothing</td></tr><tr><td>&quot;Not covered&quot; section</td><td>Whenever the spec is the basis of a claim you'll make out loud</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take your capstone's next change and write <code>SPEC.md</code> as checks only — no prose, no goals, no description. Every row must have a command and an expected result, and at least one row must fail today. ✅ You pass when one command runs the whole file and the failure it reports is the one you predicted, not a different one.</li></ol>
+<ol><li class="criterion">Draw the graph for that spec, then find one edge you got from folder layout rather than data flow. Remove it or justify it. ✅ You pass when you can name which nodes changed status — parallel to serial, or the reverse — and what would have broken if you'd kept the wrong edge.</li></ol>
+<ol><li class="criterion">Run two frontier nodes in parallel with two agents, merge them, and verify on the merged branch. ✅ You pass when both branches contain a commit, the merge is clean, and the spec passes on the merged result rather than only on the individual branches.</li></ol>
+<ol><li class="criterion">Deliberately break one check on the merged branch, confirm the spec catches it, then fix it. ✅ You pass when you can show the check failing and then passing on the same commit history, and you know which node's work was affected.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>spec</td><td>&quot;the requirements&quot;</td><td>A list of checks, each a command with an expected result. Prose is not a spec.</td></tr><tr><td>acceptance check</td><td>&quot;a test&quot;</td><td>One command whose exit tells you whether one behaviour holds. The unit a spec is made of.</td></tr><tr><td>task graph</td><td>&quot;the plan&quot;</td><td>Nodes (checks to satisfy) joined by edges (what needs what). A plan without edges is a list.</td></tr><tr><td>blocking edge</td><td>&quot;A comes before B&quot;</td><td>B genuinely needs an output of A. Remove it and B cannot be checked.</td></tr><tr><td>frontier</td><td>&quot;what's parallel&quot;</td><td>Nodes with no unfinished predecessor. Everything else is waiting, by design.</td></tr><tr><td>claim</td><td>&quot;assigning the ticket&quot;</td><td>A written marker that one agent owns one node, so two don't do one job.</td></tr><tr><td>verify</td><td>&quot;running the tests&quot;</td><td>Re-running step one's checks against the <strong>merged</strong> result, not per branch.</td></tr><tr><td>false frontier</td><td>&quot;parallel but slow&quot;</td><td>Two nodes that share a decision, drawn as independent. Isolated files, colliding meaning.</td></tr><tr><td>&quot;Not covered&quot;</td><td>&quot;known issues&quot;</td><td>The behaviours your spec doesn't check. Naming them is part of the spec, not an apology.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Mechanism choice.</strong> <em>How</em> to spawn — subagent, teammate, workflow, <code>/batch</code> — is Lesson 84's decision framework, not this lesson's. This lesson assumes the graph is right and one agent per node is the right shape.</p>
+<p><strong>Conflict mechanics.</strong> When two branches touch the same line, the resolution is Phase 02, Lesson 15, and the strategy is Lesson 109. Here we treat a conflict as a signal that an edge was missing, which is true roughly as often as it is wrong.</p>
+<p><strong>Verification loops for unattended runs.</strong> Lesson 95 builds the loop that retries and escalates without you. This lesson's verify step assumes a human decides what a failure means.</p>
+<p><strong>Cost.</strong> Fan-out costs money per node (Phase 03, Lesson 11). The graph says what <em>can</em> run at once; it doesn't say what is worth running at once. That judgement is Lesson 85.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You wrote five acceptance checks. After the parallel build, all five pass on the merged branch. What have you proven?</p>
+        <ol class="options" type="A">
+          <li>That the feature is correct</li>
+          <li>That the five behaviours you thought to check hold — anything beyond them is unestablished</li>
+          <li>That the task graph was correct, since the checks map to nodes one-to-one</li>
+          <li>Nothing, until a human reads every diff and approves it</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> That the five behaviours you thought to check hold — anything beyond them is unestablished</p>
+          <p class="why">Verification is bounded by the checks you wrote: a green suite proves five behaviours and is silent about the sixth you never thought to name. Option A is the tempting one — 'all green means done' — and it is the exact mistake the verify step exists to prevent, because the empty-query bug that started this lesson would have sat in an unchecked behaviour. C confuses the verifier with the graph: nodes being satisfiable says nothing about whether you decomposed the work correctly. D overcorrects: the checks do prove those five things, and refusing to trust any evidence is not rigour, it is paralysis.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Three nodes: A adds a <code>searchMode</code> option to config, B implements the empty-query guard against config, C writes the empty-query test. You mark A→B and A→C, then run B and C at the same time in separate worktrees. Both pass on their own branches. The merged branch fails C. What is the diagnosis?</p>
+        <ol class="options" type="A">
+          <li>One of the two agents produced bad code — re-run them serially and find which</li>
+          <li>B and C shared a decision neither owned (the guard's interface), so they were not genuinely independent; the edge belongs between them, or one node must own that interface</li>
+          <li>The verifier is flaky — re-run the suite on the merged branch</li>
+          <li>They should have been given separate worktrees, which would have prevented it</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> B and C shared a decision neither owned (the guard's interface), so they were not genuinely independent; the edge belongs between them, or one node must own that interface</p>
+          <p class="why">Both nodes were individually green because each was self-consistent; the failure lives in the seam between them, which only exists after the merge. That is a missing edge, not a bad agent — file isolation held, and what leaked was meaning. A is the tempting one because a failure looks like a culprit, but 'find the guilty agent' cannot explain a defect that appears only in the combination. C is possible in general and is the wrong first move here: the failure is reproducible and logical, not intermittent. D inverts the lesson — separate worktrees are exactly what they had, and worktrees isolate files, not decisions.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You decide to verify by reading the three diffs and re-running each agent's own tests, reasoning that each node already passed. Which class of defect does that method miss?</p>
+        <ol class="options" type="A">
+          <li>None — if every part passes, the whole passes</li>
+          <li>Defects that only exist in the combination: two nodes that are individually green and inconsistent with each other once merged</li>
+          <li>Only performance regressions, which unit tests never catch</li>
+          <li>Only defects in the checks themselves</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Defects that only exist in the combination: two nodes that are individually green and inconsistent with each other once merged</p>
+          <p class="why">'Every part passed' feels like it must transfer to the whole, and it does not: two nodes can each satisfy their own checks while disagreeing about a shared interface, a config value, or an ordering. That disagreement has no existence on either branch, so no per-branch run can see it. A is the assumption this question is testing, and it is the most common way a parallel run ships broken. C narrows the gap to performance and misses integration entirely. D is a real category but not what per-branch verification systematically misses — you can verify each check on the merged branch just as easily.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span>Previous</span>115. Managing Settings at Scale</a>
+    <a class="next" href="../../phases/18-capstone/117-review-against-the-docs.html"><span>Next</span>117. Review Against the Docs</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

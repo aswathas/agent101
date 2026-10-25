@@ -4,94 +4,285 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What MCP Is — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can connect a tool to Claude Code without writing a plugin, and you can">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>What MCP Is</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 07 · MCP</h3>
+      <ul><li class="on"><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 48, Skills Inside Subagents — the genuinely confusing case</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 07 · LESSON 49</p>
+      <h1>What MCP Is</h1>
+      <p class="lesson-motto">You can connect a tool to Claude Code without writing a plugin, and you can</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 04 — especially Lesson 31 (the agentic loop) and Lesson 33 (permissions)</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Use <code>claude mcp add</code> to connect a server and confirm it with <code>/mcp</code></li><li>Say which of the three things a server can expose — tools, resources, prompts — and pick the right one for a job</li><li>Explain why a server is a separate program rather than a skill, in terms of what runs and whose permissions it uses</li><li>Decide, before approving a server, what it would have the power to do</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>Your agent needs to read your issue tracker. It has no tool for that. You look at what exists: a <strong>skill</strong> is a markdown file the model reads before acting. A <strong>subagent</strong> is another model with its own window. Neither can open a network connection to your tracker — they are text going into a window.</p>
+<p>So you write a script that curls the tracker API. Now you have a second problem: the agent can run <code>Bash</code>, which means it can run <em>your script</em>, but nobody described that script's arguments, its output shape, or its failure modes anywhere the model can see. You end up hand-writing the tool call syntax into promts, and it works until the tracker returns an error, at which point the agent has guessed.</p>
+<p>MCP is the missing piece in the middle: <strong>a standard shape for a program to advertise its actions, and a standard way for the loop to call them.</strong> Write the script once, describe it once, and every client that speaks the protocol can use it — not just Claude Code.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Three nouns. That's the whole protocol.</p>
+<div class="table-wrap"><table><thead><tr><th>Noun</th><th>What it is</th><th>Who it is</th></tr></thead><tbody><tr><td><strong>Host</strong></td><td>The app the model lives in. Claude Code is a host.</td><td>You</td></tr><tr><td><strong>Client</strong></td><td>The thing inside the host that speaks MCP. One per server.</td><td>Claude Code, not you</td></tr><tr><td><strong>Server</strong></td><td>A separate program holding tools/resources/prompts.</td><td>Someone else's, or yours</td></tr></tbody></table></div>
+<p>The client is the piece people skip. When Claude Code connects to three servers, it is running three clients. Each one owns one connection, does the JSON-RPC talking, and turns server-shaped JSON into things the loop already knows how to call.</p>
+<figure class="diagram"><pre>flowchart LR
+    subgraph H[Host: Claude Code]
+        L[Agentic loop]
+        C1[Client: notes]
+        C2[Client: github]
+        L --&gt; C1
+        L --&gt; C2
+    end
+    S1[(notes server)] --- C1
+    S2[(github server)] --- C2
+    C1 -. tools/list .-&gt; L
+    C2 -. tools/list .-&gt; L</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>The flow for a single tool call, which is exactly the tool loop from Lesson 31 with a client in the middle:</p>
+<ol><li>Client sends <code>tools/list</code>. Server answers with every tool: name, description, JSON Schema for the arguments.</li><li>Those definitions join the model's context. They look like any other tool.</li><li>Model emits a tool call. Client sends <code>tools/call</code> with a name and arguments.</li><li>Server does the real thing — the API call, the file read, the query.</li><li>Server answers with content. Client hands it back. The loop continues.</li></ol>
+<p>Steps 1 and 3 are JSON-RPC 2.0: <code>initialize</code>, then request/response with ids, plus notifications that get no reply. The transport that carries those messages is what the next lesson is about.</p>
+<h3 id="three-kinds-of-thing-a-server-exposes">Three kinds of thing a server exposes</h3>
+<div class="table-wrap"><table><thead><tr><th>Kind</th><th>Model-controlled?</th><th>Use it for</th></tr></thead><tbody><tr><td><strong>Tool</strong></td><td>Yes — the model decides to call it</td><td>Actions: &quot;create issue&quot;, &quot;run query&quot;, &quot;send message&quot;</td></tr><tr><td><strong>Resource</strong></td><td>No — <em>you</em> reference it with <code>@server:protocol://path</code></td><td>Content to read into the window: a schema, a doc, a record</td></tr><tr><td><strong>Prompt</strong></td><td>No — <em>you</em> invoke it as <code>/servername:promptname</code></td><td>A canned starting shape for a task the server is good at</td></tr></tbody></table></div>
+<p>The distinction is <strong>who decides it happens</strong>. A tool is a thing the agent may reach for on its own. A resource and a prompt are things you name explicitly. That difference is the whole security boundary: a resource can't do anything unless you typed it.</p>
+<h3 id="why-not-just-a-skill">Why not just a skill?</h3>
+<p>A skill is text in the window. It can tell the model &quot;run <code>python tools/deploy.py --env prod</code>&quot;. What it cannot do is tell the model what the script <em>returns</em> — the model finds that out by reading whatever came back, including a stack trace, including an HTML error page from a proxy.</p>
+<p>An MCP server carries its own description: names, prose descriptions, and a schema for each argument. The model picks from a menu with types on it instead of improvising command-line syntax. That's the difference between a capability and a guess with a shell.</p>
+<h3 id="the-rule-the-docs-lead-with">The rule the docs lead with</h3>
+<blockquote><p>Verify you trust each server before connecting it. Servers that fetch external</p><p>content can expose you to prompt injection risk.</p></blockquote>
+<p>This is not boilerplate. A server whose tool returns a web page is a server that can hand the model text written by somebody else, in the exact position where the model reads instructions. Lesson 53 is entirely about this.</p>
+<blockquote><p><strong>The reframe:</strong> an MCP server is not a tool the model gained — it is a</p><p>separate program holding a conversation with the loop, and every message it</p><p>sends is something the model will read with the same seriousness as your</p><p>prompt.</p></blockquote>
+<h3 id="not-covered-here">Not covered here</h3>
+<p><strong>Transport choice</strong> — <code>http</code> vs <code>sse</code> vs <code>stdio</code> vs <code>ws</code>. That is Lesson 50, and picking wrong makes a working server look broken.</p>
+<p><strong>Where the config lives and which file wins.</strong> Lesson 51.</p>
+<p><strong>Writing your own server.</strong> Lesson 52. Today you connect one.</p>
+<p><strong>OAuth and tool search.</strong> Lesson 54.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>You need <code>claude</code>, Node on your <code>PATH</code>, and network access.</p>
+<h3 id="1-connect-one-server-local-scope-stdio">1. Connect one server, local scope, stdio</h3>
+<pre class="code" data-lang="bash"><code>claude mcp add --transport stdio fetch -- npx -y @modelcontextprotocol/server-fetch</code></pre>
+<p>Read the command left to right. <code>--transport stdio</code> picks how to talk. <code>fetch</code> is the name the server will be known by. Everything after <code>--</code> is the literal command Claude Code will spawn — the <code>--</code> exists so its own flags don't eat the server's flags.</p>
+<h3 id="2-look-before-you-run">2. Look before you run</h3>
+<pre class="code" data-lang="bash"><code>claude mcp list
+claude mcp get fetch</code></pre>
+<p><code>get</code> prints the resolved entry. Check one thing: the command matches what you typed. This is the whole approval model for a local server — you read it once.</p>
+<p>✅ You pass when <code>claude mcp get fetch</code> shows the command you wrote and nothing else is in it.</p>
+<h3 id="3-connect-it-in-a-session-and-see-the-shape">3. Connect it in a session and see the shape</h3>
+<p>Start Claude Code, then:</p>
+<pre class="code"><code>/mcp</code></pre>
+<p>Pick the server. You get a status, the tool names it exposes, and — if it's the first connection — an approval prompt. That prompt is the security boundary from Lesson 33 doing its job.</p>
+<p>✅ You pass when <code>/mcp</code> lists <code>fetch</code> as connected and shows at least one tool under it.</p>
+<h3 id="4-use-the-thing">4. Use the thing</h3>
+<pre class="code"><code>Fetch https://example.com and tell me what that site is.</code></pre>
+<p>Watch the loop: the model already knew the tool existed from step 1's <code>tools/list</code>. It did not need to be told the command line.</p>
+<p>✅ You pass when the tool call appears in the transcript as a named MCP tool, not as a Bash command.</p>
+<h3 id="5-see-the-client-boundary-two-servers-one-host">5. See the client boundary — two servers, one host</h3>
+<pre class="code" data-lang="bash"><code>claude mcp add --transport http context7 -- https://mcp.context7.com/mcp</code></pre>
+<p>Now <code>/mcp</code> again. Two servers, two independent connections. Now stop one and keep the other:</p>
+<pre class="code" data-lang="bash"><code>claude mcp remove context7</code></pre>
+<p>Restart Claude Code. <code>fetch</code> still works, <code>context7</code> is gone. Nothing about the host changed — you removed a client, not a capability of the model.</p>
+<p>✅ You pass when after the removal and restart, one server still works and the other is absent from <code>/mcp</code>.</p>
+<h3 id="6-check-where-it-actually-wrote">6. Check where it actually wrote</h3>
+<p><code>fetch</code> was added with no <code>--scope</code>, so it is local. Find it:</p>
+<pre class="code" data-lang="bash"><code>grep -n &quot;fetch&quot; ~/.claude.json | head</code></pre>
+<p>It is in <code>~/.claude.json</code>, under this project's entry — not in <code>.mcp.json</code>, and not in <code>src/</code>. Lesson 51 is about why that distinction decides who else gets your server.</p>
+<p>✅ You pass when you can point at the exact file and the project key the entry sits under.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>claude mcp add --transport stdio &lt;name&gt; -- &lt;cmd&gt;</code></td><td>A tool that runs on this machine, or is an npm package</td></tr><tr><td><code>claude mcp add --transport http &lt;name&gt; &lt;url&gt;</code></td><td>A hosted service with an MCP endpoint</td></tr><tr><td><code>claude mcp get &lt;name&gt;</code></td><td>Before approving anything — read the resolved command</td></tr><tr><td><code>/mcp</code></td><td>To see what's connected, what tools it has, or to authenticate</td></tr><tr><td><code>@server:protocol://path</code></td><td>Pulling content in, on your call, not the model's</td></tr><tr><td><code>claude mcp remove &lt;name&gt;</code></td><td>Cutting a server without touching the host</td></tr><tr><td>Client vs server</td><td>Debugging &quot;is it the server or is it Claude Code?&quot; — it's a separate program</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Connect a second stdio server you did not write, in <code>local</code> scope. Do not approve it until you have run <code>claude mcp get &lt;name&gt;</code> and can say in one sentence what the command does. ✅ You pass when <code>/mcp</code> shows it connected and your <code>NOTES</code> (or your message to the agent) contains the sentence describing what the command does.</li></ol>
+<ol><li class="criterion">Pick a job you'd currently do by hand: checking a deploy status, looking up a customer record, posting to a channel. Decide whether it needs a <strong>tool</strong>, a <strong>resource</strong>, or a <strong>prompt</strong>, and write down one sentence of why. ✅ You pass when you can name the kind and the deciding question was &quot;who triggers it — the model, or me?&quot;.</li></ol>
+<ol><li class="criterion">Remove one server and confirm the loop still works. Then add it back at <code>user</code> scope instead. ✅ You pass when both changes survive a restart of Claude Code and <code>claude mcp list</code> reflects them.</li></ol>
+<ol><li class="criterion">Find a server you already trust on this machine and read its entry. Name one thing it could do that you did not know it could do. ✅ You pass when the answer names a real capability from the entry, not a generic worry.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>MCP</td><td>&quot;the thing that lets Claude use tools&quot;</td><td>A protocol. One wire format for a program to advertise actions and for a client to call them. Not a product, not a vendor.</td></tr><tr><td>host</td><td>&quot;Claude Code&quot;</td><td>The app containing the model and the loop. Claude Desktop, an IDE, Claude Code — all hosts.</td></tr><tr><td>client</td><td>&quot;MCP&quot; / &quot;the connection&quot;</td><td>The in-process object that speaks MCP to exactly one server. One per server, per host.</td></tr><tr><td>server</td><td>&quot;the tool&quot;</td><td>A separate program with its own permissions, its own failure modes, and its own author. Not the same process as the host.</td></tr><tr><td>transport</td><td>&quot;the protocol&quot;</td><td>The wire the JSON-RPC messages travel on. Four of them. Lesson 50.</td></tr><tr><td><code>tools/list</code></td><td>&quot;discovery&quot;</td><td>The handshake that tells the model what actions exist. Runs at session start or on demand.</td></tr><tr><td><code>tools/call</code></td><td>&quot;the tool call&quot;</td><td>The actual invocation: a name and a JSON object of arguments.</td></tr><tr><td>resource</td><td>&quot;context&quot;</td><td>Content you attach explicitly with <code>@server:protocol://path</code>. The model cannot fetch one on its own.</td></tr><tr><td>prompt</td><td>&quot;a slash command from a server&quot;</td><td>A canned task shape, invoked as <code>/servername:promptname</code>. Listed alongside built-in commands.</td></tr><tr><td>JSON-RPC 2.0</td><td>&quot;the message format&quot;</td><td>Request has an id and gets a reply. Notification has no id and gets nothing back.</td></tr><tr><td>protocol version</td><td>&quot;the version&quot;</td><td>A string the server and client agree on at <code>initialize</code>. Sending a version your client can't speak is a real failure mode.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>The four transports.</strong> You used two of them. Why <code>sse</code> is deprecated, when <code>ws</code> earns its keep, and how a stdio server actually dies — Lesson 50.</p>
+<p><strong>Scopes and precedence.</strong> You used <code>local</code> and <code>user</code> without being told what wins when both define the same server name. Lesson 51 fixes that, and it's the lesson that matters most if you ever commit a config.</p>
+<p><strong>Writing a server.</strong> You connected one. Lesson 52 builds one with no dependencies, including the JSON-RPC framing by hand.</p>
+<p><strong>Prompt injection.</strong> Lesson 53. Today you were told to verify; the note called <code>untrusted</code> in Lesson 52's server is there so that lesson has something real to bite on.</p>
+<p><strong>OAuth and tool search.</strong> Lesson 54. Why a hundred-tool server costs you almost nothing on startup, and why that's not obvious.</p>
+<p><strong>Managed/organization MCP policy.</strong> Real, and version-gated. When you're behind a company gateway, read <a href="https://code.claude.com/docs/en/managed-mcp" target="_blank" rel="noopener">Managed MCP configuration</a>.</p>
+<p>Current behaviour is documented at <a href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noopener">Connect Claude Code to tools via MCP</a>. Re-read it rather than trusting this page in six months — the transport table in particular has changed.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You connect an MCP server and the loop now calls it like any built-in tool. Where does the description of what that server can do actually come from?</p>
+        <ol class="options" type="A">
+          <li>The server answers tools/list with names, descriptions, and argument schemas, and Claude Code puts those in the window</li>
+          <li>The host hardcodes a copy of the server's tools at install time, so the server never needs to answer</li>
+          <li>The model infers the tools by calling the server and reading the errors</li>
+          <li>The server writes its tools into CLAUDE.md when you approve it</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> The server answers tools/list with names, descriptions, and argument schemas, and Claude Code puts those in the window</p>
+          <p class="why">Discovery is a protocol round-trip: the client asks the server what it has, and the descriptions become tool definitions in the context window — which is why the model picks from a typed menu instead of improvising a command line. Option B describes a plugin, where the host really does ship a static manifest; MCP deliberately moved that out of the host. Option C would work only as a last resort and produces exactly the guesswork MCP exists to remove. Option D is not a thing — CLAUDE.md is prose the agent reads, not a tool registry.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You need the agent to be able to look up a customer record on demand during a task. Which MCP surface fits, and why?</p>
+        <ol class="options" type="A">
+          <li>A resource, because content you attach yourself is safer than an action the model can take by itself</li>
+          <li>A tool, because anything the agent might reach for mid-task has to be callable without you typing it</li>
+          <li>A prompt, because prompts are the only surface that can read from a database</li>
+          <li>A tool is required — resources can only reference local files, never remote records</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A tool, because anything the agent might reach for mid-task has to be callable without you typing it</p>
+          <p class="why">The deciding question is who triggers it. The model triggers tools, so anything it may need mid-task is a tool. Option A inverts the rule: resources are the safe surface precisely because only you can invoke them with @server:protocol://path. Option C is wrong on the facts — prompts are canned task shapes, they read nothing on their own. Option D is the interesting wrong one because it is half true: resources can reference remote content, but that doesn't make them the right surface for an on-demand lookup.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A teammate commits a .mcp.json to the repo. You clone it and start Claude Code in that folder. What happens, and what is the actual risk being managed?</p>
+        <ol class="options" type="A">
+          <li>The servers connect silently — .mcp.json is just config, like any settings file</li>
+          <li>Claude Code prompts before using project-scoped servers, and a cloned repo cannot approve its own, so the code does not run until a human says yes</li>
+          <li>The servers load only after a network round-trip to the vendor confirms their signatures</li>
+          <li>The servers are blocked entirely and can never be used from a cloned repo</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Claude Code prompts before using project-scoped servers, and a cloned repo cannot approve its own, so the code does not run until a human says yes</p>
+          <p class="why">A project-scoped .mcp.json can carry a stdio command that runs arbitrary code with your permissions, so approval is a human gate and settings committed to the repo are ignored in an untrusted folder. Option A is the intuition MCP exists to break: config and executable are not the same category. Option C describes something Claude Code does not do today — there is no signature check on MCP servers. Option D is too strong; reset-project-choices and an interactive approval both bring them back.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Why is a server described as having its own client, instead of Claude Code talking to servers directly?</p>
+        <ol class="options" type="A">
+          <li>Because JSON-RPC requires a separate socket per peer, so the client object is just the protocol library</li>
+          <li>Because each client owns exactly one connection, one handshake, and one failure — which is what lets one server die without taking the others down</li>
+          <li>Because the model can only make one tool call at a time, so servers take turns</li>
+          <li>Because clients can be swapped at runtime without restarting the host</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Because each client owns exactly one connection, one handshake, and one failure — which is what lets one server die without taking the others down</p>
+          <p class="why">The one-client-per-server boundary is the isolation seam: a broken handshake, a timeout, or a crash in one server is contained to that connection, and the host can show it as one failed entry instead of a dead session. Option A is technically true and practically irrelevant — the socket isn't the reason the object exists. Option C is wrong; the loop interleaves servers freely. Option D is not true of the standard CLI path.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/06-subagents/48-skills-inside-subagents.html"><span>Previous</span>48. Skills Inside Subagents — the genuinely confusing case</a>
+    <a class="next" href="../../phases/07-mcp/50-four-transports.html"><span>Next</span>50. Four Transports</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

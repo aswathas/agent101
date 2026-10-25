@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Files and Edits — and When It Refuses that needs a new situation, not recall.",
+      "prompt": "You asked Claude Code to fix a typo. It shows a prompt naming the file and the change. A colleague clicks no twice and fixes it by hand. What should they have done?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Denied every prompt and fixed the file by hand — prompts are friction",
+        "Read the prompt, match the named action, target, and diff to what they wanted, then approve or deny and rephrase",
+        "Switched to accept-all so it stops asking",
+        "Restarted the session and asked again"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The prompt names the action, the target, and usually the diff; matching those to your intent is the whole skill, and it is why the tool asked at all. Option C is tempting because it removes the friction, but skipping the read is what caused the confusion in the first place. Option A gives up the tool over a question. Option D re-asks without ever reading what the first prompt said.",
+      "concept": "read-the-prompt"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "Claude Code prints: \"I can't delete files outside this working directory.\" There is no yes/no button. What is this?",
+      "options": [
+        "A permission question waiting for an answer",
+        "A refusal — a stated constraint with no button; read the reason, then rephrase",
+        "A crash you should report",
+        "A hint that you should say yes"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A refusal is text only; it tells you the constraint the tool hit and leaves you to change the request. Option A is the tempting conflation the lesson exists to undo: a question has a button, a refusal does not. Option C treats a reasoned message as a malfunction. Option D reads a limit as an invitation, which is close to the opposite of what it says.",
+      "concept": "ask-vs-refuse"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Earlier you approved an edit to `note.txt`. Now Claude Code asks before running `rm note.txt`. Why is it asking again?",
+      "options": [
+        "It forgot your earlier approval",
+        "Approval is per-action and per-scope; editing a file does not cover a shell delete of it",
+        "`rm` is on a deny list by default",
+        "Deletes always require a fresh session"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A yes to \"edit this file\" is not a yes to \"run a command\"; the prompt names a different tool and a different scope. Option A is tempting because it feels like the tool should generalise your yes, but the scope is deliberately narrow. Option C invents a default that the lesson does not describe. Option D has no basis — the block is the scope, not the session.",
+      "concept": "scope-of-a-yes"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You asked Claude Code to fix a typo, but the proposed change rewrites the whole sentence to \"be more polite.\" What is the right move?",
+      "options": [
+        "Approve — it understood the intent better than you did",
+        "Deny, then re-ask with a smaller scope: change \"wrold\" to \"world\"",
+        "/clear and start over",
+        "Approve, then fix it by hand afterwards"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The prompt showed you a diff bigger than the one you wanted, so you deny and narrow the request — that is what reading the prompt buys you. Option A is tempting when the tool sounds confident, but a larger edit than asked for is exactly the case to refuse. Option C throws away useful state over one wrong proposal. Option D approves an edit you did not want and then cleans up after it.",
+      "concept": "deny-bigger-scope"
     }
   ]
 }

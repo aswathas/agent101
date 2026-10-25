@@ -7,12 +7,31 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Merge Strategy for Agent Branches that needs a new situation, not recall.",
+      "prompt": "Four agent branches were all cut from the same `main`. While they ran, `main` gained two commits. You merge them in the order the agents finished. Two merges conflict even though each agent touched a different function. What is the cause?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The agents disagreed about the same lines and the conflict is real",
+        "`git merge` always conflicts above three branches",
+        "Each branch was cut from a base that `main` has since moved past, so the merges are reconciling against different starting points",
+        "The worktrees share an object store, which corrupts the merges"
+      ],
+      "answer": 2,
+      "distractors": [
+        0,
+        1,
+        3
+      ],
+      "explanation": "Merging stale, unrebalanced branches forces each merge to reconcile a different old base; rebasing all of them onto the current `main` first removes the conflict. Option A is the tempting wrong answer because a conflict *looks* like disagreement — but these are different functions, so the agents never contested anything. Git has no three-branch conflict limit, and a shared object store is normal, not corrupting.",
+      "concept": "stale-base"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You have three finished agent branches and `main` has moved once. Which sequence best matches the strategy in this lesson?",
+      "options": [
+        "Rebase each branch onto today's `main`, then merge them in creation order",
+        "Merge each branch as-is, oldest base first, no rebase",
+        "Rebase `main` onto each agent branch in turn",
+        "Squash all three branches into one commit and merge that"
       ],
       "answer": 0,
       "distractors": [
@@ -20,8 +39,46 @@
         2,
         3
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "explanation": "Rebasing each private branch onto the current `main` gives every branch the same base before it merges, and creation order keeps history readable. Option C is the tempting wrong answer because it mentions the right verb — but you rebase the *branch you own* onto `main`, never `main` onto the branch. Merging stale branches is what produces phantom conflicts, and squashing throws away attribution for no reason here.",
+      "concept": "rebase-then-merge"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "An agent finished an important branch on Monday. `main` moved four times before Friday. The agent's code is unchanged and correct. What grew over those four days, and who pays for it?",
+      "options": [
+        "The agent's work — it silently becomes stale and needs a re-run",
+        "Nothing — a branch that is not rebased never changes cost",
+        "The object store — worktree branches bloat the repository over time",
+        "The rebase — you pay, because you reconcile four days of `main` movement against a branch cut from Monday"
+      ],
+      "answer": 3,
+      "distractors": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "The work stays correct; the *integration* cost grows with every commit `main` gains, and that cost lands on whoever merges. Option B is the tempting wrong answer because it is true that the branch's files do not change — the work is fine — but the rebase against a moved `main` gets larger and more conflict-prone. Branches do not bloat the object store and are not auto-re-run.",
+      "concept": "branch-drift"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "After rebasing and merging an agent branch, you want history to clearly show that this batch of agent work arrived together, even though a fast-forward is possible. What do you do?",
+      "options": [
+        "Merge normally and rely on the commit timestamps",
+        "Merge with `--no-ff` to force a merge commit",
+        "Rebase the branch a second time",
+        "Add a tag pointing at the branch tip"
+      ],
+      "answer": 1,
+      "distractors": [
+        0,
+        2,
+        3
+      ],
+      "explanation": "`--no-ff` forces a merge commit with two parents, which records the join even when the label could just slide forward. Option A is the tempting wrong answer because timestamps are visible in the log and feel like a record — but a fast-forward leaves no node, so nothing marks the batch. A second rebase changes nothing and a tag is not part of the merge.",
+      "concept": "no-ff"
     }
   ]
 }

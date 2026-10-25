@@ -4,94 +4,241 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Claude Agent SDK — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can put the same agent loop inside your own program — and say which of">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>The Claude Agent SDK</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li class="on"><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 111, Headless / Non-Interactive Mode</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 17 · LESSON 112</p>
+      <h1>The Claude Agent SDK</h1>
+      <p class="lesson-motto">You can put the same agent loop inside your own program — and say which of</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 111, Headless / Non-Interactive Mode</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Say what the Agent SDK is, using the loop you already know as the anchor</li><li>Recognise when a <code>claude -p</code> subprocess is enough and when you need the library</li><li>Write and run a minimal SDK agent that completes one task</li><li>Get validated structured output instead of parsing prose</li><li>Decide tool approval in code, not by hand</li><li>Name the things the terminal did for you that the SDK makes you own</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You built a small product feature on <code>claude -p</code>. It shelled out, parsed the text it got back, and displayed it. It worked for a month.</p>
+<p>Then the model changed a sentence and your parser broke. There was no error — just a blank panel in your UI because a regular expression missed. You wanted the agent <em>inside</em> your program, and instead you had a stringly-typed pipe to a terminal tool that happens to be a program.</p>
+<p>The pain: the CLI is an interface for a person. Your application is an interface for a program. Scraping the first to serve the second works until the text it relies on moves.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>The Agent SDK is Claude Code as a library. Same agent loop, same built-in tools, same permissions, sessions, hooks, subagents, and MCP — driven from Python or TypeScript instead of a prompt.</p>
+<figure class="diagram"><pre>flowchart LR
+    A[Your application] --&gt; Q[&quot;query(prompt, options)&quot;]
+    Q --&gt; H[Claude Code binary&lt;br/&gt;as a subprocess]
+    H --&gt; T[Built-in tools&lt;br/&gt;Read, Edit, Bash, Web]
+    H --&gt; M[MCP servers]
+    H --&gt; S[Subagents]
+    T --&gt; H
+    M --&gt; H
+    S --&gt; H
+    H --&gt; E[&quot;streamed messages:&lt;br/&gt;assistant text, tool calls, results&quot;]
+    E --&gt; A</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>Read the middle box carefully. The SDK runs Claude Code's binary in a subprocess. It is not a re-implementation of the loop in a language runtime; it is a control surface over the same engine, which is why the capabilities below match the tool you already use.</p>
+<h3 id="what-you-get-for-free">What you get for free</h3>
+<div class="table-wrap"><table><thead><tr><th>Capability</th><th>What it does</th><th>Where it comes from</th></tr></thead><tbody><tr><td>Built-in tools</td><td>Read, write, edit files, run commands, search the web</td><td>The tools you met in Phase 04</td></tr><tr><td>Permissions</td><td>Which tools run, which need approval</td><td>The permission system, now with a callback</td></tr><tr><td>Sessions</td><td>Keep context; resume or fork later</td><td>Session persistence you met in Phase 04</td></tr><tr><td>Hooks</td><td>Run your code at lifecycle points</td><td>Phase 08, wired from your app</td></tr><tr><td>Subagents</td><td>Isolated, specialised helpers</td><td>Phase 06</td></tr><tr><td>MCP</td><td>External tools and data</td><td>Phase 07</td></tr><tr><td>Skills, commands, memory</td><td>Load from <code>.claude/</code> and <code>~/.claude/</code></td><td>Phases 05 and 10</td></tr><tr><td>Plugins</td><td>Package the above and load by path</td><td>Phase 09</td></tr></tbody></table></div>
+<h3 id="what-becomes-yours-to-build">What becomes yours to build</h3>
+<p>The terminal did several jobs for you. In the SDK, they move into your code:</p>
+<ul><li><strong>Approvals.</strong> In the terminal, a prompt appears and a person answers. In the SDK, you supply a <code>canUseTool</code> callback — or a permission mode — and the decision is code.</li><li><strong>Hosting.</strong> The SDK starts a subprocess. Who supervises it, restarts it, and isolates tenants is your deployment problem.</li><li><strong>Session storage.</strong> Resuming needs somewhere to keep the transcript.</li><li><strong>Auth.</strong> Third-party products built on the SDK use an API key, not a claude.ai login. Anthropic does not permit offering claude.ai login or rate limits to your own users without prior approval.</li><li><strong>Output shape.</strong> If you need typed data, ask for it. The SDK supports structured outputs via a schema, and custom tools via an in-process MCP server, so you stop scraping.</li></ul>
+<h3 id="when-the-sdk-is-overkill">When the SDK is overkill</h3>
+<p>The SDK is one of two ways to run the loop from code, and often the plainest one wins:</p>
+<div class="table-wrap"><table><thead><tr><th>You want to</th><th>Reach for</th></tr></thead><tbody><tr><td>Run a task and read a result inside a script or CI job</td><td><code>claude -p --output-format json</code> (Lesson 111)</td></tr><tr><td>A typed, in-process agent with callbacks and structured output</td><td>The Agent SDK (this lesson)</td></tr><tr><td>Call the Claude API directly and write the tool loop yourself</td><td>The Client SDK — different product, more control</td></tr><tr><td>Let Anthropic host the agent and its sandbox</td><td>Managed Agents — different product, less to run</td></tr></tbody></table></div>
+<blockquote><p><strong>The reframe:</strong> the Agent SDK does not give you a new agent — it hands you</p><p>the loop and takes away the terminal, so everything the terminal quietly did</p><p>for you (approvals, session storage, isolation, auth) becomes something you</p><p>build.</p></blockquote>
+<p><strong>A note on versions.</strong> The SDK is the fastest-moving surface in this course. Package names, option shapes, and entry points change often. Learn the <em>capabilities</em> from this lesson and take the exact signatures from the <a href="https://code.claude.com/docs/en/agent-sdk/overview" target="_blank" rel="noopener">Agent SDK docs</a> and the <a href="https://code.claude.com/docs/en/agent-sdk/quickstart" target="_blank" rel="noopener">quickstart</a> rather than memorising them here.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>Install the SDK for your language, set an API key, and build the smallest agent that does real work on a real file.</p>
+<ol><li><strong>Install and authenticate.</strong></li></ol>
+<p>```bash # TypeScript npm install @anthropic-ai/claude-agent-sdk # Python pip install claude-agent-sdk</p>
+<p>export ANTHROPIC_API_KEY=&quot;sk-ant-...&quot; ```</p>
+<ol><li><strong>Ask for one task in one file.</strong> The <code>query</code> function streams messages as the agent works. (Treat this shape as illustrative; confirm it against the current quickstart.)</li></ol>
+<p>```ts import { query } from &quot;@anthropic-ai/claude-agent-sdk&quot;;</p>
+<p>for await (const message of query({ prompt: &quot;Find the bug in auth and fix it. Explain the fix in one line.&quot;, options: { allowedTools: [&quot;Read&quot;, &quot;Edit&quot;, &quot;Bash&quot;] }, })) { console.log(message); } ```</p>
+<p>You should see assistant messages, a tool call, a tool result, and a final message — the loop you learned in Phase 04, streaming to your console.</p>
+<ol><li><strong>Get validated output.</strong> Pass a schema and read <code>structured_output</code> instead of matching on text.</li></ol>
+<ol><li><strong>Decide approval in code.</strong> Give the session a <code>canUseTool</code> callback (or set a permission mode) so your program decides what runs — the terminal prompt, moved into your application.</li></ol>
+<ol><li><strong>Add a tool of your own.</strong> Define an in-process MCP server so the agent can call a function in your codebase. This is how you extend the loop without a separate server process.</li></ol>
+<ol><li><strong>Keep the session.</strong> Capture the session id and resume it on the next call, so a multi-step workflow survives past one process.</li></ol>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Thing</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>query(prompt, options)</code></td><td>The entry point: one prompt, a stream of messages back</td></tr><tr><td><code>options.allowedTools</code></td><td>Pre-approve the tools the agent legitimately needs</td></tr><tr><td><code>canUseTool</code> callback</td><td>You want to approve or deny each call in code</td></tr><tr><td>Structured output (schema)</td><td>Your caller needs typed data, not prose</td></tr><tr><td>In-process MCP server</td><td>You want the agent to call a function in your own process</td></tr><tr><td>Session id + resume/fork</td><td>A workflow spans more than one call</td></tr><tr><td>Subagents in the SDK</td><td>You want context isolation inside your own agent</td></tr><tr><td><code>claude -p --output-format json</code></td><td>You only need one result in a script — skip the SDK</td></tr><tr><td>The Client SDK</td><td>You want the raw API and will write the tool loop yourself</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion"><strong>Convert a scrape to a contract.</strong> Take one <code>claude -p</code> task you parse with a string operation. Reimplement it with the SDK and structured output. ✅ You pass when your program reads a typed field and never matches on the model's prose.</li></ol>
+<ol><li class="criterion"><strong>Move the approval into code.</strong> Add a <code>canUseTool</code> (or permission-mode) decision for one dangerous tool — say, anything that writes files. ✅ You pass when the agent's attempt at that action is decided by your code and you can point at the log line showing it.</li></ol>
+<ol><li class="criterion"><strong>Reproduce the terminal's job.</strong> Name three things the CLI did for you (a prompt, a saved session, an auth login) and, for each, write the one line of your design that now does it. ✅ You pass when each of the three has a named owner in your program, not &quot;the SDK handles it.&quot;</li></ol>
+<ol><li class="criterion"><strong>Choose the cheaper tool.</strong> Take a task you automated with the SDK and reimplement it as <code>claude -p --output-format json</code>. ✅ You pass when you can state, in one sentence, which version you would ship and why — and it is allowed to be the subprocess.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>Agent SDK</td><td>&quot;Claude Code in a library&quot;</td><td>A library that drives the Claude Code binary as a subprocess, exposing the loop and its capabilities to your program</td></tr><tr><td>Client SDK</td><td>&quot;the SDK&quot;</td><td>A different product: raw access to the Claude API where <em>you</em> write the tool loop. Not this</td></tr><tr><td>Managed Agents</td><td>&quot;the hosted SDK&quot;</td><td>Anthropic runs the harness and the sandbox. Not this</td></tr><tr><td><code>query()</code></td><td>&quot;the API call&quot;</td><td>The entry point that streams one run's messages back to you</td></tr><tr><td><code>canUseTool</code></td><td>&quot;permissions&quot;</td><td>The callback that replaces the terminal prompt, so your code approves or denies</td></tr><tr><td>in-process MCP server</td><td>&quot;a plugin&quot;</td><td>Turning a function in your own process into a tool the agent can call</td></tr><tr><td>structured output</td><td>&quot;JSON mode&quot;</td><td>A schema-validated result field, so your caller stops parsing prose</td></tr><tr><td>subprocess architecture</td><td>&quot;it just works&quot;</td><td>The SDK launches the binary. Who supervises, isolates, and scales it is your deployment problem</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Hosting at scale.</strong> Session persistence across hosts, multi-tenant isolation, restarts, and observability are a whole guide. See <a href="https://code.claude.com/docs/en/agent-sdk/hosting" target="_blank" rel="noopener">Hosting the Agent SDK</a>. This lesson is orientation, not a deployment plan.</p>
+<p><strong>The full option surface.</strong> Models, effort, environment, limits, streaming input vs single message, and per-feature options each have their own page. The <a href="https://code.claude.com/docs/en/agent-sdk/configuration" target="_blank" rel="noopener">configuration</a> and <a href="https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode" target="_blank" rel="noopener">streaming input</a> pages are the next stop.</p>
+<p><strong>Auth beyond an API key.</strong> Bedrock, Google Cloud, Microsoft Foundry, and gateway routing are provider setup, out of scope here.</p>
+<p><strong>Where the SDK sits in this course's mission.</strong> The mission is parallel <em>Claude Code</em> work, and the SDK is adjacent to it — useful to recognise, not required to run a fleet. If you never build a product on it, Lesson 113's surfaces are the better next step.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You are building a feature inside a TypeScript app. It must return a validated object, and your code — not a person — must approve or deny each file write. Which tool fits?</p>
+        <ol class="options" type="A">
+          <li><code>claude -p --output-format json</code>, because JSON output is validated</li>
+          <li>The Agent SDK, because it gives you structured output and a tool-approval callback in-process</li>
+          <li>The Client SDK, because it gives you the tools and the loop</li>
+          <li>A scheduled task, because approvals can be answered later</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The Agent SDK, because it gives you structured output and a tool-approval callback in-process</p>
+          <p class="why">The Agent SDK is Claude Code's loop as a library: it supports schema-validated structured output and a <code>canUseTool</code> callback, so the approval decision lives in your program — exactly the two requirements. A is tempting because <code>json</code> sounds validated, but <code>--output-format json</code> wraps free-form text in an envelope; without <code>--json-schema</code> the payload is still prose, and there is no in-process approval callback at all. C describes the Client SDK, which talks to the Claude API directly: you get no built-in tools and no loop — you would write both. D answers approval with a delay, which is not a control your app can rely on.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A parser that reads an agent's text output broke silently when the wording changed. What is the structural fix, rather than a patch to the pattern?</p>
+        <ol class="options" type="A">
+          <li>Pin the model so the wording can't change</li>
+          <li>Ask for a schema-validated structured result and read that field</li>
+          <li>Add a fallback regex for the new phrasing and keep the old one</li>
+          <li>Log the raw output so you can notice breakage sooner</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Ask for a schema-validated structured result and read that field</p>
+          <p class="why">Structured output replaces an implicit contract (the wording) with an explicit one (a schema): the response carries a validated field, so your code reads data instead of guessing at prose. A is tempting because pinning feels like control, but model aliases move and the phrasing depends on inputs too, so pinning narrows the surface without removing it. C is the patch the question rules out: more regexes cover more phrasings, and the next wording still wins. D improves observability, which is good, but it only tells you the parser broke sooner — it doesn't stop it breaking.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You are turning an SDK agent into a service several teams call. What must you now provide that the interactive terminal used to handle?</p>
+        <ol class="options" type="A">
+          <li>A larger context window, so long sessions fit</li>
+          <li>Process supervision and isolation, session persistence, and app-level authentication</li>
+          <li>A second model to review the first one's answers</li>
+          <li>Nothing extra — the SDK is a drop-in replacement for the terminal</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Process supervision and isolation, session persistence, and app-level authentication</p>
+          <p class="why">The SDK launches the Claude Code binary as a subprocess. In a terminal, a person supervises the process, the session store keeps the transcript, and you log in once. As a service, all three move into your architecture: who restarts the subprocess, where transcripts persist for resume, how callers authenticate, and how tenants stay isolated. A confuses a model budget with a deployment concern. C is optional and orthogonal. D is the misconception this lesson exists to kill: you gain a typed control surface and lose a set of jobs the terminal was quietly doing.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span>Previous</span>111. Headless / Non-Interactive Mode</a>
+    <a class="next" href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span>Next</span>113. Channels and Surfaces</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

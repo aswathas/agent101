@@ -2,26 +2,67 @@
   "lesson": "07-mcp/49-what-mcp-is",
   "title": "What MCP Is",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about What MCP Is that needs a new situation, not recall.",
+      "prompt": "You connect an MCP server and the loop now calls it like any built-in tool. Where does the description of what that server can do actually come from?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The server answers tools/list with names, descriptions, and argument schemas, and Claude Code puts those in the window",
+        "The host hardcodes a copy of the server's tools at install time, so the server never needs to answer",
+        "The model infers the tools by calling the server and reading the errors",
+        "The server writes its tools into CLAUDE.md when you approve it"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "Discovery is a protocol round-trip: the client asks the server what it has, and the descriptions become tool definitions in the context window — which is why the model picks from a typed menu instead of improvising a command line. Option B describes a plugin, where the host really does ship a static manifest; MCP deliberately moved that out of the host. Option C would work only as a last resort and produces exactly the guesswork MCP exists to remove. Option D is not a thing — CLAUDE.md is prose the agent reads, not a tool registry.",
+      "concept": "tools-list-discovery"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You need the agent to be able to look up a customer record on demand during a task. Which MCP surface fits, and why?",
+      "options": [
+        "A resource, because content you attach yourself is safer than an action the model can take by itself",
+        "A tool, because anything the agent might reach for mid-task has to be callable without you typing it",
+        "A prompt, because prompts are the only surface that can read from a database",
+        "A tool is required — resources can only reference local files, never remote records"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The deciding question is who triggers it. The model triggers tools, so anything it may need mid-task is a tool. Option A inverts the rule: resources are the safe surface precisely because only you can invoke them with @server:protocol://path. Option C is wrong on the facts — prompts are canned task shapes, they read nothing on their own. Option D is the interesting wrong one because it is half true: resources can reference remote content, but that doesn't make them the right surface for an on-demand lookup.",
+      "concept": "tool-vs-resource"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A teammate commits a .mcp.json to the repo. You clone it and start Claude Code in that folder. What happens, and what is the actual risk being managed?",
+      "options": [
+        "The servers connect silently — .mcp.json is just config, like any settings file",
+        "Claude Code prompts before using project-scoped servers, and a cloned repo cannot approve its own, so the code does not run until a human says yes",
+        "The servers load only after a network round-trip to the vendor confirms their signatures",
+        "The servers are blocked entirely and can never be used from a cloned repo"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A project-scoped .mcp.json can carry a stdio command that runs arbitrary code with your permissions, so approval is a human gate and settings committed to the repo are ignored in an untrusted folder. Option A is the intuition MCP exists to break: config and executable are not the same category. Option C describes something Claude Code does not do today — there is no signature check on MCP servers. Option D is too strong; reset-project-choices and an interactive approval both bring them back.",
+      "concept": "project-scope-trust"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Why is a server described as having its own client, instead of Claude Code talking to servers directly?",
+      "options": [
+        "Because JSON-RPC requires a separate socket per peer, so the client object is just the protocol library",
+        "Because each client owns exactly one connection, one handshake, and one failure — which is what lets one server die without taking the others down",
+        "Because the model can only make one tool call at a time, so servers take turns",
+        "Because clients can be swapped at runtime without restarting the host"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The one-client-per-server boundary is the isolation seam: a broken handshake, a timeout, or a crash in one server is contained to that connection, and the host can show it as one failed entry instead of a dead session. Option A is technically true and practically irrelevant — the socket isn't the reason the object exists. Option C is wrong; the loop interleaves servers freely. Option D is not true of the standard CLI path.",
+      "concept": "client-boundary"
     }
   ]
 }

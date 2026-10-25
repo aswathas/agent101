@@ -1,27 +1,53 @@
 {
   "lesson": "09-plugins/62-plugin-anatomy",
-  "title": "Anatomy and the Manifest",
+  "title": "Plugin Anatomy — the directory and the manifest",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Anatomy and the Manifest that needs a new situation, not recall.",
+      "prompt": "Your plugin ships three commands in `commands/` and its manifest also has `\"commands\": \"./extra/status.md\"`. After `/reload-plugins`, `/status` no longer exists but `claude plugin list` still shows the plugin as loaded with no error. Why?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The manifest path must start with `./`, so `./extra/status.md` was rejected and the folder silently kept the old commands",
+        "Setting the `commands` key replaces the default `commands/` scan instead of adding to it, so those three files are no longer read",
+        "Commands only load once a marketplace entry names them, which this plugin lacks",
+        "The files moved but the plugin kept a stale cache; `/reload-plugins` must be run twice for component folders to re-scan"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "`commands`, `agents`, `outputStyles`, and `workflows` replace their default folder when the manifest sets them; `skills` is the one that adds. Listing only `./extra/status.md` turns off the scan of `commands/`, which is why the plugin still loads cleanly while three of its commands vanish. A missing `./` prefix (A) would fail validation loudly rather than quietly, so it cannot be this. No marketplace entry is needed — `--plugin-dir` loads a manifest-less plugin fine (C). Re-running the reload (D) is cargo cult; nothing about component scanning is cached across reloads.",
+      "concept": "replaces-vs-adds"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A hook needs to write a cache file so it does not re-download the same index on every session. The plugin updates weekly. Where should the file go?",
+      "options": [
+        "Inside the plugin directory, referenced with ${CLAUDE_PLUGIN_ROOT}/.cache/index",
+        "In a directory referenced with ${CLAUDE_PLUGIN_DATA}, which is created on first reference and survives plugin updates",
+        "Next to the hook script in the plugin's scripts/ folder, next to the other bundled files",
+        "In the project's .claude/ folder, so every teammate's checkout gets the same cache"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "`${CLAUDE_PLUGIN_ROOT}` points at the installed plugin directory, and that directory is replaced on every update — anything you wrote into it is destroyed the next time the plugin ships. `${CLAUDE_PLUGIN_DATA}` exists for exactly this: installed dependencies, generated code, and caches that must outlive an update. Writing to the plugin directory (A) or to `scripts/` beside the hook (C) both work right up until the first update and then fail silently with a fresh, empty cache. The project's `.claude/` (D) is for files you commit on purpose, and a downloaded cache has no business being committed.",
+      "concept": "plugin-root-vs-plugin-data"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You copy an installed plugin to a scratch folder and start a session with `claude --plugin-dir ./scratch-copy`. It loads. Its two skills are gone, its agent is there, and `/plugin` → Errors names a path it could not find. The original works fine. What did the copy do wrong?",
+      "options": [
+        "The manifest lost its `name` field when copied, so components had nothing to namespace under",
+        "The `skills/` directory ended up inside `.claude-plugin/` instead of beside it, where nothing scans for components",
+        "A copied plugin loses its `version`, so Claude Code refuses to load skills at that version",
+        "The `.zip`-style copy broke path separators, so `skills/` was found but `SKILL.md` inside it was not"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Only `plugin.json` belongs inside `.claude-plugin/`; a `skills/` directory parked there is not scanned, so its skills silently do not load while every other component type in the same copy loads fine — which is exactly the asymmetry being reported. A missing `name` (A) would either fail validation or make the loader complain about the manifest itself, not leave agents working. `version` is metadata, not a gate (C). Broken separators (D) invent a failure mode that doesn't exist on any platform this runs on, and would not produce a single clean 'path not found' line.",
+      "concept": "only-plugin-json-goes-in-claude-plugin"
     }
   ]
 }

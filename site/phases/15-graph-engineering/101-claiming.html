@@ -4,94 +4,283 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Claiming — Stopping Two Agents Doing One Job — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can make exactly one worker take a ready node, using an operation that">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Claiming — Stopping Two Agents Doing One Job</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li class="on"><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 100, Blocking Edges — What's Actually Parallelizable</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 15 · LESSON 101</p>
+      <h1>Claiming — Stopping Two Agents Doing One Job</h1>
+      <p class="lesson-motto">You can make exactly one worker take a ready node, using an operation that</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 99 (Task Graphs), Lesson 100 (Blocking Edges); Phase 11, Lesson 73 (Agent Teams)</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Explain why &quot;ready&quot; and &quot;claimed&quot; are different states</li><li>Name the window where two workers race, and the property that closes it</li><li>Implement a claim with an atomic operation, not a read-then-write</li><li>Add a lease so a dead owner does not strand a node forever</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>A workflow fanned eight workers over one task queue. When a node became ready, every idle worker re-read the queue, saw the same ready node, and started it.</p>
+<p>Two workers built the same parser. Both committed. The second commit overwrote the first, and the first worker's passing tests were gone. Nobody noticed until a reviewer asked why the parser had lost its error handling.</p>
+<p>The run looked correct. Every node was marked done. The queue never lied — the node really was ready, right up until the first worker finished it. The bug was that &quot;ready&quot; was the only state the queue had. Between a worker reading &quot;ready&quot; and a worker acting on it, another worker could do the same thing. That gap is where two agents do one job.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>The frontier from Lesson 99 is <strong>public information</strong>. Every worker can compute it, and every worker will, and they will all agree. That is the problem: agreement is not ownership.</p>
+<p>A node needs a second state, and only one worker may make the transition:</p>
+<figure class="diagram"><pre>stateDiagram-v2
+    ready --&gt; claimed: atomic claim (exactly one wins)
+    claimed --&gt; done: worker finishes, output recorded
+    claimed --&gt; ready: lease expires (owner died)</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>The transition <code>ready → claimed</code> must be <strong>atomic</strong>: it either happens completely for one worker or not at all for everyone else. There is no moment when two workers both observe the node as theirs.</p>
+<h3 id="why-read-then-write-races">Why read-then-write races</h3>
+<p>The naive claim is two steps:</p>
+<pre class="code" data-lang="text"><code>if (status === 'ready') { status = 'claimed by me' }</code></pre>
+<p>Two workers can both evaluate <code>status === 'ready'</code> as true before either writes. Both then set the status, and the second write wins silently. The check and the set must be one indivisible operation — a <strong>compare-and-swap</strong>: &quot;set this to claimed <em>only if</em> it is still ready, and tell me whether I won.&quot;</p>
+<p>You get an atomic operation from a primitive that is already atomic:</p>
+<div class="table-wrap"><table><thead><tr><th>Primitive</th><th>The atomic act</th></tr></thead><tbody><tr><td>Exclusive file create (<code>open(path, 'wx')</code>, <code>mkdir</code>)</td><td>The OS creates the file for exactly one caller; the rest get &quot;exists&quot;.</td></tr><tr><td>A lock file / lock directory</td><td>Same idea, with a convention about who cleans up.</td></tr><tr><td>A database row with a conditional update</td><td><code>UPDATE … SET owner=? WHERE status='ready'</code> returns how many rows changed.</td></tr><tr><td>A single-writer queue</td><td>One process hands out nodes; the hand-off is the claim.</td></tr></tbody></table></div>
+<p>A claim is not a lock you hold while you work; it is a record. The record says: node id, owner, when it was taken, and a <strong>lease</strong> — an expiry time. If the owner dies mid-work, its lease expires and the node returns to <code>ready</code> (Lesson 104). Without a lease, one crashed worker strands its node forever.</p>
+<h3 id="idempotency-the-claim-check-happens-before-the-side-effect">Idempotency: the claim check happens before the side effect</h3>
+<p>A claim only helps if you <em>consult</em> it before doing anything destructive. A worker that starts editing, then checks whether it holds the claim, has already lost the race. And a node that runs twice — a retry, a resumed run — must be safe: the second run sees the claim or the completion and does nothing. That property is <strong>idempotency</strong>, and it is what makes retries and leases safe.</p>
+<p>The atomicity guards <em>who takes</em> the node. Idempotency guards <em>what happens if it runs twice anyway</em>. You need both; either alone leaves a hole.</p>
+<blockquote><p><strong>The reframe:</strong> the frontier says a job is <em>ready</em>; claiming is the atomic act</p><p>by which exactly one worker says &quot;*mine*&quot; before it starts — and the gap between</p><p>ready and claimed is where two agents do one job.</p></blockquote>
+<p>The need for atomic claims is version-independent. Which primitives a given runner offers (a task list, a lock, a queue) changes weekly — check <a href="https://code.claude.com/docs/en/agents" target="_blank" rel="noopener">Run agents in parallel</a> and the <a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">changelog</a>.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>Build a claim primitive and prove it cannot be raced. Node's <code>open(..., 'wx')</code> is atomic: exactly one caller creates the file, and every other caller gets <code>EEXIST</code>.</p>
+<h3 id="1-write-the-claimer">1. Write the claimer</h3>
+<pre class="code" data-lang="js"><code>// claim.mjs &lt;node-id&gt; &lt;owner&gt;
+import { openSync, writeFileSync, closeSync, mkdirSync, readFileSync, statSync, unlinkSync } from 'node:fs';
 
----
+mkdirSync('.claims', { recursive: true });
+const [node, owner] = process.argv.slice(2);
+const path = `.claims/${node}.claim`;
+const LEASE_MS = 30_000;
 
-## The Problem
+// Reclaim an expired lease before trying to take it.
+try {
+  const held = JSON.parse(readFileSync(path, 'utf8'));
+  if (Date.now() - held.at &gt; LEASE_MS) {
+    console.log(`reclaiming expired lease on ${node} (was ${held.owner})`);
+    unlinkSync(path);
+  }
+} catch { /* no claim file — nothing to reclaim */ }
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
+try {
+  const fd = openSync(path, 'wx'); // atomic create: one winner, rest throw
+  writeFileSync(fd, JSON.stringify({ owner, at: Date.now() }));
+  closeSync(fd);
+  console.log(`CLAIMED ${node} by ${owner}`);
+} catch (err) {
+  if (err.code === 'EEXIST') {
+    console.log(`lost ${node} — already held`);
+    process.exit(0);
+  }
+  throw err;
+}</code></pre>
+<p>✅ You pass when <code>node claim.mjs parser alice</code> prints <code>CLAIMED</code>, and running it again as <code>bob</code> prints <code>lost</code>.</p>
+<h3 id="2-race-it-hard">2. Race it hard</h3>
+<p>Fire many claimers at the same node at the same time and count the winners. Delete the claim file between rounds so each round starts clean.</p>
+<pre class="code" data-lang="bash"><code>rm -f .claims/parser.claim
+for i in $(seq 1 20); do node claim.mjs parser &quot;w$i&quot; &amp; done; wait</code></pre>
+<p>✅ You pass when exactly one line says <code>CLAIMED</code> and the other nineteen say <code>lost</code>, on every round you run.</p>
+<h3 id="3-prove-idempotency">3. Prove idempotency</h3>
+<p>Have a &quot;worker&quot; that does a side effect, then run the same node twice.</p>
+<pre class="code" data-lang="bash"><code>node claim.mjs build-parser alice   # first run, does the work
+node claim.mjs build-parser alice   # resume — must not redo it</code></pre>
+<p>✅ You pass when the second run refuses to proceed (the claim exists) and no second artifact is produced.</p>
+<h3 id="4-expire-a-lease">4. Expire a lease</h3>
+<p>Wait out <code>LEASE_MS</code> (or lower it to 500ms) and claim again from a new owner.</p>
+<p>✅ You pass when the expired lease is reclaimed and exactly one <em>new</em> owner wins.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Situation</th><th>Move</th></tr></thead><tbody><tr><td>Two workers might grab one node</td><td>A claim before any side effect, not after.</td></tr><tr><td>Choosing a primitive</td><td>Whatever your platform makes atomic: exclusive create, lock file, conditional DB update.</td></tr><tr><td>A worker dies mid-node</td><td>A lease with an expiry, so the node returns to <code>ready</code>.</td></tr><tr><td>A retry or a resumed run</td><td>Idempotency: check the claim/completion first, then act.</td></tr><tr><td>Claiming &quot;just in case&quot; and holding it while you decide</td><td>Don't. Claim the moment you commit to the work, and keep the lease short.</td></tr><tr><td>A long node that outlives its lease</td><td>Renew the lease, or set it longer than the node's worst case.</td></tr><tr><td>A single worker, no fan-out</td><td>You may not need claims at all — there is no race.</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Implement the claim primitive above and run 20 concurrent claimers at one node. ✅ You pass when the winner count is exactly 1 on every run, across at least five runs.</li></ol>
+<ol><li class="criterion">Add a lease and force expiry by killing a claimant mid-work (or setting a tiny TTL). Show the node returning to <code>ready</code> and a new owner winning. ✅ You pass when a second owner ends up holding the node without a manual delete.</li></ol>
+<ol><li class="criterion">Make the node idempotent. Run it twice and show the side effect happening once. ✅ You pass when the second run produces no duplicate artifact and can say which state it read to decide.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>claim</td><td>&quot;taking a task&quot;</td><td>An atomic transition from <code>ready</code> to <code>claimed</code> by exactly one worker.</td></tr><tr><td>atomic</td><td>&quot;it just works&quot;</td><td>The operation completes for one caller or not at all; no in-between state is observable.</td></tr><tr><td>compare-and-swap</td><td>&quot;a lock&quot;</td><td>&quot;Set only if still ready.&quot; A conditional write that reports whether you won.</td></tr><tr><td>lease</td><td>&quot;a timeout&quot;</td><td>An expiry on a claim. When it lapses, the node returns to <code>ready</code>.</td></tr><tr><td>idempotent</td><td>&quot;safe to retry&quot;</td><td>Running it twice has the same effect as running it once.</td></tr><tr><td>owner</td><td>&quot;who's on it&quot;</td><td>The worker named in the claim record.</td></tr><tr><td>ready vs claimed</td><td>&quot;it's pending&quot;</td><td>Publicly runnable versus privately taken. The gap between them is the race.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>What to do when a lease expires and the node is half-done.</strong> Re-running a partially applied node is Lesson 104's problem, and it is why idempotency matters more than locking.</p>
+<p><strong>Joining claimed results.</strong> Collecting several workers' outputs is Lesson 103.</p>
+<p><strong>Distributed locks in depth.</strong> Consensus, fencing tokens, and lock safety across machines is out of scope for a local-first course; a single machine's exclusive create is enough here.</p>
+<p><strong>Agent-team task lists.</strong> How a lead's shared task list claims work internally is Phase 11, Lesson 73 — this lesson is the mechanism underneath it.</p>
+      </div>
 
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A worker claims a node like this: <code>if (task.status === 'ready') { task.status = 'claimed' }</code>. In a heavy fan-out, two workers still duplicate the work. What is the flaw?</p>
+        <ol class="options" type="A">
+          <li>The status field is spelled inconsistently</li>
+          <li>Check and set are two separate steps, so two workers can both read 'ready' before either writes — it needs to be atomic</li>
+          <li>Workers should re-read the status after writing it</li>
+          <li>The task needs a longer lease</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Check and set are two separate steps, so two workers can both read 'ready' before either writes — it needs to be atomic</p>
+          <p class="why">Between the read and the write, both workers can observe <code>ready</code>, so both proceed; the write is a race, not a lock. Option A is a cosmetic guess. Option C reads the status even later, after the race has happened. Option D helps a <em>dead</em> owner, not a simultaneous one, and this bug fires on healthy workers.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You use exclusive file create for claims, and a worker is killed mid-node. The node never returns to the queue. What is missing?</p>
+        <ol class="options" type="A">
+          <li>A bigger machine, so workers do not get killed</li>
+          <li>A lease with an expiry, so a dead owner's claim returns the node to ready</li>
+          <li>Idempotency, so the node can run twice</li>
+          <li>A soft edge, so the node does not wait</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A lease with an expiry, so a dead owner's claim returns the node to ready</p>
+          <p class="why">A claim record with no expiry is permanent; the lease is what detects a dead owner and frees the node. Option A avoids the symptom, not the mechanism. Option C is necessary for <em>safe re-run</em> but does not by itself release the claim. Option D is an edge-classification idea and unrelated to ownership.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A worker claims a node, edits twelve files, and <em>then</em> checks whether it still holds the claim — on discovering it lost the race, it rolls back. Why is this still wrong?</p>
+        <ol class="options" type="A">
+          <li>Rolling back is impossible, so it should keep the edits</li>
+          <li>The side effect happened before the claim check, so the rollback itself races with the winner; the check must precede any side effect</li>
+          <li>It should claim after finishing instead of before</li>
+          <li>Nothing — checking afterwards is equivalent</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The side effect happened before the claim check, so the rollback itself races with the winner; the check must precede any side effect</p>
+          <p class="why">A claim only protects you if it gates the work; acting first and checking later means two workers can both have edited before either backs out. Option A abandons the guarantee entirely. Option C claims too late to matter. Option D is the tempting equivalence, and it fails precisely because the loser's edits are already on disk.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A single agent runs a small graph sequentially and someone suggests adding claim files for every node. Overkill, or necessary?</p>
+        <ol class="options" type="A">
+          <li>Necessary — every graph should use claims</li>
+          <li>Overkill — with one writer there is no race, so claiming adds state and possible stale leases for nothing</li>
+          <li>Necessary, because claims also prevent the node running twice</li>
+          <li>Overkill, but only because single agents cannot revisit nodes</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Overkill — with one writer there is no race, so claiming adds state and possible stale leases for nothing</p>
+          <p class="why">Claims exist to resolve contention among writers; with one writer there is nothing to contend. Option A is the tempting over-engineering, and stale leases become a new failure mode. Option C is half-right — idempotency helps on resume — but a single sequential run does not resume mid-node, and a claim is not the tool for it. Option D states a false reason.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/15-graph-engineering/100-blocking-edges.html"><span>Previous</span>100. Blocking Edges — What's Actually Parallelizable</a>
+    <a class="next" href="../../phases/15-graph-engineering/102-wayfinding.html"><span>Next</span>102. Wayfinding — Producing Decisions, Not Deliverables</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

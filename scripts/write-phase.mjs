@@ -1,30 +1,44 @@
 #!/usr/bin/env node
-// write-phase.mjs — author one phase's lessons with a headless Claude worker.
+// write-phase.mjs — author one phase's *missing* pieces with one headless worker.
 //
 // One worker per phase, each isolated in its own git worktree and its own
 // branch, each required to commit. Isolation without a commit is not a backup —
-// that scar is recorded in AGENTS.md.
+// that scar is recorded in AGENTS.md, and it was earned twice: a previous run
+// left phase 08 and phase 09 fully written and completely uncommitted.
 //
-// Usage:  node scripts/write-phase.mjs <phase-slug>
+// The prompt is gap-scoped. It names the exact files that are not yet authored
+// and says nothing about the ones that are. A worker told to "rewrite the phase"
+// re-does finished work and introduces diffs nobody asked for; a worker told
+// "write these eleven quiz.json files" finishes in one pass.
 //
+// Usage:  node scripts/write-phase.mjs <phase-slug> [--worker claude|opencode] [--dry-run]
+//
+// Exit:   0 worker ran and committed; 1 no work needed; 2 worker failed; 3 no commit.
 
 import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { phaseGap, describeGap, gapFiles } from './lib/workflow-lib.mjs';
 
 // cwd IS the worktree this worker owns. The prompt must name *that* path, not
 // the main checkout — an absolute path pointing at main makes every worker
 // overwrite every other worker's files. That collision cost one phase of work.
 const ROOT = process.cwd();
-const phase = process.argv[2];
-if (!phase) {
-  console.error('usage: node scripts/write-phase.mjs <phase-slug>');
-  process.exit(1);
+const argv = process.argv.slice(2);
+const phase = argv.find((a) => !a.startsWith('--'));
+const wi = argv.indexOf('--worker');
+const WORKER = wi === -1 ? 'claude' : argv[wi + 1];
+const DRY = argv.includes('--dry-run');
+
+if (!phase || !existsSync(`${ROOT}/phases/${phase}`)) {
+  console.error(`usage: node scripts/write-phase.mjs <phase-slug> [--worker claude|opencode]`);
+  process.exit(2);
 }
 
-const PHASES_DIR = join(ROOT, 'phases', phase);
-if (!existsSync(PHASES_DIR)) {
-  console.error(`no such phase: ${phase}`);
+const gap = phaseGap(ROOT, phase);
+const files = gapFiles(ROOT, gap);
+
+if (!gap.hasGap) {
+  console.log(`${phase}: nothing to author (${describeGap(gap)})`);
   process.exit(1);
 }
 
@@ -36,18 +50,34 @@ ${ROOT} — a git worktree you own exclusively.
 other worker has its own worktree and every merge conflict you cause gets
 hand-fixed.
 
-## Your assignment
+## Your assignment — phase \`${phase}\`
 
-Author the FULL lesson bodies for phase \`${phase}\` — every lesson directory
-under \`phases/${phase}/\`, plus the practice module this phase points at.
+Author **only these files**. They are the ones still unwritten. Everything else
+in this phase is finished, validated, and must not be touched:
 
-For each lesson directory \`phases/${phase}/NN-lesson-slug/\`:
-- Rewrite \`docs/en.md\` completely. No placeholder text survives.
-- Rewrite \`quiz.json\`. Real questions, real options, integer answer index.
-- If \`code/\` exists and the lesson is Type: Build, put a runnable file there.
+${files.map((f) => `- \`${f}\``).join('\n')}
 
-Also author the phase's practice module (BRIEF.md and RUBRIC.md). Find its path
-from the "**Module NN.N**" block for this phase in CATALOG.md.
+Gap summary: ${describeGap(gap)}.
+
+### docs/en.md — the full lesson body
+
+Structure is fixed by \`LESSON-TEMPLATE.md\`. Required sections, in order:
+title, a one-line '>' hook, \`**Type:**\`, \`**Prerequisites:**\`, \`**Time:**\`,
+\`## Learning Objectives\`, \`## The Problem\`, \`## The Concept\`, \`## Build It\`,
+\`## Use It\`, \`## Exercises\`, \`## Key Terms\`. No placeholder text survives.
+
+### quiz.json — machine-readable checks
+
+Shape: \`{"questions":[{"id":1,"prompt":"...","options":["a","b","c","d"],"answer":2,"explanation":"..."}]}\`.
+Every question needs 4 options, an integer \`answer\` index in range, and an
+\`explanation\` that says why the right answer is right *and* why the tempting
+wrong one is wrong.
+
+### practice BRIEF.md / RUBRIC.md
+
+A brief states the task and a real constraint. A rubric's criteria are
+observable — a grader can point at the artifact and say yes or no, not "feels
+good".
 
 ## Read these first, in order
 
@@ -83,9 +113,7 @@ aliases (\`sonnet\`, \`opus\`), never hardcoded versions. Link
 https://code.claude.com/docs/llms.txt and date anything version-gated.
 
 **Quiz on use, not recognition.** Every question needs a new situation, not
-"what did this lesson say". Each question: options[] with 4 entries, an integer
-\`answer\` index, \`distractors\` of equal length, and an \`explanation\` saying
-why the right answer is right AND why the tempting wrong one is wrong.
+"what did this lesson say".
 
 **Say what you skipped.** Name anything deliberately not covered, and when to
 come back for it.
@@ -102,11 +130,17 @@ criteria, and quiz shape. Fix everything it reports, re-run until clean.
 \`\`\`
 git add -A phases/${phase} practice
 git commit -m "feat(${phase}): author lesson bodies"
-\`\`
+\`\`\`
 
 Work inside ${ROOT}. A session that ends without a commit loses all of its work.
 Do not push; do not merge; do not touch git refs other than your own branch.
 `;
+
+if (DRY) {
+  console.log(`[dry-run] ${phase}: would author ${files.length} file(s)`);
+  console.log(PROMPT);
+  process.exit(0);
+}
 
 // Absolute path, no shell: on Windows the CLI lives under "C:\Program Files\...",
 // and shell:true makes cmd split that on the space and fail for every worker.
@@ -114,17 +148,65 @@ Do not push; do not merge; do not touch git refs other than your own branch.
 // acceptEdits blocks Bash, and a worker that can't `git commit` returns with
 // nothing — isolation without a commit is not a backup.
 const CLAUDE = process.env.CLAUDE_BIN || 'C:/Users/aswat/.local/bin/claude.exe';
-const res = spawnSync(
-  CLAUDE,
-  [
-    '-p',
-    '--permission-mode', 'acceptEdits',
-    '--allowedTools', 'Read,Write,Edit,Glob,Grep,Bash,TodoWrite',
-    '--dangerously-skip-permissions',
-    '--model', 'sonnet',
-    '--max-turns', '300',
-  ],
-  { cwd: process.cwd(), stdio: ['pipe', 'inherit', 'inherit'], input: PROMPT, shell: false },
-);
 
-process.exit(res.status ?? 1);
+function runClaude() {
+  return spawnSync(
+    CLAUDE,
+    [
+      '-p',
+      '--permission-mode', 'acceptEdits',
+      '--allowedTools', 'Read,Write,Edit,Glob,Grep,Bash,TodoWrite',
+      '--dangerously-skip-permissions',
+      '--model', process.env.AUTHOR_MODEL || 'sonnet',
+      '--max-turns', '300',
+    ],
+    { cwd: ROOT, stdio: ['pipe', 'inherit', 'inherit'], input: PROMPT, shell: false },
+  );
+}
+
+// `spawn` with shell:false cannot run npm's Windows shims — `opencode` on PATH
+// resolves to opencode.ps1, CreateProcess finds no .exe, and the worker dies
+// ENOENT having printed nothing. Point at the real binary instead.
+function opencodeBin() {
+  if (process.env.OPENCODE_BIN) return process.env.OPENCODE_BIN;
+  if (process.platform === 'win32' && process.env.APPDATA) {
+    const exe = `${process.env.APPDATA}\\npm\\node_modules\\@opencode\\cli\\bin\\opencode.exe`;
+    if (existsSync(exe)) return exe;
+  }
+  return 'opencode';
+}
+
+// `opencode` must be given piped stdio, not inherited. With `stdio: 'inherit'`
+// it dies before printing anything and returns status null — the process is
+// killed, not failed, so there is no exit code and no error to read. Claude
+// tolerates inherit; opencode does not. Pipe both streams and echo them here.
+function runOpencode() {
+  // `opencode run` takes the prompt as one argv element; no shell, so the
+  // prompt's quotes and backticks survive intact.
+  const res = spawnSync(
+    opencodeBin(),
+    ['run', '--model', process.env.AUTHOR_MODEL || 'opencode-go/deepseek-v4.1-flash', PROMPT],
+    { cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe'], shell: false, maxBuffer: 64 * 1024 * 1024, encoding: 'utf8' },
+  );
+  if (res.stdout) process.stdout.write(res.stdout);
+  if (res.stderr) process.stderr.write(res.stderr);
+  if (res.error) console.error(`opencode spawn error: ${res.error.message}`);
+  if (res.status === null) console.error(`opencode was killed (signal ${res.signal ?? 'unknown'})`);
+  return res;
+}
+
+const res = WORKER === 'opencode' ? runOpencode() : runClaude();
+
+// Exit 0 with nothing committed is a silent failure. Check the ref.
+const head = spawnSync('git', ['log', '-1', '--format=%H%n%s'], { cwd: ROOT, encoding: 'utf8' }).stdout;
+const [sha, subject = ''] = head.trim().split('\n');
+const base = spawnSync('git', ['rev-parse', `${sha}^`], { cwd: ROOT, encoding: 'utf8' }).stdout.trim();
+console.log(`\n=== ${phase}: worker=${WORKER} exit=${res.status} head="${subject}"`);
+
+if (res.status !== 0) process.exit(2);
+if (!/^feat\(/.test(subject)) {
+  console.log(`=== ${phase}: worker did not commit a feat() change — treating as failure`);
+  process.exit(3);
+}
+void base;
+process.exit(0);

@@ -5,78 +5,139 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Context Window — the only budget that matters — Harnessing Claude Code</title>
 <meta name="description" content="You can look at any session and say what is in the window, what is about to be">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>The Context Window — the only budget that matters</h1>
-  <p class="lesson-motto">You can look at any session and say what is in the window, what is about to be</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li class="on"><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 7, Tokens — why text becomes currency</p>
-    <p><strong>Time:</strong> ~35 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 01 · LESSON 8</p>
+      <h1>The Context Window — the only budget that matters</h1>
+      <p class="lesson-motto">You can look at any session and say what is in the window, what is about to be</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 7, Tokens — why text becomes currency</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- List what occupies a session's window before the user types a word
-- Read `/context` and name the biggest category in a real session
-- Choose between letting a session continue, compacting it, and clearing it
-- Move a rule out of conversation history and into a file that always loads
-
----
-
-## The Problem
-
-An agent was mid-way through a four-file refactor. It stopped, restarted its
-approach twice, and eventually proposed a change that reverted an edit it had
-made an hour earlier — an edit it had made itself, and reported as done.
-
-Nothing crashed. No error appeared. The context window had filled, the
-conversation was summarized, and the summary did not carry the detail that the
-agent had already established: which of the four files it had changed and how.
-The agent behaved correctly given what it could still see. That is what makes
-this failure so quiet.
-
-Everything else in this course hangs off this one fact. Parallel agents work
-because each has its own window. Compaction exists because windows fill. Long
-sessions are expensive because windows re-send. You cannot reason about any of
-that until "what is in the window, and what happens when it's full" is concrete.
-
----
-
-## The Concept
-
-The context window is the entire body of text the model sees on the next turn.
-Not the chat. Everything: your instructions, the agent's instructions, the tool
-list, files it has read, command output, every word of both sides of the
-conversation.
-
-It is a fixed budget. It fills. It is never enlarged by being clever — and when
-it fills, something is discarded, because there is no other option.
-
-```mermaid
-flowchart TD
-    subgraph Startup["Loaded before you type"]
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>List what occupies a session's window before the user types a word</li><li>Read <code>/context</code> and name the biggest category in a real session</li><li>Choose between letting a session continue, compacting it, and clearing it</li><li>Move a rule out of conversation history and into a file that always loads</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>An agent was mid-way through a four-file refactor. It stopped, restarted its approach twice, and eventually proposed a change that reverted an edit it had made an hour earlier — an edit it had made itself, and reported as done.</p>
+<p>Nothing crashed. No error appeared. The context window had filled, the conversation was summarized, and the summary did not carry the detail that the agent had already established: which of the four files it had changed and how. The agent behaved correctly given what it could still see. That is what makes this failure so quiet.</p>
+<p>Everything else in this course hangs off this one fact. Parallel agents work because each has its own window. Compaction exists because windows fill. Long sessions are expensive because windows re-send. You cannot reason about any of that until &quot;what is in the window, and what happens when it's full&quot; is concrete.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>The context window is the entire body of text the model sees on the next turn. Not the chat. Everything: your instructions, the agent's instructions, the tool list, files it has read, command output, every word of both sides of the conversation.</p>
+<p>It is a fixed budget. It fills. It is never enlarged by being clever — and when it fills, something is discarded, because there is no other option.</p>
+<figure class="diagram"><pre>flowchart TD
+    subgraph Startup[&quot;Loaded before you type&quot;]
         A[System instructions] --&gt; Z[Window]
         B[CLAUDE.md] --&gt; Z
         C[Memory files] --&gt; Z
         D[Tool definitions] --&gt; Z
     end
-    subgraph Work["Accumulates as you work"]
+    subgraph Work[&quot;Accumulates as you work&quot;]
         E[File reads] --&gt; Z
         F[Command output] --&gt; Z
         G[Both sides of the conversation] --&gt; Z
@@ -85,235 +146,130 @@ flowchart TD
     H --&gt;|No| I[Next turn]
     I --&gt; G
     H --&gt;|Yes| J[Compact: summarize older history]
-    J --&gt; Z
-```
-
-### What fills it, in order of arrival
-
-**Before you type anything:**
-
-| What | Roughly |
-|---|---|
-| System instructions for the harness | A few thousand tokens. Never shown to you. |
-| `CLAUDE.md` and memory files | Whatever you wrote. Free to add — but not free. |
-| Tool definitions | Every tool the agent can call, with its schema. |
-| Environment details | Working directory, platform, shell, git state. |
-
-**As work proceeds:**
-
-- every file read, at full length
-- every command's entire output
-- every message, both directions
-- notes the agent takes to itself about itself
-
-The single most expensive thing that can happen is a single large read. One
-pasted log can outweigh an hour of conversation.
-
-### What happens when it fills
-
-It does not fail. It **compacts**: the harness summarizes older history to make
-room, and the conversation continues from the summary.
-
-What survives depends on *how* the content got there. This is the part that
-matters and almost nobody knows:
-
-| Content | After compaction |
-|---|---|
-| System instructions | Still there |
-| Project-root `CLAUDE.md`, unscoped rules | Re-injected from disk |
-| Memory files | Re-injected from disk |
-| Recently read or edited files | A handful re-read, most recently modified first |
-| Skill bodies you invoked | Re-injected, capped, oldest dropped first |
-| Rules scoped to a path | Summarized away — they load again on demand next time |
-| **The middle of the conversation** | **Gone. Replaced by a summary.** |
-
-The last row is where the refactor died. The first rows are why the agent still
-knows the project's conventions. So:
-
-- **Anything that must survive, write it to a file.** Files get re-injected.
-  Conversation history does not.
-- **Anything you want a summary to preserve, say so.** `/compact focus on the
-  auth bug fix` steers what survives. The automatic pass has to guess.
-
-### The four moves
-
-| Command | What it does | When |
-|---|---|---|
-| `/context` | Draws the window as a grid, by category | Whenever you want to know where the tokens went |
-| `/compact [focus]` | Summarizes history, keeps the conversation | Same task, window filling |
-| `/clear [name]` | New conversation, empty window | Switching to unrelated work |
-| `/resume` | Reopen a cleared conversation | You cleared and now want it back |
-
-`/context` is the one to make a habit. It turns context from a vibe into a
-number you can act on.
-
-&gt; **The reframe:** the window is a fixed budget that fills and then summarizes
-&gt; itself, so anything that must survive compaction belongs in a file that gets
-&gt; re-read — never in the conversation that is about to be summarized away.
-
-Window sizes, compaction thresholds, and command behaviour change as Claude Code
-ships. Check
-[the context window page](https://code.claude.com/docs/en/context-window) and
-`/context` in your own session rather than trusting a figure quoted here.
-
----
-
-## Build It
-
-### 1. Look at a window before it matters
-
-Start a session in this repo and run, as your first action:
-
-```
-/context
-```
-
-Before you have typed a real request. Everything on that grid is what the agent
-carries for free — the cost of you being here.
-
-✅ You pass when you can name the three largest categories on the grid and none
-of them are the conversation.
-
-### 2. Watch it fill
-
-Ask for a real investigation:
-
-```
-Find every place this repo documents a lesson format. Report paths only.
-```
-
-Run `/context` again. Compare. The conversation is now a real category.
-
-✅ You pass when you can point at which category grew and by roughly how much.
-
-### 3. Find the expensive single item
-
-Look for the largest category that is *not* the conversation — usually file
-reads or command output. Ask for one deliberately huge read and watch it:
-
-```
-Print the whole of scripts/validate-lessons.mjs with line numbers.
-```
-
-Then `/context`. One request, and a large permanent addition.
-
-✅ You pass when you have a before-and-after number showing what one read cost.
-
-### 4. Steer a compaction
-
-```
-/compact focus on the lesson-format findings, drop the file listings
-```
-
-Now check what the conversation still contains. The focus instruction decided
-what survived. Without it, the automatic pass guesses.
-
-✅ You pass when you can quote something you asked to keep and confirm it is
-still there after the compaction.
-
-### 5. Watch a rule get summarized away
-
-Put a scoped rule in the conversation and compact, versus putting the same
-content in `CLAUDE.md` and compact. The first is at the mercy of the summary.
-The second is re-read from disk.
-
-Keep it simple — the file moves:
-
-```
-/compact
-```
-
-then confirm the project instructions are still present in the session
-afterwards.
-
-✅ You pass when you can say which of the two survived and why, naming the
-mechanism rather than the feeling.
-
-### 6. Clear between unrelated tasks
-
-You have finished one task and are starting a completely different one. The old
-context is not stale to the model — it is still there, still being paid for,
-still crowding out.
-
-```
-/clear phase-one-done
-```
-
-Then `/context`. Compare to the previous grid.
-
-✅ You pass when the new window is visibly emptier and you named the task you
-switched away from.
-
----
-
-## Use It
-
-| Command | When you reach for it |
-|---|---|
-| `/context` | Any time you want to know where the tokens went |
-| `/compact` | Same task, window filling, history matters |
-| `/compact &lt;focus&gt;` | Before a long stretch — you know what must survive |
-| `/clear &lt;name&gt;` | Switching to unrelated work |
-| `/resume` | After a clear, when you want the old thread back |
-| Put rules in `CLAUDE.md` | Any rule that must survive compaction |
-| Ask for narrow output | Preventing the fill in the first place |
-
----
-
-## Exercises
-
-1. Record `/context` three times in one session: at startup, after a broad
-   investigation, and after `/compact`. Keep all three grids.
-   ✅ You pass when you can say which category grew most and whether compaction
-   shrank the conversation category specifically.
-
-2. Write one instruction you want to survive an hour of work. Put it in
-   `CLAUDE.md` in a scratch project. Compact. Confirm it survived. Then say what
-   would have happened had you only said it in chat.
-   ✅ You pass when the rule is present after compaction and you can describe the
-   mechanism from memory.
-
-3. Hit `/context` twice in a real session and find the largest thing you did not
-   need in the window. Remove it with a narrower ask next time.
-   ✅ You pass when you have the before-and-after grids and a one-line note on
-   what you would ask instead.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| context window | "the chat history" | Every token the model sees next turn: instructions, tool definitions, files, command output, and the conversation. One budget for all of it. |
-| context | "what it remembers" | The whole re-sent body. It is re-transmitted, not recalled from a store. |
-| compaction | "it forgot" | Automatic or manual summarization of older history to make room. Loses detail by design. |
-| survives compaction | "it's still in context" | Depends on how it got there. Files and root instructions are re-read; the middle of the conversation is not. |
-| `/clear` | "new chat" | Empty window, new conversation. `/resume` reopens a cleared one. |
-| window size | "how much it can hold" | A per-model, sometimes per-configuration number. Move it and you break this lesson — check `/context` and the docs. |
-
----
-
-## What this lesson skipped
-
-**Prompt caching.** Reading the same content twice can cost far less the second
-time, which changes how you reason about repeated reads. It is real and it shows
-up in `/usage`. It needs a cost frame to make sense, and Phase 03 is where
-models and their trade-offs land.
-
-**Isolated windows.** The reason parallel agents work is that each one has its
-own window. That is Phase 06, and it depends on this lesson rather than the
-other way round.
-
-**Skills and path-scoped rules** as context-management tools. Both appear in the
-compaction table above and both get their own phases, because each needs
-grounding this phase cannot give.
-
-**How to raise the ceiling.** Some models offer a much larger window. Irrelevant
-until Phase 03, where choosing a model is the actual skill — a bigger window
-costs more and is usually the wrong answer.
-
-**Fine-grained compaction control.** Tuning exactly when automatic compaction
-fires. Available in settings; premature. Get the instincts first.</pre>
-</article>
+    J --&gt; Z</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="what-fills-it-in-order-of-arrival">What fills it, in order of arrival</h3>
+<p><strong>Before you type anything:</strong></p>
+<div class="table-wrap"><table><thead><tr><th>What</th><th>Roughly</th></tr></thead><tbody><tr><td>System instructions for the harness</td><td>A few thousand tokens. Never shown to you.</td></tr><tr><td><code>CLAUDE.md</code> and memory files</td><td>Whatever you wrote. Free to add — but not free.</td></tr><tr><td>Tool definitions</td><td>Every tool the agent can call, with its schema.</td></tr><tr><td>Environment details</td><td>Working directory, platform, shell, git state.</td></tr></tbody></table></div>
+<p><strong>As work proceeds:</strong></p>
+<ul><li>every file read, at full length</li><li>every command's entire output</li><li>every message, both directions</li><li>notes the agent takes to itself about itself</li></ul>
+<p>The single most expensive thing that can happen is a single large read. One pasted log can outweigh an hour of conversation.</p>
+<h3 id="what-happens-when-it-fills">What happens when it fills</h3>
+<p>It does not fail. It <strong>compacts</strong>: the harness summarizes older history to make room, and the conversation continues from the summary.</p>
+<p>What survives depends on <em>how</em> the content got there. This is the part that matters and almost nobody knows:</p>
+<div class="table-wrap"><table><thead><tr><th>Content</th><th>After compaction</th></tr></thead><tbody><tr><td>System instructions</td><td>Still there</td></tr><tr><td>Project-root <code>CLAUDE.md</code>, unscoped rules</td><td>Re-injected from disk</td></tr><tr><td>Memory files</td><td>Re-injected from disk</td></tr><tr><td>Recently read or edited files</td><td>A handful re-read, most recently modified first</td></tr><tr><td>Skill bodies you invoked</td><td>Re-injected, capped, oldest dropped first</td></tr><tr><td>Rules scoped to a path</td><td>Summarized away — they load again on demand next time</td></tr><tr><td><strong>The middle of the conversation</strong></td><td><strong>Gone. Replaced by a summary.</strong></td></tr></tbody></table></div>
+<p>The last row is where the refactor died. The first rows are why the agent still knows the project's conventions. So:</p>
+<ul><li><strong>Anything that must survive, write it to a file.</strong> Files get re-injected. Conversation history does not.</li><li><strong>Anything you want a summary to preserve, say so.</strong> <code>/compact focus on the auth bug fix</code> steers what survives. The automatic pass has to guess.</li></ul>
+<h3 id="the-four-moves">The four moves</h3>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>What it does</th><th>When</th></tr></thead><tbody><tr><td><code>/context</code></td><td>Draws the window as a grid, by category</td><td>Whenever you want to know where the tokens went</td></tr><tr><td><code>/compact [focus]</code></td><td>Summarizes history, keeps the conversation</td><td>Same task, window filling</td></tr><tr><td><code>/clear [name]</code></td><td>New conversation, empty window</td><td>Switching to unrelated work</td></tr><tr><td><code>/resume</code></td><td>Reopen a cleared conversation</td><td>You cleared and now want it back</td></tr></tbody></table></div>
+<p><code>/context</code> is the one to make a habit. It turns context from a vibe into a number you can act on.</p>
+<blockquote><p><strong>The reframe:</strong> the window is a fixed budget that fills and then summarizes</p><p>itself, so anything that must survive compaction belongs in a file that gets</p><p>re-read — never in the conversation that is about to be summarized away.</p></blockquote>
+<p>Window sizes, compaction thresholds, and command behaviour change as Claude Code ships. Check <a href="https://code.claude.com/docs/en/context-window" target="_blank" rel="noopener">the context window page</a> and <code>/context</code> in your own session rather than trusting a figure quoted here.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-look-at-a-window-before-it-matters">1. Look at a window before it matters</h3>
+<p>Start a session in this repo and run, as your first action:</p>
+<pre class="code"><code>/context</code></pre>
+<p>Before you have typed a real request. Everything on that grid is what the agent carries for free — the cost of you being here.</p>
+<p>✅ You pass when you can name the three largest categories on the grid and none of them are the conversation.</p>
+<h3 id="2-watch-it-fill">2. Watch it fill</h3>
+<p>Ask for a real investigation:</p>
+<pre class="code"><code>Find every place this repo documents a lesson format. Report paths only.</code></pre>
+<p>Run <code>/context</code> again. Compare. The conversation is now a real category.</p>
+<p>✅ You pass when you can point at which category grew and by roughly how much.</p>
+<h3 id="3-find-the-expensive-single-item">3. Find the expensive single item</h3>
+<p>Look for the largest category that is <em>not</em> the conversation — usually file reads or command output. Ask for one deliberately huge read and watch it:</p>
+<pre class="code"><code>Print the whole of scripts/validate-lessons.mjs with line numbers.</code></pre>
+<p>Then <code>/context</code>. One request, and a large permanent addition.</p>
+<p>✅ You pass when you have a before-and-after number showing what one read cost.</p>
+<h3 id="4-steer-a-compaction">4. Steer a compaction</h3>
+<pre class="code"><code>/compact focus on the lesson-format findings, drop the file listings</code></pre>
+<p>Now check what the conversation still contains. The focus instruction decided what survived. Without it, the automatic pass guesses.</p>
+<p>✅ You pass when you can quote something you asked to keep and confirm it is still there after the compaction.</p>
+<h3 id="5-watch-a-rule-get-summarized-away">5. Watch a rule get summarized away</h3>
+<p>Put a scoped rule in the conversation and compact, versus putting the same content in <code>CLAUDE.md</code> and compact. The first is at the mercy of the summary. The second is re-read from disk.</p>
+<p>Keep it simple — the file moves:</p>
+<pre class="code"><code>/compact</code></pre>
+<p>then confirm the project instructions are still present in the session afterwards.</p>
+<p>✅ You pass when you can say which of the two survived and why, naming the mechanism rather than the feeling.</p>
+<h3 id="6-clear-between-unrelated-tasks">6. Clear between unrelated tasks</h3>
+<p>You have finished one task and are starting a completely different one. The old context is not stale to the model — it is still there, still being paid for, still crowding out.</p>
+<pre class="code"><code>/clear phase-one-done</code></pre>
+<p>Then <code>/context</code>. Compare to the previous grid.</p>
+<p>✅ You pass when the new window is visibly emptier and you named the task you switched away from.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>/context</code></td><td>Any time you want to know where the tokens went</td></tr><tr><td><code>/compact</code></td><td>Same task, window filling, history matters</td></tr><tr><td><code>/compact &lt;focus&gt;</code></td><td>Before a long stretch — you know what must survive</td></tr><tr><td><code>/clear &lt;name&gt;</code></td><td>Switching to unrelated work</td></tr><tr><td><code>/resume</code></td><td>After a clear, when you want the old thread back</td></tr><tr><td>Put rules in <code>CLAUDE.md</code></td><td>Any rule that must survive compaction</td></tr><tr><td>Ask for narrow output</td><td>Preventing the fill in the first place</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Record <code>/context</code> three times in one session: at startup, after a broad investigation, and after <code>/compact</code>. Keep all three grids. ✅ You pass when you can say which category grew most and whether compaction shrank the conversation category specifically.</li></ol>
+<ol><li class="criterion">Write one instruction you want to survive an hour of work. Put it in <code>CLAUDE.md</code> in a scratch project. Compact. Confirm it survived. Then say what would have happened had you only said it in chat. ✅ You pass when the rule is present after compaction and you can describe the mechanism from memory.</li></ol>
+<ol><li class="criterion">Hit <code>/context</code> twice in a real session and find the largest thing you did not need in the window. Remove it with a narrower ask next time. ✅ You pass when you have the before-and-after grids and a one-line note on what you would ask instead.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>context window</td><td>&quot;the chat history&quot;</td><td>Every token the model sees next turn: instructions, tool definitions, files, command output, and the conversation. One budget for all of it.</td></tr><tr><td>context</td><td>&quot;what it remembers&quot;</td><td>The whole re-sent body. It is re-transmitted, not recalled from a store.</td></tr><tr><td>compaction</td><td>&quot;it forgot&quot;</td><td>Automatic or manual summarization of older history to make room. Loses detail by design.</td></tr><tr><td>survives compaction</td><td>&quot;it's still in context&quot;</td><td>Depends on how it got there. Files and root instructions are re-read; the middle of the conversation is not.</td></tr><tr><td><code>/clear</code></td><td>&quot;new chat&quot;</td><td>Empty window, new conversation. <code>/resume</code> reopens a cleared one.</td></tr><tr><td>window size</td><td>&quot;how much it can hold&quot;</td><td>A per-model, sometimes per-configuration number. Move it and you break this lesson — check <code>/context</code> and the docs.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Prompt caching.</strong> Reading the same content twice can cost far less the second time, which changes how you reason about repeated reads. It is real and it shows up in <code>/usage</code>. It needs a cost frame to make sense, and Phase 03 is where models and their trade-offs land.</p>
+<p><strong>Isolated windows.</strong> The reason parallel agents work is that each one has its own window. That is Phase 06, and it depends on this lesson rather than the other way round.</p>
+<p><strong>Skills and path-scoped rules</strong> as context-management tools. Both appear in the compaction table above and both get their own phases, because each needs grounding this phase cannot give.</p>
+<p><strong>How to raise the ceiling.</strong> Some models offer a much larger window. Irrelevant until Phase 03, where choosing a model is the actual skill — a bigger window costs more and is usually the wrong answer.</p>
+<p><strong>Fine-grained compaction control.</strong> Tuning exactly when automatic compaction fires. Available in settings; premature. Get the instincts first.</p>
+      </div>
+
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">Halfway through a long session you need to make sure one rule holds for the next two hours of work. Where does it belong?</p>
+        <ol class="options" type="A">
+          <li>In the conversation, restated every few turns so the agent keeps seeing it</li>
+          <li>In CLAUDE.md at the project root</li>
+          <li>At the top of the file the agent will edit next</li>
+          <li>In the first message of the session, since context is stored oldest-first</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> In CLAUDE.md at the project root</p>
+          <p class="why">Compaction summarizes older history, so a rule that lives only in conversation is exactly what gets summarized away — and restating it just refills the window you are trying to protect. CLAUDE.md is re-injected from disk after compaction, which is the whole reason it is the durable place for a rule. Option C is seductive but wrong: a file's contents only enter context when it is read, and only that reading gets summarized away. Option D inverts the mechanism — nothing in the window is priority-ordered.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You finished a refactor and are starting an unrelated feature in the same repo. /context shows the window more than half full. What is the right move?</p>
+        <ol class="options" type="A">
+          <li>Keep going — the window has room and clearing loses the refactor's reasoning</li>
+          <li>Run /compact with a focus note, so the old work is summarized rather than dropped</li>
+          <li>Run /clear with a name, so the new feature starts in an empty window</li>
+          <li>Ask the agent to ignore the earlier part of the conversation</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> Run /clear with a name, so the new feature starts in an empty window</p>
+          <p class="why">Unrelated work does not benefit from the previous task's history — it only competes for window space and is re-paid on every turn. /clear starts the new task empty and /resume can bring the old thread back if you need it. Option B is for continuing the same task, where the history still has value. Option D asks for something the harness decides, not the model — compaction is not something a request can turn off.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">The window is at roughly 80% and the agent still needs to read four more files. What is the most useful thing to do before asking for those reads?</p>
+        <ol class="options" type="A">
+          <li>Run /context, find the largest non-conversation category, and see whether it is something you actually needed</li>
+          <li>Ask the agent to work faster so it generates fewer output tokens</li>
+          <li>Switch to a model with a smaller context window to leave headroom</li>
+          <li>Nothing — the harness compacts automatically, so there is no decision to make</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Run /context, find the largest non-conversation category, and see whether it is something you actually needed</p>
+          <p class="why">/context shows the window broken down by category, so you can find out what is actually large before deciding what to do about it — that is the decision worth making. Option A's wrong turn is assuming the conversation is the problem; often it is one large file read or one command output. Option C inverts the goal: a smaller window makes the squeeze worse. Option D is half true — automatic compaction is real, but it decides what to drop for you, which is exactly the loss you are trying to avoid.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span>Previous</span>7. Tokens — why text becomes currency</a>
+    <a class="next" href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span>Next</span>9. Prompt, Inference, API</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

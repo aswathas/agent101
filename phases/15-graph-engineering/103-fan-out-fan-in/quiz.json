@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Fan-Out / Fan-In Patterns that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "A report fans out eight section-writers and joins them by concatenating results in arrival order. One slow section and one fast section swap places in the output. What is the fix?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Make every child finish at the same time",
+        "Key each result by node id and place it in its own slot, so arrival order is ignored",
+        "Switch from all-of to any-of so only the first result is used",
+        "Add more children so the probability of reordering drops"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "A join must map results to slots by identity, not by the sequence they arrived in. Option A is impossible to guarantee and treats a design bug as a timing bug. Option C discards most of the work. Option D changes nothing — reordering is inherent to parallel children; the keyed join is the only real fix."
+    },
+    {
+      "id": 2,
+      "prompt": "Five reviewer agents examine one pull request. You need at least three verdicts to close the review, and you are fine if two are late. Which join, and what must it still do?",
+      "options": [
+        "All-of; require every reviewer before closing",
+        "Quorum (three of five); it may proceed on three but must record which reviewers did not report",
+        "Any-of; take the first verdict and cancel the rest",
+        "A barrier of one; close on the fastest reviewer"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "You need k of n and can tolerate loss, which is exactly a quorum join — and a quorum that forgets the missing reviewers hides the fact that two never spoke. Option A is over-strict for the stated need. Option C takes a single verdict and discards the point of five reviewers. Option D is any-of wearing the wrong name."
+    },
+    {
+      "id": 3,
+      "prompt": "A fan-out is \"review this PR for security, performance, and test coverage.\" The three results are meant to be complementary and may contradict each other. Is this a map or a broadcast, and what does that imply for the join?",
+      "options": [
+        "Map — the join can simply concatenate the three outputs",
+        "Broadcast — the join must reconcile three different lenses, including handling disagreement",
+        "Map — the join can pick whichever result is longest",
+        "Broadcast — the join should drop the two disagreement points"
+      ],
+      "answer": 1,
+      "explanation": "One input through three different lenses is a broadcast; the lenses can disagree, so the join reconciles rather than merely assembles. Option A is the tempting shortcut because the outputs look combinable, but concatenation does not resolve a security finding that contradicts a performance recommendation. Option C picks by length, which is meaningless. Option D hides exactly the information that matters."
+    },
+    {
+      "id": 4,
+      "prompt": "An all-of report job has one child that intermittently returns nothing. The team proposes making the join always succeed and just leaving that section blank. What has to be true for that to be acceptable?",
+      "options": [
+        "Nothing — always succeeding is more robust",
+        "The join must emit an explicit gap marker (or fail loudly), so a missing child is distinguishable from a section that is intentionally empty",
+        "The child should be removed from the fan-out",
+        "The join should retry forever until the child returns"
+      ],
+      "answer": 1,
+      "explanation": "A partial join is legitimate only if the gap is observable; otherwise a failure silently reads as a choice, which is the bug in The Problem. Option A is the tempting \"be resilient\" reflex that caused the bug. Option C changes the deliverable instead of handling the failure. Option D risks an unbounded run, which Lesson 104 bounds with a retry policy."
     }
   ]
 }

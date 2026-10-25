@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Settings — 4 Files, 5 Precedence Levels that needs a new situation, not recall.",
+      "prompt": "You added `\"deny\": [\"Read(.env)\"]` to the project-shared settings file, but Claude Code still reads `.env`. What is the most likely cause and the right fix?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The tool is ignoring you — run it again",
+        "A higher-precedence layer (managed, `--settings`, or project-local) sets the same key, or has it set to an empty list; open that file",
+        "Re-save the project-shared file and restart",
+        "Delete every settings file and start over"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A setting that does not take is almost always coming from a layer above the one you edited, so the fix is to find and read that layer. Option A is the tempting \"edit harder\" move the reframe warns against. Option C repeats the same edit at the same layer. Option D destroys working configuration to avoid one lookup.",
+      "concept": "find-the-higher-layer"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "The same key is set in the managed layer and in your user settings file. Which value wins?",
+      "options": [
+        "Managed — layer 1 wins over everything below it",
+        "User — your own file is more specific",
+        "They merge into one value",
+        "Neither; the tool errors on a collision"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "Precedence runs top to bottom, so managed (layer 1) beats user (layer 5) for a scalar key. Option B is tempting because \"mine\" feels more specific, but specificity is not the ordering. Option C is the array rule, not the scalar one. Option D invents a failure that the top-wins rule prevents.",
+      "concept": "managed-wins"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Your user file sets `\"deny\": [\"Read(.env)\"]`. The project-shared file sets `\"deny\": [\"Read(secrets/)\"]`. What is the effective value?",
+      "options": [
+        "The project-shared list replaces the user list, so only `secrets/` is denied",
+        "The lists merge, so both `.env` and `secrets/` are denied",
+        "The user list wins, so only `.env` is denied",
+        "It is an error to set the same key twice"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Arrays merge and scalars are replaced, so both entries stay live. Option A is the tempting mistake of applying the scalar rule to an array. Option C applies a flat winner where the merge means there is no loser. Option D contradicts the collision rule the lesson states.",
+      "concept": "arrays-merge"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You want a rule that applies only to you on this one machine, in a repo you share with others. Which layer?",
+      "options": [
+        "Project-shared `.claude/settings.json`, committed",
+        "Project-local `.claude/settings.local.json`, uncommitted",
+        "User `~/.claude/settings.json`",
+        "The `--settings` flag on every launch"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Personal and per-machine in one shared repo is exactly the project-local file, kept out of version control. Option A is tempting because the rule is about this repo, but committing it imposes it on everyone. Option C reaches every project, which is broader than asked. Option D means retyping the rule on every launch.",
+      "concept": "choose-the-layer"
     }
   ]
 }

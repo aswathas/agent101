@@ -1,27 +1,68 @@
 {
   "lesson": "08-hooks/56-all-32-events",
-  "title": "All 32 Events, Matchers, Handler Types",
+  "title": "All the Events, Matchers, Handler Types",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about All 32 Events, Matchers, Handler Types that needs a new situation, not recall.",
+      "prompt": "Your hook must fire for the project's own Edit tool but never for NotebookEdit, and it must fire for every tool from an MCP server named `memory`. Which matcher set does that?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "\"^Edit$|mcp__memory__.*\"",
+        "\"Edit|mcp__memory__\"",
+        "\"Edit.*|mcp__memory__\"",
+        "\"Edit$|^mcp__memory__\""
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "The moment a matcher contains characters outside letters, digits, _, -, spaces, commas and |, the whole string becomes an unanchored JavaScript regex — so `^Edit$` anchors it to exactly Edit (which is what excludes NotebookEdit), and `mcp__memory__.*` matches the server's tools. Option B fails on the MCP side: bare `mcp__memory__` has no dot or anchor, so it would also match a server named `memory_dump`. Option C's `Edit.*` is unanchored and matches NotebookEdit, which is the exact exclusion you asked for. Option D gets the anchors but uses `^` on the MCP side with no trailing wildcard, so it can't match any tool name.",
+      "concept": "matcher-string-decides-syntax"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "Two PreToolUse handlers disagree: one returns permissionDecision 'allow' and another returns 'deny'. What does the harness do?",
+      "options": [
+        "Deny wins — precedence is deny > defer > ask > allow",
+        "The last handler in the file wins",
+        "The most recently edited settings file wins",
+        "The user is prompted to break the tie"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "Hooks don't vote and don't last-write-wins; the precedence ladder is deny > defer > ask > allow, so one deny ends it regardless of what anything else said. Options B and C invent ordering rules that don't exist — settings levels merge rather than shadow, and within a level there's no documented last-wins behaviour. Option D is the intuitive guess and the wrong one: a hook decision is made outside the permission prompt, so the user never sees this tie to break.",
+      "concept": "precedence-not-voting"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Your PostToolUse hook exits 2 with a clear stderr reason after the agent edits a file you don't want edited. The file still exists. The agent mentions your reason on its next turn. Is the hook broken?",
+      "options": [
+        "No — PostToolUse can't block; exit 2 there sends stderr into the model's context, which is what happened",
+        "Yes — you must have attached it to the wrong matcher, since the handler ran",
+        "Yes — exit 2 only blocks when the event carries a matcher",
+        "No — but only because hook failures default to continuing"
+      ],
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "That's PostToolUse behaving correctly: it fires after the tool ran, so the edit is irreversible from the hook's position, and exit 2's role there is to hand the reason to the model as a system reminder. If you wanted the write refused, the event is PreToolUse. Option B is wrong because the handler demonstrably ran. Option C confuses matcher support with blocking capability — they're independent columns in the event table. Option D misattributes the outcome to failure handling: nothing failed here, and the stderr was delivered deliberately, not as a notice.",
+      "concept": "post-cannot-undo"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "A handler declared on SessionStart with `\"if\": \"Bash(git *)\"` never runs, and produces no error. Why?",
+      "options": [
+        "`if` is only evaluated on PreToolUse, PostToolUse, PostToolUseFailure, PermissionRequest and PermissionDenied — elsewhere a handler with `if` never runs, silently",
+        "`if` cannot be combined with a matcher on the same group",
+        "`if` requires a newer Claude Code than the rest of the config",
+        "`if` only works on `command` handlers, and yours is a `prompt` handler"
+      ],
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "The silent case is the documented behaviour: `if` is evaluated on five tool events and nowhere else, so a handler carrying one is simply skipped on SessionStart with no diagnostic. That's worth knowing precisely because nothing tells you. Option B invents an incompatibility that doesn't exist — `if` and matcher coexist on tool events. Option C is half-true about version gates but the wrong field; `if` itself is long-standing. Option D misreads the constraint: `if` is event-limited, not handler-type-limited.",
+      "concept": "if-is-event-limited"
     }
   ]
 }

@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Failure Propagation — What Happens When One Node Dies that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "Graph: build → tests → release, and build → docs. The tests node fails. Which nodes can still run, and which are tainted?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Everything stops; a failure is fatal to the graph",
+        "Docs and its descendants can still run; release is tainted because tests is its ancestor",
+        "Release can run, because only tests failed",
+        "Nothing can run until tests is retried to success"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "A failure taints the failed node's descendants (release), not sibling branches that never depended on it (docs). Option A is the tempting \"fail the whole run\" reflex and throws away independent work. Option C ignores that release consumes tests' output. Option D blocks independent branches on a node they do not need."
+    },
+    {
+      "id": 2,
+      "prompt": "A node charges a customer and then, on a transient network error, retries three times. The customer is charged three times. What property was missing?",
+      "options": [
+        "A longer lease on the claim",
+        "Idempotency — a retry must not double-apply its side effect",
+        "A soft edge between charge and retry",
+        "Fail-open, so the run continues past the error"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "Bounded retries are only safe if re-running a node does not repeat its side effect; a charge needs a dedupe key or a check-before-write. Option A addresses who owns the node, not repeated effects. Option C is an edge-classification idea and unrelated. Option D would proceed on error, which here means shipping a triple charge."
+    },
+    {
+      "id": 3,
+      "prompt": "A lint node fails. A team decides this should stop the whole release. Identify the mistake and the fix.",
+      "options": [
+        "No mistake — lint failures should always block",
+        "A harmless advisory node is fail-closed and is gating work it should not; make it fail-open with a recorded marker unless the lint is a hard gate",
+        "The lint node should have no failure definition at all",
+        "The lint node needs a longer retry bound"
+      ],
+      "answer": 1,
+      "explanation": "Fail-open versus fail-closed is chosen per node for its consequence; a lint is advisory unless it enforces a rule the team treats as blocking. Option A is the tempting \"stricter is safer,\" which serialises shipping on a cosmetic check. Option C removes verification entirely. Option D retries a deterministic failure, which cannot fix it."
+    },
+    {
+      "id": 4,
+      "prompt": "A worker is killed after claiming a node but before finishing. The runner reports the graph complete, yet the node's descendant never ran. What two mechanisms were missing?",
+      "options": [
+        "A broader fan-out and a smaller lease",
+        "Orphan detection via lease expiry, and propagation so the descendants are marked rather than silently skipped",
+        "A soft edge and an interface",
+        "A decision node and a spike"
+      ],
+      "answer": 1,
+      "explanation": "The claim's lease must expire so the node is retried or failed, and the failure must propagate so the descendant is not quietly omitted. Option A widens the problem without adding recovery or reporting. Options C and D are concepts from Lessons 100 and 102 that do not address a dead owner or a lost descendant."
     }
   ]
 }

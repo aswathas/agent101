@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about AGENTS.md, CLAUDE.local.md that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "A repo has an `AGENTS.md` with all the conventions, and no `CLAUDE.md`. A teammate adds a `CLAUDE.local.md` to keep their own notes. What happens to `AGENTS.md`?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Nothing — `CLAUDE.local.md` is personal and ignored for loading decisions",
+        "Claude stops reading `AGENTS.md`, because `CLAUDE.local.md` counts as a `CLAUDE.md`",
+        "Claude reads both, with `CLAUDE.local.md` last",
+        "Claude reads neither, because the files conflict"
+      ],
+      "answer": 1,
+      "explanation": "The presence check treats `CLAUDE.local.md` as a `CLAUDE.md`, so adding one suppresses `AGENTS.md` by default. Option 0 is the tempting wrong answer because 'local' sounds excluded from decisions — but it counts, which is exactly the trap."
+    },
+    {
+      "id": 2,
+      "prompt": "You want Claude to read both your `CLAUDE.md` and your `AGENTS.md`, in each directory, without merging them yourself. What do you change?",
+      "options": [
+        "Add `@AGENTS.md` to `CLAUDE.md` and delete `AGENTS.md`",
+        "Set Project instructions to `claude-md-and-agents-md` in `/config`",
+        "Rename `AGENTS.md` to `AGENTS.local.md`",
+        "Nothing — Claude reads both by default"
+      ],
+      "answer": 1,
+      "explanation": "The Project instructions setting selects `claude-md-and-agents-md`, which reads each directory's `CLAUDE.md` first and its `AGENTS.md` after. Option 0 is tempting because the import works, but it makes `AGENTS.md` load *through* `CLAUDE.md`, which is the opposite of reading both as separate files."
+    },
+    {
+      "id": 3,
+      "prompt": "A teammate on Windows clones your repo. Their `CLAUDE.md` is one line that points at `AGENTS.md` instead of holding the instructions. What most likely happened?",
+      "options": [
+        "The `CLAUDE.md` was committed as a symlink, and Git checked it out as a plain text file",
+        "Claude Code stripped the file because it conflicted with `AGENTS.md`",
+        "`CLAUDE.local.md` was missing on their machine",
+        "Their version of Claude Code is too old to read `AGENTS.md`"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "explanation": "A committed symlink needs Developer Mode or Admin on Windows, and Git checks it out as text unless `core.symlinks` is enabled, leaving a one-line file. Option 3 is tempting because `AGENTS.md` support is version-gated — but the symptom is a truncated `CLAUDE.md`, which points at the symlink, not the version."
+    },
+    {
+      "id": 4,
+      "prompt": "You keep personal test credentials in `CLAUDE.local.md` and work across two worktrees of the same repo. You open the second worktree and the file is gone. Why?",
+      "options": [
+        "Claude deleted it because it was gitignored",
+        "A gitignored `CLAUDE.local.md` exists only in the worktree where you created it",
+        "`CLAUDE.local.md` only loads in the repository root, not in worktrees",
+        "You need to set Project instructions to `claude-md` first"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "Because it is gitignored, the file is not carried into a new checkout, so each worktree needs its own. Option 2 is tempting because 'root only' sounds like a loading rule — but the real cause is that the file was never copied, not that loading is scoped."
     }
   ]
 }

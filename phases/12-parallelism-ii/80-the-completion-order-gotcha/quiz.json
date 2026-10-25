@@ -5,23 +5,88 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
+      "id": 1,
       "type": "multiple-choice",
-      "prompt": "Replace with a question about The Completion-Order Gotcha that needs a new situation, not recall.",
+      "prompt": "A `pipeline()` over a list of 412 file paths returns 412 entries, and 16 of them are `null`. The verdict for the file at input index 41 is at which position?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Index 41 — a lost agent leaves its slot in place, so positions still line up with the input list",
+        "Index 25 — 16 entries ahead of it were lost, so the real results shift forward",
+        "Wherever it finished relative to the other results",
+        "It cannot be determined from the array alone"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "explanation": "The runtime substitutes `null` *in place of* the agent's result, so the array keeps one entry per input and the index still identifies the file. The shifted-index answer is the tempting one because it describes what a filtered array looks like — and that is precisely the bug this lesson is about. Finishing order is not attached to the array at all, and the mapping is determinable; assuming it is not is what forces people into a costly re-run.",
+      "concept": "null-keeps-its-slot"
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "`results.filter(Boolean)` is used, then zipped positionally with the input list. One agent in the middle was lost. What goes wrong?",
+      "options": [
+        "Nothing throws, and every entry after the dropped one is paired with the wrong input",
+        "The runtime raises an error, because the two arrays now have different lengths",
+        "The zip throws, but only if more than one entry was dropped",
+        "Nothing goes wrong positionally, though legitimate empty results also get dropped"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 0,
+      "explanation": "`filter` removes the hole and closes the gap, so the result list is now one shorter than the input list from that point on — and every later pairing is off by one or more, silently. The 'empty results also get dropped' answer is half right and therefore the most dangerous: yes, empty strings are removed too, but the pairing absolutely does break, which is the part that matters. JavaScript's zip has no length check here, so nothing throws, and a single dropped entry is enough to misalign everything after it.",
+      "concept": "filter-shifts-the-join"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "One verifier's slot is `null`. Another verifier returned `\"\"` because the proposal had no issues. What is the difference?",
+      "options": [
+        "`null` means the agent was lost and never returned; `\"\"` means it ran and found nothing",
+        "Both mean the same thing — no verdict was produced",
+        "`null` means the verifier disagreed; `\"\"` means it timed out",
+        "`null` is an empty result the runtime normalised; `\"\"` is an agent that was stopped"
+      ],
+      "answer": 0,
+      "explanation": "A `null` slot is the runtime's placeholder for an agent that was stopped, stalled past every attempt, or hit an unrecoverable error — the work was not done. An empty result is a verdict with nothing in it: the work was done and the answer is nothing. Collapsing the two is the failure mode from the opening story, because 'no findings' and 'no answer' then look identical in the report. The remaining options swap the two meanings or invent a normalisation the runtime does not perform.",
+      "concept": "absence-versus-emptiness"
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "A workflow's script starts agents A, B, C, D in that order. On the last run, B failed and C and D completed. You relaunch with the unchanged script. What runs again?",
+      "options": [
+        "B, C and D — the first divergence is at B, and everything after it reruns",
+        "Only B, since C and D have saved results",
+        "All four, because any failure invalidates the run",
+        "Nothing — the runtime resumes from the failure point and only B is retried"
+      ],
+      "answer": 0,
+      "explanation": "A relaunch returns saved results up to the first agent whose call differs from the previous run, then runs everything from there on. A failed agent counts as that divergence, so the completed work *after* it is thrown away and repeated. The 'only B' answer is the intuition almost everyone has — that a retry is local — and the docs are explicit that it is not. 'Nothing' inverts the rule, and 'all four' overstates it: A came back from the saved results, so the divergence was not at the start.",
+      "concept": "failure-reruns-the-tail"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "Six agent calls all completed on the last run. You append a seventh call at the *end* of the script and relaunch. What happens?",
+      "options": [
+        "The first six return saved results and only the new seventh runs",
+        "All seven run again, because the script changed",
+        "The runtime refuses the relaunch, since the script no longer matches the saved run",
+        "The seventh runs first, then the six replay in their original order"
+      ],
+      "answer": 0,
+      "explanation": "Replay compares the sequence of calls and stops matching at the first position where it differs — and appending at the end means the first six positions are unchanged. Contrast that with inserting a call in the *middle* or reordering the list: the divergence moves earlier, and every agent from there on reruns even though it had completed. The reject answer is the tempting wrong one because there is a real refusal nearby — a relaunch fails with a 'nothing to resume' error when the saved results cannot be found at all — but a changed script is not that case.",
+      "concept": "divergence-position-decides-rerun"
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "While a `pipeline()` fan-out runs, `/workflows` shows B finishing first, then C, then A. When the run finishes, which order does its results array use?",
+      "options": [
+        "The order the tasks were written in — the progress view's completion order is not the array's order",
+        "B, C, A — the same order the view showed them finishing",
+        "Sorted by duration, longest first",
+        "The runtime does not define an order, so it can vary between runs"
+      ],
+      "answer": 0,
+      "explanation": "A `pipeline()` returns one entry per item in the order of the list you passed, and completion order exists only in the view. The B, C, A answer is exactly the mistake this lesson is named for, and it is a reasonable inference from watching the run — which is why the view is a trap rather than a tool here. There is no duration sort, and the order is not undefined: it is the input list's order.",
+      "concept": "view-order-is-not-array-order"
     }
   ]
 }

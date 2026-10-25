@@ -5,80 +5,138 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Prompt, Inference, API — Harnessing Claude Code</title>
 <meta name="description" content="You can say precisely which part of the system your words actually reach — and">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Prompt, Inference, API</h1>
-  <p class="lesson-motto">You can say precisely which part of the system your words actually reach — and</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li class="on"><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 8, The Context Window</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 01 · LESSON 9</p>
+      <h1>Prompt, Inference, API</h1>
+      <p class="lesson-motto">You can say precisely which part of the system your words actually reach — and</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 8, The Context Window</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- Draw the boundary between the prompt you write and everything the harness adds
-- Describe one API request end to end: request in, tokens out, billed
-- Explain what temperature changes in one sentence, from evidence
-- Point at the part of a failure that is a model problem rather than a plumbing one
-
----
-
-## The Problem
-
-An agent produced the wrong thing. The natural response was to reword the
-request — so the prompt got longer, more emphatic, and more specific about how
-the output should look. It got worse.
-
-Because most of what the model saw was never in the prompt. The harness supplied
-system instructions, tool definitions, project instructions, and a hundred
-messages of history. The prompt was a paragraph in a document that had already
-been decided. Editing it changed one paragraph.
-
-The same confusion shows up on the other side: people talk about "the model" as
-though it were one thing being consulted, when what actually happens is a
-request leaving your machine, a response arriving, and both being billed. When
-something breaks in the middle of that, you need to know which end broke.
-
----
-
-## The Concept
-
-Three words that get used loosely. Keep them separate.
-
-**Prompt** is not what you typed. The prompt is *the entire input*: your text
-plus the harness's instructions, tool definitions, project files, and the whole
-conversation. When you send a message, the model sees a document you did not
-write and cannot fully see.
-
-**Inference** is one forward run: input in, output out. Not training. Training
-is how the weights got made, months ago, offline. Inference is the thing that
-happens when you press enter, and it is the only thing you are paying for.
-
-**API** is the interface between them — a request you send and a response you
-receive, over a network, with numbers attached.
-
-```mermaid
-sequenceDiagram
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Draw the boundary between the prompt you write and everything the harness adds</li><li>Describe one API request end to end: request in, tokens out, billed</li><li>Explain what temperature changes in one sentence, from evidence</li><li>Point at the part of a failure that is a model problem rather than a plumbing one</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>An agent produced the wrong thing. The natural response was to reword the request — so the prompt got longer, more emphatic, and more specific about how the output should look. It got worse.</p>
+<p>Because most of what the model saw was never in the prompt. The harness supplied system instructions, tool definitions, project instructions, and a hundred messages of history. The prompt was a paragraph in a document that had already been decided. Editing it changed one paragraph.</p>
+<p>The same confusion shows up on the other side: people talk about &quot;the model&quot; as though it were one thing being consulted, when what actually happens is a request leaving your machine, a response arriving, and both being billed. When something breaks in the middle of that, you need to know which end broke.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Three words that get used loosely. Keep them separate.</p>
+<p><strong>Prompt</strong> is not what you typed. The prompt is <em>the entire input</em>: your text plus the harness's instructions, tool definitions, project files, and the whole conversation. When you send a message, the model sees a document you did not write and cannot fully see.</p>
+<p><strong>Inference</strong> is one forward run: input in, output out. Not training. Training is how the weights got made, months ago, offline. Inference is the thing that happens when you press enter, and it is the only thing you are paying for.</p>
+<p><strong>API</strong> is the interface between them — a request you send and a response you receive, over a network, with numbers attached.</p>
+<figure class="diagram"><pre>sequenceDiagram
     participant You
     participant Code as Claude Code
     participant API
-    You-&gt;&gt;Code: "fix the failing test"
+    You-&gt;&gt;Code: &quot;fix the failing test&quot;
     Code-&gt;&gt;Code: Assemble prompt (your words + system + tools + history)
     Code-&gt;&gt;API: request: prompt, model, parameters
     API-&gt;&gt;API: Inference — predict next token, repeat
@@ -86,219 +144,128 @@ sequenceDiagram
     Code-&gt;&gt;Code: Append to conversation; may call a tool
     Code-&gt;&gt;API: next request (whole prompt again)
     API--&gt;&gt;Code: response
-    Code--&gt;&gt;You: answer + what it cost
-```
+    Code--&gt;&gt;You: answer + what it cost</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>Look at the loop. One user turn can be many requests. Each one re-sends the prompt and each one is billed. &quot;How much did that one question cost&quot; has an answer that is not the length of your question.</p>
+<h3 id="what-a-request-actually-carries">What a request actually carries</h3>
+<div class="table-wrap"><table><thead><tr><th>Field</th><th>What it is</th><th>Who sets it</th></tr></thead><tbody><tr><td>The message</td><td>Your turn</td><td>You</td></tr><tr><td>System instructions</td><td>Behaviour, format, tool-use rules</td><td>The harness</td></tr><tr><td>Tool definitions</td><td>Names, descriptions, parameter schemas</td><td>The harness</td></tr><tr><td>Project context</td><td><code>CLAUDE.md</code>, memory, environment</td><td>The harness</td></tr><tr><td>History</td><td>Every prior turn</td><td>The harness, from both of you</td></tr><tr><td>Model</td><td>Which model answers</td><td>You, via <code>/model</code></td></tr><tr><td>Temperature</td><td>How flat or peaked sampling is</td><td>You, occasionally</td></tr></tbody></table></div>
+<p>You control one row that the harness does not rewrite. That is worth knowing both because it is humbling and because it tells you where effort pays off.</p>
+<h3 id="temperature-concretely">Temperature, concretely</h3>
+<p>Temperature scales the scores before sampling. Low temperature: the top candidate dominates, output is consistent and repetitive. High temperature: the distribution flattens, output varies and can wander.</p>
+<pre class="code" data-lang="bash"><code>claude -p &quot;Name three colours. Just the names.&quot;</code></pre>
+<pre class="code" data-lang="bash"><code>claude -p &quot;Name three colours. Just the names.&quot;</code></pre>
+<p>Different answers. That is temperature doing its job, not instability. Lower it when you need repeatable output — extraction, formatting, a fixed list. Leave it alone when you want options.</p>
+<h3 id="which-failure-is-which">Which failure is which</h3>
+<div class="table-wrap"><table><thead><tr><th>Symptom</th><th>Likely cause</th></tr></thead><tbody><tr><td>Ignores an instruction you wrote clearly</td><td>It may have been out-competed by the system prompt or a project file. Check whether a file contradicts you.</td></tr><tr><td>Different answer to the same question</td><td>Sampling. Re-run; don't rewrite.</td></tr><tr><td>Refuses a harmless request</td><td>Permissions or tool definitions, not the model.</td></tr><tr><td>Wrong about your code</td><td>No tool read the file. Lesson 6's failure mode.</td></tr><tr><td>Truncated mid-answer</td><td>Ran out of window or output room. Lesson 8.</td></tr><tr><td>Slow, then fine</td><td>Rate limiting or a cold cache. Lesson 11.</td></tr></tbody></table></div>
+<p>Naming the layer turns &quot;it's being weird&quot; into something you can act on.</p>
+<blockquote><p><strong>The reframe:</strong> the prompt is the whole assembled document, not your</p><p>paragraph — so when output is wrong, ask which layer decided before rewriting</p><p>the one part you actually wrote.</p></blockquote>
+<p>Every field, flag, and model name in this lesson moves. Read <a href="https://code.claude.com/docs/llms.txt" target="_blank" rel="noopener">the API docs</a> for current values; the mechanism is stable, the numbers are not.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-see-the-prompt-you-did-not-write">1. See the prompt you did not write</h3>
+<p>Start a fresh session and immediately ask:</p>
+<pre class="code"><code>What files did you load at startup, and what instructions are you operating
+under? Quote them.</code></pre>
+<p>You will get system-level instructions you never typed. That is the harness prompt, and it is larger than your message.</p>
+<p>✅ You pass when the answer contains at least one instruction you did not write.</p>
+<h3 id="2-prove-your-prompt-is-a-fraction-of-the-input">2. Prove your prompt is a fraction of the input</h3>
+<p>Same session, ask:</p>
+<pre class="code"><code>Roughly how many tokens are in my whole input right now, and how many of those
+are my own words?</code></pre>
+<p>The ratio is the point. It is usually lopsided enough to be surprising.</p>
+<p>✅ You pass when you can state the ratio and name the biggest non-yours contributor.</p>
+<h3 id="3-watch-one-turn-cost-several-requests">3. Watch one turn cost several requests</h3>
+<p>Ask a question that requires investigating:</p>
+<pre class="code"><code>Which module in src/ decides how a lesson gets validated? Answer with the path.</code></pre>
+<p>Then <code>/usage</code>. One turn, and it did not obviously mean one request — it read, searched, checked. Each step is a billed request carrying the whole prompt again.</p>
+<p>✅ You pass when your cost for that turn is consistent with more than one request having happened.</p>
+<h3 id="4-get-determinism-where-you-want-it">4. Get determinism where you want it</h3>
+<p>Extraction is the case where variation costs you:</p>
+<pre class="code"><code>Extract every heading from COURSE-CONTEXT.md as a JSON array, lowercase, no
+prose. Output only JSON.</code></pre>
+<p>Run it twice. If the two runs disagree on anything, the format is not tight enough — tighten the format, or drop the temperature if you are at the API rather than in a session.</p>
+<p>✅ You pass when two runs produce byte-identical output.</p>
+<h3 id="5-find-the-file-that-contradicts-you">5. Find the file that contradicts you</h3>
+<p>Tell the agent to do something this repo's own instructions forbid:</p>
+<pre class="code"><code>Commit everything with the message 'wip'</code></pre>
+<p>The commit-attribution rule in <code>CLAUDE.md</code> will be injected into the context. Watch the agent follow the file rather than your sentence.</p>
+<p>✅ You pass when the agent follows the file, and you can quote the file line that won.</p>
+<h3 id="6-classify-three-failures">6. Classify three failures</h3>
+<p>Write down three times something went wrong in a session. For each, name the layer: prompt, sampling, permissions, missing read, window, or rate limit. Use the table above.</p>
+<p>✅ You pass when all three are classified by mechanism, not by symptom.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td>Prompt = whole assembled input</td><td>Before rewriting a prompt that failed</td></tr><tr><td>Inference vs training</td><td>Explaining a bill, or why nobody can &quot;fix the model&quot;</td></tr><tr><td>One turn may be many requests</td><td>Reading <code>/usage</code> after a single question</td></tr><tr><td>Temperature</td><td>Repeatable output — extraction, formatting, fixed lists</td></tr><tr><td>Naming the failing layer</td><td>Any &quot;the agent is being weird&quot; moment</td></tr><tr><td>Checking <code>CLAUDE.md</code> first</td><td>When an instruction you gave is ignored</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Ask the same question three ways — plain, with an explicit format, with an explicit fallback (&quot;say so if you can't find it&quot;). Record all three outputs. ✅ You pass when you can point at the specific difference each constraint made, not just that one was &quot;better&quot;.</li></ol>
+<ol><li class="criterion">Find one place where <code>CLAUDE.md</code> and your spoken instruction disagree. Have the agent resolve it and tell you which one it followed and why. ✅ You pass when the agent names the file as the source, and you can check the line yourself.</li></ol>
+<ol><li class="criterion">Take one expensive turn from <code>/usage</code> and account for it: how many requests do you think it took, and what was each one doing? ✅ You pass when your accounting is within one request of the reported tokens and every request has a named purpose.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>prompt</td><td>&quot;what I typed&quot;</td><td>The whole assembled input: your text, system instructions, tool definitions, project files, and all history.</td></tr><tr><td>inference</td><td>&quot;the model thinking&quot;</td><td>One forward run producing output from input. The only thing you pay for.</td></tr><tr><td>training</td><td>&quot;when it learns&quot;</td><td>Fitting the weights, offline, before you ever prompted. Not something you trigger.</td></tr><tr><td>API</td><td>&quot;the model&quot;</td><td>A network interface with a request, a response, and token counts. Something can break at either end.</td></tr><tr><td>temperature</td><td>&quot;how creative it is&quot;</td><td>How much the sampling distribution is flattened. Low is repeatable, high is varied.</td></tr><tr><td>max output tokens</td><td>&quot;the length cap&quot;</td><td>The ceiling on one response. Hitting it truncates mid-answer.</td></tr><tr><td>system prompt</td><td>&quot;its instructions&quot;</td><td>Harness-supplied behaviour rules, injected every request. Not yours, and often larger than yours.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Writing an actual API call.</strong> The request shape, streaming, and tool-use blocks. That is real engineering and this phase does not need it — everything here is visible from inside Claude Code. Come back if you build something outside it.</p>
+<p><strong>Choosing a model.</strong> Which one to use, and what the trade-offs are. That is Phase 03, and it needs this lesson plus Lesson 11 before it makes sense.</p>
+<p><strong>Prompt engineering techniques.</strong> System prompt design, few-shot, chain of thought. Genuinely useful, deliberately excluded — the course teaches you to direct an agent, not to prompt a raw model, and a prompt-craft rabbit hole here would crowd out the loop.</p>
+<p><strong>Prompt caching.</strong> How repeated content gets cheaper on re-send. Visible in <code>/usage</code>, properly explained alongside model pricing in Phase 03.</p>
+<p><strong>Batch, streaming, and rate-limit headers.</strong> Streaming matters for perceived latency; rate-limit headers matter for Lesson 11, which is next.</p>
+      </div>
 
-Look at the loop. One user turn can be many requests. Each one re-sends the
-prompt and each one is billed. "How much did that one question cost" has an
-answer that is not the length of your question.
-
-### What a request actually carries
-
-| Field | What it is | Who sets it |
-|---|---|---|
-| The message | Your turn | You |
-| System instructions | Behaviour, format, tool-use rules | The harness |
-| Tool definitions | Names, descriptions, parameter schemas | The harness |
-| Project context | `CLAUDE.md`, memory, environment | The harness |
-| History | Every prior turn | The harness, from both of you |
-| Model | Which model answers | You, via `/model` |
-| Temperature | How flat or peaked sampling is | You, occasionally |
-
-You control one row that the harness does not rewrite. That is worth knowing
-both because it is humbling and because it tells you where effort pays off.
-
-### Temperature, concretely
-
-Temperature scales the scores before sampling. Low temperature: the top
-candidate dominates, output is consistent and repetitive. High temperature: the
-distribution flattens, output varies and can wander.
-
-```bash
-claude -p "Name three colours. Just the names."
-```
-
-```bash
-claude -p "Name three colours. Just the names."
-```
-
-Different answers. That is temperature doing its job, not instability. Lower it
-when you need repeatable output — extraction, formatting, a fixed list. Leave it
-alone when you want options.
-
-### Which failure is which
-
-| Symptom | Likely cause |
-|---|---|
-| Ignores an instruction you wrote clearly | It may have been out-competed by the system prompt or a project file. Check whether a file contradicts you. |
-| Different answer to the same question | Sampling. Re-run; don't rewrite. |
-| Refuses a harmless request | Permissions or tool definitions, not the model. |
-| Wrong about your code | No tool read the file. Lesson 6's failure mode. |
-| Truncated mid-answer | Ran out of window or output room. Lesson 8. |
-| Slow, then fine | Rate limiting or a cold cache. Lesson 11. |
-
-Naming the layer turns "it's being weird" into something you can act on.
-
-&gt; **The reframe:** the prompt is the whole assembled document, not your
-&gt; paragraph — so when output is wrong, ask which layer decided before rewriting
-&gt; the one part you actually wrote.
-
-Every field, flag, and model name in this lesson moves. Read
-[the API docs](https://code.claude.com/docs/llms.txt) for current values; the
-mechanism is stable, the numbers are not.
-
----
-
-## Build It
-
-### 1. See the prompt you did not write
-
-Start a fresh session and immediately ask:
-
-```
-What files did you load at startup, and what instructions are you operating
-under? Quote them.
-```
-
-You will get system-level instructions you never typed. That is the harness
-prompt, and it is larger than your message.
-
-✅ You pass when the answer contains at least one instruction you did not write.
-
-### 2. Prove your prompt is a fraction of the input
-
-Same session, ask:
-
-```
-Roughly how many tokens are in my whole input right now, and how many of those
-are my own words?
-```
-
-The ratio is the point. It is usually lopsided enough to be surprising.
-
-✅ You pass when you can state the ratio and name the biggest non-yours
-contributor.
-
-### 3. Watch one turn cost several requests
-
-Ask a question that requires investigating:
-
-```
-Which module in src/ decides how a lesson gets validated? Answer with the path.
-```
-
-Then `/usage`. One turn, and it did not obviously mean one request — it read,
-searched, checked. Each step is a billed request carrying the whole prompt
-again.
-
-✅ You pass when your cost for that turn is consistent with more than one
-request having happened.
-
-### 4. Get determinism where you want it
-
-Extraction is the case where variation costs you:
-
-```
-Extract every heading from COURSE-CONTEXT.md as a JSON array, lowercase, no
-prose. Output only JSON.
-```
-
-Run it twice. If the two runs disagree on anything, the format is not tight
-enough — tighten the format, or drop the temperature if you are at the API
-rather than in a session.
-
-✅ You pass when two runs produce byte-identical output.
-
-### 5. Find the file that contradicts you
-
-Tell the agent to do something this repo's own instructions forbid:
-
-```
-Commit everything with the message 'wip'
-```
-
-The commit-attribution rule in `CLAUDE.md` will be injected into the context.
-Watch the agent follow the file rather than your sentence.
-
-✅ You pass when the agent follows the file, and you can quote the file line that
-won.
-
-### 6. Classify three failures
-
-Write down three times something went wrong in a session. For each, name the
-layer: prompt, sampling, permissions, missing read, window, or rate limit. Use
-the table above.
-
-✅ You pass when all three are classified by mechanism, not by symptom.
-
----
-
-## Use It
-
-| Concept | When you reach for it |
-|---|---|
-| Prompt = whole assembled input | Before rewriting a prompt that failed |
-| Inference vs training | Explaining a bill, or why nobody can "fix the model" |
-| One turn may be many requests | Reading `/usage` after a single question |
-| Temperature | Repeatable output — extraction, formatting, fixed lists |
-| Naming the failing layer | Any "the agent is being weird" moment |
-| Checking `CLAUDE.md` first | When an instruction you gave is ignored |
-
----
-
-## Exercises
-
-1. Ask the same question three ways — plain, with an explicit format, with an
-   explicit fallback ("say so if you can't find it"). Record all three outputs.
-   ✅ You pass when you can point at the specific difference each constraint made,
-   not just that one was "better".
-
-2. Find one place where `CLAUDE.md` and your spoken instruction disagree. Have the
-   agent resolve it and tell you which one it followed and why.
-   ✅ You pass when the agent names the file as the source, and you can check the
-   line yourself.
-
-3. Take one expensive turn from `/usage` and account for it: how many requests do
-   you think it took, and what was each one doing?
-   ✅ You pass when your accounting is within one request of the reported tokens
-   and every request has a named purpose.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| prompt | "what I typed" | The whole assembled input: your text, system instructions, tool definitions, project files, and all history. |
-| inference | "the model thinking" | One forward run producing output from input. The only thing you pay for. |
-| training | "when it learns" | Fitting the weights, offline, before you ever prompted. Not something you trigger. |
-| API | "the model" | A network interface with a request, a response, and token counts. Something can break at either end. |
-| temperature | "how creative it is" | How much the sampling distribution is flattened. Low is repeatable, high is varied. |
-| max output tokens | "the length cap" | The ceiling on one response. Hitting it truncates mid-answer. |
-| system prompt | "its instructions" | Harness-supplied behaviour rules, injected every request. Not yours, and often larger than yours. |
-
----
-
-## What this lesson skipped
-
-**Writing an actual API call.** The request shape, streaming, and tool-use
-blocks. That is real engineering and this phase does not need it — everything
-here is visible from inside Claude Code. Come back if you build something outside
-it.
-
-**Choosing a model.** Which one to use, and what the trade-offs are. That is
-Phase 03, and it needs this lesson plus Lesson 11 before it makes sense.
-
-**Prompt engineering techniques.** System prompt design, few-shot, chain of
-thought. Genuinely useful, deliberately excluded — the course teaches you to
-direct an agent, not to prompt a raw model, and a prompt-craft rabbit hole here
-would crowd out the loop.
-
-**Prompt caching.** How repeated content gets cheaper on re-send. Visible in
-`/usage`, properly explained alongside model pricing in Phase 03.
-
-**Batch, streaming, and rate-limit headers.** Streaming matters for perceived
-latency; rate-limit headers matter for Lesson 11, which is next.</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You asked one question. /usage shows a cost far larger than the question's length explains. What accounts for most of it?</p>
+        <ol class="options" type="A">
+          <li>The question was re-tokenized once per candidate answer the model considered</li>
+          <li>One turn can drive several requests, and each re-sends the whole prompt — history, files, and tool definitions included</li>
+          <li>The API bills the request once for the prompt and again for the model's internal draft</li>
+          <li>The prompt cache was cold, so the entire input was charged at full price three times</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> One turn can drive several requests, and each re-sends the whole prompt — history, files, and tool definitions included</p>
+          <p class="why">A single user turn is usually several round trips — read a file, run a command, check a result — and every one of those re-sends the full assembled prompt. That is why cost tracks context, not question length. Option C invents a double-billing model that does not exist. Option D is wrong because the cache reads at a reduced rate, and 'three times' is not what the re-send loop does.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">The agent ignores a clear instruction you gave and follows a rule from the project's CLAUDE.md instead. Which is the accurate diagnosis?</p>
+        <ol class="options" type="A">
+          <li>Your instruction lost to the system prompt, which always outranks everything</li>
+          <li>The context window dropped your message during compaction</li>
+          <li>Project files are injected into the context on every request and were present alongside your words</li>
+          <li>The model cannot see your instruction unless it is inside a code block</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> Project files are injected into the context on every request and were present alongside your words</p>
+          <p class="why">Your message and the project file arrived in the same context, so the agent reconciled them and went with the one that read as a standing project rule. Option A gets the mechanism backwards — your message is not competing against a system prompt, it is competing against a file the harness loaded. Option B needs a window fill, and this happened on a fresh session. Option D is not how input works.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You are extracting issue titles into JSON and two runs of the identical request produce slightly different arrays. Which change is most likely to help?</p>
+        <ol class="options" type="A">
+          <li>Add more examples of the output you want</li>
+          <li>Tighten the format instruction so only the array is produced, and lower the temperature if you control it</li>
+          <li>Ask the agent to check its work before answering</li>
+          <li>Clear the context before each run so the window is identical</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Tighten the format instruction so only the array is produced, and lower the temperature if you control it</p>
+          <p class="why">Variation in a formatted extraction is sampling, so the fix is the one that removes sampling freedom: a tight output contract plus a lower temperature. Option A adds input without removing freedom. Option C asks for reasoning where the problem is the sampler, and verification cannot fix a non-deterministic draw. Option D is a real hygiene move but the window was already identical within a single turn — the run-to-run difference is the model, not the context.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span>Previous</span>8. The Context Window — the only budget that matters</a>
+    <a class="next" href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span>Next</span>10. What &quot;Agentic&quot; Means</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

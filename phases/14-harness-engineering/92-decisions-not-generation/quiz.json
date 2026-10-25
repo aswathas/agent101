@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Most Agent Calls Are Decisions, Not Generation that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "Which of these prompts is a decision call?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Summarize this issue in three sentences",
+        "Classify this issue as bug, feature, or question",
+        "Write a fix for this issue",
+        "Explain how this codebase works"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "Classification has a closed set of three legal answers, so it is a decision. The others produce open-ended text whose length and content vary, which is generation. 'Write a fix' is tempting because it is short work, but 'short' and 'closed set' are different things."
+    },
+    {
+      "id": 2,
+      "prompt": "A prompt asks for 'yes/no, plus a one-line reason.' How do you classify it?",
+      "options": [
+        "Decision, because yes/no is a closed set",
+        "Generation, because the reason section is open-ended — ask for the label only to make it a decision",
+        "Neither; it is invalid",
+        "It depends only on the model size"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "The free-text reason reopens the output, so the call generates as well as decides. Split it: ask for the label as a decision, and log the reason separately if you need it. The tempting answer stops at 'yes/no' and misses that one open-ended field undoes the closed set."
+    },
+    {
+      "id": 3,
+      "prompt": "A loop spends 80% of its budget on decision calls run through a frontier model. What is the best first move?",
+      "options": [
+        "Reduce the context window",
+        "Route the decision calls to a cheaper decision model or tier",
+        "Ask the model for shorter answers",
+        "Turn on prompt caching"
+      ],
+      "answer": 1,
+      "explanation": "The problem is a mismatch between the task (pick from a list) and the meter (frontier generation). Moving the decisions to a cheaper tier attacks the mismatch. 'Shorter answers' is tempting but only trims output tokens while you still pay frontier input and overhead on a closed question."
+    },
+    {
+      "id": 4,
+      "prompt": "Which call is NOT a good candidate to move to a cheaper decision tier?",
+      "options": [
+        "Pick which of five tools to call next",
+        "Score this paragraph's relevance from 0 to 3",
+        "Write the user-facing changelog for this release",
+        "Answer whether this build log contains an error"
+      ],
+      "answer": 2,
+      "explanation": "A changelog is open-ended prose — the output can be any string — so it is generation and needs the stronger model. The other three all have closed output sets (a tool, a score, a yes/no) and are safe to move down. The tempting trap is that a changelog entry can be short, but shortness is not a closed set."
     }
   ]
 }

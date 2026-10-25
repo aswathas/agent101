@@ -1,75 +1,226 @@
 # Harnessing Claude Code
 
 > From zero to graph engineering on AI agents — for people who use them.
-> 119 lessons across 20 phases. The path is the URL.
+> 119 lessons across 19 phases. The path is the URL.
 
-## API and MCP
-
-- [Developer documentation](developer.html): public read-only API, MCP server, errors, quotas, versioning.
-- [OpenAPI 3.1](openapi.json): typed REST operations.
-- [MCP manifest](server.json): connect using Streamable HTTP at https://harnessing.example/mcp.
-
-> A free, open-source course on using AI agents well. Not an ML course — it assumes
-> you're using models, not training them. Lessons are markdown at
-> `phases/NN-phase/NN-slug/docs/en.md`. Read them via the API or directly.
-
-Canonical site: https://harnessing.example
-Source: https://github.com/your-org/harnessing-claude-code
-Lesson words: ~119 · Phases: 20 · Practice modules: 16
-
-## Developer resources
-
-- [Developer documentation](developer.html) — machine-readable site contracts
-- [OpenAPI description](openapi.json) — typed REST API
-- [Sitemap](sitemap.xml) — canonical URL inventory
-- [Glossary](glossary.html) — terms used in lessons
-- [Catalog](catalog.html) — all 119 lessons
+Canonical site: https://aswathas.github.io/agent101
+Lessons authored: 119 of 119. Practice modules: 19 of 19.
 
 ## Lesson URL scheme
 
 `/phases/NN-phase-slug/NN-lesson-slug.html` — every lesson is one directory at this path. The path is the URL.
+Source of truth: `phases/NN-phase-slug/NN-lesson-slug/docs/en.md`.
 
-Example: `/phases/00-setup-and-tooling/01-dev-environment.html` is Lesson 1 of Phase 0.
+## Developer resources
 
-## Phase 0: Setup & Tooling
-Your tools shape your thinking.
-
-- [Dev Environment](phases/00-setup-and-tooling/01-dev-environment.html) — Verify your tools are real, write CLAUDE.md, get your bearings.
-- [Git as Your Safety Net](phases/00-setup-and-tooling/02-git-and-collaboration.html) — Four states, the safety net, recovery.
-- [Terminal and Shell](phases/00-setup-and-tooling/03-terminal-and-shell.html) — Read what the agent is about to run.
-- [Editor Setup](phases/00-setup-and-tooling/04-editor-setup.html) — Format-on-save, integrated terminal, project-wide search, bound test runner.
-- [Debugging and Profiling](phases/00-setup-and-tooling/05-debugging-and-profiling.html) — Most agent problems are environment problems.
-
-## Phase 3: Models & Families
-When small wins. Open-weight vs frontier. Decision models beat generation on cost.
-
-- [Open-Weight vs Frontier](phases/03-models-and-families/19-open-weight-vs-frontier.html) — The difference is whether the weights are public, not how big the model is.
-
-## Phase 4: Claude Code
-The gateway phase. Half the course inherits its terminology from here.
-
-- [What Claude Code Is](phases/04-claude-code/27-what-claude-code-is.html) — Terminal tool, goal-shaped, agent not completion.
-- [Install, First Run, Verify](phases/04-claude-code/28-install-first-run-verify.html) — Presence is not correctness.
-- [Files and Edits — and When It Refuses](phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html) — A refusal is information, not a wall.
-- [Sessions, /clear, /compact](phases/04-claude-code/30-sessions-clear-compact.html) — A session has memory. It fills up.
-- [The Agentic Loop](phases/04-claude-code/31-the-agentic-loop.html) — read, decide, act, observe. The reframe.
-- [What Loads Into the Window, and What Doesn't](phases/04-claude-code/32-what-loads-into-the-window.html) — The block is a budget.
-- [Permissions and Permission Modes](phases/04-claude-code/33-permissions-and-permission-modes.html) — The folder trust prompt is the boundary.
-- [Settings: 4 Files, 5 Precedence Levels](phases/04-claude-code/34-settings-and-precedence.html) — Arrays merge, scalars replace.
-- [Plan Mode and Checkpoints](phases/04-claude-code/35-plan-mode-and-checkpoints.html) — Plan mode is a permission context, not a different model.
-- [Checkpointing, /rewind, Recovery](phases/04-claude-code/36-checkpointing-rewind-recovery.html) — The undo for a multi-step tool session.
-- [Troubleshooting: Reading Errors Properly](phases/04-claude-code/37-troubleshooting-reading-errors-properly.html) — Most "the tool is broken" reports are "I did not read the error."
-
-## Phases 5–18
-
-See [catalog.html](catalog.html) for the full phase list. Phases 05–18 cover skills, subagents, MCP, hooks, plugins, memory, parallelism, context engineering, harness engineering, graph engineering, worktrees in practice, scaling, and the capstone.
+- [Developer documentation](developer.html) — public read-only API, MCP server, errors, quotas, versioning
+- [OpenAPI 3.1](openapi.json) — typed REST operations
+- [MCP manifest](server.json) — Streamable HTTP
+- [Catalog](catalog.html) — all 119 lessons
+- [Glossary](glossary.html) — every key term across authored lessons
+- [Sitemap](sitemap.xml) — canonical URL inventory
 
 ## Plugin surface (for agents)
 
 - Streamable HTTP MCP at `/mcp` — tools: `search_curriculum`, `read_resource` (read-only)
 - REST API: `/api/v1/catalog`, `/api/v1/resource?path=…`, `/api/v1/markdown?path=…`
-- OpenAPI: `/openapi.json`
-- MCP manifest: `/server.json` (also `/.well-known/mcp.json`)
+- OpenAPI: `/openapi.json`; MCP manifest: `/server.json` (also `/.well-known/mcp.json`)
 - Content negotiation: `Accept: text/markdown` on any page returns the markdown twin
 - All routes are static; no auth, no accounts, no write endpoints
-- Quotas: 120 req/min/IP per function instance, advertised via `RateLimit-Policy` headers
+
+## Lessons
+
+## Phase 00: Setup & Tooling
+Your tools shape your thinking. Set them up once.
+
+- [Dev Environment](phases/00-setup-and-tooling/01-dev-environment.html)
+- [Git as Your Safety Net](phases/00-setup-and-tooling/02-git-and-collaboration.html) — your safety net, not optional
+- [Terminal and Shell](phases/00-setup-and-tooling/03-terminal-and-shell.html)
+- [Editor Setup](phases/00-setup-and-tooling/04-editor-setup.html)
+- [Debugging and Profiling](phases/00-setup-and-tooling/05-debugging-and-profiling.html)
+
+## Phase 01: Foundations of AI
+The words everything else leans on.
+
+- [What a Language Model Is](phases/01-foundations-of-ai/06-what-a-language-model-is.html)
+- [Tokens — why text becomes currency](phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html) — why text becomes currency
+- [The Context Window — the only budget that matters](phases/01-foundations-of-ai/08-the-context-window.html) — the only budget that matters
+- [Prompt, Inference, API](phases/01-foundations-of-ai/09-prompt-inference-api.html)
+- [What "Agentic" Means](phases/01-foundations-of-ai/10-what-agentic-means.html)
+- [Latency, Cost, and Rate Limits](phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html)
+
+## Phase 02: Git Deep
+Commit = photograph. Branch = label. `worktree` hides `working tree`.
+
+- [Commit Is a Photograph, Not a Diff](phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html)
+- [Branches Are Movable Labels, Not Copies](phases/02-git-deep/13-branches-are-movable-labels-not-copies.html)
+- [Merge and Rebase](phases/02-git-deep/14-merge-and-rebase.html)
+- [Conflicts: What They Are, How They Resolve](phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html)
+- [Recovering Lost Work](phases/02-git-deep/16-recovering-lost-work.html)
+- [Stashing, and Why Agents Break Things](phases/02-git-deep/17-stashing-and-why-agents-break-things.html)
+- [Remotes, Forks, and the Full Mental Model](phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html)
+
+## Phase 03: Models & Families
+Open-weight vs frontier. What actually costs money.
+
+- [Open-Weight vs Frontier](phases/03-models-and-families/19-open-weight-vs-frontier.html)
+- [Model Aliases and Routing — teach `sonnet`, never hardcoded IDs](phases/03-models-and-families/20-model-aliases-and-routing.html) — teach `sonnet`, never hardcoded IDs
+- [Effort Levels and Extended Thinking](phases/03-models-and-families/21-effort-levels-and-extended-thinking.html)
+- [Prompt Caching — why switching models makes a turn slow](phases/03-models-and-families/22-prompt-caching.html) — why switching models makes a turn slow
+- [Quantization, Distillation, Fine-Tuning](phases/03-models-and-families/23-quantization-distillation-fine-tuning.html)
+- [SLMs — When a 350M Model Wins](phases/03-models-and-families/24-slms-when-a-small-model-wins.html) — When a 350M Model Wins
+- [Decision Models Beat Generation on Cost](phases/03-models-and-families/25-decision-models.html)
+- [The Taxonomy: LLM / Decision Model / SLM](phases/03-models-and-families/26-the-taxonomy.html)
+
+## Phase 04: Claude Code
+The tool, from first run to fluency.
+
+- [What Claude Code Is](phases/04-claude-code/27-what-claude-code-is.html)
+- [Install, First Run, Verify](phases/04-claude-code/28-install-first-run-verify.html)
+- [Files and Edits — and When It Refuses](phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html) — and When It Refuses
+- [Sessions, `/clear`, `/compact`](phases/04-claude-code/30-sessions-clear-compact.html)
+- [The Agentic Loop](phases/04-claude-code/31-the-agentic-loop.html) — the one concept everything hangs on
+- [What Loads Into the Window, and What Doesn't](phases/04-claude-code/32-what-loads-into-the-window.html)
+- [Permissions and Permission Modes](phases/04-claude-code/33-permissions-and-permission-modes.html)
+- [Settings — 4 Files, 5 Precedence Levels](phases/04-claude-code/34-settings-and-precedence.html) — 4 Files, 5 Precedence Levels
+- [Plan Mode and Checkpoints](phases/04-claude-code/35-plan-mode-and-checkpoints.html)
+- [Checkpointing, `/rewind`, Recovery](phases/04-claude-code/36-checkpointing-rewind-recovery.html)
+- [Troubleshooting — Reading Errors Properly](phases/04-claude-code/37-troubleshooting-reading-errors-properly.html) — Reading Errors Properly
+
+## Phase 05: Commands & Skills
+The most flexible extension layer.
+
+- [Built-in Commands](phases/05-commands-and-skills/38-built-in-commands.html)
+- [Why Custom Commands Merged Into Skills](phases/05-commands-and-skills/39-commands-merged-into-skills.html)
+- [What a Skill Is](phases/05-commands-and-skills/40-what-a-skill-is.html)
+- [Anatomy — the Frontmatter Field Table](phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html) — the 21-Field Frontmatter Table
+- [The Invocation Matrix — Who Can Trigger It](phases/05-commands-and-skills/42-the-invocation-matrix.html) — Who Can Trigger It
+- [Install a Skill](phases/05-commands-and-skills/43-install-a-skill.html)
+- [Author a Skill From Scratch](phases/05-commands-and-skills/44-author-a-skill.html)
+
+## Phase 06: Subagents
+Context isolation.
+
+- [Subagent Markdown Format](phases/06-subagents/45-subagent-format.html)
+- [Built-in Subagents — Explore, Plan, general-purpose](phases/06-subagents/46-built-in-subagents.html) — `Explore`, `Plan`, `general-purpose`
+- [Author a Subagent — and the Fork-Context Subtlety](phases/06-subagents/47-author-a-subagent.html)
+- [Skills Inside Subagents — the genuinely confusing case](phases/06-subagents/48-skills-inside-subagents.html) — the genuinely confusing case
+
+## Phase 07: MCP
+A protocol, not a tool.
+
+- [What MCP Is](phases/07-mcp/49-what-mcp-is.html)
+- [Four Transports](phases/07-mcp/50-four-transports.html) — http / sse *(deprecated)* / stdio / ws
+- [Scopes, Precedence, Config Shape](phases/07-mcp/51-scopes-and-config.html)
+- [Build an MCP Server From Scratch](phases/07-mcp/52-build-an-mcp-server.html)
+- [The Trust Model and Prompt Injection](phases/07-mcp/53-trust-model-and-prompt-injection.html)
+- [OAuth, Headers, and MCP Tool Search](phases/07-mcp/54-oauth-and-tool-search.html)
+
+## Phase 08: Hooks
+Events on the loop. Enforcement, not requests.
+
+- [What a Hook Is](phases/08-hooks/55-what-a-hook-is.html)
+- [All the Events, Matchers, Handler Types](phases/08-hooks/56-all-32-events.html)
+- [Hook Script Shape — stdin JSON → stdout / exit code](phases/08-hooks/57-hook-script-shape.html) — stdin JSON → stdout / exit code
+- [The Exit-1-vs-2 Trap](phases/08-hooks/58-exit-1-vs-2.html)
+- [Build a Guardrail Hook](phases/08-hooks/59-build-a-guardrail-hook.html)
+- [Debugging Hooks](phases/08-hooks/60-debugging-hooks.html)
+
+## Phase 09: Plugins
+The packaging layer. Comes last for a reason.
+
+- [*"Plugins Are the Packaging Layer"* — and why](phases/09-plugins/61-plugins-are-the-packaging-layer.html) — and why
+- [Plugin Anatomy — the directory and the manifest](phases/09-plugins/62-plugin-anatomy.html)
+- [Install from a Marketplace, and Author One](phases/09-plugins/63-install-and-author-a-plugin.html)
+- [Plugin Economics — What Every Enabled Plugin Costs](phases/09-plugins/64-plugin-economics.html) — What Every Enabled Plugin Costs
+
+## Phase 10: Memory & Instructions
+How context persists.
+
+- [CLAUDE.md — the 200-Line Rule](phases/10-memory-and-instructions/65-claude-md.html) — the 200-Line Rule
+- [AGENTS.md, CLAUDE.local.md](phases/10-memory-and-instructions/66-agents-md-and-local-md.html)
+- [Rules and Path-Scoped Rules](phases/10-memory-and-instructions/67-rules.html)
+- [Auto Memory and `MEMORY.md`](phases/10-memory-and-instructions/68-auto-memory.html)
+- [Output Styles](phases/10-memory-and-instructions/69-output-styles.html)
+- [Imports and External Context](phases/10-memory-and-instructions/70-imports-and-external-context.html)
+
+## Phase 11: Parallelism I
+The five names, and why they're different.
+
+- [The Five Names](phases/11-parallelism-i/71-the-five-names.html)
+- [Subagents as Isolation](phases/11-parallelism-i/72-subagents-as-isolation.html)
+- [Agent Teams — Mailbox, Task List, Documented Limits](phases/11-parallelism-i/73-agent-teams.html) — Mailbox, Task List, Documented Limits
+- [Worktrees, Deep — session vs per-agent](phases/11-parallelism-i/74-worktrees-deep.html) — session vs per-agent
+- [Base Ref, Cleanup, and the /batch Path](phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html)
+- [How Isolation Is Actually Enforced — the blocking checks](phases/11-parallelism-i/76-how-isolation-is-enforced.html) — the blocking checks
+
+## Phase 12: Parallelism II
+Orchestration.
+
+- [Cross-Session Messaging](phases/12-parallelism-ii/77-cross-session-messaging.html)
+- [Dynamic Workflows — the Script Decides](phases/12-parallelism-ii/78-dynamic-workflows.html) — the Script Decides
+- [`parallel()` vs `pipeline()`](phases/12-parallelism-ii/79-parallel-vs-pipeline.html)
+- [The Completion-Order Gotcha](phases/12-parallelism-ii/80-the-completion-order-gotcha.html)
+- [Workflow Runtime Caps](phases/12-parallelism-ii/81-workflow-runtime-caps.html)
+- [Loops — Scheduled and Recurring](phases/12-parallelism-ii/82-loops.html) — Scheduled and Recurring
+- [Hooks-Driven Automation — Events as Control Flow](phases/12-parallelism-ii/83-hooks-driven-automation.html) — Events as Control Flow
+- [The Decision Framework — Which Mechanism, When](phases/12-parallelism-ii/84-the-decision-framework.html) — Which Mechanism, When
+- [When NOT to Parallelize](phases/12-parallelism-ii/85-when-not-to-parallelize.html)
+
+## Phase 13: Context Engineering
+Context as architecture.
+
+- [What Loads, What Costs](phases/13-context-engineering/86-what-loads-what-costs.html)
+- [Progressive Disclosure — Skills as a Loading Strategy](phases/13-context-engineering/87-progressive-disclosure.html) — Skills as a Loading Strategy
+- [Context as Architecture, Not a Dump](phases/13-context-engineering/88-context-as-architecture.html)
+- [Prompt Caching as a Design Constraint](phases/13-context-engineering/89-prompt-caching-as-constraint.html)
+- [Reducing Context Without Losing Capability](phases/13-context-engineering/90-reducing-context.html)
+
+## Phase 14: Harness Engineering
+The loop minus the intelligence.
+
+- [What a Harness Is](phases/14-harness-engineering/91-what-a-harness-is.html)
+- [Most Agent Calls Are Decisions, Not Generation](phases/14-harness-engineering/92-decisions-not-generation.html)
+- [Decision Models Inside a Loop](phases/14-harness-engineering/93-decision-models-in-a-loop.html)
+- [Confidence Gating — Escalate Only When Unsure](phases/14-harness-engineering/94-confidence-gating.html) — Escalate Only When Unsure
+- [Verification Loops — the Prerequisite for Unattended Runs](phases/14-harness-engineering/95-verification-loops.html) — the prerequisite for unattended runs
+- [Guardrails vs Instructions — Requests vs Enforcement](phases/14-harness-engineering/96-guardrails-vs-instructions.html) — requests vs enforcement
+- [Design Your Own Harness — and Defend the Trade-offs](phases/14-harness-engineering/97-design-your-own-harness.html) — and defend the trade-offs
+
+## Phase 15: Graph Engineering
+Nodes, edges, and what genuinely parallelizable means.
+
+- [Nodes and Edges](phases/15-graph-engineering/98-nodes-and-edges.html)
+- [Task Graphs — Dependencies and the Frontier](phases/15-graph-engineering/99-task-graphs.html) — Dependencies and the Frontier
+- [Blocking Edges — What's Actually Parallelizable](phases/15-graph-engineering/100-blocking-edges.html) — What's Actually Parallelizable
+- [Claiming — Stopping Two Agents Doing One Job](phases/15-graph-engineering/101-claiming.html) — Stopping Two Agents Doing One Job
+- [Wayfinding — Producing Decisions, Not Deliverables](phases/15-graph-engineering/102-wayfinding.html) — Producing Decisions, Not Deliverables
+- [Fan-Out / Fan-In Patterns](phases/15-graph-engineering/103-fan-out-fan-in.html)
+- [Failure Propagation — What Happens When One Node Dies](phases/15-graph-engineering/104-failure-propagation.html) — What Happens When One Node Dies
+- [Design a Graph for a Real Project](phases/15-graph-engineering/105-design-a-graph.html)
+
+## Phase 16: Worktrees in Practice
+Deep on the one you came for.
+
+- [Session vs Agent Scope](phases/16-worktrees-in-practice/106-session-vs-agent-scope.html)
+- [Manual Worktrees — `git worktree add`](phases/16-worktrees-in-practice/107-manual-worktrees.html) — `git worktree add`
+- [The Startup-Cache Trap](phases/16-worktrees-in-practice/108-the-startup-cache-trap.html)
+- [Merge Strategy for Agent Branches](phases/16-worktrees-in-practice/109-merge-strategy.html)
+- [Isolation Without a Commit Is Not a Backup](phases/16-worktrees-in-practice/110-isolation-without-a-commit.html)
+
+## Phase 17: Scaling & Operations
+Running it for real.
+
+- [Headless / Non-Interactive Mode](phases/17-scaling-and-operations/111-headless-mode.html)
+- [The Claude Agent SDK](phases/17-scaling-and-operations/112-the-agent-sdk.html)
+- [Channels and Surfaces](phases/17-scaling-and-operations/113-channels-and-surfaces.html)
+- [Sandboxing and Security Model](phases/17-scaling-and-operations/114-sandboxing-and-security.html)
+- [Managing Settings at Scale](phases/17-scaling-and-operations/115-managing-settings-at-scale.html)
+
+## Phase 18: Capstone
+Ship it.
+
+- [Spec → Graph → Build → Verify](phases/18-capstone/116-spec-graph-build-verify.html)
+- [Review Against the Docs](phases/18-capstone/117-review-against-the-docs.html)
+- [What Breaks in Production](phases/18-capstone/118-what-breaks-in-production.html)
+- [Keeping Up — Claude Code Ships Weekly](phases/18-capstone/119-keeping-up.html) — Claude Code Ships Weekly

@@ -4,94 +4,249 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Why Custom Commands Merged Into Skills — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can explain why your `.claude/commands/deploy.md` still works, name the">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Why Custom Commands Merged Into Skills</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li class="on"><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 38, Built-in Commands *(renamed from "slash commands")*</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 05 · LESSON 39</p>
+      <h1>Why Custom Commands Merged Into Skills</h1>
+      <p class="lesson-motto">You can explain why your `.claude/commands/deploy.md` still works, name the</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 38, Built-in Commands</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Say why a legacy command file and a skill produce the same <code>/name</code></li><li>Name the four capabilities a command file cannot express</li><li>Pick the migration moment for one of your own command files — and the moment to leave it alone</li><li>Explain &quot;custom commands have been merged into skills&quot; without overclaiming</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You wrote <code>.claude/commands/ship-it.md</code> last year. It worked. It runs tests, builds, deploys staging.</p>
+<p>Then you need three things, one at a time:</p>
+<ol><li>The deploy needs to run a script that lives next to the instructions. The command file can't reference it — the file is the whole thing.</li><li>It needs the file inside it, because <code>.md</code> is one blob.</li><li>Claude keeps triggering it during unrelated work, because a command file has a description that goes largely unread.</li></ol>
+<p>You convert it twice, both times by hand, both times half-successfully. Nothing told you the two formats had converged — one just quietly stopped being the right shape.</p>
+<p>The cost is small each time and adds up to an afternoon. The bigger cost is not knowing <em>why</em> the new format is better, so you convert again next year.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>The docs say it in one line:</p>
+<blockquote><p><strong>Custom commands have been merged into skills.</strong></p></blockquote>
+<p>That means two things, and people routinely hear only the first:</p>
+<figure class="diagram"><pre>flowchart LR
+    A[&quot;Legacy command&lt;br/&gt;.claude/commands/deploy.md&quot;] --&gt; M
+    B[&quot;Skill&lt;br/&gt;.claude/skills/deploy/SKILL.md&quot;] --&gt; M
+    M[&quot;/deploy runs&quot;]
+    M --&gt; N[&quot;Skills add four things&lt;br/&gt;command files can't express&quot;]
+    style N fill:#1f6f4a,color:#fff</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p><strong>One: equivalence.</strong> Both files create and run the same command:</p>
+<pre class="code" data-lang="text"><code>.claude/commands/deploy.md
+.claude/skills/deploy/SKILL.md</code></pre>
+<p>Both produce <code>/deploy</code>. A legacy file is not deprecated-and-broken. It works. The docs are explicit that existing <code>.claude/commands/</code> files continue to work, and that there is <strong>no hard removal or breaking-change notice</strong> — this is a soft direction, with backward compatibility.</p>
+<p><strong>Two: supersession.</strong> Skills accept every field a command file accepts, and two more — <code>name</code> and <code>paths</code>. A command file is a skill with the folder removed.</p>
+<h3 id="the-four-things-a-command-file-cannot-do">The four things a command file cannot do</h3>
+<div class="table-wrap"><table><thead><tr><th>Capability</th><th>Why the old shape can't</th></tr></thead><tbody><tr><td><strong>Supporting files</strong></td><td>A command is one <code>.md</code>. A skill is a <em>directory</em>, so it ships scripts, references, templates alongside the instructions.</td></tr><tr><td><strong>Frontmatter controls</strong></td><td><code>disable-model-invocation</code> doesn't exist on a command file. You cannot say &quot;only run this when I ask.&quot;</td></tr><tr><td><strong>Automatic invocation</strong></td><td>Only skills get matched against <code>description</code> by the model. Commands wait for you.</td></tr><tr><td><strong>Dynamic context injection</strong></td><td>Skills can run `<code> !</code>command<code> </code><code> and </code>``<code> </code>`<code>! </code>``` blocks to load fresh state at invoke time.</td></tr></tbody></table></div>
+<p>That last one is the quiet one. A command file is a frozen prompt: whatever it says about &quot;the current branch&quot; was true when you wrote it. A skill can ask.</p>
+<h3 id="when-to-migrate">When to migrate</h3>
+<div class="table-wrap"><table><thead><tr><th>Migrate</th><th>Leave it alone</th></tr></thead><tbody><tr><td>You need scripts or reference files next to the instructions</td><td>It's a three-line prompt with no state</td></tr><tr><td>You need it to run <em>only</em> when asked</td><td>You want it to be purely manual already and it works</td></tr><tr><td>It's going to a teammate, or into a plugin</td><td>It works and nothing about it is hurting you</td></tr><tr><td>You're editing it again anyway</td><td>It's shared across many files and a rename is risky — migration gains nothing here</td></tr></tbody></table></div>
+<p>New work goes to <code>.claude/skills/&lt;name&gt;/SKILL.md</code>. The docs say so directly.</p>
+<blockquote><p><strong>The reframe:</strong> a command file was always a skill that had its folder</p><p>deleted — the merge isn't a new feature bolted on, it's you getting the</p><p>folder back, which is where the scripts and the trigger rules were hiding.</p></blockquote>
+<p>Legacy files accept the same frontmatter <strong>except</strong> <code>name</code> and <code>paths</code>. Their command name comes from the filename. That's the whole of the compatibility surface.</p>
+<p>Verified against <a href="https://code.claude.com/docs/en/skills" target="_blank" rel="noopener">the skills page</a> on 2026-10-15. The direction is stable; the field list moves. Check the page before you quote a field count.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-run-the-same-thing-twice">1. Run the same thing twice</h3>
+<p>Create both files in a scratch project, identical body text:</p>
+<pre class="code" data-lang="text"><code>.claude/commands/warmup.md
+.claude/skills/warmup/SKILL.md</code></pre>
+<p>Run <code>/warmup</code> from each.</p>
+<p>✅ You pass when both run and produce the same command name from two different directory shapes.</p>
+<h3 id="2-find-the-field-that-proves-the-difference">2. Find the field that proves the difference</h3>
+<p>Add <code>disable-model-invocation: true</code> to the skill. Leave it out of the command file. Try both against a request that would plausibly match.</p>
+<p>✅ You pass when you can say which one the model may choose on its own and which one it may not, from observation rather than from the docs.</p>
+<h3 id="3-confirm-the-two-field-gap">3. Confirm the two-field gap</h3>
+<p>Check whether a legacy command file honours <code>name</code> and <code>paths</code>. Put a <code>name:</code> in the frontmatter of <code>warmup.md</code> and see whether it changes anything.</p>
+<p>✅ You pass when you can state whether <code>name</code> and <code>paths</code> are the two fields the legacy shape drops, and you observed it rather than assumed it.</p>
+<h3 id="4-try-to-add-a-supporting-file">4. Try to add a supporting file</h3>
+<p>Create a script next to <code>warmup.md</code> and have the prompt reference it. Then move the prompt into the skill folder and reference it from there.</p>
+<p>✅ You pass when the first arrangement cannot reach the file and the second can, and you can say which one that is.</p>
+<h3 id="5-audit-your-own-command-files">5. Audit your own command files</h3>
+<p>List every <code>.claude/commands/*.md</code> you own. Mark each: migrate, or leave.</p>
+<p>✅ You pass when every file has a verdict and a one-line reason, and at least one is &quot;leave it alone&quot;.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Thing</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>.claude/skills/&lt;name&gt;/SKILL.md</code></td><td>All new work</td></tr><tr><td><code>.claude/commands/&lt;name&gt;.md</code></td><td>Existing file that works; leave it</td></tr><tr><td>Migrate when you need a folder</td><td>Scripts, references, templates</td></tr><tr><td>Migrate when you need a trigger rule</td><td><code>disable-model-invocation</code></td></tr><tr><td>&quot;Merged&quot;</td><td>Equivalence today, supersession tomorrow. Not removal.</td></tr><tr><td><code>name</code> / <code>paths</code></td><td>Skill-only fields; a command file ignores them</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take one real command file you own. Write the migration as a diff — file move, frontmatter change, nothing else — and apply it. Run the command before and after. ✅ You pass when the command still runs and you can point at the one line of the diff that actually bought you something.</li></ol>
+<ol><li class="criterion">Write a one-paragraph explanation of &quot;custom commands have been merged into skills&quot; for a colleague who has never heard of either format. Then find one sentence in it that would still be true if the format later gets removed. ✅ You pass when you can quote that sentence and say why it is the one that survives.</li></ol>
+<ol><li class="criterion">Find one legacy command file — yours, a colleague's, or an installed one — and find something it does that the skill form would let you do better. ✅ You pass when you have named the capability and shown the command file structurally cannot express it, not just &quot;the skill is newer&quot;.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>merged</td><td>&quot;slash commands are gone&quot;</td><td>They produce the same command. Legacy files still work; skills are the direction.</td></tr><tr><td>legacy command</td><td>&quot;the old format&quot;</td><td>A single <code>.md</code> in <code>.claude/commands/</code>. Works. Loses <code>name</code> and <code>paths</code>.</td></tr><tr><td>skill</td><td>&quot;the new format&quot;</td><td>A <em>directory</em> with a <code>SKILL.md</code>. Same invocation, plus a folder to put things in.</td></tr><tr><td>soft migration</td><td>&quot;it's deprecated&quot;</td><td>Backward compatible, with a preferred direction. No removal date.</td></tr><tr><td>automatic invocation</td><td>&quot;the model finds it&quot;</td><td>Skills only, matched against <code>description</code>. Command files wait for your slash.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Every frontmatter field.</strong> Twenty-odd of them, and choosing between them is the whole of the next two lessons. Lesson 41 is the table.</p>
+<p><strong>Where skills live</strong> — personal, project, nested, plugin, synced. Lesson 43.</p>
+<p><strong><code>context: fork</code>.</strong> A skill can run in a forked subagent context. That is Phase 06 (Subagents); the field appears here so the shape is familiar, but nothing in this lesson depends on it.</p>
+<p><strong>Dynamic context injection syntax.</strong> `<code> !</code>command<code> </code><code> and </code>``<code> </code>`<code>! </code>``` blocks were named, not taught. They show up for real in Lesson 44.</p>
+<p><strong>Plugin distribution.</strong> A plugin ships skills, but the packaging layer is Phase 09.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">Your team's release command lives in .claude/commands/release.md and has worked for a year. Which statement about it is actually true today?</p>
+        <ol class="options" type="A">
+          <li>It still runs as /release, but name and paths in its frontmatter are not honoured — skills accept those two fields, command files do not</li>
+          <li>It still runs as /release, but it is deprecated and will stop loading on the next major version</li>
+          <li>It no longer loads at all; use .claude/skills/release/SKILL.md instead or the command disappears</li>
+          <li>It still runs as /release, but the model can now auto-invoke it from its description, which it could never do before</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> It still runs as /release, but name and paths in its frontmatter are not honoured — skills accept those two fields, command files do not</p>
+          <p class="why">The merge is equivalence plus supersession: legacy files keep working, and the two fields they lack are name and paths. Option B overclaims — the docs describe a soft direction with backward compatibility and no removal notice. Option C is the failure mode people actually fear and it is not what shipped; existing .claude/commands files continue to work. Option D inverts the capability: automatic, description-matched invocation is one of the things skills add, so a command file still cannot do it.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Your deploy command needs to run ./scripts/preflight.sh before deploying, and the script already exists next to the project root. What is the actual blocker with keeping the command file?</p>
+        <ol class="options" type="A">
+          <li>Command files cannot invoke scripts at all, so this has to become a hook</li>
+          <li>The script path would be relative to the wrong file, since a command's frontmatter has no working-directory field</li>
+          <li>A command file is a single .md — it has no folder to hold or reference a sibling script, which is exactly what the skill directory restores</li>
+          <li>Nothing blocks it — the command can just inline the shell command instead of calling the script</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> A command file is a single .md — it has no folder to hold or reference a sibling script, which is exactly what the skill directory restores</p>
+          <p class="why">The blocker is structural, not behavioural: a command is one markdown blob, so the skill's directory is what lets supporting files travel with the instructions. Option A reaches for hooks, which are a different phase and would be the wrong tool for a per-invocation precondition. Option B invents a field that does not exist. Option D is tempting and wrong in practice — inlining the script body duplicates logic that already has a home, and it is precisely the drift the docs warn about when they describe shipping scripts with skills.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You have 14 legacy command files across a repo. What is the honest migration posture?</p>
+        <ol class="options" type="A">
+          <li>Migrate all 14 now — anything in .claude/commands/ is second-class and will rot</li>
+          <li>Migrate none — the folder format is deprecated and skills are a separate product</li>
+          <li>Migrate on contact: convert a file when it needs a folder, a trigger rule, or a teammate to receive it; leave the rest</li>
+          <li>Migrate only the ones with under 30 lines, since short prompts have the most to gain from fields</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> Migrate on contact: convert a file when it needs a folder, a trigger rule, or a teammate to receive it; leave the rest</p>
+          <p class="why">Migrate-on-contact is the posture that matches the docs: new work prefers skills, existing files work fine, and each of the four added capabilities is a concrete trigger for converting one specific file. Option A treats working files as rot and spends a rename across 14 files for no gain. Option B inverts the direction — skills are where the format is heading, not commands. Option D is arbitrary; nothing about prompt length determines which fields you can use.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span>Previous</span>38. Built-in Commands</a>
+    <a class="next" href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span>Next</span>40. What a Skill Is</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

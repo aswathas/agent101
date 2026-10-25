@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Subagents as Isolation that needs a new situation, not recall.",
+      "prompt": "You delegate a big read-only search to a subagent and your own window stays small, exactly as hoped. Why does that say nothing about whether two subagents can safely edit files at once?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Because a subagent only keeps its context isolated; it still writes to the same working directory as every other subagent",
+        "Because read-only subagents and writing subagents use different context windows",
+        "Because the harness reuses one window but swaps the tool list per subagent",
+        "Because your window stayed small only until the next compaction"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "The demonstration showed context isolation — the subagent spent its own window and returned a summary — but the two agents would still start in one shared directory, so their writes collide. Read-only versus writing subagents don't have different windows. The harness gives each subagent its own window rather than reusing one. And compaction changes how much of your window survives, not where parallel agents write files.",
+      "concept": "context-vs-file-isolation"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A subagent keeps coming back with truncated search results on large repos. Nothing in your session is out of room. What is the most likely cause?",
+      "options": [
+        "It shares your window but loses track of the token count",
+        "Its window is sized by the model in its own definition, which may be smaller than yours",
+        "Subagents have a fixed 100k window and you need to raise it",
+        "Your window and its window draw from one shared pool, so other work ate its room"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A subagent's context window comes from its own model — delegate to a cheaper alias and you may hand it a smaller room, so a search that fits in your session doesn't fit in its. Option A describes the opposite relationship. Option C invents a fixed size. Option D is wrong because each non-fork subagent's context is separate; that separation is the whole point of this lesson.",
+      "concept": "window-from-own-model"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You want three subagents to run at once, each editing its own set of files, with no lost writes if their lists accidentally overlap. What do you add?",
+      "options": [
+        "A longer delegation message warning each one not to touch the others' files",
+        "`model: opus` on each, so they plan more carefully",
+        "`isolation: worktree` on each, so each edits its own checkout",
+        "A skill that runs in your window and edits the files itself"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "File isolation is the missing property, and `isolation: worktree` is the switch that provides it — each agent edits its own checkout, so an overlap becomes a merge rather than an overwrite. A warning in the prompt is a request, not a guard, and it can't survive an ambiguous edit. A bigger model reasons better but still writes to the same paths. A skill runs in your own window and doesn't isolate anything.",
+      "concept": "isolation-worktree-switch"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You want a subagent's result to land *interleaved* in your own next steps — you'll act on each item as it comes. Your teammate says \"just use a subagent.\" Why is that the wrong shape?",
+      "options": [
+        "A subagent's summary is the only thing that returns, so you'd lose the step-by-step detail you need",
+        "A subagent can't use tools, only read files",
+        "A subagent's window is too large to hold a checklist",
+        "A subagent can't run until the main conversation is idle"
+      ],
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "A subagent is optimized to keep its intermediate work out of your window and hand back a summary — the opposite of what you want when you need each step in front of you. That case is a skill, which runs in your own window by design. Subagents use tools freely, their windows aren't the issue, and they don't require the main conversation to be idle.",
+      "concept": "where-the-result-lands"
     }
   ]
 }

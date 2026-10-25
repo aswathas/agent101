@@ -5,196 +5,242 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Terminal and Shell — Harnessing Claude Code</title>
 <meta name="description" content="After this lesson you can read what the agent is about to do, decide if it is right, and run it yourself when it is wrong.">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Terminal and Shell</h1>
-  <p class="lesson-motto">After this lesson you can read what the agent is about to do, decide if it is right, and run it yourself when it is wrong.</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section class="on">
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li class="on"><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 1, Dev Environment</p>
-    <p><strong>Time:</strong> ~35 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 00 · LESSON 3</p>
+      <h1>Terminal and Shell</h1>
+      <p class="lesson-motto">After this lesson you can read what the agent is about to do, decide if it is right, and run it yourself when it is wrong.</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 1, Dev Environment</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- Read any shell command the agent proposes and name the file it will touch
-- Run the same command yourself before letting the agent run it
-- Predict the difference between `&gt;` and `&gt;&gt;` in a command the agent shows you
-- Recover from a wrong agent command by typing the right one yourself
-- Name three shell commands an agent reaches for on every task
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Read any shell command the agent proposes and name the file it will touch</li><li>Run the same command yourself before letting the agent run it</li><li>Predict the difference between <code>&gt;</code> and <code>&gt;&gt;</code> in a command the agent shows you</li><li>Recover from a wrong agent command by typing the right one yourself</li><li>Name three shell commands an agent reaches for on every task</li></ul>
+<h2 id="the-problem">The Problem</h2>
+<p>Two hours into a session the agent says &quot;I'll delete the tests folder.&quot; You approve. It was the wrong folder. The work that lived there — including yesterday's draft, never committed — is gone.</p>
+<p>You had a chance to catch this. The command was on the screen. You were reading the prose, not the command.</p>
+<p>The shell is not a separate skill. <strong>The agent runs every action through a shell.</strong> When you ignore the shell, you trust the agent to be right about a language you have never read.</p>
+<h2 id="the-concept">The Concept</h2>
+<p>The agent does not have a private channel. Every action it takes — reading a file, listing a directory, running tests, editing code — arrives as a shell command on your screen before it runs. You see it. You can copy it. You can run it yourself first.</p>
+<p>One concept, three corollaries.</p>
+<figure class="diagram"><pre>flowchart LR
+    A[You describe a goal] --&gt; B[Agent writes a shell command]
+    B --&gt; C{You read it}
+    C --&gt;|looks right| D[You approve, it runs]
+    C --&gt;|looks wrong| E[You type the right one]
+    D --&gt; F[Output comes back]
+    E --&gt; F
+    F --&gt; B</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>The middle box — <em>you read it</em> — is the only skill this lesson teaches. Everything else is supporting muscle.</p>
+<h3 id="corollary-1-the-commands-are-ordinary">Corollary 1 — the commands are ordinary</h3>
+<p>The verbs an agent reaches for are the ones you already know how to read.</p>
+<div class="table-wrap"><table><thead><tr><th>What the agent is doing</th><th>The shell verb it uses</th></tr></thead><tbody><tr><td>Reading a file</td><td><code>cat</code>, <code>head</code>, or a tool that wraps one</td></tr><tr><td>Listing a directory</td><td><code>ls</code></td></tr><tr><td>Searching code</td><td><code>grep -rn</code></td></tr><tr><td>Editing a file</td><td><code>sed -i</code>, here-docs, or a tool that writes it</td></tr><tr><td>Running tests</td><td><code>npm test</code>, <code>pytest</code>, <code>go test</code></td></tr><tr><td>Inspecting git state</td><td><code>git status</code>, <code>git diff</code></td></tr><tr><td>Deleting something</td><td><code>rm</code>, <code>rm -rf</code></td></tr></tbody></table></div>
+<p>None of these are hidden. None are special. They are the same commands you would type.</p>
+<h3 id="corollary-2-overwriting-is-a-one-character-mistake">Corollary 2 — overwriting is a one-character mistake</h3>
+<p>The single character <code>&gt;</code> overwrites. <code>&gt;&gt;</code> appends. The agent almost never means overwrite when it types <code>&gt;</code>. Read for it.</p>
+<pre class="code" data-lang="bash"><code>echo &quot;# Contributing&quot; &gt; CONTRIBUTING.md     # replaces if it exists
+echo &quot;## Setup&quot; &gt;&gt; CONTRIBUTING.md          # adds to the end</code></pre>
+<h3 id="corollary-3-the-agent-s-working-directory-is-yours">Corollary 3 — the agent's working directory is yours</h3>
+<p>A <code>cd</code> inside the agent's tool call affects only that call. The shell prompt you see is the one that matters; if the agent's command has no <code>cd</code>, it runs in the same folder you are in. Check with <code>pwd</code> if you are unsure.</p>
+<blockquote><p><strong>The reframe:</strong> the agent's commands are your commands, written down before they run — so learning the shell is learning to read what the agent is about to do.</p></blockquote>
+<h2 id="build-it">Build It</h2>
+<p>Do these in the lab repo from Lesson 1.</p>
+<h3 id="1-read-what-the-agent-would-have-read">1. Read what the agent would have read</h3>
+<pre class="code" data-lang="bash"><code>cd ~/claude-course-lab
+cat src/index.ts</code></pre>
+<p>The agent uses this — or its <code>Read</code> tool, which wraps this — every time it opens a file. You have now read the same file the same way.</p>
+<p>Pass: you see the contents of <code>src/index.ts</code> on your screen.</p>
+<h3 id="2-run-a-search-the-agent-would-run">2. Run a search the agent would run</h3>
+<pre class="code" data-lang="bash"><code>grep -rn &quot;sum&quot; src/</code></pre>
+<p>This is how an agent checks whether a name is already taken. Read it as: <em>search every file under <code>src/</code>, print the file name and line number for every line containing <code>sum</code></em>.</p>
+<p>Pass: you see file paths and line numbers, not raw blobs.</p>
+<h3 id="3-append-to-a-file-from-the-terminal">3. Append to a file from the terminal</h3>
+<pre class="code" data-lang="bash"><code>echo 'export const double = (x) =&gt; x * 2' &gt;&gt; src/index.ts
+cat src/index.ts</code></pre>
+<p>Notice the <code>&gt;&gt;</code>, not <code>&gt;</code>. If you had typed <code>&gt;</code> the old content is gone. This is the difference between a one-character typo and data loss.</p>
+<p>Pass: the original <code>sum</code> line is still there and a new <code>double</code> line was added.</p>
+<h3 id="4-catch-a-wrong-rm-before-it-runs">4. Catch a wrong <code>rm</code> before it runs</h3>
+<p>In a throwaway folder, type — but do <strong>not</strong> press enter yet:</p>
+<pre class="code" data-lang="bash"><code>mkdir -p /tmp/sandbox &amp;&amp; cd /tmp/sandbox &amp;&amp; echo hi &gt; keep.txt &amp;&amp; echo hi &gt; keep2.txt
+rm -rf keep</code></pre>
+<p>Read it left to right: make a folder, enter it, write <code>keep.txt</code>, write <code>keep2.txt</code>, then <code>rm -rf keep</code>. Predict what remains. Press enter. Confirm your prediction was right.</p>
+<p>This is the moment an agent would have approved and moved on.</p>
+<p>Pass: you can predict the result before pressing enter, and explain why.</p>
+<h3 id="5-predict-then-run">5. Predict, then run</h3>
+<p>For every command in steps 1–4, before pressing enter say out loud: which files will change, which will not, and whether output will appear. Then run it. If reality disagreed with your prediction, that is the lesson. Write the gap in <code>NOTES.md</code> inside the lab repo.</p>
+<p>Pass: you wrote at least one prediction, ran it, and noted the gap.</p>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>cat file</code></td><td>Reading what the agent is about to read</td></tr><tr><td><code>grep -rn &quot;x&quot; dir/</code></td><td>Checking whether a symbol or string already exists</td></tr><tr><td><code>echo &quot;...&quot; &gt;&gt; file</code></td><td>Appending to a file (notice <code>&gt;&gt;</code>)</td></tr><tr><td><code>echo &quot;...&quot; &gt; file</code></td><td>Replacing a file's contents (notice <code>&gt;</code>)</td></tr><tr><td><code>rm file</code></td><td>Deleting one file</td></tr><tr><td><code>rm -rf dir</code></td><td>Deleting a directory; <code>-r</code> means recursive, <code>-f</code> means no confirmation</td></tr><tr><td><code>pwd</code></td><td>Confirming the agent's working directory is yours</td></tr><tr><td><code>!!</code></td><td>Repeating the last command (often after <code>sudo !!</code>)</td></tr><tr><td><code>Ctrl-r</code></td><td>Searching command history by typing a few letters</td></tr><tr><td><code>man cmd</code> or <code>cmd --help</code></td><td>Looking up what one flag does</td></tr></tbody></table></div>
+<h2 id="exercises">Exercises</h2>
+<ol><li>In your lab repo, list the files, read <code>src/index.ts</code>, then list the files again. The list is the same — the read did not create anything. Pass: you can name three commands the agent runs that are read-only and create no new files.</li></ol>
+<ol><li>Type <code>echo &quot;first&quot; &gt; notes.txt</code>, then <code>echo &quot;second&quot; &gt;&gt; notes.txt</code>, then <code>echo &quot;third&quot; &gt; notes.txt</code>. Read <code>notes.txt</code> after every step. Pass: you can state the difference between <code>&gt;</code> and <code>&gt;&gt;</code> in one sentence, with the final contents of the file as evidence.</li></ol>
+<ol><li>Pretend an agent proposed <code>rm -rf src/</code>. Predict what happens, then run a preview version that only lists what would be removed — <code>find src -type f</code> or <code>ls -R src/</code> does the job without deleting. Pass: you can name one way to preview a destructive command before running it.</li></ol>
+<ol><li>Open a new terminal tab, run <code>pwd</code>, then run <code>git status</code>. Both outputs should be from your lab folder. If not, the agent would have worked in the wrong place. Pass: both commands report the lab folder.</li></ol>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>shell</td><td>&quot;the terminal&quot;</td><td>The program that interprets what you type. The terminal is the window; the shell is what runs inside it.</td></tr><tr><td>command</td><td>&quot;a line of code&quot;</td><td>One verb the shell runs, with arguments after it. <code>grep -rn &quot;x&quot; src/</code> is one command, not five.</td></tr><tr><td>redirect <code>&gt;</code></td><td>&quot;save output&quot;</td><td>Overwrite the file on the right with the left side's output. If the file existed, it is gone.</td></tr><tr><td>redirect <code>&gt;&gt;</code></td><td>&quot;append output&quot;</td><td>Add to the end of the file. The old contents survive.</td></tr><tr><td>flag</td><td>&quot;option&quot;, &quot;switch&quot;</td><td>A single-letter or single-word argument after the verb that changes its behaviour. <code>-r</code> in <code>rm -rf</code> means recursive; <code>-f</code> means no confirmation.</td></tr><tr><td>working directory</td><td>&quot;the project folder&quot;</td><td>One specific folder a command runs in. The agent inherits yours; if it <code>cd</code>s, it does so only inside its own tool call.</td></tr></tbody></table></div>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p>No pipes beyond <code>cat</code>-into-<code>grep</code>. No subshells, no job control, no <code>tmux</code>, no shell scripting, no quoting rules beyond <code>&gt;</code> vs <code>&gt;&gt;</code>. If a later lesson needs one of those — particularly subshells, which decide how <code>cd</code> survives across an agent's tool call — it will ground it inline. This lesson stays at the level that lets you read the agent's next command before approving it.</p>
+      </div>
 
-## The Problem
-
-Two hours into a session the agent says "I'll delete the tests folder." You approve. It was the wrong folder. The work that lived there — including yesterday's draft, never committed — is gone.
-
-You had a chance to catch this. The command was on the screen. You were reading the prose, not the command.
-
-The shell is not a separate skill. **The agent runs every action through a shell.** When you ignore the shell, you trust the agent to be right about a language you have never read.
-
-## The Concept
-
-The agent does not have a private channel. Every action it takes — reading a file, listing a directory, running tests, editing code — arrives as a shell command on your screen before it runs. You see it. You can copy it. You can run it yourself first.
-
-One concept, three corollaries.
-
-&lt;div class="mermaid"&gt;&lt;pre&gt;flowchart LR
-    A[You describe a goal] --&amp;gt; B[Agent writes a shell command]
-    B --&amp;gt; C{You read it}
-    C --&amp;gt;|looks right| D[You approve, it runs]
-    C --&amp;gt;|looks wrong| E[You type the right one]
-    D --&amp;gt; F[Output comes back]
-    E --&amp;gt; F
-    F --&amp;gt; B&lt;/pre&gt;&lt;/div&gt;
-
-The middle box — *you read it* — is the only skill this lesson teaches. Everything else is supporting muscle.
-
-### Corollary 1 — the commands are ordinary
-
-The verbs an agent reaches for are the ones you already know how to read.
-
-| What the agent is doing | The shell verb it uses |
-|---|---|
-| Reading a file | `cat`, `head`, or a tool that wraps one |
-| Listing a directory | `ls` |
-| Searching code | `grep -rn` |
-| Editing a file | `sed -i`, here-docs, or a tool that writes it |
-| Running tests | `npm test`, `pytest`, `go test` |
-| Inspecting git state | `git status`, `git diff` |
-| Deleting something | `rm`, `rm -rf` |
-
-None of these are hidden. None are special. They are the same commands you would type.
-
-### Corollary 2 — overwriting is a one-character mistake
-
-The single character `&gt;` overwrites. `&gt;&gt;` appends. The agent almost never means overwrite when it types `&gt;`. Read for it.
-
-```bash
-echo "# Contributing" &gt; CONTRIBUTING.md     # replaces if it exists
-echo "## Setup" &gt;&gt; CONTRIBUTING.md          # adds to the end
-```
-
-### Corollary 3 — the agent's working directory is yours
-
-A `cd` inside the agent's tool call affects only that call. The shell prompt you see is the one that matters; if the agent's command has no `cd`, it runs in the same folder you are in. Check with `pwd` if you are unsure.
-
-&gt; **The reframe:** the agent's commands are your commands, written down before they run — so learning the shell is learning to read what the agent is about to do.
-
-## Build It
-
-Do these in the lab repo from Lesson 1.
-
-### 1. Read what the agent would have read
-
-```bash
-cd ~/claude-course-lab
-cat src/index.ts
-```
-
-The agent uses this — or its `Read` tool, which wraps this — every time it opens a file. You have now read the same file the same way.
-
-Pass: you see the contents of `src/index.ts` on your screen.
-
-### 2. Run a search the agent would run
-
-```bash
-grep -rn "sum" src/
-```
-
-This is how an agent checks whether a name is already taken. Read it as: *search every file under `src/`, print the file name and line number for every line containing `sum`*.
-
-Pass: you see file paths and line numbers, not raw blobs.
-
-### 3. Append to a file from the terminal
-
-```bash
-echo 'export const double = (x) =&gt; x * 2' &gt;&gt; src/index.ts
-cat src/index.ts
-```
-
-Notice the `&gt;&gt;`, not `&gt;`. If you had typed `&gt;` the old content is gone. This is the difference between a one-character typo and data loss.
-
-Pass: the original `sum` line is still there and a new `double` line was added.
-
-### 4. Catch a wrong `rm` before it runs
-
-In a throwaway folder, type — but do **not** press enter yet:
-
-```bash
-mkdir -p /tmp/sandbox &amp;&amp; cd /tmp/sandbox &amp;&amp; echo hi &gt; keep.txt &amp;&amp; echo hi &gt; keep2.txt
-rm -rf keep
-```
-
-Read it left to right: make a folder, enter it, write `keep.txt`, write `keep2.txt`, then `rm -rf keep`. Predict what remains. Press enter. Confirm your prediction was right.
-
-This is the moment an agent would have approved and moved on.
-
-Pass: you can predict the result before pressing enter, and explain why.
-
-### 5. Predict, then run
-
-For every command in steps 1–4, before pressing enter say out loud: which files will change, which will not, and whether output will appear. Then run it. If reality disagreed with your prediction, that is the lesson. Write the gap in `NOTES.md` inside the lab repo.
-
-Pass: you wrote at least one prediction, ran it, and noted the gap.
-
-## Use It
-
-| Command | When you reach for it |
-|---|---|
-| `cat file` | Reading what the agent is about to read |
-| `grep -rn "x" dir/` | Checking whether a symbol or string already exists |
-| `echo "..." &gt;&gt; file` | Appending to a file (notice `&gt;&gt;`) |
-| `echo "..." &gt; file` | Replacing a file's contents (notice `&gt;`) |
-| `rm file` | Deleting one file |
-| `rm -rf dir` | Deleting a directory; `-r` means recursive, `-f` means no confirmation |
-| `pwd` | Confirming the agent's working directory is yours |
-| `!!` | Repeating the last command (often after `sudo !!`) |
-| `Ctrl-r` | Searching command history by typing a few letters |
-| `man cmd` or `cmd --help` | Looking up what one flag does |
-
-## Exercises
-
-1. In your lab repo, list the files, read `src/index.ts`, then list the files again. The list is the same — the read did not create anything.
-   Pass: you can name three commands the agent runs that are read-only and create no new files.
-
-2. Type `echo "first" &gt; notes.txt`, then `echo "second" &gt;&gt; notes.txt`, then `echo "third" &gt; notes.txt`. Read `notes.txt` after every step.
-   Pass: you can state the difference between `&gt;` and `&gt;&gt;` in one sentence, with the final contents of the file as evidence.
-
-3. Pretend an agent proposed `rm -rf src/`. Predict what happens, then run a preview version that only lists what would be removed — `find src -type f` or `ls -R src/` does the job without deleting.
-   Pass: you can name one way to preview a destructive command before running it.
-
-4. Open a new terminal tab, run `pwd`, then run `git status`. Both outputs should be from your lab folder. If not, the agent would have worked in the wrong place.
-   Pass: both commands report the lab folder.
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| shell | "the terminal" | The program that interprets what you type. The terminal is the window; the shell is what runs inside it. |
-| command | "a line of code" | One verb the shell runs, with arguments after it. `grep -rn "x" src/` is one command, not five. |
-| redirect `&gt;` | "save output" | Overwrite the file on the right with the left side's output. If the file existed, it is gone. |
-| redirect `&gt;&gt;` | "append output" | Add to the end of the file. The old contents survive. |
-| flag | "option", "switch" | A single-letter or single-word argument after the verb that changes its behaviour. `-r` in `rm -rf` means recursive; `-f` means no confirmation. |
-| working directory | "the project folder" | One specific folder a command runs in. The agent inherits yours; if it `cd`s, it does so only inside its own tool call. |
-
-## What this lesson skipped
-
-No pipes beyond `cat`-into-`grep`. No subshells, no job control, no `tmux`, no shell scripting, no quoting rules beyond `&gt;` vs `&gt;&gt;`. If a later lesson needs one of those — particularly subshells, which decide how `cd` survives across an agent's tool call — it will ground it inline. This lesson stays at the level that lets you read the agent's next command before approving it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A build prints its real errors to stderr. <code>npm test | grep FAIL</code> finds nothing, but the errors are clearly visible when you scroll. Why?</p>
+        <ol class="options" type="A">
+          <li>grep only works on stdout</li>
+          <li>npm writes errors to stderr, and a pipe carries only stdout — you need <code>2&gt;&amp;1</code></li>
+          <li>The pipe was too fast and grep missed the lines</li>
+          <li>grep is case-sensitive by default</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> npm writes errors to stderr, and a pipe carries only stdout — you need <code>2&gt;&amp;1</code></p>
+          <p class="why">Two separate streams leave every program. <code>|</code> wires stdout only, so stderr went straight to your screen and never reached grep. <code>npm test 2&gt;&amp;1 | grep FAIL</code> folds stderr into stdout first. Option D is a real gotcha (<code>grep -i</code> fixes it) but it isn't why you saw nothing.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You need to run a 10-minute migration, and you must close your terminal for a meeting and reconnect afterwards without killing it. Which is right?</p>
+        <ol class="options" type="A">
+          <li><code>migration.sh &gt; log.txt &amp;</code> — the ampersand detaches it from the shell</li>
+          <li><code>migration.sh &gt; log.txt</code> — redirecting output already detaches it</li>
+          <li><code>tmux new -s migrate</code>, run it inside, then detach with Ctrl-b d and reattach later</li>
+          <li>Leave the terminal open and lock the screen</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> <code>tmux new -s migrate</code>, run it inside, then detach with Ctrl-b d and reattach later</p>
+          <p class="why">A backgrounded job is still a child of your shell; closing the shell sends it a hangup. Only tmux (or nohup/disown combined with the right conditions) survives a closed window. The ampersand and <code>&gt;</code> solve <em>your attention</em>, not the terminal's lifetime.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Why does <code>echo hi | cd src</code> leave you in the same directory, but <code>(cd src &amp;&amp; pwd)</code> prints the src path?</p>
+        <ol class="options" type="A">
+          <li><code>cd</code> is not a real command and only works inside parentheses</li>
+          <li>The left side of a pipe runs in a subshell whose <code>cd</code> is discarded on exit; parentheses create one you can use deliberately</li>
+          <li>The pipe runs too fast for <code>cd</code> to take effect</li>
+          <li>Pipes always reset the working directory before running</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The left side of a pipe runs in a subshell whose <code>cd</code> is discarded on exit; parentheses create one you can use deliberately</p>
+          <p class="why"><code>cd</code> changes the shell's own state, and a piped command runs in a child subshell — its directory change dies with it. Parentheses are how you ask for exactly that behaviour when you want it: the cd applies inside, and vanishes after. Option C is wrong; it is not timing.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span>Previous</span>2. Git as Your Safety Net</a>
+    <a class="next" href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span>Next</span>4. Editor Setup</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

@@ -7,12 +7,31 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Isolation Without a Commit Is Not a Backup that needs a new situation, not recall.",
+      "prompt": "An agent works in its own worktree, edits six files, runs the tests, and reports success. You check its branch with `git log --oneline main..worktree-agent` and get no output. The folder clearly has changes. What is the state of the branch?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The branch has commits, but `main` already contains them",
+        "The branch was never created",
+        "The agent committed to `main` by mistake",
+        "The branch label still points where it started, so it has no commits of its own — the edits are uncommitted in the folder"
+      ],
+      "answer": 3,
+      "distractors": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "An empty range means the branch is where it started; the edits live only in the folder because nothing was committed. Option A is the tempting wrong answer because an empty range can also mean 'main already has it' — but that requires the commits to exist on the branch, which the dirty folder contradicts. The branch exists (you listed it), and if the agent had committed to `main`, `main` itself would show the changes.",
+      "concept": "empty-branch"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "Before merging any finished agent branch, which pair of checks most directly reveals the empty-branch bug?",
+      "options": [
+        "`git log --oneline main..<branch>` and `git -C <worktree> status --porcelain`",
+        "`git status` on main, and `git branch` on the worktree",
+        "`git worktree list` and `git remote -v`",
+        "`git diff main` and `git tag`"
       ],
       "answer": 0,
       "distractors": [
@@ -20,8 +39,46 @@
         2,
         3
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "explanation": "The signature is an empty commit range paired with a non-empty worktree status — nothing to merge, yet real work in the folder. Option C is the tempting wrong answer because `git worktree list` confirms a worktree exists, which feels like proof of work, but existence says nothing about commits. Tags and remote URLs are unrelated to whether a branch is empty.",
+      "concept": "signature-check"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Two agents finish. Agent A committed everything before its worktree was removed; Agent B did not, and its worktree was removed by a sweep. Which work can git still recover, and with what?",
+      "options": [
+        "Both — `git reflog` sees all edits that ever existed on disk",
+        "Only B — an agent worktree is backed up when it is swept",
+        "Only A — its commit is in the shared object store; B's edits were never committed and are gone",
+        "Neither — removing a worktree discards any commits it held"
+      ],
+      "answer": 2,
+      "distractors": [
+        0,
+        1,
+        3
+      ],
+      "explanation": "A commit is written to the shared object store and survives the folder; uncommitted edits exist only in the folder and die with it. Option A is the tempting wrong answer because reflog sounds like it records everything — but it records *committed* positions of refs, never uncommitted file content. Agent A's commits are not discarded by worktree removal, so option D is also false.",
+      "concept": "commit-vs-folder"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "A colleague wants a durable fix so this cannot happen again, not just a note to 'remember to commit'. Which response matches the lesson?",
+      "options": [
+        "Add a warning comment to the agent's prompt that says 'please commit soon'",
+        "Add a check — a hook or script — that fails when the worktree has uncommitted work at the end of the run",
+        "Disable worktrees entirely and run all agents in the main folder",
+        "Increase the worktree cleanup period so nothing is ever swept"
+      ],
+      "answer": 1,
+      "distractors": [
+        0,
+        2,
+        3
+      ],
+      "explanation": "A guardrail that fires on uncommitted work is the fix, because the failure is silent and the forgetting agent is the one who cannot be trusted to remember. Option A is the tempting wrong answer because a stronger instruction feels like enforcement — but prose is a request, not a check, and this is exactly the failure mode of instructions. Disabling worktrees throws away isolation, and extending cleanup only delays the loss.",
+      "concept": "guardrail"
     }
   ]
 }

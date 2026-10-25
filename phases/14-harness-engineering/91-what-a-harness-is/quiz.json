@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about What a Harness Is that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "A run repeats the same failing command five times and then stops. Where do you look first?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Swap to a bigger model",
+        "The harness's stop condition and how the result is fed back",
+        "Rewrite the prompt",
+        "Increase the context window"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "The model kept acting; the loop kept handing it the same state and had no rule to stop on repeated failure. That is machinery, so the harness is the right place. 'Bigger model' is tempting because it might break the loop by accident, but you'd be paying for intelligence to patch a missing check."
+    },
+    {
+      "id": 2,
+      "prompt": "A team adds a hard cap of 20 turns per run. Is that a model change or a harness change?",
+      "options": [
+        "A model change, because the model decides when to stop",
+        "A harness change, because enforcing a cap is a rule outside the model",
+        "The prompt, because the cap is written in words",
+        "Neither — caps are not part of an agent system"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "The model may choose to stop early, but it cannot enforce a maximum. A cap is a rule the loop applies regardless of what the model wants, so it belongs to the harness. The tempting answer confuses the model's choice with the harness's enforcement."
+    },
+    {
+      "id": 3,
+      "prompt": "A behaviour is the same with every model you try, but changes the moment you edit the loop's code. Is it model-owned or harness-owned?",
+      "options": [
+        "Model-owned, because models differ",
+        "Harness-owned, because its behaviour tracks the code, not the model",
+        "Neither — it is a prompt issue",
+        "Both, because all behaviour is shared"
+      ],
+      "answer": 1,
+      "explanation": "The boundary test: if swapping the model doesn't change it, it is harness. The tempting first answer inverts the test — 'models differ' is exactly the case where you'd see a model-owned change, and here you don't."
+    },
+    {
+      "id": 4,
+      "prompt": "A run reports 'success' but the test suite is red. Which harness responsibility was missing?",
+      "options": [
+        "State assembly",
+        "Tool exposure",
+        "Verification before believing done",
+        "Stop condition"
+      ],
+      "answer": 2,
+      "explanation": "Nothing checked an observable signal before the loop accepted the result, so 'done' was the worker's opinion. The tempting answer is 'the model hallucinated success' — possibly true, but the harness should have verified against the tests regardless of what the model claimed."
     }
   ]
 }

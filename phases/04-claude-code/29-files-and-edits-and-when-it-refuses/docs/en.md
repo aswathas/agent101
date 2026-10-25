@@ -1,3 +1,7 @@
+# Files and Edits — and When It Refuses
+
+> A refusal is information, not a wall. It names the boundary you just crossed.
+
 **Type:** Learn
 **Prerequisites:** Lesson 28 (Install, First Run, Verify)
 **Time:** ~30 minutes

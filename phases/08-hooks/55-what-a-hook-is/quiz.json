@@ -2,26 +2,52 @@
   "lesson": "08-hooks/55-what-a-hook-is",
   "title": "What a Hook Is",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about What a Hook Is that needs a new situation, not recall.",
+      "prompt": "You've told the agent three times not to create a worktree without committing first. It keeps forgetting. You want the rule to hold whether or not the model is paying attention. What should you build?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "A PreToolUse hook on the worktree-creating tool, exiting 2 when the tree is dirty",
+        "Another section in CLAUDE.md, placed above the file rules so it gets read first",
+        "A skill that documents the rule, invoked at the top of each session",
+        "A subagent that reviews worktree creation after the fact and reports back"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "A rule in the window is a request — it competes with everything else for attention and it compacts away. A PreToolUse hook runs outside the window, in your code, before the action, so it holds or it doesn't; there is no version of this where the model is 'forgetting' a hook. Option B is a stronger version of the thing that already failed three times. Option C is still a request, just packaged, and skills fire by judgment. Option D is strictly worse than the rule it replaces: it's a request plus a delay plus a report after the damage.",
+      "concept": "hook-is-not-an-instruction"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A teammate asks why your project hook didn't replace the one in their user settings. Which answer is correct?",
+      "options": [
+        "Settings files merge — both hooks run, so removing your project's copy leaves theirs live",
+        "The project file wins because it's closer to the working directory",
+        "Only the highest-precedence file that matches is loaded, and the rest are ignored",
+        "The user file wins, because user settings outrank project settings for security"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "Hooks from every settings level merge rather than shadowing each other — that's why 'I removed the block' can leave a hook running from a file you forgot about. Option B inverts precedence: settings resolve toward user and managed levels, not toward the closest path. Option C describes override semantics, which is exactly what hooks don't do; a deny from one handler and an allow from another resolve by the deny > defer > ask > allow order, not by file. Option D sounds plausible for a security setting but isn't how hooks merge.",
+      "concept": "settings-merge"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You want a hook to tell the model that a file it just edited is generated build output, so it fixes the source next time. Which event and mechanism fit?",
+      "options": [
+        "PostToolUse with additionalContext in a JSON object on stdout",
+        "PreToolUse with a deny decision, since the edit should never have happened",
+        "PostToolUse with exit 2, which undoes the edit and blocks the turn",
+        "SessionStart with a systemMessage listing the generated files"
+      ],
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "additionalContext is exactly this: it goes into the model's context beside the tool result, so the model learns the fact it couldn't derive. It has to be PostToolUse because that's where the tool result is — and PostToolUse cannot block, so the 'deny' framing is unavailable. Option B puts the check before the edit, which would have to guess from the file path alone, and denies a legitimate write. Option C is the trap: exit 2 on PostToolUse does not undo anything — the file is already written — it only hands stderr to the model. Option D fires once per session, long before the relevant turn.",
+      "concept": "post-vs-pre-timing"
     }
   ]
 }

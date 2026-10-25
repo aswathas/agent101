@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Worktrees, Deep — session vs per-agent that needs a new situation, not recall.",
+      "prompt": "You open two terminals and run `claude` in the same folder, then switch one to a different branch with `git switch`. Both now edit the same file. Why did the branch not protect you?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Because `git switch` in a session doesn't change the session's branch",
+        "Because a branch is a label on commits, not a separate working tree",
+        "Because two sessions can't be on different branches at once",
+        "Because the branch change only takes effect after a commit"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A branch says where commits land; it doesn't give the session its own files. Two sessions on different branches still share one working tree and overwrite each other's files. Two sessions *can* be on different branches — but only with separate working directories, which is what a worktree provides.",
+      "concept": "branch-vs-worktree"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "Your session is not in a worktree. You want one particular refactor subagent to edit overlapping files without colliding with anything else, while the rest of the session stays put. What is the right scope?",
+      "options": [
+        "Start the whole session over with `--worktree`",
+        "Add `isolation: worktree` to that one subagent",
+        "Give every subagent `isolation: worktree`",
+        "Ask the agent to run `git worktree add` itself before editing"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "Per-agent isolation targets exactly that agent, leaving the rest of the session in the main checkout — the scope you asked for. Restarting the session with `--worktree` isolates everything, which is more than needed. Isolating every subagent is broader still. Asking the agent to run git itself is the prose-and-hope version that Lesson 76 shows the harness replaces with an enforced check.",
+      "concept": "isolation-scope"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A subagent with `isolation: worktree` runs, edits two files, and finishes. You expected to find its worktree to inspect, but `git worktree list` doesn't show it. What most likely happened?",
+      "options": [
+        "The worktree was removed automatically because the subagent made no changes",
+        "Worktree isolation only applies to the main session, not subagents",
+        "The worktree is stored outside git, so `git worktree list` misses it",
+        "The subagent committed, so its worktree merged and was removed"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "A per-agent worktree is temporary and removed automatically when the subagent finishes *without changes* — so if the edits didn't actually land, the directory is gone. Isolation does apply to subagents; that is its whole point. `git worktree list` shows git worktrees. A commit does not auto-merge; a worktree with real changes stays on disk rather than vanishing silently.",
+      "concept": "per-agent-worktree-lifetime"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Which of these is still *shared* between a worktree and the main checkout, even though the files are separate?",
+      "options": [
+        "The tracked source files",
+        "The `.git` directory, including history and remotes",
+        "The branch each working tree is on",
+        "The contents of `.env`"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A worktree shares one `.git`, so history, refs, and remotes are common; that's why commits made inside are visible from the main checkout. Tracked files are per-worktree checkouts, each worktree is on its own branch, and untracked files like `.env` are absent unless a `.worktreeinclude` copies them in.",
+      "concept": "what-worktrees-share"
     }
   ]
 }

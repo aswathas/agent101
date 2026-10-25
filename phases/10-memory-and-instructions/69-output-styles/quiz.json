@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Output Styles that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "You write a custom output style to change how the agent explains things. After selecting it, the agent stops scoping its code changes and stops verifying its work. What did you miss?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Nothing — that is expected, and you should switch back to Default for coding",
+        "`keep-coding-instructions: true`, which keeps the built-in software-engineering instructions alongside your style",
+        "`force-for-plugin: true`, which prevents the coding instructions from being dropped",
+        "`outputStyle` set in `~/.claude/settings.json` rather than the project settings"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "A custom style replaces Claude Code's built-in software-engineering instructions unless `keep-coding-instructions` is true. Option 0 is tempting because the symptoms look like 'this style is for writing' — but you did not intend to change the coding behaviour, and the field is the fix."
+    },
+    {
+      "id": 2,
+      "prompt": "You want the agent to lead every explanation with a diagram, but only in one repository. Where do you put the style file?",
+      "options": [
+        "`~/.claude/output-styles/`, so it is available everywhere",
+        "`.claude/output-styles/` in that repository",
+        "`.claude/rules/`, because it is a project instruction",
+        "`CLAUDE.md`, under a heading"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "A project output style lives in `.claude/output-styles/` and is committed with the repo. Option 0 is tempting because it works immediately — but a user-level style applies to every project, which is more than you asked for."
+    },
+    {
+      "id": 3,
+      "prompt": "Your team needs a formatter to run after every file edit, no exceptions. A teammate suggests an output style that says \"always run the formatter after edits.\" Why is that the wrong mechanism?",
+      "options": [
+        "Output styles can't mention tools, only tone",
+        "A style is an instruction the agent follows, so it can be missed; a hook runs regardless of what the agent decides",
+        "Output styles only apply to the first response in a session",
+        "A style would need `keep-coding-instructions: true` to run commands"
+      ],
+      "answer": 1,
+      "explanation": "Styles are guidance, not enforcement, so a guarantee needs a hook. Option 0 is tempting because styles do read like prompts — but the problem is not what they can mention; it is that they cannot guarantee an action."
+    },
+    {
+      "id": 4,
+      "prompt": "You create a new custom style file while a session is running, select it, and nothing changes. What is the most likely cause?",
+      "options": [
+        "The style name in the frontmatter doesn't match the file name",
+        "In the terminal, style files are read at startup, so a new file needs a restart",
+        "Custom styles must be set in `settings.json` before a session starts",
+        "The style was rejected because it has no `description`"
+      ],
+      "answer": 1,
+      "explanation": "The terminal reads style files when it starts, so a file created mid-session is picked up after a restart. Option 2 is tempting because settings often need a restart — but selecting an existing style mid-session does work; it is the new file that is not read."
     }
   ]
 }

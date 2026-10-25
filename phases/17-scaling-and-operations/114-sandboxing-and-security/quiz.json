@@ -2,26 +2,49 @@
   "lesson": "17-scaling-and-operations/114-sandboxing-and-security",
   "title": "Sandboxing and Security Model",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Sandboxing and Security Model that needs a new situation, not recall.",
+      "prompt": "The sandbox is on and set to auto-allow. A build tool cannot reach a host inside the sandbox; Claude retries the command unsandboxed and it succeeds. You never saw a prompt. What is the correct fix if you want that command to stay sandboxed?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Turn off auto-allow, so sandboxed commands prompt again",
+        "Set `allowUnsandboxedCommands: false` (strict sandbox mode), which removes the retry escape hatch",
+        "Add the command to `excludedCommands` so it stops failing",
+        "Switch to `bypassPermissions` so no prompts interrupt the run"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "By default a blocked command may be retried with `dangerouslyDisableSandbox`, which runs it with full access. `allowUnsandboxedCommands: false` removes that path: Claude Code ignores the parameter and the command stays sandboxed. A is tempting because auto-allow sounds like the risk, but auto-allow only approves commands that run *inside* the sandbox — the danger is the command leaving it, which auto-allow does not control. C makes the tool run outside the sandbox *by policy*, which is the opposite of the goal. D skips even more approvals."
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You added `sandbox.filesystem.denyRead: [\"~/.ssh\"]` and confirmed a sandboxed shell command cannot read the key. An agent still prints the key's contents using the Read tool. Why?",
+      "options": [
+        "The deny path syntax is wrong, so it silently matched nothing",
+        "The Read tool is a file tool, and file tools run outside the sandbox, so they follow permission rules instead",
+        "The key was already in the model's context before the sandbox started",
+        "The sandbox only applies to Claude's own commands, not to Claude's tools"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The sandbox wraps shell commands. Built-in file and web tools — Read, Edit, Write, WebFetch, WebSearch — run outside it and are governed by the permission system, so a `sandbox.filesystem.denyRead` entry does not stop the Read tool. To block that path you write a permission deny rule (for example `Read(~/.ssh/**)`). A is the tempting answer because a mis-typed path really does fail silently, but the shell-command probe passing proves the rule matched. C is possible in principle but the question states the Read tool fetched it. D is the misconception the lesson targets: the sandbox is a shell boundary, not a tool boundary."
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A developer on native Windows sets `sandbox.enabled: true` and expects shell commands to be confined. What actually happens?",
+      "options": [
+        "Shell commands are sandboxed by default once the setting is true",
+        "Commands run unsandboxed, because the sandbox needs macOS, Linux, or WSL2; the developer must run Claude Code inside WSL2 to get it",
+        "Only network access is blocked; filesystem writes stay open",
+        "Windows uses a different sandbox that is on by default"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The sandbox is implemented with the operating system's facilities — Seatbelt on macOS, `bubblewrap` and `socat` on Linux and WSL2 — and on native Windows Claude Code runs commands unsandboxed. The setting has nothing to enforce against. The honest fix is to run Claude Code inside a WSL2 distribution. A is the tempting assumption that a true setting means an active boundary. C describes a real partial configuration (`filesystem.disabled`) that keeps network isolation, but it is unrelated to Windows. D invents a Windows-specific mechanism that does not exist."
     }
   ]
 }

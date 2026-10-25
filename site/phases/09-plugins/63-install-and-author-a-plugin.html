@@ -3,95 +3,339 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Install from Marketplace, and Author One — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<title>Install from a Marketplace, and Author One — Harnessing Claude Code</title>
+<meta name="description" content="You can build a three-component plugin in one sitting, load it from disk">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Install from Marketplace, and Author One</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li class="on"><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 62, Anatomy and the Manifest</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">BUILD · PHASE 09 · LESSON 63</p>
+      <h1>Install from a Marketplace, and Author One</h1>
+      <p class="lesson-motto">You can build a three-component plugin in one sitting, load it from disk</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Build</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 62, Plugin Anatomy; and the components themselves —</dd></div>
+        <div><dt>Time</dt><dd>~45 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
-
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Build a plugin directory holding a skill, an agent, and a hook, in the layout from Lesson 62</li><li>Validate it from the shell before you ever start a session with it</li><li>Load it with <code>--plugin-dir</code>, reload edits with <code>/reload-plugins</code>, and read the error surface when it doesn't load</li><li>Publish it through a local <code>marketplace.json</code> so a teammate installs it by name</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You have the three files. You move them into a folder, run <code>claude plugin install</code> — except there is nothing to install <em>from</em>, because the plugin isn't in any marketplace, it's just a directory on your laptop. So you pass <code>--plugin-dir</code>, it loads, and the hook doesn't fire. You check the JSON. It's correct. You check the script by hand — it blocks. In the session, nothing happens.</p>
+<p>Twenty minutes later: the hook <em>is</em> loaded, but the matcher is on <code>Bash</code> and the session's tool is named something else, or the script path is <code>${CLAUDE_PLUGIN_ROOT}/scripts/...</code> written in shell form without quotes and Windows ate it. The session never says. The debug log does.</p>
+<p>Or the other one: you paste the hook into <code>settings.json</code> &quot;just to test it&quot; and forget to remove it. Now the plugin's hook and the settings hook both fire, and the doubled output reads as a broken plugin.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>There are three ways to get a plugin in front of a session, and they differ only in who decides when it's ready.</p>
+<div class="table-wrap"><table><thead><tr><th>Route</th><th>Loads when</th><th>Who runs it</th></tr></thead><tbody><tr><td><code>--plugin-dir ./x</code></td><td>That one session</td><td>You, every time</td></tr><tr><td>Plugin in <code>~/.claude/skills/</code></td><td>Every session, no flag</td><td>Nobody — it just loads</td></tr><tr><td>Marketplace entry</td><td>Sessions where it's installed</td><td>A teammate, by name</td></tr></tbody></table></div>
+<p><strong>Author loop: <code>--plugin-dir</code> → validate → reload.</strong> Build, validate from the shell, load for one session, edit, <code>/reload-plugins</code>. Nothing is installed while you're developing, so there is no half-installed state to clean up.</p>
+<p><strong>Debug loop: four places, in this order.</strong> When an edit doesn't show up:</p>
+<ol><li><code>claude plugin validate &lt;path&gt;</code> — manifest and frontmatter</li><li><code>/reload-plugins</code> — did the session pick up your disk edits</li><li><code>/plugin</code> → <strong>Errors</strong> tab — what failed to load and why</li><li><code>claude plugin list</code> (shell) — <code>Status: loaded</code> or the load error</li></ol>
+<p>The hook case needs one more: trigger the event and read the hook debug log. A hook that is loaded and never matched looks exactly like a hook that isn't loaded.</p>
+<h3 id="the-rules-that-cost-you-the-twenty-minutes">The rules that cost you the twenty minutes</h3>
+<p><strong>Paths are not yours.</strong> A hook calls its script through <code>${CLAUDE_PLUGIN_ROOT}</code>, which expands to the plugin's <em>installed</em> directory. Under <code>--plugin-dir</code> that's your folder. Use exec form (<code>command</code> + <code>args</code>) so the substituted path stays one argument; if you must use shell form, quote it.</p>
+<p><strong>Hooks are the only component with a wrapper key.</strong> <code>hooks/hooks.json</code> wraps the event map in <code>&quot;hooks&quot;:</code>. A bare event map fails to load. Lesson 62 covered this; it is the single most common first-plugin failure.</p>
+<p><strong>Hooks have no namespace prefix.</strong> A copy in <code>settings.json</code> and the plugin's copy both fire. While converting your existing setup, leave the originals in place until the plugin version is verified — then delete them, or live with every block firing twice.</p>
+<p><strong>Skills and agents get renamed.</strong> A skill that was <code>/review</code> becomes <code>/guardrail-kit:review</code>. <code>/deploy</code> and <code>/guardrail-kit:deploy</code> both work while both exist; they stop being the same agent once you delete the original.</p>
+<h3 id="what-a-marketplace-actually-is">What a marketplace actually is</h3>
+<p>A directory or repo with <code>.claude-plugin/marketplace.json</code>, listing plugins and where to fetch each. Not a hosted store — you add it once, then its plugins install by name. You need one only to share. A teammate with your folder on a shared drive can just as easily copy the directory.</p>
+<blockquote><p><strong>The reframe:</strong> a plugin has four places to fail — the manifest, the layout,</p><p>the path wiring, and the load itself — and exactly one of them will tell you</p><p>so, so the whole authoring loop is really just &quot;find which of the four it</p><p>was&quot; in the order cheapest to check.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>Everything below runs from <code>code/</code> in this lesson's folder. A complete plugin is there as the answer key; do these steps yourself before comparing.</p>
+<h3 id="1-create-the-directory-and-the-manifest">1. Create the directory and the manifest</h3>
+<pre class="code"><code>cd code
+mkdir -p guardrail-kit/.claude-plugin</code></pre>
+<p>Write <code>guardrail-kit/.claude-plugin/plugin.json</code>:</p>
+<pre class="code" data-lang="json"><code>{
+  &quot;name&quot;: &quot;guardrail-kit&quot;,
+  &quot;description&quot;: &quot;Blocks dangerous git operations and hands diff review to a subagent&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;author&quot;: { &quot;name&quot;: &quot;You&quot; }
+}</code></pre>
+<p>✅ You pass when <code>claude plugin validate ./guardrail-kit</code> prints <code>Validation passed</code>.</p>
+<h3 id="2-add-a-skill">2. Add a skill</h3>
+<pre class="code"><code>mkdir -p guardrail-kit/skills/review-diff</code></pre>
+<p><code>guardrail-kit/skills/review-diff/SKILL.md</code>:</p>
+<pre class="code" data-lang="markdown"><code>---
+name: review-diff
+description: Review the current diff for lost work, secrets, and scope creep before committing.
+disable-model-invocation: true
 ---
 
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
+Review the working-tree diff for three things: lost work, secrets, scope.
+Report file paths. End with `SAFE TO COMMIT` or `BLOCKED: &lt;reason&gt;`.
+Do not edit files.</code></pre>
+<p>Note the directory — <code>skills/&lt;name&gt;/SKILL.md</code>. One directory per skill, not a flat <code>.md</code> file.</p>
+<p>✅ You pass when <code>claude plugin validate</code> still passes and the file is at <code>skills/review-diff/SKILL.md</code>, not <code>skills/review-diff.md</code>.</p>
+<h3 id="3-add-a-subagent">3. Add a subagent</h3>
+<p><code>guardrail-kit/agents/diff-scout.md</code>:</p>
+<pre class="code" data-lang="markdown"><code>---
+name: diff-scout
+description: Reads one diff and reports what changed. No fixes, no style opinions.
+tools: Read, Grep, Glob, Bash
+model: sonnet
 ---
 
-## The Concept
+Report file paths and a one-line factual description per file.
+Never propose a fix. Never edit a file.</code></pre>
+<p>The restricted <code>tools</code> list is the point: this agent reads and reports. It cannot edit, so it cannot quietly &quot;help&quot;.</p>
+<p>✅ You pass when <code>claude plugin validate</code> passes and the agent's frontmatter has no <code>Edit</code> or <code>Write</code> in <code>tools</code>.</p>
+<h3 id="4-add-the-hook">4. Add the hook</h3>
+<p><code>guardrail-kit/hooks/hooks.json</code> — note the wrapper:</p>
+<pre class="code" data-lang="json"><code>{
+  &quot;hooks&quot;: {
+    &quot;PreToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;Bash&quot;,
+        &quot;hooks&quot;: [
+          {
+            &quot;type&quot;: &quot;command&quot;,
+            &quot;command&quot;: &quot;node \&quot;${CLAUDE_PLUGIN_ROOT}/scripts/block-dangerous-git.mjs\&quot;&quot;
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<p>And <code>guardrail-kit/scripts/block-dangerous-git.mjs</code>:</p>
+<pre class="code" data-lang="javascript"><code>#!/usr/bin/env node
+// PreToolUse hook: reads tool-call JSON on stdin, exits 0 to allow,
+// 2 to block and show stderr to the model.
+import { createInterface } from 'node:readline';
 
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
+const DENY = [
+  { re: /\bgit\s+push\b[^|;&amp;\n]*(--force\b(?!-with-lease)|\s-f\b)/,
+    why: 'force push overwrites a branch others may already have based work on. Use --force-with-lease.' },
+  { re: /\bgit\s+reset\b[^|;&amp;\n]*--hard\b/,
+    why: 'reset --hard discards uncommitted work with no undo. Commit or stash first.' },
+];
 
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
+const rl = createInterface({ input: process.stdin });
+let raw = '';
+for await (const chunk of rl) raw += chunk;
 
----
+let toolInput = {};
+try { toolInput = JSON.parse(raw || '{}').tool_input ?? {}; }
+catch { process.exit(0); }   // unparseable stdin is not our call to make
 
-## Build It
+const normalized = String(toolInput.command ?? '').replace(/\\\r?\n/g, ' ');
+const hit = DENY.find(({ re }) =&gt; re.test(normalized));
+if (hit) {
+  process.stderr.write(`guardrail-kit blocked this command: ${hit.why}\n`);
+  process.exit(2);
+}
+process.exit(0);</code></pre>
+<p>✅ You pass when you can run the script by hand and watch it exit 2:</p>
+<pre class="code"><code>echo '{&quot;tool_input&quot;:{&quot;command&quot;:&quot;git push --force origin main&quot;}}' \
+  | node guardrail-kit/scripts/block-dangerous-git.mjs
+echo $?</code></pre>
+<h3 id="5-load-it-without-installing">5. Load it without installing</h3>
+<pre class="code"><code>claude --plugin-dir ./guardrail-kit</code></pre>
+<p>In the session: type <code>/</code> and look for <code>/guardrail-kit:review-diff</code>. Run <code>/plugin</code> → <strong>Installed</strong>, find <code>guardrail-kit</code>, open its details and confirm the inventory lists one skill, one agent, one hook.</p>
+<p>✅ You pass when <code>/guardrail-kit:review-diff</code> runs and <code>/plugin</code> lists all three components.</p>
+<h3 id="6-prove-the-guardrail-blocks">6. Prove the guardrail blocks</h3>
+<p>In that session, ask the agent to push your branch with force. It should refuse and quote the hook's stderr. Then try a normal <code>git status</code> — that must go through.</p>
+<p>✅ You pass when the force push is refused with your hook's wording and the harmless command is not.</p>
+<h3 id="7-edit-and-reload">7. Edit and reload</h3>
+<p>Change the wording in the script's <code>why</code> string. Save. In the same session:</p>
+<pre class="code"><code>/reload-plugins</code></pre>
+<p>Ask again. New wording.</p>
+<p>✅ You pass when the new wording appears without restarting the session.</p>
+<h3 id="8-publish-it-as-a-marketplace">8. Publish it as a marketplace</h3>
+<p><code>code/marketplace/.claude-plugin/marketplace.json</code>:</p>
+<pre class="code" data-lang="json"><code>{
+  &quot;name&quot;: &quot;workflowtest-local&quot;,
+  &quot;owner&quot;: { &quot;name&quot;: &quot;You&quot; },
+  &quot;plugins&quot;: [
+    { &quot;name&quot;: &quot;guardrail-kit&quot;, &quot;source&quot;: &quot;./guardrail-kit&quot; }
+  ]
+}</code></pre>
+<p>Note <code>source</code> is relative to the <em>marketplace</em> directory, so it reads <code>../guardrail-kit</code> from here — fix the path so it resolves, then:</p>
+<pre class="code"><code>/plugin marketplace add ./code/marketplace
+/plugin install guardrail-kit@workflowtest-local</code></pre>
+<p>Choose a scope. Then <code>/plugin install guardrail-kit@workflowtest-local</code> again in a <em>different</em> session without <code>--plugin-dir</code> and confirm the command is there.</p>
+<p>✅ You pass when a session you did not pass <code>--plugin-dir</code> to still offers <code>/guardrail-kit:review-diff</code>, and <code>claude plugin list</code> shows it with a scope.</p>
+<h3 id="9-break-it-deliberately">9. Break it deliberately</h3>
+<p>Move <code>skills/</code> inside <code>.claude-plugin/</code>. Validate. Reload. Now the plugin loads with its skill missing and <code>/plugin</code> → <strong>Errors</strong> names the path.</p>
+<p>✅ You pass when you have read the exact Errors-tab line, then put <code>skills/</code> back and confirmed the skill returns.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>claude plugin validate &lt;path&gt;</code></td><td>Before every load while authoring</td></tr><tr><td><code>claude --plugin-dir &lt;path&gt;</code></td><td>Testing your plugin for one session</td></tr><tr><td><code>/reload-plugins</code></td><td>You edited files on disk mid-session</td></tr><tr><td><code>/plugin</code> → Errors</td><td>Something loads but a component is missing</td></tr><tr><td><code>claude plugin list</code></td><td>Which plugins are loaded, from where, at what scope</td></tr><tr><td><code>/plugin marketplace add &lt;source&gt;</code></td><td>Sharing your plugin by name</td></tr><tr><td><code>/plugin install &lt;name&gt;@&lt;marketplace&gt;</code></td><td>Installing, with a scope choice</td></tr><tr><td><code>claude plugin install/disable/enable/uninstall</code></td><td>The same, from a script, no session</td></tr><tr><td><code>~/.claude/skills/&lt;name&gt;/</code> with a manifest</td><td>A plugin you want in every session, forever</td></tr><tr><td><code>&quot;hooks&quot;: { ... }</code> wrapper</td><td>Every plugin hooks file</td></tr><tr><td><code>${CLAUDE_PLUGIN_ROOT}</code></td><td>Locating bundled scripts — never for state</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Add a second skill to the plugin. Name it <code>ship</code>. Reload. Confirm both <code>/guardrail-kit:review-diff</code> and <code>/guardrail-kit:ship</code> exist and that neither appears without the prefix. ✅ You pass when you can run both, and can say what the unprefixed version would have been called as a loose skill.</li></ol>
+<ol><li class="criterion">Copy the whole plugin to a scratch folder, delete <code>.claude-plugin/plugin.json</code>, and load it with <code>--plugin-dir</code>. It should still work, named after the directory. ✅ You pass when the skill and agent still run and you can state where the name now comes from — and which name prefix the components now carry.</li></ol>
+<ol><li class="criterion">Add a third rule to <code>DENY</code> for <code>git rebase</code> on a shared branch. Then test all four of these by piping to the script and reporting each exit code: <code>git push --force-with-lease</code>, <code>git push --force</code>, <code>git reset --soft HEAD~1</code>, <code>git reset --hard HEAD~1</code>. ✅ You pass when <code>--force-with-lease</code> and <code>--soft</code> exit 0, and you can point at the exact regex difference that separates the allowed form from the blocked one.</li></ol>
+<ol><li class="criterion">Install your plugin at <strong>user</strong> scope, then at <strong>project</strong> scope, and open <code>.claude/settings.json</code> and <code>.claude/settings.local.json</code> to see where each landed. Then commit a change and note what that does for a collaborator. ✅ You pass when you can say which file each scope writes and what a collaborator still has to run themselves.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td><code>--plugin-dir</code></td><td>&quot;install it&quot;</td><td>Loads a directory for <strong>one session</strong>. Nothing is written to settings. The authoring loop.</td></tr><tr><td>marketplace</td><td>&quot;the store&quot;</td><td>A repo or directory with <code>.claude-plugin/marketplace.json</code>. You add it once; its plugins install by name.</td></tr><tr><td><code>name</code> in <code>plugin.json</code></td><td>&quot;the label&quot;</td><td>The required prefix on every skill and agent the plugin provides.</td></tr><tr><td>scope</td><td>&quot;where it's installed&quot;</td><td><code>user</code> (all your projects), <code>project</code> (committed <code>.claude/settings.json</code>, everyone), <code>local</code> (this repo, you).</td></tr><tr><td>validate</td><td>&quot;test it&quot;</td><td>Checks the manifest and every component's frontmatter, from the shell, before load.</td></tr><tr><td><code>/reload-plugins</code></td><td>&quot;refresh&quot;</td><td>Picks up disk edits in a running session. May decline if it would invalidate the prompt cache.</td></tr><tr><td>Errors tab</td><td>&quot;the error log&quot;</td><td><code>/plugin</code> → <strong>Errors</strong>: what failed to load and why. Silent failures are listed here, nowhere else.</td></tr><tr><td><code>${CLAUDE_PLUGIN_ROOT}</code></td><td>&quot;the install path&quot;</td><td>The plugin's installed directory. Moves on update — never write state there.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Publishing to Anthropic's directory.</strong> Submitting for public listing, review, and the listing fields (<code>icon</code>, <code>homepage</code>, the four URL fields). Real process, separate page in the docs. Come back when you actually want strangers to find it.</p>
+<p><strong>Plugin dependencies.</strong> <code>&quot;dependencies&quot;: [&quot;other-plugin&quot;]</code> makes Claude Code install and enable the other plugin too, and refuse to disable one that something still needs. Come back when you split a plugin in two.</p>
+<p><strong><code>userConfig</code>.</strong> Prompting the user for values — an endpoint, a masked token — at install time. This is the mechanism that lets a plugin ship an MCP server needing credentials. Worth a whole pass; not needed by a plugin that runs a local script.</p>
+<p><strong>Bundled MCP servers.</strong> <code>.mcpb</code> / <code>.dxt</code> bundles inside a plugin. Phase 07 owns the server; this phase only needed to show it rides along.</p>
+<p><strong>Auto-update.</strong> Marketplace plugins from the official marketplace refresh on their own; yours and third-party ones do not, by default. One line in <code>/plugin</code> → Marketplaces when you want it, and a Phase 03 cost conversation.</p>
+      </div>
 
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">Your plugin loads under <code>claude --plugin-dir ./guardrail-kit</code> and its skill runs, but the PreToolUse hook never fires. You run the script by hand with piped stdin and it exits 2 correctly. <code>claude plugin validate</code> passes. Where do you look next, and why?</p>
+        <ol class="options" type="A">
+          <li>Reinstall the plugin through a marketplace — <code>--plugin-dir</code> runs hooks in a sandbox where PreToolUse never fires</li>
+          <li>Check the hook debug log after triggering the event: a loaded hook whose matcher never matched looks identical to a hook that isn't loaded</li>
+          <li>Add <code>disable-model-invocation: false</code> to the hook's frontmatter so the harness schedules it</li>
+          <li>Move <code>hooks/hooks.json</code> into <code>.claude-plugin/</code> so it is discovered alongside the manifest</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Check the hook debug log after triggering the event: a loaded hook whose matcher never matched looks identical to a hook that isn't loaded</p>
+          <p class="why">Validate passing plus the script behaving correctly by hand narrows the failure to wiring, not logic — and the wiring check is the debug log, which reports which hooks matched, their exit codes, and their output. <code>--plugin-dir</code> loads hooks exactly as an installed plugin does (A is false). Hooks have no frontmatter and no model-invocation flag (C invents a field). Moving the file into <code>.claude-plugin/</code> is the one place hooks definitely do not load (D), and it would have broken validate, which passed.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You converted your <code>.claude/settings.json</code> setup into a plugin. Skills and agents both work, so you deleted the originals from <code>.claude/</code>. Now a teammate reports every blocked git command prints its refusal twice. What is happening?</p>
+        <ol class="options" type="A">
+          <li>The plugin is installed twice, once per component directory, so each hook fires twice</li>
+          <li>You moved the hooks but left the original <code>hooks</code> block in <code>.claude/settings.json</code>, and plugin hooks carry no namespace prefix to de-duplicate them</li>
+          <li>The matcher <code>&quot;Bash&quot;</code> matched two tools — the shell tool and the plugin's own script runner — so each hook ran twice</li>
+          <li>Exit code 2 causes Claude Code to retry the PreToolUse check once before surfacing the block</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> You moved the hooks but left the original <code>hooks</code> block in <code>.claude/settings.json</code>, and plugin hooks carry no namespace prefix to de-duplicate them</p>
+          <p class="why">Skills and agents get a <code>guardrail-kit:</code> prefix, so the two sets coexisted harmlessly and deleting the originals was correct. Hooks get no prefix and no conflict detection — the leftover block in <code>settings.json</code> and the plugin's copy both match <code>PreToolUse</code> on <code>Bash</code>, so both run. Plugins are installed once per source, not per component directory (A), a matcher names tool types rather than counting them (C), and exit 2 blocks without retrying (D). This is the exact failure the convert-and-keep-originals order exists to prevent: verify the plugin's hooks work before deleting the old ones.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A teammate on another machine needs your three-component setup. The directory sits in a repo you both have read access to, it will change every few weeks, and neither of you wants to maintain an install step. What is the smallest thing that works?</p>
+        <ol class="options" type="A">
+          <li>They clone the repo and run <code>claude --plugin-dir ./guardrail-kit</code> in each session themselves</li>
+          <li>They add your repo as a marketplace once, then install and update the plugin by name as it changes</li>
+          <li>You zip the plugin and send a new zip every time anything changes</li>
+          <li>They copy the plugin folder into their own <code>~/.claude/skills/</code> and update it with git pull</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> They add your repo as a marketplace once, then install and update the plugin by name as it changes</p>
+          <p class="why">A marketplace entry lists the plugin and where to fetch it; they add it once, and from then on <code>claude plugin install name@marketplace</code> plus an update flow handles every change — which is exactly the drift problem plugins exist to solve. <code>--plugin-dir</code> (A) makes them remember a flag per session and never picks up changes, so it recreates the manual step you were trying to remove. Repackaging a zip (C) makes you the update mechanism. Pulling into <code>~/.claude/skills/</code> (D) works mechanically and is a fine solo trick, but it puts an unmanaged copy of a versioned plugin outside any version tracking, and it hardcodes an assumption about where their plugins live.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/09-plugins/62-plugin-anatomy.html"><span>Previous</span>62. Plugin Anatomy — the directory and the manifest</a>
+    <a class="next" href="../../phases/09-plugins/64-plugin-economics.html"><span>Next</span>64. Plugin Economics — What Every Enabled Plugin Costs</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

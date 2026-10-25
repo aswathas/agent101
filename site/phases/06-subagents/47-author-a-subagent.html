@@ -3,95 +3,324 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Author a Subagent + the fork-context subtlety — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<title>Author a Subagent — and the Fork-Context Subtlety — Harnessing Claude Code</title>
+<meta name="description" content="You can write one subagent that does a narrow job and refuses the rest — and">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Author a Subagent + the fork-context subtlety</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li class="on"><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 46, Built-ins — Explore, Plan, general-purpose</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">BUILD · PHASE 06 · LESSON 47</p>
+      <h1>Author a Subagent — and the Fork-Context Subtlety</h1>
+      <p class="lesson-motto">You can write one subagent that does a narrow job and refuses the rest — and</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Build</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lessons 45 and 46; Phase 05 Lesson 44 (Author a Skill From Scratch)</dd></div>
+        <div><dt>Time</dt><dd>~45 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
-
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Author a subagent that succeeds on its job and declines work outside it</li><li>Separate a skill from a subagent by asking what the result is <em>for</em></li><li>Check your own file for the failure modes that don't announce themselves</li><li>Explain what a fork inherits, and name the two costs you pay for it</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>An agent was given a tool restriction it could not use. The task was read a report, decide whether it needs a human, and file it. The subagent it was delegated to — written weeks earlier by someone else — had <code>Bash</code> in its pool, because the description said &quot;reviews incident reports&quot; and the author had not thought about what would happen when the same agent was handed a ticket.</p>
+<p>The agent ran a shell command it had no business running. Not because the prompt told it to. Because the capability was there and the task was ambiguous enough that it looked useful.</p>
+<p>Narrowness isn't a property of the description. It's a property of the file. And most subagents get authored the other way round: task-shaped prompt, tools whatever was convenient, and a body that hopes for the best.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Two decisions, and they are independent.</p>
+<p><strong>Which kind of agent is this?</strong></p>
+<div class="table-wrap"><table><thead><tr><th></th><th>Skill (Phase 05)</th><th>Subagent (this phase)</th></tr></thead><tbody><tr><td>Runs in</td><td>Your conversation</td><td>Its own window</td></tr><tr><td>Sees your history</td><td>Yes</td><td>No</td></tr><tr><td>Returns to</td><td>Your window, in place</td><td>A summary</td></tr><tr><td>Restricts tools</td><td>Not by default</td><td>Yes, at the pool</td></tr><tr><td>Use when</td><td>A workflow you want to run <em>here</em></td><td>Work whose output you don't want <em>here</em></td></tr></tbody></table></div>
+<p>The test: <strong>where should the result land?</strong> If you want it interleaved with your next thinking, it's a skill. If you want it summarized back and the mess left behind, it's a subagent.</p>
+<h3 id="the-narrowness-you-can-actually-enforce">The narrowness you can actually enforce</h3>
+<p>Three layers, weakest to strongest:</p>
+<ol><li><strong>The body asks nicely.</strong> &quot;Report only. Do not modify anything.&quot; A request.</li><li><strong><code>description</code> narrows routing.</strong> Anything that doesn't sound like this agent won't get here. Prevents most wrong delegations, not all — an explicit @-mention bypasses it entirely.</li><li><strong>The tool pool makes it impossible.</strong> <code>disallowedTools: Bash, Write, Edit</code> removes them. The agent cannot do the thing. There is no prompt that gets it there.</li></ol>
+<p>Build the subagent from layer 3 backwards. Decide what it must not be able to do, then write the body for the job that remains.</p>
+<h3 id="what-a-subagent-actually-receives">What a subagent actually receives</h3>
+<p>Not nothing. Not everything. This is the part people get wrong.</p>
+<p>A non-fork subagent starts with:</p>
+<ul><li><strong>Its own system prompt</strong> — the Markdown body, which <em>replaces</em> the Claude Code system prompt, plus environment details like the working directory</li><li><strong>The delegation message</strong> — written by Claude from your request. You usually don't write this.</li><li><strong><code>CLAUDE.md</code></strong> — every level the main conversation loads: user, project, local, managed policy, <code>AGENTS.md</code>. (<code>Explore</code> and <code>Plan</code> skip this.)</li><li><strong>Git status</strong> — a snapshot read at startup. (<code>Explore</code> and <code>Plan</code> skip this.)</li><li><strong>Preloaded skills</strong> — full content of anything in its <code>skills</code> field</li><li><strong>Nothing else.</strong> Not your conversation. Not the files you've already read. Not the skills you've already invoked. Not your output style. Not your auto memory.</li></ul>
+<p>Its <strong>context window size comes from its own model</strong>, not yours. Delegating to a smaller model gives it a smaller window. That is a quiet way to run out of room mid-task.</p>
+<p>It returns a summary. Everything intermediate stays in its window.</p>
+<h3 id="the-fork-subtlety">The fork subtlety</h3>
+<p>There is one exception to &quot;starts fresh&quot;. <strong>A fork inherits the entire parent conversation.</strong></p>
+<figure class="diagram"><pre>flowchart LR
+    subgraph Fresh[&quot;Non-fork subagent&quot;]
+        F1[&quot;Body&quot;] --&gt; F2[&quot;Delegation message&quot;]
+        F2 --&gt; F3[&quot;Its own window, from zero&quot;]
+    end
+    subgraph Forked[&quot;Fork&quot;]
+        K1[&quot;Whole parent conversation&quot;] --&gt; K2[&quot;Same system prompt, tools, model&quot;]
+        K2 --&gt; K3[&quot;Continues from where you are&quot;]
+    end</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<div class="table-wrap"><table><thead><tr><th></th><th>Fork</th><th>Non-fork subagent</th></tr></thead><tbody><tr><td>Context</td><td>Full conversation history</td><td>Fresh, with the prompt you pass</td></tr><tr><td>System prompt, tools</td><td>Same as main session</td><td>From its definition file, filtered in background</td></tr><tr><td>Model</td><td>Same as main session</td><td>From its <code>model</code> field</td></tr><tr><td>Prompt cache</td><td><strong>Shared</strong> with main session</td><td>Separate</td></tr><tr><td>Spawns further forks</td><td>No</td><td>Yes, up to a depth limit</td></tr></tbody></table></div>
+<p>Two costs, both real:</p>
+<p><strong>You lose isolation.</strong> The fork sees everything, including the parts of the conversation you were keeping out. For a side experiment that's a feature. For anything that must not see the main context, it is the wrong tool.</p>
+<p><strong>You may get the wrong thing by default.</strong> Fork mode is on by default in interactive sessions — so when Claude spawns a subagent without naming a type, it may spawn a <em>fork</em>, and the fork brings your conversation along. If you wanted a clean agent for that work, you now have one carrying your history.</p>
+<p><code>/subtask &lt;task&gt;</code> starts a fork yourself. The env var <code>CLAUDE_CODE_FORK_SUBAGENT</code> overrides the default (<code>1</code> on everywhere, <code>0</code> off everywhere); to keep fork mode but stop Claude from using it, deny the <code>fork</code> subagent type in your settings.</p>
+<p>Because a fork's system prompt and tool definitions are identical to the parent's, its first request reuses the parent's prompt cache. For a task needing the same context, a fork is cheaper than a fresh subagent. Same context, minus the re-send.</p>
+<blockquote><p><strong>The reframe:</strong> a subagent is a <em>narrow</em> agent whose tool pool defines what it</p><p>can be — and a fork is the opposite trade, buying a full inherited conversation</p><p>at the price of every isolation guarantee you had.</p></blockquote>
+<p>Claude Code ships weekly; fork defaults have changed more than once. Verify against <a href="https://code.claude.com/docs/en/sub-agents" target="_blank" rel="noopener">the subagents page</a> and <code>https://code.claude.com/docs/llms.txt</code> before teaching anyone a specific default.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-decide-the-floor-before-the-prompt">1. Decide the floor before the prompt</h3>
+<p>Pick a job you actually repeat. For this lesson:</p>
+<blockquote><p>Read an incident report file, classify it, and append one line to a triage file.</p><p>Refuse anything that is not an incident report file.</p></blockquote>
+<p>Before writing a word of body, answer: what must it never do? Answer: edit anything other than the triage file, run arbitrary shell, open the network.</p>
+<p>That answer is the file's real design.</p>
+<h3 id="2-write-it">2. Write it</h3>
+<p>Create <code>.claude/agents/incident-triage.md</code>:</p>
+<pre class="code" data-lang="markdown"><code>---
+name: incident-triage
+description: Reads an incident report file and appends one classified line to incidents-triage.md. Use only when handed a path to a report file. Refuses everything else.
+tools: Read, Grep, Glob, Edit
+model: sonnet
 ---
 
-## The Problem
+You triage incident reports. You do one thing.
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
+## What you do
 
----
+Given a path to an incident report file:
 
-## The Concept
+1. Read it.
+2. Classify it as one of: outage, data-loss, security, cosmetic, unknown.
+3. Append exactly one line to `incidents-triage.md`:
+   `&lt;date&gt; | &lt;path&gt; | &lt;class&gt; | &lt;one-line summary&gt;`
+4. Report the line you appended.
 
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
+## What you refuse
 
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
+If the request is anything other than &quot;triage this report file&quot;:
 
----
+- Say what you do in one sentence.
+- Stop. Do not approximate the task another way.
+- Do not read files that were not named.
 
-## Build It
+If asked to edit anything other than `incidents-triage.md`, say no and stop.
+`Edit` exists in your pool because you must append to one file. It is not
+permission to edit others.</code></pre>
+<h3 id="3-check-it-with-a-real-linter">3. Check it with a real linter</h3>
+<p>This lesson ships one:</p>
+<pre class="code" data-lang="bash"><code>node phases/06-subagents/47-author-a-subagent/code/check-subagent.mjs .claude/agents/incident-triage.md</code></pre>
+<p>It checks the things that fail silently — required fields, description length, tools-vs-disallowedTools overlap, a body that's empty of instructions, unrecognized field names.</p>
+<p>✅ You pass when it reports zero errors and you can explain what each check is protecting you from.</p>
+<h3 id="4-test-the-refusal-not-just-the-success">4. Test the refusal, not just the success</h3>
+<p>Three requests:</p>
+<pre class="code"><code>Use the incident-triage subagent on docs/incident-2024-03.md</code></pre>
+<pre class="code"><code>Use the incident-triage subagent to rename every file in src/ to kebab-case</code></pre>
+<pre class="code"><code>Use the incident-triage subagent to triage these and also fix the typo in line 3</code></pre>
+<p>The first should work. The second and third should be declined — and the third is the real test, because the &quot;and also&quot; is exactly how scope creeps.</p>
+<p>✅ You pass when 2 and 3 are declined and you can say which layer did the declining: routing, the body, or the missing tool.</p>
+<h3 id="5-find-where-the-enforcement-is-weak">5. Find where the enforcement is weak</h3>
+<p>The <code>rename</code> request above would be declined by the body — <code>Edit</code> is available, so nothing structurally stops it. Now set <code>disallowedTools: Edit</code> temporarily and retry.</p>
+<p>✅ You pass when the second version declines at the capability level instead of the request level, and you can say which one you'd trust more unattended.</p>
+<h3 id="6-now-do-the-opposite-on-purpose">6. Now do the opposite, on purpose</h3>
+<p>You've established what a narrow agent looks like. Now find a task where narrow is wrong: &quot;try two approaches to this migration, starting from everything we've decided, and tell me which is better.&quot;</p>
+<p>Ask for <code>/subtask</code> twice rather than delegating to two fresh agents.</p>
+<p>✅ You pass when both attempts begin from the current conversation and neither pasted your history back in, and you can name the cost you just paid.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Situation</th><th>Move</th></tr></thead><tbody><tr><td>Same narrow job keeps coming up</td><td>Write a subagent. Start from <code>disallowedTools</code>.</td></tr><tr><td>Claude picks the wrong agent</td><td>Fix <code>description</code> first, always</td></tr><tr><td>Agent runs but misbehaves</td><td>Fix the body</td></tr><tr><td>Agent does something it shouldn't</td><td>Fix the tool pool, not the prompt</td></tr><tr><td>Result belongs in your window</td><td>Skill, not subagent</td></tr><tr><td>Task needs your existing context</td><td>Fork or <code>/btw</code></td></tr><tr><td>Task must stay clean</td><td>Fresh subagent, explicit type</td></tr><tr><td><code>--agents</code> JSON</td><td>One-off, session-only. Prompt lives in <code>prompt</code>, not the body.</td></tr><tr><td><code>claude --agent &lt;name&gt;</code></td><td>Whole session runs as that agent, tool restrictions and all</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Author a subagent for a job you actually repeat. Run the checker. Then write one request it should decline and confirm it does. ✅ You pass when the checker is clean and the refusal names the boundary rather than apologising for it.</li></ol>
+<ol><li class="criterion">Take your agent and remove its <code>description</code> line entirely. Run three realistic requests through it. ✅ You pass when you can report what changed and whether the failures were routing failures or behaviour failures.</li></ol>
+<ol><li class="criterion">Pick a task from this week that you handled in the main conversation. Write two lines saying whether it belonged in a skill, a fresh subagent, or a fork — and what would have told you at the time. ✅ You pass when your reason names <em>where the result should land</em>, not how comfortable each option felt.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>narrow subagent</td><td>&quot;a focused agent&quot;</td><td>One whose tool pool makes out-of-scope work impossible, not merely discouraged.</td></tr><tr><td>skill vs subagent</td><td>&quot;prompt vs agent&quot;</td><td>Where the result lands: interleaved in your window, or summarized back.</td></tr><tr><td>delegation message</td><td>&quot;the prompt&quot;</td><td>Written by Claude from your request. The only channel to a no-CLAUDE.md agent.</td></tr><tr><td>fork</td><td>&quot;a subagent with context&quot;</td><td>Inherits the whole parent conversation, system prompt, tools, model, and prompt cache. No isolation.</td></tr><tr><td><code>/subtask</code></td><td>&quot;run it in the background&quot;</td><td>Starts a fork yourself, named from the task.</td></tr><tr><td>fork mode</td><td>&quot;a setting&quot;</td><td>On by default interactively; changes what Claude gets when it spawns a subagent with no type.</td></tr><tr><td>prompt cache sharing</td><td>&quot;it's faster&quot;</td><td>A fork's first request reuses the parent's cache. Cheap only because it inherited everything.</td></tr><tr><td>silent field ignoring</td><td>&quot;it's not supported&quot;</td><td>Unknown frontmatter keys are dropped with no warning. Check spelling.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Skills preloaded into subagents.</strong> The <code>skills</code> frontmatter field and the exact opposite thing, <code>context: fork</code> on a skill. The case is genuinely confusing and it is Lesson 48.</p>
+<p><strong>Worktree isolation.</strong> <code>isolation: worktree</code> and <code>isolation</code> on the Agent call. Nothing here concerns where <em>files</em> land — Phases 11 and 16.</p>
+<p><strong>Nested subagents.</strong> A subagent can spawn its own, to a depth limit. Useful for fan-out, and the depth limit is a number that changes. Phase 11.</p>
+<p><strong>Permission modes per subagent.</strong> <code>permissionMode</code> exists in frontmatter. What each mode does to the loop is Phase 04 Lesson 33.</p>
+<p><strong>Subagent output scanning.</strong> Claude Code scans a subagent's final report for instruction-shaped text and annotates it. Real, worth knowing, Phase 07 does the trust model.</p>
+      </div>
 
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">5 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">Your triage subagent declines most out-of-scope requests because its body says &quot;you do one thing.&quot; Last week it still ran an unwanted shell command. What closes the gap?</p>
+        <ol class="options" type="A">
+          <li>Add an explicit refusal list to the body, covering each case you can think of</li>
+          <li>Narrow the description so out-of-scope work never routes here</li>
+          <li>Add Bash to disallowedTools, so the capability is gone rather than discouraged</li>
+          <li>Set maxTurns low, so the agent has less opportunity to wander</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> Add Bash to disallowedTools, so the capability is gone rather than discouraged</p>
+          <p class="why">A refusal list is still a request and you have to enumerate every case; the capability itself is what makes the request unnecessary. Option A lengthens a prompt that already failed. Option B is bypassed by any explicit @-mention, so it reduces wrong delegations but cannot prevent a wrong one. Option D limits how long it runs, not what it may do.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You write max_turns: 10 in a subagent's frontmatter and the agent runs for thirty turns anyway. Why?</p>
+        <ol class="options" type="A">
+          <li>maxTurns only applies to subagents that set a model explicitly</li>
+          <li>maxTurns caps tool calls, not turns</li>
+          <li>The field is maxTurns; max_turns is unrecognized and silently ignored</li>
+          <li>maxTurns was capped at 5 in this version</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> The field is maxTurns; max_turns is unrecognized and silently ignored</p>
+          <p class="why">Unknown frontmatter keys are dropped with no warning, so the cap you thought you set was never applied — that's why nothing happened rather than something surprising. Option A and B invent rules that don't exist, and option D gives a cap that would have produced a partial return rather than unlimited running.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A subagent you delegated to was supposed to be clean and focused on one narrow job. It came back quoting details from a decision you made twenty turns ago that it had no reason to see. What happened?</p>
+        <ol class="options" type="A">
+          <li>The subagent read your CLAUDE.md, which records recent decisions</li>
+          <li>Fork mode is on by default, so Claude spawned a fork that inherited your conversation</li>
+          <li>The delegation message quoted the conversation back to it</li>
+          <li>The subagent resumed a previous run with your history attached</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Fork mode is on by default, so Claude spawned a fork that inherited your conversation</p>
+          <p class="why">When Claude spawns a subagent without naming a type, it may spawn a fork — and a fork inherits the whole parent conversation plus system prompt, tools, and model, which is exactly the context you were trying to isolate it from. Option A is wrong because CLAUDE.md holds conventions, not conversation. Option C is Claude's summary of your <em>request</em>, not your history. Option D requires a resume you never performed.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You wrote a reusable &quot;run the release checklist&quot; workflow. Running it dumped the whole checklist output into your conversation, which is fine — you want to act on each step as it comes. What should this have been?</p>
+        <ol class="options" type="A">
+          <li>A fork, so the checklist agent can see why each step exists</li>
+          <li>A skill, because the result belongs interleaved in your window</li>
+          <li>A subagent with maxTurns set high, so nothing gets truncated</li>
+          <li>A subagent with a skills field naming the checklist</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A skill, because the result belongs interleaved in your window</p>
+          <p class="why">The deciding question is where the result should land: interleaved in your own conversation means a skill, and a skill runs in your window by design. A subagent exists to keep its mess out of yours — here you'd get a summary of steps you need to follow one at a time, which is the opposite of useful. Option A adds isolation cost for no benefit; options C and D are variations on a subagent, which is the wrong shape regardless of tuning.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A subagent runs long searches across your whole repo and keeps running out of room on big ones. You never set a model. What's most likely?</p>
+        <ol class="options" type="A">
+          <li>It inherited your session's context window but lost track of the token count</li>
+          <li>Its context window comes from its own model's alias, which may be smaller than yours</li>
+          <li>Its window is fixed at 100k regardless of model, and you need autoCompactWindow</li>
+          <li>Subagents share one window pool across the session, so other agents ate its room</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Its context window comes from its own model's alias, which may be smaller than yours</p>
+          <p class="why">A subagent's window is sized by the model named in its own <code>model</code> field, not the parent's — so delegating to a cheaper alias quietly gives it a smaller room, and a search that fits in yours may not fit in its. Option A describes the opposite relationship. Option C invents a fixed size. Option D is wrong because each non-fork subagent's context is isolated — that's the whole point of the phase.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/06-subagents/46-built-in-subagents.html"><span>Previous</span>46. Built-in Subagents — Explore, Plan, general-purpose</a>
+    <a class="next" href="../../phases/06-subagents/48-skills-inside-subagents.html"><span>Next</span>48. Skills Inside Subagents — the genuinely confusing case</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

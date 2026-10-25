@@ -4,94 +4,263 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nodes and Edges — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can turn a project into a graph — nodes that produce something, arrows that">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Nodes and Edges</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li class="on"><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 97, Design Your Own Harness — and defend the trade-offs</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 15 · LESSON 98</p>
+      <h1>Nodes and Edges</h1>
+      <p class="lesson-motto">You can turn a project into a graph — nodes that produce something, arrows that</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 11, Lesson 71 (The Five Names); Phase 14, Lesson 91 (What a Harness Is)</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Draw a project as nodes and directed edges, and read every arrow as &quot;B needs A&quot;</li><li>Separate a real dependency from a sequencing preference</li><li>Spot a cycle on paper and say why no node in it can ever start</li><li>List the nodes that could start right now — the ones with no unfinished arrow pointing at them</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>A team split a feature into five jobs and gave one to each agent: &quot;Schema change.&quot; &quot;Write the API.&quot; &quot;Write the API tests.&quot; &quot;Update the docs.&quot; &quot;Add the migration.&quot;</p>
+<p>They designed it as a list — five rows, each looking independent. The run came back and nothing fit together. The tests were written against a schema that did not exist yet. The docs described an endpoint that changed while they were being written. The migration and the schema change both edited the same file, and one overwrote the other.</p>
+<p>The agents were fine. The five jobs were fine. What was missing was the <strong>relationship between the jobs</strong>. Nothing in the plan said the API tests need the schema. Nobody wrote down that the migration must land before the API. A list of five jobs says nothing about which four of them are safe to run at once.</p>
+<p>That is the cost of a task list: it keeps the units and throws away the wiring — and the wiring is the only thing that tells you what can actually run in parallel.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>A <strong>graph</strong> is two things: <strong>nodes</strong> and <strong>edges</strong>.</p>
+<ul><li>A <strong>node</strong> is a unit of work defined by its output — a file, a decision, a passing test.</li><li>An <strong>edge</strong> is a statement that one node needs another's output. An arrow <code>A → B</code> reads &quot;<strong>B needs A</strong>&quot;. B consumes what A produces.</li></ul>
+<p>The direction is the part people get backwards. The arrow points at the <em>dependent</em> node, not the producer. <code>schema → api</code> means the API waits for the schema.</p>
+<figure class="diagram"><pre>flowchart LR
+    S[Schema change] --&gt; A[API endpoint]
+    S --&gt; M[Migration]
+    A --&gt; T[API tests]
+    A --&gt; D[Docs]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>Read the arrows out loud. &quot;The API needs the schema.&quot; &quot;The migration needs the schema.&quot; &quot;The tests need the API.&quot; Now the picture says something a list could not: the schema unblocks three things, and the tests unblock nothing.</p>
+<h3 id="directed-and-acyclic">Directed, and acyclic</h3>
+<p>Edges have a direction — you cannot swap the ends without changing the meaning. And a work graph must have <strong>no cycles</strong>: no path that leads from a node back to itself. A cycle is a node that waits on itself.</p>
+<figure class="diagram"><pre>flowchart LR
+    A[API] --&gt; B[Tests]
+    B --&gt; C[Fix the API]
+    C --&gt; A</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>Nothing here can start. The API waits on the tests, the tests wait on the fix, the fix waits on the API. A graph with a cycle has no valid starting point. When a real project has a cycle, it is almost always two things that are genuinely one thing, or two things that should share an interface instead of depending on each other (Lesson 100).</p>
+<p>A directed graph with no cycles has a name: a <strong>DAG</strong> (directed acyclic graph). Every runnable task graph is a DAG.</p>
+<h3 id="a-node-is-an-output-not-an-activity">A node is an output, not an activity</h3>
+<p>The distinction is small and load-bearing: a node is defined by what it <em>produces</em>, not by what someone <em>does</em>. &quot;Work on the API&quot; cannot be a node — you cannot tell when it is done, so nothing can depend on it. &quot;GET /profile returns the signed-in user's row&quot; is a node. If you cannot point at a node's output, everything downstream of it is waiting on a feeling.</p>
+<p>The <strong>entry nodes</strong> of a graph are the ones with no incoming edges — nothing points at them. That set is the first thing that can run, and finding it is the next lesson's whole job.</p>
+<blockquote><p><strong>The reframe:</strong> a task list keeps the work and throws away the wiring — and</p><p>the wiring, every arrow that means &quot;B needs A&quot;, is the only thing that tells</p><p>you what is safe to run at once.</p></blockquote>
+<p>Graphs are version-independent. The mechanism names that run them move fast; the comparison page is <a href="https://code.claude.com/docs/en/agents" target="_blank" rel="noopener">Run agents in parallel</a>. Check it before trusting a specific name.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>Take a real project you know — a feature, a migration, a small app — and draw it. Fifteen minutes, on paper or in the block below.</p>
+<h3 id="1-list-the-outputs-not-the-jobs">1. List the outputs, not the jobs</h3>
+<p>Write one line per thing the project must <em>produce</em>. If a line cannot be checked off by looking at an artifact, rewrite it until it can.</p>
+<pre class="code" data-lang="text"><code>- users table has a profile column
+- GET /profile returns the signed-in user's row
+- profile tests pass
+- docs page for GET /profile exists</code></pre>
+<p>✅ You pass when every line names something you could show someone, and none of them is a bare verb.</p>
+<h3 id="2-draw-one-arrow-per-real-need">2. Draw one arrow per real need</h3>
+<p>For each output, ask only: <em>is another output its input?</em> Draw the arrow from the input to the consumer. Do not draw an arrow because one task &quot;feels earlier&quot;.</p>
+<figure class="diagram"><pre>flowchart LR
+    T[users table] --&gt; E[GET /profile]
+    E --&gt; P[profile tests]
+    E --&gt; D[docs page]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>✅ You pass when you can read every arrow as &quot;…needs…&quot; and it is true.</p>
+<h3 id="3-hunt-for-cycles">3. Hunt for cycles</h3>
+<p>Trace every path and see whether any can loop back. If one does, either merge the two nodes into one, or split out an interface they can share (Lesson 100).</p>
+<p>✅ You pass when no path leads from a node back to itself, and you can name the pair you would merge first if one did.</p>
+<h3 id="4-find-the-entry-points">4. Find the entry points</h3>
+<p>Circle every node with no arrow pointing at it. Those are the only things that can start.</p>
+<p>✅ You pass when you have circled the schema (or its equivalent) and can say why the tests are not in that set.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td>Node</td><td>Any unit whose output something else consumes. If nothing consumes it, ask whether it earns a node.</td></tr><tr><td>Directed edge <code>A → B</code></td><td>B's input is A's output. The arrow points at the dependent.</td></tr><tr><td>Acyclic check</td><td>Before you run anything. A cycle means nothing in it can start.</td></tr><tr><td>Entry nodes (no incoming)</td><td>The first slice of work you can run in parallel.</td></tr><tr><td>Sink nodes (no outgoing)</td><td>The project's real finish line — the outputs everyone else feeds.</td></tr><tr><td>&quot;Work on X&quot;</td><td>A smell. Rewrite it as the output that proves X is done.</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Draw a five-node graph for a feature you shipped recently, arrows only where one node's output is another's input. ✅ You pass when every arrow survives &quot;B literally cannot start without A,&quot; and at least one pair you first joined is <em>not</em> connected.</li></ol>
+<ol><li class="criterion">Redraw the five-job feature from The Problem as a DAG. ✅ You pass when the tests arrow into the API (not the schema), and you can name the node whose output was overwritten in the original run.</li></ol>
+<ol><li class="criterion">Find a cycle in something real — two documents that cite each other, two teams that keep handing work back. ✅ You pass when you can point at the two nodes and propose one concrete merge or interface that removes the loop.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>node</td><td>&quot;a task&quot;</td><td>A unit of work defined by its output. No output, no node.</td></tr><tr><td>edge</td><td>&quot;the order&quot;</td><td>A dependency: <code>A → B</code> means B needs A's output. Points at the dependent.</td></tr><tr><td>DAG</td><td>&quot;a workflow&quot;</td><td>A directed graph with no cycles. The only kind of task graph that can run.</td></tr><tr><td>cycle</td><td>&quot;circular dependency&quot;</td><td>A path from a node back to itself. Nothing in it can ever start.</td></tr><tr><td>entry node</td><td>&quot;the first task&quot;</td><td>A node with no incoming edges. An initial member of the parallel set.</td></tr><tr><td>sink node</td><td>&quot;the last task&quot;</td><td>A node with no outgoing edges. A final deliverable.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Scheduling.</strong> Which nodes to run <em>next</em>, and how the set changes as nodes finish, is Lesson 99.</p>
+<p><strong>Edge strength.</strong> That some arrows block and some only advise is Lesson 100 — and it is where parallelism is actually won or lost.</p>
+<p><strong>Claiming and locking.</strong> Who owns a ready node is Lesson 101.</p>
+<p><strong>Failure.</strong> What a dead node does to the rest of the graph is Lesson 104.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A plan says <code>tests → schema</code>, meaning someone drew an arrow from the test task to the schema task. You read it aloud as &quot;the tests need the schema.&quot; What is actually wrong with the graph?</p>
+        <ol class="options" type="A">
+          <li>Nothing — the arrow direction is a convention and either end works</li>
+          <li>The arrow is reversed: the tests depend on the schema, so it should point from schema to tests</li>
+          <li>The graph is fine, but the tests should be a soft edge instead</li>
+          <li>The schema should be deleted from the graph because the tests produce its input</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The arrow is reversed: the tests depend on the schema, so it should point from schema to tests</p>
+          <p class="why">An edge <code>A → B</code> means B needs A's output, so the arrow points at the dependent node. If the tests need the schema, the edge runs schema → tests. Option A is the tempting one because &quot;order&quot; feels symmetric, but direction is the whole meaning of a edge — swapping the ends inverts who waits on whom. Option C mistakes this for an edge-strength issue (that is Lesson 100); the direction is simply wrong. Option D inverts producer and consumer.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Your graph has: docs → api → tests, and also tests → docs (someone added a feedback loop). No node has started. Why will this graph never run?</p>
+        <ol class="options" type="A">
+          <li>Because docs has two outgoing edges and that is not allowed</li>
+          <li>Because there is a cycle: docs waits on tests, tests wait on api, api waits on docs</li>
+          <li>Because tests has both an incoming and an outgoing edge</li>
+          <li>Because every graph needs exactly one sink node</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Because there is a cycle: docs waits on tests, tests wait on api, api waits on docs</p>
+          <p class="why">The path api → tests → docs → api returns to where it started, so each node is waiting on a node that waits (transitively) on itself. Nothing in the cycle qualifies as an entry node. Option A is tempting because a node with many edges <em>looks</em> suspicious, but branching is fine in a DAG. Option C describes an ordinary middle node. Option D is not a rule — a graph may have several sinks.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A colleague lists three tasks: &quot;work on auth,&quot; &quot;polish the settings page,&quot; &quot;investigate performance.&quot; You try to draw edges between them and cannot tell what waits on what. What is the actual problem?</p>
+        <ol class="options" type="A">
+          <li>The tasks are too few to form a graph</li>
+          <li>The graph needs a cycle to be well-formed</li>
+          <li>The tasks are activities, not outputs — none names something a later node can consume</li>
+          <li>You need to know each task's duration before edges can be drawn</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> The tasks are activities, not outputs — none names something a later node can consume</p>
+          <p class="why">A node is defined by the artifact it produces. None of these three produces a checkable output, so nothing downstream could depend on it and no edge is meaningful. Option A is wrong: three nodes are plenty. Option B is backwards — cycles make a graph unrunnable. Option D confuses scheduling (Lesson 99) with structure: dependency comes from what a node produces, not how long it takes.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Two tasks in your project genuinely need each other's output — the frontend needs the API's response shape, and the API team says it needs the frontend's field list to define that shape. What does a graph tell you to do first?</p>
+        <ol class="options" type="A">
+          <li>Run both at once and let the conflict surface at merge time</li>
+          <li>Pick whichever is faster and mark the other as its dependent</li>
+          <li>Recognise a cycle and break it — merge the two, or split out a shared interface they can both code against</li>
+          <li>Remove one node from the graph entirely</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> Recognise a cycle and break it — merge the two, or split out a shared interface they can both code against</p>
+          <p class="why">Mutual dependency is a cycle; no node in it can be an entry node, so the graph cannot start as drawn. The graph forces the split: agree a shape as its own node, or merge the work. Option A is the tempting &quot;parallelism&quot; answer and is exactly the merge conflict the graph exists to prevent. Option B invents a false direction. Option D drops work rather than restructuring it.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span>Previous</span>97. Design Your Own Harness — and Defend the Trade-offs</a>
+    <a class="next" href="../../phases/15-graph-engineering/99-task-graphs.html"><span>Next</span>99. Task Graphs — Dependencies and the Frontier</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

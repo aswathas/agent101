@@ -2,26 +2,52 @@
   "lesson": "05-commands-and-skills/39-commands-merged-into-skills",
   "title": "Why Custom Commands Merged Into Skills",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Why Custom Commands Merged Into Skills that needs a new situation, not recall.",
+      "prompt": "Your team's release command lives in .claude/commands/release.md and has worked for a year. Which statement about it is actually true today?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "It still runs as /release, but name and paths in its frontmatter are not honoured — skills accept those two fields, command files do not",
+        "It still runs as /release, but it is deprecated and will stop loading on the next major version",
+        "It no longer loads at all; use .claude/skills/release/SKILL.md instead or the command disappears",
+        "It still runs as /release, but the model can now auto-invoke it from its description, which it could never do before"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "The merge is equivalence plus supersession: legacy files keep working, and the two fields they lack are name and paths. Option B overclaims — the docs describe a soft direction with backward compatibility and no removal notice. Option C is the failure mode people actually fear and it is not what shipped; existing .claude/commands files continue to work. Option D inverts the capability: automatic, description-matched invocation is one of the things skills add, so a command file still cannot do it.",
+      "concept": "merge-means-equivalence-not-removal"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "Your deploy command needs to run ./scripts/preflight.sh before deploying, and the script already exists next to the project root. What is the actual blocker with keeping the command file?",
+      "options": [
+        "Command files cannot invoke scripts at all, so this has to become a hook",
+        "The script path would be relative to the wrong file, since a command's frontmatter has no working-directory field",
+        "A command file is a single .md — it has no folder to hold or reference a sibling script, which is exactly what the skill directory restores",
+        "Nothing blocks it — the command can just inline the shell command instead of calling the script"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "The blocker is structural, not behavioural: a command is one markdown blob, so the skill's directory is what lets supporting files travel with the instructions. Option A reaches for hooks, which are a different phase and would be the wrong tool for a per-invocation precondition. Option B invents a field that does not exist. Option D is tempting and wrong in practice — inlining the script body duplicates logic that already has a home, and it is precisely the drift the docs warn about when they describe shipping scripts with skills.",
+      "concept": "supporting-files-need-a-folder"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You have 14 legacy command files across a repo. What is the honest migration posture?",
+      "options": [
+        "Migrate all 14 now — anything in .claude/commands/ is second-class and will rot",
+        "Migrate none — the folder format is deprecated and skills are a separate product",
+        "Migrate on contact: convert a file when it needs a folder, a trigger rule, or a teammate to receive it; leave the rest",
+        "Migrate only the ones with under 30 lines, since short prompts have the most to gain from fields"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "Migrate-on-contact is the posture that matches the docs: new work prefers skills, existing files work fine, and each of the four added capabilities is a concrete trigger for converting one specific file. Option A treats working files as rot and spends a rename across 14 files for no gain. Option B inverts the direction — skills are where the format is heading, not commands. Option D is arbitrary; nothing about prompt length determines which fields you can use.",
+      "concept": "migrate-on-contact"
     }
   ]
 }

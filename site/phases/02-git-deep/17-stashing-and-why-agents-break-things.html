@@ -5,302 +5,311 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stashing, and Why Agents Break Things — Harnessing Claude Code</title>
 <meta name="description" content="You can park half-finished work without committing it, and you can recognise">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Stashing, and Why Agents Break Things</h1>
-  <p class="lesson-motto">You can park half-finished work without committing it, and you can recognise</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li class="on"><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Phase 02, Lessons 12, 16; Phase 01, Lesson 10</p>
-    <p><strong>Time:</strong> ~40 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 02 · LESSON 17</p>
+      <h1>Stashing, and Why Agents Break Things</h1>
+      <p class="lesson-motto">You can park half-finished work without committing it, and you can recognise</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 02, Lessons 12, 16; Phase 01, Lesson 10</dd></div>
+        <div><dt>Time</dt><dd>~40 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- Park half-finished work, switch branches, and get it back intact
-- Choose `pop` or `apply` deliberately, and know when `-u` is required
-- Recognise the three shapes of agent damage: delete, thrash, scope creep
-- Recover each shape with the smallest command that works
-
----
-
-## The Problem
-
-You are halfway through a change. It is not committable — it is half-wired and
-the build does not pass. You need to switch branches to chase something else.
-
-`git switch main` refuses: your working tree has changes that would be lost.
-Your options look like three bad ones. Commit the broken state (pollutes
-history), finish the change (you do not know how), or abandon it.
-
-So you do nothing, and you lose twenty minutes.
-
-That is the stash-shaped problem. Stash solves it in one command.
-
-The second half of this lesson is stranger. An agent working in your folder can
-delete a file it has never read, overwrite a config it misunderstood, or rewrite
-the same file eleven times in one turn. None of these are exotic — they are
-what a loop does when the tool it holds is "write to this path". Once you know
-the three shapes, they stop being surprises.
-
----
-
-## The Concept
-
-### Stash: park work without committing it
-
-`git stash` takes your uncommitted changes out of the working tree and stores
-them as a commit on a hidden branch. The folder returns to the last commit. Your
-work is still there, one command away.
-
-```bash
-git stash                 # park everything uncommitted
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Park half-finished work, switch branches, and get it back intact</li><li>Choose <code>pop</code> or <code>apply</code> deliberately, and know when <code>-u</code> is required</li><li>Recognise the three shapes of agent damage: delete, thrash, scope creep</li><li>Recover each shape with the smallest command that works</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You are halfway through a change. It is not committable — it is half-wired and the build does not pass. You need to switch branches to chase something else.</p>
+<p><code>git switch main</code> refuses: your working tree has changes that would be lost. Your options look like three bad ones. Commit the broken state (pollutes history), finish the change (you do not know how), or abandon it.</p>
+<p>So you do nothing, and you lose twenty minutes.</p>
+<p>That is the stash-shaped problem. Stash solves it in one command.</p>
+<p>The second half of this lesson is stranger. An agent working in your folder can delete a file it has never read, overwrite a config it misunderstood, or rewrite the same file eleven times in one turn. None of these are exotic — they are what a loop does when the tool it holds is &quot;write to this path&quot;. Once you know the three shapes, they stop being surprises.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<h3 id="stash-park-work-without-committing-it">Stash: park work without committing it</h3>
+<p><code>git stash</code> takes your uncommitted changes out of the working tree and stores them as a commit on a hidden branch. The folder returns to the last commit. Your work is still there, one command away.</p>
+<pre class="code" data-lang="bash"><code>git stash                 # park everything uncommitted
 git switch main           # now it works
 # ... do the other thing ...
 git switch back
-git stash pop             # put it back and drop the stash entry
-```
-
-`pop` restores and deletes the entry. `apply` restores and **keeps** the entry —
-the right choice when the restoration conflicted, because you get another chance
-without having lost the copy.
-
-| Command | Restores | Deletes the stash entry |
-|---|---|---|
-| `git stash pop` | Yes | Yes |
-| `git stash apply` | Yes | No — keep it until you have checked |
-| `git stash list` | — | Shows every entry |
-| `git stash show -p stash@{0}` | Diffs the entry | No |
-| `git stash branch fix-x` | Yes, as a new branch | Yes, and commits the work there |
-
-Two limits worth knowing before you need them under pressure:
-
-**Stash does not carry untracked files by default.** A new file that was never
-committed is *not* stashed by a plain `git stash`, and comes back as a conflict
-or not at all. `git stash -u` includes untracked files. This is the most common
-stash surprise, and it is the one that costs you an agent's new files.
-
-**A stash entry is not a backup you can forget about.** It is a commit on a
-branch with no name, and it is subject to garbage collection like anything
-else. Treat an unrecovered stash as work you have not actually saved.
-
-### Why agents break things
-
-Phase 01, Lesson 10 established the agentic loop: the model decides, a tool
-executes, the result returns. The tool here is the filesystem, and it does not
-care what the file meant.
-
-Three shapes, and they are all mechanical:
-
-&lt;div class="mermaid"&gt;&lt;pre&gt;flowchart TD
-    A[Agent turn] --&amp;gt; S{What happened?}
-    S --&amp;gt;|Deleted a file it did not read| S1[Shape 1: destructive delete]
-    S --&amp;gt;|Rewrote a file repeatedly| S2[Shape 2: thrash]
-    S --&amp;gt;|Changed something outside the ask| S3[Shape 3: scope creep]
-    S1 --&amp;gt; R[Recovery: one command, if it was committed]
-    S2 --&amp;gt; R2[Recovery: read the diff, not the file]
-    S3 --&amp;gt; R3[Recovery: selective restore, one file]&lt;/pre&gt;&lt;/div&gt;
-
-**Shape 1 — destructive delete.** An agent deletes a file it never read,
-reasoning that it is unused. `git status` shows it immediately. `git checkout --
-&lt;file&gt;` puts it back, *if* it was committed.
-
-**Shape 2 — thrash.** The agent rewrites the same file across several edits
-inside one turn. The final state might be right, might be worse than the middle.
-The only way to see the path is `git diff` — the final file tells you nothing
-about whether it improved.
-
-**Shape 3 — scope creep.** It changed a config, a lock file, and a "small
-unrelated fix" alongside the ask. `git status` names every file. That is how you
-notice, which is why `git status` before every agent run is not superstition.
-
-### The protocol that follows from this
-
-The three shapes share one weakness: they are all cheap to undo *if* the last
-known-good state was committed, and expensive if it was not.
-
-```bash
-git status              # is it clean?
-git add -A &amp;&amp; git commit -m "before: &lt;what the agent is about to do"
+git stash pop             # put it back and drop the stash entry</code></pre>
+<p><code>pop</code> restores and deletes the entry. <code>apply</code> restores and <strong>keeps</strong> the entry — the right choice when the restoration conflicted, because you get another chance without having lost the copy.</p>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>Restores</th><th>Deletes the stash entry</th></tr></thead><tbody><tr><td><code>git stash pop</code></td><td>Yes</td><td>Yes</td></tr><tr><td><code>git stash apply</code></td><td>Yes</td><td>No — keep it until you have checked</td></tr><tr><td><code>git stash list</code></td><td>—</td><td>Shows every entry</td></tr><tr><td><code>git stash show -p stash@{0}</code></td><td>Diffs the entry</td><td>No</td></tr><tr><td><code>git stash branch fix-x</code></td><td>Yes, as a new branch</td><td>Yes, and commits the work there</td></tr></tbody></table></div>
+<p>Two limits worth knowing before you need them under pressure:</p>
+<p><strong>Stash does not carry untracked files by default.</strong> A new file that was never committed is <em>not</em> stashed by a plain <code>git stash</code>, and comes back as a conflict or not at all. <code>git stash -u</code> includes untracked files. This is the most common stash surprise, and it is the one that costs you an agent's new files.</p>
+<p><strong>A stash entry is not a backup you can forget about.</strong> It is a commit on a branch with no name, and it is subject to garbage collection like anything else. Treat an unrecovered stash as work you have not actually saved.</p>
+<h3 id="why-agents-break-things">Why agents break things</h3>
+<p>Phase 01, Lesson 10 established the agentic loop: the model decides, a tool executes, the result returns. The tool here is the filesystem, and it does not care what the file meant.</p>
+<p>Three shapes, and they are all mechanical:</p>
+<figure class="diagram"><pre>flowchart TD
+    A[Agent turn] --&gt; S{What happened?}
+    S --&gt;|Deleted a file it did not read| S1[Shape 1: destructive delete]
+    S --&gt;|Rewrote a file repeatedly| S2[Shape 2: thrash]
+    S --&gt;|Changed something outside the ask| S3[Shape 3: scope creep]
+    S1 --&gt; R[Recovery: one command, if it was committed]
+    S2 --&gt; R2[Recovery: read the diff, not the file]
+    S3 --&gt; R3[Recovery: selective restore, one file]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p><strong>Shape 1 — destructive delete.</strong> An agent deletes a file it never read, reasoning that it is unused. <code>git status</code> shows it immediately. <code>git checkout -- &lt;file&gt;</code> puts it back, <em>if</em> it was committed.</p>
+<p><strong>Shape 2 — thrash.</strong> The agent rewrites the same file across several edits inside one turn. The final state might be right, might be worse than the middle. The only way to see the path is <code>git diff</code> — the final file tells you nothing about whether it improved.</p>
+<p><strong>Shape 3 — scope creep.</strong> It changed a config, a lock file, and a &quot;small unrelated fix&quot; alongside the ask. <code>git status</code> names every file. That is how you notice, which is why <code>git status</code> before every agent run is not superstition.</p>
+<h3 id="the-protocol-that-follows-from-this">The protocol that follows from this</h3>
+<p>The three shapes share one weakness: they are all cheap to undo <em>if</em> the last known-good state was committed, and expensive if it was not.</p>
+<pre class="code" data-lang="bash"><code>git status              # is it clean?
+git add -A &amp;&amp; git commit -m &quot;before: &lt;what the agent is about to do&quot;
 # hand over the folder
 git status              # what did it actually touch
-git diff                # what did it actually change
-```
-
-Committing before handing over a folder is the single habit that makes agents
-safe to use. It costs one command and it converts every failure above from a
-loss into a review.
-
-&gt; **The reframe:** stashing is not about hiding work, it is about giving work a
-&gt; place to live that isn't the working tree — and an agent is only reversible in
-&gt; proportion to whether you committed before letting it loose.
-
----
-
-## Build It
-
-### 1. Park half-finished work
-
-```bash
-cd ~/git-drill
+git diff                # what did it actually change</code></pre>
+<p>Committing before handing over a folder is the single habit that makes agents safe to use. It costs one command and it converts every failure above from a loss into a review.</p>
+<blockquote><p><strong>The reframe:</strong> stashing is not about hiding work, it is about giving work a</p><p>place to live that isn't the working tree — and an agent is only reversible in</p><p>proportion to whether you committed before letting it loose.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-park-half-finished-work">1. Park half-finished work</h3>
+<pre class="code" data-lang="bash"><code>cd ~/git-drill
 git switch -c half-done
 printf 'work in progress\n' &gt; wip.txt
 git add wip.txt
 git switch main        # this succeeds, because nothing is committed
-git status             # clean
-```
-
-Note: `wip.txt` is committed here so the stash is simple. Step 4 shows the
-untracked case.
-
-✅ You pass when the switch succeeded and `git status` is clean on `main`.
-
-### 2. Come back and get it
-
-```bash
-git switch half-done
-git status
-```
-
-✅ You pass when `git status` shows `wip.txt` staged, exactly as you left it.
-
-### 3. Stash something genuinely uncommitted
-
-```bash
-printf 'experiment\n' &gt;&gt; wip.txt        # unstaged edit
+git status             # clean</code></pre>
+<p>Note: <code>wip.txt</code> is committed here so the stash is simple. Step 4 shows the untracked case.</p>
+<p>✅ You pass when the switch succeeded and <code>git status</code> is clean on <code>main</code>.</p>
+<h3 id="2-come-back-and-get-it">2. Come back and get it</h3>
+<pre class="code" data-lang="bash"><code>git switch half-done
+git status</code></pre>
+<p>✅ You pass when <code>git status</code> shows <code>wip.txt</code> staged, exactly as you left it.</p>
+<h3 id="3-stash-something-genuinely-uncommitted">3. Stash something genuinely uncommitted</h3>
+<pre class="code" data-lang="bash"><code>printf 'experiment\n' &gt;&gt; wip.txt        # unstaged edit
 printf 'brand new\n' &gt; untracked.txt    # never added
 git stash                              # note: does not take untracked.txt
 git status                             # untracked.txt still there
 git stash pop
-git status
-```
-
-✅ You pass when `untracked.txt` survived the stash untouched, and `wip.txt`'s
-edit came back — and you can now say which files a plain `git stash` misses.
-
-### 4. Stash everything, including new files
-
-```bash
-git stash -u
+git status</code></pre>
+<p>✅ You pass when <code>untracked.txt</code> survived the stash untouched, and <code>wip.txt</code>'s edit came back — and you can now say which files a plain <code>git stash</code> misses.</p>
+<h3 id="4-stash-everything-including-new-files">4. Stash everything, including new files</h3>
+<pre class="code" data-lang="bash"><code>git stash -u
 git status             # genuinely clean now
-git stash pop
-```
-
-✅ You pass when `untracked.txt` is inside the stash and comes back with the
-rest.
-
-### 5. Apply instead of pop
-
-```bash
-git stash
+git stash pop</code></pre>
+<p>✅ You pass when <code>untracked.txt</code> is inside the stash and comes back with the rest.</p>
+<h3 id="5-apply-instead-of-pop">5. Apply instead of pop</h3>
+<pre class="code" data-lang="bash"><code>git stash
 git stash apply
 git stash list         # the entry is still there
-git stash drop
-```
-
-✅ You pass when `git stash list` showed the entry after `apply`, and `git stash
-drop` removed it.
-
-### 6. Recover from an agent-shaped failure
-
-Simulate all three shapes in a scratch repo, committing before you start.
-
-```bash
-git add -A &amp;&amp; git commit -m "before agent"
+git stash drop</code></pre>
+<p>✅ You pass when <code>git stash list</code> showed the entry after <code>apply</code>, and <code>git stash drop</code> removed it.</p>
+<h3 id="6-recover-from-an-agent-shaped-failure">6. Recover from an agent-shaped failure</h3>
+<p>Simulate all three shapes in a scratch repo, committing before you start.</p>
+<pre class="code" data-lang="bash"><code>git add -A &amp;&amp; git commit -m &quot;before agent&quot;
 rm important.txt                      # shape 1
 printf 'something else\n' &gt;&gt; config   # shape 2
 printf 'unrelated\n' &gt; random.txt     # shape 3
 git status
 git diff
 git checkout -- important.txt         # one file, not the whole tree
-git status
-```
+git status</code></pre>
+<p>✅ You pass when <code>important.txt</code> is back and <code>git status</code> still shows the other two changes — a selective restore, not a nuke.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>git stash</code></td><td>Parking uncommitted changes to switch branches</td></tr><tr><td><code>git stash -u</code></td><td>Same, but includes files that were never added</td></tr><tr><td><code>git stash pop</code></td><td>Restoring, and clearing the entry</td></tr><tr><td><code>git stash apply</code></td><td>Restoring, keeping the entry — use when it conflicted</td></tr><tr><td><code>git stash list</code></td><td>&quot;Where was that?&quot; — entries are commits too</td></tr><tr><td><code>git stash branch &lt;name&gt;</code></td><td>Turning a stash into a real branch so you can commit on it</td></tr><tr><td><code>git checkout -- &lt;file&gt;</code></td><td>One file back, everything else left alone</td></tr><tr><td>Commit before handover</td><td>Before any agent run. Makes every failure reversible.</td></tr><tr><td><code>git status</code> after</td><td>What it actually touched</td></tr><tr><td><code>git diff</code> after</td><td>What it actually changed, including thrash</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Start a real change, get halfway, stash with <code>-u</code>, switch to <code>main</code>, do something unrelated, and come back. Time it. ✅ You pass when the work came back intact and you have a time in seconds — if it took under thirty seconds, the &quot;I can't switch branches&quot; feeling is gone for good.</li></ol>
+<ol><li class="criterion">Simulate all three agent shapes in a scratch repo. Commit before you start. Recover each one with the <em>smallest</em> command that works, not <code>reset --hard</code>. ✅ You pass when you used <code>checkout -- &lt;file&gt;</code> or <code>stash</code> for at least two of them, and you can say why the third needed something different.</li></ol>
+<ol><li class="criterion">Write the four-line protocol from the Concept section into a place you will actually run it — a shell alias, a script, a note in <code>CLAUDE.md</code>. ✅ You pass when the protocol exists somewhere outside this lesson, and you have used it once on a real agent run.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>stash</td><td>&quot;hiding my work&quot;</td><td>A commit on a hidden branch holding uncommitted changes. Restorable, and subject to gc.</td></tr><tr><td><code>git stash -u</code></td><td>&quot;stash&quot;</td><td>The variant that also takes files never added to git. The plain one skips them.</td></tr><tr><td><code>pop</code> vs <code>apply</code></td><td>&quot;the same&quot;</td><td><code>pop</code> restores and deletes the entry; <code>apply</code> keeps it. Keep it when the restore conflicted.</td></tr><tr><td>working tree</td><td>&quot;my files&quot;</td><td>The live folder. The only place uncommitted work exists, and the only thing <code>reset --hard</code> can destroy.</td></tr><tr><td>destructive delete</td><td>&quot;the agent cleaned up&quot;</td><td>An agent removed a file it never read. Cheap to undo <em>if</em> committed.</td></tr><tr><td>thrash</td><td>&quot;it iterated&quot;</td><td>Multiple rewrites of one file in a turn. Only the diff shows whether it improved.</td></tr><tr><td>scope creep</td><td>&quot;it helped while it was there&quot;</td><td>Changes outside the ask. <code>git status</code> is the only reliable detector.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Worktrees.</strong> The real answer to &quot;I want two agents in two folders at once&quot;. The word contains &quot;working tree&quot; because it is exactly that — a second working folder on a second branch. Phase 16 is dedicated to it, and it is the right tool whenever the problem is <em>concurrent</em> work rather than <em>interrupted</em> work.</p>
+<p><strong><code>git stash</code> workflows with rebase and pop conflicts.</strong> Stashing, rebasing, and popping onto a changed tree can conflict three ways. Recoverable, but rare — and the recovery is <code>git stash list</code> plus patience.</p>
+<p><strong>Hooks that block destructive agent commands.</strong> The tool exists (<code>PreToolUse</code> hooks intercept writes). It is Phase 08, and it depends on concepts this course has not established yet.</p>
+      </div>
 
-✅ You pass when `important.txt` is back and `git status` still shows the other
-two changes — a selective restore, not a nuke.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| `git stash` | Parking uncommitted changes to switch branches |
-| `git stash -u` | Same, but includes files that were never added |
-| `git stash pop` | Restoring, and clearing the entry |
-| `git stash apply` | Restoring, keeping the entry — use when it conflicted |
-| `git stash list` | "Where was that?" — entries are commits too |
-| `git stash branch &lt;name&gt;` | Turning a stash into a real branch so you can commit on it |
-| `git checkout -- &lt;file&gt;` | One file back, everything else left alone |
-| Commit before handover | Before any agent run. Makes every failure reversible. |
-| `git status` after | What it actually touched |
-| `git diff` after | What it actually changed, including thrash |
-
----
-
-## Exercises
-
-1. Start a real change, get halfway, stash with `-u`, switch to `main`, do
-   something unrelated, and come back. Time it.
-   ✅ You pass when the work came back intact and you have a time in seconds —
-   if it took under thirty seconds, the "I can't switch branches" feeling is
-   gone for good.
-
-2. Simulate all three agent shapes in a scratch repo. Commit before you start.
-   Recover each one with the *smallest* command that works, not `reset --hard`.
-   ✅ You pass when you used `checkout -- &lt;file&gt;` or `stash` for at least two of
-   them, and you can say why the third needed something different.
-
-3. Write the four-line protocol from the Concept section into a place you will
-   actually run it — a shell alias, a script, a note in `CLAUDE.md`.
-   ✅ You pass when the protocol exists somewhere outside this lesson, and you
-   have used it once on a real agent run.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| stash | "hiding my work" | A commit on a hidden branch holding uncommitted changes. Restorable, and subject to gc. |
-| `git stash -u` | "stash" | The variant that also takes files never added to git. The plain one skips them. |
-| `pop` vs `apply` | "the same" | `pop` restores and deletes the entry; `apply` keeps it. Keep it when the restore conflicted. |
-| working tree | "my files" | The live folder. The only place uncommitted work exists, and the only thing `reset --hard` can destroy. |
-| destructive delete | "the agent cleaned up" | An agent removed a file it never read. Cheap to undo *if* committed. |
-| thrash | "it iterated" | Multiple rewrites of one file in a turn. Only the diff shows whether it improved. |
-| scope creep | "it helped while it was there" | Changes outside the ask. `git status` is the only reliable detector. |
-
----
-
-## What this lesson skipped
-
-**Worktrees.** The real answer to "I want two agents in two folders at once".
-The word contains "working tree" because it is exactly that — a second working
-folder on a second branch. Phase 16 is dedicated to it, and it is the right tool
-whenever the problem is *concurrent* work rather than *interrupted* work.
-
-**`git stash` workflows with rebase and pop conflicts.** Stashing, rebasing,
-and popping onto a changed tree can conflict three ways. Recoverable, but rare —
-and the recovery is `git stash list` plus patience.
-
-**Hooks that block destructive agent commands.** The tool exists (`PreToolUse`
-hooks intercept writes). It is Phase 08, and it depends on concepts this course
-has not established yet.</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">5 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You stash, switch branches, come back, and the stash pop conflicts. What is the best next move?</p>
+        <ol class="options" type="A">
+          <li>git stash pop again — it will merge the conflict away</li>
+          <li>Resolve the conflict in the files, git add them, then drop the stash entry yourself</li>
+          <li>git reset --hard to clear the mess and pop again</li>
+          <li>git stash drop to get back to a clean tree and start the change over</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Resolve the conflict in the files, git add them, then drop the stash entry yourself</p>
+          <p class="why">A stash entry is a commit, so popping it back into a tree that moved underneath it can conflict. The conflict is now an ordinary merge conflict — resolve it, <code>git add</code>, and the entry is redundant. Popping again (A) would hit the same conflict. <code>reset --hard</code> (C) throws away the half-finished work the stash existed to protect. Dropping and redoing (D) is the only option that guarantees loss, which is the opposite of why you stashed.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">An agent deletes config.toml, rewrites a source file four times, and adds an unrelated formatter change. You stashed before the run. What do you reach for?</p>
+        <ol class="options" type="A">
+          <li>git reset --hard, which undoes all three in one command</li>
+          <li>git stash pop, which returns the agent's changes so you can review them</li>
+          <li>git checkout -- config.toml, restoring only the deleted file and leaving the other changes visible</li>
+          <li>Nothing — a stash only protects uncommitted work you made yourself</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> git checkout -- config.toml, restoring only the deleted file and leaving the other changes visible</p>
+          <p class="why">Each shape wants a different response, and a targeted restore of the one destructive change leaves the other two visible for review — which is how you notice scope creep at all. <code>reset --hard</code> (A) discards all three including work worth reading. <code>stash pop</code> (B) would bring the agent's changes back in rather than remove them. And a stash records whatever the tree held at the time, including agent edits (D) — that is exactly why it is the right pre-run tool.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">An agent's final version of a file looks wrong, and you suspect it improved then got worse across the turn. Where is the evidence of that?</p>
+        <ol class="options" type="A">
+          <li>Read the file carefully — the comments will show which parts are stale</li>
+          <li>git diff against the commit you made before the run, which shows the net change and whether the whole file was rewritten</li>
+          <li>Re-run the agent with the same prompt and compare the two results</li>
+          <li>git log — the agent commits each step internally</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> git diff against the commit you made before the run, which shows the net change and whether the whole file was rewritten</p>
+          <p class="why">The final file is one state; the diff against your pre-run commit is the record of what moved. If the diff touches the whole file, you know it thrashed. Comments (A) are unreliable here — an agent's intermediate state rarely left any. Re-running (C) is expensive and proves nothing about the run you are inspecting. And agents do not commit each step (D) — nothing about the loop implies per-step commits, which is the whole reason the pre-run commit matters.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You stashed some work, then three weeks later you cannot remember what was in it. How do you look without destroying it?</p>
+        <ol class="options" type="A">
+          <li>git stash show -p stash@{0}, which diffs the entry without applying or dropping it</li>
+          <li>git stash pop, then read it and re-stash if it is not what you want</li>
+          <li>git stash drop, which clears the list so the real entries are visible</li>
+          <li>git reflog, which lists stashes as well as branch positions</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> git stash show -p stash@{0}, which diffs the entry without applying or dropping it</p>
+          <p class="why"><code>stash show -p</code> is the read-only inspection: it prints the diff and leaves the entry exactly where it was. Popping (B) risks a conflict in a tree that moved three weeks ago and removes the entry on success. Dropping (C) is the one thing you definitely do not want when you are trying to find out what is in there. And the reflog is the branch-and-HEAD record — stash entries are not in it (D), which is exactly why <code>git stash list</code> and <code>show</code> exist.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You stash work, then write three new files that were never added. You run a plain git stash and switch branches. What happened to the three files?</p>
+        <ol class="options" type="A">
+          <li>They were stashed too, since stash captures the whole working tree</li>
+          <li>They stayed in the working tree — a plain stash skips untracked files; git stash -u is the variant that includes them</li>
+          <li>They were deleted along with the stashed changes</li>
+          <li>They were committed to the stash's hidden branch automatically</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> They stayed in the working tree — a plain stash skips untracked files; git stash -u is the variant that includes them</p>
+          <p class="why">A plain stash takes changes to tracked files only. Untracked files are not in git's object store, so they are not in the stash — which means they simply stayed put and are still on disk after the switch. That is the most common stash surprise, and the one that costs you an agent's newly created files. <code>--stashed</code> automatic commits (D) are not a thing, and nothing deletes them (C).</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/02-git-deep/16-recovering-lost-work.html"><span>Previous</span>16. Recovering Lost Work</a>
+    <a class="next" href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span>Next</span>18. Remotes, Forks, and the Full Mental Model</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

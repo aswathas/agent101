@@ -1,0 +1,76 @@
+name: Publish site
+
+# The site is committed under site/, so publishing is a rebuild plus an upload.
+# The rebuild matters: site/catalog.html, glossary.html, sitemap.xml and
+# llms.txt are generated from the corpus, and a hand-edited lesson in
+# phases/**/docs/en.md would otherwise never reach the published site.
+#
+# Enable once in the repository: Settings → Pages → Build and deployment →
+# Source: GitHub Actions. Until that is set, this workflow is inert.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'phases/**'
+      - 'practice/**'
+      - 'CATALOG.md'
+      - 'site/**'
+      - 'scripts/build-site.mjs'
+      - 'scripts/lib/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # No dependencies: the build is plain node with no package.json.
+      - name: Validate every lesson
+        run: |
+          for phase in phases/*/; do
+            node scripts/validate-lessons.mjs "$(basename "$phase")"
+          done
+
+      - name: Rebuild the site from the corpus
+        run: node scripts/build-site.mjs
+
+      - name: Check the palette is readable
+        run: node scripts/check-contrast.mjs
+
+      - name: Fail if the committed site was stale
+        run: node scripts/build-site.mjs --check
+
+      - name: Verify the whole corpus
+        run: node scripts/verify-all.mjs
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

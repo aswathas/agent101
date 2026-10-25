@@ -6,7 +6,7 @@
     "description": "Read-only access to the course catalog, individual lessons, and machine-readable twin pages. No auth, no write endpoints, no accounts."
   },
   "servers": [
-    { "url": "https://harnessing.example", "description": "production" },
+    { "url": "http://127.0.0.1:4180", "description": "local only — run scripts/serve-site.mjs" },
     { "url": "http://localhost:8000", "description": "local dev" }
   ],
   "paths": {

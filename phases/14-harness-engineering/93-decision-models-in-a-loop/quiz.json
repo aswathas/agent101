@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Decision Models Inside a Loop that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "Where should a decision model sit in a loop?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "In place of the node work, to save on every step",
+        "At the branch that chooses which node runs next",
+        "After verification, to grade the result",
+        "In the system prompt, as instructions"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "Edges are closed-set choices, which is exactly what a decision model is for. The tempting answer — replacing node work — removes the generation you actually need and would degrade output quality to save money."
+    },
+    {
+      "id": 2,
+      "prompt": "A decision model returns 'maybe category 2 or 3.' What is the real problem?",
+      "options": [
+        "The model is too small",
+        "The output was not constrained to a closed set",
+        "The prompt was too long",
+        "You need a second model to break the tie"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "The model gave an off-list answer because nothing fenced it to one of the legal values. The fix is a closed set plus a rejection-and-retry, not a bigger model. 'Too small' is tempting because the answer is vague, but a well-fenced tiny model must return exactly one label."
+    },
+    {
+      "id": 3,
+      "prompt": "A loop routes to one of six tools every turn using a frontier model. What is the biggest win?",
+      "options": [
+        "Cache the system prompt",
+        "Move the routing decision to a cheap decision model",
+        "Use a larger context window",
+        "Run the turns in parallel"
+      ],
+      "answer": 1,
+      "explanation": "Routing is a decision, and the mismatch is paying generation prices for a six-way pick hundreds of times per run. Caching is tempting because it lowers input cost, but it leaves the fundamental mismatch in place; moving the decision attacks it."
+    },
+    {
+      "id": 4,
+      "prompt": "After swapping in a decision model at a branch, what must you check before trusting it?",
+      "options": [
+        "That its answers sound reasonable",
+        "That it returns a legal answer from the closed set across a set of known inputs",
+        "That it runs faster",
+        "That its output is shorter"
+      ],
+      "answer": 1,
+      "explanation": "Correctness at the edge means picking the right member of the closed set on inputs where you know the answer, and never returning an off-list value. 'Sounds reasonable' is tempting but it is a feeling, not a check — and it cannot catch a silent misroute."
     }
   ]
 }

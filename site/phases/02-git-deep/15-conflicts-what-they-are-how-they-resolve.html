@@ -5,278 +5,282 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Conflicts: What They Are, How They Resolve — Harnessing Claude Code</title>
 <meta name="description" content="You can read a conflict, decide what the merged line should say, and commit">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Conflicts: What They Are, How They Resolve</h1>
-  <p class="lesson-motto">You can read a conflict, decide what the merged line should say, and commit</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li class="on"><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Phase 02, Lessons 13 and 14</p>
-    <p><strong>Time:</strong> ~40 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 02 · LESSON 15</p>
+      <h1>Conflicts: What They Are, How They Resolve</h1>
+      <p class="lesson-motto">You can read a conflict, decide what the merged line should say, and commit</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 02, Lessons 13 and 14</dd></div>
+        <div><dt>Time</dt><dd>~40 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- Read a conflict's markers and say which side is yours before looking at either
-- Resolve a conflict by picking, by combining, and by discarding — on purpose
-- Use `git checkout --ours` and `--theirs` knowing which is which during a rebase
-- List the unresolved files without scrolling a wall of terminal output
-
----
-
-## The Problem
-
-You pull. Git prints twelve lines of conflict, you scroll past them, and the
-terminal is full of `&lt;&lt;&lt;&lt;&lt;&lt;&lt;`, `=======`, `&gt;&gt;&gt;&gt;&gt;&gt;&gt;` scattered through three
-files. You do not know which side is yours, which is the incoming change, or
-whether git has already written something it wants you to throw away.
-
-So you pick a side. `git checkout --ours file` — because you remember that
-command from somewhere. Two of the three files now lose their incoming changes
-without anyone noticing. The build passes. You commit.
-
-Three weeks later a feature goes missing in production and the git history says
-you were careful.
-
-A conflict is not a failure of git. It is git declining to guess. The problem
-was never the conflict — it was resolving it by pattern instead of by reading.
-
----
-
-## The Concept
-
-A conflict happens when both sides changed the same region and git cannot prove
-the two intents are compatible. Anywhere git *can* decide — you edited line 3,
-they edited line 40 — it merges silently. Conflicts are the residue, not the
-work.
-
-Git marks the spot in the file itself:
-
-```text
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD: feature
-ours = "green"
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Read a conflict's markers and say which side is yours before looking at either</li><li>Resolve a conflict by picking, by combining, and by discarding — on purpose</li><li>Use <code>git checkout --ours</code> and <code>--theirs</code> knowing which is which during a rebase</li><li>List the unresolved files without scrolling a wall of terminal output</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You pull. Git prints twelve lines of conflict, you scroll past them, and the terminal is full of <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> scattered through three files. You do not know which side is yours, which is the incoming change, or whether git has already written something it wants you to throw away.</p>
+<p>So you pick a side. <code>git checkout --ours file</code> — because you remember that command from somewhere. Two of the three files now lose their incoming changes without anyone noticing. The build passes. You commit.</p>
+<p>Three weeks later a feature goes missing in production and the git history says you were careful.</p>
+<p>A conflict is not a failure of git. It is git declining to guess. The problem was never the conflict — it was resolving it by pattern instead of by reading.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>A conflict happens when both sides changed the same region and git cannot prove the two intents are compatible. Anywhere git <em>can</em> decide — you edited line 3, they edited line 40 — it merges silently. Conflicts are the residue, not the work.</p>
+<p>Git marks the spot in the file itself:</p>
+<pre class="code" data-lang="text"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD: feature
+ours = &quot;green&quot;
 =======
-theirs = "greenish"
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; main
-```
-
-Read that carefully, because the words are the trap:
-
-| Word | What it means | Which side |
-|---|---|---|
-| `HEAD:` | your current branch | **ours** |
-| the other label | the branch you merged in | **theirs** |
-
-And the trap: `git checkout --ours` means *ours* = the branch **you are on**
-right now. It does not mean "the change I want". If you are rebasing, "ours"
-and "theirs" flip, because during a rebase you are conceptually the incoming
-side. This is the single most common way people silently discard work.
-
-### Three ways out
-
-&lt;div class="mermaid"&gt;&lt;pre&gt;flowchart TD
-    C[Conflict markers in file] --&amp;gt; D{Is this region a text choice&amp;lt;br/&amp;gt;or a logic choice?}
-    D --&amp;gt;|Text: two versions of the same line| M[Delete the markers, keep the correct line]
-    D --&amp;gt;|Both edits are real and belong together| B[Keep both, combine by hand]
-    D --&amp;gt;|One side is obsolete| O[Take one side deliberately&amp;lt;br/&amp;gt;then verify the surrounding code]
-    M --&amp;gt; S[git add the file]
-    B --&amp;gt; S
-    O --&amp;gt; S
-    S --&amp;gt; F[git rebase --continue / git commit]&lt;/pre&gt;&lt;/div&gt;
-
-A conflict is a decision, not a merge algorithm's leftover work. The three
-outcomes are: pick, combine, discard — and discarding is legitimate when the
-other side's change is genuinely obsolete, but you have to *decide* it.
-
-### Merge drivers
-
-Git can be told how to merge certain files without markers — common for
-`package-lock.json`, generated code, or structured formats. `.gitattributes` with
-`merge=&lt;driver&gt;` does this. Worth adding when a generated file conflicts
-constantly, noise. Not worth it while you are still learning to read a real
-conflict.
-
-### Conflicts are cheap when commits are small
-
-The real cost of a conflict is proportional to how much has to be re-read. A
-twelve-line conflict on a three-commit branch is a minute. A twelve-line conflict
-between two branches that diverged four hundred commits ago, touching a
-file with business rules in it, is an afternoon.
-
-```bash
-git diff --name-only --diff-filter=U   # exactly which files are unresolved
-```
-
-Start there. Not by scrolling the terminal.
-
-&gt; **The reframe:** conflict markers are not an error to clear — they are git
-&gt; asking one question, *"which of these two intents do you want?"*, and the
-&gt; answer is whatever the file should say, not whatever is easier to delete.
-
----
-
-## Build It
-
-### 1. Force a conflict you control
-
-```bash
-cd ~/git-drill
+theirs = &quot;greenish&quot;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; main</code></pre>
+<p>Read that carefully, because the words are the trap:</p>
+<div class="table-wrap"><table><thead><tr><th>Word</th><th>What it means</th><th>Which side</th></tr></thead><tbody><tr><td><code>HEAD:</code></td><td>your current branch</td><td><strong>ours</strong></td></tr><tr><td>the other label</td><td>the branch you merged in</td><td><strong>theirs</strong></td></tr></tbody></table></div>
+<p>And the trap: <code>git checkout --ours</code> means <em>ours</em> = the branch <strong>you are on</strong> right now. It does not mean &quot;the change I want&quot;. If you are rebasing, &quot;ours&quot; and &quot;theirs&quot; flip, because during a rebase you are conceptually the incoming side. This is the single most common way people silently discard work.</p>
+<h3 id="three-ways-out">Three ways out</h3>
+<figure class="diagram"><pre>flowchart TD
+    C[Conflict markers in file] --&gt; D{Is this region a text choice&lt;br/&gt;or a logic choice?}
+    D --&gt;|Text: two versions of the same line| M[Delete the markers, keep the correct line]
+    D --&gt;|Both edits are real and belong together| B[Keep both, combine by hand]
+    D --&gt;|One side is obsolete| O[Take one side deliberately&lt;br/&gt;then verify the surrounding code]
+    M --&gt; S[git add the file]
+    B --&gt; S
+    O --&gt; S
+    S --&gt; F[git rebase --continue / git commit]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>A conflict is a decision, not a merge algorithm's leftover work. The three outcomes are: pick, combine, discard — and discarding is legitimate when the other side's change is genuinely obsolete, but you have to <em>decide</em> it.</p>
+<h3 id="merge-drivers">Merge drivers</h3>
+<p>Git can be told how to merge certain files without markers — common for <code>package-lock.json</code>, generated code, or structured formats. <code>.gitattributes</code> with <code>merge=&lt;driver&gt;</code> does this. Worth adding when a generated file conflicts constantly, noise. Not worth it while you are still learning to read a real conflict.</p>
+<h3 id="conflicts-are-cheap-when-commits-are-small">Conflicts are cheap when commits are small</h3>
+<p>The real cost of a conflict is proportional to how much has to be re-read. A twelve-line conflict on a three-commit branch is a minute. A twelve-line conflict between two branches that diverged four hundred commits ago, touching a file with business rules in it, is an afternoon.</p>
+<pre class="code" data-lang="bash"><code>git diff --name-only --diff-filter=U   # exactly which files are unresolved</code></pre>
+<p>Start there. Not by scrolling the terminal.</p>
+<blockquote><p><strong>The reframe:</strong> conflict markers are not an error to clear — they are git</p><p>asking one question, <em>&quot;which of these two intents do you want?&quot;</em>, and the</p><p>answer is whatever the file should say, not whatever is easier to delete.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-force-a-conflict-you-control">1. Force a conflict you control</h3>
+<pre class="code" data-lang="bash"><code>cd ~/git-drill
 git switch -c feature
-printf 'color = "green"\n' &gt; theme.txt &amp;&amp; git add theme.txt &amp;&amp; git commit -m "green"
+printf 'color = &quot;green&quot;\n' &gt; theme.txt &amp;&amp; git add theme.txt &amp;&amp; git commit -m &quot;green&quot;
 git switch main
-printf 'color = "greenish"\n' &gt; theme.txt &amp;&amp; git add theme.txt &amp;&amp; git commit -m "greenish"
+printf 'color = &quot;greenish&quot;\n' &gt; theme.txt &amp;&amp; git add theme.txt &amp;&amp; git commit -m &quot;greenish&quot;
 git switch feature
-git merge main
-```
-
-You now have a real conflict in a one-line file.
-
-✅ You pass when `git status` reports an unmerged path and the file contains
-`&lt;&lt;&lt;&lt;&lt;&lt;&lt;`, `=======`, and `&gt;&gt;&gt;&gt;&gt;&gt;&gt;`.
-
-### 2. Read the labels before you read the sides
-
-```bash
-cat theme.txt
-```
-
-Confirm that `HEAD` is `feature` and that the bottom half is the commit from
-`main`.
-
-✅ You pass when you can state, before looking at which value you prefer, which
-half is yours and which is incoming.
-
-### 3. Resolve by hand and commit
-
-```bash
-printf 'color = "green"\n' &gt; theme.txt
+git merge main</code></pre>
+<p>You now have a real conflict in a one-line file.</p>
+<p>✅ You pass when <code>git status</code> reports an unmerged path and the file contains <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>.</p>
+<h3 id="2-read-the-labels-before-you-read-the-sides">2. Read the labels before you read the sides</h3>
+<pre class="code" data-lang="bash"><code>cat theme.txt</code></pre>
+<p>Confirm that <code>HEAD</code> is <code>feature</code> and that the bottom half is the commit from <code>main</code>.</p>
+<p>✅ You pass when you can state, before looking at which value you prefer, which half is yours and which is incoming.</p>
+<h3 id="3-resolve-by-hand-and-commit">3. Resolve by hand and commit</h3>
+<pre class="code" data-lang="bash"><code>printf 'color = &quot;green&quot;\n' &gt; theme.txt
 git add theme.txt
 git commit          # merge commit, conflict resolved
-git status
-```
-
-✅ You pass when the merge commit exists and `git status` reports no unmerged
-paths.
-
-### 4. Take a side deliberately
-
-Redo the conflict, then:
-
-```bash
-git checkout --ours theme.txt    # your branch's version
+git status</code></pre>
+<p>✅ You pass when the merge commit exists and <code>git status</code> reports no unmerged paths.</p>
+<h3 id="4-take-a-side-deliberately">4. Take a side deliberately</h3>
+<p>Redo the conflict, then:</p>
+<pre class="code" data-lang="bash"><code>git checkout --ours theme.txt    # your branch's version
 git add theme.txt
-git commit
-```
-
-Now do the same with `--theirs`. Both are legitimate. Neither is a default.
-
-✅ You pass when you have committed one version each way, and can say which flag
-produced which result.
-
-### 5. Check what a rebase does to those words
-
-```bash
-git switch feature
+git commit</code></pre>
+<p>Now do the same with <code>--theirs</code>. Both are legitimate. Neither is a default.</p>
+<p>✅ You pass when you have committed one version each way, and can say which flag produced which result.</p>
+<h3 id="5-check-what-a-rebase-does-to-those-words">5. Check what a rebase does to those words</h3>
+<pre class="code" data-lang="bash"><code>git switch feature
 git rebase main
-cat theme.txt     # look at the labels again mid-conflict
-```
+cat theme.txt     # look at the labels again mid-conflict</code></pre>
+<p>During a rebase, <code>HEAD</code> is the upstream branch you are replaying onto, so the label you expected to be &quot;yours&quot; is not.</p>
+<p>✅ You pass when you can point at the labels in the file and say that ours and theirs mean the opposite here, and that this is why <code>git checkout --ours</code> is dangerous during a rebase.</p>
+<h3 id="6-use-the-unresolved-files-list">6. Use the unresolved-files list</h3>
+<pre class="code" data-lang="bash"><code>git diff --name-only --diff-filter=U</code></pre>
+<p>✅ You pass when this lists the conflicted files with no manual scrolling, and you start from it next time.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code></td><td>The top half is your current branch</td></tr><tr><td><code>=======</code></td><td>Boundary between the two sides</td></tr><tr><td><code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code></td><td>The bottom half is the branch you merged in</td></tr><tr><td><code>git checkout --ours &lt;f&gt;</code></td><td>Take your current branch's version, deliberately</td></tr><tr><td><code>git checkout --theirs &lt;f&gt;</code></td><td>Take the incoming version, deliberately</td></tr><tr><td><code>git diff --name-only --diff-filter=U</code></td><td>Which files are actually unresolved</td></tr><tr><td><code>git add &lt;f&gt;</code></td><td>Marks a file resolved — until then the merge cannot complete</td></tr><tr><td><code>git merge --abort</code></td><td>Bail out of an in-progress merge</td></tr><tr><td>Ours/theirs flip in rebase</td><td>Rebase reverses which side is which. Check the labels, not your memory.</td></tr><tr><td>Merge drivers</td><td>Generated files that conflict constantly and never need real resolution</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Produce a conflict deliberately on a file with more than one conflicting region. Resolve each region by a different route: one pick, one combine, one discard. ✅ You pass when the merge completes, <code>git status</code> is clean, and you can list which region took which route and why.</li></ol>
+<ol><li class="criterion">Resolve a conflict the wrong way on purpose — take <code>--ours</code> on a file where the incoming change mattered — and observe what you lost. Revert it. ✅ You pass when you have the reverted state back and a one-line note on what the <code>--ours</code> habit costs when used without reading.</li></ol>
+<ol><li class="criterion">Set up a rebase conflict. Before resolving, write down which side <code>HEAD</code> refers to in the markers. Then check. ✅ You pass when your written answer matched, and you can say why rebase reverses ours and theirs.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>conflict</td><td>&quot;git broke my file&quot;</td><td>Both sides changed a region and git declined to guess. The markers are the question.</td></tr><tr><td><code>ours</code></td><td>&quot;my change&quot;</td><td>The branch <strong>you are on right now</strong>. Not &quot;the change I like&quot;.</td></tr><tr><td><code>theirs</code></td><td>&quot;their change&quot;</td><td>The branch you merged in. Reversed during a rebase.</td></tr><tr><td>resolved</td><td>&quot;the markers are gone&quot;</td><td>The file has been <code>git add</code>ed. Until then the merge cannot complete.</td></tr><tr><td>unmerged path</td><td>&quot;broken file&quot;</td><td>A path git still considers unresolved. <code>git status</code> names them.</td></tr><tr><td>merge driver</td><td>&quot;smart merge&quot;</td><td>Configured handling for files that should never need human resolution.</td></tr><tr><td><code>git merge --abort</code></td><td>&quot;start over&quot;</td><td>Returns to the pre-merge state. Only while the merge is in progress.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Rerere.</strong> Git remembers how you resolved a conflict and replays it next time the same one appears. Genuinely useful on long-lived branches. Add it when conflicts start costing you repeatedly, not now.</p>
+<p><strong>Resolving submodule and rename/delete conflicts.</strong> Both look exactly like a text conflict but are not. Rare, and easier to diagnose once text conflicts are boring.</p>
+<p><strong>Manual three-way merges and <code>git merge-file</code>.</strong> For when the conflict is in your editor rather than in git's. Not on this path.</p>
+      </div>
 
-During a rebase, `HEAD` is the upstream branch you are replaying onto, so the
-label you expected to be "yours" is not.
-
-✅ You pass when you can point at the labels in the file and say that ours and
-theirs mean the opposite here, and that this is why `git checkout --ours` is
-dangerous during a rebase.
-
-### 6. Use the unresolved-files list
-
-```bash
-git diff --name-only --diff-filter=U
-```
-
-✅ You pass when this lists the conflicted files with no manual scrolling, and
-you start from it next time.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| `&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD` | The top half is your current branch |
-| `=======` | Boundary between the two sides |
-| `&gt;&gt;&gt;&gt;&gt;&gt;&gt;` | The bottom half is the branch you merged in |
-| `git checkout --ours &lt;f&gt;` | Take your current branch's version, deliberately |
-| `git checkout --theirs &lt;f&gt;` | Take the incoming version, deliberately |
-| `git diff --name-only --diff-filter=U` | Which files are actually unresolved |
-| `git add &lt;f&gt;` | Marks a file resolved — until then the merge cannot complete |
-| `git merge --abort` | Bail out of an in-progress merge |
-| Ours/theirs flip in rebase | Rebase reverses which side is which. Check the labels, not your memory. |
-| Merge drivers | Generated files that conflict constantly and never need real resolution |
-
----
-
-## Exercises
-
-1. Produce a conflict deliberately on a file with more than one conflicting
-   region. Resolve each region by a different route: one pick, one combine, one
-   discard.
-   ✅ You pass when the merge completes, `git status` is clean, and you can list
-   which region took which route and why.
-
-2. Resolve a conflict the wrong way on purpose — take `--ours` on a file where
-   the incoming change mattered — and observe what you lost. Revert it.
-   ✅ You pass when you have the reverted state back and a one-line note on what
-   the `--ours` habit costs when used without reading.
-
-3. Set up a rebase conflict. Before resolving, write down which side `HEAD`
-   refers to in the markers. Then check.
-   ✅ You pass when your written answer matched, and you can say why rebase
-   reverses ours and theirs.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| conflict | "git broke my file" | Both sides changed a region and git declined to guess. The markers are the question. |
-| `ours` | "my change" | The branch **you are on right now**. Not "the change I like". |
-| `theirs` | "their change" | The branch you merged in. Reversed during a rebase. |
-| resolved | "the markers are gone" | The file has been `git add`ed. Until then the merge cannot complete. |
-| unmerged path | "broken file" | A path git still considers unresolved. `git status` names them. |
-| merge driver | "smart merge" | Configured handling for files that should never need human resolution. |
-| `git merge --abort` | "start over" | Returns to the pre-merge state. Only while the merge is in progress. |
-
----
-
-## What this lesson skipped
-
-**Rerere.** Git remembers how you resolved a conflict and replays it next time
-the same one appears. Genuinely useful on long-lived branches. Add it when
-conflicts start costing you repeatedly, not now.
-
-**Resolving submodule and rename/delete conflicts.** Both look exactly like a
-text conflict but are not. Rare, and easier to diagnose once text conflicts
-are boring.
-
-**Manual three-way merges and `git merge-file`.** For when the conflict is in
-your editor rather than in git's. Not on this path.</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A rebase stops on a conflict. You want the version that was on your branch before the rebase started. Which command gets it?</p>
+        <ol class="options" type="A">
+          <li>git checkout --ours &lt;file&gt;, because those changes were yours</li>
+          <li>git checkout --theirs &lt;file&gt;, because during a rebase you are the incoming side</li>
+          <li>git checkout --ours &lt;file&gt;, followed by git rebase --skip</li>
+          <li>Neither works — during a rebase both sides come from your branch</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> git checkout --theirs &lt;file&gt;, because during a rebase you are the incoming side</p>
+          <p class="why">During a rebase, HEAD is the branch you are replaying onto, so the side labelled theirs is the one you brought with you. The temptation to reach for <code>--ours</code> is exactly the trap (A, and C with a skip that also discards work). Both sides are labelled in the file (D) — read the labels at the top of the conflict rather than relying on which words feel right.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A merge left markers in three files and git printed a wall of output. What is the first command to run?</p>
+        <ol class="options" type="A">
+          <li>git status, then git diff --name-only --diff-filter=U to get the exact unresolved list</li>
+          <li>Open each conflicting file and start deleting markers</li>
+          <li>git checkout --theirs . to clear everything, then read the diff</li>
+          <li>git rebase --continue to skip past the conflict</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> git status, then git diff --name-only --diff-filter=U to get the exact unresolved list</p>
+          <p class="why">Get the list before reading files — the terminal output mixes conflicts with progress noise, and <code>--diff-filter=U</code> names exactly the paths git still considers unresolved. Deleting markers file by file (B) is what happens next, but starting from a list means you know when you are done. Bulk-taking theirs (C) silently discards your own work, and <code>--continue</code> (D) is for a rebase in progress and will not resolve anything here.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Two branches both changed the same three lines of a config file, in different ways, and neither edit is obsolete. What is the correct resolution?</p>
+        <ol class="options" type="A">
+          <li>Take ours — the branch you are on is the one being reviewed</li>
+          <li>Take theirs — the incoming change is newer and therefore better</li>
+          <li>Combine both edits by hand into what the file should actually say, then git add it</li>
+          <li>Run git rebase and let git's merge algorithm decide</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> Combine both edits by hand into what the file should actually say, then git add it</p>
+          <p class="why">When both edits are real, neither side is the answer — the question is what the file should say, and only you know that. Ours (A) and theirs (B) are preferences dressed as resolutions, and each silently deletes a real change. Rebase (D) applies the same merge machinery and will land on the same conflict; the algorithm was never going to decide this one.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A merge conflicts over package-lock.json, which nobody edits by hand and which conflicts every few weeks. What is the actual fix?</p>
+        <ol class="options" type="A">
+          <li>Delete the file and regenerate it, committing the result</li>
+          <li>Configure a merge driver for it in .gitattributes so git resolves it without markers</li>
+          <li>Add it to .gitignore and stop tracking it</li>
+          <li>Always resolve it with --ours, since the lock file is machine-written</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Configure a merge driver for it in .gitattributes so git resolves it without markers</p>
+          <p class="why">The lesson's test is whether a human ever needs to decide anything about this file. For a generated lock file, the answer is no, so a configured merge driver in .gitattributes is the mechanism for that. Deleting it (A) and ignoring it (C) each trade a real problem for a worse one. Always taking ours (D) is not the same thing — it still produces a conflict every time and still needs a human to pick a side, which is precisely the cost you were trying to remove.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/02-git-deep/14-merge-and-rebase.html"><span>Previous</span>14. Merge and Rebase</a>
+    <a class="next" href="../../phases/02-git-deep/16-recovering-lost-work.html"><span>Next</span>16. Recovering Lost Work</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

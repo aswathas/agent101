@@ -2,26 +2,67 @@
   "lesson": "06-subagents/45-subagent-format",
   "title": "Subagent Markdown Format",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Subagent Markdown Format that needs a new situation, not recall.",
+      "prompt": "You wrote a review subagent and it has never once been picked, even when you say \"review this\" by name. Where is the bug most likely?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The Markdown body is too long, so Claude can't get to the decision",
+        "The tools list is missing Read and Grep, so Claude assumes it can't review anything",
+        "The description says what the agent does but never says when to use it",
+        "The name is kebab-case; Claude only routes to snake_case names"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "Routing happens on the description alone, before the body is ever read — so a description that only says what the agent does gives Claude no reason to choose it. Body length and tool list are invisible at routing time, and name casing is irrelevant: identity comes from the name field, not from a naming convention.",
+      "concept": "description-is-routing"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "An agent must read the whole repo and report findings, and must never be able to change anything. Which frontmatter is correct?",
+      "options": [
+        "tools: Read, Glob, Grep",
+        "disallowedTools: Write, Edit",
+        "A body that opens with \"You are read-only. Never edit files.\"",
+        "permissionMode: plan"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "An allowlist is the strongest form here: Edit and Write are not in the pool, so they are not callable at all. A denylist is weaker — it removes two tools from a pool that can also gain new ones as Claude Code ships. Option C is a request, not a restriction; the model can comply or not. Option D changes how prompts surface, not which tools exist, so Bash could still write.",
+      "concept": "allowlist-vs-denylist"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You add permissionMode: maxTurns to a subagent and it keeps running forever. What is actually happening?",
+      "options": [
+        "maxTurns is a valid field but must be lowercase",
+        "maxTurns is silently ignored because you wrote it outside the tools field",
+        "maxTurns is silently ignored because the field name is max_turns",
+        "maxTurns only applies to background subagents, and yours runs in the foreground"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "Unrecognized frontmatter fields are ignored with no warning at all — the field is maxTurns in camelCase, and max_turns isn't a field, so your cap never applied and the agent ran unbounded. Option B misplaces the issue: frontmatter fields all sit in the same block. Option D is wrong because the cap applies regardless of foreground or background.",
+      "concept": "silent-field-ignoring"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You have .claude/agents/notes.md and .claude/agents/research/notes.md, both with name: notes, and you start Claude from the repo root. Which definition is live?",
+      "options": [
+        "Neither — duplicate names are rejected at startup",
+        "The one in .claude/agents/, because shallower always wins",
+        "The one in .claude/agents/research/, because it is nested and therefore more specific",
+        "Whichever file git tracked most recently"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "For duplicate names in nested project scopes, the definition closest to the working directory wins — research/ is closer to where you're standing than the agents/ root. There is no rejection and no git ordering; option B invents a depth rule that doesn't exist.",
+      "concept": "scope-precedence"
     }
   ]
 }

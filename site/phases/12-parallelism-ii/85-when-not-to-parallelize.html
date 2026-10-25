@@ -4,94 +4,316 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>When NOT to Parallelize — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="Parallelise when the work divides at a boundary you can verify on its own.">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>When NOT to Parallelize</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li class="on"><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 84, The Decision Framework — Which Mechanism, When</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 12 · LESSON 85</p>
+      <h1>When NOT to Parallelize</h1>
+      <p class="lesson-motto">Parallelise when the work divides at a boundary you can verify on its own.</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 84 (The Decision Framework)</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Run six tests on a task and reject it, with a reason, before writing any orchestration</li><li>Estimate the coordination cost as a number you can compare to the work</li><li>Name a merge step before the work starts, or say why there isn't one</li><li>Explain why a parallel run multiplies a bug rather than averaging it out</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>Two incidents from this repo, and both are the same mistake in different clothes.</p>
+<p>The first: a workflow script grew a <code>--phases</code> flag to narrow a run to one phase. It accepted the flag, filtered a list with it, and then passed every phase to the authoring step anyway. The flag was decoration. The run fanned out over all nineteen phases when the user had asked for one.</p>
+<p>The cost of that bug was not the bug. It was nineteen times whatever the bug would have cost sequentially.</p>
+<p>The second: three agents were dispatched, each into its own worktree, each asked for a piece of finished work. All three produced exactly what they were asked for. None of them ran <code>git commit</code>. All three branches pointed at the same commit as <code>main</code>. There was nothing to merge. Perfect work, isolated properly, gone.</p>
+<p>And a third, from the same afternoon, which is the one that teaches attribution: after a parallel authoring run the test suite came back red. The obvious reading was that the agents had broken something. The actual cause was a wrong glob in <code>package.json</code> — the runner, not the work. Many workers, one red result, and the evidence pointed the wrong way.</p>
+<p>None of these is an argument against parallelism. All three are arguments against starting it before you have answered a short list of questions.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Parallelism is an amplifier. It multiplies throughput <strong>and</strong> it multiplies whatever the loop was already doing — including its bugs, its ambiguity, and its unfinished decisions.</p>
+<figure class="diagram"><pre>flowchart TD
+    S[&quot;one decision, wrong&quot;] --&gt; P{&quot;N workers&quot;}
+    P --&gt;|N = 1| A[&quot;one wrong result&quot;]
+    P --&gt;|N = 19| B[&quot;nineteen wrong results&lt;br/&gt;plus the tokens for nineteen&quot;]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>So the first question is never &quot;how many workers&quot;. It is &quot;is the thing they will each execute correct?&quot;</p>
+<h3 id="six-tests-in-order">Six tests, in order</h3>
+<p>Run them in this order. The first two reject most tasks.</p>
+<p><strong>1. Is the single-threaded version correct?</strong></p>
+<p>Run it once, serially, and look at the output. If it is wrong, the parallel run is wrong N times, faster, and more expensive. This is the <code>--phases</code> incident: the fan-out was fine and the thing it fanned out was not.</p>
+<p><strong>2. Does the work divide at a boundary you can verify on its own?</strong></p>
+<p>Take one piece, in isolation, and ask whether you can say it is right without the other pieces. If you cannot, you do not have pieces — you have a task you have sliced into un-checkable fragments, and you will be checking the whole thing at the end anyway.</p>
+<p>This is the real discriminator. It rules out &quot;have five agents each improve this module&quot; and it permits &quot;have five agents each rewrite one file to a stated format&quot;.</p>
+<p><strong>3. Is anything load-bearing sequential?</strong></p>
+<p>If step B needs step A's output, they are one worker's job. You can still run <em>two</em> independent chains in parallel; you cannot parallelise a chain.</p>
+<p>The test is concrete: write down what each worker's input is. If any input is &quot;the result of another worker&quot;, that pair is sequential.</p>
+<p><strong>4. Is there a shared mutable resource?</strong></p>
+<p>Worktrees give each worker its own copy of the <strong>files</strong>. They do not give each worker its own database, its own deployment target, its own message queue, or its own row in a table. Two workers writing to one of those collide exactly as two people would, and a worktree will not help.</p>
+<p>Count the shared things before you dispatch: one file, one branch, one service, one account. Each one is either partitioned or serialised.</p>
+<p><strong>5. Can you attribute a failure to a worker?</strong></p>
+<p>If the aggregate result is wrong, can you say which worker did it? For the red-suite incident the answer was &quot;no&quot;, and the wrong party got the blame. If a result is a single artifact assembled from N contributions with no per-contribution evidence, you have traded one slow debug for N fast mismatches.</p>
+<p><strong>6. Is the task bigger than the coordination?</strong></p>
+<p>The coordination cost is real and it is countable:</p>
+<pre class="code"><code>N workers × (setup + briefing + isolation)
++ N commits
++ N−1 merges
++ the review you now owe each piece
++ the re-run when one fails</code></pre>
+<p>If that number is larger than the task, do it yourself. It often is. A four-line change does not need five worktrees, and the merge conflict between two workers who both touched the same helper will take longer than the change.</p>
+<h3 id="the-commit-rule">The commit rule</h3>
+<p>If your parallel plan does not end in a commit per worker and a stated merge, it does not end. <strong>Isolation without a commit is not a backup.</strong> That is the second incident above, and it is the most expensive failure in this repo's history because it <em>looked</em> finished.</p>
+<p>So the merge step is not step seven. It is part of the plan, decided before the first worker starts:</p>
+<ul><li>Which branch does each worker commit to?</li><li>Who merges, in what order, and what does &quot;merged&quot; mean?</li><li>What if two workers changed the same file?</li></ul>
+<p>If you cannot answer the third question, test 4 already failed.</p>
+<h3 id="the-honest-summary">The honest summary</h3>
+<div class="table-wrap"><table><thead><tr><th>Parallelism buys</th><th>Parallelism costs</th></tr></thead><tbody><tr><td>Wall clock, when the boundary is clean</td><td>Coordination: setup, briefs, isolation, merges</td></tr><tr><td>Scale, when the step is uniform</td><td>Tokens: N times the work, plus each worker's context</td></tr><tr><td>Independence, when workers cannot collide</td><td>Attribution: harder to say who broke what</td></tr><tr><td>Throughput on I/O-heavy work</td><td>Compounding: a wrong instruction, N times</td></tr></tbody></table></div>
+<p>None of these is a reason to avoid it. They are the reasons it is a <em>decision</em>.</p>
+<blockquote><p><strong>The reframe:</strong> parallelise when the work divides at a boundary you can verify</p><p>on its own — because if you cannot check a piece by itself, the merge is the</p><p>work, and you have made the work bigger rather than faster.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-take-a-task-you-were-about-to-parallelise">1. Take a task you were about to parallelise</h3>
+<p>Pick one you have already thought about — ideally something you were confident about when you opened this lesson.</p>
+<p>✅ You pass when you can write the task in one sentence and name the output in another.</p>
+<h3 id="2-run-the-six-tests-and-write-a-verdict-per-test">2. Run the six tests and write a verdict per test</h3>
+<p>Pass, fail, or &quot;not sure&quot;. <code>not sure</code> is a fail for the purposes of this exercise; it usually means test 2.</p>
+<p>✅ You pass when every test has a written verdict and at least one is not &quot;pass&quot;.</p>
+<h3 id="3-compute-the-coordination-cost">3. Compute the coordination cost</h3>
+<p>Fill in the formula above with real numbers: minutes per setup, minutes per merge, minutes for the review. Then write down what the task would take you alone.</p>
+<p>✅ You pass when the two numbers are comparable — same units, same level of optimism — and you can say which is larger.</p>
+<h3 id="4-write-the-merge-step-or-write-why-there-isn-t-one">4. Write the merge step, or write why there isn't one</h3>
+<p>Branch names, commit rule, merge order, and what happens if two workers touched one file.</p>
+<p>✅ You pass when the third clause has a real answer, and it is not &quot;they won't&quot;.</p>
+<h3 id="5-reproduce-incident-one-at-the-smallest-scale">5. Reproduce incident one at the smallest scale</h3>
+<p>Take a decision that is not pinned down — an ambiguous instruction you have not finished specifying — and fan it out over three workers. Deliberately.</p>
+<p>✅ You pass when all three outputs are wrong in <em>different</em> ways, and you can say what the single-threaded run would have told you for a third of the cost.</p>
+<h3 id="6-now-serialise-the-same-task-and-measure-both">6. Now serialise the same task and measure both</h3>
+<p>Run it once, yourself, start to finish, and time it. Then run the parallel version and time that, including the merges and the review.</p>
+<p>✅ You pass when you can state the crossover: at what N would the parallel version have been worth it.</p>
+<h3 id="7-find-the-verification-boundary">7. Find the verification boundary</h3>
+<p>For a task that failed test 2, try again to find a boundary where each piece is independently checkable — even if that means the pieces are smaller than you first imagined.</p>
+<p>✅ You pass when you can name a boundary, or explain why none exists for this task.</p>
+<h3 id="8-read-the-failure-mode-in-this-repo-s-own-script">8. Read the failure mode in this repo's own script</h3>
+<p><code>scripts/lib/workflow-lib.mjs</code> opens by explaining what the <em>old</em> done-check got wrong: a single <code>git grep</code> for one scaffold marker, which was wrong in both directions. That is a verification boundary problem, written down by someone who hit it.</p>
+<p>✅ You pass when you can state the two directions it was wrong in, and connect each to a test above.</p>
+<blockquote><p>Nothing here is version-gated — this is arithmetic and judgement. The repo scars</p><p>are dated in the commit log. If you want the mechanism details behind any test,</p><p>the pages linked in Lessons 77–84 are the sources.</p></blockquote>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>You are about to…</th><th>Stop if…</th><th>Instead</th></tr></thead><tbody><tr><td>Fan out a change you have not run once</td><td>Test 1</td><td>Run it serially. Look at the output</td></tr><tr><td>Split a module into five improvements</td><td>Test 2</td><td>State each piece's check, or don't split</td></tr><tr><td>Parallelise a chain</td><td>Test 3</td><td>One worker. Or find a second chain to run alongside</td></tr><tr><td>Have two workers write the same file</td><td>Test 4</td><td>Partition by ownership, or serialise</td></tr><tr><td>Ship an aggregate you can't decompose</td><td>Test 5</td><td>Keep per-contribution evidence, or don't split</td></tr><tr><td>Split a four-line change</td><td>Test 6</td><td>Do it yourself</td></tr><tr><td>Skip the commit in a worktree</td><td>The commit rule</td><td>Commit. A branch that looks like <code>main</code> is not a backup</td></tr><tr><td>Blame the workers for an aggregate failure</td><td>—</td><td>Check the runner first. Ours was a wrong glob</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Write the one-line rejection you would give for each of these: a 40-line bug fix across five worktrees; five agents improving one module; three agents processing a queue that writes to one table. ✅ You pass when each rejection names a <em>test</em> rather than a preference, and at least one offers the narrower task that would pass.</li></ol>
+<ol><li class="criterion">Time a serial run of a task you would normally parallelise. Then parallelise it and time the whole thing, merges included. ✅ You pass when you have both numbers and a stated N at which the parallel version wins.</li></ol>
+<ol><li class="criterion">Design a parallel plan for a task where two workers must touch the same file. Do not say &quot;they won't&quot;. ✅ You pass when the plan names the conflict-handling step and says who resolves it.</li></ol>
+<ol><li class="criterion">A red test suite after a parallel run is evidence of what, exactly? Answer before checking. ✅ You pass when your answer names the possibility that the runner is at fault, not only the workers.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>amplifier</td><td>&quot;more agents, more work done&quot;</td><td>Parallelism multiplies throughput <em>and</em> whatever the loop was already doing, bugs included</td></tr><tr><td>verification boundary</td><td>&quot;where I split it&quot;</td><td>A place where one piece can be judged correct without the others. If none exists, don't split</td></tr><tr><td>load-bearing sequential</td><td>&quot;it's mostly independent&quot;</td><td>B needs A's output, so A and B are one worker's job</td></tr><tr><td>shared mutable resource</td><td>&quot;a conflict&quot;</td><td>Anything only one worker can own at a time. Worktrees fix files, not databases</td></tr><tr><td>coordination cost</td><td>&quot;some overhead&quot;</td><td>Setup + briefs + isolation + merges + review + re-runs, in the same units as the task</td></tr><tr><td>merge step</td><td>&quot;we'll sort it out&quot;</td><td>Branch, commit rule, merge order, conflict handling. Decided before work starts</td></tr><tr><td>attribution</td><td>&quot;which agent broke it&quot;</td><td>Whether a failure can be traced to one contribution. If not, more workers make debugging worse</td></tr><tr><td>isolation without a commit</td><td>&quot;it's done&quot;</td><td>A worktree whose branch points at <code>main</code>. It is not a backup and there is nothing to merge</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Dependency structure as a formal thing.</strong> &quot;Which steps need which&quot; as a graph, and the notion of a critical path, is Phase 15. This lesson uses the plain version of the same idea: if B needs A's output, that pair is sequential.</p>
+<p><strong>Measuring an agent's real cost.</strong> Attribution and cost both get instruments in Phase 14. Test 5 here is the design question; Phase 14 is the measurement.</p>
+<p><strong>Merge strategy in depth.</strong> Branch naming, ordering, and conflict resolution for agent branches is Phase 16, Lesson 109.</p>
+<p><strong>Failure propagation across a graph.</strong> What happens when one of N workers dies, and how the rest of the plan should react, is Phase 15, Lesson 104. This lesson only insists that you be able to <em>tell</em> which one died.</p>
+<p><strong>The case for parallelism.</strong> This is the counterweight lesson, and it is easy to read as a prohibition. It is not. Every test above has a version that passes, and when the boundary is clean and the merge is cheap, doing it serially is the mistake.</p>
+<p><strong>The one scar deliberately left out.</strong> The startup-cache trap — where a session started before <code>git init</code> cannot use worktree tools even though <code>git rev-parse</code> says otherwise — is real, and it is Phase 16, Lesson 108, because it is a bug you reproduce rather than a judgement you make.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">6 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A single-threaded script has a bug: it ignores a filter flag and processes every item. You now fan the same script out across nineteen workers. What is the result?</p>
+        <ol class="options" type="A">
+          <li>Nineteen wrong results and nineteen times the tokens — parallelism multiplies whatever the loop already does</li>
+          <li>One wrong result, because the workers deduplicate identical outcomes</li>
+          <li>The bug is usually masked, since independent workers rarely agree on a wrong output</li>
+          <li>The wrong results, but at the same total cost, since the work is the same either way</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Nineteen wrong results and nineteen times the tokens — parallelism multiplies whatever the loop already does</p>
+          <p class="why">Parallelism is an amplifier: it multiplies throughput and the loop's existing defects together, which is exactly the <code>--phases</code> incident this repo hit. The deduplication answer invents a safety net — workers running the same deterministic bug produce the same wrong answer N times, not zero times. Cost grows with the number of workers, not with the size of the output.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Step B needs step A's output before it can start. You want both to happen faster. What is the disciplined move?</p>
+        <ol class="options" type="A">
+          <li>Keep A and B in one worker, and look for a second independent chain to run alongside</li>
+          <li>Run A and B in separate worktrees so they cannot interfere, then merge</li>
+          <li>Put A and B in a <code>pipeline()</code> so the runtime schedules them</li>
+          <li>Run them in parallel and discard whichever output arrives second</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Keep A and B in one worker, and look for a second independent chain to run alongside</p>
+          <p class="why">A dependency means the pair is one unit of work; the parallelism has to come from somewhere else — a second independent chain. Worktrees solve file collisions, not ordering, so they do nothing for a B-needs-A dependency. A <code>pipeline()</code> iterates one job over a list rather than sequencing two different jobs, and discarding the second result is a description of a race condition rather than a plan.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Three workers will each consume from a queue and write results into one shared database table. Each has its own worktree. Is that safe?</p>
+        <ol class="options" type="A">
+          <li>No — worktrees isolate files, not the database. The table is a shared mutable resource and needs partitioning or serialising</li>
+          <li>Yes — a separate worktree per worker means the workers cannot see each other's writes</li>
+          <li>Yes — the database handles concurrent writes on its own, so no coordination is needed</li>
+          <li>Only if the three workers run in the same session rather than in separate ones</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> No — worktrees isolate files, not the database. The table is a shared mutable resource and needs partitioning or serialising</p>
+          <p class="why">Worktrees give each worker its own copy of the checkout; they say nothing about a database, a deployment target, or an account. The shared-each-other's-writes answer confuses files with state: the worktrees are genuinely isolated and the table is still one table. Sensible as concurrency handling often is, it does not tell you the <em>results</em> are correct, and session grouping has no bearing on either.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Three agents each finish their piece perfectly in their own worktree. Afterwards, all three branches point at the same commit as <code>main</code>. What went wrong?</p>
+        <ol class="options" type="A">
+          <li>Nobody committed, so the isolation bought nothing durable and there is nothing to merge</li>
+          <li>The branches should have been pushed to a remote, which would have preserved the work</li>
+          <li>Worktrees cannot be committed to, so a different isolation mechanism was needed</li>
+          <li>The agents should have shared one worktree instead of three</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Nobody committed, so the isolation bought nothing durable and there is nothing to merge</p>
+          <p class="why">This is this repo's most expensive scar: isolation without a commit is not a backup. The push answer is the reflexive fix and it is not the mechanism — the commits have to exist locally before a push could carry anything. Worktrees are ordinary git checkouts and commit normally, so the third option invents a limitation, and one shared worktree would have reintroduced exactly the collisions the isolation was for.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A test suite comes back red after a parallel run. What is the correct first move?</p>
+        <ol class="options" type="A">
+          <li>Check the runner before the workers — the failure's evidence is not automatically attached to the agents' work</li>
+          <li>Revert every worker's branch, then re-run the fan-out to see if it happens again</li>
+          <li>Assume the worker whose files changed most broke it and inspect that branch first</li>
+          <li>Re-run the suite without parallel workers, since parallelism is the likely cause</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Check the runner before the workers — the failure's evidence is not automatically attached to the agents' work</p>
+          <p class="why">Ours was a wrong glob in <code>package.json</code> — the runner, not the work — and the parallel shape made the misattribution feel obvious. The revert-and-rerun answer spends the most time on the least informative experiment, because a red suite after any change is ambiguous. Guessing the busiest branch is a heuristic with no evidence behind it, and dropping parallelism removes the wrong variable: the question is whether the <em>result</em> can be traced to a worker at all.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Which of these tasks is the best fit for parallel workers, by the six tests?</p>
+        <ol class="options" type="A">
+          <li>Rewriting 60 independent data files into a stated format, where each file can be checked on its own and each worker commits its own file</li>
+          <li>Having five agents each improve the same API module until it is better</li>
+          <li>Three agents consuming one queue and writing into one shared table</li>
+          <li>Two agents where the second needs the first's output before it can begin</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Rewriting 60 independent data files into a stated format, where each file can be checked on its own and each worker commits its own file</p>
+          <p class="why">The first task passes every test: the transformation is understood, each file is an independently verifiable unit, there is no shared mutable state, and the merge is trivial because each worker owns its file. The improve-this-module task fails the verification-boundary test — 'better' has no per-piece check and the pieces overlap. The shared-table task fails the shared-resource test, and the B-needs-A pair fails the sequential test.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span>Previous</span>84. The Decision Framework — Which Mechanism, When</a>
+    <a class="next" href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span>Next</span>86. What Loads, What Costs</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

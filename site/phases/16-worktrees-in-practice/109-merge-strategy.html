@@ -4,94 +4,284 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Merge Strategy for Agent Branches — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can merge a shelf of agent branches the hour they finish — instead of">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Merge Strategy for Agent Branches</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li class="on"><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 108, The Startup-Cache Trap (cost us a session)</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 16 · LESSON 109</p>
+      <h1>Merge Strategy for Agent Branches</h1>
+      <p class="lesson-motto">You can merge a shelf of agent branches the hour they finish — instead of</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 02 (Lessons 14–15), Phase 11</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Rebase an agent branch onto today's <code>main</code>, and say why that removes stale-base conflicts</li><li>Choose a merge order and defend it against &quot;merge as they finish&quot;</li><li>Merge an agent branch with <code>--no-ff</code> and read the resulting graph</li><li>State when an agent branch is safe to rebase versus merge</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>Five agents ran in five worktrees. Each produced good work. You decided to merge &quot;when I get to it,&quot; and two days passed.</p>
+<p><code>main</code> moved three times in those two days. When you finally merge the branches in completion order, the third one conflicts with a change the first one made to the same function — and neither agent ever saw the other's code. The changes are each individually correct. The conflict exists only because both branches were cut from a <code>main</code> that no longer exists.</p>
+<p>You spend the afternoon resolving a conflict between two pieces of work that were never in dispute. The lesson is not &quot;read conflicts better.&quot; It is that the longer an agent branch sits, the more it fails for reasons unrelated to the work in it.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>An agent branch is a <strong>parcel</strong>, not a feature branch you keep. It is:</p>
+<ul><li><strong>short-lived</strong> — its job ends when the agent reports done;</li><li><strong>private</strong> — nobody else has it, so rewriting it is safe;</li><li><strong>cut from a base</strong> — by default the repository's default branch, the same clean <code>main</code> every other agent started from.</li></ul>
+<p>Those three properties decide the strategy, and the strategy is the Phase 02 rule applied to agent work:</p>
+<blockquote><p>Rebase a branch you own. Merge a branch anyone else has.</p></blockquote>
+<p>An agent branch is yours until you merge it. So rebase it onto today's <code>main</code> before it goes in.</p>
+<figure class="diagram"><pre>flowchart TD
+    M0[main: base] --&gt; A[agent A branch]
+    M0 --&gt; B[agent B branch]
+    M0 --&gt; C[agent C branch]
+    M0 --&gt;|main moves| M1[main: newer commits]
 
----
+    A --&gt;|&quot;rebase onto M1&quot;| A2[&quot;A' (linear, no old base)&quot;]
+    B --&gt;|&quot;rebase onto M1&quot;| B2[&quot;B'&quot;]
+    C --&gt;|&quot;rebase onto M1&quot;| C2[&quot;C'&quot;]
 
-## The Problem
+    M1 --&gt; A2 --&gt; M2[&quot;merge A' -&gt; main&quot;]
+    B2 --&gt; M3[&quot;merge B' -&gt; main&quot;]
+    C2 --&gt; M4[&quot;merge C' -&gt; main&quot;]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="the-order-matters">The order matters</h3>
+<p>Merge in the order the branches will read well in history — usually the order you started the agents, or the catalog order if the work is a numbered sequence. &quot;Completion order&quot; is the wrong key: agents finish out of order, and merging by finish time puts a branch built on an older <code>main</code> under one built on a newer one for no reason.</p>
+<h3 id="rebase-then-merge">Rebase, then merge</h3>
+<pre class="code" data-lang="bash"><code># in or targeting each agent's branch
+git fetch origin                      # make sure main is current
+git rebase origin/main                # replay the agent's commits on today's main
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
+# back on main
+git merge --no-ff worktree-refactor-a  # record the join explicitly</code></pre>
+<p>Rebasing each branch onto the <em>same</em> new <code>main</code> first means every branch is built on the same base when it merges. That is what removes the &quot;conflict between work that never disagreed.&quot; If a genuine conflict survives the rebase, it is a real one — two agents changed the same lines — and Lesson 15's reading of the markers applies.</p>
+<p><code>--no-ff</code> forces a merge commit even when a fast-forward is possible. It costs one commit and buys a visible record that this batch of agent work came in together. Optional, but it is what makes <code>git log --graph</code> legible later.</p>
+<h3 id="what-immediately-buys-you">What &quot;immediately&quot; buys you</h3>
+<p>Merge the moment an agent finishes. Every hour a branch waits, <code>main</code> can move, and the rebase gets bigger. The repo convention is blunt about it for the same reason: <strong>one agent, one branch. Merge immediately — branches drift.</strong></p>
+<blockquote><p><strong>The reframe:</strong> an agent branch is a parcel to be delivered the hour it is</p><p>packed — rebase it onto today's <code>main</code> and merge it before <code>main</code> moves again.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-set-up-a-repo-and-two-branches-from-the-same-base">1. Set up a repo and two branches from the same base</h3>
+<pre class="code" data-lang="bash"><code>mkdir -p ~/merge-drill &amp;&amp; cd ~/merge-drill
+git init
+printf 'a\n' &gt; a.txt &amp;&amp; printf 'b\n' &gt; b.txt
+git add -A &amp;&amp; git commit -m &quot;base&quot;
+git branch agent-a
+git branch agent-b</code></pre>
+<p>✅ You pass when <code>git branch</code> lists <code>agent-a</code> and <code>agent-b</code>, both at the same commit as <code>main</code>.</p>
+<h3 id="2-give-each-branch-independent-work">2. Give each branch independent work</h3>
+<p>Use two worktrees so you can edit both at once (Lesson 107):</p>
+<pre class="code" data-lang="bash"><code>git worktree add ../merge-drill-a agent-a
+git worktree add ../merge-drill-b agent-b
+# in ../merge-drill-a: edit a.txt, commit &quot;agent a: edit a&quot;
+# in ../merge-drill-b: edit b.txt, commit &quot;agent b: edit b&quot;</code></pre>
+<p>✅ You pass when each branch has exactly one commit the other does not.</p>
+<h3 id="3-move-main-underneath-them">3. Move <code>main</code> underneath them</h3>
+<pre class="code" data-lang="bash"><code>cd ~/merge-drill
+printf 'c\n' &gt; c.txt &amp;&amp; git add c.txt &amp;&amp; git commit -m &quot;main: unrelated&quot;</code></pre>
+<p>✅ You pass when <code>main</code> has a commit neither agent branch has.</p>
+<h3 id="4-rebase-each-onto-the-new-main-then-merge-in-order">4. Rebase each onto the new <code>main</code>, then merge in order</h3>
+<pre class="code" data-lang="bash"><code>git rebase main agent-a
+git rebase main agent-b
+git switch main
+git merge --no-ff agent-a
+git merge --no-ff agent-b
+git log --oneline --graph</code></pre>
+<p>✅ You pass when both merges succeed with <strong>no conflict</strong>, and the graph shows two merge commits in the order you chose.</p>
+<h3 id="5-now-do-it-the-other-way-and-feel-the-difference">5. Now do it the other way and feel the difference</h3>
+<p>Reset to before the merges, and instead merge the <em>stale</em> branches without rebasing. Change the same line in both branch worktrees first.</p>
+<pre class="code" data-lang="bash"><code># in both worktrees, edit the SAME line of a.txt and commit
+git switch main
+git merge agent-a
+git merge agent-b        # conflict</code></pre>
+<p>✅ You pass when you get a conflict in <code>a.txt</code>, and you can say it appeared because both branches changed the same region — not because the agents disagreed about anything else.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>git rebase origin/main</code> on an agent branch</td><td>Bringing a finished agent's work up to today's base</td></tr><tr><td><code>git merge --no-ff &lt;branch&gt;</code></td><td>Merging an agent branch and recording the batch explicitly</td></tr><tr><td>Merge order</td><td>Creation or catalog order, never completion order</td></tr><tr><td>One agent, one branch</td><td>Keeping the parcel small and attributable</td></tr><tr><td>Merge immediately</td><td>Before <code>main</code> moves and the rebase grows</td></tr><tr><td><code>git log --oneline --graph</code></td><td>Reading what arrived and in what order</td></tr><tr><td>Fast-forward</td><td>Fine when the branch is a straight extension of <code>main</code></td></tr><tr><td><code>git branch -d &lt;branch&gt;</code></td><td>Deleting the branch once it is merged</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Run three agent branches from one base, move <code>main</code> twice, then rebase all three onto the new <code>main</code> and merge them in a chosen order. ✅ You pass when all three merge with no conflict and you can point at the shared base each was rebased onto.</li></ol>
+<ol><li class="criterion">Merge the same three branches <strong>without</strong> rebasing, in completion order. Record where conflicts appear and whether they correspond to real disagreements. ✅ You pass when you can name at least one conflict caused purely by a stale base, not by two agents editing the same lines.</li></ol>
+<ol><li class="criterion">Merge <code>agent-a</code> with a fast-forward and <code>agent-b</code> with <code>--no-ff</code>, then compare <code>git log --graph</code>. ✅ You pass when you can say which history is easier to explain to a reviewer and what the extra merge commit bought.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>agent branch</td><td>&quot;the agent's work&quot;</td><td>A private, short-lived branch created for one agent. Yours until merged.</td></tr><tr><td>merge order</td><td>&quot;merge as they finish&quot;</td><td>Creation or catalog order. Completion order merges stale bases under fresh ones.</td></tr><tr><td>rebase before merge</td><td>&quot;cleaning up&quot;</td><td>Replaying the branch on today's <code>main</code> so it merges from the same base as its siblings.</td></tr><tr><td><code>--no-ff</code></td><td>&quot;a real merge&quot;</td><td>Forces a merge commit, recording the batch instead of sliding the label.</td></tr><tr><td>branch drift</td><td>&quot;it got stale&quot;</td><td>The time a branch waits while <code>main</code> moves. The cost is rebase size, not the agent's work.</td></tr><tr><td>stale-base conflict</td><td>&quot;the agents disagreed&quot;</td><td>A conflict from two branches cut from an old <code>main</code>. Not a real disagreement.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong><code>/batch</code> and PR-based fan-out.</strong> Claude Code can run many subagents and have each publish a change, often as a pull request. That is the same merge problem at a larger scale, and it is Phase 11 Lesson 75's territory.</p>
+<p><strong>Stacked branches and merge trains.</strong> When agent B depends on agent A's branch. Real, and a different shape from the flat fan-out here.</p>
+<p><strong>Squashing an agent branch to one commit.</strong> <code>git merge --squash</code> collapses the parcel into a single change. Useful when the agent's intermediate commits are noise — and it is <code>git rebase -i</code> territory, deliberately left to when you are cleaning up your own unpushed work.</p>
+      </div>
 
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">Four agent branches were all cut from the same <code>main</code>. While they ran, <code>main</code> gained two commits. You merge them in the order the agents finished. Two merges conflict even though each agent touched a different function. What is the cause?</p>
+        <ol class="options" type="A">
+          <li>The agents disagreed about the same lines and the conflict is real</li>
+          <li><code>git merge</code> always conflicts above three branches</li>
+          <li>Each branch was cut from a base that <code>main</code> has since moved past, so the merges are reconciling against different starting points</li>
+          <li>The worktrees share an object store, which corrupts the merges</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> Each branch was cut from a base that <code>main</code> has since moved past, so the merges are reconciling against different starting points</p>
+          <p class="why">Merging stale, unrebalanced branches forces each merge to reconcile a different old base; rebasing all of them onto the current <code>main</code> first removes the conflict. Option A is the tempting wrong answer because a conflict <em>looks</em> like disagreement — but these are different functions, so the agents never contested anything. Git has no three-branch conflict limit, and a shared object store is normal, not corrupting.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You have three finished agent branches and <code>main</code> has moved once. Which sequence best matches the strategy in this lesson?</p>
+        <ol class="options" type="A">
+          <li>Rebase each branch onto today's <code>main</code>, then merge them in creation order</li>
+          <li>Merge each branch as-is, oldest base first, no rebase</li>
+          <li>Rebase <code>main</code> onto each agent branch in turn</li>
+          <li>Squash all three branches into one commit and merge that</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Rebase each branch onto today's <code>main</code>, then merge them in creation order</p>
+          <p class="why">Rebasing each private branch onto the current <code>main</code> gives every branch the same base before it merges, and creation order keeps history readable. Option C is the tempting wrong answer because it mentions the right verb — but you rebase the <em>branch you own</em> onto <code>main</code>, never <code>main</code> onto the branch. Merging stale branches is what produces phantom conflicts, and squashing throws away attribution for no reason here.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">An agent finished an important branch on Monday. <code>main</code> moved four times before Friday. The agent's code is unchanged and correct. What grew over those four days, and who pays for it?</p>
+        <ol class="options" type="A">
+          <li>The agent's work — it silently becomes stale and needs a re-run</li>
+          <li>Nothing — a branch that is not rebased never changes cost</li>
+          <li>The object store — worktree branches bloat the repository over time</li>
+          <li>The rebase — you pay, because you reconcile four days of <code>main</code> movement against a branch cut from Monday</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>D.</strong> The rebase — you pay, because you reconcile four days of <code>main</code> movement against a branch cut from Monday</p>
+          <p class="why">The work stays correct; the <em>integration</em> cost grows with every commit <code>main</code> gains, and that cost lands on whoever merges. Option B is the tempting wrong answer because it is true that the branch's files do not change — the work is fine — but the rebase against a moved <code>main</code> gets larger and more conflict-prone. Branches do not bloat the object store and are not auto-re-run.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">After rebasing and merging an agent branch, you want history to clearly show that this batch of agent work arrived together, even though a fast-forward is possible. What do you do?</p>
+        <ol class="options" type="A">
+          <li>Merge normally and rely on the commit timestamps</li>
+          <li>Merge with <code>--no-ff</code> to force a merge commit</li>
+          <li>Rebase the branch a second time</li>
+          <li>Add a tag pointing at the branch tip</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Merge with <code>--no-ff</code> to force a merge commit</p>
+          <p class="why"><code>--no-ff</code> forces a merge commit with two parents, which records the join even when the label could just slide forward. Option A is the tempting wrong answer because timestamps are visible in the log and feel like a record — but a fast-forward leaves no node, so nothing marks the batch. A second rebase changes nothing and a tag is not part of the merge.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span>Previous</span>108. The Startup-Cache Trap</a>
+    <a class="next" href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span>Next</span>110. Isolation Without a Commit Is Not a Backup</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

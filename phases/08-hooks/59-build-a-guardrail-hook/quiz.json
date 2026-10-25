@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Build a Guardrail Hook that needs a new situation, not recall.",
+      "prompt": "You list rule one as `{ pattern: /^git\\s+push\\b/, reason: '...' }` — blocking every push — and keep a `git push --force-with-lease` allow-case test below it. The self-test fails on that allow case. Why?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Rules are evaluated in order and the first match wins, so the broad push rule fires before the `--force-with-lease` exception below it is ever reached",
+        "`--force-with-lease` is a different command the `Bash` matcher doesn't cover",
+        "The self-test only checks block cases, so the allow case was never actually run",
+        "`--force-with-lease` contains `--force`, and no regex can exclude a substring it matches"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "The list is scanned with `.find()`, so the first rule whose pattern tests true decides the outcome. A broad rule placed above a narrow exception makes the exception dead code — the safe variant is swallowed before its allow-case can save it. The fix is to put the exclusion inside the rule that actually matches, e.g. `^git\\s+push\\b(?!.*--force-with-lease)`. Option B is wrong because the matcher fires the script on every Bash command; the script, not the matcher, does the deciding. Option C misses that the test did run — that's how the failure was seen. Option D misreads regex: a negative lookahead excludes exactly that substring, which is the pattern the lesson uses.",
+      "concept": "first-match-wins-and-exceptions"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You add a `PostToolUse` hook on `Edit|Write`, intending to block writes to generated files. Its script exits 2 with a clear reason. The agent writes a file under `dist/`. What happens?",
+      "options": [
+        "The write lands; exit 2 on `PostToolUse` sends the reason to the model instead of blocking, so the guardrail must move to `PreToolUse`",
+        "The write is refused and the reason is shown as the blocking reason",
+        "The write lands, and nothing reaches the model",
+        "The write is refused only on the second attempt"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "`PostToolUse` cannot block because the tool already ran; exit 2 there is a way to hand the model feedback, which is why the lesson's generated-file hook uses `additionalContext` and deliberately does not try to block. A guardrail — enforcement before the action — belongs on `PreToolUse`. Option B is the exact confusion the event table exists to prevent. Option C undersells it: the reason does reach the model, which is why a wrong-seam hook can look like it is doing something. Option D invents a retry that doesn't exist.",
+      "concept": "reminder-is-not-a-guardrail"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You want a fifth forbidden command. Where does it go, and why does that choice matter?",
+      "options": [
+        "As a new entry in the `BLOCKED_COMMANDS` array — adding data can't introduce a new code path or a new way to fail",
+        "As a new `if` branch ahead of the existing ones — more explicit and easier to test",
+        "In `CLAUDE.md` beside the other rules, so the model sees it as well",
+        "In a second, separate script, so a bug in one can't affect the other"
+      ],
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "Policy-as-data is the point: a rule is a line in an array, and adding a line cannot add a branch, a crash surface, or an untested path. Option B is what the array replaced — every new branch is a new way to fail, which is how four copy-pasted scripts drift out of sync. Option C puts enforcement back in the window, where it is a request again. Option D scatters the policy, so nobody can read or update it in one place and you now have several failure surfaces instead of one.",
+      "concept": "policy-as-data"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Your `PreToolUse` guardrail does two regex tests and declares no `timeout`. A typo makes it block on reading stdin forever. What does the user experience?",
+      "options": [
+        "The session can hang for up to 600 seconds — the default command-hook timeout — which is why a fast guardrail sets a short explicit `timeout: 5`",
+        "The hook is killed at 30 seconds and the tool call proceeds",
+        "`PreToolUse` has no timeout, so the session hangs until it is killed by hand",
+        "The harness runs the tool anyway after 10 seconds"
+      ],
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "The default timeout for command hooks is 600 seconds — ten minutes — and it exists for slow work, which a two-regex guardrail is not. A bug then becomes a six-hundred-second freeze in your session. Option B quotes 30s, which is the default on some events, not this one. Option C is wrong: a timeout exists, it is just far too generous. Option D misreads the failure path — a timeout doesn't fast-forward the tool.",
+      "concept": "default-timeout-is-huge"
     }
   ]
 }

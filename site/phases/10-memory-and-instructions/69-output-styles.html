@@ -4,94 +4,253 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Output Styles — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can change how the agent talks and what role it plays for a whole session — without changing what it knows.">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Output Styles</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li class="on"><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 68, Auto Memory and MEMORY.md</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 10 · LESSON 69</p>
+      <h1>Output Styles</h1>
+      <p class="lesson-motto">You can change how the agent talks and what role it plays for a whole session — without changing what it knows.</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 68, Auto Memory and MEMORY.md</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
-
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Switch between the built-in output styles and say what each one changes</li><li>Write a custom output style with frontmatter</li><li>Decide between <code>keep-coding-instructions: true</code> and leaving it out</li><li>Choose between an output style, <code>CLAUDE.md</code>, and a hook for a given need</li><li>Explain why an output style is a request the agent follows, not a guarantee</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You want short answers. So every session you type &quot;be concise&quot; before your first real question. Every session. Thirty times a month, the same sentence, and it wears off the moment the conversation gets long.</p>
+<p>Or the other one: you are using Claude Code to draft documentation, not code. It keeps behaving like a software engineer — scoping changes, writing comments, verifying work — because that is the default role it was given. You want a writing assistant, not a coder with a documentation task.</p>
+<p>Both are the same problem: you are trying to change <em>how</em> the agent works, one message at a time.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>An <strong>output style</strong> is a set of instructions that sets Claude's role, tone, and response format for every response in a session. You pick one, and it applies until you change it — so you stop repeating the request.</p>
+<p>Claude Code ships four built-in styles besides its default:</p>
+<div class="table-wrap"><table><thead><tr><th>Style</th><th>What changes</th><th>Use it when</th></tr></thead><tbody><tr><td>Default</td><td>Nothing extra — standard software-engineering instructions</td><td>Normal work</td></tr><tr><td>Proactive</td><td>Starts work immediately, assumes on routine decisions, doesn't enter plan mode unless asked</td><td>You'll correct course rather than pre-approve</td></tr><tr><td>Concise</td><td>Leads with the result, drops preamble and recaps, one to three sentences for a simple question</td><td>Default answers are longer than you want</td></tr><tr><td>Explanatory</td><td>Adds short <code>Insight</code> blocks explaining choices behind the code</td><td>You're learning a codebase</td></tr><tr><td>Learning</td><td>Adds <code>Insight</code> blocks and leaves small pieces of code for you to write (<code>TODO(human)</code>)</td><td>You want hands-on practice while the task still gets done</td></tr></tbody></table></div>
+<p>Switch with <code>/output-style &lt;name&gt;</code>, or <code>/config</code> → <strong>Output style</strong>, or the <code>outputStyle</code> field in a settings file. The command and the menus save the choice to <code>.claude/settings.local.json</code>.</p>
+<figure class="diagram"><pre>flowchart TD
+    A[&quot;You pick a style&quot;] --&gt; B[&quot;Claude Code sends its instructions&lt;br/&gt;with every request&quot;]
+    B --&gt; C[&quot;Applies to the main conversation&lt;br/&gt;and to a fork&quot;]
+    B --&gt; D[&quot;Does NOT change other subagents&lt;br/&gt;they run their own system prompt&quot;]
+    A --&gt; E[&quot;Switch mid-session:&lt;br/&gt;applies from your next message&quot;]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<blockquote><p><strong>The reframe:</strong> an output style changes the agent's voice, not its knowledge — and unlike a rule in <code>CLAUDE.md</code>, it can replace the agent's whole job, which is why the built-in coding instructions come out unless you ask for them back.</p></blockquote>
+<h3 id="writing-a-custom-style">Writing a custom style</h3>
+<p>A custom output style is a markdown file: optional YAML frontmatter, then the instructions. Save it at one of three levels:</p>
+<ul><li><strong>User:</strong> <code>~/.claude/output-styles</code> — every project</li><li><strong>Project:</strong> <code>.claude/output-styles</code> — committed, shared</li><li><strong>Managed policy:</strong> <code>.claude/output-styles</code> inside the managed settings directory</li></ul>
+<p>The file name becomes the style name unless you set <code>name</code> in the frontmatter. The frontmatter fields:</p>
+<div class="table-wrap"><table><thead><tr><th>Field</th><th>What it does</th></tr></thead><tbody><tr><td><code>name</code></td><td>Shown in the <code>/config</code> picker. Defaults to the file name</td></tr><tr><td><code>description</code></td><td>Shown in the picker</td></tr><tr><td><code>keep-coding-instructions</code></td><td>Set <code>true</code> to keep Claude Code's built-in software-engineering instructions alongside your style</td></tr><tr><td><code>force-for-plugin</code></td><td>Plugin styles only — apply automatically when the plugin is enabled</td></tr></tbody></table></div>
+<p><code>keep-coding-instructions</code> is the field that bites. Leave it out and your custom style <strong>replaces</strong> the software-engineering instructions — right if Claude is now a writing assistant, wrong if you only wanted a different tone. Set it <code>true</code> when you are changing how Claude communicates but still want it coding the same way.</p>
+<pre class="code" data-lang="markdown"><code>---
+name: Diagrams first
+description: Lead every explanation with a diagram
+keep-coding-instructions: true
 ---
 
-## The Problem
+When explaining code, architecture, or data flow, start with a Mermaid diagram
+showing the structure, then explain in prose.</code></pre>
+<h3 id="what-an-output-style-is-not">What an output style is not</h3>
+<ul><li><strong>Not enforcement.</strong> It is an instruction the agent follows. For something that must happen every time, use a hook (Lesson 55). For what the agent should <em>know</em> about your project, use <code>CLAUDE.md</code> (Lesson 65).</li><li><strong>Not for subagents.</strong> Styles apply to the main conversation and to a fork (Lesson 47). Other subagents run their own system prompt, so a style doesn't change how they respond.</li><li><strong>Not a permission change.</strong> The Proactive style doesn't change your permission mode; prompts appear the same way.</li><li><strong>Not instant for a new file.</strong> In the terminal, style files are read at startup. Create or edit one mid-session and you restart to pick it up. Switching between existing styles applies from your next message (Claude Code v2.1.251 or later, checked October 2026).</li></ul>
+<hr>
+<h2 id="build-it">Build It</h2>
+<ol><li>Run <code>/output-style concise</code>, then ask a question with a factual answer. Note the length.</li></ol>
+<p>✅ You pass when the reply leads with the result and you can say what was left out compared with the default.</p>
+<ol><li>Run <code>/output-style explanatory</code>, make a small code change, and look for an <code>Insight</code> block.</li></ol>
+<p>✅ You pass when you can point at the block and say it explains a choice rather than narrating the steps.</p>
+<ol><li>Write a custom style in <code>~/.claude/output-styles/</code> with <code>keep-coding-instructions: true</code>. Restart Claude Code and select it with <code>/output-style</code>.</li></ol>
+<p>✅ You pass when the style is in the picker and the agent still codes with its normal care.</p>
+<ol><li>Write a second custom style without <code>keep-coding-instructions</code>. Select it and ask for a code change.</li></ol>
+<p>✅ You pass when you can describe what the agent stopped doing, and say why the field was responsible.</p>
+<ol><li>With a style active, ask the agent to do something destructive but reversible. Watch for the confirmation.</li></ol>
+<p>✅ You pass when you can explain that the style is an instruction, not a lock, and that permissions still apply.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>/output-style &lt;name&gt;</code></td><td>Switch styles; list them with no argument</td></tr><tr><td><code>/config</code> → Output style</td><td>Pick from a menu</td></tr><tr><td><code>outputStyle</code> in settings</td><td>Set a default, or set it per project</td></tr><tr><td><code>~/.claude/output-styles/</code></td><td>Your styles, every project</td></tr><tr><td><code>.claude/output-styles/</code></td><td>Team styles, committed</td></tr><tr><td><code>keep-coding-instructions: true</code></td><td>Change tone, keep the coding behaviour</td></tr><tr><td><code>force-for-plugin</code></td><td>Plugin styles that apply on enable</td></tr><tr><td>Concise / Explanatory / Learning</td><td>Built-ins for shorter, teaching, and hands-on sessions</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Your team wants every explanation to start with a diagram, but the agent must still work like a careful engineer. Write the style and prove both halves. ✅ You pass when explanations start with a diagram and the agent still scopes and verifies its code changes.</li></ol>
+<ol><li class="criterion">You draft documentation in Claude Code, not code. Write a style for that job and decide, out loud, whether to keep the coding instructions. Then test a coding task under that style. ✅ You pass when you can say what the style gained you on documentation and what it cost you on the coding task.</li></ol>
+<ol><li class="criterion">A teammate says &quot;just put 'be concise' in <code>CLAUDE.md</code>.&quot; Compare the two approaches on one task and write down which is better and why. ✅ You pass when you can name a case where a rule in <code>CLAUDE.md</code> is right and a case where a style is right.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>output style</td><td>&quot;a prompt preset&quot;</td><td>Instructions that set role, tone, and format for every response in a session.</td></tr><tr><td><code>keep-coding-instructions</code></td><td>&quot;keep the defaults&quot;</td><td>Whether your custom style keeps Claude Code's built-in software-engineering instructions. Defaults to false.</td></tr><tr><td>built-in styles</td><td>&quot;the four modes&quot;</td><td>Proactive, Concise, Explanatory, Learning — each adds to the default.</td></tr><tr><td><code>force-for-plugin</code></td><td>&quot;always on&quot;</td><td>A plugin style that applies automatically when the plugin is enabled.</td></tr><tr><td>style vs hook</td><td>&quot;both change behaviour&quot;</td><td>A style is an instruction the agent follows; a hook runs regardless of what it decides.</td></tr><tr><td>style vs CLAUDE.md</td><td>&quot;both set context&quot;</td><td>A style shapes how it responds; <code>CLAUDE.md</code> says what it should know.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<ul><li><strong><code>CLAUDE.md</code></strong> — project knowledge that stays loaded whichever style is active. Lesson 65.</li><li><strong>Hooks</strong> — the mechanism for guaranteed actions. Lesson 55.</li><li><strong>Subagents</strong> — why they ignore the active style. Lesson 47.</li><li><strong>Plugins shipping styles</strong> — packaging a style for distribution. Lesson 63.</li><li><strong>Prompt-cache cost of switching styles mid-session.</strong> Phase 13.</li></ul>
+<p>The behaviour above is from <a href="https://code.claude.com/docs/en/output-styles" target="_blank" rel="noopener">Output styles</a>. Which styles exist, and the <code>Concise</code> style's version requirement, are version-gated; check the page before relying on an exact name.</p>
+      </div>
 
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You write a custom output style to change how the agent explains things. After selecting it, the agent stops scoping its code changes and stops verifying its work. What did you miss?</p>
+        <ol class="options" type="A">
+          <li>Nothing — that is expected, and you should switch back to Default for coding</li>
+          <li><code>keep-coding-instructions: true</code>, which keeps the built-in software-engineering instructions alongside your style</li>
+          <li><code>force-for-plugin: true</code>, which prevents the coding instructions from being dropped</li>
+          <li><code>outputStyle</code> set in <code>~/.claude/settings.json</code> rather than the project settings</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> <code>keep-coding-instructions: true</code>, which keeps the built-in software-engineering instructions alongside your style</p>
+          <p class="why">A custom style replaces Claude Code's built-in software-engineering instructions unless <code>keep-coding-instructions</code> is true. Option 0 is tempting because the symptoms look like 'this style is for writing' — but you did not intend to change the coding behaviour, and the field is the fix.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You want the agent to lead every explanation with a diagram, but only in one repository. Where do you put the style file?</p>
+        <ol class="options" type="A">
+          <li><code>~/.claude/output-styles/</code>, so it is available everywhere</li>
+          <li><code>.claude/output-styles/</code> in that repository</li>
+          <li><code>.claude/rules/</code>, because it is a project instruction</li>
+          <li><code>CLAUDE.md</code>, under a heading</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> <code>.claude/output-styles/</code> in that repository</p>
+          <p class="why">A project output style lives in <code>.claude/output-styles/</code> and is committed with the repo. Option 0 is tempting because it works immediately — but a user-level style applies to every project, which is more than you asked for.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Your team needs a formatter to run after every file edit, no exceptions. A teammate suggests an output style that says &quot;always run the formatter after edits.&quot; Why is that the wrong mechanism?</p>
+        <ol class="options" type="A">
+          <li>Output styles can't mention tools, only tone</li>
+          <li>A style is an instruction the agent follows, so it can be missed; a hook runs regardless of what the agent decides</li>
+          <li>Output styles only apply to the first response in a session</li>
+          <li>A style would need <code>keep-coding-instructions: true</code> to run commands</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A style is an instruction the agent follows, so it can be missed; a hook runs regardless of what the agent decides</p>
+          <p class="why">Styles are guidance, not enforcement, so a guarantee needs a hook. Option 0 is tempting because styles do read like prompts — but the problem is not what they can mention; it is that they cannot guarantee an action.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You create a new custom style file while a session is running, select it, and nothing changes. What is the most likely cause?</p>
+        <ol class="options" type="A">
+          <li>The style name in the frontmatter doesn't match the file name</li>
+          <li>In the terminal, style files are read at startup, so a new file needs a restart</li>
+          <li>Custom styles must be set in <code>settings.json</code> before a session starts</li>
+          <li>The style was rejected because it has no <code>description</code></li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> In the terminal, style files are read at startup, so a new file needs a restart</p>
+          <p class="why">The terminal reads style files when it starts, so a file created mid-session is picked up after a restart. Option 2 is tempting because settings often need a restart — but selecting an existing style mid-session does work; it is the new file that is not read.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span>Previous</span>68. Auto Memory and `MEMORY.md`</a>
+    <a class="next" href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span>Next</span>70. Imports and External Context</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

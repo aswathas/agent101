@@ -5,259 +5,250 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What a Language Model Is — Harnessing Claude Code</title>
 <meta name="description" content="You stop reading a fluent, confident answer as a lookup and start reading it as">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>What a Language Model Is</h1>
-  <p class="lesson-motto">You stop reading a fluent, confident answer as a lookup and start reading it as</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li class="on"><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Phase 00, Lesson 5 (Debugging &amp; Profiling)</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 01 · LESSON 6</p>
+      <h1>What a Language Model Is</h1>
+      <p class="lesson-motto">You stop reading a fluent, confident answer as a lookup and start reading it as</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 00, Lesson 5 (Debugging &amp; Profiling)</dd></div>
+        <div><dt>Time</dt><dd>~30 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- Produce the same prompt twice and explain why the two answers differ
-- Predict which parts of a model answer are most likely to be invented
-- Decide when a question is one to ask a model and when it is one to ask a file
-- Say in one sentence why a model cannot tell you it is wrong
-
----
-
-## The Problem
-
-An agent was asked to fix a failing authentication test. It read the test, read
-the module, and wrote a patch calling `validate_token_v2()`. The patch looked
-perfect. It referenced a function that has never existed. The test still failed —
-now with an error message nobody had seen before, pointing at code that was
-never there.
-
-Nothing about the answer looked like a guess. That is the whole problem. A model
-that says "I don't know" is easy to route around. A model that writes three
-paragraphs of confident, well-formatted, fictional API is not.
-
-If you don't know what kind of thing is answering you, you can't calibrate how
-much you trust it — and calibration is the difference between a tool that saves
-you an hour and one that costs you a day.
-
----
-
-## The Concept
-
-A language model takes some text and predicts what comes next. That is it. Every
-capability people attribute to "intelligence" — writing the code, explaining the
-concept, remembering what you said, sounding like it understands — is downstream
-of that one operation, run over and over.
-
-It does not look anything up. There is no database of "how `oauth2` works"
-inside it. There are weights: enormous numbers, trained on an enormous amount of
-text, that encode statistical regularities of how language goes together. When
-you ask it a question, it does not find the answer. It *constructs* the most
-plausible continuation.
-
-```mermaid
-flowchart LR
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Produce the same prompt twice and explain why the two answers differ</li><li>Predict which parts of a model answer are most likely to be invented</li><li>Decide when a question is one to ask a model and when it is one to ask a file</li><li>Say in one sentence why a model cannot tell you it is wrong</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>An agent was asked to fix a failing authentication test. It read the test, read the module, and wrote a patch calling <code>validate_token_v2()</code>. The patch looked perfect. It referenced a function that has never existed. The test still failed — now with an error message nobody had seen before, pointing at code that was never there.</p>
+<p>Nothing about the answer looked like a guess. That is the whole problem. A model that says &quot;I don't know&quot; is easy to route around. A model that writes three paragraphs of confident, well-formatted, fictional API is not.</p>
+<p>If you don't know what kind of thing is answering you, you can't calibrate how much you trust it — and calibration is the difference between a tool that saves you an hour and one that costs you a day.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>A language model takes some text and predicts what comes next. That is it. Every capability people attribute to &quot;intelligence&quot; — writing the code, explaining the concept, remembering what you said, sounding like it understands — is downstream of that one operation, run over and over.</p>
+<p>It does not look anything up. There is no database of &quot;how <code>oauth2</code> works&quot; inside it. There are weights: enormous numbers, trained on an enormous amount of text, that encode statistical regularities of how language goes together. When you ask it a question, it does not find the answer. It <em>constructs</em> the most plausible continuation.</p>
+<figure class="diagram"><pre>flowchart LR
     A[Prompt text] --&gt; B[Split into pieces]
     B --&gt; C[Model scores every possible next piece]
     C --&gt; D[Picks one, weighted by the scores]
     D --&gt; E[Appends it to the text]
     E --&gt; C
     E --&gt; F[Stop signal]
-    F --&gt; G[Output]
-```
+    F --&gt; G[Output]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>Three consequences fall straight out of that loop, and they explain almost everything surprising you will see for the rest of the course:</p>
+<p><strong>1. It is a generator, not a lookup.</strong> The same fact can be produced from memory, from a half-remembered training example, or invented. The output looks identical in all three cases. Nothing in the text marks which one happened.</p>
+<p><strong>2. It is a sampler, not a function.</strong> Two identical prompts can produce two different answers. There is a temperature knob controlling how flat or peaked the distribution is; you will meet it properly in Lesson 9. For now: same input, different output, is normal and not a bug.</p>
+<p><strong>3. It has no privileged access to your project.</strong> Until a tool reads a file, the model does not know that file exists. It does not know what you changed ten messages ago unless it is in the conversation. It does not know what is true — only what is <em>likely</em>, and &quot;likely&quot; and &quot;true&quot; are different words that usually point the same way.</p>
+<blockquote><p><strong>The reframe:</strong> a language model is an extremely good guesser of what text</p><p>comes next — never a lookup of what is true, so confidence in the writing says</p><p>nothing at all about confidence in the facts.</p></blockquote>
+<h3 id="what-trained-bought-it">What &quot;trained&quot; bought it</h3>
+<p>The guessing works because the training text has structure. Code has repeated shapes, so the model predicts valid-looking syntax. Prose has argument patterns, so it predicts coherent ones. Documentation has stable conventions, so it predicts plausible API names — including ones it has never seen, because plausible is exactly what it was optimised for.</p>
+<p>This is why the failure mode is <em>plausible fiction</em> rather than gibberish. A system optimised for plausibility cannot also be optimised for not making things up; the two goals pull in opposite directions.</p>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-watch-the-same-prompt-produce-two-answers">1. Watch the same prompt produce two answers</h3>
+<pre class="code" data-lang="bash"><code>claude -p &quot;In one sentence: what does the word 'bank' mean in English?&quot;
+claude -p &quot;In one sentence: what does the word 'bank' mean in English?&quot;</code></pre>
+<p>Two runs. Often the sentences differ. They are both correct. That is the sampler, not a malfunction.</p>
+<p>✅ You pass when you have two different outputs from one identical prompt.</p>
+<h3 id="2-make-it-invent-something-on-purpose">2. Make it invent something, on purpose</h3>
+<p>Ask it to name an API you invented for this lesson:</p>
+<pre class="code" data-lang="bash"><code>claude -p &quot;What does the zorblat_sync() function in our codebase do?&quot;</code></pre>
+<p>Nothing named <code>zorblat_sync</code> exists. Watch what comes back. It will either say it can't find it, or it will describe it fluently.</p>
+<p>✅ You pass when you have a fluent, confident description of a function that does not exist.</p>
+<h3 id="3-catch-it-being-honest">3. Catch it being honest</h3>
+<p>Same trick, but anchored:</p>
+<pre class="code" data-lang="bash"><code>claude -p &quot;What does the zorblat_sync() function in our codebase do? If you can't
+find it in the project, say so rather than guessing.&quot;</code></pre>
+<p>Now it has permission to fail, and it usually does. This is the single most useful sentence you can add to any prompt about your own code.</p>
+<p>✅ You pass when the unanchored and anchored prompts gave different answers.</p>
+<h3 id="4-check-the-failure-mode-you-actually-care-about">4. Check the failure mode you actually care about</h3>
+<pre class="code" data-lang="bash"><code>claude -p &quot;Explain what git rebase does. If you're not confident about a detail,
+say which part you're unsure about.&quot;</code></pre>
+<p>The interesting output is the hedges. Where the model marks uncertainty, that is usually where the training data was thin or the question was under-specified.</p>
+<p>✅ You pass when you can point at one sentence in the answer where the model flagged its own uncertainty.</p>
+<h3 id="5-prove-the-file-is-invisible-until-it-s-read">5. Prove the file is invisible until it's read</h3>
+<p>In this repo:</p>
+<pre class="code" data-lang="bash"><code>claude -p &quot;What is written in COURSE-CONTEXT.md? Just the section headings.&quot;</code></pre>
+<p>Now ask it again in the same session — the first read put the content into the conversation, so the second answer can use it. That transition from &quot;guessing&quot; to &quot;knowing&quot; is the tool loop, which is Lesson 10's whole subject.</p>
+<p>✅ You pass when the first answer could have been invented and the second one quoted a heading you know is there.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td>Calibrating trust</td><td>Any time an answer looks better-sourced than it is</td></tr><tr><td>Adding &quot;say so rather than guessing&quot;</td><td>Every question about your own codebase</td></tr><tr><td>Re-running a prompt to compare</td><td>Checking whether the difference matters</td></tr><tr><td>Treating a file as the truth</td><td>Any question about your project, not training data</td></tr><tr><td>Watching for hedging</td><td>Locating exactly which claims are soft</td></tr><tr><td>Expecting run-to-run variation</td><td>Never reporting a single odd output as a bug</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Write one prompt that, unanchored, produces a confident wrong answer about your codebase, and that, anchored, produces an honest &quot;not found.&quot; Paste both. ✅ You pass when both outputs are in your notes and the difference is explained by one sentence about anchoring, not by luck.</li></ol>
+<ol><li class="criterion">Ask a factual question three ways — vague, specific, and &quot;cite what in my project supports this.&quot; Record which framing produced the most checkable answer. ✅ You pass when you can name the framing and show two of the three outputs.</li></ol>
+<ol><li class="criterion">Find one answer in this session that you now know is wrong, and write down what would have told you at the time. ✅ You pass when the signal is something you could look for <em>before</em> the answer, not a feeling you had afterwards.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>hallucination</td><td>&quot;it made something up&quot;</td><td>Correct. It produced the most plausible continuation given its input. Plausibility was the training objective; truth was never a term in the loss.</td></tr><tr><td>weights</td><td>&quot;the learned knowledge&quot;</td><td>Enormous learned numbers encoding statistical regularities of text. Not a database, not searchable, not inspectable as facts.</td></tr><tr><td>training data</td><td>&quot;what it knows&quot;</td><td>Text it was fitted on. It cannot cite it, cannot check whether it is still current, and has no access to your repo.</td></tr><tr><td>temperature</td><td>&quot;creativity&quot;</td><td>How flat or peaked the next-piece distribution is. Low is repetitive, high is scattered. Introduced properly in Lesson 9.</td></tr><tr><td>confident</td><td>&quot;it's sure&quot;</td><td>The writing, not the model. Tone is generated, never calibrated.</td></tr><tr><td>ground truth</td><td>&quot;the right answer&quot;</td><td>Whatever you can verify independently — a file, a test, a doc. The model is not a source of it.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>How it works underneath.</strong> Attention, layers, embeddings, how training actually runs. This course uses models, it does not build them — <code>aiengineeringfromscratch.com</code> covers that properly in 542 lessons. Everything below &quot;next-token prediction&quot; is load-bearing for that, not for this.</p>
+<p><strong>Fine-tuning, RLHF, and distillation.</strong> How preferences get into a model. Relevant only when you are choosing between models, which is Phase 03.</p>
+<p><strong>Embeddings and semantic search.</strong> How similarity between texts becomes a number. It shows up for the first time when we talk about picking a retrieval strategy in Phase 13.</p>
+<p><strong>Context window and token counting.</strong> Named here, taught properly in Lessons 7 and 8. Nothing in this lesson depends on either.</p>
+<p><strong>Anything about tools.</strong> Lesson 10. The point of this lesson is what the model is <em>without</em> them.</p>
+<p>Sources for anything version-shaped here: <a href="https://code.claude.com/docs/en/how-claude-code-works" target="_blank" rel="noopener">how Claude Code works</a> and the <a href="https://code.claude.com/docs/llms.txt" target="_blank" rel="noopener">docs index</a>. Model names age weekly — this lesson deliberately names none.</p>
+      </div>
 
-Three consequences fall straight out of that loop, and they explain almost
-everything surprising you will see for the rest of the course:
-
-**1. It is a generator, not a lookup.** The same fact can be produced from
-memory, from a half-remembered training example, or invented. The output looks
-identical in all three cases. Nothing in the text marks which one happened.
-
-**2. It is a sampler, not a function.** Two identical prompts can produce two
-different answers. There is a temperature knob controlling how flat or peaked the
-distribution is; you will meet it properly in Lesson 9. For now: same input,
-different output, is normal and not a bug.
-
-**3. It has no privileged access to your project.** Until a tool reads a file,
-the model does not know that file exists. It does not know what you changed ten
-messages ago unless it is in the conversation. It does not know what is true —
-only what is *likely*, and "likely" and "true" are different words that usually
-point the same way.
-
-&gt; **The reframe:** a language model is an extremely good guesser of what text
-&gt; comes next — never a lookup of what is true, so confidence in the writing says
-&gt; nothing at all about confidence in the facts.
-
-### What "trained" bought it
-
-The guessing works because the training text has structure. Code has repeated
-shapes, so the model predicts valid-looking syntax. Prose has argument patterns,
-so it predicts coherent ones. Documentation has stable conventions, so it
-predicts plausible API names — including ones it has never seen, because
-plausible is exactly what it was optimised for.
-
-This is why the failure mode is *plausible fiction* rather than gibberish. A
-system optimised for plausibility cannot also be optimised for not making things
-up; the two goals pull in opposite directions.
-
----
-
-## Build It
-
-### 1. Watch the same prompt produce two answers
-
-```bash
-claude -p "In one sentence: what does the word 'bank' mean in English?"
-claude -p "In one sentence: what does the word 'bank' mean in English?"
-```
-
-Two runs. Often the sentences differ. They are both correct. That is the sampler,
-not a malfunction.
-
-✅ You pass when you have two different outputs from one identical prompt.
-
-### 2. Make it invent something, on purpose
-
-Ask it to name an API you invented for this lesson:
-
-```bash
-claude -p "What does the zorblat_sync() function in our codebase do?"
-```
-
-Nothing named `zorblat_sync` exists. Watch what comes back. It will either say it
-can't find it, or it will describe it fluently.
-
-✅ You pass when you have a fluent, confident description of a function that does
-not exist.
-
-### 3. Catch it being honest
-
-Same trick, but anchored:
-
-```bash
-claude -p "What does the zorblat_sync() function in our codebase do? If you can't
-find it in the project, say so rather than guessing."
-```
-
-Now it has permission to fail, and it usually does. This is the single most
-useful sentence you can add to any prompt about your own code.
-
-✅ You pass when the unanchored and anchored prompts gave different answers.
-
-### 4. Check the failure mode you actually care about
-
-```bash
-claude -p "Explain what git rebase does. If you're not confident about a detail,
-say which part you're unsure about."
-```
-
-The interesting output is the hedges. Where the model marks uncertainty, that is
-usually where the training data was thin or the question was under-specified.
-
-✅ You pass when you can point at one sentence in the answer where the model
-flagged its own uncertainty.
-
-### 5. Prove the file is invisible until it's read
-
-In this repo:
-
-```bash
-claude -p "What is written in COURSE-CONTEXT.md? Just the section headings."
-```
-
-Now ask it again in the same session — the first read put the content into the
-conversation, so the second answer can use it. That transition from "guessing"
-to "knowing" is the tool loop, which is Lesson 10's whole subject.
-
-✅ You pass when the first answer could have been invented and the second one
-quoted a heading you know is there.
-
----
-
-## Use It
-
-| Concept | When you reach for it |
-|---|---|
-| Calibrating trust | Any time an answer looks better-sourced than it is |
-| Adding "say so rather than guessing" | Every question about your own codebase |
-| Re-running a prompt to compare | Checking whether the difference matters |
-| Treating a file as the truth | Any question about your project, not training data |
-| Watching for hedging | Locating exactly which claims are soft |
-| Expecting run-to-run variation | Never reporting a single odd output as a bug |
-
----
-
-## Exercises
-
-1. Write one prompt that, unanchored, produces a confident wrong answer about
-   your codebase, and that, anchored, produces an honest "not found." Paste both.
-   ✅ You pass when both outputs are in your notes and the difference is
-   explained by one sentence about anchoring, not by luck.
-
-2. Ask a factual question three ways — vague, specific, and
-   "cite what in my project supports this." Record which framing produced the most
-   checkable answer.
-   ✅ You pass when you can name the framing and show two of the three outputs.
-
-3. Find one answer in this session that you now know is wrong, and write down
-   what would have told you at the time.
-   ✅ You pass when the signal is something you could look for *before* the
-   answer, not a feeling you had afterwards.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| hallucination | "it made something up" | Correct. It produced the most plausible continuation given its input. Plausibility was the training objective; truth was never a term in the loss. |
-| weights | "the learned knowledge" | Enormous learned numbers encoding statistical regularities of text. Not a database, not searchable, not inspectable as facts. |
-| training data | "what it knows" | Text it was fitted on. It cannot cite it, cannot check whether it is still current, and has no access to your repo. |
-| temperature | "creativity" | How flat or peaked the next-piece distribution is. Low is repetitive, high is scattered. Introduced properly in Lesson 9. |
-| confident | "it's sure" | The writing, not the model. Tone is generated, never calibrated. |
-| ground truth | "the right answer" | Whatever you can verify independently — a file, a test, a doc. The model is not a source of it. |
-
----
-
-## What this lesson skipped
-
-**How it works underneath.** Attention, layers, embeddings, how training
-actually runs. This course uses models, it does not build them —
-`aiengineeringfromscratch.com` covers that properly in 542 lessons. Everything
-below "next-token prediction" is load-bearing for that, not for this.
-
-**Fine-tuning, RLHF, and distillation.** How preferences get into a model.
-Relevant only when you are choosing between models, which is Phase 03.
-
-**Embeddings and semantic search.** How similarity between texts becomes a
-number. It shows up for the first time when we talk about picking a retrieval
-strategy in Phase 13.
-
-**Context window and token counting.** Named here, taught properly in Lessons 7
-and 8. Nothing in this lesson depends on either.
-
-**Anything about tools.** Lesson 10. The point of this lesson is what the model
-is *without* them.
-
-Sources for anything version-shaped here:
-[how Claude Code works](https://code.claude.com/docs/en/how-claude-code-works)
-and the [docs index](https://code.claude.com/docs/llms.txt). Model names age
-weekly — this lesson deliberately names none.</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">3 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You paste the same question into two fresh sessions. Both answers are fluent, they disagree on one factual detail, and neither cites a source. What is the correct reading?</p>
+        <ol class="options" type="A">
+          <li>One session hit a bug and should be reported as a defect</li>
+          <li>Both answers are sampled from the same distribution, so agreement between them is not evidence either is right</li>
+          <li>The second session had a shorter context window and therefore compressed the fact</li>
+          <li>The model has two differently-tuned copies and the correct one is whichever is more detailed</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Both answers are sampled from the same distribution, so agreement between them is not evidence either is right</p>
+          <p class="why">A model samples the next piece of text rather than retrieving a stored answer, so two runs can differ. Run-to-run variation is expected behaviour, not a defect — which is why repeating a query is not a way to verify it. The context-window option in C reaches for a concept from Lesson 8 and does not explain run-to-run variation, which happens with an empty window too.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">An agent reports that your build script calls <code>deploy_prod(token)</code> and offers to wrap it in a try/except. The script is 400 lines and you have not opened it this session. What has gone wrong?</p>
+        <ol class="options" type="A">
+          <li>The agent lacks permission to read build scripts</li>
+          <li>The function name is plausible, so the agent invented a caller rather than reading the file</li>
+          <li>The context window was already full and the read silently failed</li>
+          <li>The agent should have used a subagent to read the file instead</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> The function name is plausible, so the agent invented a caller rather than reading the file</p>
+          <p class="why">Before a tool reads a file, the model has no access to it — so a specific-sounding call site is generated, not found. Option A is wrong because a permission failure produces an explicit denial, never a confident answer. Option D reaches for subagents, which arrive in Phase 06; nothing about a tool read depends on which tool performs it.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Which question, asked of a model, is least likely to produce confident fiction?</p>
+        <ol class="options" type="A">
+          <li>What does the processRegistry.start() helper do in this repo?</li>
+          <li>Explain how OAuth token refresh works in general</li>
+          <li>What does the processRegistry.start() helper do in this repo? If you can't find it in the project, say so rather than guessing.</li>
+          <li>Which HTTP client should I use for a Go service?</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> What does the processRegistry.start() helper do in this repo? If you can't find it in the project, say so rather than guessing.</p>
+          <p class="why">Adding an explicit 'say so rather than guessing' gives the model permission to fail, which is what makes an honest 'not found' reachable. Option A is the same unanchored question and is the most dangerous of the four, because it names a real-looking symbol in a real repo. B and D invite generalities where plausible-sounding text is the expected output, not a failure.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span>Previous</span>5. Debugging and Profiling</a>
+    <a class="next" href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span>Next</span>7. Tokens — why text becomes currency</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

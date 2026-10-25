@@ -3,95 +3,298 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>parallel() vs pipeline() — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<title>`parallel()` vs `pipeline()` — Harnessing Claude Code</title>
+<meta name="description" content="They look like two speeds of one thing. They are two shapes of input, and both">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>parallel() vs pipeline()</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li class="on"><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 78, Dynamic Workflows — the Script Decides</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">BUILD · PHASE 12 · LESSON 79</p>
+      <h1>`parallel()` vs `pipeline()`</h1>
+      <p class="lesson-motto">They look like two speeds of one thing. They are two shapes of input, and both</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Build</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 78 (Dynamic Workflows)</dd></div>
+        <div><dt>Time</dt><dd>~40 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Choose between <code>agent()</code>, <code>pipeline()</code>, and <code>parallel()</code> from the shape of the work</li><li>Predict what a failed or stopped agent does to the returned array, per call shape</li><li>Make a result slot nameable with <code>label</code> instead of matching on position alone</li><li>State what the runtime does <em>not</em> give you, and what you would build instead</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>A migration workflow fanned out over 412 files and returned an array of results. Sixteen of them were <code>null</code>.</p>
+<p>The user could not say which sixteen files had failed. The script had built its tasks by mapping over a list, and the returned array had one entry per file — in the right order, in fact. But the entries were bare strings from the agents, and twenty of the strings were empty, and the retry note from one agent had been logged by Claude Code rather than returned, and the mapping from <em>slot</em> back to <em>file</em> lived in a variable the script had thrown away.</p>
+<p>Nobody had thought about what a slot in that array was supposed to <strong>mean</strong>, because the choice had been made by reaching for the combinator that sounded right: <code>parallel()</code>, because &quot;parallel&quot; was the word in the feature's name.</p>
+<p>Two things would have fixed it in one line each. Neither is about parallelism.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Three call shapes, and the difference between the first two is small — much smaller than the names suggest.</p>
+<div class="table-wrap"><table><thead><tr><th>Call</th><th>Takes</th><th>Returns</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>agent(prompt, opts)</code></td><td>One task</td><td>That agent's result, or <code>null</code></td><td>One job, done once</td></tr><tr><td><code>pipeline(list, fn)</code></td><td>A <strong>list</strong>, and a function from item → task</td><td>One entry per item, in the list's order</td><td>The item varies, the job is the same</td></tr><tr><td><code>parallel(tasks)</code></td><td>A <strong>set of tasks</strong></td><td>One entry per task</td><td>The job varies, and there is no list</td></tr></tbody></table></div>
+<figure class="diagram"><pre>flowchart LR
+    subgraph P[&quot;pipeline(files, f =&gt; agent(...))&quot;]
+      L1[&quot;file A&quot;] --&gt; T1[&quot;task A&quot;]
+      L2[&quot;file B&quot;] --&gt; T2[&quot;task B&quot;]
+      L3[&quot;file C&quot;] --&gt; T3[&quot;task C&quot;]
+      T1 --&gt; RA[&quot;[ rA, rB, rC ]&quot;]
+      T2 --&gt; RA
+      T3 --&gt; RA
+    end
+    subgraph Q[&quot;parallel([agent(p1), agent(p2)])&quot;]
+      S1[&quot;check authors&quot;] --&gt; TB[&quot;[ r1, r2 ]&quot;]
+      S2[&quot;check licences&quot;] --&gt; TB
+    end</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<h3 id="what-actually-differs">What actually differs</h3>
+<p><strong><code>pipeline()</code> is for one job across many items.</strong> The file list is the input; the per-file task is the function. Change the item, and you have asked a different question of the same machinery.</p>
+<p><strong><code>parallel()</code> is for many jobs at once.</strong> A security review, a licence audit, and a dependency check are not three iterations of anything. They are three tasks, and there is no list behind them.</p>
+<p>That is it. That is the whole distinction the docs draw.</p>
+<h3 id="what-does-not-differ-and-this-is-the-trap">What does not differ, and this is the trap</h3>
+<p>Both combinators <strong>wait for all of them.</strong> Neither is &quot;give me whichever finishes first.&quot; If you need a race, you do not have a combinator for it in the documented surface — check the script-writing reference for your version before assuming one exists, and otherwise build it from <code>agent()</code> calls yourself.</p>
+<p>Both combinators are <strong>subject to the same runtime concurrency cap</strong> — sixteen agents by default, fewer when the machine has fewer CPUs. The cap belongs to the runtime, not to the combinator you picked. If you believe <code>pipeline()</code> serialises and <code>parallel()</code> does not, measure it in your own session before you design around it; nothing in the docs promises you that difference.</p>
+<p>Both put a <strong><code>null</code> in the slot</strong> of an agent that was stopped, stalled out, or hit an unrecoverable error. The contrast that actually changes your code is not between the two combinators — it is between either of them and a bare <code>agent()</code>:</p>
+<div class="table-wrap"><table><thead><tr><th>Where the agent call sits</th><th>What a lost agent does</th></tr></thead><tbody><tr><td>Inside <code>pipeline()</code> or <code>parallel()</code></td><td>The run carries on, with <code>null</code> in that slot</td></tr><tr><td>Awaited directly</td><td>The whole run ends with the error</td></tr></tbody></table></div>
+<p>So the structure question is bigger than the combinator question. <em>Is this agent one of many, or is it load-bearing?</em> Put load-bearing calls outside the fan-out, where failing loudly is what you want.</p>
+<h3 id="make-a-slot-nameable">Make a slot nameable</h3>
+<p>An <code>agent()</code> call takes a <code>label</code>. The docs' own example passes the file being worked on:</p>
+<pre class="code" data-lang="javascript"><code>const audits = await pipeline(found.files, file =&gt;
+  agent(`Audit ${file} for missing authentication checks.`, { label: file }),
+)</code></pre>
+<p>Without it, a slot is a position. With it, a slot is a name — and since sixteen <code>null</code>s in a list of anonymous strings is exactly the failure above, this is not decoration. It is the difference between a result you can act on and a result you have to re-derive.</p>
+<blockquote><p><strong>The reframe:</strong> <code>parallel()</code> and <code>pipeline()</code> are not two speeds of the same</p><p>thing — they are two shapes of input, and both wait for everything, so the</p><p>choice is about what varies and what a result slot is allowed to mean.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<p>You need a recent Claude Code with workflows available (Lesson 78 covers turning them on). If your plan does not have them, read the steps and run the equivalent by hand; the shapes are the lesson.</p>
+<h3 id="1-one-job-one-call">1. One job, one call</h3>
+<p>Start with the boring shape. Ask for a workflow over a single file:</p>
+<pre class="code"><code>use a workflow to summarize src/routes/auth.ts and list its exported symbols</code></pre>
+<p>Read the generated script. It should be one <code>agent()</code> call and a <code>return</code>.</p>
+<p>✅ You pass when you can say what the script would do if that one agent returned <code>null</code>, without running it.</p>
+<h3 id="2-the-item-varies">2. The item varies</h3>
+<p>Now the pipeline shape. Point it at a list:</p>
+<pre class="code"><code>use a workflow to check every file under src/routes/ for missing auth checks,
+one agent per file</code></pre>
+<p>Find the <code>pipeline()</code> line. Note what the function takes — one item — and what it returns for that item.</p>
+<p>✅ You pass when the length of the input list and the length of the returned array are the same number, and you can point at the line that made them match.</p>
+<h3 id="3-the-job-varies">3. The job varies</h3>
+<p>Now the other shape. Three checks that share nothing but the repository:</p>
+<pre class="code"><code>use a workflow to audit this repo for (1) unused exports, (2) missing licence
+headers, and (3) dependencies with no lockfile entry</code></pre>
+<p>This should come back as a <code>parallel()</code> — or as three awaited <code>agent()</code> calls, if Claude judged them load-bearing. Both are defensible. What is <em>not</em> defensible is three separate <code>pipeline()</code> calls over the same file list, one per check, each called in sequence.</p>
+<p>✅ You pass when you can name, from the script, whether the three audits run concurrently or in sequence, and why that choice was right for this task.</p>
+<h3 id="4-add-a-label-and-prove-it-matters">4. Add a label, and prove it matters</h3>
+<p>Take the pipeline from step 2. Add <code>{ label: file }</code> to the agent call and rerun. Then read the progress view with <code>/workflows</code>.</p>
+<p>✅ You pass when each agent in the view is identified by the file it is working on rather than by an index, and you can say which line in the results array the label does <em>not</em> change.</p>
+<h3 id="5-break-it-in-both-places">5. Break it in both places</h3>
+<p>This is the step that pays for the lesson. Find a fan-out and stop one agent mid-run by selecting it in <code>/workflows</code> and pressing <code>x</code>. Let the run finish.</p>
+<pre class="code"><code>Show me the array the script returned, including any null entries.</code></pre>
+<p>Now take a <em>single</em> <code>agent()</code> call that the script awaits directly — the kind at the top of the script, not inside a combinator — and stop that one the same way.</p>
+<p>✅ You pass when you have one run that finished with a <code>null</code> in a slot and one run that ended with an error, and you can say which structural difference caused which outcome.</p>
+<h3 id="6-find-the-line-that-would-have-lost-the-file-names">6. Find the line that would have lost the file names</h3>
+<p>Go back to step 2's script and look for the join between the input list and the result array. If it is <code>.filter(Boolean)</code>, you have found the line from the opening story.</p>
+<p>✅ You pass when you can write down the index of a dropped entry and the file that was at that index — and say what a program reading the filtered array afterwards believes about the two.</p>
+<blockquote><p>Workflows ship weekly. Verified against</p><p><a href="https://code.claude.com/docs/en/workflows" target="_blank" rel="noopener">the workflows page</a> on 2026-10-15.</p><p>The call shapes and the 4,096-item cap are current as of that date; the</p><p>runtime's concurrency number is Lesson 81. Check</p><p><code>https://code.claude.com/docs/llms.txt</code> before quoting either.</p></blockquote>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Situation</th><th>Call</th><th>Why</th></tr></thead><tbody><tr><td>One job, once</td><td><code>agent()</code> awaited directly</td><td>Failures stop the run, which is what you want for a prerequisite step</td></tr><tr><td>One job, many items</td><td><code>pipeline(list, fn)</code></td><td>The item is the axis of variation</td></tr><tr><td>Many jobs, one repo</td><td><code>parallel(tasks)</code></td><td>There is no shared list</td></tr><tr><td>You need the file names back</td><td><code>{ label: ... }</code> on each agent</td><td>A position is not a name</td></tr><tr><td>One step must succeed or the run is pointless</td><td>Await it outside the fan-out</td><td>A <code>null</code> slot hides a broken prerequisite</td></tr><tr><td>One step is best-effort</td><td>Put it inside the fan-out</td><td>A <code>null</code> slot is a hole you can detect</td></tr><tr><td>You want the first success</td><td>Build it yourself from <code>agent()</code></td><td>Neither combinator returns early</td></tr><tr><td>Long list</td><td>Split it</td><td>4,096 items per call is a hard limit, and it is rejected rather than truncated</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take a task you have run as a workflow and rewrite its orchestration twice: once as <code>pipeline()</code> where you had <code>parallel()</code>. Run both. ✅ You pass when you can describe one thing that changed and one thing that did not.</li></ol>
+<ol><li class="criterion">Write a workflow where a prerequisite <code>agent()</code> is awaited directly, then move it inside a <code>pipeline()</code> and stop it mid-run in both versions. ✅ You pass when one version dies and one continues, and your note names the structural difference rather than the tool you clicked.</li></ol>
+<ol><li class="criterion">Build the join by hand, without <code>.filter(Boolean)</code>. Produce a list of <code>&quot;&lt;file&gt;: &lt;result or MISSING&gt;&quot;</code> lines. ✅ You pass when a stopped agent shows up as <code>MISSING</code> against the correct file name, and you can say what the filtered version would have printed instead.</li></ol>
+<ol><li class="criterion">You need &quot;run these five checks and tell me as soon as any one of them succeeds.&quot; Describe what you would write, and why the answer is not a combinator. ✅ You pass when your answer names the runtime's wait-for-all behaviour and says where you would put the early return.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td><code>pipeline()</code></td><td>&quot;the parallel loop&quot;</td><td>A list plus a function. One agent per item, results in list order</td></tr><tr><td><code>parallel()</code></td><td>&quot;run them at once&quot;</td><td>A set of tasks. No list behind them. Waits for all</td></tr><tr><td><code>agent()</code></td><td>&quot;one subagent&quot;</td><td>One task. Resolves to its result, or <code>null</code> if it was lost</td></tr><tr><td>awaited directly</td><td>&quot;outside the fan-out&quot;</td><td>The run ends if that agent fails. The opposite of a <code>null</code> slot</td></tr><tr><td><code>null</code> in a slot</td><td>&quot;it failed&quot;</td><td>The placeholder for a stopped, stalled-out, or unrecoverable agent. The slot stays where it was</td></tr><tr><td><code>label</code></td><td>&quot;a nicety&quot;</td><td>The only name a fan-out slot has. Without it you have an index</td></tr><tr><td>wait-for-all</td><td>&quot;how it works&quot;</td><td>Both combinators return after every agent finishes. There is no early return</td></tr><tr><td>4,096</td><td>&quot;a big number&quot;</td><td>The items-per-call cap. A longer list is rejected, not trimmed</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Ordering and identity.</strong> This lesson says a slot keeps its <em>position</em>. Why that is the only thing you can trust, what resume does to it, and how a filtered array misleads you is Lesson 80 — and it is the reason the opening story happened.</p>
+<p><strong>The runtime's numbers.</strong> Sixteen concurrent agents by default, 1,000 agents per run, stall windows, restarts, the prompt-cache stagger in a fan-out. Lesson 81.</p>
+<p><strong>Structured output.</strong> Passing a <code>schema</code> to an <code>agent()</code> call makes it return validated JSON instead of prose, with a bounded retry count. Mentioned here because the opening story's empty strings are a schema problem wearing an ordering costume. Details are on the workflows page rather than in this lesson.</p>
+<p><strong>Cost of a large fan-out.</strong> 400 agents is 400 times the tokens. Phase 14 instruments that; the size guideline in Lesson 78 is the crude brake.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">5 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">A script awaits a single <code>agent()</code> call directly at the top — a prerequisite that must succeed before the fan-out. You stop that agent mid-run from <code>/workflows</code>. What happens to the run?</p>
+        <ol class="options" type="A">
+          <li>It ends with the error, because an awaited agent that is lost is not a slot in a fan-out</li>
+          <li>It carries on, with <code>null</code> in the place of that agent's result</li>
+          <li>It restarts the agent; stopping counts as a stall</li>
+          <li>It pauses until you resume, then continues from the next step</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> It ends with the error, because an awaited agent that is lost is not a slot in a fan-out</p>
+          <p class="why">The failure behaviour depends on <em>where the call sits</em>, not on which combinator is nearby: inside <code>parallel()</code> or <code>pipeline()</code> the run continues with <code>null</code> in the slot, but a directly awaited call ends the run with the error. The <code>null</code> answer is tempting because it is the documented behaviour one line lower in the script — it belongs to fan-out members. A manual stop is not a stall, so no automatic restart follows; and the runtime does not quietly continue past a load-bearing failure.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A <code>pipeline()</code> over 412 files returned 412 entries, 16 of them <code>null</code>. A colleague asks which files failed. What do you do?</p>
+        <ol class="options" type="A">
+          <li>Match each <code>null</code>'s index back to the input list, and add <code>label</code> so the next run names them for you</li>
+          <li>Read the error message stored on each <code>null</code> entry</li>
+          <li>Count the <code>null</code>s and re-run the whole pipeline, since you cannot tell which files they were</li>
+          <li>Sort the array so the <code>null</code>s group together, then re-run those positions</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Match each <code>null</code>'s index back to the input list, and add <code>label</code> so the next run names them for you</p>
+          <p class="why">A <code>null</code> is a placeholder that keeps its position in the array, so its index still points at the file that produced it — and adding a <code>label</code> to each <code>agent()</code> call makes the mapping readable in <code>/workflows</code> next time. The error-message answer is the natural instinct and is wrong: the runtime substitutes a bare <code>null</code> in place of the agent's result, and any reason for the loss is reported around the run rather than attached to the slot. Re-running everything or reordering the array discards the positional information that was the only thing telling you which files failed.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Which statement about <code>parallel()</code> and <code>pipeline()</code> is actually supported by the documentation?</p>
+        <ol class="options" type="A">
+          <li>Both wait for all of their agents, and neither returns as soon as one finishes</li>
+          <li><code>pipeline()</code> bounds concurrency while <code>parallel()</code> starts every task at once</li>
+          <li><code>pipeline()</code> runs items one after another while <code>parallel()</code> runs them concurrently</li>
+          <li><code>parallel()</code> returns results as agents finish, in completion order</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Both wait for all of their agents, and neither returns as soon as one finishes</p>
+          <p class="why">The docs describe <code>parallel()</code> as running a set of tasks at the same time and waiting for all of them, and <code>pipeline()</code> as running one agent per item; both are subject to the same runtime concurrency cap. Everything else here is a plausible invention. The two 'one is parallel and one is not' answers are the most seductive, because the names imply a scheduling difference the docs never draw, and the failure-handling section applies identically to both. Completion-order results are the opposite of the documented behaviour and are the subject of Lesson 80.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">An audit agent can legitimately find nothing and report an empty result. You must be able to tell that apart from an agent that never came back. What do you build?</p>
+        <ol class="options" type="A">
+          <li>Give the agent a <code>schema</code> so 'found nothing' is a well-formed empty list, and check for <code>null</code> separately as 'the agent was lost'</li>
+          <li>Treat an empty string and a <code>null</code> as the same failure, since both mean no finding</li>
+          <li>Add <code>.filter(Boolean)</code> so the empty ones drop out and only real findings remain</li>
+          <li>Ask a second verifier agent to decide whether the first one really ran</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Give the agent a <code>schema</code> so 'found nothing' is a well-formed empty list, and check for <code>null</code> separately as 'the agent was lost'</p>
+          <p class="why">A well-formed empty result and a <code>null</code> slot are different facts, and conflating them is the bug from the opening story. Passing a <code>schema</code> makes the first one structured — the docs describe <code>agent()</code> returning validated JSON against the shape, and failing the call after bounded retries when it cannot. The merge-both-into-failure answer destroys exactly the distinction you need. <code>.filter(Boolean)</code> removes the evidence and shifts every later slot, and a verifier cannot see an agent that never returned.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A list of 5,000 files is passed to one <code>pipeline()</code> call. What does the runtime do?</p>
+        <ol class="options" type="A">
+          <li>Rejects the call with an error, rather than quietly running part of the list</li>
+          <li>Runs the first 4,096 and reports the count it skipped</li>
+          <li>Splits the list into two batches automatically and runs both</li>
+          <li>Runs all 5,000, just more slowly than usual</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Rejects the call with an error, rather than quietly running part of the list</p>
+          <p class="why">There is a hard cap on the number of items in a single <code>parallel()</code> or <code>pipeline()</code> call, and the runtime rejects a longer list with an error. The docs give the reason explicitly: a silent cap would drop part of the workload without telling the script. That makes the truncation answer the most dangerous wrong one — it assumes the failure mode is data loss the script can detect, when the actual failure is a loud rejection. Automatic batching and running-anyway belong to neither behaviour.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span>Previous</span>78. Dynamic Workflows — the Script Decides</a>
+    <a class="next" href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span>Next</span>80. The Completion-Order Gotcha</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

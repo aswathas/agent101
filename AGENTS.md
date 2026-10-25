@@ -32,7 +32,7 @@ what makes someone say "explain simple words" and mean it.
 
 ## Skills
 
-Three, in `.claude/skills/`. Each has `disable-model-invocation` — the learner
+Five, in `.claude/skills/`. Each has `disable-model-invocation` — the learner
 invokes them deliberately.
 
 | Skill | Invoke | What it does |
@@ -40,6 +40,21 @@ invokes them deliberately.
 | `teach-me` | `/teach-me` | Teach one lesson, at their level. Reads learning records first. |
 | `write-lesson` | `/write-lesson` | Author a new lesson to template. |
 | `where-am-i` | `/where-am-i` | Report demonstrated level and what's next. |
+| `run-module` | `/run-module` | Start or grade a practice module against its rubric. |
+| `run-workflow` | `/run-workflow` | Author the whole corpus: what's left, worktree fan-out, validate, rebuild the site. |
+
+## Authoring the corpus at scale
+
+One worker per phase, isolated in its own worktree, merged in catalog order:
+
+```bash
+node scripts/workflow-status.mjs      # what is actually unwritten (exit 1 if any)
+node scripts/dynamic-workflow.mjs     # status → author → validate → build site
+```
+
+The prompt is gap-scoped: it names the exact unwritten files, so a finished
+lesson is never rewritten. A worker that exits without committing is a failure,
+not a success — isolation without a commit is not a backup.
 
 If you're running in another harness (Cursor, Codex, plain Claude Code without
 skills), follow `LESSON-TEMPLATE.md` and `learning-records/` directly — the

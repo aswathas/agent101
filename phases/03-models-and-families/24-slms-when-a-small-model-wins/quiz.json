@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about SLMs — When a 350M Model Wins that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "Two hundred thousand private tickets a day, each to be labelled with one of twelve categories. Which tier?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "A frontier model, because classification is reasoning",
+        "A small local model, because the task is narrow, high-volume, and the data is private",
+        "Whichever is cheapest, regardless of accuracy",
+        "A frontier model, because small models cannot classify"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "A fixed label set is narrow, the volume is high, and 'private' rules out sending the input elsewhere — three of the SLM's strengths at once. 'Classification is reasoning' is tempting, but the output space is small, which is exactly what makes a small model viable."
+    },
+    {
+      "id": 2,
+      "prompt": "A product lead asks: 'Why did churn rise this quarter, and what should we do?' Which tier, and why?",
+      "options": [
+        "A small model, because the question is short",
+        "A larger model, because the task is open-ended prose with no fixed answer shape",
+        "A small model, because it is cheaper at any volume",
+        "Whichever answers fastest"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "The output is open-ended analysis, which is the SLM's weak spot. 'Short question' is the tempting mistake — length of input is not the axis; the shape of the answer is."
+    },
+    {
+      "id": 3,
+      "prompt": "A small model matches a large one within 2% accuracy on your task and costs a fiftieth as much at your volume. The 2% misses are obvious when they happen. What do you do?",
+      "options": [
+        "Keep the large model; any accuracy loss is unacceptable",
+        "Route down to the small model, and keep the check set running against the failures you can see",
+        "Route down and stop checking, since the cost is now tiny",
+        "Average the two models' answers"
+      ],
+      "answer": 1,
+      "explanation": "Obvious, checked failures make the accuracy gap a measured cost rather than a hidden one, so the cheaper tier wins. 'Any accuracy loss is unacceptable' is the tempting answer, but the lesson's point is that the gap is arithmetic — and here the errors are visible and capped."
+    },
+    {
+      "id": 4,
+      "prompt": "Why can a 350M-parameter model beat a frontier model on one task?",
+      "options": [
+        "It is secretly as capable as the frontier model",
+        "The task is narrow enough that the frontier model's extra breadth is not used, and the small model wins on cost and latency",
+        "Small models are always more accurate",
+        "The frontier model is being throttled"
+      ],
+      "answer": 1,
+      "explanation": "The win is about the task's output space, not the model's raw capability. 'Secretly as capable' is the tempting wrong answer because the result looks like parity — but on an open-ended task the same model would fail, which is what Lesson 26 calls picking by shape rather than by size."
     }
   ]
 }

@@ -21,7 +21,6 @@ const GROUNDING = [
 ];
 
 const REQUIRED_SECTIONS = [
-  '# ',           // title
   '**Type:**',
   '**Prerequisites:**',
   '**Time:**',
@@ -92,6 +91,21 @@ for (const { phase, lesson, dir } of lessons) {
 
   for (const section of REQUIRED_SECTIONS) {
     if (!md.includes(section)) problems.push(`${label}: missing required section "${section.trim()}"`);
+  }
+
+  // A title line, checked as a line rather than a substring. The old entry was
+  // the literal '# ', which is satisfied by every '## ' section heading — so
+  // four Phase 04 lessons lost their H1 and still passed, publishing "Untitled"
+  // as their name on the site.
+  if (!/^#\s+\S/m.test(md)) problems.push(`${label}: missing the '# ' title line`);
+
+  // The one-line hook under the title. Template: '> One line. What is different
+  // after this lesson that wasn't before.' Seven Phase 04 lessons shipped
+  // without it, so the title read as the whole introduction.
+  const afterTitle = md.slice(md.search(/^#\s+\S/m)).split(/\r?\n/).slice(1);
+  const firstContent = afterTitle.find((l) => l.trim());
+  if (firstContent && !firstContent.trim().startsWith('>')) {
+    problems.push(`${label}: no '>' hook line under the title`);
   }
 
   // Exactly one reframe.

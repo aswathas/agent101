@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Blocking Edges — What's Actually Parallelizable that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "A plan draws an edge from the marketing copy task to the release-notes task, with the note \"copy first reads better.\" The release notes can be drafted against the feature list today. What kind of edge is it, and what should happen?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Blocking — an edge was drawn, so the wait is real",
+        "Soft — the notes can be produced without the copy, so the edge should be removed and the two run in parallel",
+        "Blocking, but only because release notes are a sink node",
+        "It should be converted to an interface, because every blocking edge must be converted"
+      ],
+      "answer": 1,
+      "explanation": "Whether B can produce a correct output without A is the test; here it can, so the edge is a preference and should be soft. Option A is the over-blocking failure — an arrow drawn is not a dependency. Option C mistakes a structural position for an edge property. Option D is the opposite error: not every blocking edge should be converted, and this one should not be blocking at all."
+    },
+    {
+      "id": 2,
+      "prompt": "Two large teams — one on the API, one on the client — are serialised because the client needs the API's response shape. The shape is a small, stable object both sides could agree in ten minutes. What is the strongest move?",
+      "options": [
+        "Leave it blocking; the client genuinely cannot start without the API",
+        "Make the API team finish first and hand over the shape",
+        "Define the response shape as its own node and build both sides against it, in parallel",
+        "Mark the edge soft and let each team guess the shape"
+      ],
+      "answer": 2,
+      "explanation": "This is the textbook interface-first case: the interface is cheap, the wait is expensive, so agreeing it converts a blocking edge into a soft one and buys a wave. Option A is tempting because the client really does need the shape, but *the shape*, not *the API implementation*, is what it needs. Option B pays the full serial cost. Option D removes the dependency without replacing it, which is how the two sides diverge."
+    },
+    {
+      "id": 3,
+      "prompt": "A graph's worst blocking edge sits between two one-line edits in the same file. Converting it would mean inventing a file format both edits could target. What should you do?",
+      "options": [
+        "Convert it — every blocking edge is wasted parallelism",
+        "Leave it blocking; the wait is tiny and a wrong interface would cost more than the serialisation",
+        "Mark it soft without an interface",
+        "Add a wave and hope the difference disappears"
+      ],
+      "answer": 1,
+      "explanation": "The conversion rule is a comparison: convert when the wait is expensive and the interface cheap, which is not the case for two one-line edits. Option A is the tempting slogan and it is wrong — every interface is a bet that must pay for its reconciliation. Option C removes a real dependency without a stand-in, which will break. Option D changes nothing about the dependency."
+    },
+    {
+      "id": 4,
+      "prompt": "After labelling edges, a team finds their graph is a single chain: every node's output feeds the next. They conclude the graph tool is broken and there is no parallelism to get. What is the better conclusion?",
+      "options": [
+        "The tool is fine; the project is a pipeline and genuinely has no parallelism as decomposed",
+        "At least one edge must be mislabelled, so mark three edges soft and re-run",
+        "Parallelism is impossible in any graph with a critical path",
+        "They should run every node at once and reconcile later"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
-      ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "explanation": "If every edge is a true blocking edge, the chain is real and the honest answer is that this decomposition has no parallel work — which is valuable to know before spending on agents. Option B is tempting because plans often over-block, but assuming a mislabel without evidence invents parallelism. Option C is false: a critical path always exists; what varies is how *wide* the graph is. Option D ignores blocking edges and produces the collision this lesson is about."
     }
   ]
 }

@@ -4,94 +4,300 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OAuth, Headers, and MCP Tool Search — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<meta name="description" content="You can authenticate a remote server without pasting a token into a tracked">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>OAuth, Headers, and MCP Tool Search</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li class="on"><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 53, The Trust Model and Prompt Injection</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 07 · LESSON 54</p>
+      <h1>OAuth, Headers, and MCP Tool Search</h1>
+      <p class="lesson-motto">You can authenticate a remote server without pasting a token into a tracked</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lessons 50–53</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Choose between a static header token and OAuth for a remote server, and use <code>/mcp</code> to authenticate</li><li>Set headers and OAuth client details in a config without committing a secret</li><li>Explain what tool search defers and what it costs to turn off</li><li>Set <code>alwaysLoad</code> deliberately, and say when a tool earns it</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>Two failures, both common, both felt as &quot;the server is broken.&quot;</p>
+<p><strong>The first:</strong> a remote server needs a token. You add it with <code>--header &quot;Authorization: Bearer sk-...&quot;</code>, it works, and six weeks later you find the token in a commit, in a shell history file, and in a screenshot of <code>/mcp</code> somebody posted in a channel.</p>
+<p><strong>The second:</strong> you connect a big server — a whole SaaS surface, fifty tools — and every session starts slower, <code>/compact</code> happens sooner, and you don't know which of your other tools got squeezed out. Nothing errored. The window just filled up with descriptions you'd never have read.</p>
+<p>The first is a secrets problem and the second is a context problem. Same phase, different doors.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<h3 id="two-ways-to-authenticate-a-remote-server">Two ways to authenticate a remote server</h3>
+<div class="table-wrap"><table><thead><tr><th></th><th>Static header</th><th>OAuth</th></tr></thead><tbody><tr><td>Good for</td><td>Your own token, a service account key, a local gateway</td><td>Anything where a human logs in</td></tr><tr><td>Set by</td><td><code>--header &quot;Authorization: Bearer …&quot;</code> or the <code>headers</code> field</td><td><code>/mcp</code>, or <code>--client-id</code> / <code>--callback-port</code> at add time</td></tr><tr><td>Revocable</td><td>You rotate it</td><td>The user re-auths; tokens refresh</td></tr><tr><td>In a committed <code>.mcp.json</code></td><td><strong>Never.</strong> Use <code>${API_KEY}</code></td><td>Yes — the config holds <code>clientId</code>, not a secret</td></tr></tbody></table></div>
+<pre class="code" data-lang="bash"><code>claude mcp add --transport http secure-api https://api.example.com/mcp \
+  --header &quot;Authorization: Bearer ${API_KEY}&quot;</code></pre>
+<p>The <code>${API_KEY}</code> form keeps the committed file free of the value while still working for local, user, and project scopes. Expansion happens in <code>headers</code>.</p>
+<p>OAuth at add time:</p>
+<pre class="code" data-lang="bash"><code>claude mcp add --transport http \
+  --client-id your-client-id --callback-port 8080 \
+  my-server https://mcp.example.com/mcp</code></pre>
+<p>Or in JSON, with the secret still supplied on the command line rather than in the file:</p>
+<pre class="code" data-lang="bash"><code>claude mcp add-json my-server \
+  '{&quot;type&quot;:&quot;http&quot;,&quot;url&quot;:&quot;https://mcp.example.com/mcp&quot;,&quot;oauth&quot;:{&quot;clientId&quot;:&quot;your-client-id&quot;,&quot;callbackPort&quot;:8080}}' \
+  --client-secret</code></pre>
+<p><code>clientSecret</code> is never written into the config. That asymmetry is the design: <code>clientId</code> and <code>callbackPort</code> are public facts, the secret is not.</p>
+<p>In a session, <code>/mcp</code> shows each server's auth state and starts the flow for you. Companion commands: <code>claude mcp login &lt;name&gt;</code>, <code>claude mcp logout &lt;name&gt;</code>.</p>
+<p>One thing to know about <code>ws</code>: it has no OAuth story. A WebSocket server needs a static token in <code>headers</code>. That's a real reason to prefer <code>http</code> for anything remote, beyond the transport advice in Lesson 50.</p>
+<h3 id="tool-search-the-context-budget">Tool search: the context budget</h3>
+<p>Every tool definition sits in your window — name, description, schema. Add fifty tools and you have spent a chunk of the budget before the conversation starts (Lesson 32).</p>
+<p>Tool search, <strong>on by default</strong>, changes the order of operations:</p>
+<ul><li>At startup, only <strong>tool names</strong> and the <strong>server's instructions</strong> load.</li><li>Full descriptions and schemas load <strong>on demand</strong>, when Claude decides a tool might be relevant and searches for it.</li></ul>
+<p>So adding a server with fifty tools costs almost nothing at startup. The budget goes to tools that were actually used.</p>
+<pre class="code" data-lang="bash"><code>ENABLE_TOOL_SEARCH=auto:5 claude   # threshold mode: load upfront while under 5% of the window
+ENABLE_TOOL_SEARCH=false claude    # everything upfront, always</code></pre>
+<p><code>auto:N</code> is the honest middle: small tool sets load eagerly (no search step for the tools you always want), large ones defer. Unset is threshold-free — defer everything. Turn it <strong>off</strong> when a server's tools must be visible for correctness, not convenience, or when you're debugging discovery and want to see the full list.</p>
+<h3 id="what-description-length-means-now">What description length means now</h3>
+<p>With tool search on, the description is what Claude searches. Claude Code cuts descriptions past a limit and the model sees only what came before the cut — so the words it would search for go <strong>first</strong>. Limits as documented today: shorter for descriptions that load upfront, longer for ones found through search. The exact numbers are version-gated and have moved more than once; read the doc page rather than quoting them.</p>
+<h3 id="alwaysload-the-deliberate-exception"><code>alwaysLoad</code> — the deliberate exception</h3>
+<pre class="code" data-lang="json"><code>{ &quot;mcpServers&quot;: { &quot;core-tools&quot;: { &quot;type&quot;: &quot;http&quot;, &quot;url&quot;: &quot;…&quot;, &quot;alwaysLoad&quot;: true } } }</code></pre>
+<p>The server's tools load into context regardless of the setting. Per-tool, <code>&quot;anthropic/alwaysLoad&quot;: true</code> in a <code>_meta</code> block does it for one tool.</p>
+<p>This is a context purchase, and you pay for it on <strong>every turn of every session</strong>. Earn it: a &quot;check the deploy status&quot; tool the agent reaches for often qualifies. A hundred-tool server marked <code>alwaysLoad</code> is the mistake this flag exists to make avoidable.</p>
+<p>Note the second effect: <code>alwaysLoad: true</code> makes startup <strong>wait</strong> for the server's tools, because the first prompt needs them present.</p>
+<h3 id="output-size-the-other-budget">Output size, the other budget</h3>
+<p>A result larger than the threshold doesn't get truncated — it gets <strong>persisted to a file</strong> and replaced by a file reference in the conversation. You raise it two ways:</p>
+<pre class="code" data-lang="bash"><code>export MAX_MCP_OUTPUT_TOKENS=50000   # whole session, set before you start claude</code></pre>
+<p>or per tool, which is better because it's scoped to the tool that needs it:</p>
+<pre class="code" data-lang="json"><code>{
+  &quot;name&quot;: &quot;get_schema&quot;,
+  &quot;description&quot;: &quot;Returns the full database schema&quot;,
+  &quot;_meta&quot;: { &quot;anthropic/maxResultSizeChars&quot;: 200000 }
+}</code></pre>
+<p>The annotation applies independently of the env var, and there's a hard ceiling — read the docs for the current number. Images in tool results go inline to the model <em>and</em> get saved to a file in the session's tool-results directory, so Claude can work on them at full resolution.</p>
+<blockquote><p><strong>The reframe:</strong> a remote server's config should never hold a secret — the</p><p>secret belongs in the environment and the auth flow, while the file holds</p><p>only <code>${API_KEY}</code>, <code>clientId</code>, and a callback port — and a hundred tools cost</p><p>you nothing at startup because of <em>when</em> they load, not how many there are.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-authenticate-against-a-real-remote-server">1. Authenticate against a real remote server</h3>
+<pre class="code" data-lang="bash"><code>claude mcp add --transport http context7 -- https://mcp.context7.com/mcp
+claude mcp get context7</code></pre>
+<p>Start Claude Code, run <code>/mcp</code>, pick <code>context7</code>, and complete the auth flow it offers. Note that the config entry has <strong>no secret in it</strong>.</p>
+<pre class="code" data-lang="bash"><code>claude mcp get context7</code></pre>
+<p>Compare to before the flow.</p>
+<p>✅ You pass when the entry names a URL and a type, and contains no credential you would not paste into a public issue.</p>
+<h3 id="2-do-the-same-for-a-server-you-already-trust">2. Do the same for a server you already trust</h3>
+<p><code>/mcp</code> also shows logout. Log out, then log back in. Write down where the token lives — your OS keychain or the config — and confirm it's not in <code>~/.claude.json</code> in plain text.</p>
+<p>✅ You pass when you can say where the token is stored and can show that <code>~/.claude.json</code> contains no readable copy of it.</p>
+<h3 id="3-put-a-static-token-in-a-project-config-without-committing-it">3. Put a static token in a project config without committing it</h3>
+<pre class="code" data-lang="json"><code>{
+  &quot;mcpServers&quot;: {
+    &quot;api-server&quot;: {
+      &quot;type&quot;: &quot;http&quot;,
+      &quot;url&quot;: &quot;${API_BASE_URL:-https://api.example.com}/mcp&quot;,
+      &quot;headers&quot;: { &quot;Authorization&quot;: &quot;Bearer ${API_KEY}&quot; }
+    }
+  }
+}</code></pre>
+<p>Run once <strong>without</strong> <code>API_KEY</code> set and once <strong>with</strong> it. Read the error both times.</p>
+<p>✅ You pass when the file on disk contains no secret and the two runs behaved differently — the difference is proof the expansion happened at load time.</p>
+<h3 id="4-see-what-a-big-tool-surface-actually-costs">4. See what a big tool surface actually costs</h3>
+<p>With tool search on (default), connect any server with a lot of tools. Then:</p>
+<pre class="code"><code>What tools do you have available right now?</code></pre>
+<p>The deferred ones are found by search, not listed. Then compare:</p>
+<pre class="code" data-lang="bash"><code>ENABLE_TOOL_SEARCH=false claude</code></pre>
+<p>Same question. Now you get everything.</p>
+<p>✅ You pass when you can state, in terms of your own two runs, what &quot;deferred&quot; means for what Claude can tell you about its own toolset.</p>
+<h3 id="5-find-the-deferred-tool">5. Find the deferred tool</h3>
+<p>With tool search <strong>off</strong> and two servers connected, ask for something that lives on the second one. Then turn tool search <strong>on</strong> and ask again, using words that appear near the <em>start</em> of that tool's description.</p>
+<p>✅ You pass when the second phrasing worked and you can say which part of the description made the difference.</p>
+<h3 id="6-buy-one-tool-upfront">6. Buy one tool upfront</h3>
+<p>Take the tool you reach for most — deploy status, or your test runner. Mark it <code>_meta[&quot;anthropic/alwaysLoad&quot;]: true</code> on the server side, or add <code>alwaysLoad: true</code> to the server entry from the client side.</p>
+<p>✅ You pass when you can say what you just bought (that tool, always visible) and what you declined to buy (the rest of the server).</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / field</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>${API_KEY}</code> in <code>headers</code></td><td>Any static token, especially in a committed <code>.mcp.json</code></td></tr><tr><td><code>/mcp</code></td><td>Authenticate, disconnect, inspect a server's tools</td></tr><tr><td><code>claude mcp login &lt;name&gt;</code></td><td>Re-authenticate outside a session</td></tr><tr><td><code>--client-id</code> / <code>--callback-port</code></td><td>Preconfiguring OAuth at add time</td></tr><tr><td><code>oauth.clientId</code> in JSON</td><td>Public OAuth facts in config; secret stays on the CLI</td></tr><tr><td><code>ENABLE_TOOL_SEARCH=auto:N</code></td><td>A middle ground when some tools must always be visible</td></tr><tr><td><code>ENABLE_TOOL_SEARCH=false</code></td><td>Debugging discovery, or when correctness demands the full list</td></tr><tr><td><code>alwaysLoad: true</code></td><td>One or two tools you reach for every session</td></tr><tr><td><code>anthropic/maxResultSizeChars</code></td><td>One tool that legitimately returns something huge</td></tr><tr><td><code>MAX_MCP_OUTPUT_TOKENS</code></td><td>Raising the ceiling session-wide — set before launching <code>claude</code></td></tr><tr><td><code>claude mcp logout &lt;name&gt;</code></td><td>Revoking access without removing the server</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take every MCP server on your machine. For each, write down: how it authenticates, where the credential lives, and whether that credential is in any tracked file. ✅ You pass when the report has one line per server and, for anything remote, a location for the token that isn't a repo file.</li></ol>
+<ol><li class="criterion">Turn tool search off for a session with three or more servers and run the same task twice — once with it off, once on. Count the difference in how many turns it took and whether the answer changed. ✅ You pass when you have both runs and can say what tool search cost you rather than what it saved you.</li></ol>
+<ol><li class="criterion">Add a tool that returns 200,000 characters. Measure what Claude Code does with it at the default threshold, then again with <code>_meta[&quot;anthropic/maxResultSizeChars&quot;]</code> set. ✅ You pass when you can describe what the model saw in each case — inline text versus a file reference — and name the threshold you compared against.</li></ol>
+<ol><li class="criterion">Decide which one of your servers, if any, earns <code>alwaysLoad: true</code>. Write the argument, then estimate what it costs you per turn. ✅ You pass when the answer names the specific tool, not the server, and your estimate is in tokens or tools-per-turn rather than &quot;a bit&quot;.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>OAuth</td><td>&quot;the login&quot;</td><td>A flow where a human authorises once and tokens refresh. Config holds <code>clientId</code>, never the secret</td></tr><tr><td><code>--header</code></td><td>&quot;the token&quot;</td><td>A static credential sent every request. Use <code>${VAR}</code> so it isn't in a tracked file</td></tr><tr><td><code>headersHelper</code></td><td>&quot;dynamic headers&quot;</td><td>A shell command a config may run to produce a header. Read it before approving</td></tr><tr><td>tool search</td><td>&quot;lazy loading&quot;</td><td>Deferring tool descriptions until a query suggests one. On by default; costs you nothing at startup</td></tr><tr><td>deferred vs upfront</td><td>&quot;loaded&quot;</td><td>Deferred = found by searching descriptions. Upfront = always in the window, costs every turn</td></tr><tr><td><code>ENABLE_TOOL_SEARCH</code></td><td>—</td><td><code>unset</code> defers; <code>auto:N</code> loads eagerly below N% of the window; <code>false</code> loads everything</td></tr><tr><td><code>alwaysLoad</code></td><td>&quot;pin it&quot;</td><td>Exempt a server (or one tool) from deferral. A context purchase, paid every turn</td></tr><tr><td><code>MAX_MCP_OUTPUT_TOKENS</code></td><td>&quot;the output limit&quot;</td><td>Session-wide ceiling. Results past it are written to a file, not truncated</td></tr><tr><td><code>maxResultSizeChars</code></td><td>&quot;raise the limit&quot;</td><td>Per-tool ceiling via <code>_meta</code>. Scoped, and independent of the env var</td></tr><tr><td><code>requiresUserInteraction</code></td><td>&quot;always ask&quot;</td><td>Per-tool annotation: a permission prompt on every call, no remember-this option</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Prompt injection.</strong> Lesson 53 — the trust model this config sits inside. Reading this lesson without that one is how you end up optimising the wrong thing.</p>
+<p><strong>Enterprise identity.</strong> SSO, SAML, SCIM provisioning, and managed MCP policy (<code>managedMcpServers</code>, <code>allowedMcpServers</code>, <code>deniedMcpServers</code>). Real, and behind a gateway. Read <a href="https://code.claude.com/docs/en/managed-mcp" target="_blank" rel="noopener">Managed MCP configuration</a> when your organisation controls the server set.</p>
+<p><strong>Tokens in detail.</strong> Refresh flows, scopes, expiry. You use them; you don't implement the server side here.</p>
+<p><strong>The exact description-length numbers.</strong> Version-gated, and they've changed more than once. Look them up in <a href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noopener">Connect Claude Code to tools via MCP</a> rather than trusting a figure quoted here.</p>
+<p><strong>Which transports support which auth.</strong> Only <code>ws</code>'s lack of OAuth was mentioned, because it's the one that changes your transport choice. The full matrix moves; check the doc.</p>
+<p><strong>Deploying your own authenticated server.</strong> You connect to authenticated servers in this lesson. Making one — token storage, refresh, scope handling — is real work and outside this phase.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You commit a .mcp.json so your team gets the same server. It needs a bearer token. Which entry keeps the secret out of git history?</p>
+        <ol class="options" type="A">
+          <li>&quot;headers&quot;: {&quot;Authorization&quot;: &quot;Bearer ${API_KEY}&quot;} — the file holds the variable name, and expansion resolves it per machine at load time</li>
+          <li>&quot;headers&quot;: {&quot;Authorization&quot;: &quot;Bearer sk-live-abc123&quot;} — remove it from the file in a later commit before the repo is public</li>
+          <li>&quot;env&quot;: {&quot;API_KEY&quot;: &quot;sk-live-abc123&quot;} on the server entry, since env values are not written to .mcp.json</li>
+          <li>Put the token in headersHelper, which runs as a shell command and so is never stored in the config</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> &quot;headers&quot;: {&quot;Authorization&quot;: &quot;Bearer ${API_KEY}&quot;} — the file holds the variable name, and expansion resolves it per machine at load time</p>
+          <p class="why">Expansion runs in url, headers, command, args, and env, so ${API_KEY} in a committed file resolves from each machine's environment and the file itself holds no credential. Option B is the failure this prevents — once a secret is in history, deleting it later does not remove it. Option C is factually wrong; env values in .mcp.json are written to the file, which is exactly why expansion exists. Option D is a real mechanism but a shell command executes on load — trading a readable secret for executable config.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A server exposes 60 tools and every session feels slower to start and /compact happens sooner. What does tool search, on by default, actually change here?</p>
+        <ol class="options" type="A">
+          <li>It caps each server at a smaller number of tools, dropping the rest permanently</li>
+          <li>It loads only tool names and server instructions at startup, deferring full descriptions until a query suggests a tool is relevant</li>
+          <li>It caches the tool definitions on disk so later sessions don't pay for them</li>
+          <li>It disables tools from servers you haven't used in the last few sessions</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> It loads only tool names and server instructions at startup, deferring full descriptions until a query suggests a tool is relevant</p>
+          <p class="why">Tool search changes when descriptions load, not which tools exist — the full list is always reachable, just found by searching descriptions when something looks relevant, so startup cost stays small as servers multiply. Option A is a cap that doesn't exist. Option C describes a caching layer that isn't the mechanism, and it wouldn't help the first session anyway. Option D is invented; unused servers aren't retired.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You mark a whole 60-tool server with alwaysLoad true because you use three of its tools most days. What did you actually buy?</p>
+        <ol class="options" type="A">
+          <li>Faster tool discovery, since everything is visible without a search step</li>
+          <li>All 60 tool definitions in context on every turn of every session, plus a startup that now waits for that server to connect</li>
+          <li>Correctness — deferred tools can be missed, while always-loaded ones cannot</li>
+          <li>Nothing until the tools are first used, after which they stay pinned</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> All 60 tool definitions in context on every turn of every session, plus a startup that now waits for that server to connect</p>
+          <p class="why">alwaysLoad exempts a server from deferral, which means every definition is resident in the window every turn — a standing context cost — and startup waits for the server so the first prompt has its tools. That is the right trade only for one or two tools you reach for constantly; pinning 60 to use 3 spends the budget Lesson 32 told you to protect. Option C is the tempting justification and it is wrong: deferral changes discovery, not availability.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">One MCP tool returns a 200,000-character schema dump. At the default threshold, what does the model actually receive?</p>
+        <ol class="options" type="A">
+          <li>The first 50,000 characters, with the rest dropped</li>
+          <li>A file reference to the persisted full result, not the 200,000 characters inline</li>
+          <li>The full result inline, with older parts dropped from the window by compaction later</li>
+          <li>An error, because a tool result cannot exceed the limit</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> A file reference to the persisted full result, not the 200,000 characters inline</p>
+          <p class="why">Oversized results aren't truncated — they're persisted and replaced in the conversation by a reference, so the model reads a pointer and can work from the file. That distinction matters: a truncated schema is a wrong schema, whereas a file reference is a redirect the agent can follow. Per-tool _meta anthropic/maxResultSizeChars raises the threshold for that one tool, scoped rather than session-wide.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span>Previous</span>53. The Trust Model and Prompt Injection</a>
+    <a class="next" href="../../phases/08-hooks/55-what-a-hook-is.html"><span>Next</span>55. What a Hook Is</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

@@ -1,6 +1,7 @@
-# Lesson 33 — Permissions and Permission Modes
+# Permissions and Permission Modes
 
-Every action the tool takes is a tool call. Each tool call has to pass a check. That check is the permission system.
+> Every action the tool takes is a tool call, and every tool call has to pass a
+> check. That check is the permission system.
 
 **Type:** Learn
 **Prerequisites:** Lesson 32 (What Loads Into the Window)

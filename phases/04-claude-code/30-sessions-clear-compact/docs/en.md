@@ -1,3 +1,8 @@
+# Sessions, `/clear`, `/compact`
+
+> A session has memory, and memory fills up. `/clear` drops it. `/compact`
+> compresses it.
+
 **Type:** Learn
 **Prerequisites:** Lesson 29 (Files and Edits)
 **Time:** ~25 minutes

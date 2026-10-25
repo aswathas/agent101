@@ -2,26 +2,67 @@
   "lesson": "07-mcp/53-trust-model-and-prompt-injection",
   "title": "The Trust Model and Prompt Injection",
   "version": 1,
-  "passingScore": 3,
+  "passingScore": 2,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about The Trust Model and Prompt Injection that needs a new situation, not recall.",
+      "prompt": "A web-fetching MCP server returns a page whose HTML comment tells the agent to run a command and include the output. The agent does. Which defence would have stopped this regardless of how the model reasoned?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "A stronger CLAUDE.md rule saying tool output is never to be treated as instructions",
+        "Telling the user to read every result before the agent acts on it",
+        "Giving the server a token that can only read the one host it needs, so a successful injection still hands over nothing worth having",
+        "Turning on a more capable model, which refuses injections more reliably"
+      ],
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "Least privilege is the structural control: it constrains what a compromised agent can hand over, so the injection succeeds and still causes nothing. Options A and D both improve the odds of a refusal without changing the consequence of one — and option A is itself a line in the same window the attacker wrote to. Option B is asking for human vigilance on every tool call, which is the property prompts are supposed to remove.",
+      "concept": "least-privilege-over-prompting"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "You find a .mcp.json in a repository you just cloned. It defines a stdio server running a script from scripts/setup-mcp.sh, and scripts/ has a 40-line file you haven't read. What is the accurate description of the situation?",
+      "options": [
+        "The repo cannot approve its own servers, so it stays pending until you accept workspace trust and approve the server yourself — before which nothing runs",
+        "The server is already approved because .mcp.json is committed and version control implies trust",
+        "sse is deprecated, so servers from a cloned repo cannot connect",
+        "The config is inert until you run npm install in the repo"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "Project-scoped servers require interactive approval, and settings committed to the repo are ignored in an untrusted folder — that is what stops a clone from granting itself code execution on your machine. Option B is the exact assumption the gate exists to break: committing is not consenting. Option C is unrelated mechanics. Option D is invented; the danger here is the command, not a missing install.",
+      "concept": "workspace-trust"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "You're writing a server for an internal API. Which tool surface is the strongest choice?",
+      "options": [
+        "http_request(method, url, headers, body) — flexible, and lets Claude compose calls it hasn't seen before",
+        "run_query(sql) — the model writes the SQL, which is the most efficient design",
+        "list_tickets(project), get_ticket(id), add_comment(id, body) — each verb is separate and none can reach an arbitrary endpoint",
+        "admin_action(action, params) — one tool, with action names validated server-side"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 2,
+      "distractors": [0, 1, 3],
+      "explanation": "Every general-purpose tool is a loaded gun whenever the model may be holding attacker-written text in its context. Separate narrow verbs mean a successful injection still cannot produce a destructive call, because the destructive tool does not exist. Option B is the trap: free-form SQL looks efficient and hands the attacker a data-exfiltration channel for free. Option C has a gate — validation — but the gate is one function away from the whole surface.",
+      "concept": "narrow-tools"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You tested the injection twice on one model: the first run it refused, the second it complied. What is the honest conclusion?",
+      "options": [
+        "The instruction you added between runs is the reliable control",
+        "The model is unreliable under injection, and a single compliant run proves an instruction-based defence does not hold",
+        "The second run was invalid — the server must have been misconfigured",
+        "Two samples are too few to conclude anything about either the model or the defence"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "A defence that works some of the time is not a defence — one successful injection is enough, and you just got one. That result is why the lesson ranks structural controls above instruction: approval, least privilege, and narrow tools hold regardless of how the model reads the page. Option D is tempting and wrong in the useful direction: uncertainty is real, but 'sometimes fails' is not 'unknown', and treating it as unknown is how people ship the prompt and drop the scope.",
+      "concept": "instruction-is-a-layer"
     }
   ]
 }

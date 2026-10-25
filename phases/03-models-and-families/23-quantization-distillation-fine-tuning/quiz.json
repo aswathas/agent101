@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Quantization, Distillation, Fine-Tuning that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "A 7B model you like needs more memory than your laptop has. Which lever first?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Fine-tune it on your data so it gets smaller",
+        "Quantize it to a lower precision",
+        "Distill it from a larger model",
+        "Nothing helps; you need a different model"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "Quantization stores the same weights at lower precision, which is exactly a size and memory problem. Fine-tuning is the tempting answer because it is the most talked-about lever, but it does not change size at all, and distilling would make a *new* model rather than shrink this one."
+    },
+    {
+      "id": 2,
+      "prompt": "You have a large model doing a narrow classification task in production and want a cheap, small model that behaves the same on that task. Which lever?",
+      "options": [
+        "Quantize the large model further",
+        "Distill the large model's outputs into a small student",
+        "Fine-tune a frontier model",
+        "Raise the effort level"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "Distillation trains a small student to imitate the large teacher on the inputs you cover, which is the definition of a cheap stand-in on a narrow task. Fine-tuning a frontier model is impossible anyway — you do not have its weights — and effort does not change size or cost the way this task needs."
+    },
+    {
+      "id": 3,
+      "prompt": "The model must follow your company's naming rules and never invent a part number. Which lever, and what must accompany it?",
+      "options": [
+        "Quantize it; smaller models invent less",
+        "Fine-tune it on your data, with a held-out check set scored before and after",
+        "Distill it from a bigger model, with no measurement",
+        "Raise the effort level to maximum"
+      ],
+      "answer": 1,
+      "explanation": "Teaching the model your domain is fine-tuning, and because it learns whatever is in your data — including your mistakes — it needs a held-out check set measured before and after. 'Smaller models invent less' is tempting folklore; quantization changes precision, not knowledge."
+    },
+    {
+      "id": 4,
+      "prompt": "After a fine-tune, the model sounds right more often but is wrong on edge cases it used to flag. What is the most likely cause?",
+      "options": [
+        "The quantization got worse during training",
+        "Your training data encoded the errors, and there was no check set to catch the drift",
+        "You raised the effort level too far",
+        "The model is now too small"
+      ],
+      "answer": 1,
+      "explanation": "Fine-tuning learns the behaviour in your data, wrong answers included, so it can make a wrong answer sound fluent. Without a held-out check set scored before and after, that drift is invisible until it ships."
     }
   ]
 }

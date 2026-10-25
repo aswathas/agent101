@@ -3,95 +3,339 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Script Shape — stdin JSON → stdout / exit code — Harnessing Claude Code</title>
-<meta name="description" content="Skeleton. `/write-lesson` replaces this line with what is different after this">
+<title>Hook Script Shape — stdin JSON → stdout / exit code — Harnessing Claude Code</title>
+<meta name="description" content="The script is a function of one JSON object with no arguments. Everything it">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Script Shape — stdin JSON → stdout / exit code</h1>
-  <p class="lesson-motto">Skeleton. `/write-lesson` replaces this line with what is different after this</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li class="on"><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Lesson 56, All 32 Events, Matchers, Handler Types</p>
-    <p><strong>Time:</strong> ~30 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 08 · LESSON 57</p>
+      <h1>Hook Script Shape — stdin JSON → stdout / exit code</h1>
+      <p class="lesson-motto">The script is a function of one JSON object with no arguments. Everything it</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Lesson 56, All the Events, Matchers, Handler Types</dd></div>
+        <div><dt>Time</dt><dd>~35 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- State one thing the reader can DO afterwards, not a thing they will understand
-- Replace this placeholder
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Parse the event JSON on stdin and read the fields you need</li><li>Choose between exit code and JSON stdout for a given decision</li><li>Return a <code>PreToolUse</code> deny, an <code>additionalContext</code>, and a <code>systemMessage</code> from the same script shape</li><li>Feed a hook script a fabricated event from your shell, without Claude Code</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>You write a hook. It runs. It seems to do nothing — no output, no error, no block, and the agent carries on exactly as if the hook weren't there.</p>
+<p>The script is almost certainly fine. What you got wrong is the interface.</p>
+<p>There is no argument list. There is no environment variable holding the command. No file is handed to you. The event arrives as one JSON object on <strong>stdin</strong>, and if your script doesn't read stdin, it is working with nothing at all — and a script that inspects nothing will usually decide nothing.</p>
+<p>Two scripts, same file, one line different:</p>
+<pre class="code" data-lang="sh"><code>cat &gt; /tmp/log.json        # reads the event — works
+cat &gt; /dev/null            # doesn't read it — you are guessing</code></pre>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<figure class="diagram"><pre>flowchart LR
+    A[Harness] --&gt;|one JSON object on stdin| B[Your script]
+    B --&gt;|exit code| C{Decision}
+    B --&gt;|optional JSON on stdout| D[Context or decision]
+    C --&gt;|0| E[Continue]
+    C --&gt;|2| F[Block, stderr is the reason]
+    C --&gt;|anything else| G[Non-blocking error, action continues]</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>Three exit codes, and they mean three different things. Lesson 58 is entirely about the middle one versus the third, so treat this section as orientation.</p>
+<h3 id="what-arrives-on-stdin">What arrives on stdin</h3>
+<p>Every event carries these:</p>
+<div class="table-wrap"><table><thead><tr><th>Field</th><th>What it is</th></tr></thead><tbody><tr><td><code>hook_event_name</code></td><td>Which event fired. Check this in a hook wired to several</td></tr><tr><td><code>session_id</code></td><td>Current session</td></tr><tr><td><code>cwd</code></td><td>Where the agent is <strong>now</strong>. Not the project root — see below</td></tr><tr><td><code>transcript_path</code></td><td>Conversation file. Written asynchronously; may be stale</td></tr><tr><td><code>permission_mode</code></td><td><code>&quot;default&quot;</code>, <code>&quot;plan&quot;</code>, <code>&quot;acceptEdits&quot;</code>, … not sent to every event</td></tr></tbody></table></div>
+<p>Tool events add <code>tool_name</code>, <code>tool_input</code>, <code>tool_use_id</code>.</p>
+<p>A real <code>PreToolUse</code> payload:</p>
+<pre class="code" data-lang="json"><code>{
+  &quot;session_id&quot;: &quot;abc123&quot;,
+  &quot;cwd&quot;: &quot;/home/user/my-project&quot;,
+  &quot;hook_event_name&quot;: &quot;PreToolUse&quot;,
+  &quot;tool_name&quot;: &quot;Bash&quot;,
+  &quot;tool_input&quot;: {
+    &quot;command&quot;: &quot;npm test&quot;,
+    &quot;description&quot;: &quot;Run test suite&quot;
+  },
+  &quot;tool_use_id&quot;: &quot;toolu_01ABC123&quot;
+}</code></pre>
+<h3 id="reading-it">Reading it</h3>
+<p>In shell, with <code>jq</code>:</p>
+<pre class="code" data-lang="sh"><code>#!/bin/sh
+input=$(cat)
+tool=$(printf '%s' &quot;$input&quot; | jq -r '.tool_name')
+command=$(printf '%s' &quot;$input&quot; | jq -r '.tool_input.command // empty')</code></pre>
+<p><code>// empty</code> matters. <code>.tool_input.command</code> is absent on <code>Edit</code>, and plain <code>jq -r</code> prints the literal string <code>null</code> — which then fails to match anything and reads as a decision you never made.</p>
+<p>In Node, which is what this repo already uses:</p>
+<pre class="code" data-lang="js"><code>#!/usr/bin/env node
+let raw = '';
+process.stdin.on('data', (c) =&gt; (raw += c));
+process.stdin.on('end', () =&gt; {
+  const event = JSON.parse(raw);
+  if (event.hook_event_name === 'PreToolUse' &amp;&amp; event.tool_name === 'Bash') {
+    const cmd = event.tool_input?.command ?? '';
+    if (/^git\s+push\b/.test(cmd)) {
+      process.stderr.write('Blocked: no git push from this project.\n');
+      process.exit(2);
+    }
+  }
+  process.exit(0);
+});</code></pre>
+<p><code>?? ''</code> is the same guard as <code>// empty</code>. Pick one and keep it.</p>
+<h3 id="going-out-exit-code-or-json-or-both">Going out: exit code, or JSON, or both</h3>
+<div class="table-wrap"><table><thead><tr><th>You want</th><th>Do this</th></tr></thead><tbody><tr><td>Allow, silently</td><td><code>exit 0</code>, print nothing</td></tr><tr><td>Block</td><td>write the reason to <strong>stderr</strong>, <code>exit 2</code></td></tr><tr><td>Add context for the model</td><td><code>exit 0</code> + JSON with <code>additionalContext</code></td></tr><tr><td>Tell the <em>user</em> something</td><td><code>exit 0</code> + JSON with <code>systemMessage</code></td></tr><tr><td>Change what the model reads</td><td><code>exit 0</code> + JSON with <code>updatedInput</code> or <code>updatedToolOutput</code></td></tr><tr><td>Auto-format after an edit</td><td>Just do it on disk; <code>exit 0</code></td></tr></tbody></table></div>
+<p>Print <strong>one</strong> JSON object and nothing else. The harness parses your stdout as JSON only when the entire output is a single valid object surrounded by whitespace. One stray <code>echo</code> before it and your decision is now plain text.</p>
+<h3 id="the-three-json-shapes-you-will-write-by-hand">The three JSON shapes you will write by hand</h3>
+<p><strong>Block a tool call</strong> — <code>PreToolUse</code>, top-level <code>decision: &quot;block&quot;</code> also works but the nested form is the one with a reason field:</p>
+<pre class="code" data-lang="json"><code>{
+  &quot;hookSpecificOutput&quot;: {
+    &quot;hookEventName&quot;: &quot;PreToolUse&quot;,
+    &quot;permissionDecision&quot;: &quot;deny&quot;,
+    &quot;permissionDecisionReason&quot;: &quot;Writes under dist/ are generated. Edit src/ instead.&quot;
+  }
+}</code></pre>
+<p><strong>Add context the model will read:</strong></p>
+<pre class="code" data-lang="json"><code>{
+  &quot;hookSpecificOutput&quot;: {
+    &quot;hookEventName&quot;: &quot;PostToolUse&quot;,
+    &quot;additionalContext&quot;: &quot;This file is generated. Edit src/schema.ts and run the generator.&quot;
+  }
+}</code></pre>
+<p><strong>Stop the whole thing</strong> — <code>continue: false</code> beats any event-specific decision:</p>
+<pre class="code" data-lang="json"><code>{
+  &quot;continue&quot;: false,
+  &quot;stopReason&quot;: &quot;Build failed, fix errors before continuing&quot;
+}</code></pre>
+<p><code>additionalContext</code> and <code>systemMessage</code> are not the same thing and get confused constantly:</p>
+<div class="table-wrap"><table><thead><tr><th>Field</th><th>Goes to</th><th>Use for</th></tr></thead><tbody><tr><td><code>additionalContext</code></td><td>The model's context</td><td>Teaching the agent something true</td></tr><tr><td><code>systemMessage</code></td><td>The user's screen</td><td>Telling the human something</td></tr></tbody></table></div>
+<p><code>additionalContext</code> strings cap at 10,000 characters. Past that, the excess goes to a file and the model gets the path plus a 2,000-character preview. Don't build on that.</p>
+<h3 id="two-fields-that-bite">Two fields that bite</h3>
+<p><strong><code>suppressOutput</code> does nothing.</strong> The docs are explicit: it's accepted for schema compatibility and is inert. It does not affect the transcript or the debug log. If you were reaching for it to quiet a hook, reach for <code>systemMessage</code> or fix the output.</p>
+<p><strong><code>${CLAUDE_PROJECT_DIR}</code> is not <code>cwd</code>.</strong> The placeholder is where the session <em>started</em>. In a worktree (Phase 16) it still points at the main checkout, while <code>cwd</code> is the worktree. If your hook needs to know where the agent is writing, read <code>cwd</code> from stdin. If it needs the repo's <code>.claude/</code> directory and config, use the placeholder.</p>
+<blockquote><p><strong>The reframe:</strong> a hook script has no arguments and no memory — the event is</p><p>the entire input and the exit code is the entire output, so anything you fail</p><p>to read off stdin is something you never had.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-build-a-hook-you-can-test-without-claude-code">1. Build a hook you can test without Claude Code</h3>
+<p>Create <code>.claude/hooks/inspect.sh</code>:</p>
+<pre class="code" data-lang="sh"><code>#!/bin/sh
+cat</code></pre>
+<p>Wire it to <code>PostToolUse</code> with matcher <code>Bash</code>, restart, run any command.</p>
+<p>Then, without Claude Code at all:</p>
+<pre class="code" data-lang="sh"><code>printf '%s' '{&quot;hook_event_name&quot;:&quot;PreToolUse&quot;,&quot;tool_name&quot;:&quot;Bash&quot;,&quot;tool_input&quot;:{&quot;command&quot;:&quot;git push --force&quot;}}' \
+  | .claude/hooks/inspect.sh</code></pre>
+<p>✅ You pass when the second command prints exactly the JSON you piped in, and you can say why that proves the interface without any Claude Code involved.</p>
+<h3 id="2-read-one-field-safely">2. Read one field safely</h3>
+<p>Replace the body with a parse, and pipe it an <code>Edit</code> event, which has no <code>.tool_input.command</code>:</p>
+<pre class="code" data-lang="sh"><code>#!/bin/sh
+input=$(cat)
+tool=$(printf '%s' &quot;$input&quot; | jq -r '.tool_name')
+command=$(printf '%s' &quot;$input&quot; | jq -r '.tool_input.command // empty')
+printf 'tool=%s cmd=[%s]\n' &quot;$tool&quot; &quot;$command&quot;</code></pre>
+<p>✅ You pass when the <code>Edit</code> payload prints an empty <code>cmd=[...]</code>, not <code>cmd=[null]</code>.</p>
+<h3 id="3-block-by-exit-code">3. Block, by exit code</h3>
+<pre class="code" data-lang="sh"><code>#!/bin/sh
+input=$(cat)
+command=$(printf '%s' &quot;$input&quot; | jq -r '.tool_input.command // empty')
+case &quot;$command&quot; in
+  git\ push*)
+    echo &quot;Blocked: no git push from this project.&quot; &gt;&amp;2
+    exit 2
+    ;;
+esac
+exit 0</code></pre>
+<p>Pipe it a <code>git push --force</code> event and check <code>$?</code>. Then pipe it <code>git status</code> and check it is 0.</p>
+<p>✅ You pass when the first is exit 2 with the reason on stderr and the second is exit 0.</p>
+<h3 id="4-add-context-by-json">4. Add context, by JSON</h3>
+<p>Wire a <code>PostToolUse</code> hook on matcher <code>Edit|Write</code> that emits <code>additionalContext</code> when the edited path is a generated file. Trigger it by editing a file under <code>dist/</code>.</p>
+<p>✅ You pass when the agent's next turn references the reminder, and <code>.claude/hooks/&lt;your script&gt;</code> contains no <code>echo</code> before the JSON.</p>
+<h3 id="5-prove-the-parse-by-accident-failure">5. Prove the parse-by-accident failure</h3>
+<p>Add a stray <code>echo &quot;running&quot;</code> to the top of the JSON-emitting script. Re-trigger.</p>
+<p>✅ You pass when the hook no longer affects anything, and you can explain it in terms of &quot;the whole of stdout had to be one JSON object&quot;.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Need</th><th>Reach for</th></tr></thead><tbody><tr><td>Read the event</td><td><code>input=$(cat)</code>, then <code>jq</code> or <code>JSON.parse</code></td></tr><tr><td>Field may be missing</td><td><code>jq -r '.x // empty'</code> / <code>?? ''</code></td></tr><tr><td>Block</td><td>reason on stderr, <code>exit 2</code></td></tr><tr><td>Add context for the model</td><td><code>hookSpecificOutput.additionalContext</code></td></tr><tr><td>Tell the human</td><td><code>systemMessage</code></td></tr><tr><td>Rewrite the call</td><td><code>hookSpecificOutput.updatedInput</code></td></tr><tr><td>Rewrite what the model sees</td><td><code>hookSpecificOutput.updatedToolOutput</code></td></tr><tr><td>Stop everything</td><td><code>&quot;continue&quot;: false</code> + <code>stopReason</code></td></tr><tr><td>Know the project's root</td><td><code>${CLAUDE_PROJECT_DIR}</code></td></tr><tr><td>Know where the agent is</td><td><code>cwd</code> from stdin</td></tr><tr><td>Test without Claude Code</td><td>pipe a fabricated event in</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Write a hook script that refuses any <code>Bash</code> call whose command contains <code>rm -rf</code>, and prove all four of: block, allow, exit code 0 on a normal command, and no accidental block of a command that merely mentions <code>rm</code>. ✅ You pass when you have the two exit codes recorded and can name the case that would have false-positived under a naive substring match.</li></ol>
+<ol><li class="criterion">Feed one fabricated event to your script per event family — tool, prompt, stop — and make the script handle all three from the same file without crashing on a missing field. ✅ You pass when all three return 0 and you can show the field your script reads that is absent in at least one of them.</li></ol>
+<ol><li class="criterion">Take the <code>PostToolUse</code> formatter pattern and produce the version that also adds <code>additionalContext</code> explaining the format it applied. ✅ You pass when the JSON you print is exactly one object and the model mentions it on the next turn.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>stdin</td><td>&quot;the arguments&quot;</td><td>One JSON object. There is no argument list.</td></tr><tr><td>stdout</td><td>&quot;the output&quot;</td><td>Shown only on a few events; parsed as JSON only if the whole thing is one object</td></tr><tr><td>stderr</td><td>&quot;the error log&quot;</td><td>On exit 2, the <strong>first line</strong> is the blocking reason shown to the user</td></tr><tr><td><code>additionalContext</code></td><td>&quot;the hook message&quot;</td><td>Goes into the model's context. Capped at 10k chars.</td></tr><tr><td><code>systemMessage</code></td><td>&quot;the hook output&quot;</td><td>Goes to the user's screen, not the model.</td></tr><tr><td><code>suppressOutput</code></td><td>&quot;keeps it quiet&quot;</td><td>Accepted and inert. Does nothing.</td></tr><tr><td><code>hookSpecificOutput</code></td><td>&quot;the decision object&quot;</td><td>Event-specific. Always carries <code>hookEventName</code>.</td></tr><tr><td><code>${CLAUDE_PROJECT_DIR}</code></td><td>&quot;the working directory&quot;</td><td>Where the session started. In a worktree, the main checkout — not where the agent is.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Every event's <code>hookSpecificOutput</code> shape.</strong> <code>PermissionRequest</code> nests <code>updatedInput</code> inside a <code>decision.behavior</code> object; <code>PermissionDenied</code> uses <code>retry</code>; <code>PostToolBatch</code> takes an array of tool calls. Each has its own shape. Copy from the docs for the event you're writing — the hooks page is copy-pasteable and authoritative.</p>
+<p><strong>Async hooks.</strong> A background hook (<code>&quot;async&quot;: true</code>) can't block: the harness stops waiting, so a decision printed afterwards controls nothing. If you use async, print any decision <em>before</em> starting the background work. Lesson 60.</p>
+<p><strong>Timeouts.</strong> A <code>PreToolUse</code> timeout normally lets the call through. There's an <code>onFailure: &quot;block&quot;</code> setting that changes it, and it needs a recent version. Lesson 60, because a silent pass-through is a debugging problem.</p>
+<p><strong><code>http</code> and <code>mcp_tool</code> handlers.</strong> Same stdin contract, different return path — your decision comes back in an HTTP response body or an MCP tool result instead of an exit code. Worth knowing, not worth a lesson until Phase 07 or 09 depends on it.</p>
+<p><strong>Scripting languages.</strong> Everything here is POSIX <code>sh</code> or Node. Python works the same way; the interface doesn't care what you write it in.</p>
+<p>The exact field set on stdin grows over time. Verified against <a href="https://code.claude.com/docs/en/hooks" target="_blank" rel="noopener">the hooks page</a> on 2026-10-15; check <code>https://code.claude.com/docs/llms.txt</code> before trusting a field name.</p>
+      </div>
 
----
-
-## The Problem
-
-Consequence first. What breaks, what it costs, what happens if the reader lacks
-this. Two sentences from a real incident — not a hypothetical.
-
----
-
-## The Concept
-
-The idea, named the way people actually name it. A mermaid diagram if it has flow
-or structure.
-
-&gt; **The reframe:** the one sentence that makes it click. Replace this line.
-
----
-
-## Build It
-
-Numbered steps the reader runs. Each step ends in something observable.
-
-1. First step.
-2. Second step.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| — | — |
-
----
-
-## Exercises
-
-1. Do the thing.
-   ✅ You pass when &lt;observable state&gt;.
-
-2. Do the other thing.
-   ✅ You pass when &lt;observable state&gt;.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| — | — | — |
-
----
-
-## What this lesson skipped
-
-Name anything deliberately not covered, and when to come back for it.
-</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">One guardrail script is declared on both <code>Bash</code> and <code>Edit|Write</code>. It blocks when the command contains <code>rm -rf</code>, read with <code>jq -r '.tool_input.command'</code>. An <code>Edit</code> event arrives, which carries <code>file_path</code> but no <code>command</code>. What does the script actually see?</p>
+        <ol class="options" type="A">
+          <li>The literal string <code>null</code> — it doesn't match <code>rm -rf</code>, so the script quietly allows the edit</li>
+          <li>An empty string — jq collapses a missing field to &quot;&quot;, so the block rule is skipped</li>
+          <li>An error from jq, which exits non-zero and is reported as a hook failure</li>
+          <li>Nothing — the harness omits the field and withholds the whole event</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> The literal string <code>null</code> — it doesn't match <code>rm -rf</code>, so the script quietly allows the edit</p>
+          <p class="why"><code>jq -r</code> on a missing field prints the literal string <code>null</code>, not an empty string and not an error. That <code>null</code> then fails to match <code>rm -rf</code>, so the hook decides nothing and exits 0 — the safe-looking default. The fix is <code>jq -r '.tool_input.command // empty'</code>, or <code>?? ''</code> in Node. Option B is the tempting one because &quot;missing data&quot; feels like an empty string, but jq's raw mode prints <code>null</code>. Option C misattributes a non-error as a crash; indexing a missing key is not an error. Option D is wrong because events always arrive whole — the field is simply absent.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">Your hook reformats a file after an edit and you want the person at the keyboard — not the model — to see that it happened. Which output carries that?</p>
+        <ol class="options" type="A">
+          <li><code>systemMessage</code> in the JSON on stdout</li>
+          <li><code>additionalContext</code> in the JSON on stdout</li>
+          <li><code>permissionDecision</code> in <code>hookSpecificOutput</code></li>
+          <li>The first line of stderr, with <code>exit 0</code></li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> <code>systemMessage</code> in the JSON on stdout</p>
+          <p class="why"><code>systemMessage</code> goes to the user's screen; <code>additionalContext</code> goes into the model's window. The two are confused constantly because they are both strings in the same JSON object, but they have different readers. Option B would tell the model, not the human — the opposite of what you asked for. Option C is a decision field (allow/deny) for tool events, not a display channel. Option D is a trap: stderr is only read as a reason on <code>exit 2</code>; on <code>exit 0</code> it is not surfaced as a message.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A teammate adds a debug line — <code>echo &quot;hook running&quot;</code> — above the single JSON object their <code>PostToolUse</code> hook prints. The script still runs, exits 0, and prints valid JSON. What does the harness do with the decision?</p>
+        <ol class="options" type="A">
+          <li>Ignores the JSON — stdout is parsed as JSON only when the whole output is one object, and the stray line makes it plain text</li>
+          <li>Parses the JSON anyway — the harness scans stdout for the first <code>{</code> and reads from there</li>
+          <li>Errors, because stdout must be empty when a hook exits 0</li>
+          <li>Uses the JSON, but records a warning about the extra line</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> Ignores the JSON — stdout is parsed as JSON only when the whole output is one object, and the stray line makes it plain text</p>
+          <p class="why">The whole of stdout must be a single valid JSON object surrounded by whitespace. One preceding <code>echo</code> and the output is no longer that, so it is treated as plain text and the decision is lost — the hook appears to do nothing while the script is perfect. Option B is the common hope; there is no scanning or extraction. Option C inverts the rule — plain text on stdout is allowed, it just isn't a decision. Option D invents a warning that doesn't happen; the failure is silent.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A hook needs the path the agent is <em>currently</em> working in. The session is running inside a worktree, so this differs from where the session started. Which value do you read?</p>
+        <ol class="options" type="A">
+          <li><code>cwd</code> from the event JSON on stdin</li>
+          <li><code>${CLAUDE_PROJECT_DIR}</code></li>
+          <li>The process's <code>process.cwd()</code></li>
+          <li><code>transcript_path</code> from the event JSON</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> <code>cwd</code> from the event JSON on stdin</p>
+          <p class="why"><code>cwd</code> on stdin is where the agent is now, which is exactly the question. Option B is the trap: <code>${CLAUDE_PROJECT_DIR}</code> is where the session <em>started</em> — the main checkout even when the agent runs in a worktree — so it is right for finding the repo's <code>.claude/</code> and wrong for finding current edits. Option C relies on the process's launch directory, which you don't control and can't assume. Option D is the conversation file, unrelated to the working directory.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/08-hooks/56-all-32-events.html"><span>Previous</span>56. All the Events, Matchers, Handler Types</a>
+    <a class="next" href="../../phases/08-hooks/58-exit-1-vs-2.html"><span>Next</span>58. The Exit-1-vs-2 Trap</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

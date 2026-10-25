@@ -4,274 +4,282 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Merge and Rebase — Harnessing Claude Code</title>
-<meta name="description" content="You can tell the difference between "combining two lines of work" and">
+<meta name="description" content="You can tell the difference between &quot;combining two lines of work&quot; and">
+<link rel="stylesheet" href="../../fonts.css">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){var k='hcc-theme',d=document.documentElement;
+try{var q=new URLSearchParams(location.search).get('theme');
+var t=q||localStorage.getItem(k)||((window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+if(t==='dark')d.dataset.theme='dark';}catch(e){}
+window.addEventListener('DOMContentLoaded',function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;b.addEventListener('click',function(){var dark=d.dataset.theme!=='dark';if(dark)d.dataset.theme='dark';else d.removeAttribute('data-theme');try{localStorage.setItem(k,dark?'dark':'light');}catch(e){}});});})();</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="container">
     <a class="logo" href="../../index.html">■ HARNESSING CLAUDE CODE</a>
-    <nav>
-      <a href="../../catalog.html">← Catalog</a>
-    </nav>
+    <nav><a href="../../catalog.html">Catalog</a><a href="../../glossary.html">Glossary</a><a href="../../developer.html">API</a><a href="../../llms.txt">llms.txt</a></nav>
+    <button class="theme-toggle" data-theme-toggle aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
 </header>
 
-<article class="lesson-article">
-  <p class="lesson-meta-tag">LEARN</p>
-  <h1>Merge and Rebase</h1>
-  <p class="lesson-motto">You can tell the difference between "combining two lines of work" and</p>
+<div class="page">
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-title">All 119 lessons</p>
+<section>
+      <h3>Phase 00 · Setup &amp; Tooling</h3>
+      <ul><li><a href="../../phases/00-setup-and-tooling/01-dev-environment.html"><span class="n">1</span>Dev Environment</a></li><li><a href="../../phases/00-setup-and-tooling/02-git-and-collaboration.html"><span class="n">2</span>Git as Your Safety Net</a></li><li><a href="../../phases/00-setup-and-tooling/03-terminal-and-shell.html"><span class="n">3</span>Terminal and Shell</a></li><li><a href="../../phases/00-setup-and-tooling/04-editor-setup.html"><span class="n">4</span>Editor Setup</a></li><li><a href="../../phases/00-setup-and-tooling/05-debugging-and-profiling.html"><span class="n">5</span>Debugging and Profiling</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 01 · Foundations of AI</h3>
+      <ul><li><a href="../../phases/01-foundations-of-ai/06-what-a-language-model-is.html"><span class="n">6</span>What a Language Model Is</a></li><li><a href="../../phases/01-foundations-of-ai/07-tokens-why-text-becomes-currency.html"><span class="n">7</span>Tokens — why text becomes currency</a></li><li><a href="../../phases/01-foundations-of-ai/08-the-context-window.html"><span class="n">8</span>The Context Window — the only budget that matters</a></li><li><a href="../../phases/01-foundations-of-ai/09-prompt-inference-api.html"><span class="n">9</span>Prompt, Inference, API</a></li><li><a href="../../phases/01-foundations-of-ai/10-what-agentic-means.html"><span class="n">10</span>What &quot;Agentic&quot; Means</a></li><li><a href="../../phases/01-foundations-of-ai/11-latency-cost-and-rate-limits.html"><span class="n">11</span>Latency, Cost, and Rate Limits</a></li></ul>
+    </section>
+<section class="on">
+      <h3>Phase 02 · Git Deep</h3>
+      <ul><li><a href="../../phases/02-git-deep/12-commit-is-a-photograph-not-a-diff.html"><span class="n">12</span>Commit Is a Photograph, Not a Diff</a></li><li><a href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span class="n">13</span>Branches Are Movable Labels, Not Copies</a></li><li class="on"><a href="../../phases/02-git-deep/14-merge-and-rebase.html"><span class="n">14</span>Merge and Rebase</a></li><li><a href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span class="n">15</span>Conflicts: What They Are, How They Resolve</a></li><li><a href="../../phases/02-git-deep/16-recovering-lost-work.html"><span class="n">16</span>Recovering Lost Work</a></li><li><a href="../../phases/02-git-deep/17-stashing-and-why-agents-break-things.html"><span class="n">17</span>Stashing, and Why Agents Break Things</a></li><li><a href="../../phases/02-git-deep/18-remotes-forks-and-the-full-mental-model.html"><span class="n">18</span>Remotes, Forks, and the Full Mental Model</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 03 · Models &amp; Families</h3>
+      <ul><li><a href="../../phases/03-models-and-families/19-open-weight-vs-frontier.html"><span class="n">19</span>Open-Weight vs Frontier</a></li><li><a href="../../phases/03-models-and-families/20-model-aliases-and-routing.html"><span class="n">20</span>Model Aliases and Routing — teach `sonnet`, never hardcoded IDs</a></li><li><a href="../../phases/03-models-and-families/21-effort-levels-and-extended-thinking.html"><span class="n">21</span>Effort Levels and Extended Thinking</a></li><li><a href="../../phases/03-models-and-families/22-prompt-caching.html"><span class="n">22</span>Prompt Caching — why switching models makes a turn slow</a></li><li><a href="../../phases/03-models-and-families/23-quantization-distillation-fine-tuning.html"><span class="n">23</span>Quantization, Distillation, Fine-Tuning</a></li><li><a href="../../phases/03-models-and-families/24-slms-when-a-small-model-wins.html"><span class="n">24</span>SLMs — When a 350M Model Wins</a></li><li><a href="../../phases/03-models-and-families/25-decision-models.html"><span class="n">25</span>Decision Models Beat Generation on Cost</a></li><li><a href="../../phases/03-models-and-families/26-the-taxonomy.html"><span class="n">26</span>The Taxonomy: LLM / Decision Model / SLM</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 04 · Claude Code</h3>
+      <ul><li><a href="../../phases/04-claude-code/27-what-claude-code-is.html"><span class="n">27</span>What Claude Code Is</a></li><li><a href="../../phases/04-claude-code/28-install-first-run-verify.html"><span class="n">28</span>Install, First Run, Verify</a></li><li><a href="../../phases/04-claude-code/29-files-and-edits-and-when-it-refuses.html"><span class="n">29</span>Files and Edits — and When It Refuses</a></li><li><a href="../../phases/04-claude-code/30-sessions-clear-compact.html"><span class="n">30</span>Sessions, `/clear`, `/compact`</a></li><li><a href="../../phases/04-claude-code/31-the-agentic-loop.html"><span class="n">31</span>The Agentic Loop</a></li><li><a href="../../phases/04-claude-code/32-what-loads-into-the-window.html"><span class="n">32</span>What Loads Into the Window, and What Doesn't</a></li><li><a href="../../phases/04-claude-code/33-permissions-and-permission-modes.html"><span class="n">33</span>Permissions and Permission Modes</a></li><li><a href="../../phases/04-claude-code/34-settings-and-precedence.html"><span class="n">34</span>Settings — 4 Files, 5 Precedence Levels</a></li><li><a href="../../phases/04-claude-code/35-plan-mode-and-checkpoints.html"><span class="n">35</span>Plan Mode and Checkpoints</a></li><li><a href="../../phases/04-claude-code/36-checkpointing-rewind-recovery.html"><span class="n">36</span>Checkpointing, `/rewind`, Recovery</a></li><li><a href="../../phases/04-claude-code/37-troubleshooting-reading-errors-properly.html"><span class="n">37</span>Troubleshooting — Reading Errors Properly</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 05 · Commands &amp; Skills</h3>
+      <ul><li><a href="../../phases/05-commands-and-skills/38-built-in-commands.html"><span class="n">38</span>Built-in Commands</a></li><li><a href="../../phases/05-commands-and-skills/39-commands-merged-into-skills.html"><span class="n">39</span>Why Custom Commands Merged Into Skills</a></li><li><a href="../../phases/05-commands-and-skills/40-what-a-skill-is.html"><span class="n">40</span>What a Skill Is</a></li><li><a href="../../phases/05-commands-and-skills/41-skill-frontmatter-anatomy.html"><span class="n">41</span>Anatomy — the Frontmatter Field Table</a></li><li><a href="../../phases/05-commands-and-skills/42-the-invocation-matrix.html"><span class="n">42</span>The Invocation Matrix — Who Can Trigger It</a></li><li><a href="../../phases/05-commands-and-skills/43-install-a-skill.html"><span class="n">43</span>Install a Skill</a></li><li><a href="../../phases/05-commands-and-skills/44-author-a-skill.html"><span class="n">44</span>Author a Skill From Scratch</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 06 · Subagents</h3>
+      <ul><li><a href="../../phases/06-subagents/45-subagent-format.html"><span class="n">45</span>Subagent Markdown Format</a></li><li><a href="../../phases/06-subagents/46-built-in-subagents.html"><span class="n">46</span>Built-in Subagents — Explore, Plan, general-purpose</a></li><li><a href="../../phases/06-subagents/47-author-a-subagent.html"><span class="n">47</span>Author a Subagent — and the Fork-Context Subtlety</a></li><li><a href="../../phases/06-subagents/48-skills-inside-subagents.html"><span class="n">48</span>Skills Inside Subagents — the genuinely confusing case</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 07 · MCP</h3>
+      <ul><li><a href="../../phases/07-mcp/49-what-mcp-is.html"><span class="n">49</span>What MCP Is</a></li><li><a href="../../phases/07-mcp/50-four-transports.html"><span class="n">50</span>Four Transports</a></li><li><a href="../../phases/07-mcp/51-scopes-and-config.html"><span class="n">51</span>Scopes, Precedence, Config Shape</a></li><li><a href="../../phases/07-mcp/52-build-an-mcp-server.html"><span class="n">52</span>Build an MCP Server From Scratch</a></li><li><a href="../../phases/07-mcp/53-trust-model-and-prompt-injection.html"><span class="n">53</span>The Trust Model and Prompt Injection</a></li><li><a href="../../phases/07-mcp/54-oauth-and-tool-search.html"><span class="n">54</span>OAuth, Headers, and MCP Tool Search</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 08 · Hooks</h3>
+      <ul><li><a href="../../phases/08-hooks/55-what-a-hook-is.html"><span class="n">55</span>What a Hook Is</a></li><li><a href="../../phases/08-hooks/56-all-32-events.html"><span class="n">56</span>All the Events, Matchers, Handler Types</a></li><li><a href="../../phases/08-hooks/57-hook-script-shape.html"><span class="n">57</span>Hook Script Shape — stdin JSON → stdout / exit code</a></li><li><a href="../../phases/08-hooks/58-exit-1-vs-2.html"><span class="n">58</span>The Exit-1-vs-2 Trap</a></li><li><a href="../../phases/08-hooks/59-build-a-guardrail-hook.html"><span class="n">59</span>Build a Guardrail Hook</a></li><li><a href="../../phases/08-hooks/60-debugging-hooks.html"><span class="n">60</span>Debugging Hooks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 09 · Plugins</h3>
+      <ul><li><a href="../../phases/09-plugins/61-plugins-are-the-packaging-layer.html"><span class="n">61</span>*&quot;Plugins Are the Packaging Layer&quot;* — and why</a></li><li><a href="../../phases/09-plugins/62-plugin-anatomy.html"><span class="n">62</span>Plugin Anatomy — the directory and the manifest</a></li><li><a href="../../phases/09-plugins/63-install-and-author-a-plugin.html"><span class="n">63</span>Install from a Marketplace, and Author One</a></li><li><a href="../../phases/09-plugins/64-plugin-economics.html"><span class="n">64</span>Plugin Economics — What Every Enabled Plugin Costs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 10 · Memory &amp; Instructions</h3>
+      <ul><li><a href="../../phases/10-memory-and-instructions/65-claude-md.html"><span class="n">65</span>CLAUDE.md — the 200-Line Rule</a></li><li><a href="../../phases/10-memory-and-instructions/66-agents-md-and-local-md.html"><span class="n">66</span>AGENTS.md, CLAUDE.local.md</a></li><li><a href="../../phases/10-memory-and-instructions/67-rules.html"><span class="n">67</span>Rules and Path-Scoped Rules</a></li><li><a href="../../phases/10-memory-and-instructions/68-auto-memory.html"><span class="n">68</span>Auto Memory and `MEMORY.md`</a></li><li><a href="../../phases/10-memory-and-instructions/69-output-styles.html"><span class="n">69</span>Output Styles</a></li><li><a href="../../phases/10-memory-and-instructions/70-imports-and-external-context.html"><span class="n">70</span>Imports and External Context</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 11 · Parallelism I</h3>
+      <ul><li><a href="../../phases/11-parallelism-i/71-the-five-names.html"><span class="n">71</span>The Five Names</a></li><li><a href="../../phases/11-parallelism-i/72-subagents-as-isolation.html"><span class="n">72</span>Subagents as Isolation</a></li><li><a href="../../phases/11-parallelism-i/73-agent-teams.html"><span class="n">73</span>Agent Teams — Mailbox, Task List, Documented Limits</a></li><li><a href="../../phases/11-parallelism-i/74-worktrees-deep.html"><span class="n">74</span>Worktrees, Deep — session vs per-agent</a></li><li><a href="../../phases/11-parallelism-i/75-base-ref-cleanup-and-batch.html"><span class="n">75</span>Base Ref, Cleanup, and the /batch Path</a></li><li><a href="../../phases/11-parallelism-i/76-how-isolation-is-enforced.html"><span class="n">76</span>How Isolation Is Actually Enforced — the blocking checks</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 12 · Parallelism II</h3>
+      <ul><li><a href="../../phases/12-parallelism-ii/77-cross-session-messaging.html"><span class="n">77</span>Cross-Session Messaging</a></li><li><a href="../../phases/12-parallelism-ii/78-dynamic-workflows.html"><span class="n">78</span>Dynamic Workflows — the Script Decides</a></li><li><a href="../../phases/12-parallelism-ii/79-parallel-vs-pipeline.html"><span class="n">79</span>`parallel()` vs `pipeline()`</a></li><li><a href="../../phases/12-parallelism-ii/80-the-completion-order-gotcha.html"><span class="n">80</span>The Completion-Order Gotcha</a></li><li><a href="../../phases/12-parallelism-ii/81-workflow-runtime-caps.html"><span class="n">81</span>Workflow Runtime Caps</a></li><li><a href="../../phases/12-parallelism-ii/82-loops.html"><span class="n">82</span>Loops — Scheduled and Recurring</a></li><li><a href="../../phases/12-parallelism-ii/83-hooks-driven-automation.html"><span class="n">83</span>Hooks-Driven Automation — Events as Control Flow</a></li><li><a href="../../phases/12-parallelism-ii/84-the-decision-framework.html"><span class="n">84</span>The Decision Framework — Which Mechanism, When</a></li><li><a href="../../phases/12-parallelism-ii/85-when-not-to-parallelize.html"><span class="n">85</span>When NOT to Parallelize</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 13 · Context Engineering</h3>
+      <ul><li><a href="../../phases/13-context-engineering/86-what-loads-what-costs.html"><span class="n">86</span>What Loads, What Costs</a></li><li><a href="../../phases/13-context-engineering/87-progressive-disclosure.html"><span class="n">87</span>Progressive Disclosure — Skills as a Loading Strategy</a></li><li><a href="../../phases/13-context-engineering/88-context-as-architecture.html"><span class="n">88</span>Context as Architecture, Not a Dump</a></li><li><a href="../../phases/13-context-engineering/89-prompt-caching-as-constraint.html"><span class="n">89</span>Prompt Caching as a Design Constraint</a></li><li><a href="../../phases/13-context-engineering/90-reducing-context.html"><span class="n">90</span>Reducing Context Without Losing Capability</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 14 · Harness Engineering</h3>
+      <ul><li><a href="../../phases/14-harness-engineering/91-what-a-harness-is.html"><span class="n">91</span>What a Harness Is</a></li><li><a href="../../phases/14-harness-engineering/92-decisions-not-generation.html"><span class="n">92</span>Most Agent Calls Are Decisions, Not Generation</a></li><li><a href="../../phases/14-harness-engineering/93-decision-models-in-a-loop.html"><span class="n">93</span>Decision Models Inside a Loop</a></li><li><a href="../../phases/14-harness-engineering/94-confidence-gating.html"><span class="n">94</span>Confidence Gating — Escalate Only When Unsure</a></li><li><a href="../../phases/14-harness-engineering/95-verification-loops.html"><span class="n">95</span>Verification Loops — the Prerequisite for Unattended Runs</a></li><li><a href="../../phases/14-harness-engineering/96-guardrails-vs-instructions.html"><span class="n">96</span>Guardrails vs Instructions — Requests vs Enforcement</a></li><li><a href="../../phases/14-harness-engineering/97-design-your-own-harness.html"><span class="n">97</span>Design Your Own Harness — and Defend the Trade-offs</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 15 · Graph Engineering</h3>
+      <ul><li><a href="../../phases/15-graph-engineering/98-nodes-and-edges.html"><span class="n">98</span>Nodes and Edges</a></li><li><a href="../../phases/15-graph-engineering/99-task-graphs.html"><span class="n">99</span>Task Graphs — Dependencies and the Frontier</a></li><li><a href="../../phases/15-graph-engineering/100-blocking-edges.html"><span class="n">100</span>Blocking Edges — What's Actually Parallelizable</a></li><li><a href="../../phases/15-graph-engineering/101-claiming.html"><span class="n">101</span>Claiming — Stopping Two Agents Doing One Job</a></li><li><a href="../../phases/15-graph-engineering/102-wayfinding.html"><span class="n">102</span>Wayfinding — Producing Decisions, Not Deliverables</a></li><li><a href="../../phases/15-graph-engineering/103-fan-out-fan-in.html"><span class="n">103</span>Fan-Out / Fan-In Patterns</a></li><li><a href="../../phases/15-graph-engineering/104-failure-propagation.html"><span class="n">104</span>Failure Propagation — What Happens When One Node Dies</a></li><li><a href="../../phases/15-graph-engineering/105-design-a-graph.html"><span class="n">105</span>Design a Graph for a Real Project</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 16 · Worktrees in Practice</h3>
+      <ul><li><a href="../../phases/16-worktrees-in-practice/106-session-vs-agent-scope.html"><span class="n">106</span>Session vs Agent Scope</a></li><li><a href="../../phases/16-worktrees-in-practice/107-manual-worktrees.html"><span class="n">107</span>Manual Worktrees — `git worktree add`</a></li><li><a href="../../phases/16-worktrees-in-practice/108-the-startup-cache-trap.html"><span class="n">108</span>The Startup-Cache Trap</a></li><li><a href="../../phases/16-worktrees-in-practice/109-merge-strategy.html"><span class="n">109</span>Merge Strategy for Agent Branches</a></li><li><a href="../../phases/16-worktrees-in-practice/110-isolation-without-a-commit.html"><span class="n">110</span>Isolation Without a Commit Is Not a Backup</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 17 · Scaling &amp; Operations</h3>
+      <ul><li><a href="../../phases/17-scaling-and-operations/111-headless-mode.html"><span class="n">111</span>Headless / Non-Interactive Mode</a></li><li><a href="../../phases/17-scaling-and-operations/112-the-agent-sdk.html"><span class="n">112</span>The Claude Agent SDK</a></li><li><a href="../../phases/17-scaling-and-operations/113-channels-and-surfaces.html"><span class="n">113</span>Channels and Surfaces</a></li><li><a href="../../phases/17-scaling-and-operations/114-sandboxing-and-security.html"><span class="n">114</span>Sandboxing and Security Model</a></li><li><a href="../../phases/17-scaling-and-operations/115-managing-settings-at-scale.html"><span class="n">115</span>Managing Settings at Scale</a></li></ul>
+    </section>
+<section>
+      <h3>Phase 18 · Capstone</h3>
+      <ul><li><a href="../../phases/18-capstone/116-spec-graph-build-verify.html"><span class="n">116</span>Spec → Graph → Build → Verify</a></li><li><a href="../../phases/18-capstone/117-review-against-the-docs.html"><span class="n">117</span>Review Against the Docs</a></li><li><a href="../../phases/18-capstone/118-what-breaks-in-production.html"><span class="n">118</span>What Breaks in Production</a></li><li><a href="../../phases/18-capstone/119-keeping-up.html"><span class="n">119</span>Keeping Up — Claude Code Ships Weekly</a></li></ul>
+    </section>
+  </aside>
 
-  <div class="lesson-meta-block">
-    <p><strong>Type:</strong> Learn</p>
-    <p><strong>Prerequisites:</strong> Phase 02, Lessons 12 and 13</p>
-    <p><strong>Time:</strong> ~40 minutes</p>
-  </div>
+  <main id="main" class="reader">
+    <article class="lesson-article">
+      <p class="lesson-meta-tag">LEARN · PHASE 02 · LESSON 14</p>
+      <h1>Merge and Rebase</h1>
+      <p class="lesson-motto">You can tell the difference between &quot;combining two lines of work&quot; and</p>
 
-  <div class="ascii-rule"></div>
+      <dl class="lesson-meta-block">
+        <div><dt>Type</dt><dd>Learn</dd></div>
+        <div><dt>Prerequisites</dt><dd>Phase 02, Lessons 12 and 13</dd></div>
+        <div><dt>Time</dt><dd>~40 minutes</dd></div>
+      </dl>
 
-  <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:1rem;line-height:1.62;background:transparent;border:0;padding:0;">## Learning Objectives
+      <div class="ascii-rule"></div>
 
-- Distinguish a merge, a fast-forward, and a rebase by what they produce
-- Rebase a feature branch onto an updated `main` and read the result
-- Apply the rule that decides merge vs rebase for a given branch
-- Recover from a rebase you did not mean to run
-
----
-
-## The Problem
-
-`git pull` gave you a graph you do not understand: a merge commit in the middle
-of your feature branch, a row of duplicate-looking hashes, and a message that
-says "Merge branch 'main' into feature". You cannot tell what happened, so you
-cannot undo any of it.
-
-Worse: you pushed that branch. A colleague rebased the same branch, pushed it,
-and now you have two histories that share commits but not hashes. Merging both
-into `main` gives you every change twice.
-
-Nobody chose any of this. `git pull` did it by default, and the default is not
-a decision you made.
-
----
-
-## The Concept
-
-Both commands answer the same question — *how do I combine two lines of work?*
-They disagree about what the answer should look like afterwards.
-
-**Merge** keeps both lines and records the join:
-
-&lt;div class="mermaid"&gt;&lt;pre&gt;flowchart LR
-    A1[A] --&amp;gt; A2[B] --&amp;gt; M[M: merge commit]
-    B2 --&amp;gt; M&lt;/pre&gt;&lt;/div&gt;
-
-History shows that two lines existed and were combined. Nobody's commits are
-rewritten, so a merge is safe on shared history.
-
-**Rebase** moves your commits to sit on top of the other line, as if you had
-written them there:
-
-&lt;div class="mermaid"&gt;&lt;pre&gt;flowchart LR
-    A1[A] --&amp;gt; A2[B]
-    A2 --&amp;gt; R1[C'] --&amp;gt; R2[D']&lt;/pre&gt;&lt;/div&gt;
-
-Your commit `C` is replaced by a new commit `C'` with the same message and the
-same change, but a different parent — so a different hash. That is why rebasing
-a pushed branch hurts people: their `C` and your `C'` are unrelated objects, and
-merging both applies the change twice.
-
-**Fast-forward** is the case where merge needs no merge commit: the other line
-has not moved away, so your label just slides forward. Git takes it
-automatically, and it is the reason a branch that has never been shared merges
-with no merge commit at all.
-
-```bash
-git merge main     # combine, keep both lines, add a merge commit if needed
-git rebase main    # replay my commits on top of main
-```
-
-### The rule
-
-&gt; **Rebase a branch you own. Merge a branch anyone else has.**
-
-Rebase is private history editing, and it is the right tool for a branch that
-exists only on your machine. Once a branch is pushed and someone else has it,
-their history is a fact about the world; rewriting your copy of it creates two
-incompatible versions of the same change. Merge instead.
-
-For a repo you work on alone, and for a repo you are the only author of, the
-real reason to prefer rebase is readability: a linear history is easier to scan,
-`git bisect` works, and "which of these six commits is the bug" has a sensible
-answer.
-
-### Pull is two commands
-
-`git pull` = `git fetch` + (`git merge` | `git rebase`). Say which one you mean:
-
-```bash
-git pull --rebase      # your commits land on top, no merge commit
-git pull --no-rebase   # merge commit, if there is anything to merge
-```
-
-Whichever you pick, be the one who picked it.
-
-### Undoing a rebase
-
-If a rebase goes wrong and you have not pushed:
-
-```bash
-git rebase --abort      # while in progress
+      <div class="prose">
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul><li>Distinguish a merge, a fast-forward, and a rebase by what they produce</li><li>Rebase a feature branch onto an updated <code>main</code> and read the result</li><li>Apply the rule that decides merge vs rebase for a given branch</li><li>Recover from a rebase you did not mean to run</li></ul>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p><code>git pull</code> gave you a graph you do not understand: a merge commit in the middle of your feature branch, a row of duplicate-looking hashes, and a message that says &quot;Merge branch 'main' into feature&quot;. You cannot tell what happened, so you cannot undo any of it.</p>
+<p>Worse: you pushed that branch. A colleague rebased the same branch, pushed it, and now you have two histories that share commits but not hashes. Merging both into <code>main</code> gives you every change twice.</p>
+<p>Nobody chose any of this. <code>git pull</code> did it by default, and the default is not a decision you made.</p>
+<hr>
+<h2 id="the-concept">The Concept</h2>
+<p>Both commands answer the same question — <em>how do I combine two lines of work?</em> They disagree about what the answer should look like afterwards.</p>
+<p><strong>Merge</strong> keeps both lines and records the join:</p>
+<figure class="diagram"><pre>flowchart LR
+    A1[A] --&gt; A2[B] --&gt; M[M: merge commit]
+    B2 --&gt; M</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>History shows that two lines existed and were combined. Nobody's commits are rewritten, so a merge is safe on shared history.</p>
+<p><strong>Rebase</strong> moves your commits to sit on top of the other line, as if you had written them there:</p>
+<figure class="diagram"><pre>flowchart LR
+    A1[A] --&gt; A2[B]
+    A2 --&gt; R1[C'] --&gt; R2[D']</pre><figcaption>Mermaid source — renders as a diagram where mermaid.js is available</figcaption></figure>
+<p>Your commit <code>C</code> is replaced by a new commit <code>C'</code> with the same message and the same change, but a different parent — so a different hash. That is why rebasing a pushed branch hurts people: their <code>C</code> and your <code>C'</code> are unrelated objects, and merging both applies the change twice.</p>
+<p><strong>Fast-forward</strong> is the case where merge needs no merge commit: the other line has not moved away, so your label just slides forward. Git takes it automatically, and it is the reason a branch that has never been shared merges with no merge commit at all.</p>
+<pre class="code" data-lang="bash"><code>git merge main     # combine, keep both lines, add a merge commit if needed
+git rebase main    # replay my commits on top of main</code></pre>
+<h3 id="the-rule">The rule</h3>
+<blockquote><p><strong>Rebase a branch you own. Merge a branch anyone else has.</strong></p></blockquote>
+<p>Rebase is private history editing, and it is the right tool for a branch that exists only on your machine. Once a branch is pushed and someone else has it, their history is a fact about the world; rewriting your copy of it creates two incompatible versions of the same change. Merge instead.</p>
+<p>For a repo you work on alone, and for a repo you are the only author of, the real reason to prefer rebase is readability: a linear history is easier to scan, <code>git bisect</code> works, and &quot;which of these six commits is the bug&quot; has a sensible answer.</p>
+<h3 id="pull-is-two-commands">Pull is two commands</h3>
+<p><code>git pull</code> = <code>git fetch</code> + (<code>git merge</code> | <code>git rebase</code>). Say which one you mean:</p>
+<pre class="code" data-lang="bash"><code>git pull --rebase      # your commits land on top, no merge commit
+git pull --no-rebase   # merge commit, if there is anything to merge</code></pre>
+<p>Whichever you pick, be the one who picked it.</p>
+<h3 id="undoing-a-rebase">Undoing a rebase</h3>
+<p>If a rebase goes wrong and you have not pushed:</p>
+<pre class="code" data-lang="bash"><code>git rebase --abort      # while in progress
 git reflog              # after it finished — find the pre-rebase position
-git reset --hard HEAD@{1}
-```
-
-Lesson 16 covers this properly. The one-line answer here: the reflog still has
-your old commits, because nothing was deleted.
-
-&gt; **The reframe:** merge says "these two things both happened, and here is a
-&gt; commit that says so"; rebase says "pretend this branch had been written after
-&gt; that one all along" — which is a lie you may only tell about history nobody
-&gt; else has seen.
-
----
-
-## Build It
-
-### 1. Make two lines of history
-
-```bash
-cd ~/git-drill
+git reset --hard HEAD@{1}</code></pre>
+<p>Lesson 16 covers this properly. The one-line answer here: the reflog still has your old commits, because nothing was deleted.</p>
+<blockquote><p><strong>The reframe:</strong> merge says &quot;these two things both happened, and here is a</p><p>commit that says so&quot;; rebase says &quot;pretend this branch had been written after</p><p>that one all along&quot; — which is a lie you may only tell about history nobody</p><p>else has seen.</p></blockquote>
+<hr>
+<h2 id="build-it">Build It</h2>
+<h3 id="1-make-two-lines-of-history">1. Make two lines of history</h3>
+<pre class="code" data-lang="bash"><code>cd ~/git-drill
 git switch -c feature
-printf 'feature\n' &gt; feature.txt &amp;&amp; git add feature.txt &amp;&amp; git commit -m "feature work"
+printf 'feature\n' &gt; feature.txt &amp;&amp; git add feature.txt &amp;&amp; git commit -m &quot;feature work&quot;
 git switch main
-printf 'main\n' &gt; main.txt &amp;&amp; git add main.txt &amp;&amp; git commit -m "main work"
-git log --oneline --graph --all
-```
-
-Two lines. No join yet.
-
-✅ You pass when the graph shows two separate commits with no merge node.
-
-### 2. Merge and see the join
-
-```bash
-git switch feature
+printf 'main\n' &gt; main.txt &amp;&amp; git add main.txt &amp;&amp; git commit -m &quot;main work&quot;
+git log --oneline --graph --all</code></pre>
+<p>Two lines. No join yet.</p>
+<p>✅ You pass when the graph shows two separate commits with no merge node.</p>
+<h3 id="2-merge-and-see-the-join">2. Merge and see the join</h3>
+<pre class="code" data-lang="bash"><code>git switch feature
 git merge main
-git log --oneline --graph
-```
-
-A merge commit appears with two parents. Both lines survive.
-
-✅ You pass when `git log --oneline` on feature shows the merge commit and both
-original commits are still present in history.
-
-### 3. Undo the merge without losing anything
-
-```bash
-git reset --hard HEAD~1
-git log --oneline
-```
-
-✅ You pass when you are back on a single line with the pre-merge history
-intact, and you can say why `reset --hard` was safe here (nothing of yours was
-in the merge commit).
-
-### 4. Rebase instead
-
-```bash
-git rebase main
-git log --oneline --graph
-```
-
-Linear. "feature work" sits on top of "main work". No merge commit.
-
-✅ You pass when the graph is a straight line and there is no merge node.
-
-### 5. Watch the hashes change
-
-Before the rebase, note the hash of `feature work` (`git log --oneline` on
-feature). After, note it again.
-
-✅ You pass when the hash is different and you can say exactly which field
-changed — the parent — and why that makes the two commits different objects.
-
-### 6. Try it both ways and compare
-
-```bash
-git switch -c experiment main
+git log --oneline --graph</code></pre>
+<p>A merge commit appears with two parents. Both lines survive.</p>
+<p>✅ You pass when <code>git log --oneline</code> on feature shows the merge commit and both original commits are still present in history.</p>
+<h3 id="3-undo-the-merge-without-losing-anything">3. Undo the merge without losing anything</h3>
+<pre class="code" data-lang="bash"><code>git reset --hard HEAD~1
+git log --oneline</code></pre>
+<p>✅ You pass when you are back on a single line with the pre-merge history intact, and you can say why <code>reset --hard</code> was safe here (nothing of yours was in the merge commit).</p>
+<h3 id="4-rebase-instead">4. Rebase instead</h3>
+<pre class="code" data-lang="bash"><code>git rebase main
+git log --oneline --graph</code></pre>
+<p>Linear. &quot;feature work&quot; sits on top of &quot;main work&quot;. No merge commit.</p>
+<p>✅ You pass when the graph is a straight line and there is no merge node.</p>
+<h3 id="5-watch-the-hashes-change">5. Watch the hashes change</h3>
+<p>Before the rebase, note the hash of <code>feature work</code> (<code>git log --oneline</code> on feature). After, note it again.</p>
+<p>✅ You pass when the hash is different and you can say exactly which field changed — the parent — and why that makes the two commits different objects.</p>
+<h3 id="6-try-it-both-ways-and-compare">6. Try it both ways and compare</h3>
+<pre class="code" data-lang="bash"><code>git switch -c experiment main
 git merge feature      # merge commit, both lines visible
 git switch -c experiment2 main
 git rebase feature     # linear
-git log --oneline --graph --all
-```
+git log --oneline --graph --all</code></pre>
+<p>✅ You pass when you have both pictures side by side and can say which one you would rather review.</p>
+<hr>
+<h2 id="use-it">Use It</h2>
+<div class="table-wrap"><table><thead><tr><th>Command / concept</th><th>When you reach for it</th></tr></thead><tbody><tr><td><code>git merge &lt;branch&gt;</code></td><td>Combining shared history, or keeping both lines visible</td></tr><tr><td><code>git rebase &lt;branch&gt;</code></td><td>Updating a private branch on top of newer work</td></tr><tr><td><code>git pull --rebase</code></td><td>Pulling without a merge commit, deliberately</td></tr><tr><td><code>git pull --no-rebase</code></td><td>Pulling with a merge commit, deliberately</td></tr><tr><td>Fast-forward</td><td>When the other branch has no new commits of its own — no join needed</td></tr><tr><td>Merge commit</td><td>Two parents. Says &quot;these lines were combined&quot;</td></tr><tr><td><code>git rebase --abort</code></td><td>A rebase in progress went sideways</td></tr><tr><td>The rule</td><td>Rebase what you own, merge what others have</td></tr></tbody></table></div>
+<hr>
+<h2 id="exercises">Exercises</h2>
+<ol><li class="criterion">Take one real branch you have not pushed. Rebase it onto <code>main</code>. Compare <code>git log --graph --oneline</code> before and after. ✅ You pass when you have both graphs and can name what a reviewer would find easier in the rebased one, and what they would lose.</li></ol>
+<ol><li class="criterion">Merge that same branch instead. Check whether git created a merge commit or fast-forwarded, and say which happened and why. ✅ You pass when you can say which of the two outcomes you got and name the condition that decided it.</li></ol>
+<ol><li class="criterion">Rebase a branch that you pushed yesterday and someone else has pulled. Describe, in writing, what a teammate would experience if they then merged both copies of your branch into <code>main</code>. ✅ You pass when your description names duplicate changes appearing twice, and you can point at the rebase as the cause.</li></ol>
+<hr>
+<h2 id="key-terms">Key Terms</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What people say</th><th>What it actually means</th></tr></thead><tbody><tr><td>merge</td><td>&quot;joining branches&quot;</td><td>Combine two lines and record the join. Adds a merge commit with two parents when needed.</td></tr><tr><td>rebase</td><td>&quot;cleaning up history&quot;</td><td>Replay your commits on another base. New hashes, same changes. Safe only on history nobody else has.</td></tr><tr><td>fast-forward</td><td>&quot;a merge&quot;</td><td>A merge where one line has no new commits, so the label just slides. No merge commit.</td></tr><tr><td>merge commit</td><td>&quot;the merge&quot;</td><td>A commit with two parents. The explicit record that two lines joined.</td></tr><tr><td><code>git pull</code></td><td>&quot;getting the latest&quot;</td><td><code>fetch</code> plus a merge or rebase you did not choose. Use <code>--rebase</code> / <code>--no-rebase</code>.</td></tr><tr><td>rebasing shared history</td><td>&quot;fixing the branch&quot;</td><td>Produces two incompatible versions of the same commits. Every later merge sees the change twice.</td></tr><tr><td><code>git rebase --abort</code></td><td>&quot;undo&quot;</td><td>Bails out of an in-progress rebase. Nothing was committed yet.</td></tr></tbody></table></div>
+<hr>
+<h2 id="what-this-lesson-skipped">What this lesson skipped</h2>
+<p><strong>Interactive rebase (<code>git rebase -i</code>).</strong> Squashing, reordering, rewording commits. It is the same mechanism plus an editor, and it earns its own practice when you are cleaning up your own unpushed work — Phase 16's territory.</p>
+<p><strong>Merge strategies beyond fast-forward and recursive.</strong> <code>ours</code>, <code>octopus</code>, and subtree merges exist. Nothing in this course needs them.</p>
+<p><strong>Bisect.</strong> <code>git bisect</code> finds a bad commit by binary search — far easier once history is linear, which is the argument this lesson made. It arrives with debugging material later.</p>
+      </div>
 
-✅ You pass when you have both pictures side by side and can say which one you
-would rather review.
-
----
-
-## Use It
-
-| Command / concept | When you reach for it |
-|---|---|
-| `git merge &lt;branch&gt;` | Combining shared history, or keeping both lines visible |
-| `git rebase &lt;branch&gt;` | Updating a private branch on top of newer work |
-| `git pull --rebase` | Pulling without a merge commit, deliberately |
-| `git pull --no-rebase` | Pulling with a merge commit, deliberately |
-| Fast-forward | When the other branch has no new commits of its own — no join needed |
-| Merge commit | Two parents. Says "these lines were combined" |
-| `git rebase --abort` | A rebase in progress went sideways |
-| The rule | Rebase what you own, merge what others have |
-
----
-
-## Exercises
-
-1. Take one real branch you have not pushed. Rebase it onto `main`. Compare
-   `git log --graph --oneline` before and after.
-   ✅ You pass when you have both graphs and can name what a reviewer would find
-   easier in the rebased one, and what they would lose.
-
-2. Merge that same branch instead. Check whether git created a merge commit or
-   fast-forwarded, and say which happened and why.
-   ✅ You pass when you can say which of the two outcomes you got and name the
-   condition that decided it.
-
-3. Rebase a branch that you pushed yesterday and someone else has pulled.
-   Describe, in writing, what a teammate would experience if they then merged
-   both copies of your branch into `main`.
-   ✅ You pass when your description names duplicate changes appearing twice, and
-   you can point at the rebase as the cause.
-
----
-
-## Key Terms
-
-| Term | What people say | What it actually means |
-|---|---|---|
-| merge | "joining branches" | Combine two lines and record the join. Adds a merge commit with two parents when needed. |
-| rebase | "cleaning up history" | Replay your commits on another base. New hashes, same changes. Safe only on history nobody else has. |
-| fast-forward | "a merge" | A merge where one line has no new commits, so the label just slides. No merge commit. |
-| merge commit | "the merge" | A commit with two parents. The explicit record that two lines joined. |
-| `git pull` | "getting the latest" | `fetch` plus a merge or rebase you did not choose. Use `--rebase` / `--no-rebase`. |
-| rebasing shared history | "fixing the branch" | Produces two incompatible versions of the same commits. Every later merge sees the change twice. |
-| `git rebase --abort` | "undo" | Bails out of an in-progress rebase. Nothing was committed yet. |
-
----
-
-## What this lesson skipped
-
-**Interactive rebase (`git rebase -i`).** Squashing, reordering, rewording
-commits. It is the same mechanism plus an editor, and it earns its own practice
-when you are cleaning up your own unpushed work — Phase 16's territory.
-
-**Merge strategies beyond fast-forward and recursive.** `ours`, `octopus`, and
-subtree merges exist. Nothing in this course needs them.
-
-**Bisect.** `git bisect` finds a bad commit by binary search — far easier once
-history is linear, which is the argument this lesson made. It arrives with
-debugging material later.</pre>
-</article>
+  <section class="quiz" id="quiz">
+    <h2>Check yourself</h2>
+    <p class="quiz-note">4 questions. Answer before you reveal — recognising the right option is not the same as being able to produce it.</p>
+    <ol class="quiz-list">
+      <li>
+        <p class="q">You pushed a feature branch and a teammate pulled it. Now you rebase that branch onto main and force-push. What goes wrong for the teammate?</p>
+        <ol class="options" type="A">
+          <li>Nothing — force-push replaces the branch and their next pull reconciles it</li>
+          <li>Their existing commits and your rebased ones are different objects with the same changes, so merging both applies the work twice</li>
+          <li>Their local branch is deleted when they pull</li>
+          <li>The force-push is rejected because the branch has a merge commit</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>B.</strong> Their existing commits and your rebased ones are different objects with the same changes, so merging both applies the work twice</p>
+          <p class="why">Rebase gives your commits new parents, so new hashes — while their copy keeps the old ones. Neither git nor the merge machinery knows they are the same change, so a merge of both branches applies it twice. Force-push replacing a branch (A) is exactly the failure: it discards what they had without merging it. Local branches are not deleted by a remote force-push (C), and the push is accepted, not rejected (D).</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">git merge main on your branch reports 'Fast-forward'. What does that tell you?</p>
+        <ol class="options" type="A">
+          <li>main had no commits your branch did not already contain, so your label slid forward with no merge commit</li>
+          <li>main was fully merged into your branch with a merge commit</li>
+          <li>Your branch was fast-forwarded to a remote copy of main</li>
+          <li>The merge was trivial because the branches touched disjoint files</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> main had no commits your branch did not already contain, so your label slid forward with no merge commit</p>
+          <p class="why">Fast-forward is specifically the no-join case: one line has no commits the other lacks, so there is nothing to record and no merge commit is created. A merge commit (B) is the opposite outcome. Remote copies are a different concept entirely (C) — Lesson 18. And touching disjoint files (D) is a real thing that helps, but it does not prevent a merge commit when both lines have new commits.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">You started pulling and the merge it triggered made a mess of your history. Which reason is the one the lesson says to act on?</p>
+        <ol class="options" type="A">
+          <li>git pull always merges; pick the variant explicitly with --rebase or --no-rebase so the choice is yours</li>
+          <li>git pull should be configured once in .gitconfig and never thought about again</li>
+          <li>Only rebase is safe on a shared branch, merge should never be used</li>
+          <li>The mess is unavoidable; the fix is a larger --force flag on push</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>A.</strong> git pull always merges; pick the variant explicitly with --rebase or --no-rebase so the choice is yours</p>
+          <p class="why"><code>pull</code> is <code>fetch</code> plus a join, and the join is the part you should choose out loud. Setting it globally (B) moves the decision somewhere you will forget you made — the same class of bug as letting the default decide. The lesson's rule is directional, not absolute: rebase what you own, merge what others have (C). And force-pushing over it (D) makes the history worse, not the collaboration.</p>
+        </details>
+      </li>
+      <li>
+        <p class="q">A rebase finished and the result is wrong. You have not pushed. What gets the old commits back?</p>
+        <ol class="options" type="A">
+          <li>git rebase --abort, which rewinds the already-finished rebase</li>
+          <li>git revert, which adds a commit undoing the rebase</li>
+          <li>The reflog still records where HEAD was before the rebase, so you can reset back to it</li>
+          <li>Nothing — once a rebase completes, the original commits no longer exist</li>
+        </ol>
+        <details>
+          <summary>Show answer</summary>
+          <p class="ans"><strong>C.</strong> The reflog still records where HEAD was before the rebase, so you can reset back to it</p>
+          <p class="why">A rebase moves labels and creates new commits; it deletes nothing, so every prior HEAD position is still in the reflog. <code>--abort</code> only applies while the rebase is still running (A). <code>revert</code> adds an undo commit on top, which leaves the rebased history in place — a different goal (B). And the originals are emphatically still there (C's neighbour D) — that is why rebasing an unpushed branch is safe enough to recommend.</p>
+        </details>
+      </li>
+    </ol>
+  </section>
+<nav class="pager">
+    <a class="prev" href="../../phases/02-git-deep/13-branches-are-movable-labels-not-copies.html"><span>Previous</span>13. Branches Are Movable Labels, Not Copies</a>
+    <a class="next" href="../../phases/02-git-deep/15-conflicts-what-they-are-how-they-resolve.html"><span>Next</span>15. Conflicts: What They Are, How They Resolve</a>
+  </nav>
+    </article>
+  </main>
+</div>
 </body>
 </html>

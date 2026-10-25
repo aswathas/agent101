@@ -5,23 +5,74 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
+      "id": 1,
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Dynamic Workflows — the Script Decides that needs a new situation, not recall.",
+      "prompt": "A workflow fans out over 400 files and each agent returns a long summary. Where does the summary of the 40th file live while the remaining agents are still running?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "In a variable inside the workflow script, outside Claude's context window",
+        "In Claude's context window, where the next decision can read it",
+        "In the agent team's shared task list",
+        "Appended to the session transcript, which the script reads back"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "explanation": "The runtime executes the script in an isolated environment and keeps intermediate results in script variables, which is the whole reason a workflow can scale past what one window holds. The first wrong option is the instinct carried over from subagents — there, results do land in the window, and that is exactly the constraint a workflow removes. Agent teams use a shared task list, which is for tasks rather than agent outputs, and the transcript is a record of what was said, not a working store the script reads.",
+      "concept": "results-live-in-script-variables"
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "A CI job runs `claude -p \"ultracode: audit every route handler\"`. The audit runs turn by turn and no workflow starts. Why?",
+      "options": [
+        "The keyword only opts in from a prompt a human typed; a `-p` prompt does not trigger it",
+        "Workflows are unavailable in non-interactive mode, so Claude Code stripped the keyword",
+        "The keyword has to be the first character of the prompt, and a quote preceded it",
+        "The workflow needs to be saved as a command before the keyword can launch it"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 0,
+      "explanation": "The docs list the routes that count as human input — the interactive prompt, an IDE panel, a Remote Control client, an SDK app that stamps the input as human — and `-p` is explicitly not one of them; neither is a scheduled task prompt or a relayed webhook. The unavailable-in-`-p` option is the tempting one because workflows are indeed young, but the pages state they run in non-interactive mode and in the Agent SDK. The quote has nothing to do with it, and a workflow does not need saving before it can run — saving is for reuse.",
+      "concept": "keyword-scope"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "Your workflow script needs to read `.tool-versions` and branch on its contents. What does the script do?",
+      "options": [
+        "Give an agent the job of reading the file and returning the value, because the script itself has no filesystem access",
+        "`import { readFileSync } from 'node:fs'` inside the script body",
+        "Read the value with a top-level `await fetch('file://.tool-versions')`",
+        "Nothing — the script must ask the user for the value, because runs take no input"
+      ],
+      "answer": 0,
+      "explanation": "The workflow coordinates; agents read, write, and run commands. The first wrong option is the one most developers reach for, and it fails twice: the runtime rejects a script containing `import()` before the run even starts, and there is no filesystem for the script to use. Fetching a `file://` URL is not part of the documented script surface and runs into the same missing-access wall. The last option confuses the run's inability to accept *user input mid-run* with the script's ability to receive input — `args` covers that case.",
+      "concept": "script-has-no-fs-access"
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "You want each saved run to write into a new folder named after the time it started, and you want a relaunch to be able to repeat the run. What is the right move?",
+      "options": [
+        "Pass the timestamp in through `args` and let the script use it",
+        "Call `Date.now()` at the top of the script and format it",
+        "Call `new Date()` for the folder name and `Date.now()` for a log line",
+        "Add a `phase('timestamp')` call and read the time from it"
+      ],
+      "answer": 0,
+      "explanation": "The runtime makes `Date.now()`, `Math.random()`, and a no-argument `new Date()` throw, precisely so a relaunched run repeats the same `agent()` calls instead of silently diverging. That is why the first two tempting answers are wrong rather than merely inelegant — the calls do not return values, they fail. `phase()` is real but it groups agents under a title in the progress view; it carries no clock.",
+      "concept": "determinism-for-relaunch"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "You edit a saved workflow's `.js` file while a session is open, and run `/<name>` again. Nothing changes. What did you miss?",
+      "options": [
+        "Run `/reload-skills` so the session re-reads the workflow directories, then run `/<name>` again",
+        "Delete the run from `/workflows` first, or the old script is reused",
+        "Re-save the workflow from `/workflows` so the edit is registered",
+        "Restart Claude Code; workflow files are read once at launch"
+      ],
+      "answer": 0,
+      "explanation": "Saved workflows are files, and the session caches the directories it read; `/reload-skills` re-reads them, and then `/<name>` runs the edited version. `/workflows` manages running and completed runs, so deleting one has no bearing on which file a name resolves to — that is the most plausible wrong answer, because the runs list is where you normally touch workflows from the inside. Re-saving writes the *run's* script back to a location, which is the opposite direction. And a restart would eventually work, which is why it is tempting, but the documented step is the reload.",
+      "concept": "reload-after-editing"
     }
   ]
 }

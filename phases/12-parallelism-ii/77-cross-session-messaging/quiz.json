@@ -5,23 +5,74 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
+      "id": 1,
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Cross-Session Messaging that needs a new situation, not recall.",
+      "prompt": "You renamed a session `api-worker` and sent it a finding. Ten minutes later you close that terminal. A second session now asks Claude to message `api-worker`. What actually happens?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Nothing is delivered. The closed session has no socket, and no queue or retry keeps the message",
+        "The message waits on disk and is delivered when you run `claude --resume api-worker`",
+        "The message is routed through Anthropic servers and arrives when the session next starts",
+        "The message is delivered to the second session instead, since the name no longer resolves"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "explanation": "The transport on this machine is a per-session socket bound by the running session. Close the session and there is no address, no store, and nothing to retry to. The tempting wrong answer is the `--resume` one, because resume genuinely does bring a session back — but it replays that session's own conversation, not other sessions' undelivered messages, and the docs describe no message store. Anthropic servers are only involved for sessions on another machine or in the cloud, which is the third option's error, and nothing ever silently redirects a message to a different session.",
+      "concept": "socket-bound-to-live-session"
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "Session B is mid-turn running a long `npm test`. Session A messages it. When does B's Claude read the message?",
+      "options": [
+        "Between B's tool calls, during the active turn — the running tool is never interrupted",
+        "Immediately, by interrupting the running command so the message can be read",
+        "Only after B's whole turn ends and the session goes fully idle",
+        "Only when you approve it, because B is busy"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 0,
+      "explanation": "Delivery happens between tool calls inside an active turn. The temptation is to pick the idle answer, because starting a new turn for an idle session is the *other* half of the documented behaviour — but that half only applies when B is already idle, not while it is mid-turn. Nothing interrupts a running tool, so the second option describes a preemption that does not exist. Approval is only involved for inbound controls such as a held message, which is about the message's origin and the session's mode, not about busyness.",
+      "concept": "delivery-between-tool-calls"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "A message asks session B to run `git push`. B's settings already deny that command. What does B do?",
+      "options": [
+        "Treats it as plain text: commands in a message never execute, and B's own permission rules still decide anything the message asks for",
+        "Runs it, because a message from another of your sessions carries your authority",
+        "Refuses the whole message before Claude sees it, because it contains a command",
+        "Executes the command but files the result as untrusted output"
+      ],
+      "answer": 0,
+      "explanation": "Claude Code tells the receiving Claude the message came from another session, not from you: it cannot approve anything, cannot change configuration, and any `/command`-shaped text arrives as plain characters. The tempting wrong answer is the authority one, because the sender is a session you launched — but the trust boundary is per-session and the receiving side's own rules still apply, so the push would hit B's existing deny. Refusing the whole message is a real behaviour, but it belongs to the inbound controls based on the sender's permission class, not to the presence of a command in the text.",
+      "concept": "message-is-not-consent"
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "You want to be told when a long-running local session finishes its current work, without checking on it. Which request can actually be honoured?",
+      "options": [
+        "From your main conversation, subscribe to an idle notice for a session on this machine",
+        "From any subagent, subscribe to an idle notice for any session Claude can reach",
+        "From your main conversation, subscribe to an idle notice for a cloud session on another machine",
+        "From your main conversation, subscribe to a notice every time that session finishes *any* turn, for up to 30 days"
+      ],
+      "answer": 0,
+      "explanation": "Only the Claude in your main conversation can subscribe, only to your sessions on this machine, and the notice fires once — when the watched session next goes idle or exits. The subagent version is tempting because Claude spends most of its life inside subagents, but the docs refuse the whole call for a teammate, subagent, or beyond-this-machine target, which also kills the cloud option. The last option gets both details backwards: it is one notice rather than every turn, and an unanswered subscription is dropped after 12 hours, not 30 days.",
+      "concept": "notify-when-idle-limits"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "A hook script running on native Windows wants to post a line into its own session's socket. What must it send before anything else?",
+      "options": [
+        "An auth line carrying the value of `CLAUDE_CODE_MESSAGING_TOKEN`, as the first line of the connection",
+        "Nothing — the auth line is optional on every platform",
+        "The socket path, so the session knows which inbox to use",
+        "A `{\"type\":\"message\"}` line, after which the text follows"
+      ],
+      "answer": 0,
+      "explanation": "On native Windows the auth line is required; a connection whose first line is not a valid auth line is closed and delivers nothing. The optional-on-every-platform answer is the trap, and it is half-true: on macOS and Linux, including WSL 2, the line is genuinely optional. The socket path is wrong because the *caller* chooses the socket to connect to — the session does not need to be told its own address. There is no documented `{\"type\":\"message\"}` handshake; the documented first-line types are auth and then message content.",
+      "concept": "own-child-auth-line"
     }
   ]
 }

@@ -401,10 +401,14 @@ harness          L91  the loop minus the intelligence
 graph            L98  dependencies = what's genuinely parallelizable
 ```
 
-`scripts/validate-lessons.mjs` enforces the mechanical half of this (required
-sections, exactly one reframe, exercise pass criteria, quiz shape, and a
-per-phase forbidden-term list). Extend its `GROUNDING` table as phases are
-written — it currently only covers Phase 00 lesson 1.
+`scripts/validate-lessons.mjs` enforces the mechanical half of this: required
+sections, the `# ` title line, the `>` hook, exactly one reframe, exercise pass
+criteria, quiz shape, and a per-phase forbidden-term list.
+
+The `GROUNDING` table is still the open half — it currently only covers Phase 00
+lesson 1. Extend it as phases are written. It is deliberately conservative:
+a term listed there is one a lesson provably may not use yet, and a wrong entry
+blocks good content rather than bad.
 
 ## Writing a lesson
 
@@ -425,5 +429,6 @@ Run `node scripts/validate-lessons.mjs` when the phase is complete.
 Phases 04–17 cover material **aiengineeringfromscratch.com does not have** (542
 lessons, none of it Claude Code as a harness). Phases 00–03 overlap in spirit only.
 
-**Open item:** Phase 03 lessons 25–26 need "Liar = LFM?" confirmed. Won't title a
-lesson on a guess.
+**Resolved:** lessons 25–26 are titled for the pattern, not a product. The
+product names appear once, in lesson 25's prose, explicitly flagged as
+unverified as of October 2026. Nothing is titled on a guess.

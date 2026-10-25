@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Effort Levels and Extended Thinking that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "You spent the morning doing small renames with the effort level at `max`, left over from yesterday's security review. What is the effect, and the fix?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "No effect — effort only applies to `opus`",
+        "Every rename paid for reasoning it did not need; drop to a low level for this kind of work",
+        "The renames were higher quality and should stay at `max`",
+        "You hit a rate limit and must wait"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "Effort buys thinking, and thinking is billed as output, so `max` on a rename spends money on reasoning the task does not need. 'Higher quality' is the tempting answer — occasionally true, but the lesson's point is that more reasoning has diminishing returns and this work is reviewed by you anyway."
+    },
+    {
+      "id": 2,
+      "prompt": "You tried to turn thinking off on the current model, but the model still produces reasoning tokens. What is the most likely explanation?",
+      "options": [
+        "The setting failed to save",
+        "This model uses adaptive reasoning, so thinking cannot be fully turned off and effort is the real control",
+        "Thinking is only disabled on cheaper plans",
+        "The model is ignoring your instructions on purpose"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "On models with adaptive reasoning, the model decides per step how much to think and effort is the primary control; the on/off toggle does not apply to them. Blaming a failed save is the tempting wrong answer, but the header and settings would still show thinking as unavailable to toggle on those models."
+    },
+    {
+      "id": 3,
+      "prompt": "A bug-fix attempt at `low` effort came back confident and wrong. What is the right next move?",
+      "options": [
+        "Ask the same question again at the same level and hope",
+        "Raise effort for this task and check the new answer against a test, not against how it sounds",
+        "Switch to a bigger model; effort does not matter",
+        "Conclude the bug is unfixable"
+      ],
+      "answer": 1,
+      "explanation": "The failure was too little reasoning for a hard step, so raise effort and verify with a test. Repeating at the same level changes nothing. 'Switch model' is tempting but skips the cheaper control first; effort is the dial this lesson is about."
+    },
+    {
+      "id": 4,
+      "prompt": "Where do extended-thinking tokens appear when you read the cost?",
+      "options": [
+        "A separate thinking line on the invoice",
+        "As output tokens, alongside the answer",
+        "As input tokens, because they were added to the prompt",
+        "They are free when collapsed"
+      ],
+      "answer": 1,
+      "explanation": "Thinking is generated text, so it bills as output, whether or not you expand it. A separate invoice line is tempting because the UI separates it visually, but the billing unit is output tokens. Collapsed is a display choice, not a discount."
     }
   ]
 }

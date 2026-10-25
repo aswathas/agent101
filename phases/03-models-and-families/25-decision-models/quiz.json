@@ -1,27 +1,56 @@
 {
   "lesson": "03-models-and-families/25-decision-models",
-  "title": "Decision Models — Jev, Jeff, and the LFM line",
+  "title": "Decision Models Beat Generation on Cost",
   "version": 1,
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Decision Models — Jev, Jeff, and the LFM line that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "A loop makes about 40 calls per task: 35 decide something, 5 write user-facing text. Which calls should run on the large generation model?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "All 40, for consistency",
+        "The 5 that write text a human reads",
+        "The 35 decisions, because decisions are harder",
+        "Whichever the model picks"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "Only the generation calls produce something anyone reads, so they justify the larger model. 'Decisions are harder' is the tempting answer, but the output-token cost is driven by how much text comes back, and a decision needs almost none."
+    },
+    {
+      "id": 2,
+      "prompt": "Why is output token count the cost driver for a decision call?",
+      "options": [
+        "Input tokens are free",
+        "A generation model answers a yes/no with a paragraph, and you are billed for that paragraph",
+        "Decisions use a more expensive model tier",
+        "Output tokens are billed at a fixed rate per call"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "The input is often the same chunky context either way; the waste is the sentence the model writes when a label would do. 'Input tokens are free' is false — the point is that output is where the decision version costs more than it needs to."
+    },
+    {
+      "id": 3,
+      "prompt": "A teammate wants every decision call to write out its reasoning, for auditability. What is the cost, and when is it worth paying?",
+      "options": [
+        "No cost; text is always cheap",
+        "It turns a decision into a generation call, so you pay for the prose; worth it when the explanation is genuinely read",
+        "It is impossible with current models",
+        "It improves accuracy automatically"
+      ],
+      "answer": 1,
+      "explanation": "Asking a decision to explain itself is asking a generation call, and output tokens are the bill. The tempting answer is 'no cost', but the whole lesson is that prose you throw away is still billed — the exception is prose that a person actually audits."
+    },
+    {
+      "id": 4,
+      "prompt": "When is a decision model the wrong tool?",
+      "options": [
+        "When the answer is one of six fixed categories",
+        "When the task is open-ended and has no defined correct answer to compare against",
+        "When the volume is high",
+        "When the input is private"
+      ],
+      "answer": 1,
+      "explanation": "A decision model needs a closed set of answers and a way to tell a good label from a bad one. Fixed categories, high volume, and private input are the situations where it is *right*. Without a defined correct answer, a smaller model just fails faster and cheaper."
     }
   ]
 }

@@ -5,23 +5,88 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
+      "id": 1,
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Workflow Runtime Caps that needs a new situation, not recall.",
+      "prompt": "A `pipeline()` fans out over 800 files, one agent per file, with nothing else configured. Roughly how many of those agents are working at the same time?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "About 16, or fewer if the machine has fewer CPUs. The rest wait their turn",
+        "All 800, since one call means one batch",
+        "One at a time, because `pipeline()` runs items in sequence",
+        "Up to 4,096, which is the list cap for a single call"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "explanation": "The runtime runs up to 16 concurrent agents by default, and less when fewer CPUs are available, including inside a CPU-limited container — so 800 items means 800 agents overall but about 16 in flight. The all-800 answer and the one-at-a-time answer are the two intuitions people bring, and both are wrong in opposite directions; the docs explicitly do not give `pipeline()` a scheduling difference from `parallel()`. The 4,096 figure is a real number but it is the per-call *item* cap, not a concurrency figure.",
+      "concept": "in-flight-not-total"
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "prompt": "An agent edits three files, then goes quiet long enough to be restarted. What is true of the second attempt?",
+      "options": [
+        "It starts without the first attempt's transcript, and the three files are still edited",
+        "It starts with the first attempt's transcript, and the three files are still edited",
+        "It starts without the transcript and the three edits are rolled back",
+        "It starts without the transcript, and the tokens the first attempt used are refunded to the run"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 0,
+      "explanation": "A restart is a fresh attempt from the same prompt: the new attempt does not inherit the stalled transcript, the files it already changed stay changed, and the tokens it spent stay in the run's total. The rollback answer is the one everybody wants, because 'restart' sounds like 'clean slate' — it is the reason an agent's writes should be idempotent. The transcript and refund variants both describe a restore that the docs do not offer.",
+      "concept": "restart-is-not-a-rollback"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "prompt": "A script calls one `pipeline()` with a 4,100-item list. What happens?",
+      "options": [
+        "The call is rejected with an error before any agent starts",
+        "The first 4,096 items run and the remaining four are reported as skipped",
+        "All 4,100 run, split into two internal batches",
+        "The last four items are dropped silently so the run can continue"
+      ],
+      "answer": 0,
+      "explanation": "The per-call cap is 4,096 items and a longer list is rejected, because a silent cap would drop part of the workload without telling the script. The truncation answer is the tempting one — it is what most systems do — and it is exactly the behaviour the docs call out as unacceptable. Nothing is split automatically, and a silent drop is the failure the cap exists to prevent. This is also why it is the cheapest cap to demonstrate: no agent ever runs.",
+      "concept": "list-cap-rejects-not-truncates"
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "prompt": "An agent runs a test command that takes 25 minutes, and the stall window is 10 minutes. Does it count as stalled?",
+      "options": [
+        "No — time an agent spends waiting on its own tool calls does not count toward the stall window",
+        "Yes — any 10 minutes without output ends the attempt",
+        "Yes, but only because the test command produces no incremental output",
+        "No, but only if the window was set with `stallMs` rather than the run-wide variable"
+      ],
+      "answer": 0,
+      "explanation": "The stall window measures output starvation, and the docs exclude time spent waiting on the agent's own tool calls, or on a usage-limit reset. That exclusion is why a legitimately slow build does not get its agent killed. The 'any 10 minutes' answer is the natural reading of a plain timeout and is the trap: it would make long test runs impossible, which is not how workflows behave. The mechanism you set the window with is irrelevant to whether the wait counts.",
+      "concept": "tool-wait-does-not-stall"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "prompt": "An agent fails after six attempts with `agent lost its reply on all 6 attempts`. What does that tell you to change?",
+      "options": [
+        "Nothing about the stall window — the response stream went silent and a streaming idle watchdog ended it",
+        "Make the stall window longer, since the agent needed more time to produce output",
+        "Raise the retry count, since six attempts were not enough",
+        "Lower the concurrency cap, since too many agents were competing for the API"
+      ],
+      "answer": 0,
+      "explanation": "This error names the response stream going silent, and the docs are explicit that lengthening the stall window does not help because the streaming idle watchdog ended the response first — its own timeout is a different variable. The length-the-window answer is the strong temptation, because the sibling error, `agent stalled on all 6 attempts`, is exactly the case where more time does help. The other two options change the wrong number: the attempt count is fixed at six including manual restarts, and concurrency is not implicated.",
+      "concept": "three-stall-errors-mean-different-things"
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "prompt": "A workflow schedules 40 agents and is projected to spend well over a million tokens. What does the runtime do?",
+      "options": [
+        "Shows an advisory `Large workflow` warning; the run continues unless you stop it",
+        "Pauses the run and asks you to approve the spend before continuing",
+        "Caps the run at 25 agents and reports the remainder as skipped",
+        "Fails the run, because it crossed the projected-token threshold"
+      ],
+      "answer": 0,
+      "explanation": "The warning is advisory: it appears above 25 agents or a projected 1.5 million tokens and points you at `/workflows`, where you can stop the run — it neither pauses nor limits anything. The pause-and-approve answer is plausible because the launch does prompt in most permission modes, but that prompt happens *before* the run, not in response to its size. The other two answers treat an advisory threshold as an enforced cap, which it is not.",
+      "concept": "large-run-warning-is-advisory"
     }
   ]
 }

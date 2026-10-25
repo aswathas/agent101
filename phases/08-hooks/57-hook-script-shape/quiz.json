@@ -1,27 +1,68 @@
 {
   "lesson": "08-hooks/57-hook-script-shape",
-  "title": "Script Shape — stdin JSON → stdout / exit code",
+  "title": "Hook Script Shape — stdin JSON → stdout / exit code",
   "version": 1,
   "passingScore": 3,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Script Shape — stdin JSON → stdout / exit code that needs a new situation, not recall.",
+      "prompt": "One guardrail script is declared on both `Bash` and `Edit|Write`. It blocks when the command contains `rm -rf`, read with `jq -r '.tool_input.command'`. An `Edit` event arrives, which carries `file_path` but no `command`. What does the script actually see?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The literal string `null` — it doesn't match `rm -rf`, so the script quietly allows the edit",
+        "An empty string — jq collapses a missing field to \"\", so the block rule is skipped",
+        "An error from jq, which exits non-zero and is reported as a hook failure",
+        "Nothing — the harness omits the field and withholds the whole event"
       ],
       "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "distractors": [1, 2, 3],
+      "explanation": "`jq -r` on a missing field prints the literal string `null`, not an empty string and not an error. That `null` then fails to match `rm -rf`, so the hook decides nothing and exits 0 — the safe-looking default. The fix is `jq -r '.tool_input.command // empty'`, or `?? ''` in Node. Option B is the tempting one because \"missing data\" feels like an empty string, but jq's raw mode prints `null`. Option C misattributes a non-error as a crash; indexing a missing key is not an error. Option D is wrong because events always arrive whole — the field is simply absent.",
+      "concept": "missing-field-prints-null"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "Your hook reformats a file after an edit and you want the person at the keyboard — not the model — to see that it happened. Which output carries that?",
+      "options": [
+        "`systemMessage` in the JSON on stdout",
+        "`additionalContext` in the JSON on stdout",
+        "`permissionDecision` in `hookSpecificOutput`",
+        "The first line of stderr, with `exit 0`"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "`systemMessage` goes to the user's screen; `additionalContext` goes into the model's window. The two are confused constantly because they are both strings in the same JSON object, but they have different readers. Option B would tell the model, not the human — the opposite of what you asked for. Option C is a decision field (allow/deny) for tool events, not a display channel. Option D is a trap: stderr is only read as a reason on `exit 2`; on `exit 0` it is not surfaced as a message.",
+      "concept": "systemMessage-vs-additionalContext"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A teammate adds a debug line — `echo \"hook running\"` — above the single JSON object their `PostToolUse` hook prints. The script still runs, exits 0, and prints valid JSON. What does the harness do with the decision?",
+      "options": [
+        "Ignores the JSON — stdout is parsed as JSON only when the whole output is one object, and the stray line makes it plain text",
+        "Parses the JSON anyway — the harness scans stdout for the first `{` and reads from there",
+        "Errors, because stdout must be empty when a hook exits 0",
+        "Uses the JSON, but records a warning about the extra line"
+      ],
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "The whole of stdout must be a single valid JSON object surrounded by whitespace. One preceding `echo` and the output is no longer that, so it is treated as plain text and the decision is lost — the hook appears to do nothing while the script is perfect. Option B is the common hope; there is no scanning or extraction. Option C inverts the rule — plain text on stdout is allowed, it just isn't a decision. Option D invents a warning that doesn't happen; the failure is silent.",
+      "concept": "stdout-is-one-json-object"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "A hook needs the path the agent is *currently* working in. The session is running inside a worktree, so this differs from where the session started. Which value do you read?",
+      "options": [
+        "`cwd` from the event JSON on stdin",
+        "`${CLAUDE_PROJECT_DIR}`",
+        "The process's `process.cwd()`",
+        "`transcript_path` from the event JSON"
+      ],
+      "answer": 0,
+      "distractors": [1, 2, 3],
+      "explanation": "`cwd` on stdin is where the agent is now, which is exactly the question. Option B is the trap: `${CLAUDE_PROJECT_DIR}` is where the session *started* — the main checkout even when the agent runs in a worktree — so it is right for finding the repo's `.claude/` and wrong for finding current edits. Option C relies on the process's launch directory, which you don't control and can't assume. Option D is the conversation file, unrelated to the working directory.",
+      "concept": "cwd-vs-project-dir"
     }
   ]
 }

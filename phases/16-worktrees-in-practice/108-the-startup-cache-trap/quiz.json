@@ -1,18 +1,37 @@
 {
   "lesson": "16-worktrees-in-practice/108-the-startup-cache-trap",
-  "title": "The Startup-Cache Trap (cost us a session)",
+  "title": "The Startup-Cache Trap",
   "version": 1,
   "passingScore": 3,
   "questions": [
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about The Startup-Cache Trap (cost us a session) that needs a new situation, not recall.",
+      "prompt": "A session launched in a folder that was not a git repo. You ran `git init`, committed, and confirmed `git rev-parse --show-toplevel` prints the folder. The session still says it is not in a git repository. What is the shortest correct action?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "Run `git rev-parse --show-toplevel` again inside the session to refresh its cache",
+        "Re-run `git init` — the first one likely failed",
+        "Commit again so the session notices the repository",
+        "Restart the session in the now-existing repository"
+      ],
+      "answer": 3,
+      "distractors": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "The session cached its repository answer at launch; only a new session re-reads it. Option A is the tempting wrong answer because it assumes the session re-checks on demand, which is precisely the behaviour that does not exist. A second `git init` is a no-op — the repo already exists — and another commit cannot update a cached startup fact.",
+      "concept": "startup-cache"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "In that same stuck session, you try `claude --worktree trap` in a second terminal. It fails the same way. Why doesn't the flag help?",
+      "options": [
+        "The flag is evaluated after the session has already resolved and cached whether it is in a repository",
+        "`--worktree` only works on macOS and Linux",
+        "Worktrees are disabled unless the folder is empty",
+        "The flag needs a full path, not a name"
       ],
       "answer": 0,
       "distractors": [
@@ -20,8 +39,46 @@
         2,
         3
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "explanation": "The repository check happens as the session starts, before `--worktree` can create anything, so a repo born mid-session is still invisible. Option B is the tempting wrong answer for anyone who has seen platform-specific bugs; here the cause is timing, not the OS. Worktrees do not require an empty folder, and a name argument is fine.",
+      "concept": "flag-ordering"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A teammate says: 'You must have a permissions problem — `git worktree` is a git command, and git works fine for me.' What is the flaw in that reasoning?",
+      "options": [
+        "The worktree tool is not really a git command",
+        "Git worktrees always fail until you set a global config value",
+        "The refusal is about what the *session* believes at launch, not about git's own permissions or reach",
+        "They need to run the command with `sudo`"
+      ],
+      "answer": 2,
+      "distractors": [
+        0,
+        1,
+        3
+      ],
+      "explanation": "The message reads like a permissions or path problem, but its cause is a cached launch-time answer that git itself never consults, so demonstrating git works proves nothing. Option A is the tempting wrong answer because the observable is a wrapper refusing while git succeeds; the fix is a restart, not a config value or elevated permissions.",
+      "concept": "misleading-symptom"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You are about to start a long parallel-agent run in a brand-new project folder. What ordering avoids the trap entirely?",
+      "options": [
+        "Launch the session first, then `git init` and commit once the agents are scheduled",
+        "`git init` and make the first commit in your own terminal, then launch the session there",
+        "Start the session, and run `git init` only if a worktree is refused",
+        "Clone an empty repository after the session has started"
+      ],
+      "answer": 1,
+      "distractors": [
+        0,
+        2,
+        3
+      ],
+      "explanation": "Making the repo before launch means the session caches the correct answer. Options A, C, and D all create or change the repo *after* the session started, which is the exact condition that produces the trap. Option C is tempting because it sounds reactive and safe, but by the time the refusal appears the session's answer is already fixed.",
+      "concept": "prevention-ordering"
     }
   ]
 }

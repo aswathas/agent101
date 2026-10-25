@@ -7,21 +7,62 @@
     {
       "id": "q1",
       "type": "multiple-choice",
-      "prompt": "Replace with a question about Base Ref, Cleanup, and the /batch Path that needs a new situation, not recall.",
+      "prompt": "An agent in a worktree fixes a bug, but the fix assumes code you committed to your feature branch this morning and haven't pushed. The agent never saw that change. What was almost certainly true?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "`worktree.baseRef` was `\"head\"`, so it should have seen your commit",
+        "`worktree.baseRef` was left at the default, so the worktree branched from the remote default branch",
+        "The worktree copied tracked files but not your commit messages",
+        "The agent's model had a smaller context window than your session"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The default base is `\"fresh\"`, which branches from the repository's default branch on the remote — so unpushed work on your feature branch isn't there. Setting `\"head\"` is the fix. Option A is backwards. Option C confuses a checkout with commit history. Option D is a context-window issue and would show up as truncated results, not a stale tree.",
+      "concept": "baseref-fresh-vs-head"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "A worktree Claude created for a background agent is days old. You want it gone, but `git worktree remove` refuses. Why might the sweep not have taken it already?",
+      "options": [
+        "The sweep only removes worktrees created by `git worktree add`",
+        "It still holds unpushed commits or changed files, which the sweep keeps on purpose",
+        "The sweep runs only at session startup and you haven't restarted",
+        "Claude-created worktrees can never be swept, only removed by hand"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "The sweep deliberately skips any worktree that still holds work — changed or untracked files, or unpushed commits — so a worktree with real work stays until you deal with it, often locked while an agent runs. The sweep targets Claude-created worktrees (those with a marker), not `git worktree add` ones, which it keeps. It isn't a startup-only job, and Claude-created worktrees are exactly what it removes when they're clean and old.",
+      "concept": "sweep-keeps-work"
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "A colleague asks you to change one function signature in one file. They suggest `/batch`. What should you tell them?",
+      "options": [
+        "Yes — `/batch` runs one worktree per unit, so one unit is fine",
+        "No — `/batch` decomposes a large change into 5 to 30 units; a one-file change doesn't need fan-out",
+        "No — `/batch` needs a `WorktreeCreate` hook even in a git repo",
+        "Yes — `/batch` is required any time more than one file changes"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "`/batch` is built for large-scale changes it can split into 5–30 independent units; a single-file edit gains nothing and pays coordination overhead. It works in a git repository without a hook — the hook is for non-git version control. Nothing requires `/batch` merely because more than one file changes.",
+      "concept": "when-to-use-batch"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "You set `worktree.baseRef` to `feature-x`, the name of your branch, and start a worktree. It fails. What is the correct fix?",
+      "options": [
+        "Quote the branch name so the shell doesn't expand it",
+        "Use `\"head\"` while checked out on that branch, or create the worktree with `git worktree add`",
+        "Set `baseRef` to the branch's commit hash instead",
+        "Enable `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` first"
+      ],
+      "answer": 1,
+      "distractors": [0, 2, 3],
+      "explanation": "`baseRef` accepts only `\"fresh\"` or `\"head\"` — it can't name a branch, so the correct move is `\"head\"` from that branch or a manual `git worktree add`. Quoting or a commit hash doesn't change the accepted values. The agent-teams variable is unrelated to worktree creation.",
+      "concept": "baseref-accepted-values"
     }
   ]
 }

@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Claiming — Stopping Two Agents Doing One Job that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "A worker claims a node like this: `if (task.status === 'ready') { task.status = 'claimed' }`. In a heavy fan-out, two workers still duplicate the work. What is the flaw?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The status field is spelled inconsistently",
+        "Check and set are two separate steps, so two workers can both read 'ready' before either writes — it needs to be atomic",
+        "Workers should re-read the status after writing it",
+        "The task needs a longer lease"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "Between the read and the write, both workers can observe `ready`, so both proceed; the write is a race, not a lock. Option A is a cosmetic guess. Option C reads the status even later, after the race has happened. Option D helps a *dead* owner, not a simultaneous one, and this bug fires on healthy workers."
+    },
+    {
+      "id": 2,
+      "prompt": "You use exclusive file create for claims, and a worker is killed mid-node. The node never returns to the queue. What is missing?",
+      "options": [
+        "A bigger machine, so workers do not get killed",
+        "A lease with an expiry, so a dead owner's claim returns the node to ready",
+        "Idempotency, so the node can run twice",
+        "A soft edge, so the node does not wait"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "A claim record with no expiry is permanent; the lease is what detects a dead owner and frees the node. Option A avoids the symptom, not the mechanism. Option C is necessary for *safe re-run* but does not by itself release the claim. Option D is an edge-classification idea and unrelated to ownership."
+    },
+    {
+      "id": 3,
+      "prompt": "A worker claims a node, edits twelve files, and *then* checks whether it still holds the claim — on discovering it lost the race, it rolls back. Why is this still wrong?",
+      "options": [
+        "Rolling back is impossible, so it should keep the edits",
+        "The side effect happened before the claim check, so the rollback itself races with the winner; the check must precede any side effect",
+        "It should claim after finishing instead of before",
+        "Nothing — checking afterwards is equivalent"
+      ],
+      "answer": 1,
+      "explanation": "A claim only protects you if it gates the work; acting first and checking later means two workers can both have edited before either backs out. Option A abandons the guarantee entirely. Option C claims too late to matter. Option D is the tempting equivalence, and it fails precisely because the loser's edits are already on disk."
+    },
+    {
+      "id": 4,
+      "prompt": "A single agent runs a small graph sequentially and someone suggests adding claim files for every node. Overkill, or necessary?",
+      "options": [
+        "Necessary — every graph should use claims",
+        "Overkill — with one writer there is no race, so claiming adds state and possible stale leases for nothing",
+        "Necessary, because claims also prevent the node running twice",
+        "Overkill, but only because single agents cannot revisit nodes"
+      ],
+      "answer": 1,
+      "explanation": "Claims exist to resolve contention among writers; with one writer there is nothing to contend. Option A is the tempting over-engineering, and stale leases become a new failure mode. Option C is half-right — idempotency helps on resume — but a single sequential run does not resume mid-node, and a claim is not the tool for it. Option D states a false reason."
     }
   ]
 }

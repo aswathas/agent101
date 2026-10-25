@@ -5,23 +5,52 @@
   "passingScore": 3,
   "questions": [
     {
-      "id": "q1",
-      "type": "multiple-choice",
-      "prompt": "Replace with a question about Reducing Context Without Losing Capability that needs a new situation, not recall.",
+      "id": 1,
+      "prompt": "You cut your window in half by deleting sections from `CLAUDE.md`. A week later Claude stops following a check you deleted, and you never notice. What actually went wrong?",
       "options": [
-        "Replace me",
-        "Replace me",
-        "Replace me",
-        "Replace me"
+        "The window got too small for Claude to reason about",
+        "You deleted instead of relocating, and had no capability test to catch it",
+        "Deleting from `CLAUDE.md` always invalidates the cache and confuses the model",
+        "Claude forgot the rule because it was compacted away"
       ],
-      "answer": 0,
-      "distractors": [
-        1,
-        2,
-        3
+      "answer": 1,
+      "explanation": "Reduction is relocation: the fact needs a home that loads it back, and a test that fails if it is gone. Deleting passes the size test and fails the capability test silently. Option A inverts the lesson — the window was too *full*, not too small. Option C confuses caching with capability; the cache is not why the rule stopped being followed. Option D blames compaction, but the rule was deleted, not summarized."
+    },
+    {
+      "id": 2,
+      "prompt": "You move a research task that reads twelve files into a subagent. What is the honest way to prove capability survived?",
+      "options": [
+        "Confirm the subagent definition file exists",
+        "Run a real task that needs the research and confirm it completes, with only the summary in your window",
+        "Check that the twelve files are still in the repository",
+        "Measure that the main window shrank"
       ],
-      "explanation": "Why the answer is right, and why the tempting wrong one is wrong.",
-      "concept": "replace-me"
+      "answer": 1,
+      "explanation": "The proof is a task that would fail if the capability were lost, run for real, with the reads happening in the subagent's window and only the summary returning. Option A proves a file exists, not that the capability works. Option C proves the files exist, not that they are read. Option D is the *reduction* measurement, not the *capability* proof — the two are separate claims."
+    },
+    {
+      "id": 3,
+      "prompt": "A convention applies only to files under `packages/api/` and is used on maybe one task in ten. Which home gives the lowest standing cost without losing it?",
+      "options": [
+        "`CLAUDE.md`",
+        "A path-scoped rule with `paths: packages/api/**`",
+        "A skill invoked on every task",
+        "Auto memory"
+      ],
+      "answer": 1,
+      "explanation": "A path-scoped rule loads only when a matching file is read, so nine tasks in ten never pay for it while the tenth gets it automatically. Option A pays every session. Option C would load it on every task if invoked, and requires the user to remember to invoke it. Option D is a startup block; the convention is directory-specific, so auto memory is the wrong trigger."
+    },
+    {
+      "id": 4,
+      "prompt": "After a large reshuffle of your context, the next turn is slow and expensive even though the window is now smaller. What is the most likely cause?",
+      "options": [
+        "A smaller context always runs slower on the first turn",
+        "The reshuffle changed the request's prefix, so the cache had to rebuild",
+        "The removed content corrupted the session",
+        "Claude is re-reading the deleted files"
+      ],
+      "answer": 1,
+      "explanation": "Changing what sits in the prefix changes the exact start of the request, so everything after it is reprocessed — a one-time rebuild. This is why Lesson 89 comes before this one. Option A has no mechanism. Option C invents corruption. Option D is impossible to observe as a cost here and is not what the prefix rule describes."
     }
   ]
 }
